@@ -1,0 +1,541 @@
+id ; iName ; name ; value ; 
+EA65 ; PltTreeOak0 ; Oak (Sapling) ; 00000000
+EA66 ; PltTreeOak1 ; Oak (Grow 1) ; 00000000
+EA67 ; PltTreeOak2 ; Oak (Grow 2) ; 00000000
+EA68 ; PltTreeOak3 ; Oak (Grow 3) ; 00000000
+EA60 ; PltTreeOak4 ; Oak (Full-grown) ; 00000000
+EC6D ; PltTreeOak1Stump ; Oak Stump (Grow 1) ; 00060000
+EC6C ; PltTreeOak2Stump ; Oak Stump (Grow 2) ; 00060000
+EC6B ; PltTreeOak3Stump ; Oak Stump (Grow 3) ; 00060000
+EA9F ; PltTreeOak4Stump ; Oak Stump (Full-grown) ; 00060000
+ECBC ; PltTreeFruitStump1 ; Fruit Stump (Grow 1) ; 00060000
+ECBD ; PltTreeFruitStump2 ; Fruit Stump (Grow 2) ; 00060000
+ECBE ; PltTreeFruitStump3 ; Fruit Stump (Grow 3) ; 00060000
+ECBF ; PltTreeFruitStump4 ; Fruit Stump (Grow 4) ; 00060000
+EAB5 ; PltTreeCedar0 ; Cedar (Sapling) ; 00000000
+EAB7 ; PltTreeCedar1 ; Cedar (Grow 1) ; 00000000
+EAB6 ; PltTreeCedar2 ; Cedar (Grow 2) ; 00000000
+EAB8 ; PltTreeCedar3 ; Cedar (Grow 3) ; 00000000
+EA69 ; PltTreeCedar4 ; Cedar (Full-grown) ; 00000000
+EC70 ; PltTreeCedar1Stump ; Cedar Stump (Grow 1) ; 00060000
+EC6F ; PltTreeCedar2Stump ; Cedar Stump (Grow 2) ; 00060000
+EC6E ; PltTreeCedar3Stump ; Cedar Stump (Grow 3) ; 00060000
+EAB4 ; PltTreeCedar4Stump ; Cedar Stump (Full-grown) ; 00060000
+EABF ; PltTreePalm0 ; Palm (Sapling) ; 00000000
+EAC1 ; PltTreePalm1 ; Palm (Grow 1) ; 00000000
+EAC0 ; PltTreePalm2 ; Palm (Grow 2) ; 00000000
+EAC2 ; PltTreePalm3 ; Palm (Grow 3) ; 00000000
+EA77 ; PltTreePalm4 ; Palm (Full-grown) ; 00000000
+EC78 ; PltTreePalm1Stump ; Palm Stump (Grow 1) ; 00060000
+EC79 ; PltTreePalm2Stump ; Palm Stump (Grow 2) ; 00060000
+EC7A ; PltTreePalm3Stump ; Palm Stump (Grow 3) ; 00060000
+EABE ; PltTreePalm4Stump ; Palm Stump (Full-grown) ; 00060000
+EAC4 ; PltTreeBamboo0 ; Bamboo (Sapling) ; 00000000
+EAC6 ; PltTreeBamboo1 ; Bamboo (Grow 1) ; 00000000
+EAC5 ; PltTreeBamboo2 ; Bamboo (Grow 2) ; 00000000
+EAC7 ; PltTreeBamboo3 ; Bamboo (Grow 3) ; 00000000
+EA76 ; PltTreeBamboo4 ; Bamboo (Full-grown) ; 00000000
+EAC3 ; PltTreeBamboo4Stump ; Bamboo Stump (Full-grown) ; 00060000
+EC73 ; PltTreeBamboo1Stump ; Bamboo Stump (Grow 1) ; 00060000
+EC72 ; PltTreeBamboo2Stump ; Bamboo Stump (Grow 2) ; 00060000
+EC71 ; PltTreeBamboo3Stump ; Bamboo Stump (Grow 3) ; 00060000
+EBD3 ; PltTreeApple0 ; Apple Tree (Sapling) ; 00000000
+EBD0 ; PltTreeApple1 ; Apple Tree (Grow 1) ; 00000000
+EBD1 ; PltTreeApple2 ; Apple Tree (Grow 2) ; 00000000
+EBD2 ; PltTreeApple3 ; Apple Tree (Grow 3) ; 00000000
+EA61 ; PltTreeApple ; Apple Tree (Full-grown) ; 00000000
+EBC8 ; PltTreeOrange0 ; Orange Tree (Sapling) ; 00000000
+EBC9 ; PltTreeOrange1 ; Orange Tree (Grow 1) ; 00000000
+EBCA ; PltTreeOrange2 ; Orange Tree (Grow 2) ; 00000000
+EBCB ; PltTreeOrange3 ; Orange Tree (Grow 3) ; 00000000
+EA62 ; PltTreeOrange ; Orange Tree (Full-grown) ; 00000000
+EBCC ; PltTreePear0 ; Pear Tree (Sapling) ; 00000000
+EBCD ; PltTreePear1 ; Pear Tree (Grow 1) ; 00000000
+EBCE ; PltTreePear2 ; Pear Tree (Grow 2) ; 00000000
+EBCF ; PltTreePear3 ; Pear Tree (Grow 3) ; 00000000
+EAC8 ; PltTreePear ; Pear Tree (Full-grown) ; 00000000
+EBC4 ; PltTreePeach0 ; Peach Tree (Sapling) ; 00000000
+EBC5 ; PltTreePeach1 ; Peach Tree (Grow 1) ; 00000000
+EBC6 ; PltTreePeach2 ; Peach Tree (Grow 2) ; 00000000
+EBC7 ; PltTreePeach3 ; Peach Tree (Grow 3) ; 00000000
+EACA ; PltTreePeach ; Peach Tree (Full-grown) ; 00000000
+EBC2 ; PltTreeCherry0 ; Cherry Tree (Sapling) ; 00000000
+EBC3 ; PltTreeCherry1 ; Cherry Tree (Grow 1) ; 00000000
+EBC1 ; PltTreeCherry2 ; Cherry Tree (Grow 2) ; 00000000
+EBC0 ; PltTreeCherry3 ; Cherry Tree (Grow 3) ; 00000000
+EAC9 ; PltTreeCherry ; Cherry Tree (Full-grown) ; 00000000
+EACC ; PltBushAzalea0White ; white-azalea (Sapling) ; 00000000
+EAD0 ; PltBushAzalea1White ; white-azalea (Grow 1) ; 00000000
+EACD ; PltBushAzalea2White ; white-azalea (Flower bud) ; 00000000
+EACB ; PltBushAzalea3White ; white-azalea (Full-grown Flower) ; 00000000
+EACF ; PltBushAzalea4White ; white-azalea (Full-grown no Flower) ; 00000000
+EC21 ; PltBushAzalea0Pink ; pink-azalea (Sapling) ; 00000000
+EC20 ; PltBushAzalea1Pink ; pink-azalea (Grow 1) ; 00000000
+EC22 ; PltBushAzalea2Pink ; pink-azalea (Flower bud) ; 00000000
+EC23 ; PltBushAzalea3Pink ; pink-azalea (Full-grown Flower) ; 00000000
+EC24 ; PltBushAzalea4Pink ; pink-azalea (Full-grown no Flower) ; 00000000
+EBF9 ; PltBushHydrangea ; blue-hydrangea (Sapling) ; 00000000
+EBFC ; PltBushHydrangea1Blue ; blue-hydrangea (Grow 1) ; 00000000
+EBFD ; PltBushHydrangea2Blue ; blue-hydrangea (Flower bud) ; 00000000
+EBFE ; PltBushHydrangea3Blue ; blue-hydrangea (Full-grown Flower) ; 00000000
+EBFF ; PltBushHydrangea4Blue ; blue-hydrangea (Full-grown no Flower) ; 00000000
+EBFB ; PltBushHydrangea0Pink ; pink-hydrangea (Sapling) ; 00000000
+EC00 ; PltBushHydrangea1Pink ; pink-hydrangea (Grow 1) ; 00000000
+EC01 ; PltBushHydrangea2Pink ; pink-hydrangea (Flower bud) ; 00000000
+EC02 ; PltBushHydrangea3Pink ; pink-hydrangea (Full-grown Flower) ; 00000000
+EC03 ; PltBushHydrangea4Pink ; pink-hydrangea (Full-grown no Flower) ; 00000000
+EAD2 ; PltBushHibiscus0Red ; red-hibiscus (Sapling) ; 00000000
+EAD5 ; PltBushHibiscus1Red ; red-hibiscus (Grow 1) ; 00000000
+EAD3 ; PltBushHibiscus2Red ; red-hibiscus (Flower bud) ; 00000000
+EAD1 ; PltBushHibiscus3Red ; red-hibiscus (Full-grown Flower) ; 00000000
+EAD4 ; PltBushHibiscus4Red ; red-hibiscus (Full-grown no Flower) ; 00000000
+EC25 ; PltBushHibiscus0Yellow ; yellow-hibiscus (Sapling) ; 00000000
+EC26 ; PltBushHibiscus1Yellow ; yellow-hibiscus (Grow 1) ; 00000000
+EC27 ; PltBushHibiscus2Yellow ; yellow-hibiscus (Flower bud) ; 00000000
+EC28 ; PltBushHibiscus3Yellow ; yellow-hibiscus (Full-grown Flower) ; 00000000
+EC29 ; PltBushHibiscus4Yellow ; yellow-hibiscus (Full-grown no Flower) ; 00000000
+ED2A ; PltBushPlumeria0Pink ; pink-plumeria(Sapling) ; 00000000
+ED28 ; PltBushPlumeria1Pink ; pink-plumeria(Grow 1) ; 00000000
+ED29 ; PltBushPlumeria2Pink ; pink-plumeria(Flower bud) ; 00000000
+ED27 ; PltBushPlumeria3Pink ; pink-plumeria(Full-grown Flower) ; 00000000
+ED26 ; PltBushPlumeria4Pink ; pink-plumeria(Full-grown no Flower) ; 00000000
+ED2E ; PltBushPlumeria0White ; white-plumeria(Sapling) ; 00000000
+ED2F ; PltBushPlumeria1White ; white-plumeria(Grow 1) ; 00000000
+ED2D ; PltBushPlumeria2White ; white-plumeria(Flower bud) ; 00000000
+ED2C ; PltBushPlumeria3White ; white-plumeria(Full-grown Flower) ; 00000000
+ED2B ; PltBushPlumeria4White ; white-plumeria(Full-grown no Flower) ; 00000000
+EAD7 ; PltBushHolly0 ; holly (Sapling) ; 00000000
+EAD9 ; PltBushHolly1 ; holly (Grow 1) ; 00000000
+EAD8 ; PltBushHolly2 ; holly (Flower bud) ; 00000000
+EAD6 ; PltBushHolly3 ; holly (Full-grown Flower) ; 00000000
+EADA ; PltBushHolly4 ; holly (Full-grown no Flower) ; 00000000
+ECF8 ; PltBushOsmathus1Yello ; yellow-tea-olive (Sapling) ; 00000000
+ECF6 ; PltBushOsmathus2Yello ; yellow-tea-olive (Grow 1) ; 00000000
+ECF7 ; PltBushOsmathus3Yello ; yellow-tea-olive (Flower bud) ; 00000000
+ECF5 ; PltBushOsmathus4Yello ; yellow-tea-olive (Full-grown Flower) ; 00000000
+ECF4 ; PltBushOsmathus5Yello ; yellow-tea-olive (Full-grown no Flower) ; 00000000
+ECFC ; PltBushOsmathus1Orange ; orange-tea-olive (Sapling) ; 00000000
+ECFD ; PltBushOsmathus2Orange ; orange-tea-olive (Grow 1) ; 00000000
+ECFB ; PltBushOsmathus3Orange ; orange-tea-olive (Flower bud) ; 00000000
+ECFA ; PltBushOsmathus4Orange ; orange-tea-olive (Full-grown Flower) ; 00000000
+ECF9 ; PltBushOsmathus5Orange ; orange-tea-olive (Full-grown no Flower) ; 00000000
+ED02 ; PltBushCamellia1Red ; red-camellia (Sapling) ; 00000000
+ED04 ; PltBushCamellia2Red ; red-camellia (Grow 1) ; 00000000
+ED05 ; PltBushCamellia3Red ; red-camellia (Flower bud) ; 00000000
+ED06 ; PltBushCamellia4Red ; red-camellia (Full-grown Flower) ; 00000000
+ED07 ; PltBushCamellia5Red ; red-camellia (Full-grown no Flower) ; 00000000
+ECFE ; PltBushCamellia1Pink ; pink-camellia (Sapling) ; 00000000
+ECFF ; PltBushCamellia2Pink ; pink-camellia (Grow 1) ; 00000000
+ED00 ; PltBushCamellia3Pink ; pink-camellia (Flower bud) ; 00000000
+ED01 ; PltBushCamellia4Pink ; pink-camellia (Full-grown Flower) ; 00000000
+ED03 ; PltBushCamellia5Pink ; pink-camellia (Full-grown no Flower) ; 00000000
+EA7C ; PltVgtTomato0 ; tomato(Sapling) ; 00000000
+EA7D ; PltVgtTomato1 ; tomato(Grow 1) ; 00000000
+EA7E ; PltVgtTomato2 ; tomato(Grow 2) ; 00000000
+EA7F ; PltVgtTomato3 ; tomato(Full-grown) ; 00000000
+EADF ; PltVgtWheat0 ; wheat(Sapling) ; 00000000
+EADE ; PltVgtWheat1 ; wheat(Grow 1) ; 00000000
+EADC ; PltVgtWheat2 ; wheat(Grow 2) ; 00000000
+EADD ; PltVgtWheat3 ; wheat(Full-grown) ; 00000000
+EAE8 ; PltVgtSugarCane0 ; sugarcane(Sapling) ; 00000000
+EAE7 ; PltVgtSugarCane1 ; sugarcane(Grow 1) ; 00000000
+EAE9 ; PltVgtSugarCane2 ; sugarcane(Grow 2) ; 00000000
+EAE6 ; PltVgtSugarCane3 ; sugarcane(Full-grown) ; 00000000
+EAEC ; PltVgtPotato0 ; potato(Sapling) ; 00000000
+EAEB ; PltVgtPotato1 ; potato(Grow 1) ; 00000000
+EAED ; PltVgtPotato2 ; potato(Grow 2) ; 00000000
+EAEA ; PltVgtPotato3 ; potato(Full-grown) ; 00000000
+EAF0 ; PltVgtCarrot0 ; carrot(Sapling) ; 00000000
+EAEF ; PltVgtCarrot1 ; carrot(Grow 1) ; 00000000
+EAF1 ; PltVgtCarrot2 ; carrot(Grow 2) ; 00000000
+EAEE ; PltVgtCarrot3 ; carrot(Full-grown) ; 00000000
+ECAF ; PltVgtSquash0Orange ; orange pumpkin (Sapling) ; 00000000
+ECB0 ; PltVgtSquash1Orange ; orange pumpkin (Grow 1) ; 00000000
+ECB1 ; PltVgtSquash2Orange ; orange pumpkin (Grow 2) ; 00000000
+ECA9 ; PltVgtSquash3Orange ; orange pumpkin (Full-grown) ; 00000000
+ECAA ; PltVgtSquash0Yellow ; yellow pumpkin (Sapling) ; 00000000
+ECAB ; PltVgtSquash1Yellow ; yellow pumpkin (Grow 1) ; 00000000
+ECAC ; PltVgtSquash2Yellow ; yellow pumpkin (Grow 2) ; 00000000
+ECAD ; PltVgtSquash3Yellow ; yellow pumpkin (Full-grown) ; 00000000
+ECAE ; PltVgtSquash0Green ; green pumpkin (Sapling) ; 00000000
+ECA5 ; PltVgtSquash1Green ; green pumpkin (Grow 1) ; 00000000
+ECA6 ; PltVgtSquash2Green ; green pumpkin (Grow 2) ; 00000000
+ECA7 ; PltVgtSquash3Green ; green pumpkin (Full-grown) ; 00000000
+ECA4 ; PltVgtSquash0White ; white pumpkin (Sapling) ; 00000000
+ECA3 ; PltVgtSquash1White ; white pumpkin (Grow 1) ; 00000000
+ECA2 ; PltVgtSquash2White ; white pumpkin (Grow 2) ; 00000000
+ECA1 ; PltVgtSquash3White ; white pumpkin (Full-grown) ; 00000000
+ED3F ; PltVgtSquash0 ; pumpkin (Sapling) ; 00000000
+ED40 ; PltVgtSquash1 ; pumpkin (Grow 1) ; 00000000
+ED41 ; PltVgtSquash2 ; pumpkin (Grow 2) ; 00000000
+EB28 ; PltWeedSpr1A ; Spring Weed 1A ; 00000000
+EB30 ; PltWeedSpr1B ; Spring Weed 1B ; 00000000
+EB31 ; PltWeedSpr1C ; Spring Weed 1C ; 00000000
+EB32 ; PltWeedSpr2A ; Spring Weed 2A ; 00000000
+EB33 ; PltWeedSpr2B ; Spring Weed 2B ; 00000000
+EB34 ; PltWeedSpr2C ; Spring Weed 2C ; 00000000
+EB35 ; PltWeedSpr3 ; Spring Weed 3 ; 00000000
+EA86 ; PltWeedSmr1A ; Summer Weed 1A ; 00000000
+EA87 ; PltWeedSmr1B ; Summer Weed 1B ; 00000000
+EA88 ; PltWeedSmr1C ; Summer Weed 1C ; 00000000
+EB02 ; PltWeedSmr2A ; Summer Weed 2A ; 00000000
+EB04 ; PltWeedSmr2B ; Summer Weed 2B ; 00000000
+EB03 ; PltWeedSmr2C ; Summer Weed 2C ; 00000000
+EB01 ; PltWeedSmr3 ; Summer Weed 3 ; 00000000
+EA81 ; PltWeedAut1A ; Autumn Weed 01A ; 00000000
+EA82 ; PltWeedAut1B ; Autumn Weed 01B ; 00000000
+EA83 ; PltWeedAut1C ; Autumn Weed 01C ; 00000000
+EB19 ; PltWeedAut2A ; Autumn Weed 02A ; 00000000
+EB17 ; PltWeedAut2B ; Autumn Weed 02B ; 00000000
+EB18 ; PltWeedAut2C ; Autumn Weed 02C ; 00000000
+EB05 ; PltWeedAut3 ; Autumn Weed 03 ; 00000000
+EC8C ; PltWeedAut11A ; Autumn Weed 11A ; 00000000
+EC86 ; PltWeedAut11B ; Autumn Weed 11B ; 00000000
+EC87 ; PltWeedAut11C ; Autumn Weed 11C ; 00000000
+EC88 ; PltWeedAut12A ; Autumn Weed 12A ; 00000000
+EC89 ; PltWeedAut12B ; Autumn Weed 12B ; 00000000
+EC8A ; PltWeedAut12C ; Autumn Weed 12C ; 00000000
+EC8B ; PltWeedAut13 ; Autumn Weed 13 ; 00000000
+EC83 ; PltWeedAut21A ; Autumn Weed 21A ; 00000000
+EC84 ; PltWeedAut21B ; Autumn Weed 21B ; 00000000
+EC85 ; PltWeedAut21C ; Autumn Weed 21C ; 00000000
+EC81 ; PltWeedAut22A ; Autumn Weed 22A ; 00000000
+EC82 ; PltWeedAut22B ; Autumn Weed 22B ; 00000000
+EC80 ; PltWeedAut22C ; Autumn Weed 22C ; 00000000
+EC7F ; PltWeedAut23 ; Autumn Weed 23 ; 00000000
+EB36 ; PltWeedWin1A ; Winter Weed 01A ; 00000000
+EB37 ; PltWeedWin1B ; Winter Weed 01B ; 00000000
+EB38 ; PltWeedWin1C ; Winter Weed 01C ; 00000000
+EB39 ; PltWeedWin2A ; Winter Weed 02A ; 00000000
+EB3A ; PltWeedWin2B ; Winter Weed 02B ; 00000000
+EB3B ; PltWeedWin2C ; Winter Weed 02C ; 00000000
+EB3C ; PltWeedWin3 ; Winter Weed 03 ; 00000000
+EC91 ; PltWeedWin11A ; Winter Weed 11A ; 00000000
+EC92 ; PltWeedWin11B ; Winter Weed 11B ; 00000000
+EC93 ; PltWeedWin11C ; Winter Weed 11C ; 00000000
+EC8F ; PltWeedWin12A ; Winter Weed 12A ; 00000000
+EC90 ; PltWeedWin12B ; Winter Weed 12B ; 00000000
+EC8E ; PltWeedWin12C ; Winter Weed 12C ; 00000000
+EC8D ; PltWeedWin13 ; Winter Weed 13 ; 00000000
+ED12 ; PltWeedLight1A ; Luminous Moss 1A ; 00000000
+ED14 ; PltWeedLight1B ; Luminous Moss 1B ; 00000000
+ED15 ; PltWeedLight1C ; Luminous Moss 1C ; 00000000
+ED13 ; PltWeedLight2A ; Luminous Moss 2A ; 00000000
+ED11 ; PltWeedLight2B ; Luminous Moss 2B ; 00000000
+ED10 ; PltWeedLight2C ; Luminous Moss 2C ; 00000000
+ED0F ; PltWeedLight3 ; Luminous Moss 3 ; 00000000
+EC9A ; PltTreeCedarDecoA ; Cedar (Deco) A ; 00200000
+EC97 ; PltTreeCedarDecoB ; Cedar (Deco) B ; 00200000
+EC9F ; PltTreeMoney0 ; Money Tree (Sapling) ; 002008A4
+ECA0 ; PltTreeMoney1 ; Money Tree (Grow 1) ; 002008A4
+EC9E ; PltTreeMoney2 ; Money Tree (Grow 2) ; 002008A4
+EC9D ; PltTreeMoney3 ; Money Tree (Grow 3) ; 002008A4
+EC9C ; PltTreeMoney4 ; Money Tree (Full-grown) ; 002008A4
+ED16 ; PltTreeEasterEgg ; Tree (Easter Egg) ; 00200000
+ED17 ; PltVine ; Vine A ; 00000000
+ED31 ; PltVineB ; Vine B ; 00000000
+ED30 ; PltVineC ; Vine C ; 00000000
+ED3A ; LadderKitA0 ; Ladder A0 ; 00000000
+ED3B ; LadderKitA1 ; Ladder A1 ; 00000000
+ED3C ; LadderKitA2 ; Ladder A2 ; 00000000
+ED36 ; LadderKitB0 ; Ladder B0 ; 00000000
+ED37 ; LadderKitB1 ; Ladder B1 ; 00000000
+ED38 ; LadderKitB2 ; Ladder B2 ; 00000000
+ED39 ; LadderKitB3 ; Ladder B3 ; 00000000
+ED34 ; LadderKitC0 ; Ladder C0 ; 00000000
+ED35 ; LadderKitC1 ; Ladder C1 ; 00000000
+ED33 ; LadderKitC2 ; Ladder C2 ; 00000000
+ED42 ; LadderKitD ; Ladder D0 ; 00000000
+ED43 ; LadderKitB4 ; Ladder B4 ; 00000000
+ED44 ; LadderKitB5 ; Ladder B5 ; 00000000
+EC62 ; PltFlwCosmos0Red ; red-cosmos (Sprout) ; 0083E003
+EA6F ; PltFlwCosmos1Red ; red-cosmos (Stem) ; 0083E003
+EA70 ; PltFlwCosmos2Red ; red-cosmos (Bud) ; 0083E003
+EA71 ; PltFlwCosmos3Red ; red-cosmos (Flower) ; 0083E003
+EC64 ; PltFlwCosmos0Yellow ; yellow-cosmos (Sprout) ; 0083E01C
+EA89 ; PltFlwCosmos1Yellow ; yellow-cosmos (Stem) ; 0083E01C
+EA8A ; PltFlwCosmos2Yellow ; yellow-cosmos (Bud) ; 0083E01C
+EA8B ; PltFlwCosmos3Yellow ; yellow-cosmos (Flower) ; 0083E01C
+EC65 ; PltFlwCosmos0White ; white-cosmos (Sprout) ; 0083E010
+EA72 ; PltFlwCosmos1White ; white-cosmos (Stem) ; 0083E010
+EA73 ; PltFlwCosmos2White ; white-cosmos (Bud) ; 0083E010
+EA74 ; PltFlwCosmos3White ; white-cosmos (Flower) ; 0083E010
+EAFC ; PltFlwCosmos1Orange ; orange-cosmos (Stem) ; 0083E005
+EAFD ; PltFlwCosmos2Orange ; orange-cosmos (Bud) ; 0083E005
+EAF8 ; PltFlwCosmos3Orange ; orange-cosmos (Flower) ; 0083E005
+EAFE ; PltFlwCosmos1Pink ; pink-cosmos (Stem) ; 0083E001
+EAFF ; PltFlwCosmos2Pink ; pink-cosmos (Bud) ; 0083E001
+EAFA ; PltFlwCosmos3Pink ; pink-cosmos (Flower) ; 0083E001
+EAFB ; PltFlwCosmos1Black ; black-cosmos (Stem) ; 0083E01F
+EAF7 ; PltFlwCosmos2Black ; black-cosmos (Bud) ; 0083E01F
+EAF9 ; PltFlwCosmos3Black ; black-cosmos (Flower) ; 0083E01F
+EC69 ; PltFlwTulip0White ; white-tulip (Sprout) ; 0083E010
+EB3D ; PltFlwTulip1White ; white-tulip (Stem) ; 0083E010
+EB3E ; PltFlwTulip2White ; white-tulip (Bud) ; 0083E010
+EB3F ; PltFlwTulip3White ; white-tulip (Flower) ; 0083E010
+EC63 ; PltFlwTulip0Red ; red-tulip (Sprout) ; 0083E013
+EB40 ; PltFlwTulip1Red ; red-tulip (Stem) ; 0083E013
+EB41 ; PltFlwTulip2Red ; red-tulip (Bud) ; 0083E013
+EB42 ; PltFlwTulip3Red ; red-tulip (Flower) ; 0083E013
+EC4A ; PltFlwTulip0Yellow ; yellow-tulip (Sprout) ; 0083E00C
+EB43 ; PltFlwTulip1Yellow ; yellow-tulip (Stem) ; 0083E00C
+EB44 ; PltFlwTulip2Yellow ; yellow-tulip (Bud) ; 0083E00C
+EB45 ; PltFlwTulip3Yellow ; yellow-tulip (Flower) ; 0083E00C
+EB46 ; PltFlwTulip1Pink ; pink-tulip (Stem) ; 0083E011
+EB47 ; PltFlwTulip2Pink ; pink-tulip (Bud) ; 0083E011
+EB48 ; PltFlwTulip3Pink ; pink-tulip (Flower) ; 0083E011
+EB49 ; PltFlwTulip1Orange ; orange-tulip (Stem) ; 0083E00D
+EB4A ; PltFlwTulip2Orange ; orange-tulip (Bud) ; 0083E00D
+EB4B ; PltFlwTulip3Orange ; orange-tulip (Flower) ; 0083E00D
+EB4C ; PltFlwTulip1Purple ; purple-tulip (Stem) ; 0083E01F
+EB4D ; PltFlwTulip2Purple ; purple-tulip (Bud) ; 0083E01F
+EB4E ; PltFlwTulip3Purple ; purple-tulip (Flower) ; 0083E01F
+EB4F ; PltFlwTulip1Black ; black-tulip (Stem) ; 0083E007
+EB50 ; PltFlwTulip2Black ; black-tulip (Bud) ; 0083E007
+EB51 ; PltFlwTulip3Black ; black-tulip (Flower) ; 0083E007
+EC50 ; PltFlwPansy0White ; white-pansy (Sprout) ; 0083E010
+EB52 ; PltFlwPansy1White ; white-pansy (Stem) ; 0083E010
+EB53 ; PltFlwPansy2White ; white-pansy (Bud) ; 0083E010
+EB54 ; PltFlwPansy3White ; white-pansy (Flower) ; 0083E010
+EC51 ; PltFlwPansy0Red ; red-pansy (Sprout) ; 0083E003
+EB55 ; PltFlwPansy1Red ; red-pansy (Stem) ; 0083E003
+EB56 ; PltFlwPansy2Red ; red-pansy (Bud) ; 0083E003
+EB57 ; PltFlwPansy3Red ; red-pansy (Flower) ; 0083E003
+EC52 ; PltFlwPansy0Yellow ; yellow-pansy (Sprout) ; 0083E00C
+EB58 ; PltFlwPansy1Yellow ; yellow-pansy (Stem) ; 0083E00C
+EB59 ; PltFlwPansy2Yellow ; yellow-pansy (Bud) ; 0083E00C
+EB5A ; PltFlwPansy3Yellow ; yellow-pansy (Flower) ; 0083E00C
+EB5B ; PltFlwPansy1RedYellow ; orange-pansy (Stem) ; 0083E015
+EB5C ; PltFlwPansy2RedYellow ; orange-pansy (Bud) ; 0083E015
+EB5D ; PltFlwPansy3RedYellow ; orange-pansy (Flower) ; 0083E015
+EB5E ; PltFlwPansy1Purple ; purple-pansy (Stem) ; 0083E037
+EB5F ; PltFlwPansy2Purple ; purple-pansy (Bud) ; 0083E037
+EB60 ; PltFlwPansy3Purple ; purple-pansy (Flower) ; 0083E037
+EB61 ; PltFlwPansy1Blue ; blue-pansy (Stem) ; 0083E034
+EB62 ; PltFlwPansy2Blue ; blue-pansy (Bud) ; 0083E034
+EB63 ; PltFlwPansy3Blue ; blue-pansy (Flower) ; 0083E034
+EC56 ; PltFlwRose0White ; white-rose (Sprout) ; 0083E010
+EB64 ; PltFlwRose1White ; white-rose (Stem) ; 0083E010
+EB65 ; PltFlwRose2White ; white-rose (Bud) ; 0083E010
+EB66 ; PltFlwRose3White ; white-rose (Flower) ; 0083E010
+EC57 ; PltFlwRose0Red ; red-rose (Sprout) ; 0083E043
+EB67 ; PltFlwRose1Red ; red-rose (Stem) ; 0083E043
+EB68 ; PltFlwRose2Red ; red-rose (Bud) ; 0083E043
+EB69 ; PltFlwRose3Red ; red-rose (Flower) ; 0083E043
+EC58 ; PltFlwRose0Yellow ; yellow-rose (Sprout) ; 0083E00C
+EB6A ; PltFlwRose1Yellow ; yellow-rose (Stem) ; 0083E00C
+EB6B ; PltFlwRose2Yellow ; yellow-rose (Bud) ; 0083E00C
+EB6C ; PltFlwRose3Yellow ; yellow-rose (Flower) ; 0083E00C
+EB6D ; PltFlwRose1Pink ; pink-rose (Stem) ; 0083E0F3
+EB6E ; PltFlwRose2Pink ; pink-rose (Bud) ; 0083E0F3
+EB6F ; PltFlwRose3Pink ; pink-rose (Flower) ; 0083E0F3
+EB70 ; PltFlwRose1Orange ; orange-rose (Stem) ; 0083E00F
+EB71 ; PltFlwRose2Orange ; orange-rose (Bud) ; 0083E00F
+EB72 ; PltFlwRose3Orange ; orange-rose (Flower) ; 0083E00F
+EB73 ; PltFlwRose1Purple ; purple-rose (Stem) ; 0083E0F7
+EB74 ; PltFlwRose2Purple ; purple-rose (Bud) ; 0083E0F7
+EB75 ; PltFlwRose3Purple ; purple-rose (Flower) ; 0083E0F7
+EB76 ; PltFlwRose1Black ; black-rose (Stem) ; 0083E003
+EB77 ; PltFlwRose2Black ; black-rose (Bud) ; 0083E003
+EB78 ; PltFlwRose3Black ; black-rose (Flower) ; 0083E003
+EB79 ; PltFlwRose1Blue ; blue-rose (Stem) ; 0083E03F
+EB7A ; PltFlwRose2Blue ; blue-rose (Bud) ; 0083E03F
+EB7B ; PltFlwRose3Blue ; blue-rose (Flower) ; 0083E03F
+EB7C ; PltFlwRose1Gold ; gold-rose (Stem) ; 0083E000
+EB7D ; PltFlwRose2Gold ; gold-rose (Bud) ; 0083E000
+EB7E ; PltFlwRose3Gold ; gold-rose (Flower) ; 0083E000
+EC60 ; PltFlwYuri0White ; white-lily (Sprout) ; 0083E030
+EB88 ; PltFlwYuri1White ; white-lily (Stem) ; 0083E030
+EB89 ; PltFlwYuri2White ; white-lily (Bud) ; 0083E030
+EB8A ; PltFlwYuri3White ; white-lily (Flower) ; 0083E030
+EC61 ; PltFlwYuri0Red ; red-lily (Sprout) ; 0083E013
+EB8B ; PltFlwYuri1Red ; red-lily (Stem) ; 0083E013
+EB8C ; PltFlwYuri2Red ; red-lily (Bud) ; 0083E013
+EB8D ; PltFlwYuri3Red ; red-lily (Flower) ; 0083E013
+EC5B ; PltFlwYuri0Yellow ; yellow-lily (Sprout) ; 0083E00C
+EB8E ; PltFlwYuri1Yellow ; yellow-lily (Stem) ; 0083E00C
+EB8F ; PltFlwYuri2Yellow ; yellow-lily (Bud) ; 0083E00C
+EB90 ; PltFlwYuri3Yellow ; yellow-lily (Flower) ; 0083E00C
+EB91 ; PltFlwYuri1Pink ; pink-lily (Stem) ; 0083E033
+EB92 ; PltFlwYuri2Pink ; pink-lily (Bud) ; 0083E033
+EB93 ; PltFlwYuri3Pink ; pink-lily (Flower) ; 0083E033
+EB94 ; PltFlwYuri1Orange ; orange-lily (Stem) ; 0083E005
+EB95 ; PltFlwYuri2Orange ; orange-lily (Bud) ; 0083E005
+EB96 ; PltFlwYuri3Orange ; orange-lily (Flower) ; 0083E005
+EB97 ; PltFlwYuri1Black ; black-lily (Stem) ; 0083E007
+EB98 ; PltFlwYuri2Black ; black-lily (Bud) ; 0083E007
+EB99 ; PltFlwYuri3Black ; black-lily (Flower) ; 0083E007
+EC42 ; PltFlwAnemones0Red ; red-windflower (Sprout) ; 0083E003
+EBDF ; PltFlwAnemones1Red ; red-windflower (Stem) ; 0083E003
+EBE0 ; PltFlwAnemones2Red ; red-windflower (Bud) ; 0083E003
+EBDB ; PltFlwAnemones3Red ; red-windflower (Flower) ; 0083E003
+EC43 ; PltFlwAnemones0White ; white-windflower (Sprout) ; 0083E010
+EC11 ; PltFlwAnemones1White ; white-windflower (Stem) ; 0083E010
+EC12 ; PltFlwAnemones2White ; white-windflower (Bud) ; 0083E010
+EC13 ; PltFlwAnemones3White ; white-windflower (Flower) ; 0083E010
+EC14 ; PltFlwAnemones1Blue ; blue-windflower (Stem) ; 0083E031
+EC18 ; PltFlwAnemones2Blue ; blue-windflower (Bud) ; 0083E031
+EC19 ; PltFlwAnemones3Blue ; blue-windflower (Flower) ; 0083E031
+EC15 ; PltFlwAnemones1Purple ; purple-windflower (Stem) ; 0083E03F
+EC1A ; PltFlwAnemones2Purple ; purple-windflower (Bud) ; 0083E03F
+EC1B ; PltFlwAnemones3Purple ; purple-windflower (Flower) ; 0083E03F
+EC16 ; PltFlwAnemones1Pink ; pink-windflower (Stem) ; 0083E015
+EC1C ; PltFlwAnemones2Pink ; pink-windflower (Bud) ; 0083E015
+EC1D ; PltFlwAnemones3Pink ; pink-windflower (Flower) ; 0083E015
+EC47 ; PltFlwAnemones0Orange ; orange-windflower (Sprout) ; 0083E00C
+EC17 ; PltFlwAnemones1Orange ; orange-windflower (Stem) ; 0083E00C
+EC1E ; PltFlwAnemones2Orange ; orange-windflower (Bud) ; 0083E00C
+EC1F ; PltFlwAnemones3Orange ; orange-windflower (Flower) ; 0083E00C
+EC48 ; PltFlwM0Red ; red-mum (Sprout) ; 0083E003
+EBDD ; PltFlwMum1Red ; red-mum (Stem) ; 0083E003
+EBDE ; PltFlwMum2Red ; red-mum (Bud) ; 0083E003
+EBDC ; PltFlwMum3Red ; red-mum (Flower) ; 0083E003
+EC49 ; PltFlwMum0White ; white-mum (Sprout) ; 0083E010
+EC04 ; PltFlwMum1White ; white-mum (Stem) ; 0083E010
+EC08 ; PltFlwMum2White ; white-mum (Bud) ; 0083E010
+EC09 ; PltFlwMum3White ; white-mum (Flower) ; 0083E010
+EC3A ; PltFlwMum0Yellow ; yellow-mum (Sprout) ; 0083E00C
+EC05 ; PltFlwMum1Yellow ; yellow-mum (Stem) ; 0083E00C
+EC0A ; PltFlwMum2Yellow ; yellow-mum (Bud) ; 0083E00C
+EC0D ; PltFlwMum3Yellow ; yellow-mum (Flower) ; 0083E00C
+EC06 ; PltFlwMum1Purple ; purple-mum (Stem) ; 0083E01D
+EC0B ; PltFlwMum2Purple ; purple-mum (Bud) ; 0083E01D
+EC0E ; PltFlwMum3Purple ; purple-mum (Flower) ; 0083E01D
+EC07 ; PltFlwMum1Pink ; pink-mum (Stem) ; 0083E011
+EC0C ; PltFlwMum2Pink ; pink-mum (Bud) ; 0083E011
+EC0F ; PltFlwMum3Pink ; pink-mum (Flower) ; 0083E011
+EC32 ; PltFlwMum1Green ; green-mum (Stem) ; 0083E00F
+EC33 ; PltFlwMum2Green ; green-mum (Bud) ; 0083E00F
+EC34 ; PltFlwMum3Green ; green-mum (Flower) ; 0083E00F
+EC3F ; PltFlwHyacinth0Red ; red-hyacinth (Sprout) ; 0083E013
+EBE1 ; PltFlwHyacinth1Red ; red-hyacinth (Stem) ; 0083E013
+EBE2 ; PltFlwHyacinth2Red ; red-hyacinth (Bud) ; 0083E013
+EBDA ; PltFlwHyacinth3Red ; red-hyacinth (Flower) ; 0083E013
+EC3B ; PltFlwHyacinth0Yellow ; yellow-hyacinth (Sprout) ; 0083E00C
+EBE9 ; PltFlwHyacinth1Yellow ; yellow-hyacinth (Stem) ; 0083E00C
+EBE7 ; PltFlwHyacinth2Yellow ; yellow-hyacinth (Bud) ; 0083E00C
+EBE8 ; PltFlwHyacinth3Yellow ; yellow-hyacinth (Flower) ; 0083E00C
+EC38 ; PltFlwHyacinth0White ; white-hyacinth (Sprout) ; 0083E010
+EBE6 ; PltFlwHyacinth1White ; white-hyacinth (Stem) ; 0083E010
+EBE5 ; PltFlwHyacinth2White ; white-hyacinth (Bud) ; 0083E010
+EBE4 ; PltFlwHyacinth3White ; white-hyacinth (Flower) ; 0083E010
+EBEF ; PltFlwHyacinth1Purple ; purple-hyacinth (Stem) ; 0083E01F
+EBEE ; PltFlwHyacinth2Purple ; purple-hyacinth (Bud) ; 0083E01F
+EBED ; PltFlwHyacinth3Purple ; purple-hyacinth (Flower) ; 0083E01F
+EBF3 ; PltFlwHyacinth1Blue ; blue-hyacinth (Stem) ; 0083E007
+EBF4 ; PltFlwHyacinth2Blue ; blue-hyacinth (Bud) ; 0083E007
+EBEA ; PltFlwHyacinth3Blue ; blue-hyacinth (Flower) ; 0083E007
+EBF2 ; PltFlwHyacinth1Pink ; pink-hyacinth (Stem) ; 0083E011
+EBF1 ; PltFlwHyacinth2Pink ; pink-hyacinth (Bud) ; 0083E011
+EBEB ; PltFlwHyacinth3Pink ; pink-hyacinth (Flower) ; 0083E011
+EBF5 ; PltFlwHyacinth1Orange ; orange-hyacinth (Stem) ; 0083E00D
+EBF0 ; PltFlwHyacinth2Orange ; orange-hyacinth (Bud) ; 0083E00D
+EBEC ; PltFlwHyacinth3Orange ; orange-hyacinth (Flower) ; 0083E00D
+ECC1 ; PltFlwLily3 ; lily-of-the-valley (Flower) ; 00000000
+EA79 ; Hole ; Hole ; 00000000
+EBD5 ; FenceHorizontalWood ; corral fence ; 00000000
+EBBA ; FenceVerticalWood ; vertical-board fence ; 00000000
+ECB8 ; FenceVerticalWood2 ; vertical-board fence (Black) ; 00000000
+ECC9 ; FenceVerticalWood6 ; vertical-board fence (Blue) ; 00000000
+ECCA ; FenceVerticalWood5 ; vertical-board fence (Green) ; 00000000
+ECCB ; FenceVerticalWood3 ; vertical-board fence (Pink) ; 00000000
+ECCC ; FenceVerticalWood4 ; vertical-board fence (Yellow) ; 00000000
+ED5B ; FenceVerticalWood8 ; vertical-board fence (Purple) ; 00000000
+ED5C ; FenceVerticalWood7 ; vertical-board fence (White) ; 00000000
+EBD6 ; FenceLog ; country fence ; 00000000
+EC7E ; FenceSharply ; spiky fence ; 00000000
+ECB2 ; FenceBarbedWire ; barbed-wire fence ; 00000000
+ECB3 ; FenceLogWall ; log-wall fence ; 00000000
+EBD7 ; FenceHorizontalLog ; log fence ; 00000000
+EAA1 ; FenceWoodWhite ; simple wooden fence (White) ; 00000000
+EC94 ; FenceWoodBlue ; simple wooden fence (Blue) ; 00000000
+ECB5 ; FenceWoodPink ; simple wooden fence (Pink) ; 00000000
+ECC2 ; FenceWoodNatural ; simple wooden fence ; 00000000
+ECC5 ; FenceWoodYellow ; simple wooden fence (Black) ; 00000000
+ECC6 ; FenceWoodOrange ; simple wooden fence (Orange) ; 00000000
+ECC7 ; FenceWoodPurple ; simple wooden fence (Purple) ; 00000000
+ECC8 ; FenceWoodGreen ; simple wooden fence (Green) ; 00000000
+EBD4 ; FenceLattice ; lattice fence (Blue) ; 00000000
+ECBA ; FenceLattice2 ; lattice fence (White) ; 00000000
+ECC3 ; FenceLattice3 ; lattice fence ; 00000000
+ECCD ; FenceLattice8 ; lattice fence (Purple) ; 00000000
+ECCE ; FenceLattice7 ; lattice fence (Black) ; 00000000
+ECCF ; FenceLattice5 ; lattice fence (Yellow) ; 00000000
+ECD0 ; FenceLattice6 ; lattice fence (Green) ; 00000000
+ECD1 ; FenceLattice4 ; lattice fence (Pink) ; 00000000
+ECB4 ; FenceLatticeBig ; large lattice fence ; 00000000
+ECBB ; FenceLatticeBig2 ; large lattice fence (White) ; 00000000
+ECD2 ; FenceLatticeBig8 ; large lattice fence (Black) ; 00000000
+ECD3 ; FenceLatticeBig7 ; large lattice fence (Blue) ; 00000000
+ECD4 ; FenceLatticeBig5 ; large lattice fence (Green) ; 00000000
+ECD5 ; FenceLatticeBig6 ; large lattice fence (Purple) ; 00000000
+ECD6 ; FenceLatticeBig3 ; large lattice fence (Red) ; 00000000
+ECD7 ; FenceLatticeBig4 ; large lattice fence (Orange) ; 00000000
+EC74 ; FenceChinese ; imperial fence ; 00000000
+EB00 ; FenceWallRenga ; brick fence ; 00000000
+EC9B ; FenceStone ; stone fence ; 00000000
+ECB7 ; FenceIronAndStone ; iron-and-stone fence ; 00000000
+EC7B ; FenceConcreteBlock ; block fence ; 00000000
+ECB6 ; FenceJapanese ; zen fence ; 00000000
+ECD8 ; FenceJapanese8 ; zen fence (Purple) ; 00000000
+ECD9 ; FenceJapanese7 ; zen fence (Green) ; 00000000
+ECDA ; FenceJapanese5 ; zen fence (Yellow) ; 00000000
+ECDB ; FenceJapanese6 ; zen fence (Beige) ; 00000000
+ECDC ; FenceJapanese2 ; zen fence (Blue) ; 00000000
+ECDD ; FenceJapanese3 ; zen fence (Red) ; 00000000
+ECDE ; FenceJapanese4 ; zen fence (Orange) ; 00000000
+EBD8 ; FencePegRope ; rope fence ; 00000000
+EC7D ; FenceSteel ; iron fence ; 00000000
+ECDF ; FenceSteel2 ; iron fence (Red) ; 00000000
+ECE0 ; FenceSteel3 ; iron fence (Yellow) ; 00000000
+ECE1 ; FenceSteel4 ; iron fence (Green) ; 00000000
+ED55 ; FenceSteel8 ; iron fence (Black) ; 00000000
+ED56 ; FenceSteel7 ; iron fence (White) ; 00000000
+ED57 ; FenceSteel6 ; iron fence (Navy) ; 00000000
+ED58 ; FenceSteel5 ; iron fence (Orange) ; 00000000
+ED48 ; FencePark ; park fence (Blue) ; 00000000
+ED49 ; FencePark2 ; park fence (Red) ; 00000000
+ED4A ; FencePark5 ; park fence (Pink) ; 00000000
+ED4B ; FencePark4 ; park fence (Green) ; 00000000
+ED4C ; FencePark6 ; park fence (Red and Yellow) ; 00000000
+ED4D ; FencePark3 ; park fence (Yellow) ; 00000000
+ED4E ; FencePark8 ; park fence (Blue and Pink) ; 00000000
+ED4F ; FencePark7 ; park fence (Green and Orange) ; 00000000
+ED47 ; FenceCorrugatedIron ; corrugated iron fence ; 00000000
+ED50 ; FenceCorrugatedIron1 ; corrugated iron fence (Blue) ; 00000000
+ED51 ; FenceCorrugatedIron2 ; corrugated iron fence (Yellow) ; 00000000
+ED52 ; FenceCorrugatedIron3 ; corrugated iron fence (Green) ; 00000000
+ED53 ; FenceCorrugatedIron5 ; corrugated iron fence (Orange) ; 00000000
+ED54 ; FenceCorrugatedIron4 ; corrugated iron fence (Red) ; 00000000
+ED59 ; FenceCorrugatedIron6 ; corrugated iron fence (White) ; 00000000
+ED5A ; FenceCorrugatedIron7 ; corrugated iron fence (Black) ; 00000000
+EC7C ; FenceDriedStraw ; straw fence ; 00000000
+ED08 ; FenceIkegaki ; hedge ; 00000000
+EBBF ; FenceBamboo ; bamboo lattice fence ; 00000000
+ECE3 ; FenceCrossedBamboo ; green bamboo fence ; 00000000
+ECE2 ; FenceSandProtection ; bamboo-slats fence ; 00000000
+ED21 ; FenceMermaid ; mermaid fence ; 00000000
+ECE4 ; FenceIce ; frozen fence ; 00000000
+ECE6 ; FenceIce05 ; frozen fence (Green) ; 00000000
+ECE7 ; FenceIce04 ; frozen fence (Orange) ; 00000000
+ECE8 ; FenceIce06 ; frozen fence (Purple) ; 00000000
+ECE9 ; FenceIce01 ; frozen fence (Blue) ; 00000000
+ECEA ; FenceIce02 ; frozen fence (Pink) ; 00000000
+ECEB ; FenceIce03 ; frozen fence (Yellow) ; 00000000
+ED0C ; FenceEasterEgg ; Bunny Day fence ; 00000000
+ED09 ; FenceJuneBride4 ; wedding fence (Red) ; 00000000
+ED0A ; FenceJuneBride2 ; wedding fence (Blue) ; 00000000
+ED0B ; FenceJuneBride3 ; wedding fence (Green) ; 00000000
+ED0D ; FenceJuneBride ; wedding fence ; 00000000
+ED0E ; FenceJuneBride1 ; wedding fence (Pink) ; 00000000
+ED5D ; FenceJuneBride7 ; wedding fence (Black) ; 00000000
+ED5E ; FenceJuneBride6 ; wedding fence (Purple) ; 00000000
+ED5F ; FenceJuneBride5 ; wedding fence (Yellow) ; 00000000
+ED25 ; FenceHalloween ; spooky fence ; 00000000
+ECC4 ; FenceCommune ; Harvey's island fence ; 00000000
+ED46 ; FenceGardenPegRope ; 庭専用柵（編集外用） ; 00000000
+EB12 ; StoneA ; Stone A ; 00000000
+EB13 ; StoneB ; Stone B ; 00000000
+EB16 ; StoneC ; Stone C ; 00000000
+EB15 ; StoneD ; Stone D ; 00000000
+EB14 ; StoneE ; Stone E ; 00000000

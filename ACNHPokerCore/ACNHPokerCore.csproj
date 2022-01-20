@@ -1,0 +1,88 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>NewLeaf.ico</ApplicationIcon>
+    <DebugType>embedded</DebugType>
+    <Authors>MyShiLingStar</Authors>
+    <Company>MyShiLingStar</Company>
+    <Copyright>Copyright © 2020-2022</Copyright>
+    <PackageProjectUrl>https://github.com/MyShiLingStar/ACNHPoker</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/MyShiLingStar/ACNHPoker</RepositoryUrl>
+    <PackageIcon>Leaf.png</PackageIcon>
+    <RepositoryType>git</RepositoryType>
+    <NeutralLanguage>en-US</NeutralLanguage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="NewLeaf.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AsyncAwaitBestPractices" Version="6.0.4" />
+    <PackageReference Include="AutoCompleteMenu-ScintillaNET" Version="1.6.2" />
+    <PackageReference Include="DotNetZip" Version="1.16.0" />
+    <PackageReference Include="LibUsbDotNet" Version="2.2.29" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
+    <PackageReference Include="NAudio" Version="2.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="TwitchLib.Communication" Version="1.0.3" />
+    <PackageReference Include="TwitchLib.PubSub" Version="3.2.3" />
+    <PackageReference Include="WinFormsToggleSwitch" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Inventory\inventorySlot.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Custom\" />
+    <Folder Include="Setting\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DiscordWebhook\DiscordWebhook.csproj" />
+    <ProjectReference Include="..\Twitch\Twitch.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="App.config">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Properties\Leaf.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="robocopy $(ProjectDir)\csv $(TargetDir)\csv&#xD;&#xA;robocopy $(ProjectDir)\save $(TargetDir)\save&#xD;&#xA;robocopy $(ProjectDir)\VillagerDatabase $(TargetDir)\villager&#xD;&#xA;exit 0" />
+  </Target>
+
+</Project>

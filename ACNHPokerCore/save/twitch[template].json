@@ -1,0 +1,16 @@
+{
+  "______________comment1______________" : "Your bot account setting. Get Oauth at : https://twitchapps.com/tmi/ using your bot account. To give response in chat",
+  "TwitchBotUserName" : "YourTwitchBotUserName",
+  "TwitchBotOauth" : "oauth:XXXXXXXXXXXXXXXXXXXXXX",
+  "______________comment2______________" : "Your main account setting. Get Token at : https://twitchtokengenerator.com/ using your main account. Scope Name needed : channel:read:redemptions channel:manage:redemptions. To monitor reward redeem",
+  "TwitchChannelName" : "YourTwitchChannelName",
+  "TwitchChannelAccessToken" : "YourTwitchChannelAccessToken",
+  "______________comment3______________" : "You can get this AFTER you connect to Twitch using ACNHPoker with the above setting",
+  "DropItemRewardId" : "XXXXXXXX-xxxx-xxxx-xxxx-XXXXXXXXXXXX",
+  "DropRecipeRewardId" : "YYYYYYYY-yyyy-yyyy-yyyy-YYYYYYYYYYYY",
+  "InjectVillagerRewardId" : "ZZZZZZZZ-zzzz-zzzz-zzzz-ZZZZZZZZZZZZ",
+  "______________comment4______________" : "Control if item or recipe drop can be done by using commands",
+  "AllowCommand" : "false",
+  "DropItemCommand" : "!item",
+  "DropRecipeCommand" : "!recipe"
+}

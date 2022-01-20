@@ -1,0 +1,925 @@
+id ; iName ; eng ; jpn ; tchi ; schi ; kor ; fre ; ger ; spa ; ita ; dut ; rus ; 
+00A4 ; FtrKatakatatoy ; clackercart ; ておしぐるま ; 學步推車 ; 学步推车 ; 장난감차 ; chariot de marche ; Spielwagen ; carrito carraca ; macchinina primi passi ; loopwagen ; тележка-каталка
+0066 ; FtrRockinghorse ; rocking horse ; もくば ; 木馬 ; 木马 ; 목마 ; cheval à bascule ; Schaukelpferd ; caballo balancín ; cavalluccio ; hobbelpaard ; конь-качалка
+002B ; FtrQuoits ; ringtoss ; わなげ ; 套圈圈 ; 套圈圈 ; 고리 던지기 ; jeu lancer d'anneaux ; Ringwurfspiel ; juego de lanzar aros ; gioco degli anelli ; ringwerpspel ; игра с кольцами
+00BE ; FtrPlantSucculents ; succulent plant ; たにくしょくぶつ ; 多肉植物 ; 多肉植物 ; 다육 식물 ; pot de succulentes ; Sukkulente ; aloe pequeño ; pianta grassa ; vetplant ; суккуленты
+0115 ; FtrManhole ; manhole cover ; マンホール ; 人孔蓋 ; 人孔盖 ; 맨홀 ; plaque d'égout ; Kanaldeckel ; tapa de cloaca ; tombino ; putdeksel ; крышка люка
+002A ; FtrBirdbus ; birdbath ; バードバス ; 小鳥水盆 ; 小鸟水盆 ; 수반 ; bassin à oiseaux ; Vogeltränke ; bañadero para pájaros ; vaschetta per uccelli ; vogelbad ; поилка для птиц
+0029 ; FtrBirdhouse ; birdhouse ; すばこ ; 鳥巢屋 ; 鸟巢屋 ; 새집 ; abri à oiseau ; Vogelhaus ; casita para pájaros ; casetta per uccelli ; vogelhuis ; скворечник
+0067 ; FtrTorch ; tiki torch ; たいまつ ; 火把 ; 火把 ; 횃불 ; flambeau ; Fackel ; antorcha ; torcia ; tuinfakkel ; факел
+002C ; FtrAcorsticguitar ; acoustic guitar ; アコースティックギター ; 木吉他 ; 木吉他 ; 어쿠스틱기타 ; guitare acoustique ; Akustikgitarre ; guitarra acústica ; chitarra acustica ; akoestische gitaar ; акустическая гитара
+0246 ; FtrHariboteGrass ; grass standee ; ハリボテのくさ ; 草叢道具 ; 草丛道具 ; 연극용 잔디 ; herbe en carton ; Pappgras ; hierba de atrezo ; sagoma di erba ; decoratiegras ; бутафорская трава
+0247 ; FtrHariboteHedge ; hedge standee ; ハリボテのいけがき ; 樹叢道具 ; 树丛道具 ; 연극용 산울타리 ; buisson en carton ; Pappbusch ; seto de atrezo ; sagoma di cespuglio ; decoratieheg ; бутафорский куст
+0248 ; FtrHariboteMountain ; mountain standee ; ハリボテのやま ; 假山道具 ; 假山道具 ; 연극용 산 ; colline en carton ; Papphügel ; montaña de atrezo ; sagoma di collina ; decoratieberg ; бутафорские горы
+0249 ; FtrHariboteTree ; tree standee ; ハリボテのき ; 假樹道具 ; 假树道具 ; 연극용 나무 ; arbre en carton ; Pappbaum ; árbol de atrezo ; sagoma di albero ; decoratieboom ; бутафорское дерево
+0037 ; FtrTetrapod ; wave breaker ; しょうはブロック ; 消波塊 ; 消波块 ; 방파제 블록 ; brise-lames ; Wellenbrecher ; rompeolas ; frangionde ; golfbreker ; волнорез
+002D ; FtrUkulele ; ukulele ; ウクレレ ; 烏克麗麗 ; 乌克丽丽 ; 우쿨렐레 ; ukulélé ; Ukulele ; ukelele ; ukulele ; ukelele ; укулеле
+028D ; FtrStonelantern ; tall lantern ; とうろう ; 石燈籠 ; 石灯笼 ; 석등 ; lanterne haute ; Mega-Laterne ; farol alto ; lanterna alta ; hoge lantaarn ; высокий фонарь
+0167 ; FtrShishiodoshi ; deer scare ; ししおどし ; 竹流水造景 ; 竹流水造景 ; 대나무 분수 ; jeu d'eau ; Wasserspiel ; fuente de bambú ; fontana di bambù ; waterspeelgoed ; фонтан из бамбука
+00AB ; FtrBoomerang ; boomerang ; ブーメラン ; 迴力鏢 ; 飞旋镖 ; 부메랑 ; boomerang ; Bumerang ; bumerán ; boomerang ; boemerang ; бумеранг
+002E ; FtrBambooChairL ; bamboo bench ; たけのベンチ ; 竹長椅 ; 竹长凳 ; 대나무 벤치 ; banc en bambou ; Bambusbank ; banco de bambú ; panca di bambù ; bamboebank ; лавка из бамбука
+00D9 ; FtrIrori ; hearth ; いろり ; 地爐 ; 地炉 ; 노 ; âtre ; Kochfeuer ; hogar ; focolare ; kookplaats ; кострище
+0030 ; FtrGardenrock ; garden rock ; よくあるにわいし ; 常見庭園石 ; 常见庭院石 ; 평범한 정원 돌 ; petit rocher jardin ; Gartenstein ; roca gruesa ; pietra da giardino ; rots ; валун
+0031 ; FtrGardenrockTall ; tall garden rock ; たかいにわいし ; 高聳庭園石 ; 高耸庭院石 ; 키가 큰 정원 돌 ; grand rocher jardin ; Gartenfels ; roca alta ; pietra da giardino alta ; rotsenduo ; высокий валун
+0021 ; FtrDiningtableJapan ; tea table ; ちゃぶだい ; 茶几 ; 茶几 ; 낮은 밥상 ; table à thé ; Teetischchen ; mesita ; tavolo da tè ; theetafel ; чайный стол
+0427 ; FtrIceSnowball ; frozen mini snowperson ; こおりのミニゆきだるま ; 迷你雪人冰雕 ; 冰冻迷你雪人 ; 얼음 미니 눈사람 ; bonhomme neige arctique ; Eis-Minischneemann ; muñeco de nieve iceberg ; minipupazzo iceberg ; mini-sneeuwpop ; ледяной мини-снеговик
+0033 ; FtrMushroomLamp ; mush lamp ; キノコのランプ ; 蘑菇燈 ; 蘑菇灯 ; 버섯 램프 ; lampe champi ; Pilzlampe ; lámpara hongo ; lampada fungo ; paddenstoellamp ; гриб-лампа
+0020 ; FtrMushroomTableL ; mush table ; キノコのテーブル ; 蘑菇桌 ; 蘑菇桌 ; 버섯 테이블 ; table champi ; Pilztisch ; mesa hongo ; tavolo fungo ; paddenstoeltafel ; гриб-стол
+00D8 ; FtrBirdcage ; birdcage ; とりかご ; 鳥籠 ; 鸟笼 ; 새장 ; cage à oiseau ; Vogelkäfig ; jaula de pájaros ; gabbia ; vogelkooi ; птичья клетка
+0010 ; FtrBucketWood ; wooden bucket ; もくせいのバケツ ; 木製水桶 ; 木制水桶 ; 나무 양동이 ; seau en bois ; Holzeimer ; cubo de madera ; secchio di legno ; houten emmer ; деревянное ведро
+0174 ; FtrCandleXmas ; holiday candle ; クリスマスキャンドル ; 聖誕蠟燭 ; 圣诞蜡烛 ; 크리스마스 양초 ; chandelle de fête ; Festtagsgesteck ; vela festiva ; candela centrotavola ; feestelijke kaars ; праздничная свеча
+0426 ; FtrJuicecase ; stacked bottle crates ; つまれたボトルクレート ; 疊起來的飲料物流箱 ; 叠起来的饮料物流箱 ; 쌓인 병음료 박스 ; table casiers à bouteilles ; Getränkekistentisch ; pila de cajas de refresco ; pila di casse per bottiglie ; stapel frisdrankkratten ; стол из бутылочн. ящиков
+0038 ; FtrFruitbasket ; fruit basket ; フルーツバスケット ; 水果籃 ; 水果篮 ; 과일 바구니 ; panier de fruits ; Fruchtkorb ; cesta de frutas ; cestino di frutta ; fruitmand ; корзина с фруктами
+024A ; FtrFallenleaves ; pile of leaves ; おちば ; 落葉 ; 落叶 ; 낙엽 ; tas de feuilles ; Laubhaufen ; montón de hojas ; mucchio di foglie ; berg bladeren ; куча листьев
+019D ; FtrMagazinerack ; magazine rack ; マガジンラック ; 雜誌架 ; 杂志架 ; 잡지 꽂이 ; porte-revues pliable ; Zeitschriftenablage ; revistero ; portariviste ; tijdschriftenrekje ; стоечка для журналов
+00EA ; FtrMoon ; moon ; つき ; 月亮 ; 月亮 ; 달 ; lune ; Mond ; Luna ; luna ; maan ; луна
+00D7 ; FtrMusicstand ; music stand ; ふめんだい ; 樂譜架 ; 乐谱架 ; 보면대 ; pupitre à partition ; Notenständer ; atril para partituras ; leggìo per spartiti ; lessenaar ; пюпитр
+0039 ; FtrRockingchair ; rocking chair ; ロッキングチェア ; 搖椅 ; 摇椅 ; 흔들의자 ; rocking-chair ; Schaukelstuhl ; mecedora ; sedia a dondolo ; schommelstoel ; кресло-качалка
+019A ; FtrOpenairbath ; outdoor bath ; ろてんぶろ ; 露天池 ; 露天池 ; 노천온천 ; bain extérieur ; Freiluftbad ; baño termal ; bagno termale ; warmwaterbron ; садовый пруд
+028F ; FtrScarecrow ; scarecrow ; かかし ; 稻草人 ; 稻草人 ; 허수아비 ; épouvantail ; Vogelscheuche ; espantapájaros ; spaventapasseri ; vogelverschrikker ; пугало
+003A ; FtrStoneoven ; brick oven ; いしがま ; 窯烤爐 ; 窑烤炉 ; 벽돌 가마 ; four en pierre ; Steinofen ; horno de ladrillo ; forno in mattoni ; stenen oven ; печь
+003B ; FtrSwingWood ; swinging bench ; ベンチブランコ ; 鞦韆椅 ; 秋千椅 ; 벤치 그네 ; balancelle ; Schwingschaukel ; balancín de jardín ; dondolo ; schommelbank ; садовые качели
+003C ; FtrTyres ; tire stack ; つまれたタイヤ ; 輪胎堆 ; 轮胎堆 ; 쌓인 타이어 ; pile de pneus ; Reifenstapel ; pila de neumáticos ; pila di pneumatici ; stapel autobanden ; стопка покрышек
+0107 ; FtrWorkbench ; DIY workbench ; DIYさぎょうだい ; ＤＩＹ作業台 ; DIY作业台 ; DIY 작업대 ; établi ; Werkbank ; banco de bricolaje ; banco da lavoro ; werkbank ; верстак для поделок
+0009 ; FtrFruitsClosetLR ; pear wardrobe ; ナシのクロゼット ; 梨子衣櫃 ; 梨子衣柜 ; 배 옷장 ; armoire poire ; Birnenschrank ; armario pera ; armadio pera ; perenkast ; шкаф-груша
+00A5 ; FtrPirateBarrel ; barrel ; たる ; 木桶 ; 木桶 ; 나무통 ; tonneau ; Fass ; tonel ; barile ; vat ; бочка
+000D ; FtrBonfire ; campfire ; たきび ; 炊火 ; 炊火 ; 모닥불 ; feu de camp ; Lagerfeuer ; fuego de campamento ; fuoco da campo ; kampvuur ; костер
+0022 ; FtrCampfire ; bonfire ; キャンプファイア ; 營火 ; 篝火 ; 캠프파이어 ; feu de joie ; Feuerstelle ; hoguera ; fuoco di bivacco ; vreugdevuur ; большой костер
+00EB ; FtrMeteo ; asteroid ; いんせき ; 隕石 ; 陨石 ; 운석 ; astéroïde ; Asteroid ; asteroide ; asteroide ; asteroïde ; астероид
+0182 ; FtrModule ; lunar lander ; ちゃくりくせん ; 登月艙 ; 登月舱 ; 달착륙선 ; module lunaire ; Landefähre ; módulo lunar ; sonda lunare ; maanlander ; посадочный модуль
+0199 ; FtrRocket ; rocket ; ロケット ; 火箭 ; 火箭 ; 로켓 ; fusée ; Rakete ; cohete espacial ; missile ; raket ; ракета
+0175 ; FtrMoonrover ; lunar rover ; げつめんいどうしゃ ; 月球車 ; 月球车 ; 월면이동차 ; véhicule lunaire ; Mondfahrzeug ; explorador lunar ; rover lunare ; maanvoertuig ; луноход
+017B ; FtrSatellite ; satellite ; じんこうえいせい ; 人工衛星 ; 人工卫星 ; 인공위성 ; satellite ; Raumsonde ; satélite ; satellite ; satelliet ; спутник
+017D ; FtrShuttle ; space shuttle ; スペースシャトル ; 太空梭 ; 太空梭 ; 우주왕복선 ; navette spatiale ; Raumfähre ; transbordador ; shuttle ; ruimteshuttle ; космический челнок
+00EC ; FtrSpacesuit ; astronaut suit ; アストロノーツ ; 太空人 ; 太空人 ; 우주 비행사 ; spationaute ; Astronautenanzug ; astronauta ; tuta da astronauta ; astronautenpak ; скафандр космонавта
+00E9 ; FtrUFO ; flying saucer ; そらとぶえんばん ; 飛碟 ; 飞碟 ; 하늘 나는 원반 ; soucoupe volante ; UFO ; platillo volante ; disco volante ; vliegende schotel ; летающая тарелка
+0241 ; FtrBearXL ; giant teddy bear ; くまのトクダイちゃん ; 特大熊熊 ; 特大熊熊 ; 특대 곰인형 ; nounours géant ; Riesenteddy ; papá oso gigante ; orsacchiotto gigante ; reuzenteddybeer ; огромный мишка
+0252 ; FtrHerorobot ; robot hero ; ヒーローロボ ; 英雄機器人 ; 英雄机器人 ; 히어로 로봇 ; robot géant ; Heldenroboter ; robot gigante ; eroe robot ; robotheld ; робот-герой
+003D ; FtrBlockBedS ; wooden-block bed ; つみきベッド ; 積木床鋪 ; 积木床铺 ; 나무블록 침대 ; lit blocs de bois ; Bauklotzbett ; cama construcciones ; letto blocchi di legno ; houtblokbed ; кровать из дерев. блоков
+003E ; FtrBlockShelf ; wooden-block bookshelf ; つみきブックシェルフ ; 積木書櫃 ; 积木书柜 ; 나무블록 북 쉘프 ; bibliothèque blocs de bois ; Bauklotzbücherregal ; estantería construcciones ; libreria blocchi di legno ; houtblokboekenkast ; стеллаж из дерев. блоков
+0017 ; FtrBlockChairL ; wooden-block bench ; つみきベンチ ; 積木長椅 ; 积木长凳 ; 나무블록 벤치 ; banc blocs de bois ; Bauklotzbank ; banco construcciones ; panca blocchi di legno ; houtblokbank ; лавка из дерев. блоков
+0018 ; FtrBlockChest ; wooden-block chest ; つみきチェスト ; 積木矮櫃 ; 积木矮柜 ; 나무블록 수납장 ; commode blocs de bois ; Bauklotzkommode ; cómoda construcciones ; comò blocchi di legno ; houtblokladekast ; комод из дерев. блоков
+001A ; FtrBlockTableL ; wooden-block table ; つみきテーブル ; 積木桌 ; 积木桌 ; 나무블록 테이블 ; table blocs de bois ; Bauklotztisch ; mesa construcciones ; tavolo blocchi di legno ; houtbloktafel ; стол из дерев. блоков
+0338 ; FtrDharma ; dharma ; ダルマ ; 達摩不倒翁 ; 达摩不倒翁 ; 달마 ; daruma ; Daruma ; daruma ; dharma ; darumapop ; кукла дарума
+003F ; FtrIrongardenBench ; iron garden bench ; アイアンガーデンベンチ ; 鑄鐵花園長椅 ; 花园铸铁长椅 ; 아이언 가든 벤치 ; banc de jardin fer ; Romantikgartenbank ; banco de forja ; panca da giardino di ferro ; ijzeren tuinbank ; железная садовая скамья
+0040 ; FtrIrongardenChair ; iron garden chair ; アイアンガーデンチェア ; 鑄鐵花園椅 ; 花园铸铁椅 ; 아이언 가든 체어 ; chaise de jardin fer ; Romantikgartenstuhl ; silla de forja ; sedia da giardino di ferro ; ijzeren tuinstoel ; железный садовый стул
+0041 ; FtrIrongardenTable ; iron garden table ; アイアンガーデンテーブル ; 鑄鐵花園桌 ; 花园铸铁桌 ; 아이언 가든 테이블 ; table de jardin fer ; Romantikgartentisch ; mesa de forja ; tavolo da giardino di ferro ; ijzeren tuintafel ; железный садовый стол
+0193 ; FtrMatryoshka ; matryoshka ; マトリョーシカ ; 俄羅斯套娃 ; 俄罗斯套娃 ; 마트료시카 ; série matriochka ; Matroschka ; matrioska ; matriosca ; matroesjka ; матрешка
+01CE ; FtrOfficePapers ; document stack ; しょるいのやま ; 文件堆 ; 文件堆 ; 서류 더미 ; pile de documents ; Dokumentenstapel ; pila de documentos ; pila di documenti ; stapel documenten ; стопка документов
+001E ; FtrAlomapot ; aroma pot ; アロマポット ; 薰香台 ; 熏香台 ; 아로마 포트 ; brûle-parfum ; Duftlampe ; quemador de esencias ; brucia essenze ; geurpot ; аромалампа
+00C4 ; FtrBooks ; stack of books ; つまれたほん ; 書堆 ; 书堆 ; 쌓인 책 ; pile de livres ; Bücherstapel ; pila de libros ; pila di libri ; stapel boeken ; стопка книг
+0186 ; FtrDecoy ; decoy duck ; デコイ ; 木雕鴨 ; 木雕鸭 ; 유인용 오리 ; faux canard ; Deko-Ente ; señuelo para patos ; papero finto ; lokeend ; муляж утки
+000E ; FtrDoghouse ; doghouse ; いぬごや ; 狗屋 ; 狗屋 ; 개집 ; niche ; Hundehütte ; caseta de perro ; cuccia ; hondenhok ; собачья будка
+0042 ; FtrGarbagebag ; trash bags ; ゴミぶくろ ; 垃圾袋 ; 垃圾袋 ; 쓰레기봉투 ; duo de sacs poubelle ; Müllsack-Set ; par de bolsas de basura ; set sacchi per la spazzatura ; vuilniszakken ; мешки с мусором
+00C5 ; FtrMagagine ; stacked magazines ; ざっしのたば ; 雜誌堆 ; 杂志堆 ; 쌓인 잡지 ; lot de magazines ; Magazinsammlung ; montón de revistas ; raccolta di riviste ; stapel tijdschriften ; коллекция журналов
+000F ; FtrWoodenChairS ; wooden chair ; もくせいチェア ; 木製椅 ; 木制椅 ; 목제 체어 ; chaise en bois ; Holzstuhl ; silla de madera ; sedia di legno ; houten stoel ; деревянный стул
+004D ; FtrDrinkingfountain ; drinking fountain ; みずのみば ; 飲水處 ; 饮水处 ; 음수대 ; fontaine-abreuvoir ; Trinkbrunnen ; fuente para beber ; fontanella pubblica ; drinkfontein ; питьевой фонтанчик
+0185 ; FtrHandpump ; water pump ; ておしポンプ ; 手押式汲水器 ; 手压式汲水器 ; 수동 펌프 ; pompe à eau ; Wasserpumpe ; bomba de agua ; pompa dell'acqua ; waterpomp ; водяная колонка
+004E ; FtrPlayingtire ; tire toy ; タイヤのゆうぐ ; 輪胎玩具 ; 轮胎玩具 ; 타이어 놀이 기구 ; jeu en pneu ; Reifenspielgerät ; rueda de juguete ; gomma da parco ; autobandspeeltje ; шина для игры
+004F ; FtrIronframe ; iron frame ; てっこつ ; 鋼筋 ; 钢架 ; 철골 ; lot de poutres en fer ; Stahlträger ; torre de vigas ; pila di travi ; metalen bielsen ; железный ограничитель
+00A0 ; FtrBlockChairS ; wooden-block chair ; つみきチェア ; 積木椅 ; 积木椅 ; 나무블록 체어 ; chaise blocs de bois ; Bauklotzstuhl ; silla construcciones ; sedia blocchi di legno ; houtblokstoel ; стул из дерев. блоков
+0025 ; FtrKame ; pot ; かめ ; 甕 ; 瓦罐 ; 항아리 ; pot ; Topf ; vasija ; vaso ; pot ; горшок
+0011 ; FtrWoodenChest ; wooden chest ; もくせいチェスト ; 木製矮櫃 ; 木制矮柜 ; 목제 수납장 ; commode en bois ; Holzkommode ; cómoda de madera ; comò di legno ; houten ladekast ; деревянный комод
+0050 ; FtrGardenChairNatural ; natural garden chair ; ナチュラルなガーデンチェア ; 自然風花園椅 ; 自然风花园椅 ; 내추럴 가든 체어 ; chaise de jardin naturelle ; Funktional-Gartenstuhl ; silla de madera natural ; sedia naturale da giardino ; natuurlijke tuinstoel ; обычный садовый стул
+0006 ; FtrFruitsTV ; juicy-apple TV ; リンゴのテレビ ; 蘋果電視 ; 苹果电视 ; 사과 TV ; télé pomme ; Apfelfernseher ; tele manzana ; TV mela ; appel-tv ; телевизор-яблоко
+0012 ; FtrWoodenBedS ; wooden simple bed ; もくせいシングルベッド ; 木製單人床 ; 木制单人床 ; 목제 싱글 침대 ; lit en bois ; Holzbett ; cama individual de madera ; letto singolo di legno ; houten bed ; простая кровать из дерева
+0024 ; FtrWell ; simple well ; シンプルないど ; 簡約水井 ; 简约水井 ; 심플한 우물 ; puits simple ; Grundwasserbrunnen ; pozo de piedra ; pozzo di pietra ; eenvoudige put ; простой колодец
+0051 ; FtrGoldbar ; gold bars ; きんののべぼう ; 金條 ; 金条 ; 금괴 ; pile de lingots ; Goldbarrenstapel ; pila de lingotes de oro ; piramide di lingotti dorata ; goudstaven ; золотые слитки
+0052 ; FtrWorkbenchS ; mini DIY workbench ; ちいさなDIYさぎょうだい ; 小型ＤＩＹ作業台 ; 迷你DIY作业台 ; 작은 DIY 작업대 ; mini-établi ; Mini-Werkbank ; banquito de bricolaje ; mini banco da lavoro ; miniwerkbank ; мини-верстак
+0023 ; FtrIronwoodTableL ; ironwood table ; アイアンウッドテーブル ; 鑄鐵木桌 ; 铸铁木桌 ; 아이언우드 테이블 ; table en bois de fer ; Eisen-Holz-Tisch ; mesa universidad ; tavolo di legno ferro ; ijzeren-houten tafel ; стол из ДСП и стали
+0053 ; FtrIronwoodChairS ; ironwood chair ; アイアンウッドチェア ; 鑄鐵木椅 ; 铸铁木凳 ; 아이언우드 체어 ; tabouret en bois de fer ; Eisen-Holz-Stuhl ; taburete universidad ; sgabello di legno ferro ; ijzeren-houten kruk ; табурет из ДСП и стали
+0054 ; FtrIronwoodTableM ; ironwood low table ; アイアンウッドローテーブル ; 鑄鐵木矮桌 ; 铸铁木矮桌 ; 아이언우드 낮은 테이블 ; table basse en bois de fer ; Eisen-Holz-Sofatisch ; mesa camarera universidad ; tavolino di legno ferro ; ijzeren-houten bijzettafel ; столик из ДСП и стали
+0055 ; FtrIronwoodServingcart ; ironwood cart ; アイアンウッドワゴン ; 鑄鐵木收納推車 ; 铸铁木收纳推车 ; 아이언우드 왜건 ; desserte en bois de fer ; Eisen-Holz-Rollwagen ; carrito universidad ; carrello di legno ferro ; ijzeren-houten roltafel ; тележка из ДСП и стали
+0056 ; FtrIronwoodChest ; ironwood dresser ; アイアンウッドチェスト ; 鑄鐵木矮櫃 ; 铸铁木矮柜 ; 아이언우드 수납장 ; commode en bois de fer ; Eisen-Holz-Kommode ; cómoda universidad ; comodino di legno ferro ; ijzeren-houten ladekast ; комод из ДСП и стали
+0057 ; FtrIronwoodBedS ; ironwood bed ; アイアンウッドベッド ; 鑄鐵木床鋪 ; 铸铁木床铺 ; 아이언우드 침대 ; lit en bois de fer ; Eisen-Holz-Bett ; cama universidad ; letto di legno ferro ; ijzeren-houten bed ; кровать из ДСП и стали
+0059 ; FtrBlockCompo ; wooden-block stereo ; つみきコンポ ; 積木音響 ; 积木音响 ; 나무블록 오디오 ; hi-fi blocs de bois ; Bauklotzanlage ; cadena construcciones ; stereo blocchi di legno ; houtblokstereo ; система из дерев. блоков
+0026 ; FtrBlockBrick ; wooden-block toy ; つみきのおもちゃ ; 積木玩具 ; 积木玩具 ; 나무블록 장난감 ; jeu blocs de bois ; Bauklotzset ; juguete construcciones ; gioco blocchi di legno ; houtblokspeelgoed ; деревянные блоки
+005A ; FtrBlockClock ; wooden-block wall clock ; つみきウォールクロック ; 積木壁鐘 ; 积木挂钟 ; 나무블록 벽시계 ; coucou blocs de bois ; Bauklotzwanduhr ; reloj pared construcciones ; orologio blocchi di legno ; houtblokklok ; часы из дерев. блоков
+01C9 ; FtrClothesline ; clothesline ; ものほしロープ ; 曬衣繩 ; 晒衣绳 ; 빨랫줄 ; corde à linge ; Simpel-Wäscheleine ; tendedero añejo ; stendipanni ; ouderwetse waslijn ; веревка для сушки белья
+005B ; FtrIronwoodKitchen ; ironwood kitchenette ; アイアンウッドキッチン ; 鑄鐵木廚房 ; 铸铁木厨房 ; 아이언우드 키친 ; kitchenette en bois de fer ; Eisen-Holz-Spülschrank ; fregadero universidad ; lavabo di legno ferro ; ijzeren-houten aanrecht ; мини-кухня (ДСП и сталь)
+005C ; FtrIronwoodCupboard ; ironwood cupboard ; アイアンウッドカップボード ; 鑄鐵木櫥櫃 ; 铸铁木橱柜 ; 아이언우드 찬장 ; étagère en bois de fer ; Eisen-Holz-Küchenschrank ; aparador universidad ; credenza di legno ferro ; ijzeren-houten buffetkast ; буфет из ДСП и стали
+005E ; FtrIronwoodClockW ; ironwood clock ; アイアンウッドクロック ; 鑄鐵木時鐘 ; 铸铁木时钟 ; 아이언우드 시계 ; horloge en bois de fer ; Eisen-Holz-Wanduhr ; reloj de pared universidad ; orologio di legno ferro ; ijzeren-houten klok ; часы из ДСП и стали
+017A ; FtrHuntingtrophy ; deer decoration ; しかのオブジェ ; 小鹿裝飾品 ; 小鹿装饰品 ; 사슴 장식 ; trophée cerf ; Holz-Hirschkopf ; cabeza de ciervo decorativa ; trofeo del cervo ; hertendecoratie ; декоративный олень
+017E ; FtrBasketsteamer ; steamer-basket set ; せいろ ; 蒸籠 ; 蒸笼 ; 나무 찜통 ; set de paniers vapeur ; Dampfgarer ; set de vaporeras apilables ; set per cottura a vapore ; stoommand ; пароварка из бамбука
+00E0 ; FtrGardenTableNatural ; natural garden table ; ナチュラルなガーデンテーブル ; 自然風花園桌 ; 自然风花园桌 ; 내추럴 가든 테이블 ; table de jardin naturelle ; Funktional-Gartentisch ; mesa de madera natural ; tavolo naturale da giardino ; natuurlijke tuintafel ; обычный садовый стол
+0069 ; FtrStoneTable ; stone table ; いしのテーブル ; 石桌 ; 石头桌 ; 돌 테이블 ; table en pierre ; Steintisch ; mesa de piedra ; tavolo di pietra ; stenen tafel ; стол из камня
+0068 ; FtrStoneChair ; stone stool ; いしのスツール ; 石凳子 ; 石头凳子 ; 돌 스툴 ; tabouret en pierre ; Steinhocker ; taburete de piedra ; sgabello di pietra ; stenen kruk ; табурет из камня
+00CC ; FtrBeekeepingbox ; beekeeper's hive ; ようほうばこ ; 養蜂箱 ; 养蜂箱 ; 벌통 ; ruche ouvragée ; Bienenstock ; colmena de apicultura ; arnia ; bijenkast ; улей пасечника
+0261 ; FtrMovingboxS ; small cardboard boxes ; ひっこしダンボールS ; 搬家紙箱S ; 搬家纸箱S ; 이삿짐 박스 S ; tas de cartons S ; Umzugskistenset (S) ; lote pequeño de cajas ; set di scatoloni piccoli ; kleine set kartonnen dozen ; картонные коробки S
+0262 ; FtrMovingboxM ; medium cardboard boxes ; ひっこしダンボールM ; 搬家紙箱M ; 搬家纸箱M ; 이삿짐 박스 M ; tas de cartons M ; Umzugskistenset (M) ; lote mediano de cajas ; set di scatoloni medi ; set kartonnen dozen ; картонные коробки M
+0263 ; FtrMovingboxL ; large cardboard boxes ; ひっこしダンボールL ; 搬家紙箱L ; 搬家纸箱L ; 이삿짐 박스 L ; tas de cartons L ; Umzugskistenset (L) ; lote grande de cajas ; set di scatoloni grandi ; grote set kartonnen dozen ; картонные коробки L
+00AC ; FtrWoodenCloset ; wooden wardrobe ; もくせいクロゼット ; 木製衣櫃 ; 木制衣柜 ; 목제 옷장 ; armoire en bois ; Holzschrank ; armario de madera ; armadio di legno ; houten kledingkast ; деревянный шкаф
+00AA ; FtrWoodenTableS ; wooden end table ; もくせいサイドテーブル ; 木製邊桌 ; 木制边桌 ; 목제 사이드 테이블 ; table de chevet en bois ; Holznachttisch ; mesita auxiliar de madera ; comodino di legno ; houten nachtkastje ; деревянная тумба
+00C9 ; FtrWoodenTableL ; wooden table ; もくせいテーブル ; 木製桌 ; 木制桌 ; 목제 테이블 ; table en bois ; Holztisch ; mesa de madera ; tavolo di legno ; houten tafel ; деревянный стол
+00A9 ; FtrUmbrellastand ; standard umbrella stand ; かさたて ; 雨傘架 ; 雨伞架 ; 우산꽂이 ; porte-parapluie ; Regenschirmständer ; paragüero cuadrado ; portaombrelli standard ; parapluhouder ; обычная зонтница
+0206 ; FtrGravestoneEuropean ; western-style stone ; ようふうのはかいし ; 洋風墓碑 ; 洋风墓碑 ; 서양식 묘석 ; pierre tombale ; Grabstein ; tumba clásica ; lapide occidentale ; grafsteen ; памятник в стиле вестерн
+00A8 ; FtrWoodenStoolS ; wooden stool ; もくせいスツール ; 木製凳子 ; 木制凳子 ; 목제 스툴 ; tabouret en bois ; Holzschemel ; taburete de madera ; sgabello di legno ; houten kruk ; деревянный табурет
+0106 ; FtrGoldWC ; golden toilet ; おうごんのトイレ ; 黃金馬桶 ; 黄金马桶 ; 황금 변기 ; WC d'or ; Goldtoilette ; inodoro dorado ; water dorato ; gouden toilet ; золотой унитаз
+0085 ; FtrGoldbench ; golden seat ; おうごんのベンチ ; 黃金長椅 ; 黄金长椅 ; 황금 벤치 ; banquette d'or ; Goldsitz ; banco dorado ; panchina dorata ; gouden zetel ; золотая скамья
+00AD ; FtrTrashboxWood ; wooden waste bin ; もくせいのくずかご ; 木製廢紙簍 ; 木制废纸篓 ; 나무 쓰레기통 ; poubelle en bois ; Holz-Abfalleimer ; papelera de madera ; cestino per rifiuti di legno ; houten prullenmand ; деревянная мусорка
+0092 ; FtrIceTableL ; frozen table ; こおりのテーブル ; 冰桌 ; 冰块桌 ; 얼음 테이블 ; table arctique ; Eistisch ; mesa iceberg ; tavolo iceberg ; ijstafel ; ледяной стол
+0093 ; FtrIceScreen ; frozen partition ; こおりのパーテーション ; 冰隔板 ; 冰块隔板 ; 얼음 파티션 ; panneau arctique ; Eis-Trennwand ; mampara iceberg ; divisorio iceberg ; ijsscheidingswand ; ледяная ширма
+008C ; FtrIceGate ; frozen arch ; こおりのアーチ ; 冰拱門 ; 冰块拱门 ; 얼음 아치 ; arche arctique ; Eistor ; arco iceberg ; arco iceberg ; ijspoort ; ледяная арка
+0094 ; FtrIcePillar ; frozen pillar ; こおりのはしら ; 冰柱子 ; 冰块柱子 ; 얼음 기둥 ; pilier arctique ; Eissäule ; pilar iceberg ; pilastro iceberg ; ijspilaar ; ледяная подставка
+008D ; FtrIceArt ; frozen sculpture ; こおりのアート ; 冰裝置藝術 ; 冰块艺术品 ; 얼음 조각상 ; sculpture arctique ; Eisskulptur ; escultura iceberg ; statua iceberg ; ijssculptuur ; ледяная скульптура
+0095 ; FtrIceBedW ; frozen bed ; こおりのベッド ; 冰床鋪 ; 冰块床铺 ; 얼음 침대 ; lit arctique ; Eisbett ; cama iceberg ; letto iceberg ; ijsbed ; ледяная кровать
+008E ; FtrIceChairS ; frozen chair ; こおりのイス ; 冰椅子 ; 冰块椅子 ; 얼음 의자 ; chaise arctique ; Eisstuhl ; sillón iceberg ; poltrona iceberg ; ijsstoel ; ледяной стул
+0091 ; FtrIceTree ; frozen tree ; こおりのツリー ; 冰樹木 ; 冰块树木 ; 얼음 트리 ; arbre arctique ; Eisbaum ; árbol iceberg ; albero iceberg ; ijsboom ; ледяное дерево
+008F ; FtrIceCounter ; frozen counter ; こおりのカウンター ; 冰吧台 ; 冰块吧台 ; 얼음 카운터 ; comptoir arctique ; Eistresen ; barra iceberg ; bancone iceberg ; ijsbar ; ледяная стойка
+007C ; FtrParkbenche ; garden bench ; ガーデンベンチ ; 花園長椅 ; 花园长椅 ; 가든 벤치 ; banc de parc ; Gartenbank ; banco de jardín ; panchina da giardino ; tuinbankje ; садовая скамья
+009B ; FtrBambooShelf ; bamboo shelf ; たけのシェルフ ; 竹製多寶架 ; 竹制博古架 ; 대나무 쉘프 ; étagère en bambou ; Bambusregal ; estante de bambú ; scaffale di bambù ; bamboerek ; полка из бамбука
+009D ; FtrBambooScreen ; bamboo partition ; たけのスクリーン ; 竹屏風 ; 竹屏风 ; 대나무 파티션 ; paravent en bambou ; Bambus-Wandschirm ; separador de bambú ; divisorio di bambù ; bamboescheidingswand ; ширма из бамбука
+0099 ; FtrBambooCandle ; bamboo candleholder ; たけのキャンドルホルダー ; 竹製燭台 ; 竹制烛台 ; 대나무 촛대 ; bougeoir en bambou ; Bambus-Kerzenhalter ; portavelas de bambú ; candeliere di bambù ; bamboekaarsenhouder ; подсвечник из бамбука
+009E ; FtrBambooSurprisedbox ; bamboo doll ; たけのビックリばこ ; 竹製驚嚇箱 ; 竹制惊吓箱 ; 대나무 깜짝 상자 ; boîte à malice en bambou ; Bambus-Schachtelkobold ; ornamento de bambú ; scatola a sorpresa di bambù ; bamboespeelgoed ; кукла из бамбука
+009A ; FtrBambooCarstop ; bamboo stopblock ; たけのくるまどめ ; 竹製擋車墩 ; 竹制挡车墩 ; 대나무 주차 멈춤 턱 ; heurtoir en bambou ; Bambus-Absperrung ; barrera de bambú ; barriera di bambù ; bamboebarrière ; ограничитель из бамбука
+009F ; FtrBambooLamp ; bamboo floor lamp ; たけのフロアスタンド ; 竹製落地燈 ; 竹制落地灯 ; 대나무 플로어 스탠드 ; lampe de sol en bambou ; Bambus-Stehlampe ; lámpara de bambú ; lampada di bambù ; bamboelamp ; светильник из бамбука
+0097 ; FtrBambooFlowerwall ; bamboo wall decoration ; たけのいちりんざし ; 竹花瓶 ; 竹花瓶 ; 대나무 꽃병 ; déco murale en bambou ; Bambusdekoration ; adorno colgante de bambú ; ornamento di bambù ; bamboewandversiering ; декор из бамбука
+007A ; FtrIronLampW ; iron wall lamp ; アイアンウォールランプ ; 鑄鐵壁燈 ; 铸铁壁灯 ; 아이언 벽걸이 램프 ; lampe murale en fer ; Eisenwandlampe ; aplique de hierro ; lampada a muro di ferro ; ijzeren wandlamp ; железное бра
+007E ; FtrIronTableM ; iron worktable ; アイアンワークテーブル ; 鑄鐵工作桌 ; 铸铁工作桌 ; 아이언 작업용 책상 ; établi en fer ; Eisenarbeitstisch ; escritorio de hierro ; banco da lavoro di ferro ; ijzeren tafel ; железный верстак
+016D ; FtrIronHanger ; iron hanger stand ; アイアンハンガースタンド ; 鑄鐵衣帽立架 ; 铸铁衣帽立架 ; 아이언 스탠드 행거 ; portemanteau en fer ; Eisengarderobe ; perchero de hierro ; attaccapanni di ferro ; ijzeren kapstok ; железная вешалка
+007B ; FtrIronShelfW ; iron wall rack ; アイアンウォールラック ; 鑄鐵壁架 ; 铸铁壁架 ; 아이언 벽걸이 선반 ; étagère murale en fer ; Eisenwandregal ; repisa de hierro ; mensola di ferro ; ijzeren wandrek ; железная полка
+0080 ; FtrIronShelf ; iron shelf ; アイアンシェルフ ; 鑄鐵櫃 ; 铸铁柜 ; 아이언 쉘프 ; étagère en fer ; Eisenregal ; estantería de hierro ; scaffale di ferro ; ijzeren stellingkast ; железный стеллаж
+0251 ; FtrBonsaiShelf ; bonsai shelf ; ぼんさいだな ; 盆栽架 ; 盆栽架 ; 분재 진열대 ; présentoir à bonsaïs ; Bonsai-Tisch ; banco de bonsáis ; tavolo con bonsai ; tafeltje met bonsai ; полка для бонсай
+00D5 ; FtrSignpost ; signpost ; みちしるべ ; 路標 ; 路标 ; 이정표 ; panneau de direction ; Wegweiser ; poste indicador ; segnale direzionale ; wegwijzer ; столбик с указателем
+0254 ; FtrFloat ; stall ; やたい ; 路邊攤 ; 路边摊 ; 노점 ; stand ; Verkaufsstand ; tenderete ; bancarella ; kraampje ; прилавок
+011C ; FtrCuttingboard ; cutting board ; カッティングボード ; 切菜板 ; 切菜板 ; 도마 ; planche à pain ; Schneidebrett ; tabla de cortar sencilla ; tagliere semplice ; snijplank ; разделочная доска
+0098 ; FtrBambooBasket ; bamboo basket ; たけのかご ; 竹籃 ; 竹篮 ; 대나무 바구니 ; corbeille en bambou ; Bambuskorb ; cesta de bambú ; canestro di bambù ; bamboemand ; корзина из бамбука
+00A7 ; FtrHaybed ; hay bed ; ほしくさのベッド ; 乾草床鋪 ; 干草床铺 ; 건초 침대 ; lit de paille ; Strohbett ; colchón de heno ; pagliericcio ; strobed ; постель из сена
+00AE ; FtrWashstandBowl ; plain sink ; そぼくなせんめんだい ; 樸素洗臉台 ; 朴素洗脸台 ; 소박한 세면대 ; lavabo simple ; Holzwaschtisch ; lavabo sencillo ; lavandino grezzo ; eenvoudige wasbak ; простой умывальник
+00A3 ; FtrCoconutjuice ; coconut juice ; ココナッツジュース ; 椰子水 ; 椰子水 ; 코코넛 주스 ; jus de coco ; Kokosnusswasser ; zumo de coco ; acqua di cocco ; drinkkokosnoot ; кокосовый сок
+0176 ; FtrStoveSauna ; sauna heater ; サウナストーブ ; 三溫暖暖爐 ; 三温暖暖炉 ; 사우나 히터 ; poêle de sauna ; Saunaofen ; estufa de sauna ; stufa da sauna ; saunaoven ; печь для сауны
+00A6 ; FtrSignWood ; plain wooden shop sign ; そぼくなもくせいかんばん ; 樸素木製招牌 ; 朴素木制招牌 ; 소박한 목제 간판 ; pancarte ; Holzschild ; cartel sencillo de madera ; cartello informativo ; eenvoudig bordje ; простая дерев. вывеска
+0082 ; FtrGoldCandlestand ; golden candlestick ; おうごんのしょくだい ; 黃金燭台 ; 黄金烛台 ; 황금 촛대 ; chandelier d'or ; Goldkerzenhalter ; candelabro dorado ; candelabro dorato ; gouden kandelaar ; золотой подсвечник
+0187 ; FtrTerrarium ; terrarium ; テラリウム ; 玻璃盆栽 ; 玻璃盆栽 ; 테라리움 ; terrarium ; Terrarium ; terrario botánico ; terrario ; terrarium ; террариум
+0084 ; FtrZodiacLibra ; Libra scale ; リブラのてんびん ; 天秤座天平 ; 天秤 ; 천칭자리 저울 ; Balance à plateaux ; Balkenwaage ; balanza Libra ; pesa oggetti Bilancia ; Weegschaal-bascule ; рычажные весы
+018C ; FtrTerrariumWall ; hanging terrarium ; ハンギングテラリウム ; 垂吊玻璃盆栽 ; 垂吊玻璃盆栽 ; 행잉 테라리움 ; terrarium suspendu ; Hänge-Terrarium ; terrario botánico colgante ; terrario sospeso ; hangend terrarium ; подвесной террариум
+0198 ; FtrWellBrick ; brick well ; レンガのいど ; 磚塊水井 ; 砖块水井 ; 벽돌 우물 ; puits en briques ; Ziegelsteinbrunnen ; pozo de obra ; pozzo di mattoni ; bakstenen put ; кирпичный колодец
+00D6 ; FtrLeafWall ; potted ivy ; かべかけのはっぱ ; 壁掛式盆栽 ; 壁挂式盆栽 ; 벽걸이 식물 ; lierre en pot ; Efeu-Topfpflanze ; maceta con hiedra ; edera in vaso ; klimop in pot ; плющ в горшке
+0250 ; FtrBonsaiPine ; pine bonsai tree ; マツのぼんさい ; 松樹盆栽 ; 松树盆栽 ; 소나무 분재 ; bonsaï pin japonais ; Kiefern-Bonsai ; conífera bonsái ; bonsai conifera ; bonsai-dennenboom ; бонсай из сосны
+008B ; FtrMushroomParasol ; mush parasol ; キノコのパラソル ; 蘑菇陽傘 ; 蘑菇阳伞 ; 버섯 파라솔 ; parasol champi ; Pilzschirm ; sombrilla hongo ; ombrellone fungo ; paddenstoelparasol ; грибной зонт
+008A ; FtrMushroomScreen ; mush partition ; キノコのスクリーン ; 蘑菇屏風 ; 蘑菇屏风 ; 버섯 파티션 ; paravent champi ; Pilzwandschirm ; mampara hongo ; divisorio fungo ; paddenstoelwand ; грибная ширма
+0088 ; FtrMushroomPulpwood ; mush log ; キノコのげんぼく ; 蘑菇樹幹 ; 蘑菇树干 ; 버섯 원목 ; rondin champi ; Pilzbaumstumpf ; tronco hongo ; ciocco fungo ; paddenstoelboomstam ; грибной пень
+0083 ; FtrGoldDishes ; golden dishes ; おうごんのしょっき ; 黃金餐具 ; 黄金餐具 ; 황금 식기 ; vaisselle d'or ; Goldgeschirr ; servicio de mesa dorado ; set da tavola dorato ; gouden servies ; золотая посуда
+018A ; FtrDrumcanbath ; oil-barrel bathtub ; ドラムかんぶろ ; 泡澡汽油桶 ; 泡澡汽油桶 ; 드럼통 욕조 ; baignoire baril de pétrole ; Ölfassbad ; bañera barril ; vasca fusto di petrolio ; badvat ; бочка для купания
+007D ; FtrWorkbenchIronwood ; ironwood DIY workbench ; アイアンウッドDIYテーブル ; 鑄鐵木DIY桌 ; 铸铁木DIY桌 ; 아이언우드 DIY 테이블 ; établi en bois de fer ; Eisen-Holz-Werkbank ; banco bricolaje universidad ; banco lavoro di legno ferro ; ijzeren-houten werkbank ; верстак из ДСП и стали
+0111 ; FtrTreeXmasL ; big festive tree ; おおきなクリスマスツリー ; 大型聖誕樹 ; 大型圣诞树 ; 큰 크리스마스트리 ; grand sapin décoré ; Tannenbaum ; árbol festivo ; albero festivo ; grote feestboom ; праздничная ель
+00B9 ; FtrFruitsTableS ; orange end table ; オレンジのサイドテーブル ; 橘子邊桌 ; 橘子边桌 ; 오렌지 사이드 테이블 ; guéridon orange ; Orange-Tischchen ; mesa auxiliar naranja ; tavolino arancia ; sinaasappeltafeltje ; столик-апельсин
+00B8 ; FtrFruitsClockW ; orange wall-mounted clock ; オレンジのかべかけどけい ; 橘子壁掛鐘 ; 橘子壁挂钟 ; 오렌지 벽시계 ; horloge murale orange ; Orange-Wanduhr ; reloj de pared naranja ; orologio da muro arancia ; sinaasappelwandklok ; часы-апельсин
+00AF ; FtrShellArch ; shell arch ; かいがらのアーチ ; 貝殼拱門 ; 贝壳拱门 ; 조개 아치 ; arche coquillages ; Muscheltor ; arco conchas marinas ; arco conchiglia ; schelpenpoort ; арка из ракушек
+00B0 ; FtrShellScreen ; shell partition ; かいがらのスクリーン ; 貝殼屏風 ; 贝壳屏风 ; 조개 파티션 ; paravent coquillages ; Muschel-Wandschirm ; mampara conchas marinas ; divisorio conchiglia ; schelpenscheidingswand ; ширма из ракушек
+00B1 ; FtrShellStoolS ; shell stool ; かいがらのスツール ; 貝殼凳子 ; 贝壳凳子 ; 조개 스툴 ; siège coquillages ; Muschelhocker ; taburete conchas marinas ; sgabello conchiglia ; schelpenkruk ; табурет из ракушки
+00B2 ; FtrShellTableL ; shell table ; かいがらのテーブル ; 貝殼桌 ; 贝壳桌 ; 조개 테이블 ; table coquillages ; Muscheltisch ; mesa conchas marinas ; tavolo conchiglia ; schelpentafel ; стол из ракушки
+00B4 ; FtrShellFountain ; shell fountain ; かいがらのふんすい ; 貝殼噴泉 ; 贝壳喷泉 ; 조개 분수 ; fontaine coquillages ; Muschel-Springbrunnen ; fuente conchas marinas ; fontana conchiglia ; schelpenfontein ; фонтан из ракушек
+00B5 ; FtrShellBedW ; shell bed ; かいがらのベッド ; 貝殼床鋪 ; 贝壳床铺 ; 조개 침대 ; lit coquillages ; Muschelbett ; cama conchas marinas ; letto conchiglia ; schelpenbed ; кровать из ракушки
+00B6 ; FtrShellLamp ; shell lamp ; かいがらのランプ ; 貝殼燈 ; 贝壳灯 ; 조개 램프 ; lampe coquillages ; Muschellampe ; lamparita conchas marinas ; lampada conchiglia ; schelpenlamp ; лампа из ракушки
+0112 ; FtrTreeXmasS ; festive tree ; かわいいクリスマスツリー ; 可愛聖誕樹 ; 可爱圣诞树 ; 귀여운 크리스마스트리 ; sapin décoré ; Tannenbäumchen ; arbolito festivo ; alberello festivo ; feestboom ; праздничная елка
+01B5 ; FtrKeyhanger ; key holder ; キーハンガー ; 鑰匙掛勾 ; 钥匙挂钩 ; 열쇠 걸이 ; panneau à clés ; Schlüsselbrett ; portallaves ; bacheca portachiavi ; sleutelbord ; вешалка для ключей
+01EA ; FtrGoemonburo ; kettle bathtub ; ごえもんぶろ ; 五右衛門泡澡桶 ; 五右卫门泡澡桶 ; 가마솥 욕조 ; baignoire marmite ; Kesselbad ; bañera caldero ; calderone da bagno ; ketelbad ; котел для купания
+00A1 ; FtrFruitsMusic ; cherry speakers ; さくらんぼのスピーカー ; 櫻桃廣播喇叭 ; 樱桃广播喇叭 ; 체리 스피커 ; haut-parleur cerise ; Kirschenlautsprecher ; altavoz cereza ; set di altoparlanti ciliegia ; kersenspeakers ; динамики-вишни
+00A2 ; FtrFruitsLampW ; cherry lamp ; さくらんぼのランプ ; 櫻桃燈 ; 樱桃灯 ; 체리 램프 ; lampe cerise ; Kirschenlampe ; lámpara cereza ; lampada ciliegia ; kersenlamp ; светильник-вишни
+0078 ; FtrDishesUnglazed ; unglazed dish set ; すやきのしょっき ; 素燒碗盤 ; 素烧碗盘 ; 질그릇 세트 ; vaisselle en terracotta ; Keramikgeschirr ; servicio de mesa de barro ; set da tavola non smaltato ; aardewerken servies ; неглазурованная посуда
+0079 ; FtrFlowerSwag ; floral swag ; スワッグ ; 倒掛乾燥花 ; 倒挂干燥花 ; 벽걸이 드라이플라워 ; bouquet mural ; Blumengebinde ; ramillete colgante ; addobbo floreale ; hangend bloemstukje ; сухой букет
+01CF ; FtrFloorpapers ; scattered papers ; ちらばったかみ ; 散亂的紙張 ; 散乱的纸张 ; 널려 있는 종이 ; tas de papiers ; Papierchaos ; montón de papeles ; mucchio di fogli ; stel papieren ; бумажный беспорядок
+0071 ; FtrLogBedS ; log garden lounge ; まるたのガーデンベッド ; 圓木花園躺椅 ; 圆木花园躺椅 ; 통나무 가든 침대 ; chaise longue tronc ; Baumstammliegestuhl ; tumbona leño ; sdraio tronco ; boomstamligstoel ; шезлонг из бревен
+0072 ; FtrLogShelf ; log decorative shelves ; まるたのかざりだな ; 圓木裝飾架 ; 圆木装饰架 ; 통나무 쉘프 ; étagère tronc ; Baumstammregal ; estantería leño ; scaffale tronco ; boomstamboekenplanken ; декорат. полки из бревна
+0073 ; FtrLogClockWall ; log wall-mounted clock ; まるたのかべかけどけい ; 圓木壁掛鐘 ; 圆木壁挂钟 ; 통나무 벽시계 ; horloge murale tronc ; Baumstammwanduhr ; reloj de pared leño ; orologio a muro tronco ; boomstamklok ; часы из бревна
+0074 ; FtrLogStoolS ; log stool ; まるたのスツール ; 圓木凳子 ; 圆木凳子 ; 통나무 스툴 ; tabouret tronc ; Baumstammhocker ; taburete leño ; sgabello tronco ; boomstamzitje ; табурет из бревна
+0075 ; FtrLogSofaS ; log chair ; まるたのソファ ; 圓木沙發 ; 圆木沙发 ; 통나무 소파 ; siège tronc ; Baumstammsessel ; sillón leño ; poltrona tronco ; boomstamleunstoel ; кресло из бревен
+0076 ; FtrLogTableL ; log dining table ; まるたのダイニングテーブル ; 圓木餐桌 ; 圆木餐桌 ; 통나무 다이닝 테이블 ; table tronc ; Baumstamm-Esstisch ; mesa de comedor leño ; tavolo da cena tronco ; boomstameettafel ; стол из бревен
+0077 ; FtrLogBedW ; log bed ; まるたのベッド ; 圓木床鋪 ; 圆木床铺 ; 통나무 침대 ; lit tronc ; Baumstammbett ; cama leño ; letto tronco ; boomstambed ; кровать из бревен
+0070 ; FtrLogStoolL ; log bench ; まるたのベンチ ; 圓木長椅 ; 圆木长凳 ; 통나무 벤치 ; banc tronc ; Baumstammbank ; banco leño ; panchina tronco ; boomstambank ; лавка из бревна
+006F ; FtrLogTableLRound ; log round table ; まるたのラウンドテーブル ; 圓木圓桌 ; 圆木圆桌 ; 통나무 둥근 테이블 ; table basse tronc ; Baumstammtisch ; mesa redonda leño ; tavolo tondo tronco ; lage boomstamtafel ; круглый стол из бревен
+006E ; FtrLogSofaL ; log extra-long sofa ; まるたのロングソファ ; 圓木長沙發 ; 圆木长沙发 ; 통나무 긴 소파 ; canapé long tronc ; Baumstammsofa ; sofá leño ; divano lungo tronco ; boomstamsofa ; диван из бревен
+00CB ; FtrIllumiTree ; illuminated tree ; ツリーのイルミネーション ; 樹型燈飾 ; 树型灯饰 ; 트리 일루미네이션 ; sapin illuminé ; Leuchtbaum ; árbol de luces ; albero illuminato ; lichtgevende boom ; елка с подсветкой
+0184 ; FtrTreeXmasMini ; tabletop festive tree ; テーブルクリスマスツリー ; 桌上聖誕樹 ; 桌上圣诞树 ; 탁상 크리스마스트리 ; sapin décoré miniature ; Tischtannenbaum ; árbol festivo de sobremesa ; albero festivo da tavolo ; tafelfeestboompje ; настольная елочка
+00C0 ; FtrPotteryjug ; classic pitcher ; とうきのジャグ ; 陶製牛奶壺 ; 陶制牛奶壶 ; 도기 물병 ; cruche en terre ; Keramikkrug ; jarra de cerámica ; caraffa di ceramica ; aardewerken kan ; кувшин
+0188 ; FtrIllumiReindeer ; illuminated reindeer ; トナカイのイルミネーション ; 馴鹿燈飾 ; 驯鹿灯饰 ; 순록 일루미네이션 ; renne illuminé ; Leucht-Rentier ; reno de luces ; renna illuminata ; rendierverlichting ; олень с подсветкой
+0189 ; FtrTamtam ; gong ; どら ; 銅鑼 ; 铜锣 ; 징 ; gong oriental ; Gong ; gong ; gong ; gong ; гонг
+018B ; FtrBarbell ; barbell ; バーベル ; 槓鈴 ; 杠铃 ; 바벨 ; haltère ; Langhantel ; barra de pesas ; bilanciere ; halter ; штанга
+00CD ; FtrHwnArch ; spooky arch ; ハロウィンなアーチ ; 萬聖節拱門 ; 万圣节拱门 ; 할로윈 아치 ; arche Halloween ; Kürbistor ; arco calabaza ; arco brividi ; pompoenpoort ; жуткая арка
+00CE ; FtrHwnScarecrow ; spooky scarecrow ; ハロウィンなかかし ; 萬聖節稻草人 ; 万圣节稻草人 ; 할로윈 허수아비 ; épouvantail Halloween ; Kürbisvogelscheuche ; espantapájaros calabaza ; spaventapasseri brividi ; pompoenvogelverschrikker ; жуткое пугало
+00CF ; FtrHwnTower ; spooky tower ; ハロウィンなタワー ; 萬聖節塔 ; 万圣节塔 ; 할로윈 타워 ; pile de citrouilles Halloween ; Kürbisturm ; torre calabaza ; torre brividi ; pompoentoren ; жуткая башенка
+00D0 ; FtrHwnCarriage ; spooky carriage ; ハロウィンなばしゃ ; 萬聖節馬車 ; 万圣节马车 ; 할로윈 마차 ; calèche Halloween ; Kürbiskutsche ; carruaje calabaza ; carro brividi ; pompoenkoets ; жуткая карета
+00D1 ; FtrHwnLantern ; spooky lantern ; ハロウィンなランタン ; 萬聖節燈籠 ; 万圣节灯笼 ; 할로윈 랜턴 ; lanterne Halloween ; Kürbislaterne ; farol calabaza ; lanterna brividi ; pompoenlantaarn ; жуткий светильник
+00D2 ; FtrHwnChairS ; spooky chair ; ハロウィンなチェア ; 萬聖節椅 ; 万圣节椅 ; 할로윈 체어 ; siège Halloween ; Kürbisstuhl ; taburete calabaza ; sedia brividi ; pompoenkruk ; жуткий табурет-тыква
+00CA ; FtrHwnTableL ; spooky table ; ハロウィンなテーブル ; 萬聖節桌 ; 万圣节桌 ; 할로윈 테이블 ; table Halloween ; Kürbistisch ; mesa grande calabaza ; tavolo brividi ; pompoentafel ; жуткий стол-тыква
+00D4 ; FtrHwnLanternset ; spooky lantern set ; ハロウィンなランタンセット ; 萬聖節燈籠組合 ; 万圣节灯笼组合 ; 할로윈 랜턴 세트 ; set de lanternes Halloween ; Kürbislaternenset ; set de faroles calabaza ; set di lanterne brividi ; pompoenlantaarns ; жуткие светильники
+018D ; FtrBamboodrum ; bamboo drum ; バンブードラム ; 竹鼓 ; 竹鼓 ; 대나무 드럼 ; tambour à fentes bambou ; Bambustrommel ; xilófono de bambú ; tamburo a fessura di bambù ; bamboe-xylofoon ; барабаны из бамбука
+00C7 ; FtrPan ; frying pan ; フライパン ; 平底鍋 ; 平底锅 ; 프라이팬 ; poêle à frire ; Pfanne ; sartén ; padella ; koekenpan ; сковорода
+0190 ; FtrFruitswater ; infused-water dispenser ; フルーツウォーターサーバー ; 水果桶裝飲水機 ; 水果桶装饮水机 ; 프루츠 워터 디스펜서 ; distributeur d'eau fruitée ; Obst-Wasserspender ; jarro de agua afrutada ; distributore acqua fruttata ; watertap met fruit ; дозатор фруктовой воды
+0191 ; FtrIllumiPresent ; illuminated present ; プレゼントのイルミネーション ; 禮物燈飾 ; 礼物灯饰 ; 선물 일루미네이션 ; cadeau illuminé ; Leuchtgeschenk ; regalo de luces ; regalo illuminato ; verlicht cadeautje ; подарок с подсветкой
+00C1 ; FtrMokugyo ; wooden fish ; もくぎょ ; 木魚 ; 木鱼 ; 목탁 ; mokugyo ; Holzblocktrommel ; pez de madera de percusión ; mokugyo ; mokugyo ; деревянная рыба
+0194 ; FtrBookshelf ; wooden bookshelf ; もくせいのほんだな ; 木製書架 ; 木制书柜 ; 목제 책장 ; bibliothèque en bois ; Holzbücherregal ; librería grande de madera ; libreria di legno ; houten boekenkast ; книжная полка из дерева
+00BB ; FtrFruitsChairPeach ; peach chair ; モモのチェア ; 桃子椅 ; 桃子椅 ; 복숭아 체어 ; fauteuil pêche ; Pfirsichstuhl ; sillón melocotón ; sedia pesca ; perzikstoel ; кресло-персик
+00BC ; FtrFruitsBox ; peach surprise box ; モモのビックリばこ ; 桃子驚嚇箱 ; 桃子惊吓箱 ; 복숭아 깜짝 상자 ; boîte à malice pêche ; Überraschungspfirsich ; caja sorpresa melocotón ; scatola a sorpresa pesca ; verrassingsperzik ; шкатулка-персик
+0195 ; FtrPlanterPalm ; coconut wall planter ; ヤシのウォールプランター ; 椰子壁掛盆栽 ; 椰子壁挂盆栽 ; 야자 벽걸이 화분 ; pot mural noix de coco ; Kokosnuss-Wandkübel ; macetero de coco colgante ; vaso pendente di cocco ; kokosnoot-plantenhanger ; настенное кашпо-кокос
+0196 ; FtrIllumiSnow ; illuminated snowflakes ; ゆきのイルミネーション ; 雪花燈飾 ; 雪花灯饰 ; 눈꽃 일루미네이션 ; set de flocons illuminés ; Leuchtschnee ; set de nieve de luces ; set fiocchi di neve illuminati ; sneeuwlichtjes ; снежинки с подсветкой
+00BD ; FtrFruitsChairApple ; apple chair ; リンゴのチェア ; 蘋果椅 ; 苹果椅 ; 사과 체어 ; chaise pomme ; Apfelstuhl ; silla manzana ; sedia mela ; appelstoel ; стул-яблоко
+024B ; FtrFallenleavesGreen ; green-leaf pile ; みどりのおちば ; 綠色落葉 ; 绿色落叶 ; 초록 낙엽 ; tas de feuilles vertes ; Laubhaufen in Grün ; pila de hojas verdes ; mucchio di foglie verdi ; hoop groene bladeren ; охапка зеленых листьев
+024C ; FtrFallenleavesYellow ; yellow-leaf pile ; きいろのおちば ; 黃色落葉 ; 黄色落叶 ; 노란 낙엽 ; tas de feuilles jaunes ; Laubhaufen in Gelb ; pila de hojas amarillas ; mucchio di foglie gialle ; hoop gele bladeren ; охапка желтых листьев
+024D ; FtrFallenleavesRed ; red-leaf pile ; あかいおちば ; 紅色落葉 ; 红色落叶 ; 빨간 낙엽 ; tas de feuilles rouges ; Laubhaufen in Rot ; pila de hojas rojas ; mucchio di foglie rosse ; hoop rode bladeren ; охапка красных листьев
+00C2 ; FtrIceCandy ; frozen-treat set ; アイスキャンディー ; 冰棒 ; 冰棒 ; 막대 아이스크림 ; lot de glaces à l'eau ; Stieleis-Duo ; bandeja con polos ; set di ghiaccioli iceberg ; ijslollyset ; мороженое на палочке
+017F ; FtrSignpostWorld ; destinations signpost ; せかいのみちしるべ ; 世界的路標 ; 世界的路标 ; 섬 이정표 ; poteau indicateur ; Weltwegweiser ; poste cruce de caminos ; palo segnaletico ; wereldwegwijzer ; указатель направлений
+00C3 ; FtrWashtub ; old-fashioned washtub ; せんたくおけ ; 洗衣盆 ; 洗衣盆 ; 빨랫대야 ; baquet à lessive ; Waschbottich ; palangana tradicional ; tinozza da bucato ; wastobbe ; чан для стирки
+00BA ; FtrFruitsBedS ; pear bed ; ナシのベッド ; 梨子床鋪 ; 梨子床铺 ; 배 침대 ; lit poire ; Birnenbett ; cama pera ; letto pera ; perenbed ; кровать-груша
+00DC ; FtrMushroomChairS ; mush low stool ; キノコのスツール ; 蘑菇凳子 ; 蘑菇凳子 ; 버섯 스툴 ; tabouret bas champi ; Pilzschemel ; banqueta hongo ; mini sgabello fungo ; paddenstoelkruk ; табуретка-гриб
+00C8 ; FtrShellMusic ; shell speaker ; かいがらのスピーカー ; 貝殼廣播喇叭 ; 贝壳广播喇叭 ; 조개 스피커 ; haut-parleur coquillages ; Muschel-Lautsprecher ; altavoz caracola ; altoparlante conchiglia ; schelpenspeaker ; колонка-ракушка
+016C ; FtrSnowman ; three-tiered snowperson ; 3だんゆきだるま ; 3層雪人 ; 3层雪人 ; 3단 눈사람 ; monsieur neige ; Drei-Stufen-Schneemann ; muñeco de nieve detallado ; pupazzo di neve iceberg ; aangeklede sneeuwpop ; трехъярусный снеговик
+0183 ; FtrBlockStoolS ; wooden-block stool ; つみきスツール ; 積木凳子 ; 积木凳子 ; 나무블록 스툴 ; tabouret bloc de bois ; Bauklotzhocker ; taburete construcciones ; sgabello blocchi di legno ; houtblokkruk ; табурет из дерев. блока
+0116 ; FtrMicrolibrary ; tiny library ; マイクロライブラリー ; 微型圖書館 ; 微型图书馆 ; 작은 무인 도서관 ; librairie de poche ; Mini-Bibliothek ; punto intercambio de libros ; mini libreria ; boekenruilkast ; мини-библиотека
+0117 ; FtrSignboardWood ; wooden-plank sign ; いちまいいたのかんばん ; 木匾額 ; 木匾额 ; 원목 간판 ; écriteau en bois brut ; Holzbrettschild ; rótulo en bajorrelieve ; insegna di legno grezzo ; bord met tekst ; знак из бревна
+01B2 ; FtrSpacecraft ; crewed spaceship ; ゆうじんうちゅうせん ; 載人太空船 ; 载人太空船 ; 유인 우주선 ; astronef avec équipage ; Rakete mit Besatzung ; módulo espacial tripulado ; astronave con equipaggio ; bemande ruimteraket ; корабль с экипажем
+01B3 ; FtrScreenCage ; jail bars ; おり ; 牢籠 ; 牢笼 ; 감옥 문 ; grille de prison ; Gefängnisgitter ; reja de prisión ; finestra con sbarre ; tralies ; тюремная решетка
+0259 ; FtrInsectKabutomushiGold ; golden dung beetle ; きんのスカラベ ; 金色糞金龜 ; 金色蜣螂 ; 금 쇠똥구리 ; scarabée doré ; Gold-Skarabäus ; escarabajo pelotero de oro ; scarabeo stercorario d'oro ; gouden mestkever ; золотой дупляк
+016F ; FtrZodiacAries ; Aries rocking chair ; アリエスのもくば ; 牡羊座木馬 ; 白羊座木马 ; 양자리 목마 ; Bélier à bascule ; Schaukelwidder ; mecedora Aries ; Ariete a dondolo ; hobbel-Ram ; качалка-Овен
+0170 ; FtrZodiacVirgo ; Virgo harp ; ヴァルゴのハープ ; 處女座豎琴 ; 处女座竖琴 ; 처녀자리 하프 ; harpe Vierge ; Jungfrau-Harfe ; arpa Virgo ; arpa Vergine ; Maagd-harp ; арфа-Дева
+016E ; FtrZodiacAquarius ; Aquarius urn ; アクエリアスのみずがめ ; 水瓶座水瓶 ; 水瓶座水瓶 ; 물병자리 항아리 ; vase Verseau ; Wassermann-Krug ; vasija Acuario ; urna Acquario ; Waterman-kruik ; ваза Водолея
+0172 ; FtrZodiacCapricornus ; Capricorn ornament ; カプリコーンのおきもの ; 摩羯座擺飾 ; 摩羯座摆饰 ; 염소자리 모형 ; statue Capricorne ; Steinbock-Skulptur ; estatua Capricornio ; statua Capricorno ; Steenbok-beeld ; скульптура с Козерогом
+0178 ; FtrZodiacSagittarius ; Sagittarius arrow ; サジタリアスのや ; 射手座箭矢 ; 射手座箭矢 ; 사수자리 활 ; arc Sagittaire ; Schütze-Bogen ; arco Sagitario ; arco Sagittario ; Boogschutter-pijl ; лук Стрельца
+0173 ; FtrZodiacCancer ; Cancer table ; キャンサーのテーブル ; 巨蟹座桌子 ; 巨蟹座桌子 ; 게자리 테이블 ; table Cancer ; Krebs-Tisch ; mesa Cáncer ; tavolo Cancro ; Kreeft-tafel ; стол с Раком
+0179 ; FtrZodiacGemini ; Gemini closet ; ジェミニのクロゼット ; 雙子座衣櫃 ; 双子座衣柜 ; 쌍둥이자리 옷장 ; armoire Gémeaux ; Zwillinge-Schrank ; armario Géminis ; armadio Gemelli ; Tweelingen-kast ; шкаф с Близнецами
+0180 ; FtrZodiacTaurus ; Taurus bathtub ; タウラスのバスタブ ; 金牛座浴缸 ; 金牛座浴缸 ; 황소자리 욕조 ; baignoire Taureau ; Stier-Badewanne ; bañera Tauro ; vasca da bagno Toro ; Stier-badkuip ; ванна-Телец
+017C ; FtrZodiacScorpio ; Scorpio lamp ; スコーピオのランプ ; 天蠍座燈 ; 天蝎座灯 ; 전갈자리 램프 ; lampe Scorpion ; Skorpion-Lampe ; lámpara Escorpio ; lampada Scorpione ; Schorpioen-lamp ; лампа-Скорпион
+018F ; FtrZodiacPisces ; Pisces lamp ; ピスケスのランプ ; 雙魚座燈 ; 双鱼座灯 ; 물고기자리 램프 ; lampe Poissons ; Fische-Lampe ; lámpara Piscis ; lampada Pesci ; Vissen-lamp ; лампа с Рыбами
+0197 ; FtrZodiacLeo ; Leo sculpture ; レオのちょうこく ; 獅子座雕塑 ; 狮子座雕塑 ; 사자자리 벽걸이 장식 ; sculpture Lion ; Löwe-Wandschmuck ; escultura Leo ; scultura Leone ; Leeuw-beeld ; барельеф Льва
+0192 ; FtrFirewood ; firewood ; まき ; 柴火 ; 柴火 ; 장작 ; tas de bûches ; Feuerholz ; pila de leña ; legna da ardere ; stapel brandhout ; дрова
+01B4 ; FtrWoodBench ; wild log bench ; ワイルドなまるたのベンチ ; 野外圓木長椅 ; 野外圆木长凳 ; 와일드 통나무 벤치 ; banc bûche ; Rohholzbank ; tronco para sentarse ; tronco ruvido da seduta ; boomstambankje ; бревно-лавка
+019C ; FtrWoodPile ; log stakes ; まるたのくい ; 圓木樁 ; 圆木桩 ; 통나무 말뚝 ; lot de piquets tronc ; Baumstammpfahl-Set ; lote de estacas ; set di paletti tronco ; boomstampalenset ; колья
+019B ; FtrBalancingtoy ; traditional balancing toy ; やじろべえ ; 平衡玩具 ; 平衡玩具 ; 균형 잡기 장난감 ; jeu d'équilibre traditionnel ; Fingerschaukel ; muñeco equilibrista ; gioco d'equilibrio ; traditioneel balansfiguurtje ; игрушка-балансир
+01A4 ; FtrBambooBall ; bamboo sphere ; たけのまり ; 竹球 ; 竹编球 ; 대나무 공 ; sphère en bambou ; Bambuskugel ; esfera de bambú ; sfera di bambù ; bamboebol ; бамбуковый шар
+0181 ; FtrBambooshootLamp ; bamboo-shoot lamp ; たけのこランプ ; 竹筍燈 ; 竹笋灯 ; 죽순 램프 ; lampe pousse de bambou ; Bambussprossenlampe ; lámpara brote de bambú ; lampada germoglio bambù ; bamboescheutlamp ; лампа-побег бамбука
+01A5 ; FtrBambooLunch ; bamboo lunch box ; たけのべんとうばこ ; 竹製便當盒 ; 竹制便当盒 ; 대나무 도시락 ; panier-repas en bambou ; Bambus-Bento ; cesta de pícnic de bambú ; portapranzo di bambù ; bamboelunchset ; ланчбокс из бамбука
+01A8 ; FtrBambooSomen ; bamboo noodle slide ; ながしそうめん ; 流水素麵 ; 流水素面 ; 흐르는 국수 장치 ; nagashi-sômen ; Nudelrutsche ; canal de bambú para fideos ; scivolo per spaghetti ; bamboewaterglijbaan ; желоб с лапшой сомэн
+0177 ; FtrBonsaiSakura ; cherry-blossom bonsai ; さくらのぼんさい ; 櫻花盆栽 ; 樱花盆栽 ; 벚나무 분재 ; bonsaï cerisier du Japon ; Kirschblüten-Bonsai ; cerezo en flor bonsái ; bonsai ciliegio ; kersenbloesembonsai ; вишня в цвету бонсай
+01A3 ; FtrSakuraBranch ; cherry-blossom branches ; さくらのえだ ; 櫻花樹枝 ; 樱花树枝 ; 벚나무 가지 ; bouquet fleurs de cerisier ; Kirschblütenzweigbündel ; jarrón con flores de cerezo ; vaso con rami di ciliegio ; kersenbloesemtakken ; ветви вишни в цвету
+01A2 ; FtrSakuraPetal ; cherry-blossom-petal pile ; さくらのはなびらのやま ; 櫻花花瓣堆 ; 樱花花瓣堆 ; 벚나무 꽃잎 더미 ; tas de pétales de cerisier ; Kirschblütenhaufen ; pila de pétalos de cerezo ; mucchio di petali di ciliegio ; kersenbloesemblaadjes ; куча вишневых лепестков
+01A6 ; FtrSakuraPicnicset ; outdoor picnic set ; おはなみセット ; 賞花組合 ; 赏花组合 ; 피크닉 세트 ; set de pique-nique ; Picknick-Set ; set de pícnic ; set da picnic ciliegio ; picknickset ; набор для пикника
+019E ; FtrNutMobile ; tree's bounty mobile ; きのみのモビール ; 樹果掛飾 ; 树果挂饰 ; 나무 열매 모빌 ; mobile fruits des bois ; Baumfrucht-Mobile ; móvil frutos del bosque ; giostrina frutti dell'albero ; herfstmobile ; мобиль из даров леса
+019F ; FtrNutLamp ; tree's bounty lamp ; きのみのランプ ; 樹果燈 ; 树果灯 ; 나무 열매 램프 ; lampe fruits des bois ; Baumfrucht-Lampe ; lámpara frutos del bosque ; lampada frutti dell'albero ; herfstlamp ; лампа из даров леса
+01A0 ; FtrNutTreeS ; tree's bounty little tree ; ちいさなきのみのツリー ; 小樹果樹 ; 小树果树 ; 작은 나무 열매 트리 ; petit sapin fruits des bois ; Baumfrucht-Bäumchen ; arbolito frutos del bosque ; alberello frutti dell'albero ; herfstfeestboompje ; деревце из даров леса
+01A1 ; FtrNutTreeL ; tree's bounty big tree ; おおきなきのみのツリー ; 大樹果樹 ; 大树果树 ; 커다란 나무 열매 트리 ; grand sapin fruits des bois ; Baumfrucht-Tannenbaum ; árbol frutos del bosque ; abete frutti dell'albero ; herfstfeestboom ; бол. дерево из даров леса
+01A7 ; FtrNutArch ; tree's bounty arch ; きのみのアーチ ; 樹果拱門 ; 树果拱门 ; 나무 열매 아치 ; arche fruits des bois ; Baumfrucht-Bogen ; arco frutos del bosque ; arco frutti dell'albero ; herfstpoort ; арка из даров леса
+01B1 ; FtrOrnamentMobile ; ornament mobile ; オーナメントのモビール ; 掛飾 ; 挂饰 ; 오너먼트 모빌 ; mobile ornemental ; Objektmobile ; móvil ornamentos ; decorazione con palline ; feestelijke mobile ; мобиль с украшениями
+01AD ; FtrStarLamp ; nova light ; スターライト ; 星光 ; 星光 ; 별 조명 ; lampe nova ; Lichtstern ; lámpara estrella ; lampada stella ; novalamp ; светильник-звезда
+01AE ; FtrStarDecorationWall ; starry garland ; スターなガーランド ; 星星掛旗 ; 星星挂饰 ; 별 모양 가랜드 ; guirlande lumineuse étoiles ; Sternengirlande ; guirnalda estrellas ; decorazione stellata ; sterrenslinger ; гирлянда со звездами
+01B0 ; FtrStarMoonChairL ; crescent-moon chair ; みかづきチェア ; 新月椅 ; 新月椅 ; 초승달 체어 ; fauteuil croissant de lune ; Mondsichelstuhl ; sillón cuarto creciente ; sofà mezzaluna con stella ; maansikkelstoel ; стул-месяц
+01A9 ; FtrMusicboxShell ; shell music box ; かいがらのオルゴール ; 貝殼音樂盒 ; 贝壳音乐盒 ; 조개 오르골 ; boîte à musique coquillage ; Muschel-Musikschatulle ; caja música concha marina ; conchiglia carillon ; muziekschelp ; музык. шкатулка-ракушка
+01AB ; FtrSakuraLantern ; blossom-viewing lantern ; おはなみのちょうちん ; 賞花提燈 ; 赏花提灯 ; 벚꽃 초롱 ; lanterne de floraison ; Kirschblütenlaterne ; farol flor de cerezo ; lanterna fiori di ciliegio ; kersenbloesemlantaarn ; фонарь с лепестками
+01AA ; FtrSakuraClockW ; cherry-blossom clock ; さくらクロック ; 櫻花時鐘 ; 樱花时钟 ; 벚꽃 시계 ; horloge cerisier ; Kirschblütenuhr ; reloj flor de cerezo ; orologio fiore di ciliegio ; kersenbloesemklok ; часы-сакура
+01F8 ; FtrKalimbaCan ; recycled-can thumb piano ; あきかんカリンバ ; 空罐卡林巴琴 ; 空罐卡林巴琴 ; 깡통 칼림바 ; marimbula en métal recyclé ; Dosen-Kalimba ; kalimba casero ; kalimba di latta ; blikduimpiano ; калимба из жестянки
+0209 ; FtrCushionJapanPile ; pile of zen cushions ; ざぶとんのやま ; 坐墊堆 ; 座垫堆 ; 방석 더미 ; pile de zabutons ; Fernost-Kissen-Stapel ; pila de cojines con borlas ; pila di cuscini giapponesi ; stapel zenkussens ; стопка дзен-подушек
+01ED ; FtrWoodenBedW ; wooden double bed ; もくせいダブルベッド ; 木製雙人床 ; 木制双人床 ; 목제 더블 침대 ; lit double en bois ; Holzdoppelbett ; cama doble de madera ; letto matrimoniale di legno ; houten tweepersoonsbed ; двуспальная дер. кровать
+01EC ; FtrWoodenTableMini ; wooden mini table ; もくせいミニテーブル ; 木製小桌 ; 木制小桌 ; 목제 미니 테이블 ; mini table en bois ; Holztischchen ; mesita de madera ; tavolino di legno ; houten tafeltje ; деревянный столик
+01EB ; FtrWoodenTableM ; wooden low table ; もくせいローテーブル ; 木製矮桌 ; 木制矮桌 ; 목제 낮은 테이블 ; table basse en bois ; Holzsofatisch ; mesa de centro de madera ; tavolinetto di legno ; houten salontafel ; деревянный мини-стол
+01F6 ; FtrWoodenMirror ; wooden full-length mirror ; もくせいのすがたみ ; 木製穿衣鏡 ; 木制穿衣镜 ; 목제 전신 거울 ; miroir plein pied en bois ; Holzspiegel ; espejo de pie de madera ; specchio da terra di legno ; houten staande spiegel ; напольное дер. зеркало
+01EE ; FtrWorkbenchStump ; simple DIY workbench ; そぼくなDIYさぎょうだい ; 樸素DIY作業台 ; 朴素DIY作业台 ; 소박한 DIY 작업대 ; établi de bricolage simple ; Behelfswerkbank ; banco de bricolaje sencillo ; banco da lavoro grezzo ; eenvoudige werkbank ; незамысловатый верстак
+041A ; FtrBoxWood ; wooden box ; きばこ ; 木箱 ; 木箱 ; 나무 상자 ; caisse en bois ; Holzkiste ; cajón de madera ; cassa di legno ; houten kist ; деревянный ящик
+01F4 ; FtrCardboardSofaL ; cardboard sofa ; ダンボールソファ ; 紙箱沙發 ; 纸箱沙发 ; 박스 소파 ; canapé en carton ; Kartonsofa ; sofá de cartón ; sofà scatolone ; kartonnen sofa ; картонный диван
+01F0 ; FtrCardboardTableL ; cardboard table ; ダンボールテーブル ; 紙箱桌 ; 纸箱桌 ; 박스 테이블 ; table en carton ; Kartontisch ; mesa de cartón ; tavolo scatolone ; kartonnen tafel ; картонный стол
+01F1 ; FtrCardboardBedS ; cardboard bed ; ダンボールベッド ; 紙箱床鋪 ; 纸箱床铺 ; 박스 침대 ; lit en carton ; Kartonbett ; cama de cartón ; letto scatolone ; kartonnen bed ; картонная кровать
+01F2 ; FtrCardboardChairS ; cardboard chair ; ダンボールチェア ; 紙箱椅 ; 纸箱椅 ; 박스 의자 ; siège en carton ; Kartonhocker ; silla de cartón ; sgabello scatolone ; kartonnen stoel ; картонный стул
+01F5 ; FtrFlowerShower ; cosmos shower ; コスモスのシャワー ; 波斯菊花灑 ; 波斯菊花洒 ; 코스모스 샤워기 ; douche cosmos ; Cosmeadusche ; ducha cosmos ; doccia cosmea ; cosmeadouche ; душ-космея
+01EF ; FtrFlowerSurprisedbox ; tulip surprise box ; チューリップのビックリばこ ; 鬱金香驚嚇箱 ; 郁金香惊吓箱 ; 튤립 깜짝 상자 ; boîte à malice tulipe ; Überraschungstulpe ; caja sorpresa tulipán ; scatola a sorpresa tulipano ; verrassingstulp ; шкатулка-тюльпан
+01F9 ; FtrFlowerStoolS ; mum cushion ; キクのクッション ; 菊花抱枕 ; 菊花抱枕 ; 국화 스툴 ; coussin chrysanthème ; Chrysanthemenkissen ; puf crisantemo ; cuscino crisantemo ; chrysantkussen ; подушка-хризантема
+01F7 ; FtrFlowerFan ; windflower fan ; アネモネのせんぷうき ; 銀蓮花風扇 ; 银莲花风扇 ; 아네모네 선풍기 ; ventilateur anémone ; Anemonenventilator ; ventilador anémona ; ventilatore anemone ; anemoonventilator ; вентилятор-ветреница
+01FA ; FtrFlowerLamp ; hyacinth lamp ; ヒヤシンスのランプ ; 風信子燈 ; 风信子灯 ; 히아신스 전등 ; lampe jacinthe ; Hyazinthenlampe ; lámpara jacinto ; lampada giacinto ; hyacintlamp ; лампа-гиацинт
+01FB ; FtrFlowerBedW ; rose bed ; バラのベッド ; 玫瑰床鋪 ; 玫瑰床铺 ; 장미 침대 ; lit rose ; Rosenbett ; cama rosa ; letto a rosa ; rozenbed ; кровать-роза
+0203 ; FtrFlowerRecordplayer ; lily record player ; ユリのレコードプレーヤー ; 百合唱片播放器 ; 百合唱片播放器 ; 백합 레코드플레이어 ; tourne-disque lys ; Liliengrammofon ; gramófono lirio ; giradischi giglio ; lelieplatenspeler ; граммофон-лилия
+0204 ; FtrFlowerTableS ; pansy table ; パンジーのテーブル ; 三色堇桌 ; 三色堇桌 ; 팬지 테이블 ; table pensée ; Stiefmütterchentisch ; mesa viola ; tavolo a viola ; viooltjestafel ; стол-фиалка
+0256 ; FtrSilo ; silo ; サイロ ; 筒倉 ; 筒仓 ; 저장탑 ; silo ; Silo ; silo ; silo ; silo ; силосная башня
+0202 ; FtrStarClock ; star clock ; スタークロック ; 星星時鐘 ; 星星时钟 ; 별 시계 ; horloge étoile ; Sternuhr ; reloj estrella ; orologio stella ; sterrenklok ; часы-звезда
+023E ; FtrClaytoy ; modeling clay ; ねんどのおもちゃ ; 黏土玩具 ; 黏土玩具 ; 점토 장난감 ; kit de pâte à modeler ; Spielknete-Set ; arcilla para modelar ; creta da modellare ; stuk boetseerklei ; пластилин
+023F ; FtrPalmtreelamp ; palm-tree lamp ; パームツリーランプ ; 棕櫚樹燈 ; 棕榈树灯 ; 야자수 램프 ; lampe palmier ; Palmenlampe ; lámpara palmera ; lampada palma ; palmboomlamp ; торшер-пальма
+0240 ; FtrTrophycase ; trophy case ; トロフィーケース ; 獎盃櫃 ; 奖杯柜 ; 트로피 케이스 ; présentoir à trophée ; Pokalvitrine ; vitrina de trofeos ; vetrina per trofei ; prijzenkast ; витрина с трофеями
+0244 ; FtrSled ; sleigh ; そり ; 雪橇 ; 雪橇 ; 썰매 ; luge ; Schlitten ; trineo ; slitta ; slee ; сани
+0238 ; FtrGravestoneJapan ; zen-style stone ; わふうのはかいし ; 和風墓碑 ; 和风墓碑 ; 일본식 묘석 ; pierre tombale japonaise ; Japan-Grabstein ; tumba japonesa ; lapide giapponese ; zengrafsteen ; дзен-памятник
+0207 ; FtrFallenleavesChairS ; leaf stool ; おちばスツール ; 落葉凳子 ; 落叶凳子 ; 낙엽 스툴 ; tabouret feuille ; Laubhocker ; taburete hoja ; sgabello foglia ; bladerkruk ; табурет-лист
+0201 ; FtrStonewaterbowl ; pond stone ; いしのみずうけ ; 石水盆 ; 石水盆 ; 돌 물받이 ; mare galet ; Vogelbad-Fels ; roca con agua ; pietra laghetto ; stenen vogelbad ; пруд из камня
+0200 ; FtrStonewaterbowlAutumun ; maple-leaf pond stone ; いしのみずうけ～もみじ～ ; 石水盆～楓葉～ ; 石水盆～枫叶～ ; 낙엽 돌 물받이 ; mare galet feuilles d'érable ; Herbstlaub-Vogelbad-Fels ; roca con agua y hojas arce ; pietra laghetto foglie acero ; herfst-stenen-vogelbad ; пруд из камня (клен)
+01FF ; FtrStonewaterbowlSakura ; cherry-blossom pond stone ; いしのみずうけ～さくら～ ; 石水盆～櫻花～ ; 石水盆～樱花～ ; 벚꽃 돌 물받이 ; mare galet fleurs de cerisier ; Kirschblüten-Vogelbad-Fels ; roca con agua y pétalos ; pietra laghetto fiori ciliegio ; kersenbloesemvogelbad ; пруд из камня (вишня)
+0208 ; FtrOrnamentTanuki ; raccoon figurine ; たぬきのおきもの ; 狸貓擺飾 ; 狸猫摆饰 ; 너구리 모형 ; raton laveur ; Waschbärenfigur ; figura oriental de mapache ; bambola procione ; tanukibeeldje ; фигурка енота
+0243 ; FtrToolboxWood ; wooden toolbox ; もくせいのこうぐばこ ; 木製工具箱 ; 木制工具箱 ; 목제 공구 상자 ; caisse à outils en bois ; Holz-Werkzeugkasten ; caja herramientas madera ; portautensili di legno ; houten gereedschapskist ; ящик с инструментами
+0260 ; FtrStandflower ; flower stand ; スタンドフラワー ; 高架花籃 ; 立花篮 ; 플라워 스탠드 ; support de fleurs ; Blumenständer ; arreglo floral con pie ; portafiori ; bloemenstaander ; подставка для цветов
+0258 ; FtrKettlebell ; kettlebell ; ケトルベル ; 壺鈴 ; 壶铃 ; 케틀벨 ; kettlebell ; Kugelhantel ; pesa rusa ; kettlebell ; kettlebell ; гиря
+01FD ; FtrFallenleavesfire ; leaf campfire ; おちばのたきび ; 落葉炊火 ; 落叶炊火 ; 낙엽 모닥불 ; feu de feuilles ; Laub-Lagerfeuer ; hoguera de hojas ; mucchio di foglie falò ; bladerkampvuur ; костер из листьев
+023A ; FtrSekishishi ; stone lion-dog ; せきしし ; 石獅子 ; 石狮子 ; 돌로 만든 사자상 ; statue de lion gardien ; Steinlöwe ; estatua de león guardián ; leone da guardia di pietra ; stenen leeuw ; каменный лев-страж
+01FC ; FtrButtermixer ; butter churn ; バターかくはんき ; 奶油攪拌器 ; 奶油搅拌器 ; 버터 교반기 ; baratte ; Butterfass ; mantequera ; zangola ; karnton ; маслобойка
+01FE ; FtrSignpostTilt ; angled signpost ; ナナメのみちしるべ ; 傾斜路標 ; 倾斜路标 ; 기울어진 이정표 ; panneau direction diagonal ; Diagonal-Wegweiser ; poste indicador oblicuo ; segnale direzionale obliquo ; wegwijsbord ; стрелка-указатель
+0257 ; FtrFountain ; fountain ; ふんすい ; 噴泉 ; 喷泉 ; 분수 ; fontaine ; Springbrunnen ; fuente ; fontana ; fontein ; фонтан
+023B ; FtrGardenwagon ; garden wagon ; えんげいワゴン ; 園藝推車 ; 园艺推车 ; 원예 왜건 ; brouette décorative ; Blumen-Bollerwagen ; carro de flores ; carretto con fiori ; handkar vol bloemen ; садовая тележка
+0239 ; FtrGoldCoffin ; golden casket ; おうごんのひつぎ ; 黃金棺材 ; 黄金棺材 ; 황금 관 ; sarcophage en or ; Goldsarkophag ; sarcófago de oro ; sarcofago dorato ; gouden sarcofaag ; золотой саркофаг
+023C ; FtrWoodenMirrorS ; wooden table mirror ; もくせいテーブルミラー ; 木製桌鏡 ; 木制桌面镜 ; 목제 테이블 거울 ; miroir de table en bois ; Holz-Tischspiegel ; espejo de mesa de madera ; specchio da tavolo di legno ; houten tafelspiegel ; зеркало из дерева на стол
+023D ; FtrIronClosetLR ; iron closet ; アイアンクロゼット ; 鑄鐵衣櫃 ; 铸铁衣柜 ; 아이언 옷장 ; armoire en fer ; Eisenschrank ; armario de hierro ; armadietto di ferro ; ijzeren kledingkast ; железный шкаф
+0242 ; FtrManekinekoGold ; lucky gold cat ; きんのまねきねこ ; 金色招財貓 ; 金色招财猫 ; 금색 복고양이 ; chat fétiche doré ; Gold-Glückskatze ; gato de la suerte dorado ; gatto fortuna oro ; gouden gelukskat ; золотой кот удачи
+024E ; FtrBambooStool ; bamboo stool ; たけのスツール ; 竹凳子 ; 竹凳子 ; 대나무 스툴 ; tabouret en bambou ; Bambushocker ; taburete de bambú ; sgabello di bambù ; bamboekruk ; бамбуковый табурет
+024F ; FtrBambooMusic ; bamboo speaker ; たけのスピーカー ; 竹廣播喇叭 ; 竹制扬声器 ; 대나무 스피커 ; enceinte en bambou ; Bambus-Lautsprecher ; altavoz de bambú ; altoparlante di bambù ; bamboeluidspreker ; бамбуковая колонка
+025A ; FtrFishArowanaGold ; golden arowana model ; きんのアロワナ ; 金色骨舌魚 ; 金色骨舌鱼 ; 금 아로와나 ; arowana en or ; Gold-Arowana-Modell ; trofeo arowana de oro ; replica di arowana in oro ; model-gouden-arowana ; муляж золотой араваны
+0253 ; FtrGearWallGold ; golden gears ; おうごんのはぐるま ; 黃金齒輪 ; 黄金齿轮 ; 황금 톱니바퀴 ; engrenage en or ; Gold-Getriebe ; engranaje dorado ; ingranaggio dorato ; gouden tandwielen ; золотые шестеренки
+028C ; FtrRockArch ; stone arch ; ストーンアーチ ; 石拱門 ; 石拱门 ; 석제 아치 ; arche en pierre ; Steinbogen ; megalito ; arco di pietra ; stenen poort ; каменная арка
+028E ; FtrPianoStreet ; street piano ; ストリートピアノ ; 街頭鋼琴 ; 街头钢琴 ; 스트리트 피아노 ; piano de rue ; Straßenklavier ; piano ambulante ; pianoforte di strada ; straatpiano ; уличное пианино
+028B ; FtrRockMonument ; stone tablet ; せきひ ; 石碑 ; 石碑 ; 비석 ; pierre gravée ; Gedenkstein ; placa de piedra ; stele incisa ; gedenksteen ; каменный монумент
+0286 ; FtrGardenrockLow ; flat garden rock ; ひくいにわいし ; 低矮庭園石 ; 低矮庭院石 ; 낮은 바위 ; pierre de jardin basse ; Flach-Gartenstein ; roca plana ; pietra da giardino bassa ; lage tuinrots ; садовый камень
+0287 ; FtrGardenrockMoss ; mossy garden rock ; こけむしたにわいし ; 青苔庭園石 ; 青苔庭院石 ; 이끼 낀 바위 ; pierre de jardin moussue ; Moos-Gartenstein ; roca con musgo ; pietra giardino muschiosa ; bemoste tuinrots ; садовый камень с мхом
+028A ; FtrFestivaltop ; festive top set ; おまつりのコマ ; 節日陀螺 ; 节日陀螺 ; 축제 팽이 ; jeu de toupies de fête ; Dreidelspiel ; juego de peonzas festivo ; set di trottole festive ; feesttollenset ; традиционный набор
+029E ; FtrGardenTableSNatural ; natural square table ; ナチュラルなスクエアテーブル ; 自然風方桌 ; 自然风方桌 ; 내추럴 스퀘어 테이블 ; table carrée naturelle ; Funktionaltischchen ; mesita de madera natural ; tavolo naturale quadrato ; naturel houten tafeltje ; обычный квадратн. стол
+041E ; FtrWorktable ; project table ; こうさくだい ; 工作台 ; 工作台 ; 작업용 테이블 ; table de bricolage ; Projekttisch ; mesa de trabajo ; tavolo da lavoro ; werktafel ; рабочий стол
+041B ; FtrStoolBox ; box-shaped seat ; はこイス ; 箱型椅子 ; 箱型椅子 ; 박스 모양 의자 ; tabouret cubique ; Arbeitsschemel ; taburete de trabajo ; sgabello cubico ; vierkante kruk ; массивный табурет
+02B7 ; FtrEggArch ; Bunny Day arch ; イースターなアーチ ; 復活節拱門 ; 复活节拱门 ; 이스터 아치 ; arche fête des œufs ; Häschentag-Tor ; arco Caza del Huevo ; arco caccia all'uovo ; eierpoort ; арка на День зайцев
+02B8 ; FtrDollPyn ; wobbling Zipper toy ; ぴょんたろうのおきあがりこぼし ; 蹦蹦不倒娃娃 ; 蹦蹦不倒娃娃 ; 토빗 오뚝이 ; ramponeau d'Albin ; Stehauf-Ohs ; tentetieso Coti Conejal ; misirizzi Ovidio ; Zipper-tuimelaar ; неваляшка-Зиппер
+02B9 ; FtrEggLamp ; Bunny Day lamp ; イースターなランプ ; 復活節燈 ; 复活节灯 ; 이스터 램프 ; lampe fête des œufs ; Häschentag-Lampe ; lámpara Caza del Huevo ; lampada caccia all'uovo ; eierlamp ; лампа «День зайцев»
+02BA ; FtrEggBedW ; Bunny Day bed ; イースターなベッド ; 復活節床鋪 ; 复活节床铺 ; 이스터 침대 ; lit fête des œufs ; Häschentag-Bett ; cama Caza del Huevo ; letto caccia all'uovo ; eierbed ; кровать «День зайцев»
+02BB ; FtrEggStool ; Bunny Day stool ; イースターなスツール ; 復活節凳子 ; 复活节凳子 ; 이스터 스툴 ; tabouret fête des œufs ; Häschentag-Hocker ; taburete Caza del Huevo ; sgabello caccia all'uovo ; eierpoef ; стул «День зайцев»
+02BC ; FtrEggLampWall ; Bunny Day glowy garland ; イースターなライトガーランド ; 復活節燈串 ; 复活节灯串 ; 이스터 라이트 가랜드 ; guirlande fête des œufs ; Häschentag-Girlande ; guirnalda luz Caza Huevo ; festone caccia all'uovo ; eierlichtjesslinger ; гирлянда на День зайцев
+02BD ; FtrEggClock ; Bunny Day wall clock ; イースターなウォールクロック ; 復活節壁鐘 ; 复活节壁钟 ; 이스터 벽시계 ; horloge mur. fête des œufs ; Häschentag-Wanduhr ; reloj pared Caza del Huevo ; orologio caccia all'uovo ; eierhangklok ; часы «День зайцев»
+02BE ; FtrEggBalloonA ; Bunny Day merry balloons ; イースターなバルーンA ; 復活節氣球A ; 复活节气球A ; 이스터 풍선 A ; lot ballons fête des œufs 1 ; Häschentag-Ballon-Deko A ; globo Caza del Huevo set 1 ; set pallon. caccia all'uovo 1 ; vrolijke eierballonnenset ; шарики на День зайцев А
+02BF ; FtrEggDresser ; Bunny Day vanity ; イースターなドレッサー ; 復活節梳妝台 ; 复活节梳妆台 ; 이스터 화장대 ; coiffeuse fête des œufs ; Häschentag-Frisiertisch ; tocador Caza del Huevo ; toletta caccia all'uovo ; eiermake-uptafel ; трюмо «День зайцев»
+02C0 ; FtrEggBalloonB ; Bunny Day festive balloons ; イースターなバルーンB ; 復活節氣球B ; 复活节气球B ; 이스터 풍선 B ; lot ballons fête des œufs 2 ; Häschentag-Ballon-Deko B ; globo Caza del Huevo set 2 ; set pallon. caccia all'uovo 2 ; fraaie eierballonnenset ; шарики на День зайцев Б
+02C1 ; FtrEggTableS ; Bunny Day table ; イースターなテーブル ; 復活節桌 ; 复活节桌 ; 이스터 테이블 ; table fête des œufs ; Häschentag-Tisch ; mesa Caza del Huevo ; tavolino caccia all'uovo ; eiertafel ; стол «День зайцев»
+02C2 ; FtrEggClosetLR ; Bunny Day wardrobe ; イースターなクロゼット ; 復活節衣櫃 ; 复活节衣柜 ; 이스터 옷장 ; penderie fête des œufs ; Häschentag-Schrank ; armario Caza del Huevo ; armadio caccia all'uovo ; eierkledingkast ; шкаф «День зайцев»
+02CD ; FtrMermaidTableM ; mermaid table ; マーメイドなテーブル ; 人魚桌 ; 人鱼桌 ; 머메이드 테이블 ; table sirène ; Nixentisch ; mesa sirena ; tavolo sirena ; meerminnentafel ; стол русалки
+02CE ; FtrMermaidShelf ; mermaid shelf ; マーメイドなシェルフ ; 人魚架子 ; 人鱼架子 ; 머메이드 쉘프 ; étagère sirène ; Nixenregal ; estantería sirena ; scaffale sirena ; meerminnenkastje ; стеллаж русалки
+02CF ; FtrMermaidDresser ; mermaid vanity ; マーメイドなドレッサー ; 人魚梳妝台 ; 人鱼梳妆台 ; 머메이드 화장대 ; coiffeuse sirène ; Nixenspiegel ; tocador sirena ; toletta sirena ; meerminnenmake-uptafel ; трюмо русалки
+02D0 ; FtrMermaidScreen ; mermaid screen ; マーメイドなスクリーン ; 人魚屏風 ; 人鱼屏风 ; 머메이드 파티션 ; paravent sirène ; Nixenraumtrenner ; biombo sirena ; separé sirena ; meerminnenscherm ; ширма русалки
+02D1 ; FtrMermaidLamp ; mermaid lamp ; マーメイドなランプ ; 人魚燈 ; 人鱼灯 ; 머메이드 램프 ; lampe sirène ; Nixenlampe ; lámpara sirena ; lampada sirena ; meerminnenlamp ; торшер русалки
+02D2 ; FtrMermaidclockWall ; mermaid wall clock ; マーメイドなウォールクロック ; 人魚壁鐘 ; 人鱼壁钟 ; 머메이드 벽시계 ; horloge murale sirène ; Nixenwanduhr ; reloj de pared sirena ; orologio a muro sirena ; meerminnenhangklok ; настенные часы русалки
+02D3 ; FtrMermaidBedS ; mermaid bed ; マーメイドなベッド ; 人魚床鋪 ; 人鱼床铺 ; 머메이드 침대 ; lit sirène ; Nixenbett ; cama sirena ; letto sirena ; meerminnenbed ; кровать русалки
+02D4 ; FtrMermaidClosetLR ; mermaid closet ; マーメイドなクロゼット ; 人魚衣櫃 ; 人鱼衣柜 ; 머메이드 옷장 ; armoire sirène ; Nixenschrank ; armario sirena ; armadio sirena ; meerminnenkledingkast ; шкаф русалки
+02D5 ; FtrMermaidChairL ; mermaid sofa ; マーメイドなソファ ; 人魚沙發 ; 人鱼沙发 ; 머메이드 소파 ; canapé sirène ; Nixensofa ; sofá sirena ; sofà sirena ; meerminnenbank ; диван русалки
+02D6 ; FtrMermaidChest ; mermaid dresser ; マーメイドなチェスト ; 人魚矮櫃 ; 人鱼矮柜 ; 머메이드 수납장 ; commode sirène ; Nixenkommode ; cómoda sirena ; comò sirena ; meerminnenladekast ; комод русалки
+02D7 ; FtrMermaidChairS ; mermaid chair ; マーメイドなチェア ; 人魚椅 ; 人鱼椅 ; 머메이드 체어 ; chaise sirène ; Nixenstuhl ; silla sirena ; sedia sirena ; meerminnenstoel ; стул русалки
+0419 ; FtrArmor ; plate armor ; プレートアーマー ; 金屬板盔甲 ; 金属板盔甲 ; 플레이트 아머 ; armure ; Ritterrüstung ; armadura ; armatura a piastre ; harnas ; рыцарские доспехи
+02F1 ; FtrWallHigh ; partition wall ; しきりかべ ; 分隔牆 ; 分隔墙 ; 칸막이 벽 ; cloison mobile ; Raumteiler ; muro de separación ; parete divisoria ; kamerafscheiding ; перегородка
+041C ; FtrWok ; imperial pot ; ちゅうかなべ ; 中式炒鍋 ; 中式炒锅 ; 중국풍 냄비 ; wok ; Wok ; wok ; wok ; wok ; вок
+0423 ; FtrManaitafish ; carp on a cutting board ; まないたのうえのこい ; 砧板上的鯉魚 ; 砧板上的鲤鱼 ; 도마 위 잉어 ; carpe sur planche ; Schneidebrett mit Karpfen ; tabla de cortar pescado ; carpa sul tagliere ; karper op een snijplank ; карп на доске
+02DD ; FtrHwnStand ; spooky standing lamp ; ハロウィンなスタンド ; 萬聖節落地燈 ; 万圣节落地灯 ; 할로윈 스탠드 ; lampadaire Halloween ; Kürbis-Stehlampe ; farol colgante calabaza ; piantana brividi ; staande pompoenlamp ; жуткий торшер
+02DC ; FtrHwnSweets ; spooky candy set ; ハロウィンなおかしプレート ; 萬聖節甜點盤 ; 万圣节甜点盘 ; 할로윈 사탕 플레이트 ; lot de bonbons Halloween ; Kürbis-Süßigkeiten-Set ; bandeja chuches calabaza ; set di dolcetti brividi ; pompoensnoepset ; жуткий набор сластей
+0430 ; FtrSignStadium ; wooden field sign ; もくせいのフィールドかんばん ; 木製運動場廣告牌 ; 木制运动场广告牌 ; 목제 필드 간판 ; panneau publicitaire terrain ; Werbebande ; anuncio barrera de madera ; tabellone pubblicitario ; houten stadionreclamebord ; деревянный щит на поле
+041F ; FtrShoppingbasket ; stacked shopping baskets ; つまれたかいものかご ; 疊起來的購物籃 ; 叠起来的购物篮 ; 쌓인 쇼핑 바구니 ; pile de paniers de courses ; Einkaufskörbestapel ; portacestas del súper ; pila di cestini della spesa ; stapel winkelmandjes ; корзины для покупок
+0421 ; FtrAsianLanternMCeiling ; festival-lantern set ; ちょうちんセット ; 燈籠組合 ; 灯笼组合 ; 초롱 세트 ; guirlande de lampions ; Lampion-Set ; set de farolillos orientales ; set di lanterne tonde ; Chinese-lampionnenslinger ; набор праздн. фонарей
+02DE ; FtrHwnDecorationWall ; spooky garland ; ハロウィンなガーランド ; 萬聖節掛旗 ; 万圣节挂饰 ; 할로윈 가랜드 ; guirlande Halloween ; Kürbis-Girlande ; guirnalda calabaza ; festone brividi ; pompoenslinger ; жуткая гирлянда
+02DF ; FtrHwnTablesetting ; spooky table setting ; ハロウィンテーブルセッティング ; 萬聖節桌上布置 ; 万圣节桌上布置 ; 할로윈 테이블 세팅 ; déco de table Halloween ; Kürbis-Tischgedeck ; servicio de mesa calabaza ; set da tavola brividi ; pompoenservies ; жуткая сервировка
+02EE ; FtrCrsPresents ; gift pile ; プレゼントのやま ; 禮物堆 ; 礼物堆 ; 선물 더미 ; pile de cadeaux ; Geschenkeberg ; montón de regalos ; mucchio di regali ; stapel cadeautjes ; груда подарков
+02E4 ; FtrHarvestStand ; Turkey Day garden stand ; サンクスギビングベーススタンド ; 感恩節盆栽架 ; 感恩节盆栽架 ; 하베스트 가든 스탠드 ; socle fête du partage ; Schlemmfest-Sockel ; pedestal Día del Pavo ; piedistallo primizie ; smakenfestijnsokkel ; стойка «День изобилия»
+02E5 ; FtrHarvestFireplace ; Turkey Day hearth ; サンクスギビングなだんろ ; 感恩節壁爐 ; 感恩节壁炉 ; 하베스트 난로 ; âtre fête du partage ; Schlemmfest-Kamin ; chimenea Día del Pavo ; caminetto primizie ; smakenfestijnhaard ; камин «День изобилия»
+02E6 ; FtrHarvestDecoration ; Turkey Day decorations ; サンクスギビングデコレーション ; 感恩節裝飾 ; 感恩节装饰 ; 하베스트 데코레이션 ; déco fête du partage ; Schlemmfest-Dekoration ; decoración Día del Pavo ; decorazione primizie ; smakenfestijn-decoratieset ; декор ко Дню изобилия
+02E7 ; FtrHarvestChairS ; Turkey Day chair ; サンクスギビングなチェア ; 感恩節椅 ; 感恩节椅 ; 하베스트 체어 ; chaise fête du partage ; Schlemmfest-Stuhl ; silla Día del Pavo ; sedia primizie ; smakenfestijnstoel ; стул «День изобилия»
+02E9 ; FtrHarvestTableL ; Turkey Day table ; サンクスギビングなテーブル ; 感恩節桌 ; 感恩节桌 ; 하베스트 테이블 ; table fête du partage ; Schlemmfest-Tisch ; mesa comedor Día del Pavo ; tavolo primizie ; smakenfestijntafel ; стол «День изобилия»
+0410 ; FtrKitchenStone ; stonework kitchen ; いしづくりのキッチン ; 石材建的廚房 ; 石造厨房 ; 벽돌 키친 ; cuisine en pierre naturelle ; Mauerwerkküche ; cocina de mampostería ; cucina in pietra ; rustieke keuken ; кухня из камня
+0416 ; FtrGearHorizontal ; gear tower ; はぐるまタワー ; 齒輪塔 ; 齿轮塔 ; 톱니바퀴 타워 ; tour d'engrenages ; Zahnradturm ; eje de engranajes ; asse di ingranaggi ; tandwielentoren ; шестерни на валике
+0417 ; FtrGearVertical ; gear apparatus ; はぐるまのそうち ; 齒輪裝置 ; 齿轮装置 ; 톱니바퀴 장치 ; système d'engrenages ; Zahnradapparatur ; sistema de engranajes ; sistema di ingranaggi ; tandwielenmachine ; механизм
+0418 ; FtrAltar ; forbidden altar ; きんだんのさいだん ; 禁忌的祭壇 ; 禁忌的祭坛 ; 금단의 제단 ; autel interdit ; Obskuraltar ; altar arcano ; altare proibito ; verboden altaar ; запретный алтарь
+042B ; FtrScreenWoodM ; medium wooden partition ; もくせいウォールパーテーションM ; 木製牆壁隔板M ; 木制墙壁隔板M ; 목제 월 파티션 M ; panneau en bois M ; Lattentrennwand M ; separación ancha madera ; divisorio di legno largo ; middelgroot houten scherm ; средн. дерев. перегородка
+042C ; FtrScreenWoodS ; small wooden partition ; もくせいウォールパーテーションS ; 木製牆壁隔板S ; 木制墙壁隔板S ; 목제 월 파티션 S ; panneau en bois S ; Lattentrennwand S ; separación estrecha madera ; divisorio di legno stretto ; klein houten scherm ; узкая дерев. перегородка
+0422 ; FtrSkateboardWall ; skateboard wall rack ; かべかけスケートボード ; 壁掛式滑板 ; 壁挂式滑板 ; 벽걸이 스케이트보드 ; présentoir à skateboards ; Skateboard-Wandregal ; expositor monopatín pared ; espositore per skateboard ; skateboardrek ; полка со скейтбордами
+042E ; FtrWoodShelfWall ; tension-pole rack ; つっぱりラック ; 伸縮架 ; 通顶置物架 ; 천장 고정 선반 ; étagère sol-plafond ; Spannstangenregal ; estantería de barras ; scaffale modulare con staffe ; stellingkast ; стеллаж враспор
+0420 ; FtrBasketFishPile ; stacked fish containers ; つまれたサカナのコンテナ ; 疊起來的漁貨箱 ; 叠起来的鱼货箱 ; 쌓인 물고기 컨테이너 ; pile de caisses de poissons ; Fischkistenstapel ; pila de cajas de pescado ; pila di cassette per pesce ; stapel kratten vol vis ; контейнеры с рыбой
+02E2 ; FtrVegetablebasket ; veggie basket ; やさいのバスケット ; 蔬菜籃子 ; 蔬菜篮子 ; 채소 바구니 ; panier de légumes ; Gemüsekorb ; cesta de verduras ; cesto di verdure ; oogstmand ; корзина с овощами
+03DE ; FtrRemainsPillar ; ruined decorated pillar ; いせきのかざりばしら ; 遺跡裝飾柱 ; 遗迹雕花柱 ; 유적 장식 기둥 ; pilier décoratif vigne ; Ruinen-Schmucksäule ; pilar ruinas ; colonna decorata in rovina ; vervallen sierzuil ; украшен. колонна-руина
+0425 ; FtrBanknotes ; pile of cash ; おさつのやま ; 鈔票堆 ; 钞票堆 ; 돈다발 ; pile de billets ; Geldscheinpyramide ; montón de billetes ; torre di banconote ; stapel bankbiljetten ; куча банкнот
+041D ; FtrCardboardPile ; pile of cardboard boxes ; ダンボールのやま ; 紙箱堆 ; 纸箱堆 ; 박스 더미 ; pile de cartons ; Kartonstapel ; pila de cajas de cartón ; pila di scatole di cartone ; stapel kartonnen dozen ; стопка картонных коробок
+042D ; FtrOpenshelfWood ; open wooden shelves ; もくせいオープンシェルフ ; 木製開放式櫃子 ; 木制开放式柜子 ; 목제 오픈 쉘프 ; étagère ouverte en bois ; Holz-Offenregal ; estantería abierta madera ; scaffale aperto di legno ; open houten kast ; открытая дерев. полка
+02EB ; FtrHarvestEnamelpod ; Turkey Day casserole ; サンクスギビングなキャセロール ; 感恩節砂鍋燉菜 ; 感恩节砂锅炖菜 ; 하베스트 캐서롤 ; plat à gratin fête du partage ; Schlemmfest-Bräter ; cazuela Día del Pavo ; casseruola primizie ; smakenfestijnpan ; утятница «День изобилия»
+02EC ; FtrHarvestWheat ; Turkey Day wheat decor ; サンクスギビングなむぎかざり ; 感恩節麥子裝飾 ; 感恩节麦子装饰 ; 하베스트 밀 장식 ; décor de blé du partage ; Schlemmfest-Getreidedeko ; adorno trigo Día del Pavo ; ornamento primizie ; smakenfestijn-tarwebundel ; пшеница ко Дню изобилия
+02ED ; FtrHarvestTablesetting ; Turkey Day table setting ; サンクスギビングテーブルウェア ; 感恩節桌上布置 ; 感恩节桌上布置 ; 하베스트 테이블 세팅 ; service fête du partage ; Schlemmfest-Tischgedeck ; servicio mesa Día del Pavo ; set da tavola primizie ; smakenfestijnservies ; посуда ко Дню изобилия
+0309 ; FtrWallCounterConcreteL ; tall concrete island counter ; コンクリートしきりカウンターH ; 混凝土分隔吧台H ; 混凝土分隔吧台H ; 콘크리트 칸막이 카운터 H ; séparateur haut en béton ; Hoch-Betoninseltheke ; encimera de cemento alta ; separatore di cemento L ; hoog betonnen blok ; высокая стойка (бетон)
+030B ; FtrWallCounterBrickL ; tall brick island counter ; レンガのしきりカウンターH ; 磚塊分隔吧台H ; 砖块分隔吧台H ; 벽돌 칸막이 카운터 H ; séparateur haut en briques ; Hoch-Ziegelinseltheke ; encimera de ladrillo alta ; separatore di mattoni L ; hoog bakstenen blok ; высокая стойка (кирпич)
+030C ; FtrWallCounterConcreteS ; low concrete island counter ; コンクリートしきりカウンターL ; 混凝土分隔吧台L ; 混凝土分隔吧台L ; 콘크리트 칸막이 카운터 L ; séparateur bas en béton ; Niedrig-Betoninseltheke ; encimera de cemento baja ; separatore di cemento S ; laag betonnen blok ; низкая стойка (бетон)
+030F ; FtrWallCounterBrickS ; low brick island counter ; レンガのしきりカウンターL ; 磚塊分隔吧台L ; 砖块分隔吧台L ; 벽돌 칸막이 카운터 L ; séparateur bas en briques ; Niedrig-Ziegelinseltheke ; encimera de ladrillo baja ; separatore di mattoni S ; laag bakstenen blok ; низкая стойка (кирпич)
+0310 ; FtrWallCounterWoodL ; tall wooden island counter ; もくせいのしきりカウンターH ; 木製分隔吧台H ; 木制分隔吧台H ; 목제 칸막이 카운터 H ; séparateur haut en bois ; Hoch-Holzinseltheke ; encimera de madera alta ; separatore di legno L ; hoog houten blok ; высокая стойка (дерево)
+02FA ; FtrCave ; cave ; どうくつ ; 洞穴 ; 洞穴 ; 동굴 ; cabane en pierre ; Höhle ; cueva ; grotta ; grot ; пещера
+02FB ; FtrRemainsArch ; ruined arch ; いせきのアーチ ; 遺跡拱門 ; 遗迹拱门 ; 유적 아치 ; ruine d'arche ; Ruinentor ; arco ruinas ; arco in rovina ; vervallen poort ; разрушенная арка
+02F6 ; FtrVineHangchair ; vine hanging chair ; ツルのハンギングチェア ; 藤蔓吊籃椅 ; 藤蔓吊篮椅 ; 덩굴 행잉 체어 ; fauteuil suspendu vigne ; Rankenhängesessel ; silla colgante enredadera ; poltrona appesa con edera ; hangstoel met klimplant ; гамак-кресло из лозы
+0349 ; FtrPicklesTurnipPile ; stacked senmaizuke barrels ; つまれたせんまいづけのたる ; 疊起來的醃菜桶 ; 叠起来的腌菜桶 ; 쌓인 무절임 통 ; pile de fûts senmaizuke ; Senmaizuke-Fass-Stapel ; pila barricas nabo encurtido ; pila di barili di senmaizuke ; stapel senmaizuke-vaten ; бочки с сэммайдзукэ
+034A ; FtrPicklesTurnip ; senmaizuke barrel ; せんまいづけのたる ; 醃菜桶 ; 腌菜桶 ; 무절임 통 ; fût senmaizuke ; Senmaizuke-Fass ; barrica de nabo encurtido ; barile di senmaizuke ; senmaizuke-vat ; бочка с сэммайдзукэ
+033E ; FtrBeanstalk ; giant vine ; おおきなツル ; 大型藤蔓 ; 大型藤蔓 ; 커다란 덩굴 ; vigne géante ; Riesenranke ; enredadera gigante ; edera enorme ; enorme klimplant ; гигантская лоза
+03DF ; FtrBeanChair ; vine bench ; ツルのこしかけ ; 藤蔓小椅子 ; 藤蔓小椅子 ; 덩굴 의자 ; banc vigne ; Rankenbank ; banco enredadera ; panchina edera ; klimplantbank ; лоза-скамейка
+03E0 ; FtrVineLamp ; vine lamp ; ツルのランプ ; 藤蔓燈 ; 藤蔓灯 ; 덩굴 램프 ; lampe vigne ; Rankenlampe ; lámpara enredadera ; lampada edera ; lamp met klimplant ; лампа из лозы
+033D ; FtrVineDecolationCeiling ; vine garland ; ツルのガーランド ; 藤蔓掛飾 ; 藤蔓挂饰 ; 덩굴 가랜드 ; guirlande vigne ; Rankengirlande ; guirnalda enredadera ; festone edera ; klimplantslinger ; гирлянда из лозы
+033B ; FtrLuMossChair ; glowing-moss stool ; ヒカリゴケのスツール ; 光蘚凳子 ; 光藓凳子 ; 빛이끼 스툴 ; tabouret schistostega ; Leuchtmoosstuhl ; taburete musgo luminoso ; pouf muschio luminoso ; lichtmospoef ; табурет из светящег. мха
+03E8 ; FtrLuMossBalloon ; glowing-moss balloon ; ヒカリゴケのバルーン ; 光蘚氣球 ; 光藓气球 ; 빛이끼 풍선 ; ballon schistostega ; Leuchtmoosballon ; esfera musgo luminoso ; pallone muschio luminoso ; lichtmosballon ; шар из светящегося мха
+033C ; FtrLuMossTable ; glowing-moss boulder ; ヒカリゴケのいわ ; 光蘚岩石 ; 光藓岩石 ; 빛이끼 바위 ; rocher schistostega ; Leuchtmoosfindling ; roca musgo luminoso ; masso muschio luminoso ; lichtmoskei ; валун со светящ. мхом
+03E1 ; FtrLuMossLightCeiling ; hanging glowing moss ; つりさがるヒカリゴケ ; 光蘚吊掛燈 ; 悬挂的光藓 ; 매달린 빛이끼 ; schistostega suspendu ; Hängeleuchtmoos ; musgo luminoso colgante ; muschio luminoso sospeso ; lichtmosslinger ; висячий светящийся мох
+03E3 ; FtrLuMossFountain ; glowing-moss pond ; ヒカリゴケのいずみ ; 光蘚泉水 ; 光藓泉水 ; 빛이끼 샘 ; mare schistostega ; Leuchtmoosteich ; estanque musgo luminoso ; stagno muschio luminoso ; lichtmosvijver ; пруд со светящимся мхом
+03E4 ; FtrLuMossStatue ; glowing-moss statue ; ヒカリゴケのせきぞう ; 光蘚石像 ; 光藓石像 ; 빛이끼 석상 ; statue schistostega ; Leuchtmoosstatue ; estatua musgo luminoso ; statua muschio luminoso ; lichtmosstandbeeld ; статуя со светящимся мхом
+03E5 ; FtrLuMossShelf ; glowing-moss-jar shelves ; ヒカリゴケのさいばいだな ; 光蘚培養架子 ; 光藓培养架子 ; 빛이끼 재배 선반 ; étagère schistostega ; Leuchtmoosregal ; alacena musgo luminoso ; scaffale muschio luminoso ; lichtmoskweekrek ; стеллаж со светящ. мхом
+03E6 ; FtrLuminousSticker ; glow-in-the-dark stickers ; ちっこうウォールステッカー ; 夜光壁貼 ; 夜光壁贴 ; 야광 벽 스티커 ; set d'autocollants fluo ; Leuchtaufkleber-Set ; set pegatinas fluorescentes ; set di adesivi fluorescenti ; fluorescerende stickers ; светящиеся наклейки
+03E7 ; FtrWitchCauldron ; suspicious cauldron ; あやしげなおおがま ; 可疑的大鍋 ; 可疑的大锅 ; 수상한 솥 ; chaudron louche ; Hexenkessel ; caldero sospechoso ; calderone sospetto ; verdachte kookpot ; подозрительный котелок
+0318 ; FtrWallCounterPlainS ; low simple island counter ; シンプルなしきりカウンターL ; 簡約分隔吧台L ; 简约分隔吧台L ; 심플 칸막이 카운터 L ; séparateur bas standard ; Niedrig-Schlichtinseltheke ; encimera sencilla baja ; separatore semplice S ; laag eenvoudig blok ; низкая простая стойка
+031A ; FtrWallCounterPlainL ; tall simple island counter ; シンプルなしきりカウンターH ; 簡約分隔吧台H ; 简约分隔吧台H ; 심플 칸막이 카운터 H ; séparateur haut standard ; Hoch-Schlichtinseltheke ; encimera sencilla alta ; separatore semplice L ; hoog eenvoudig blok ; высокая простая стойка
+031D ; FtrWallCounterWoodS ; low wooden island counter ; もくせいのしきりカウンターL ; 木製分隔吧台L ; 木制分隔吧台L ; 목제 칸막이 카운터 L ; séparateur bas en bois ; Niedrig-Holzinseltheke ; encimera de madera baja ; separatore di legno S ; laag houten blok ; низкая стойка (дерево)
+0323 ; FtrWallCounterSteelL ; tall steel island counter ; スチールのしきりカウンターH ; 鋼鐵分隔吧台H ; 钢铁分隔吧台H ; 스틸 칸막이 카운터 H ; séparateur haut en acier ; Hoch-Stahlinseltheke ; encimera de acero alta ; separatore d'acciaio L ; hoog stalen blok ; высокая стойка (сталь)
+0325 ; FtrWallCounterSteelS ; low steel island counter ; スチールのしきりカウンターL ; 鋼鐵分隔吧台L ; 钢铁分隔吧台L ; 스틸 칸막이 카운터 L ; séparateur bas en acier ; Niedrig-Stahlinseltheke ; encimera de acero baja ; separatore d'acciaio S ; laag stalen blok ; низкая стойка (сталь)
+032B ; FtrWallCounterGoldL ; tall golden island counter ; きんのしきりカウンターH ; 黃金分隔吧台H ; 黄金分隔吧台H ; 금 칸막이 카운터 H ; séparateur haut doré ; Hoch-Goldinseltheke ; encimera dorada alta ; separatore dorato L ; hoog gouden blok ; высокая стойка (золото)
+032D ; FtrWallCounterMarbleL ; tall marble island counter ; だいりせきのしきりカウンターH ; 大理石分隔吧台H ; 大理石分隔吧台H ; 대리석 칸막이 카운터 H ; séparateur haut en marbre ; Hoch-Marmorinseltheke ; encimera de mármol alta ; separatore di marmo L ; hoog marmeren blok ; высокая стойка (мрамор)
+032E ; FtrWallCounterGoldS ; low golden island counter ; きんのしきりカウンターL ; 黃金分隔吧台L ; 黄金分隔吧台L ; 금 칸막이 카운터 L ; séparateur bas doré ; Niedrig-Goldinseltheke ; encimera dorada baja ; separatore dorato S ; laag gouden blok ; низкая стойка (золото)
+0332 ; FtrWallCounterMarbleS ; low marble island counter ; だいりせきのしきりカウンターL ; 大理石分隔吧台L ; 大理石分隔吧台L ; 대리석 칸막이 카운터 L ; séparateur bas en marbre ; Niedrig-Marmorinseltheke ; encimera de mármol baja ; separatore di marmo S ; laag marmeren blok ; низкая стойка (мрамор)
+03FB ; FtrGoldArmor ; golden plate armor ; ゴールドプレートアーマー ; 黃金金屬板盔甲 ; 黄金金属板盔甲 ; 골든 플레이트 아머 ; armure dorée ; Goldritterrüstung ; armadura dorada ; armatura a piastre d'oro ; gouden harnas ; золотые доспехи
+03FC ; FtrGoldPigbank ; golden piggy bank ; きんのブタのちょきんばこ ; 金色豬仔撲滿 ; 金色猪仔扑满 ; 금 돼지 저금통 ; tirelire cochon dorée ; Goldsparschwein ; hucha cerdito dorada ; salvadanaio d'oro ; gouden spaarvarken ; золотая свинья-копилка
+0407 ; FtrGoldTrolley ; gold-nugget mining car ; きんかいのトロッコ ; 金塊採礦車 ; 金块采矿车 ; 금괴가 든 광차 ; berline de mine pleine d'or ; Goldminenlore ; vagoneta de pepitas de oro ; carrello con pepite d'oro ; mijnwagentje met goud ; тележка с золот. слитками
+0404 ; FtrGoldVaseLuxury ; golden vase ; おうごんのつぼ ; 黃金花瓶 ; 黄金花瓶 ; 황금 항아리 ; vase doré ; Goldvase ; jarrón lujoso dorado ; vaso d'oro ; gouden vaas ; золотая ваза
+0405 ; FtrGoldAltar ; golden altar ; おうごんのさいだん ; 黃金祭壇 ; 黄金祭坛 ; 황금 제단 ; autel doré ; Goldaltar ; altar dorado ; altare d'oro ; gouden altaar ; золотой алтарь
+0406 ; FtrGoldBathSquare ; golden bathtub ; きんのゆぶね ; 黃金浴池 ; 黄金浴池 ; 금 욕조 ; baignoire dorée ; Goldbadebecken ; bañera dorada ; vasca d'oro ; gouden badkuip ; золотая ванна
+03FD ; FtrGoldBulb ; golden meter and pipes ; きんのメーターつきバルブ ; 金色儀表和管線 ; 金色压力表和管线 ; 금 계량기와 밸브 ; système de tuyaux dorés ; Goldrohrsystem ; sistema de tuberías doradas ; tubatura e manometri d'oro ; gouden leidingwerk ; золот. трубы и счетчики
+03FE ; FtrGoldGearVertical ; golden gear apparatus ; きんのはぐるまのそうち ; 金色齒輪裝置 ; 金色齿轮装置 ; 금 톱니바퀴 장치 ; système d'engrenages d'or ; Goldzahnradapparatur ; sistema engranajes dorados ; sistema di ingranaggi d'oro ; gouden tandwielenmachine ; золотой механизм
+03FF ; FtrGoldGearHorizontal ; golden gear tower ; きんのはぐるまタワー ; 金色齒輪塔 ; 金色齿轮塔 ; 금 톱니바퀴 타워 ; tour d'engrenages dorés ; Goldzahnradturm ; eje de engranajes dorados ; asse di ingranaggi d'oro ; gouden tandwielentoren ; зол. шестерни на валике
+0339 ; FtrGoldDharma ; golden dharma ; きんのダルマ ; 金色達摩不倒翁 ; 金色达摩不倒翁 ; 금 달마 ; daruma doré ; Gold-Daruma ; daruma dorado ; dharma d'oro ; gouden darumapop ; золотая кукла дарума
+0400 ; FtrGoldOrnamentRabbit ; golden garden bunny ; きんのうさぎのガーデンオブジェ ; 金色兔子花園裝飾品 ; 金色兔子花园装饰品 ; 금 토끼 가든 오브제 ; lapin de jardin doré ; Goldhasen-Gartendeko ; figura de conejo dorada ; coniglietto giardino d'oro ; gouden konijntuinbeeld ; золотой садов. кролик
+033A ; FtrGoldDharmaS ; mini golden dharma ; きんのミニダルマ ; 金色迷你達摩不倒翁 ; 金色迷你达摩不倒翁 ; 금 미니 달마 ; mini daruma doré ; Mini-Gold-Daruma ; minidaruma dorado ; minidharma d'oro ; gouden mini-darumapop ; золот. мини-кукла дарума
+0401 ; FtrGoldBrassJar ; golden urn ; きんのみずがめ ; 金色水瓶 ; 金色水瓮 ; 금 물병 ; urne dorée ; Goldurne ; vasija dorada ; urna d'oro ; gouden urn ; золотая урна
+0402 ; FtrGoldWristwatch ; golden wristwatch ; きんのうでどけい ; 金色手錶 ; 金色手表 ; 금 손목시계 ; montre-bracelet dorée ; Goldarmbanduhr ; reloj de pulsera dorado ; orologio da polso d'oro ; gouden horloge ; золотые наручные часы
+0403 ; FtrGoldDecorativeplate ; golden decorative plate ; きんのおおきなえざら ; 金色大彩繪盤子 ; 金色大彩绘盘子 ; 커다란 금 그림 접시 ; assiette décorative dorée ; Goldschmuckteller ; plato decorativo dorado ; piatto decorativo d'oro ; gouden sierbord ; зол. декоративн. тарелка
+0408 ; FtrGoldArmorHelmetJapan ; golden samurai suit ; きんのよろいかぶと ; 金色頭盔鎧甲 ; 金色头盔铠甲 ; 금 갑옷 투구 ; armure de samouraï dorée ; Gold-Samuraikostüm ; armadura samurái dorada ; tenuta da samurai d'oro ; gouden samoeraipak ; золотой костюм самурая
+0413 ; FtrDeadtree ; decayed tree ; くちはてたき ; 枯樹 ; 枯树 ; 말라버린 나무 ; arbre mort ; Baumruine ; árbol seco ; albero secco ; dode boom ; ветхое дерево
+03D4 ; FtrHwnTree ; spooky tree ; ハロウィンなツリー ; 萬聖節樹 ; 万圣节树 ; 할로윈 트리 ; arbre Halloween ; Kürbisbaum ; árbol calabaza ; albero brividi ; pompoenboom ; жуткое дерево
+03D5 ; FtrHwnbox ; spooky trick lamp ; ハロウィンなトリックランプ ; 萬聖節搗蛋燈 ; 万圣节捣蛋灯 ; 할로윈 트릭 램프 ; lampe sort Halloween ; Kürbis-Tricklampe ; farol de sombras calabaza ; lampada scherzetto brividi ; pompoenfoplamp ; жуткая лампа с фокусом
+03F7 ; FtrOrnamentLamp ; ornament table lamp ; オーナメントのテーブルランプ ; 裝飾桌燈 ; 装饰台灯 ; 오너먼트 테이블 램프 ; lampe de table décorative ; Dekotischlampe ; ornamento mesa luminoso ; lampada decorativa ; decoratieve tafellamp ; лампа с украшениями
+0412 ; FtrMusicboxWood ; wooden music box ; もくせいのオルゴール ; 木製音樂盒 ; 木制音乐盒 ; 목제 오르골 ; boîte à musique en bois ; Holz-Musikschatulle ; caja de música de madera ; carillon di legno ; houten muziekdoosje ; дерев. музык. шкатулка
+03F6 ; FtrOrnamentWall ; ornament garland ; オーナメントのガーランド ; 裝飾串連掛飾 ; 装饰串联挂饰 ; 오너먼트 가랜드 ; guirlande décorative ; Dekogirlande ; guirnalda de ornamentos ; festone decorativo ; decoratieve standaard ; гирлянда из украшений
+03F5 ; FtrOrnamentBig ; giant ornament ; とくだいオーナメント ; 特大裝飾 ; 特大装饰品 ; 특대 오너먼트 ; décoration géante ; Riesenschmuck ; ornamento gigante ; ornamento gigante ; enorme versiering ; огромный шар
+033F ; FtrWallPillarBrick ; brick pillar ; レンガのはしら ; 磚塊柱子 ; 砖块柱子 ; 벽돌 기둥 ; colonne en briques ; Ziegelsäule ; pilar de ladrillo ; colonna di mattoni ; bakstenen pilaar ; кирпичная колонна
+0340 ; FtrWallPillarMarble ; marble pillar ; だいりせきのはしら ; 大理石柱子 ; 大理石柱子 ; 대리석 기둥 ; colonne en marbre ; Marmorsäule ; pilar de mármol ; colonna di marmo ; marmeren pilaar ; мраморная колонна
+0341 ; FtrWallPillarPlain ; simple pillar ; シンプルなはしら ; 簡約柱子 ; 简约柱子 ; 심플 기둥 ; colonne standard ; Schlichtsäule ; pilar simple ; colonna semplice ; eenvoudige pilaar ; простая колонна
+0342 ; FtrWallPillarSteel ; steel pillar ; スチールのはしら ; 鋼鐵柱子 ; 钢铁柱子 ; 스틸 기둥 ; colonne en acier ; Stahlsäule ; pilar de acero ; colonna d'acciaio ; stalen pilaar ; стальная колонна
+0343 ; FtrWallPillarGold ; golden pillar ; きんのはしら ; 黃金柱子 ; 黄金柱子 ; 금 기둥 ; colonne dorée ; Goldsäule ; pilar dorado ; colonna dorata ; gouden pilaar ; золотая колонна
+0344 ; FtrWallPillarWood ; wooden pillar ; もくせいのはしら ; 木製柱子 ; 木制柱子 ; 목제 기둥 ; colonne en bois ; Holzsäule ; pilar de madera ; colonna di legno ; houten pilaar ; деревянная колонна
+0345 ; FtrWallPillarConcrete ; concrete pillar ; コンクリートのはしら ; 混凝土柱子 ; 混凝土柱子 ; 콘크리트 기둥 ; colonne en béton ; Betonsäule ; pilar de cemento ; colonna di cemento ; betonnen pilaar ; бетонная колонна
+03E9 ; FtrLuMossBottle ; glowing-moss jar ; ヒカリゴケさいばいビン ; 光蘚培養瓶 ; 光藓培养瓶 ; 빛이끼 재배 병 ; schistostega en bocal ; Leuchtmoos-Glas ; cultivo de musgo luminoso ; vasetto muschio luminoso ; lichtmoskweekpotje ; светящийся мох в банке
+040F ; FtrDonationBox ; donation box ; ぼきんばこ ; 募款箱 ; 募捐箱 ; 모금함 ; boîte à dons ; Spendenbox ; hucha para donativos ; cassetta delle donazioni ; collectebus ; копилка д. пожертвований
+03F4 ; FtrOrnamentTree ; ornament tree ; オーナメントのツリー ; 裝飾樹 ; 装饰树 ; 오너먼트 트리 ; arbre décoratif ; Dekobaum ; árbol de ornamentos ; albero decorativo ; sierboom ; деревце из украшений
+0411 ; FtrStorageWood ; wooden storage shed ; もくせいのものおき ; 木製儲藏櫃 ; 木制储藏柜 ; 목제 간이 창고 ; débarras en bois ; Holz-Lagerschrank ; minicobertizo de madera ; ripostiglio di legno ; houten schuurtje ; дер. шкаф для инвентаря
+0415 ; FtrRemainsChairS ; ruined seat ; いせきのこしかけ ; 遺跡小椅子 ; 遗迹小椅子 ; 유적 의자 ; siège en ruine ; Ruinenhocker ; asiento ruinas ; seduta in rovina ; ruïne-zitplaats ; сидение-руина
+0424 ; FtrRemainsArchBroken ; ruined broken pillar ; いせきのおれたはしら ; 遺跡斷柱 ; 遗迹断柱 ; 부러진 유적 기둥 ; pilier brisé en ruine ; Ruinen-Bruchsäule ; pilar roto ruinas ; colonna spezzata in rovina ; ruïne-zuil ; обломок колонны-руины
+03D2 ; FtrBreadbasketBunmeal ; savory bread ; そうざいパン ; 鹹麵包 ; 咸面包 ; 고소한 빵 ; corbeille de pains salés ; Snackbrot ; cesta de pan vegetal ; cestino di pane ; hartig brood ; вкусная выпечка
+03CF ; FtrBreadbasket ; bread ; パン ; 麵包 ; 面包 ; 빵 ; corbeille de pains ; Brot ; cesta de pan y bollería ; pane ; wit brood ; выпечка
+03D0 ; FtrBreadbasketOrganic ; organic bread ; オーガニックパン ; 有機麵包 ; 有机面包 ; 유기농 빵 ; corbeille de pains bio ; Biobrot ; cesta de pan integral ; pane organico ; bruin brood ; выпечка с отрубями
+03D1 ; FtrBreadbasketSweet ; snack bread ; かしパン ; 甜麵包 ; 甜面包 ; 과자 빵 ; corbeille de viennoiseries ; Naschbrot ; cesta de pan y galletas ; cestino di panini ; zoet brood ; сдобная выпечка
+040B ; FtrPastaSquidink ; squid-ink spaghetti ; いかすみパスタ ; 魷魚墨汁義大利麵 ; 鱿鱼墨汁意大利面 ; 먹물 파스타 ; plat pâtes encre de seiche ; Tintenfischtinte-Spaghetti ; pasta a la tinta de calamar ; pasta al nero di seppia ; spaghetti met inktvisinkt ; черные спагетти
+040A ; FtrPastaTomato ; spaghetti marinara ; トマトソースパスタ ; 紅醬義大利麵 ; 茄汁意大利面 ; 토마토 파스타 ; plat de spaghetti tomates ; Spaghetti marinara ; pasta marinara ; pasta al sugo ; spaghetti met tomatensaus ; спагетти маринара
+0409 ; FtrPastaNeapolitan ; spaghetti napolitan ; ナポリタンスパゲッティ ; 拿坡里義大利麵 ; 那不勒斯意大利面 ; 나폴리탄 파스타 ; plat de spaghetti napoli ; Spaghetti napoletana ; pasta napolitana ; pasta ai peperoni ; spaghetti napoletana ; спагетти по-неаполитански
+03CB ; FtrGratin ; gratin ; グラタン ; 焗烤 ; 奶汁烤菜 ; 그라탱 ; gratin ; Gratin ; gratinado ; sformato ; gegratineerde schotel ; запеканка
+03CC ; FtrClamchowder ; clam chowder ; クラムチャウダー ; 蛤蜊巧達湯 ; 蛤蜊浓汤 ; 클램 차우더 ; potée de palourdes ; Muschelsuppe ; sopa de almejas ; zuppa di vongole ; vissoep ; похлебка из моллюсков
+03CD ; FtrPiePumpkin ; pumpkin pie ; パンプキンパイ ; 南瓜派 ; 南瓜派 ; 호박파이 ; tarte à la citrouille ; Kürbis-Tarte ; pastel de calabaza ; crostata di zucca ; pompoentaart ; тыквенный пирог
+03CE ; FtrMeuniere ; olive-flounder meunière ; ヒラメのムニエル ; 法式煎比目魚排 ; 法式煎比目鱼排 ; 넙치 뫼니에르 ; cardeau meunière ; Flunder Müllerinart ; rodaballo a la molinera ; sogliola alla mugnaia ; vis met botersaus ; жареный палтус
+034C ; FtrSoupCarrot ; carrot potage ; ニンジンのポタージュ ; 胡蘿蔔濃湯 ; 胡萝卜浓汤 ; 당근 포타주 ; potage à la carotte ; Karottensuppe ; crema de zanahoria ; zuppa di carote ; wortelsoep ; морковный суп-пюре
+034D ; FtrSoupPotato ; potato potage ; ジャガイモのポタージュ ; 馬鈴薯濃湯 ; 土豆浓汤 ; 감자 포타주 ; potage à la pomme de terre ; Kartoffelsuppe ; crema de patata ; zuppa di patate ; aardappelsoep ; картофельный суп-пюре
+034E ; FtrVesselBread ; bread gratin ; パングラタン ; 焗烤麵包 ; 焗烤面包 ; 빵 그라탱 ; gratin de pain ; Brotsuppe ; pan relleno gratinado ; zuppa in pagnotta ; brood gevuld met soep ; суп в хлебе
+034F ; FtrPieOrange ; orange pie ; オレンジパイ ; 橘子派 ; 橘子派 ; 오렌지파이 ; tarte feuilletée aux oranges ; Orangen-Tarte ; pastel de naranja ; crostata alle arance ; sinaasappeltaart ; апельсиновый пирог
+0350 ; FtrPiePeach ; peach pie ; ピーチパイ ; 桃子派 ; 桃子派 ; 복숭아파이 ; tarte feuilletée aux pêches ; Pfirsich-Tarte ; pastel de melocotón ; crostata alle pesche ; perziktaart ; персиковый пирог
+0351 ; FtrPiePear ; pear pie ; ナシのパイ ; 梨子派 ; 梨子派 ; 배파이 ; tarte feuilletée aux poires ; Birnen-Tarte ; pastel de pera ; crostata alle pere ; perentaart ; грушевый пирог
+0352 ; FtrPieCherry ; cherry pie ; チェリーパイ ; 櫻桃派 ; 樱桃派 ; 체리파이 ; tarte feuilletée aux cerises ; Kirsch-Tarte ; pastel de cereza ; crostata alle ciliegie ; kersentaart ; вишневый пирог
+0353 ; FtrGnocchiPumpkin ; gnocchi di zucca ; カボチャのニョッキ ; 義式南瓜麵疙瘩 ; 意式南瓜面疙瘩 ; 호박 뇨끼 ; plat de gnocchi de citrouille ; Gnocchi di zucca ; plato de ñoquis de calabaza ; piatto di gnocchi di zucca ; pompoengnocchi ; тыквенные ньокки
+0354 ; FtrGnocchiPotato ; gnocchi di patate ; ジャガイモのニョッキ ; 義式馬鈴薯麵疙瘩 ; 意式土豆面疙瘩 ; 감자 뇨끼 ; plat de gnocchi p. de terre ; Gnocchi di patate ; plato de ñoquis de patata ; piatto di gnocchi di patate ; aardappelgnocchi ; картофельные ньокки
+0355 ; FtrGnocchiCarrot ; gnocchi di carote ; ニンジンのニョッキ ; 義式胡蘿蔔麵疙瘩 ; 意式胡萝卜面疙瘩 ; 당근 뇨끼 ; plat de gnocchi de carotte ; Gnocchi di carote ; plato de ñoquis zanahoria ; piatto di gnocchi di carote ; wortelgnocchi ; морковные ньокки
+0356 ; FtrVesselPumpkin ; pumpkin soup ; カボチャのスープ ; 南瓜湯 ; 南瓜汤 ; 호박 수프 ; soupe à la citrouille ; Kürbissuppe ; sopa de calabaza ; zuppa di zucca ; pompoen gevuld met soep ; тыквенный суп
+0357 ; FtrSoupMinestrone ; minestrone soup ; ミネストローネ ; 義式蔬菜湯 ; 意式蔬菜汤 ; 미네스트로네 수프 ; minestrone ; Minestrone ; sopa minestrone ; zuppa di verdure ; minestronesoep ; минестроне
+0358 ; FtrSoupBambooshoot ; bamboo-shoot soup ; たけのこスープ ; 竹筍湯 ; 竹笋汤 ; 죽순 수프 ; soupe pousses de bambou ; Bambussprossensuppe ; sopa de brotes de bambú ; zuppa di germogli di bambù ; bamboesoep ; суп из побегов бамбука
+0359 ; FtrPieApple ; apple pie ; アップルパイ ; 蘋果派 ; 苹果派 ; 애플파이 ; tarte feuilletée aux pommes ; Apfel-Tarte ; pastel de manzana ; crostata alle mele ; appeltaart ; яблочный пирог
+035A ; FtrSoupSeaweed ; seaweed soup ; わかめスープ ; 海帶湯 ; 裙带菜汤 ; 미역국 ; soupe aux algues ; Algensuppe ; sopa de algas ; zuppa di alghe wakame ; zeewiersoep ; суп из водорослей
+035B ; FtrTartCarrot ; carrot cake ; キャロットケーキ ; 胡蘿蔔蛋糕 ; 胡萝卜蛋糕 ; 당근 케이크 ; gâteau aux carottes ; Karottenkuchen ; pastel de zanahoria ; fetta di torta alle carote ; worteltaart ; морковный торт
+035C ; FtrTartApple ; apple tart ; リンゴのタルト ; 蘋果塔 ; 苹果挞 ; 사과 타르트 ; tarte sablée aux pommes ; Apfelkuchen ; tarta de manzana ; fetta di crostata alle mele ; stuk appeltaart ; яблочный тарт
+035D ; FtrTartVegetable ; veggie quiche ; やさいのキッシュ ; 法式蔬菜鹹派 ; 法式蔬菜咸派 ; 야채 키슈 ; quiche aux légumes ; Gemüse-Quiche ; quiche de verduras ; quiche di verdure ; groentequiche ; овощной киш
+035E ; FtrTartOrange ; orange tart ; オレンジタルト ; 橘子塔 ; 橘子挞 ; 오렌지 타르트 ; tarte sablée aux oranges ; Orangenkuchen ; tarta de naranja ; fetta di crostata alle arance ; stuk sinaasappeltaart ; апельсиновый тарт
+035F ; FtrTartFruits ; mixed-fruits tart ; フルーツタルト ; 水果塔 ; 水果挞 ; 과일 타르트 ; tarte sablée aux fruits ; Obstkuchen ; tarta de frutas ; fetta di crostata alla frutta ; stuk fruittaart ; фруктовый тарт
+0360 ; FtrTartPeach ; peach tart ; ピーチタルト ; 桃子塔 ; 桃子挞 ; 복숭아 타르트 ; tarte sablée aux pêches ; Pfirsichkuchen ; tarta de melocotón ; fetta di crostata alle pesche ; stuk perziktaart ; персиковый тарт
+0361 ; FtrTartCherry ; cherry tart ; チェリータルト ; 櫻桃塔 ; 樱桃挞 ; 체리 타르트 ; tarte sablée aux cerises ; Kirschkuchen ; tarta de cereza ; fetta di crostata alle ciliegie ; stuk kersentaart ; вишневый тарт
+0362 ; FtrTartPear ; pear tart ; ナシのタルト ; 梨子塔 ; 梨子挞 ; 배 타르트 ; tarte sablée aux poires ; Birnenkuchen ; tarta de pera ; fetta di crostata alle pere ; stuk perentaart ; грушевый тарт
+0363 ; FtrPieFruits ; mixed-fruits pie ; フルーツパイ ; 水果派 ; 水果派 ; 과일파이 ; tarte feuilletée aux fruits ; Obst-Tarte ; pastel de frutas ; crostata alla frutta ; fruitvlaai ; фруктовый пирог
+0364 ; FtrSandwichFruits ; mixed-fruits sandwich ; フルーツサンド ; 水果三明治 ; 水果三明治 ; 과일 샌드위치 ; sandwich aux fruits ; Obst-Sandwich ; sándwich de fruta ; tramezzino alla frutta ; fruitsandwich ; фруктовый сэндвич
+0365 ; FtrJellyCoconut ; coconut pudding ; ココナッツプリン ; 椰子布丁 ; 椰子布丁 ; 코코넛 푸딩 ; flan à la noix de coco ; Kokospudding ; gelatina de coco ; budino al cocco ; kokospudding ; кокосовый пудинг
+0366 ; FtrJellyPear ; pear jelly ; ナシのゼリー ; 梨子果凍 ; 梨子果冻 ; 배 젤리 ; gelée à la poire ; Birnen-Wackelpudding ; gelatina de pera ; gelatina di pere ; perenpudding ; грушевое желе
+0367 ; FtrJellyCherry ; cherry jelly ; さくらんぼゼリー ; 櫻桃果凍 ; 樱桃果冻 ; 체리 젤리 ; gelée à la cerise ; Kirsch-Wackelpudding ; gelatina de cereza ; gelatina di ciliegie ; kersenpudding ; вишневое желе
+0368 ; FtrJellyPeach ; peach jelly ; ピーチゼリー ; 桃子果凍 ; 桃子果冻 ; 복숭아 젤리 ; gelée à la pêche ; Pfirsich-Wackelpudding ; gelatina de melocotón ; gelatina di pesche ; perzikpudding ; персиковое желе
+0369 ; FtrCrepeMushroom ; mushroom crepe ; キノコのクレープ ; 蘑菇可麗餅 ; 蘑菇可丽饼 ; 버섯 크레이프 ; crêpe aux champignons ; Pilz-Crêpe ; crepe de champiñones ; crêpe ai funghi ; crêpe met champignons ; блинчик с грибами
+036A ; FtrSaladbowlSeafood ; seafood salad ; シーフードサラダ ; 海鮮沙拉 ; 海鲜沙拉 ; 시푸드 샐러드 ; salade aux fruits de mer ; Meeresfrüchte-Salat ; salpicón de marisco ; insalata di mare ; zeevruchtensalade ; салат из морепродуктов
+036B ; FtrSaladbowlFruits ; fruit salad ; フルーツサラダ ; 水果沙拉 ; 水果沙拉 ; 과일 샐러드 ; salade de fruits ; Obstsalat ; ensalada de frutas ; macedonia ; fruitsalade ; фруктовый салат
+036C ; FtrJellyOrange ; orange jelly ; オレンジゼリー ; 橘子果凍 ; 橘子果冻 ; 오렌지 젤리 ; gelée à l'orange ; Orangen-Wackelpudding ; gelatina de naranja ; gelatina di arance ; sinaasappelpudding ; апельсиновое желе
+036D ; FtrSaladbowlRapees ; salade de carottes râpées ; キャロットラペ ; 涼拌胡蘿蔔絲 ; 凉拌胡萝卜丝 ; 당근 라페 ; salade de carottes râpées ; Karottensalat ; ensalada de zanahoria ; insalata di carote ; wortelsalade ; салат из тертой моркови
+036E ; FtrSaladbowlPoke ; poke ; ポキ ; 夏威夷蓋飯 ; 夏威夷盖饭 ; 포케 ; poke ; Poke-Salat ; ensalada poke ; insalata pokè ; poke-salade ; салат поке
+036F ; FtrSaladbowlTurnip ; turnip salad ; カブのサラダ ; 大頭菜沙拉 ; 大头菜沙拉 ; 무 샐러드 ; salade de navets ; Rübensalat ; ensalada de nabos ; insalata di rape ; knolsalade ; салат из репы
+0370 ; FtrJellyApple ; apple jelly ; アップルゼリー ; 蘋果果凍 ; 苹果果冻 ; 사과 젤리 ; gelée à la pomme ; Apfel-Wackelpudding ; gelatina de manzana ; gelatina di mele ; appelpudding ; яблочное желе
+0371 ; FtrSaladbowlMushroom ; mushroom salad ; キノコのサラダ ; 蘑菇沙拉 ; 蘑菇沙拉 ; 버섯 샐러드 ; salade de champignons ; Pilzsalat ; ensalada de champiñones ; insalata di funghi ; champignonsalade ; салат из грибов
+0372 ; FtrCrepeVegetable ; veggie crepe ; ベジタブルクレープ ; 蔬菜可麗餅 ; 蔬菜可丽饼 ; 야채 크레이프 ; crêpe aux légumes ; Gemüse-Crêpe ; crepe vegetal ; crêpe vegetariana ; crêpe met groente ; блинчик с овощами
+0373 ; FtrSandwichVegetable ; veggie sandwich ; ベジタブルサンド ; 蔬菜三明治 ; 蔬菜三明治 ; 야채 샌드위치 ; sandwich aux légumes ; Gemüse-Sandwich ; sándwich vegetal ; tramezzino vegetariano ; groentesandwich ; сэндвич с овощами
+0374 ; FtrCrepeFruits ; mixed-fruits crepe ; フルーツクレープ ; 水果可麗餅 ; 水果可丽饼 ; 과일 크레이프 ; crêpe aux fruits ; Obst-Crêpe ; crepe de frutas ; crêpe alla frutta mista ; crêpe met fruit ; блинчик с фруктами
+0375 ; FtrSandwichFish ; salmon sandwich ; サーモンサンド ; 鮭魚三明治 ; 鲑鱼三明治 ; 연어 샌드위치 ; sandwich au saumon ; Lachs-Sandwich ; sándwich de salmón ; tramezzino al salmone ; zalmsandwich ; сэндвич с лососем
+0376 ; FtrCrepeSugar ; sugar crepe ; シュガークレープ ; 甜味可麗餅 ; 甜味可丽饼 ; 슈거 크레이프 ; crêpe au sucre ; Zucker-Crêpe ; crepe azucarada ; crêpe allo zucchero ; crêpe met poedersuiker ; блинчик с сахаром
+0377 ; FtrCookiePlain ; cookies ; クッキー ; 餅乾 ; 饼干 ; 쿠키 ; plat de biscuits ; Butterplätzchen ; plato de galletas ; piatto di biscotti ; koekjes ; печенье
+0378 ; FtrPoundcakeOrange ; orange pound cake ; オレンジパウンドケーキ ; 橘子磅蛋糕 ; 橘子磅蛋糕 ; 오렌지 파운드케이크 ; quatre-quarts à l'orange ; Orangen-Rührkuchen ; bizcocho de naranja ; plumcake all'arancia ; sinaasappelcake ; апельсинный кекс
+0379 ; FtrPoundcake ; pound cake ; パウンドケーキ ; 磅蛋糕 ; 磅蛋糕 ; 파운드케이크 ; quatre-quarts ; Rührkuchen ; bizcocho ; plumcake ; cake ; кекс
+037A ; FtrPoundcakePumpkin ; pumpkin pound cake ; カボチャのパウンドケーキ ; 南瓜磅蛋糕 ; 南瓜磅蛋糕 ; 호박 파운드케이크 ; quatre-quarts à la citrouille ; Kürbis-Rührkuchen ; bizcocho de calabaza ; plumcake alla zucca ; pompoencake ; тыквенный кекс
+037B ; FtrSmoothieTomato ; tomato juice ; トマトジュース ; 番茄汁 ; 番茄汁 ; 토마토 주스 ; jus de tomate ; Tomatensaft ; zumo de tomate ; succo di pomodoro ; tomatensap ; томатный сок
+037C ; FtrWholesaladTurnip ; kabu ankake ; まるごとカブあんかけ ; 整顆大頭菜勾芡 ; 芡汁大头菜盅 ; 무찜 ; kabu ankake ; Kabu ankake ; nabo relleno ; rapa ripiena ; knol gevuld met saus ; репа кабу анкакэ
+037D ; FtrSmoothieCarrot ; carrot juice ; キャロットジュース ; 胡蘿蔔汁 ; 胡萝卜汁 ; 당근 주스 ; jus de carotte ; Karottensaft ; zumo de zanahoria ; succo di carota ; wortelsap ; морковный сок
+037E ; FtrSmoothieCoconut ; coconut milk ; ココナッツミルク ; 椰奶 ; 椰奶 ; 코코넛 밀크 ; lait de coco ; Kokosmilch ; leche de coco ; latte di cocco ; kokosmelk ; кокосовое молоко
+037F ; FtrPretzel ; pretzels ; プレッツェル ; 扭結麵包 ; 扭结面包 ; 프레첼 ; corbeille de bretzels ; Brezeln ; cesta de prétzeles ; cestino di brezel ; pretzels ; крендельки
+0380 ; FtrPretzelSugar ; frosted pretzels ; アイシングプレッツェル ; 糖霜扭結麵包 ; 糖霜扭结面包 ; 아이싱 프레첼 ; corbeille de bretzels glacés ; Zuckerguss-Brezeln ; cesta prétzeles glaseados ; cestino di brezel glassati ; geglazuurde pretzels ; крендельки с глазурью
+0381 ; FtrWholesaladTomato ; salad-stuffed tomato ; まるごとトマトのサラダ ; 番茄沙拉盅 ; 番茄沙拉盅 ; 통 토마토 샐러드 ; tomate farcie de salade ; Tomate mit Salatfüllung ; tomate relleno ; pomodoro ripieno d'insalata ; tomaat gevuld met salade ; салат в помидоре
+0382 ; FtrCookieCoconut ; coconut cookies ; ココナッツクッキー ; 椰子餅乾 ; 椰子饼干 ; 코코넛 쿠키 ; plat de biscuits coco ; Kokoskekse ; plato de galletas de coco ; piatto di biscotti al cocco ; kokoskoekjes ; печенье с кокосом
+0383 ; FtrCookieVegetable ; veggie cookies ; やさいクッキー ; 蔬菜餅乾 ; 蔬菜饼干 ; 야채 쿠키 ; plat de biscuits légumes ; Gemüsekekse ; plato de galletas vegetales ; piatto di biscotti vegetariani ; groentekoekjes ; овощное печенье
+0384 ; FtrSmoothieCherry ; cherry smoothie ; さくらんぼスムージー ; 櫻桃冰沙 ; 樱桃冰沙 ; 체리 스무디 ; smoothie à la cerise ; Kirsch-Smoothie ; zumo de cereza ; frullato alla ciliegia ; kersensmoothie ; вишневый смузи
+0385 ; FtrCookieJam ; thumbprint jam cookies ; ジャムクッキー ; 果醬餅乾 ; 果酱饼干 ; 잼 쿠키 ; plat de biscuits confiture ; Marmeladenkekse ; plato de galletas decoradas ; piatto di biscotti marmellata ; jamkoekjes ; печенье с вареньем
+0386 ; FtrCookieIcing ; frosted cookies ; アイシングクッキー ; 糖霜餅乾 ; 糖霜饼干 ; 아이싱 쿠키 ; plat de biscuits glacés ; Zuckerguss-Kekse ; plato de galletas glaseadas ; piatto di biscotti glassati ; geglazuurde koekjes ; печенье с глазурью
+0388 ; FtrSmoothiePear ; pear smoothie ; ナシスムージー ; 梨子冰沙 ; 梨子冰沙 ; 배 스무디 ; smoothie à la poire ; Birnen-Smoothie ; zumo de pera ; frullato alla pera ; perensmoothie ; грушевый смузи
+038C ; FtrSmoothiePeach ; peach smoothie ; モモスムージー ; 桃子冰沙 ; 桃子冰沙 ; 복숭아 스무디 ; smoothie à la pêche ; Pfirsich-Smoothie ; zumo de melocotón ; frullato alla pesca ; perziksmoothie ; персиковый смузи
+038D ; FtrSmoothieApple ; apple smoothie ; リンゴスムージー ; 蘋果冰沙 ; 苹果冰沙 ; 사과 스무디 ; smoothie à la pomme ; Apfel-Smoothie ; zumo de manzana ; frullato alla mela ; appelsmoothie ; яблочный смузи
+038E ; FtrSmoothieOrange ; orange smoothie ; オレンジスムージー ; 橘子冰沙 ; 橘子冰沙 ; 오렌지 스무디 ; smoothie à l'orange ; Orangen-Smoothie ; zumo de naranja ; frullato all'arancia ; sinaasappelsmoothie ; апельсиновый смузи
+038F ; FtrPoundcakeSugarbrown ; brown-sugar pound cake ; こくとうパウンドケーキ ; 黑糖磅蛋糕 ; 黑糖磅蛋糕 ; 흑당 파운드케이크 ; quatre-quarts au sucre roux ; Rohzucker-Rührkuchen ; bizcocho de azúcar moreno ; plumcake zucchero di canna ; bruinesuikercake ; кекс с коричнев. сахаром
+0390 ; FtrPieFish ; sea-bass pie ; スズキのパイ ; 鱸魚派 ; 鲈鱼派 ; 농어파이 ; tourte au bar commun ; Seebarsch-Pastete ; empanada de lubina ; sformato di spigola ; zeebaarstaart ; пирог с судаком
+0391 ; FtrSalad ; salad ; サラダ ; 沙拉 ; 沙拉 ; 샐러드 ; salade ; Salat ; ensalada ; insalatona ; salade ; салат
+0392 ; FtrSoupMushroom ; mushroom potage ; キノコのポタージュ ; 蘑菇濃湯 ; 蘑菇浓汤 ; 버섯 포타주 ; potage aux champignons ; Pilzsuppe ; crema de champiñones ; zuppa di funghi ; champignonsoep ; грибное рагу
+0393 ; FtrFishandchips ; fish-and-chips ; フィッシュ&チップス ; 炸魚薯條 ; 炸鱼薯条 ; 피시&칩스 ; fish and chips ; Fish and Chips ; fish & chips ; piatto di fritti ; vis en friet ; рыба с картофелем фри
+0394 ; FtrChips ; french fries ; フライドポテト ; 炸薯條 ; 炸薯条 ; 감자튀김 ; plat de frites ; Pommes frites ; plato de patatas fritas ; porzione di patatine fritte ; friet ; картофель фри
+0395 ; FtrSconePlain ; plain scones ; スコーン ; 司康鬆餅 ; 司康饼 ; 스콘 ; plat de scones nature ; Scones ; plato de scones ; piatto di scone ; scones ; простые булочки
+0396 ; FtrCupcakeVegetable ; veggie cupcakes ; やさいのカップケーキ ; 蔬菜紙杯蛋糕 ; 蔬菜纸杯蛋糕 ; 야채 컵케이크 ; plat de cupcakes légumes ; Gemüse-Cupcakes ; plato de cupcakes vegetales ; piatto di cupcake di verdure ; groentecupcakes ; кексики с овощами
+0397 ; FtrBeaglesandTomato ; tomato bagel sandwich ; トマトのベーグルサンド ; 番茄貝果三明治 ; 番茄贝果三明治 ; 토마토 베이글 샌드위치 ; bagel à la tomate ; Tomaten-Bagel-Sandwich ; bagel con tomate ; bagel con pomodoro ; bagel met tomaat ; бейгл с помидором
+0398 ; FtrCupcakeBlacksuger ; brown-sugar cupcakes ; こくとうカップケーキ ; 黑糖紙杯蛋糕 ; 黑糖纸杯蛋糕 ; 흑당 컵케이크 ; plat de cupcakes sucre roux ; Rohzucker-Cupcakes ; plato cupcakes glaseados ; piatto cupcake zucch. canna ; bruinesuikercupcakes ; кексики с корич. сахаром
+0399 ; FtrSconeCarrot ; carrot scones ; キャロットスコーン ; 胡蘿蔔司康鬆餅 ; 胡萝卜司康饼 ; 당근 스콘 ; plat de scones aux carottes ; Karotten-Scones ; plato scones de zanahoria ; piatto di scone alla carota ; wortelscones ; морковные булочки
+039A ; FtrCupcakePumpkin ; pumpkin cupcakes ; カボチャのカップケーキ ; 南瓜紙杯蛋糕 ; 南瓜纸杯蛋糕 ; 호박 컵케이크 ; plat de cupcakes citrouille ; Kürbis-Cupcakes ; plato cupcakes de calabaza ; piatto di cupcake alla zucca ; pompoencupcakes ; тыквенные кексики
+039B ; FtrSconeFruits ; fruit scones ; フルーツのスコーン ; 水果司康鬆餅 ; 水果司康饼 ; 과일 스콘 ; plat de scones aux fruits ; Obst-Scones ; plato scones de fruta ; piatto di scone alla frutta ; fruitscones ; фруктовые булочки
+039C ; FtrCupcakeFruits ; fruit cupcakes ; フルーツカップケーキ ; 水果紙杯蛋糕 ; 水果纸杯蛋糕 ; 과일 컵케이크 ; plat de cupcakes aux fruits ; Obst-Cupcakes ; plato de cupcakes de fruta ; piatto di cupcake alla frutta ; fruitcupcakes ; фруктовые кексики
+039D ; FtrSconePumpkin ; pumpkin scones ; カボチャのスコーン ; 南瓜司康鬆餅 ; 南瓜司康饼 ; 호박 스콘 ; plat de scones citrouille ; Kürbis-Scones ; plato scones de calabaza ; piatto di scone alla zucca ; pompoenscones ; тыквенные булочки
+039E ; FtrCupcakePlain ; plain cupcakes ; プレーンカップケーキ ; 原味紙杯蛋糕 ; 原味纸杯蛋糕 ; 플레인 컵케이크 ; plat de cupcakes nature ; Cupcakes ohne alles ; plato de cupcakes ; piatto di cupcake ; cupcakes ; простые кексики
+039F ; FtrBeaglesandSalmon ; salmon bagel sandwich ; サーモンのベーグルサンド ; 鮭魚貝果三明治 ; 鲑鱼贝果三明治 ; 연어 베이글 샌드위치 ; bagel au saumon ; Lachs-Bagel-Sandwich ; bagel con salmón ; bagel con salmone ; bagel met zalm ; бейгл с лососем
+03A0 ; FtrNancurrySquidink ; squid-ink curry ; イカスミカレー ; 魷魚墨汁咖哩 ; 鱿鱼墨汁咖喱 ; 먹물 카레 ; curry à l'encre de calmar ; Sepia-Curry ; curry a la tinta de calamar ; curry al nero di seppia ; inktviscurry ; карри с чернилами сепии
+03A1 ; FtrNancurryPumpkin ; pumpkin curry ; パンプキンカレー ; 南瓜咖哩 ; 南瓜咖喱 ; 호박 카레 ; curry à la citrouille ; Kürbis-Curry ; curry de calabaza ; curry alla zucca ; pompoencurry ; карри с тыквой
+03A2 ; FtrNancurryCarrot ; carrot-tops curry ; ニンジンのはっぱカレー ; 胡蘿蔔葉咖哩 ; 胡萝卜叶咖喱 ; 당근 잎 카레 ; curry aux fanes de carottes ; Karottengrün-Curry ; curry de zanahoria ; curry con carote ; wortelloofcurry ; карри с зеленью моркови
+03A3 ; FtrBeaglesandFruits ; mixed-fruits bagel sandwich ; フルーツのベーグルサンド ; 水果貝果三明治 ; 水果贝果三明治 ; 과일 베이글 샌드위치 ; bagel aux fruits ; Obst-Bagel-Sandwich ; bagel con fruta ; bagel con frutta ; bagel met fruit ; бейгл с фруктами
+03A4 ; FtrNancurryTomato ; tomato curry ; トマトカレー ; 番茄咖哩 ; 番茄咖喱 ; 토마토 카레 ; curry à la tomate ; Tomaten-Curry ; curry de tomate ; curry al pomodoro ; tomatencurry ; томатное карри
+03A5 ; FtrBeaglesandPumpkin ; pumpkin bagel sandwich ; カボチャのベーグルサンド ; 南瓜貝果三明治 ; 南瓜贝果三明治 ; 호박 베이글 샌드위치 ; bagel à la citrouille ; Kürbis-Bagel-Sandwich ; bagel con calabaza ; bagel con zucca ; bagel met pompoen ; бейгл с тыквой
+03A6 ; FtrBeaglesandCarrot ; carrot bagel sandwich ; ニンジンのベーグルサンド ; 胡蘿蔔貝果三明治 ; 胡萝卜贝果三明治 ; 당근 베이글 샌드위치 ; bagel à la carotte ; Karotten-Bagel-Sandwich ; bagel con zanahoria ; bagel con carote ; bagel met wortel ; бейгл с морковью
+03A7 ; FtrNancurryPotato ; potato curry ; ジャガイモのカレー ; 馬鈴薯咖哩 ; 土豆咖喱 ; 감자 카레 ; curry de pommes de terre ; Kartoffel-Curry ; curry de patata ; curry con patate ; aardappelcurry ; карри с картофелем
+03A8 ; FtrNancurryMushroom ; mushroom curry ; キノコカレー ; 蘑菇咖哩 ; 蘑菇咖喱 ; 버섯 카레 ; curry aux champignons ; Pilz-Curry ; curry de champiñones ; curry ai funghi ; champignoncurry ; карри с грибами
+03A9 ; FtrPancakePlain ; pancakes ; パンケーキ ; 美式鬆餅 ; 美式松饼 ; 팬케이크 ; pile de pancakes ; Pfannkuchen ; torre de tortitas ; doppio pancake ; pannenkoeken met stroop ; блины
+03AA ; FtrPancakeCocconut ; coconut pancakes ; ココナッツのパンケーキ ; 椰子美式鬆餅 ; 椰子美式松饼 ; 코코넛 파운드케이크 ; pile de pancakes coco ; Kokospfannkuchen ; torre de tortitas de coco ; doppio pancake al cocco ; pannenkoeken met kokos ; блины с кокосом
+03AB ; FtrPancakePotato ; potato galette ; ジャガイモのガレット ; 馬鈴薯格雷派餅 ; 土豆格雷派饼 ; 감자 갈레트 ; galette de pommes de terre ; Kartoffelpfannkuchen ; galette de patata ; crespella con patate ; rijfkoek ; картофельная лепешка
+03AC ; FtrPancakeFruits ; fruit-topped pancakes ; フルーツのパンケーキ ; 水果美式鬆餅 ; 水果美式松饼 ; 과일 팬케이크 ; pile de pancakes aux fruits ; Obstpfannkuchen ; torre de tortitas con fruta ; doppio pancake alla frutta ; pannenkoeken met fruit ; блины с фруктами
+03AD ; FtrFishdishBream ; pesce all'acqua pazza ; タイのアクアパッツァ ; 義式水煮鯛魚 ; 泰式水煮鲷鱼 ; 도미 아쿠아파짜 ; vivaneau poché à l'italienne ; Pesce all'acqua pazza ; pargo rojo escalfado ; pesce all'acqua pazza ; snapper in acqua pazza ; пошированная рыба
+03AE ; FtrFishdishTurbot ; karei no nitsuke ; カレイのにつけ ; 醬煮鰈魚 ; 酱煮鲽鱼 ; 가자미조림 ; limande à la sauce soja ; Karei no nitsuke ; gallo pochado ; platessa alla salsa di soia ; schar in sojasaus ; камбала карэй но ницукэ
+03AF ; FtrFishdishHorsemackere ; aji fry ; アジのフライ ; 酥炸竹莢魚 ; 酥炸竹荚鱼 ; 전갱이 튀김 ; chinchard frit ; Bratmakrele ; jurel rebozado ; sgombro fritto ; gebakken makreel ; жареная ставрида адзи
+03B0 ; FtrFishdishPlaice ; sautéed olive flounder ; ヒラメのソテー ; 嫩煎比目魚 ; 嫩煎比目鱼 ; 넙치 소테 ; cardeau poêlé ; Pilz-Bratflunder ; rodaballo salteado ; sogliola saltata ; gebakken bot ; поджаренный палтус
+03B1 ; FtrFishdishBass ; grilled sea bass with herbs ; スズキのこうそうやき ; 香草烤鱸魚 ; 香草烤鲈鱼 ; 농어 허브 구이 ; bar grillé aux herbes ; Kräuter-Seebarsch ; lubina a las finas hierbas ; spigola grigliata alle erbe ; gegrilde zeebaars ; судак с пряными травами
+03B2 ; FtrCarpaccioSalmon ; carpaccio di salmone ; サーモンのカルパッチョ ; 薄切生鮭魚片 ; 薄切生鲑鱼 ; 연어 카르파초 ; carpaccio de saumon ; Carpaccio di salmone ; carpaccio de salmón ; carpaccio di salmone ; zalmcarpaccio ; карпаччо из лосося
+03B3 ; FtrCarpaccioMarlin ; carpaccio di marlin blu ; カジキのカルパッチョ ; 薄切生旗魚片 ; 薄切生旗鱼 ; 청새치 카르파초 ; carpaccio de marlin bleu ; Carpaccio di marlin blu ; carpaccio de pez espada ; carpaccio di marlin blu ; marlijncarpaccio ; карпаччо из марлина
+03B4 ; FtrCarpaccioBeakfish ; barred-knifejaw carpaccio ; イシダイのカルパッチョ ; 薄切生條石鯛片 ; 薄切生条石鲷 ; 돌돔 카르파초 ; carpaccio d'ishidai ; Schnabelbarsch-Carpaccio ; carpaccio de dorada ; carpaccio d'ishidai ; kraaibekcarpaccio ; карпаччо из оплегната
+03B5 ; FtrJarOrange ; orange marmalade ; マーマレード ; 橘子果醬 ; 橘子果酱 ; 오렌지 잼 ; lot de marmelades d'orange ; Orangenmarmelade ; mermelada de naranja ; marmellata di arance ; sinaasappeljam ; апельсиновое варенье
+03B6 ; FtrJarPeach ; peach jam ; ピーチジャム ; 桃子果醬 ; 桃子果酱 ; 복숭아 잼 ; lot de confitures de pêche ; Pfirsichmarmelade ; mermelada de melocotón ; marmellata di pesche ; perzikjam ; персиковое варенье
+03B7 ; FtrJarPear ; pear jam ; ナシのジャム ; 梨子果醬 ; 梨子果酱 ; 배 잼 ; lot de confitures de poire ; Birnenmarmelade ; mermelada de pera ; marmellata di pere ; perenjam ; грушевое варенье
+03B8 ; FtrCarpaccioScallop ; carpaccio di capesante ; ホタテのカルパッチョ ; 薄切生帆立貝 ; 薄切生虾夷扇贝 ; 가리비 카르파초 ; carpaccio de pétoncle ; Carpaccio di capesante ; carpaccio de vieira ; carpaccio di capesante ; mantelschelpcarpaccio ; карпаччо из гребешков
+03B9 ; FtrJarCherry ; cherry jam ; チェリージャム ; 櫻桃果醬 ; 樱桃果酱 ; 체리 잼 ; lot de confitures de cerise ; Kirschmarmelade ; mermelada de cereza ; marmellata di ciliegie ; kersenjam ; вишневое варенье
+03BA ; FtrJarVegetable ; pickled veggies ; やさいのピクルス ; 西式醃蔬菜 ; 西式腌蔬菜 ; 야채 피클 ; lot conserves de légumes ; Einleggemüse ; conserva de verduras ; giardiniera sottaceto ; ingelegde groenten ; маринованные овощи
+03BB ; FtrJarTomato ; tomato puree ; トマトピューレ ; 番茄泥 ; 番茄泥 ; 토마토 퓨레 ; lot de purées de tomate ; Tomatenpüree ; puré de tomate ; passata di pomodoro ; tomatenpuree ; томатная паста
+03BC ; FtrJarApple ; apple jam ; リンゴジャム ; 蘋果果醬 ; 苹果果酱 ; 사과 잼 ; lot de confitures de pomme ; Apfelmarmelade ; mermelada de manzana ; marmellata di mele ; appeljam ; яблочное варенье
+03BD ; FtrJarCoconut ; coconut oil ; ココナッツオイル ; 椰子油 ; 椰子油 ; 코코넛 오일 ; lot de pots d'huile de coco ; Kokosöl ; aceite de coco ; olio di cocco ; kokosolie ; кокосовое масло
+03BE ; FtrSkilletAnchovy ; anchoas al ajillo ; アンチョビのアヒージョ ; 蒜香橄欖油鳳尾魚 ; 蒜香橄榄油凤尾鱼 ; 안초비 아히요 ; plat d'anchois à l'ail ; Anchoas al ajillo ; sartén de anchoas al ajillo ; tapa di acciughe all'aglio ; gemarineerde ansjovissen ; хамса аль ахийо
+03BF ; FtrSkilletTomato ; tomates al ajillo ; トマトのアヒージョ ; 蒜香橄欖油番茄 ; 蒜香橄榄油番茄 ; 토마토 아히요 ; plat de tomates à l'ail ; Tomates al ajillo ; sartén de tomates al ajillo ; tapa di pomodorini all'aglio ; gemarineerde tomaten ; помидоры аль ахийо
+03C0 ; FtrSkilletMushroom ; champiñones al ajillo ; キノコのアヒージョ ; 蒜香橄欖油蘑菇 ; 蒜香橄榄油蘑菇 ; 버섯 아히요 ; plat de champignons à l'ail ; Champiñones al ajillo ; sartén champiñones al ajillo ; tapa di funghi all'aglio ; gemarineerde champignons ; грибы аль ахийо
+03C1 ; FtrJarAnchovy ; sardines in oil ; オイルサーディン ; 瓶漬鳳尾魚 ; 油渍凤尾鱼 ; 멸치 병조림 ; lot conserves de sardines ; Einlegsardinen ; conserva de boquerones ; set di acciughe sott'olio ; ingemaakte sardientjes ; сардины в банках
+03C2 ; FtrSkilletBread ; pull-apart bread ; ちぎりパン ; 手撕麵包 ; 手撕面包 ; 찢어 먹는 빵 ; pain soleil ; Partybrot ; sartén de pan frito ; torta Danubio ; breekbrood ; спекшаяся выпечка
+03C3 ; FtrSkilletSeafood ; seafood ajillo ; シーフードのアヒージョ ; 蒜香橄欖油海鮮 ; 蒜香橄榄油海鲜 ; 시푸드 아히요 ; plat de fruits de mer à l'ail ; Meeresfrüchte ajillo ; sartén de marisco al ajillo ; tapa frutti di mare all'aglio ; gemarineerde zeevruchten ; морепродукты аль ахийо
+03C4 ; FtrJarMushroom ; jarred mushrooms ; なめたけ ; 佃煮蘑菇 ; 佃煮蘑菇 ; 버섯조림 ; lot conserves de champis ; Einlegpilze ; conserva de champiñones ; conserva di funghi ; ingemaakte champignons ; грибы в банке
+03C5 ; FtrJarBambooshoot ; jarred bamboo shoots ; たけのこのみずに ; 水煮竹筍 ; 水煮竹笋 ; 삶은 죽순 ; lot de conserves de bambou ; Einlegbambussprossen ; conserva brotes de bambú ; conserva germogli di bambù ; ingemaakte bamboe ; побеги бамбука в банке
+03C6 ; FtrPotatobutter ; baked potatoes ; じゃがバター ; 奶油馬鈴薯 ; 奶油土豆 ; 버터 감자 ; plat de p. de terre au four ; Backkartoffeln ; plato de patatas asadas ; piatto di patate al forno ; gepofte aardappels ; печеный картофель
+03C7 ; FtrPizza ; pizza margherita ; マルゲリータ ; 瑪格麗特披薩 ; 玛格丽特披萨 ; 마르게리타 피자 ; pizza margherita ; Pizza Margherita ; pizza margarita ; pizza margherita ; pizza margherita ; пицца Маргарита
+03F8 ; FtrHwnCookie ; spooky cookies ; ハロウィンなクッキー ; 萬聖節餅乾 ; 万圣节饼干 ; 할로윈 쿠키 ; assiette cookies Halloween ; Halloween-Kekse ; plato de galletas pavorosas ; piatto di biscotti brividi ; pompoenkoekjes ; жуткое печенье
+03FA ; FtrCafeSable ; Roost sablé cookie ; ハトのすサブレ ; 鴿巢莎布蕾餅乾 ; 鸽巢莎布蕾饼干 ; 비둘기 둥지 쿠키 ; biscuit Le Perchoir ; Café-Taubenschlag-Keks ; galleta de El Alpiste ; biscotto La Piccionaia ; zandgebakje à la De Til ; печенье кафе «Насест»
+03C8 ; FtrPizzaSeafood ; seafood pizza ; シーフードピザ ; 海鮮披薩 ; 海鲜披萨 ; 시푸드 피자 ; pizza aux fruits de mer ; Pizza mit Meeresfrüchten ; pizza de marisco ; pizza ai frutti di mare ; zeevruchtenpizza ; пицца с морепродуктами
+03C9 ; FtrPizzaFruits ; fruit pizza ; フルーツピザ ; 水果披薩 ; 水果披萨 ; 과일 피자 ; pizza aux fruits ; Pizza mit Obst ; pizza de fruta ; pizza alla frutta ; fruitpizza ; пицца с фруктами
+03CA ; FtrPizzaMushroom ; mushroom pizza ; キノコのピザ ; 蘑菇披薩 ; 蘑菇披萨 ; 버섯 피자 ; pizza aux champignons ; Pizza mit Pilzen ; pizza de champiñones ; pizza ai funghi ; champignonpizza ; пицца с грибами
+040E ; FtrPoundcakeVegetable ; cake salé ; ケークサレ ; 法式鹹蛋糕 ; 法式咸蛋糕 ; 케이크 살레 ; cake salé ; Salzkuchen ; bizcocho salado ; plumcake salato ; hartige cake ; соленый пирог
+01C8 ; UmbrellaLeaf0 ; leaf umbrella ; はっぱのかさ ; 葉子雨傘 ; 叶子雨伞 ; 연꽃잎 우산 ; feuillapluie ; Blättchenschirm ; parasol hoja ; ombrello foglia ; bladparaplu ; зонт-лист
+0271 ; UmbrellaOrange0 ; orange umbrella ; オレンジのかさ ; 橘子雨傘 ; 橘子雨伞 ; 오렌지 우산 ; parapluie orange ; Orangenschirm ; paraguas naranja ; ombrello arancia ; sinaasappelparaplu ; апельсиновый зонт
+021D ; UmbrellaAutumn0 ; maple-leaf umbrella ; もみじのかさ ; 楓葉雨傘 ; 枫叶雨伞 ; 단풍잎 우산 ; parapluie feuille d'érable ; Ahornschirm ; parasol hoja de arce ; ombrello foglia d'acero ; esdoornbladparaplu ; кленовый лист-зонт
+0288 ; UmbrellaMushroom0 ; mush umbrella ; キノコのかさ ; 蘑菇雨傘 ; 蘑菇雨伞 ; 버섯 우산 ; parapluie champi ; Pilzregenschirm ; parasol seta ; ombrello fungo ; paddenstoelparaplu ; зонт-гриб
+0275 ; UmbrellaCherryblossom0 ; cherry-blossom umbrella ; さくらのかさ ; 櫻花雨傘 ; 樱花雨伞 ; 벚꽃 우산 ; parapluie fleur de cerisier ; Kirschblütenschirm ; paraguas flor de cerezo ; ombrello fiore di ciliegio ; kersenbloesemparaplu ; зонт «Цветок вишни»
+026C ; UmbrellaPeach0 ; peach umbrella ; モモのかさ ; 桃子雨傘 ; 桃子雨伞 ; 복숭아 우산 ; parapluie pêche ; Pfirsichschirm ; paraguas melocotón ; ombrello pesca ; perzikparaplu ; персиковый зонт
+026F ; UmbrellaApple0 ; apple umbrella ; リンゴのかさ ; 蘋果雨傘 ; 苹果雨伞 ; 사과 우산 ; parapluie pomme ; Apfelschirm ; paraguas manzana ; ombrello mela ; appelparaplu ; яблочный зонт
+0266 ; UmbrellaCherry0 ; cherry umbrella ; さくらんぼのかさ ; 櫻桃雨傘 ; 樱桃雨伞 ; 체리 우산 ; parapluie cerises ; Kirschschirm ; paraguas cerezas ; ombrello ciliegie ; kersenparaplu ; вишневый зонт
+0269 ; UmbrellaPear0 ; pear umbrella ; ナシのかさ ; 梨子雨傘 ; 梨子雨伞 ; 배 우산 ; parapluie poire ; Birnenschirm ; paraguas pera ; ombrello pera ; perenparaplu ; грушевый зонт
+0119 ; ToolScoop ; shovel ; スコップ ; 鏟子 ; 铲子 ; 삽 ; pelle ; Schaufel ; pala ; pala ; schep ; лопата
+010F ; ToolAxe ; axe ; オノ ; 斧頭 ; 斧头 ; 도끼 ; hache ; Axt ; hacha ; ascia ; bijl ; топор
+0016 ; ToolNet ; flimsy net ; ショボいあみ ; 簡陋捕蟲網 ; 简陋捕虫网 ; 엉성한 잠자리채 ; filet rudimentaire ; Wackelkescher ; red endeble ; retino fragile ; breekbaar net ; непрочный сачок
+011A ; ToolAngling ; fishing rod ; つりざお ; 釣竿 ; 钓竿 ; 낚싯대 ; canne à pêche ; Angel ; caña ; canna da pesca ; hengel ; удочка
+0118 ; ToolWatering ; watering can ; ジョウロ ; 澆花壺 ; 浇花壶 ; 물뿌리개 ; arrosoir ; Gießkanne ; regadera ; annaffiatoio ; gieter ; лейка
+020B ; ToolChangeStick ; star wand ; スターなステッキ ; 星星棒 ; 星星棒 ; 별 지팡이 ; baguette étoile ; Sternenstab ; varita estrella ; bacchetta stella ; sterrenstaf ; палочка со звездой
+006B ; ToolLadder ; ladder ; はしご ; 梯子 ; 梯子 ; 사다리 ; échelle ; Leiter ; escalera de mano ; scala a pioli ; ladder ; лестница
+001D ; ToolSlingshot ; slingshot ; パチンコ ; 彈弓 ; 弹弓 ; 새총 ; lance-pierre ; Schleuder ; tirachinas ; fionda ; katapult ; рогатка
+000A ; ToolAxeStone ; flimsy axe ; ショボいオノ ; 簡陋斧頭 ; 简陋斧头 ; 엉성한 도끼 ; hache rudimentaire ; Wackelaxt ; hacha endeble ; ascia fragile ; breekbare bijl ; непрочный топор
+0013 ; ToolShovelWood ; flimsy shovel ; ショボいスコップ ; 簡陋鏟子 ; 简陋铲子 ; 엉성한 삽 ; pelle rudimentaire ; Wackelschaufel ; pala endeble ; pala fragile ; breekbare schep ; непрочная лопата
+0014 ; ToolWateringWood ; flimsy watering can ; ショボいジョウロ ; 簡陋澆花壺 ; 简陋浇花壶 ; 엉성한 물뿌리개 ; arrosoir rudimentaire ; Wackelgießkanne ; regadera endeble ; annaffiatoio fragile ; breekbare gieter ; непрочная лейка
+0015 ; ToolFishingrodWood ; flimsy fishing rod ; ショボいつりざお ; 簡陋釣竿 ; 简陋钓竿 ; 엉성한 낚싯대 ; canne à pêche rudimentaire ; Wackelangel ; caña endeble ; canna da pesca fragile ; breekbare hengel ; непрочная удочка
+00B7 ; LongWoodenStick ; vaulting pole ; たかとびぼう ; 撐竿跳竿子 ; 撑杆跳竿子 ; 높이뛰기 장대 ; perche ; Sprungstab ; pértiga ; asta da salto ; polsstok ; шест
+020C ; ToolStickHyacinth ; hyacinth wand ; ヒヤシンスのステッキ ; 風信子棒 ; 风信子棒 ; 히아신스 지팡이 ; baguette jacinthe ; Hyazinthenstab ; varita jacinto ; bacchetta giacinto ; hyacintenstaf ; палочка с гиацинтом
+020D ; ToolStickAnemones ; windflower wand ; アネモネのステッキ ; 銀蓮花棒 ; 银莲花棒 ; 아네모네 지팡이 ; baguette anémone ; Anemonenstab ; varita anémona ; bacchetta anemone ; anemonenstaf ; палочка с ветреницей
+020E ; ToolStickTulip ; tulip wand ; チューリップのステッキ ; 鬱金香棒 ; 郁金香棒 ; 튤립 지팡이 ; baguette tulipe ; Tulpenstab ; varita tulipán ; bacchetta tulipano ; tulpenstaf ; палочка с тюльпаном
+020F ; ToolStickPansy ; pansy wand ; パンジーのステッキ ; 三色堇棒 ; 三色堇棒 ; 팬지 지팡이 ; baguette pensée ; Veilchenstab ; varita viola ; bacchetta viola ; viooltjesstaf ; палочка с фиалкой
+0210 ; ToolStickCosmos ; cosmos wand ; コスモスのステッキ ; 波斯菊棒 ; 波斯菊棒 ; 코스모스 지팡이 ; baguette cosmos ; Cosmeastab ; varita cosmos ; bacchetta cosmea ; cosmeastaf ; палочка с космеей
+0211 ; ToolStickRose ; rose wand ; バラのステッキ ; 玫瑰棒 ; 玫瑰棒 ; 장미 지팡이 ; baguette rose ; Rosenstab ; varita rosa ; bacchetta rosa ; rozenstaf ; палочка с розой
+0212 ; ToolStickYuri ; lily wand ; ユリのステッキ ; 百合棒 ; 百合棒 ; 백합 지팡이 ; baguette lys ; Lilienstab ; varita lirio ; bacchetta giglio ; leliestaf ; палочка с лилией
+0213 ; ToolStickChrysanthemum ; mums wand ; キクのステッキ ; 菊花棒 ; 菊花棒 ; 국화 지팡이 ; baguette chrysanthème ; Chrysanthemenstab ; varita crisantemo ; bacchetta crisantemo ; chrysantenstaf ; палочка с хризантемой
+011B ; ToolNetNormal ; net ; あみ ; 捕蟲網 ; 捕虫网 ; 잠자리채 ; filet ; Kescher ; red ; retino ; net ; сачок
+011D ; ToolAxeStoneNormal ; stone axe ; いしのオノ ; 石斧頭 ; 石斧头 ; 돌도끼 ; hache de pierre ; Steinaxt ; hacha de piedra ; ascia di pietra ; stenen bijl ; каменный топор
+0214 ; ToolStickWood ; wand ; ステッキ ; 棒子 ; 棒子 ; 지팡이 ; baguette magique ; Stab ; varita ; bacchetta ; toverstaf ; палочка
+0215 ; ToolStickSnow ; ice wand ; こおりのステッキ ; 冰之棒 ; 冰之棒 ; 얼음 지팡이 ; baguette glace ; Eisstab ; varita hielo ; bacchetta ghiaccio ; ijsstaf ; ледяная палочка
+0216 ; ToolStickShell ; shell wand ; かいがらのステッキ ; 貝殼棒 ; 贝壳棒 ; 조개껍데기 지팡이 ; baguette coquillage ; Muschelstab ; varita concha marina ; bacchetta conchiglia ; schelpenstaf ; палочка с ракушкой
+0217 ; ToolStickTree ; tree-branch wand ; きのえだのステッキ ; 樹枝棒 ; 树枝棒 ; 나뭇가지 지팡이 ; baguette branche ; Zweigstab ; varita rama ; bacchetta ramo ; wilgenstaf ; палочка из ветки
+0218 ; ToolStickMushroom ; mushroom wand ; キノコのステッキ ; 蘑菇棒 ; 蘑菇棒 ; 버섯 지팡이 ; baguette champignon ; Pilzstab ; varita champiñón ; bacchetta fungo ; paddenstoelstaf ; грибная палочка
+0219 ; ToolStickCherryblossom ; cherry-blossom wand ; さくらのステッキ ; 櫻花棒 ; 樱花棒 ; 벚꽃 지팡이 ; baguette fleurs de cerisier ; Kirschblütenstab ; varita flor de cerezo ; bacchetta ciliegio ; kersenbloesemstaf ; палочка с сакурой
+021A ; ToolStickBamboo ; bamboo wand ; たけのステッキ ; 竹棒 ; 竹棒 ; 대나무 지팡이 ; baguette bambou ; Bambusstab ; varita bambú ; bacchetta bambù ; bamboestaf ; палочка из бамбука
+021B ; ToolStickGolden ; golden wand ; おうごんのステッキ ; 黃金棒 ; 黄金棒 ; 황금 지팡이 ; baguette d'or ; Goldstab ; varita dorada ; bacchetta d'oro ; gouden staf ; золотая палочка
+021C ; ToolStickIron ; iron wand ; てつのステッキ ; 鐵棒 ; 铁棒 ; 철 지팡이 ; baguette en fer ; Eisenstab ; varita de hierro ; bacchetta d'acciaio ; ijzeren staf ; железная палочка
+0292 ; ToolNetGold ; golden net ; きんのあみ ; 金色捕蟲網 ; 金色捕虫网 ; 금 잠자리채 ; filet doré ; Goldkescher ; red de oro ; retino d'oro ; gouden net ; золотой сачок
+0293 ; ToolWateringGold ; golden watering can ; きんのジョウロ ; 金色澆花壺 ; 金色浇花壶 ; 금 물뿌리개 ; arrosoir doré ; Goldkanne ; regadera de oro ; annaffiatoio d'oro ; gouden gieter ; золотая лейка
+0294 ; ToolScoopGold ; golden shovel ; きんのスコップ ; 金色鏟子 ; 金色铲子 ; 금 삽 ; pelle dorée ; Goldschaufel ; pala de oro ; pala d'oro ; gouden schep ; золотая лопата
+0295 ; ToolSlingshotGold ; golden slingshot ; きんのパチンコ ; 金色彈弓 ; 金色弹弓 ; 금 새총 ; lance-pierre doré ; Goldschleuder ; tirachinas de oro ; fionda d'oro ; gouden katapult ; золотая рогатка
+0296 ; ToolFishingrodGold ; golden rod ; きんのつりざお ; 金色釣竿 ; 金色钓竿 ; 금 낚싯대 ; canne à pêche dorée ; Goldangel ; caña de oro ; canna d'oro ; gouden hengel ; золотая удочка
+0297 ; ToolAxeGold ; golden axe ; きんのオノ ; 金色斧頭 ; 金色斧头 ; 금도끼 ; hache dorée ; Goldaxt ; hacha de oro ; ascia d'oro ; gouden bijl ; золотой топор
+02C7 ; ToolStickEgg ; Bunny Day wand ; イースターなステッキ ; 復活節棒 ; 复活节棒 ; 이스터 지팡이 ; baguette fête des œufs ; Häschentag-Stab ; varita Caza del Huevo ; bacchetta caccia all'uovo ; eierstaf ; палочка на День зайцев
+02CB ; ToolStickJune ; wedding wand ; ウェディングなステッキ ; 婚禮棒 ; 婚礼棒 ; 웨딩 지팡이 ; baguette de mariage ; Hochzeitsstab ; varita ramo de boda ; bacchetta nuziale ; trouwstaf ; свадебная палочка
+02E0 ; ToolStickHalloween ; spooky wand ; ハロウィンなステッキ ; 萬聖節棒 ; 万圣节棒 ; 할로윈 지팡이 ; baguette Halloween ; Kürbisstab ; varita calabaza ; bacchetta brividi ; pompoenstaf ; жуткая палочка
+0306 ; ToolStickShamrock ; shamrock wand ; シャムロックステッキ ; 三葉草棒 ; 三叶草棒 ; 성 패트릭 지팡이 ; baguette trèfle ; Kleeblattstab ; varita trébol ; bacchetta trifoglio ; klaverstaf ; палочка с трилистником
+0145 ; RoomTexWallSteel00 ; steel-frame wall ; てっこつのかべ ; 鋼筋牆 ; 钢架墙 ; 철근 벽 ; mur poutres en fer ; Eisengittertapete ; pared viga de hierro ; muro struttura in ferro ; wand met stalen balken ; каркасная стена
+0138 ; RoomTexWallHerringbone00 ; brown herringbone wall ; ちゃいろいヘリンボーンのかべ ; 茶色人字斜紋牆 ; 茶色人字斜纹墙 ; 갈색 헤링본 벽 ; mur à chevrons beige ; Hell-Fischgrätwand ; pared espiga clara ; muro spina di pesce beige ; lichtbruine visgraatwand ; светлая стена-елочка
+0139 ; RoomTexWallHerringbone01 ; chocolate herringbone wall ; こげちゃのヘリンボーンのかべ ; 深棕色人字斜紋牆 ; 深棕色人字斜纹墙 ; 고동색 헤링본 벽 ; mur à chevrons chocolat ; Dunkel-Fischgrätwand ; pared espiga oscura ; muro spina di pesce cacao ; donkerbruine visgraatwand ; темная стена-елочка
+0144 ; RoomTexWallStone00 ; rustic-stone wall ; ランダムストーンのかべ ; 不規則石頭牆 ; 不规则石头墙 ; 마구 붙인 돌 벽 ; mur en pierres traditionnel ; Bruchsteinwand ; pared piedra rústica ; muro in pietra rustica ; rustieke stenen wand ; стена из грубого камня
+012A ; RoomTexWallFusumaGorgeous00 ; gold-screen wall ; きんぱくのふすま ; 金箔日式拉門 ; 金箔日式拉门 ; 황금 미닫이 문 벽 ; mur paravent ; Goldtürtapete ; pared oriental ; muro porta scorrevole d'oro ; gouden scherm ; золотая стена-ширма
+0142 ; RoomTexWallBamboo00 ; bamboo wall ; バンブーなかべ ; 竹子牆 ; 竹子墙 ; 대나무 벽 ; mur en bambou ; Bambuswand ; pared bambú ; muro bambù ; bamboewand ; бамбуковая стена
+013D ; RoomTexWallLibrary00 ; classic-library wall ; ライブラリーなかべ ; 圖書館牆 ; 图书馆墙 ; 도서관 벽 ; mur bibliothèque classique ; Klassik-Bücherwand ; pared biblioteca de clásicos ; muro libreria classica ; klassieke bibliotheekwand ; стена-библиотека
+013C ; RoomTexWallLibrary01 ; manga-library wall ; マンガライブラリーなかべ ; 漫畫圖書館牆 ; 漫画图书馆墙 ; 만화 도서관 벽 ; mur bibliothèque manga ; Manga-Bücherwand ; pared biblioteca de manga ; muro libreria di manga ; mangabibliotheekwand ; стена «Библиотека манги»
+013B ; RoomTexWallLog00 ; cabin wall ; ログハウスのかべ ; 木屋牆 ; 木屋墙 ; 통나무집 벽 ; mur chalet ; Blockhauswand ; pared cabaña ; muro rustico ; blokhutwand ; бревенчатая стена
+013A ; RoomTexWallFireWood00 ; stacked-wood wall ; ウッディなかべ ; 木質牆 ; 木质墙 ; 장작더미 벽 ; mur tronçons de bois ; Holzstapelwand ; pared leñera ; muro catasta di legna ; houtstapelwand ; стена «Поленница»
+012C ; RoomTexWallChikurin00 ; bamboo-grove wall ; ちくりんのかべ ; 竹林牆 ; 竹林墙 ; 대나무 숲 벽 ; mur forêt de bambou ; Bambuswaldtapete ; pared bosque bambú ; muro canneto bambù ; bamboeboswand ; стена с бамбуком
+0143 ; RoomTexWallSnowCrystal00 ; snowflake wall ; スノーフレークのかべがみ ; 雪花壁紙 ; 雪花壁纸 ; 눈꽃 벽지 ; mur flocons ; Schneeflockentapete ; pared nevada ; muro fiocchi di neve ; sneeuwvlokjeswand ; стена со снежинками
+0135 ; RoomTexWallWildWood00 ; wild-wood wall ; ワイルドウッドのかべ ; 原木牆 ; 原木墙 ; 거친 나무 벽 ; mur bois sauvage ; Wildholzwand ; panelado madera de deriva ; muro legno selvatico ; wrakhoutmuur ; стена из грубого дерева
+0136 ; RoomTexWallMixPlankWood00 ; wooden-mosaic wall ; よせぎのかべ ; 嵌木牆 ; 嵌木墙 ; 나무로 짠 벽 ; mur lambris fin ; Mischholzwand ; pared madera mixta ; muro a liste di legno ; blankhouten mozaïekwand ; наборная стена
+0137 ; RoomTexWallMixPlankWood01 ; dark wooden-mosaic wall ; ダークなよせぎのかべ ; 深色嵌木牆 ; 深色嵌木墙 ; 짙은 색 나무로 짠 벽 ; mur lambris fin sombre ; Dunkel-Mischholzwand ; pared madera mixta oscura ; muro a liste di legno scuro ; donkerhouten mozaïekwand ; темная наборная стена
+0128 ; RoomTexWallHoney00 ; honeycomb wall ; ビーハイブなかべ ; 蜂巢牆 ; 蜂巢墙 ; 벌집 벽 ; mur rayons de miel ; Bienenwabenwand ; pared melosa ; muro alveare ; honingraatwand ; стена-соты
+012B ; RoomTexWallGold00 ; golden wall ; おうごんのかべ ; 黃金牆 ; 黄金墙 ; 황금 벽 ; mur d'or ; Goldtapete ; pared dorada ; muro d'oro ; gouden wand ; золотая стена
+0140 ; RoomTexWallMixwood00 ; modern wood wall ; ミックスウッドのかべ ; 拼木牆 ; 拼木墙 ; 믹스우드 벽 ; mur bois moderne ; Buntholzwand ; pared listones ; muro legno ; moderne houten wand ; соврем. стена из дерева
+0122 ; RoomSpWallAutumun00 ; autumn wall ; こうようのかべ ; 楓葉牆 ; 枫叶墙 ; 단풍 벽 ; mur automne ; Herbstlaubtapete ; pared otoñal ; muro autunnale ; herfstwand ; стена «Осень»
+013F ; RoomTexWallCedar00 ; wooden-knot wall ; ふしありウッドウォール ; 木節牆 ; 木节墙 ; 우드 벽 ; mur lambris avec nœuds ; Zirbenverkleidung ; panelado madera nudosa ; muro legno nodoso ; houtenknoestwand ; стена из дерева с сучками
+012F ; RoomTexWallOrange00 ; orange wall ; オレンジのかべがみ ; 橘子壁紙 ; 橘子壁纸 ; 오렌지 벽지 ; mur oranges ; Orangentapete ; pared naranjas ; muro arance ; sinaasappelwand ; стена с апельсинами
+0130 ; RoomTexWallApple00 ; apple wall ; リンゴのかべがみ ; 蘋果壁紙 ; 苹果壁纸 ; 사과 벽지 ; mur pommes ; Apfeltapete ; pared manzanas ; muro mele ; appelwand ; стена с яблоками
+0131 ; RoomTexWallPear00 ; pear wall ; ナシのかべがみ ; 梨子壁紙 ; 梨子壁纸 ; 배 벽지 ; mur poires ; Birnentapete ; pared peras ; muro pere ; perenwand ; стена с грушами
+0132 ; RoomTexWallPeach00 ; peach wall ; モモのかべがみ ; 桃子壁紙 ; 桃子壁纸 ; 복숭아 벽지 ; mur pêches ; Pfirsichtapete ; pared melocotones ; muro pesche ; perzikwand ; стена с персиками
+0133 ; RoomTexWallCherry00 ; cherry wall ; さくらんぼのかべがみ ; 櫻桃壁紙 ; 樱桃壁纸 ; 체리 벽지 ; mur cerises ; Kirschtapete ; pared cerezas ; muro ciliegie ; kersenwand ; стена с вишнями
+0141 ; RoomTexWallSolidWood00 ; sakura-wood wall ; さくらのウッドウォール ; 櫻花木牆 ; 樱花木墙 ; 벚꽃색 우드 벽 ; mur bois sakura ; Kirschholzverkleidung ; pared cerezo ; muro legno rosa ; kersenbloesemroze wand ; стена из вишнев. дерева
+0134 ; RoomTexWallMush00 ; mush wall ; キノコのかべがみ ; 蘑菇壁紙 ; 蘑菇壁纸 ; 버섯 벽지 ; mur champi ; Waldpilztapete ; pared hongo ; muro funghetti ; paddenstoelenwand ; стена с грибами
+013E ; RoomTexWallBasement00 ; stone wall ; いしのかべ ; 石板牆 ; 石板墙 ; 돌담 벽 ; mur de pierre ; Steinwand ; pared piedra ; muro pietra ; stenen wand ; каменная стена
+01D7 ; RoomTexWallJukai00 ; woodland wall ; じゅかいなかべ ; 樹海牆 ; 树海墙 ; 울창한 숲 벽 ; mur sylvestre ; Urwaldtapete ; pared selva ; muro foresta ; oerwoudwand ; лесная стена
+012D ; RoomTexWallGarbage00 ; garbage-heap wall ; ゴミのやまなかべ ; 垃圾堆牆 ; 垃圾堆墙 ; 쓰레기 더미 벽 ; mur dépotoir ; Müllbergtapete ; pared vertedero ; muro discarica ; stortplaatswand ; стена «Свалка»
+0123 ; RoomSpWallXmas00 ; Jingle wall ; クリスマスなかべ ; 聖誕牆 ; 圣诞墙 ; 크리스마스 벽 ; mur festif ; Festtagstapete ; pared festiva ; muro Jingle ; feestboomwand ; новогодняя стена
+02C4 ; RoomTexWallEaster00 ; Bunny Day wall ; イースターなかべがみ ; 復活節壁紙 ; 复活节壁纸 ; 이스터 벽지 ; mur fête des œufs ; Häschentag-Tapete ; pared Caza del Huevo ; muro caccia all'uovo ; eierwand ; стена «День зайцев»
+0146 ; RoomTexWallJungle00 ; jungle wall ; ジャングルのかべがみ ; 叢林壁紙 ; 丛林壁纸 ; 정글 벽 ; mur jungle ; Dschungeltapete ; pared jungla ; muro giungla ; junglewand ; стена «Джунгли»
+0127 ; RoomSpWallGelande00 ; ski-slope wall ; ゲレンデなかべがみ ; 滑雪場壁紙 ; 滑雪场壁纸 ; 스키장 벽 ; mur piste de ski ; Skipistentapete ; pared esquí ; muro pista da sci ; skihellingwand ; стена «Лыжный курорт»
+0126 ; RoomSpWallStarSky00 ; starry-sky wall ; ほしぞらのかべ ; 星空牆 ; 星空墙 ; 별이 빛나는 벽 ; mur ciel étoilé ; Sternenhimmeltapete ; horizonte lunar ; muro cielo stellato ; heelalwand ; стена «Ночное небо»
+0125 ; RoomSpWallIce00 ; ice wall ; アイスなかべがみ ; 冰雪壁紙 ; 冰雪壁纸 ; 아이스 벽 ; mur glace ; Eistapete ; pared hielo ; muro ghiaccio ; ijswand ; заледеневшая стена
+0299 ; RoomSpWallFishTank00 ; underwater wall ; すいちゅうのかべがみ ; 水中壁紙 ; 水中壁纸 ; 바닷속 벽 ; mur fonds marins ; Meerestapete ; pared fondo marino ; muro sottomarino ; onderwaterwand ; подводная стена
+0124 ; RoomSpWallSF00 ; sci-fi wall ; うちゅうせんのかべ ; 太空船牆 ; 太空船墙 ; 우주선 벽 ; mur science-fiction ; Raumschifftapete ; pared nave espacial ; muro astronave ; sciencefictionwand ; стена космолета
+011E ; RoomSpWallStarPrint00 ; starry wall ; スターなかべ ; 星星牆 ; 星星墙 ; 별 무늬 벽지 ; mur d'étoiles ; Sternentapete ; pared estrellas plateadas ; muro stellato ; sterrenwand ; стена со звездами
+029A ; RoomSpWallTropical00 ; tropical vista ; みなみのうみなかべ ; 南方海洋牆 ; 南方海洋墙 ; 남쪽 해변 벽 ; mur vue tropiques ; Tropentapete ; pared tropical ; muro tropicale ; strandwand ; тропическая стена
+012E ; RoomTexWallIceFloe00 ; iceberg wall ; ひょうざんのかべ ; 冰山牆 ; 冰山墙 ; 빙산 벽 ; mur banquise ; Eisbergtapete ; pared glaciar ; muro artico ; ijsbergwand ; арктическая стена
+01E4 ; RoomTexWallMushForest00 ; forest wall ; キノコのもりのかべ ; 蘑菇森林牆 ; 蘑菇森林墙 ; 버섯 숲 벽지 ; mur forêt ; Waldtapete ; pared bosque ; muro bosco ; boswand ; стена с дремучим лесом
+01E0 ; RoomSpWallSakura00 ; cherry-blossom-trees wall ; さくらなみきのかべ ; 櫻花樹牆 ; 樱花树墙 ; 벚나무길 벽 ; mur fleurs de cerisier ; Kirschblütenwand ; pared cerezos en flor ; muro fiori di ciliegio ; kersenbloesemwand ; стена с сакурой
+02D9 ; RoomSpWallMermaid00 ; mermaid wall ; マーメイドなかべがみ ; 人魚壁紙 ; 人鱼壁纸 ; 머메이드 벽지 ; mur sirène ; Nixentapete ; pared sirena ; muro sirena ; meerminnenwand ; стена русалки
+0305 ; RoomSpWallGlowMoss00 ; glowing-moss forest wall ; ヒカリゴケのもりのかべ ; 光蘚森林牆 ; 光藓森林墙 ; 빛이끼 숲 벽 ; mur forêt schistostega ; Leuchtmooswald-Tapete ; pared musgo lumin. bosque ; muro bosco muschio lumin. ; lichtmosboswand ; лесн. стена со свет. мхом
+02F0 ; RoomSpWallSnowy00 ; falling-snow wall ; ゆきのふるかべ ; 下雪牆 ; 下雪墙 ; 눈 내리는 벽 ; mur chute de neige ; Schneefall-Tapete ; pared noche nevada ; muro nevicata ; sneeuwvalwand ; стена со снегопадом
+02FD ; RoomSpWallGlowRemains00 ; glowing-moss ruins wall ; ヒカリゴケのいせきのかべ ; 光蘚遺跡牆 ; 光藓遗迹墙 ; 빛이끼 유적 벽 ; mur ruines schistostega ; Leuchtmoosruinen-Tapete ; pared musgo lumin. ruinas ; muro rovine muschio lumin. ; lichtmosruïnewand ; стена-руина со свет. мхом
+02FE ; RoomSpWallRopenet00 ; rope-net wall ; ロープネットのかべ ; 繩網牆 ; 绳网墙 ; 로프네트 벽 ; mur filet de corde ; Seilnetz-Tapete ; pared malla ; muro rete ; touwnetwand ; стена-сетка
+0304 ; RoomSpWallGlowCave00 ; glowing-moss cave wall ; ヒカリゴケのどうくつのかべ ; 光蘚洞穴牆 ; 光藓洞穴墙 ; 빛이끼 동굴 벽 ; mur caverne schistostega ; Leuchtmooshöhlen-Tapete ; pared musgo lumin. cueva ; muro grotta muschio lumin. ; lichtmosgrotwand ; пещер. стена со свет. мхом
+01DA ; RoomTexFloorBasement00 ; basement flooring ; ちかしつのゆか ; 地下室地板 ; 地下室地板 ; 지하실 바닥 ; sol de cave ; Kellerboden ; suelo sótano ; pavimento cantina ; keldervloer ; пол из булыжников
+01E9 ; RoomTexFloorSteel00 ; steel flooring ; てっぱんのゆか ; 鐵板地板 ; 铁板地板 ; 철판 바닥 ; sol en acier ; Eisenbelag ; suelo acero ; pavimento acciaio ; stalen vloer ; стальной пол
+01E5 ; RoomTexFloorBamboo00 ; bamboo flooring ; バンブーなゆか ; 竹子地板 ; 竹子地板 ; 대나무 바닥 ; sol en bambou ; Bambusboden ; suelo bambú ; pavimento bambù ; bamboevloer ; бамбуковый пол
+01DE ; RoomTexFloorLunar00 ; lunar surface ; げつめんのゆか ; 月球表面地板 ; 月球表面地板 ; 달표면 바닥 ; sol lunaire ; Mondlandschaft ; superficie lunar ; suolo lunare ; maanlandschap ; лунный пол
+029D ; RoomTexFloorSand00 ; sandy-beach flooring ; すなはまのゆか ; 沙灘地板 ; 沙滩地板 ; 모래사장 바닥 ; sol plage de sable ; Sandboden ; suelo playa tropical ; pavimento spiaggia ; zandstrandvloer ; пляжный пол
+01E7 ; RoomTexFloorLawn00 ; backyard lawn ; しばふのゆか ; 草坪地板 ; 草坪地板 ; 잔디밭 바닥 ; gazon patio ; Wiese ; suelo césped ; moquette cortile ; tuingazon ; пол-лужайка
+01D9 ; RoomTexFloorBill00 ; money flooring ; マネーなゆか ; 金錢地板 ; 金钱地板 ; 돈다발 바닥 ; sol billets de banque ; Monetenboden ; suelo dinero ; pavimento banconote ; poenvloer ; пол с купюрами
+01E3 ; RoomTexFloorGelande00 ; ski-slope flooring ; ゲレンデのゆか ; 滑雪場地板 ; 滑雪场地板 ; 스키장 바닥 ; sol piste de ski ; Skipistenboden ; suelo esquí ; pavimento pista da sci ; skihellingvloer ; пол «Лыжный курорт»
+01DC ; RoomTexFloorAutumun00 ; colored-leaves flooring ; こうようのゆか ; 楓葉地板 ; 枫叶地板 ; 단풍 바닥 ; sol automne ; Herbstlaubboden ; suelo otoñal ; pavimento autunnale ; herfstblaadjesvloer ; пол «Листопад»
+01D8 ; RoomTexFloorHoney00 ; honeycomb flooring ; ハチミツなゆか ; 蜂蜜地板 ; 蜂蜜地板 ; 벌집 바닥 ; sol rayons de miel ; Bienenwabenboden ; suelo meloso ; pavimento alveare ; honingraatvloer ; пол «Соты»
+01DB ; RoomTexFloorGold00 ; golden flooring ; おうごんのゆか ; 黃金地板 ; 黄金地板 ; 황금 바닥 ; sol d'or ; Goldboden ; suelo dorado ; pavimento d'oro ; gouden vloer ; золотой пол
+0235 ; RoomSpFloorWater00 ; water flooring ; みなものゆか ; 水面地板 ; 水面地板 ; 수면 바닥 ; sol eau ; Wasseroberfläche ; suelo fondo piscina ; pavimento acqua ; watervloer ; пол с прозрачной водой
+0289 ; RoomTexFloorSolidWood00 ; sakura-wood flooring ; さくらのウッドフローリング ; 櫻花木地板 ; 粉红色木地板 ; 벚꽃색 우드 바닥 ; sol bois sakura ; Kirschholzboden ; parqué cerezo ; pavimento legno rosa ; kersenbloesemroze vloer ; пол из вишневого дерева
+01E6 ; RoomTexFloorGarbage00 ; garbage-heap flooring ; おへやのゆか ; 垃圾堆地板 ; 房间地板 ; 쓰레기장 바닥 ; sol dépotoir ; Müllbergboden ; suelo vertedero ; pavimento discarica ; stortplaatsvloer ; пол «Свалка»
+0121 ; RoomSpFloorIceFloe00 ; iceberg flooring ; りゅうひょうのゆか ; 流冰地板 ; 流冰地板 ; 빙하 바닥 ; sol banquise ; Eisbergboden ; suelo glaciar ; pavimento artico ; ijsbergvloer ; арктический пол
+0234 ; RoomSpFloorFishTank00 ; underwater flooring ; うみのそこのゆか ; 海底地板 ; 海底地板 ; 해저 바닥 ; sol fonds marins ; Meeresboden ; suelo fondo marino ; pavimento sottomarino ; onderwatervloer ; подводный пол
+01E2 ; RoomSpFloorGalaxy00 ; galaxy flooring ; ぎんがけいのゆか ; 銀河系地板 ; 银河系地板 ; 은하계 바닥 ; sol galaxie ; Weltraumboden ; suelo galaxia ; pavimento galassia ; melkwegvloer ; космический пол
+01DD ; RoomSpFloorSF00 ; sci-fi flooring ; うちゅうせんのゆか ; 太空船地板 ; 太空船地板 ; 우주선 바닥 ; sol science-fiction ; Raumschiffboden ; suelo nave espacial ; pavimento astronave ; sciencefictionvloer ; пол космолета
+01D6 ; RoomTexFloorJungle00 ; jungle flooring ; ジャングルのゆか ; 叢林地板 ; 丛林地板 ; 정글 바닥 ; sol jungle ; Dschungelboden ; suelo jungla ; pavimento giungla ; junglevloer ; пол «Джунгли»
+0120 ; RoomSpFloorIce00 ; ice flooring ; アイスなゆか ; 冰雪地板 ; 冰雪地板 ; 아이스 바닥 ; sol glace ; Eisboden ; suelo hielo ; pavimento ghiaccio ; ijsvloer ; заледеневший пол
+01E8 ; RoomTexFloorMushForest00 ; forest flooring ; キノコのもりのゆか ; 蘑菇森林地板 ; 蘑菇森林地板 ; 버섯 숲 바닥 ; sol forêt ; Waldboden ; suelo bosque ; pavimento bosco ; bosvloer ; лесной пол
+01DF ; RoomTexFloorSakura00 ; cherry-blossom flooring ; さくらのじゅうたん ; 櫻花地板 ; 樱花地毯 ; 벚꽃 카펫 바닥 ; sol fleurs de cerisier ; Kirschblütenboden ; suelo cerezos en flor ; moquette fiori di ciliegio ; kersenbloesemvloer ; пол с лепестками сакуры
+029B ; RoomTexFloorSandStar00 ; starry-sands flooring ; ほしのすなはまのゆか ; 星星沙灘地板 ; 星星沙滩地板 ; 별빛 모래사장 바닥 ; sol plage étoilée ; Glitzersandboden ; suelo playa de arena ; pavimento sabbia deserto ; glitterzandvloer ; блестящий пол из песка
+02C6 ; RoomTexFloorEaster00 ; Bunny Day flooring ; イースターなゆか ; 復活節地板 ; 复活节地板 ; 이스터 바닥 ; sol fête des œufs ; Häschentag-Boden ; suelo Caza del Huevo ; pavimento caccia all'uovo ; eiervloer ; пол «День зайцев»
+02DA ; RoomSpFloorMermaid00 ; mermaid flooring ; マーメイドなゆか ; 人魚地板 ; 人鱼地板 ; 머메이드 바닥 ; sol sirène ; Nixenboden ; suelo sirena ; pavimento sirena ; meerminnenvloer ; пол русалки
+0302 ; RoomSpFloorGlowMoss00 ; glowing-moss flooring ; ヒカリゴケのもりのゆか ; 光蘚森林地板 ; 光藓森林地板 ; 빛이끼 숲 바닥 ; sol schistostega ; Leuchtmooswald-Boden ; suelo musgo luminoso ; pavimento muschio lumin. ; lichtmosvloer ; пол со светящимся мхом
+0303 ; RoomSpFloorRopenet00 ; rope-net flooring ; ロープネットのゆか ; 繩網地板 ; 绳网地板 ; 로프네트 바닥 ; sol filet de corde ; Seilnetz-Boden ; suelo malla ; pavimento rete ; touwnetvloer ; пол с сеткой
+021E ; RugOtherAppleM00 ; apple rug ; リンゴのラグ ; 蘋果地毯 ; 苹果地毯 ; 사과 러그 ; tapis pomme ; Apfel-Teppich ; alfombra manzana ; tappeto mela ; appeltapijt ; ковер-яблоко
+021F ; RugOtherCherryM00 ; cherry rug ; さくらんぼのラグ ; 櫻桃地毯 ; 樱桃地毯 ; 체리 러그 ; tapis cerises ; Kirsch-Teppich ; alfombra cerezas ; tappeto ciliegia ; kersentapijt ; ковер-вишни
+0220 ; RugOtherOrangeM00 ; orange rug ; オレンジのラグ ; 橘子地毯 ; 橘子地毯 ; 오렌지 러그 ; tapis orange ; Orangen-Teppich ; alfombra rodaja de naranja ; tappeto arancia ; sinaasappeltapijt ; ковер-апельсин
+0221 ; RugOtherPeachM00 ; peach rug ; モモのラグ ; 桃子地毯 ; 桃子地毯 ; 복숭아 러그 ; tapis pêche ; Pfirsich-Teppich ; alfombra melocotón ; tappeto pesca ; perziktapijt ; ковер-персик
+0222 ; RugOtherPearM00 ; pear rug ; ナシのラグ ; 梨子地毯 ; 梨子地毯 ; 배 러그 ; tapis poire ; Birnen-Teppich ; alfombra pera ; tappeto pera ; peertapijt ; ковер-груша
+029C ; RugOtherShellM00 ; shell rug ; かいがらのラグ ; 貝殼地毯 ; 贝壳地毯 ; 조개껍데기 러그 ; tapis coquillage ; Muschelteppich ; alfombra concha ; tappeto conchiglia ; schelptapijt ; ковер-ракушка
+02EA ; RugSquareChristmasL00 ; festive rug ; クリスマスなラグ ; 聖誕節地毯 ; 圣诞节地毯 ; 크리스마스 러그 ; tapis de fêtes ; Festtagsteppich ; alfombra festiva ; tappeto festivo ; feesttapijt ; ковер «Новый год»
+02C5 ; RugOtherEasterM00 ; Bunny Day rug ; イースターなラグ ; 復活節地毯 ; 复活节地毯 ; 이스터 러그 ; tapis fête des œufs ; Häschentag-Teppich ; alfombra Caza del Huevo ; tappeto caccia all'uovo ; eiertapijt ; ковер «День зайцев»
+029F ; RugRectBambooM00 ; light bamboo rug ; ライトなバンブーラグ ; 淺色竹地毯 ; 浅色竹子地垫 ; 밝은 대나무 러그 ; tapis bambou clair ; Hell-Bambusmatte ; alfombra bambú clara ; tappeto di bambù chiaro ; lichte bamboemat ; светлый бамбук. коврик
+02A0 ; RugRectBambooM01 ; dark bamboo rug ; ダークなバンブーラグ ; 深色竹地毯 ; 深色竹子地垫 ; 어두운 대나무 러그 ; tapis bambou sombre ; Dunkel-Bambusmatte ; alfombra bambú oscura ; tappeto di bambù scuro ; donkere bamboemat ; темный бамбук. коврик
+02F5 ; RugOtherShellSnailM00 ; summer-shell rug ; なつのかいがらのラグ ; 夏天貝殼地毯 ; 夏天贝壳地毯 ; 여름 조개껍데기 러그 ; tapis coquillage estival ; Sommer-Muschelteppich ; alfombra concha veraniega ; tappeto conchiglia estivo ; zomerschelptapijt ; летний ковер-ракушка
+03D7 ; RugOtherStarM00 ; yellow star rug ; きいろいおほしさまのラグ ; 黃色星星地毯 ; 黄色星星地毯 ; 노란 별님 러그 ; tapis étoile jaune ; Gelb-Sternteppich ; alfombra estrella amarilla ; tappeto stella giallo ; geel stertapijt ; желтый ковер-звезда
+03D8 ; RugRectBambooBathmatS00 ; green bamboo mat ; みどりのたけのしきもの ; 綠色竹子鋪墊 ; 绿色竹子铺垫 ; 초록색 대나무 깔개 ; tapis bambou vert ; Grün-Bambusmatte ; alfombra bambú verde ; tappeto bambù verde ; groene bamboemat ; зел. бамбуковая циновка
+03D9 ; RugRectBambooBathmatS01 ; yellow bamboo mat ; きいろいたけのしきもの ; 黃色竹子鋪墊 ; 黄色竹子铺垫 ; 노란색 대나무 깔개 ; tapis bambou jaune ; Gelb-Bambusmatte ; alfombra bambú amarilla ; tappeto bambù giallo ; gele bamboemat ; желт. бамбуковая циновка
+0346 ; RugOtherAcornM00 ; acorn rug ; どんぐりのラグ ; 橡栗地毯 ; 橡栗地毯 ; 도토리 러그 ; tapis gland ; Eichelteppich ; alfombra bellota ; tappeto ghianda ; eikeltapijt ; ковер «Желудь»
+0347 ; RugOtherSakuraM00 ; cherry-blossom rug ; さくらのラグ ; 櫻花地毯 ; 樱花地垫 ; 벚꽃 러그 ; tapis fleur de cerisier ; Kirschblütenteppich ; alfombra flor de cerezo ; tappeto fiore di ciliegio ; kersenbloesemtapijt ; ковер «Цвет вишни»
+03DA ; RugOtherStumpM00 ; tree-stump rug ; きりかぶのラグ ; 樹樁地毯 ; 树桩地毯 ; 그루터기 러그 ; tapis souche ; Baumstammteppich ; alfombra tocón ; tappeto ceppo d'albero ; boomstronktapijt ; ковер «Пенек»
+03D3 ; RugOtherMapleM00 ; maple-leaf rug ; もみじのラグ ; 楓葉地毯 ; 枫叶地毯 ; 단풍잎 러그 ; tapis feuille d'érable ; Ahornblattteppich ; alfombra hoja de arce ; tappeto foglia d'acero ; esdoornbladtapijt ; ковер «Кленовый лист»
+03DB ; RugRectBambooS00 ; light bamboo bath mat ; ライトなバンブーバスマット ; 淺色竹子浴室地墊 ; 浅色竹子浴室地垫 ; 라이트 대나무 욕실 매트 ; tapis de bain bambou clair ; Hell-Bambusbadematte ; alfombrilla bambú clara ; tapp. bagno bambù chiaro ; lichte bamboebadmat ; св. бамб. коврик в ванную
+03DC ; RugRectBambooS01 ; dark bamboo bath mat ; ダークなバンブーバスマット ; 深色竹子浴室地墊 ; 深色竹子浴室地垫 ; 다크 대나무 욕실 매트 ; tapis de bain bambou foncé ; Dunkel-Bambusbadematte ; alfombrilla bambú oscura ; tapp. bagno bambù scuro ; donkere bamboebadmat ; т. бамб. коврик в ванную
+03DD ; RugRoundZodiacM00 ; starry-skies rug ; ほしぞらのラグ ; 星空地毯 ; 星空地毯 ; 별이 빛나는 러그 ; tapis constellation ; Sternbilder-Teppich ; alfombra cielo estrellado ; tappeto cielo stellato ; sterrenhemeltapijt ; ковер со звездами
+02D8 ; RugOtherMermaidM00 ; mermaid rug ; マーメイドなラグ ; 人魚地毯 ; 人鱼地毯 ; 머메이드 러그 ; tapis sirène ; Nixenteppich ; alfombra sirena ; tappeto sirena ; meerminnentapijt ; ковер русалки
+0414 ; RugSquareIceS00 ; frozen floor tiles ; こおりのフロアタイル ; 冰地磚地墊 ; 冰地砖地垫 ; 얼음 플로어 타일 ; carpette arctique tuiles ; Eis-Fliesenvierer ; estera losa iceberg ; set di piastrelle iceberg ; bevroren vloertegels ; ледяная плитка на пол
+0300 ; RugRectGlowMossM00 ; glowing-moss rug ; ヒカリゴケのラグ ; 光蘚地毯 ; 光藓地毯 ; 빛이끼 러그 ; tapis carré schistostega ; Leuchtmoosteppich ; estera musgo luminoso ; tappeto muschio luminoso ; lichtmostapijt ; ковер со светящимся мхом
+0301 ; RugRoundGlowMossS00 ; round glowing-moss rug ; ヒカリゴケのラウンドマット ; 光蘚圓形地墊 ; 光藓圆形地垫 ; 빛이끼 라운드 매트 ; tapis rond schistostega ; Rund-Leuchtmoosteppich ; estera musgo lum. redonda ; tappeto muschio lum. tondo ; rond lichtmostapijt ; кругл. ковер со свет. мхом
+02FC ; RugRoundVineS00 ; round vine rug ; ツルのラウンドラグ ; 藤蔓圓形地毯 ; 藤蔓圆形地垫 ; 덩굴 라운드 러그 ; tapis rond vigne ; Rund-Rankenteppich ; estera enredadera redonda ; tappeto edera tondo ; rond klimplanttapijt ; круглый ковер из лозы
+00E3 ; FtrDoorOrnamentWreathCosmos ; cosmos wreath ; コスモスのリース ; 波斯菊花圈 ; 波斯菊花环 ; 코스모스 리스 ; couronne cosmos ; Cosmeentürkranz ; corona cosmos ; ghirlanda cosmee ; cosmeakrans ; венок с космеями
+00DE ; FtrDoorOrnamentWreathIce ; snowflake wreath ; ゆきのけっしょうのリース ; 雪花花圈 ; 雪花花环 ; 눈의 결정 리스 ; décoration flocon ; Schneeflockentürschmuck ; placa copo de nieve ; ghirlanda fiocco di neve ; sneeuwvlokkenkrans ; венок-снежинка
+00DB ; FtrDoorOrnamentWreathShell ; shell wreath ; かいがらのリース ; 貝殼花圈 ; 贝壳花环 ; 조개껍데기 리스 ; couronne coquillages ; Muscheltürkranz ; corona conchas ; ghirlanda tema conchiglia ; schelpenkrans ; венок с ракушками
+00E2 ; FtrDoorOrnamentWreathOrnament ; ornament wreath ; オーナメントのリース ; 裝飾花圈 ; 装饰花环 ; 오너먼트 리스 ; couronne décorative ; Dekotürkranz ; corona bolas decorativas ; ghirlanda con palline ; feestelijke krans ; венок из украшений
+00DF ; FtrDoorOrnamentWreathFruit ; fruit wreath ; フルーツのリース ; 水果花圈 ; 水果花环 ; 과일 리스 ; couronne fruits ; Früchtetürkranz ; corona frutal ; ghirlanda frutta ; fruitkrans ; венок с фруктами
+00DD ; FtrDoorOrnamentWreathMushroom ; mushroom wreath ; キノコのリース ; 蘑菇花圈 ; 蘑菇花环 ; 버섯 리스 ; couronne champignons ; Pilztürkranz ; corona setas ; ghirlanda tema fungo ; paddenstoelenkrans ; венок с грибами
+00E1 ; FtrDoorOrnamentWreathBranch ; tree branch wreath ; きのえだのリース ; 樹枝花圈 ; 树枝花环 ; 나뭇가지 리스 ; couronne branches ; Zweigetürkranz ; corona ramas ; ghirlanda rami ; twijgenkrans ; венок из веток
+01D3 ; FtrDoorPlateBone ; bone doorplate ; ボーンなドアプレート ; 骨頭門牌 ; 骨头门牌 ; 뼈다귀 문패 ; plaque nonosse ; Hundeknochentürschild ; placa hueso ; targa da porta osso ; bottendeurplaatje ; табличка-косточка
+01D4 ; FtrDoorOrnamentIron ; iron doorplate ; アイアンなドアプレート ; 鑄鐵門牌 ; 铸铁门牌 ; 아이언 문패 ; plaque en fer forgé ; Gusseisentürschild ; placa hierro forjado ; targa da porta di ferro ; ijzeren deurplaatje ; железное украшение
+00E4 ; FtrDoorOrnamentWreathAnemone ; windflower wreath ; アネモネのリース ; 銀蓮花花圈 ; 银莲花花环 ; 아네모네 리스 ; couronne anémones ; Anemonentürkranz ; corona anémona ; ghirlanda anemoni ; anemonenkrans ; венок с ветреницами
+00E5 ; FtrDoorOrnamentWreathRose ; rose wreath ; バラのリース ; 玫瑰花圈 ; 玫瑰花环 ; 장미 리스 ; couronne roses ; Rosentürkranz ; corona rosa ; ghirlanda rose ; rozenkrans ; венок с розами
+00E6 ; FtrDoorOrnamentWreathPansy ; pansy wreath ; パンジーのリース ; 三色堇花圈 ; 三色堇花环 ; 팬지 리스 ; couronne pensées ; Veilchentürkranz ; corona viola ; ghirlanda viole ; viooltjeskrans ; венок с фиалками
+00E7 ; FtrDoorOrnamentWreathMum ; mum wreath ; キクのリース ; 菊花花圈 ; 菊花花环 ; 국화 리스 ; couronne chrysanthèmes ; Chrysanthementürkranz ; corona crisantemo ; ghirlanda crisantemi ; chrysantenkrans ; венок с хризантемами
+00E8 ; FtrDoorOrnamentWreathHyacinth ; hyacinth wreath ; ヒヤシンスのリース ; 風信子花圈 ; 风信子花环 ; 히아신스 리스 ; couronne jacinthes ; Hyazinthentürkranz ; corona jacinto ; ghirlanda giacinti ; hyacintenkrans ; венок с гиацинтами
+01B6 ; FtrDoorOrnamentWreathYuri ; lily wreath ; ユリのリース ; 百合花圈 ; 百合花环 ; 백합 리스 ; couronne lys ; Lilientürkranz ; corona lirio ; ghirlanda gigli ; leliekrans ; венок с лилиями
+0168 ; FtrDoorOrnamentWreathTulip ; tulip wreath ; チューリップのリース ; 鬱金香花圈 ; 郁金香花环 ; 튤립 리스 ; couronne tulipes ; Tulpentürkranz ; corona tulipán ; ghirlanda tulipani ; tulpenkrans ; венок с тюльпанами
+01C7 ; FtrDoorOrnamentWreathYuriMix ; fancy lily wreath ; ファンシーなユリのリース ; 精美百合花圈 ; 精美百合花环 ; 팬시 백합 리스 ; couronne lys élégante ; Prachtlilientürkranz ; corona lirio pomposa ; ghirlanda gigli sbarazzina ; luxe leliekrans ; шикарн. венок с лилиями
+01D2 ; FtrDoorOrnamentPaw ; paw-print doorplate ; にくきゅうのドアプレート ; 肉球門牌 ; 肉球门牌 ; 발바닥 문패 ; plaque patte de chien ; Pfotenabdrucktürschild ; placa huella animal ; targa da porta zampina ; pootafdrukdeurplaatje ; декоративный отпечаток
+01D5 ; FtrDoorOrnamentCrest ; crest doorplate ; エンブレムなドアプレート ; 徽章門牌 ; 纹章门牌 ; 엠블럼 문패 ; plaque blason ; Wappentürschild ; placa escudo de armas ; targa da porta stemma ; schildwapendeurplaatje ; герб
+01D1 ; FtrDoorOrnamentLog ; timber doorplate ; ログなドアプレート ; 原木門牌 ; 原木门牌 ; 통나무 문패 ; plaque bûche ; Holztürschild ; placa de leña ; targa da porta ciocco ; deurplaatje ; табличка-срез
+01D0 ; FtrDoorOrnamentFossil ; fossil doorplate ; かせきのドアプレート ; 化石門牌 ; 化石门牌 ; 화석 문패 ; plaque fossile ; Fossilientürschild ; placa fósil ; targa da porta fossile ; fossieldeurplaatje ; декоративный аммонит
+01BD ; FtrDoorOrnamentWreathCosmosMix ; pretty cosmos wreath ; キュートなコスモスのリース ; 可愛波斯菊花圈 ; 可爱波斯菊花环 ; 큐트 코스모스 리스 ; jolie couronne cosmos ; Buntcosmeentürkranz ; corona cosmos adorable ; ghirlanda cosmee carina ; fraaie cosmeakrans ; дивный венок с космеями
+01B9 ; FtrDoorOrnamentWreathAnemoneMix ; cool windflower wreath ; クールなアネモネのリース ; 清新銀蓮花花圈 ; 清新银莲花花环 ; 쿨 아네모네 리스 ; couronne anémone raffinée ; Buntanemonentürkranz ; corona anémona refinada ; ghirlanda anemoni spavalda ; toffe anemonenkrans ; ярк. венок с ветреницами
+01C0 ; FtrDoorOrnamentWreathRoseMix ; fancy rose wreath ; ファンシーなバラのリース ; 精美玫瑰花圈 ; 精美玫瑰花环 ; 팬시 장미 리스 ; couronne rose élégante ; Prachtrosentürkranz ; corona rosa pomposa ; ghirlanda rose sbarazzina ; luxe rozenkrans ; шикарный венок с розами
+01C3 ; FtrDoorOrnamentWreathPansyMix ; snazzy pansy wreath ; ポップなパンジーのリース ; 繽紛三色堇花圈 ; 华丽三色堇花环 ; 팝 팬지 리스 ; couronne pensée pimpante ; Schickveilchentürkranz ; corona viola vistosa ; ghirlanda viole sgargiante ; opvallende viooltjeskrans ; броск. венок с фиалками
+01BB ; FtrDoorOrnamentWreathMumMix ; fancy mum wreath ; ファンシーなキクのリース ; 精美菊花花圈 ; 精美菊花花环 ; 팬시 국화 리스 ; couronne chrys. élégante ; Edelchrysanth.-Türkranz ; corona crisantemo pomposa ; ghirl. crisantemi sbarazzina ; luxe chrysantenkrans ; шик. венок с хризантемами
+01C5 ; FtrDoorOrnamentWreathHyacinthMix ; cool hyacinth wreath ; クールなヒヤシンスのリース ; 清新風信子花圈 ; 清新风信子花环 ; 쿨 히아신스 리스 ; couronne jacinthe raffinée ; Bunthyazinthentürkranz ; corona jacinto refinada ; ghirlanda giacinti spavalda ; toffe hyacintenkrans ; ярк. венок с гиацинтами
+0169 ; FtrDoorOrnamentWreathTulipMix ; pretty tulip wreath ; キュートなチューリップのリース ; 可愛鬱金香花圈 ; 可爱郁金香花环 ; 큐트 튤립 리스 ; jolie couronne tulipe ; Bunttulpentürkranz ; corona tulipán adorable ; ghirlanda tulipani carina ; fraaie tulpenkrans ; дивн. венок с тюльпанами
+01BC ; FtrDoorOrnamentWreathCosmosRare ; chic cosmos wreath ; シックなコスモスのリース ; 典雅波斯菊花圈 ; 典雅波斯菊花环 ; 시크 코스모스 리스 ; couronne cosmos chic ; Edelcosmeentürkranz ; corona cosmos negro ; ghirlanda cosmee chic ; chique cosmeakrans ; диво-венок с космеями
+01B8 ; FtrDoorOrnamentWreathAnemoneRare ; chic windflower wreath ; シックなアネモネのリース ; 典雅銀蓮花花圈 ; 典雅银莲花花环 ; 시크 아네모네 리스 ; couronne anémones chic ; Edelanemonentürkranz ; corona anémona violeta ; ghirlanda anemoni chic ; chique anemonenkrans ; диво-венок с ветреницами
+01BE ; FtrDoorOrnamentWreathRoseRare ; dark rose wreath ; ダークなバラのリース ; 深色玫瑰花圈 ; 深色玫瑰花环 ; 다크 장미 리스 ; couronne roses sombre ; Dunkelrosentürkranz ; corona rosa oscura ; ghirlanda rose cupa ; donkere-rozenkrans ; венок с темными розами
+01C2 ; FtrDoorOrnamentWreathPansyRare ; cool pansy wreath ; クールなパンジーのリース ; 清新三色堇花圈 ; 清新三色堇花环 ; 쿨 팬지 리스 ; couronne pensée raffinée ; Buntveilchentürkranz ; corona viola violeta ; ghirlanda viole spavalda ; toffe viooltjeskrans ; яркий венок с фиалками
+01BA ; FtrDoorOrnamentWreathMumRare ; natural mum wreath ; ナチュラルなキクのリース ; 自然風菊花花圈 ; 自然风菊花花环 ; 내추럴 국화 리스 ; cour. chrysanthèmes nature ; Grünchrysanth.-Türkranz ; corona crisantemo verde ; ghirl. crisantemi naturale ; natuurlijke chrysantenkrans ; зел. венок с хризантемами
+01C4 ; FtrDoorOrnamentWreathHyacinthRare ; purple hyacinth wreath ; むらさきのヒヤシンスのリース ; 紫色風信子花圈 ; 紫色风信子花环 ; 보라색 히아신스 리스 ; couronne jacinthes mauves ; Purpurhyazinthentürkranz ; corona jacinto violeta ; ghirlanda giacinti viola ; paarse-hyacintenkrans ; фиол. венок с гиацинтами
+01C6 ; FtrDoorOrnamentWreathYuriRare ; dark lily wreath ; ダークなユリのリース ; 深色百合花圈 ; 深色百合花环 ; 다크 백합 리스 ; couronne lys sombre ; Dunkellilientürkranz ; corona lirio negro ; ghirlanda gigli cupa ; donkere-leliekrans ; темный венок с лилиями
+016A ; FtrDoorOrnamentWreathTulipRare ; dark tulip wreath ; ダークなチューリップのリース ; 深色鬱金香花圈 ; 深色郁金香花环 ; 다크 튤립 리스 ; couronne tulipes sombre ; Römertulpentürkranz ; corona tulipán negro ; ghirlanda tulipani cupa ; donkere-tulpenkrans ; темн. венок с тюльпанами
+01BF ; FtrDoorOrnamentWreathRoseUrtraRare ; blue rose wreath ; あおいバラのリース ; 藍色玫瑰花圈 ; 蓝色玫瑰花环 ; 파란 장미 리스 ; couronne roses bleues ; Blaurosentürkranz ; corona rosa azul ; ghirlanda rose blu ; blauwe-rozenkrans ; венок с синими розами
+01C1 ; FtrDoorOrnamentWreathRoseGold ; gold rose wreath ; きんのバラのリース ; 金色玫瑰花圈 ; 金色玫瑰花环 ; 금장미 리스 ; couronne roses dorées ; Goldrosentürkranz ; corona rosa dorada ; ghirlanda rose d'oro ; gouden rozenkrans ; венок с золотыми розами
+02C3 ; FtrDoorOrnamentWreathEaster ; Bunny Day wreath ; イースターなリース ; 復活節花圈 ; 复活节花环 ; 이스터 리스 ; couronne fête des œufs ; Häschentag-Türkranz ; corona Caza del Huevo ; ghirlanda caccia all'uovo ; eierkrans ; венок на День зайцев
+03E2 ; FtrDoorOrnamentWreathLuMoss ; glowing-moss wreath ; ヒカリゴケのリース ; 光蘚花圈 ; 光藓花环 ; 빛이끼 리스 ; couronne schistostega ; Leuchtmooskranz ; corona musgo luminoso ; ghirlanda muschio luminoso ; lichtmoskrans ; венок из светящегося мха
+0108 ; PitfallSeed ; pitfall seed ; おとしあなのタネ ; 陷阱種子 ; 陷阱种子 ; 함정 씨앗 ; piège ; Falle ; trampa ; trappola ; valkuilzaadje ; западня
+0237 ; ItemMedicine ; medicine ; おくすり ; 藥 ; 药 ; 약 ; remède ; Medizin ; medicina ; medicina ; medicijn ; лекарство
+00BF ; FishBait ; fish bait ; サカナのまきエサ ; 魚飼料 ; 鱼饲料 ; 물고기 떡밥 ; appât ; Köder ; cebo ; esca ; aas ; наживка
+01CD ; CampsiteReserveKit ; campsite construction kit ; キャンプサイトこうじキット ; 露營地施工工具組 ; 露营地施工工具组 ; 캠핑장 건축예정지 키트 ; kit camping ; Campingplatz-Baukit ; kit de zona de acampada ; kit area per campeggio ; kampeerplekpakket ; набор кемпинг-строителя
+00DA ; ToolOcarina ; ocarina ; オカリナ ; 陶笛 ; 陶笛 ; 오카리나 ; ocarina ; Okarina ; ocarina ; ocarina ; ocarina ; окарина
+018E ; ToolPanpipe ; pan flute ; パンフルート ; 排笛 ; 排笛 ; 팬파이프 ; flûte de pan ; Panflöte ; sicu ; flauto di Pan ; panfluit ; многоствольная флейта
+01CA ; BridgeLogReserveKit ; bridge construction kit ; はしのこうじキット ; 橋樑施工工具組 ; 桥梁施工工具组 ; 다리 공사 키트 ; kit pont ; Brücken-Baukit ; kit de puente ; kit creazione ponte ; brugbouwpakket ; набор строителя моста
+02F7 ; LadderKitA0 ; vine ladder set-up kit ; ツルのFIXはしごキット ; 藤蔓固定梯子工具組 ; 藤蔓固定梯子工具组 ; 덩굴 사다리 FIX 키트 ; kit installation échelle vigne ; Rankenleiter-Bausatz ; kit escalerilla enredadera ; kit fissa-scala edera ; klimop-ladderopstelpakket ; крепеж плетен. лестницы
+02F8 ; LadderKitB0 ; wooden ladder set-up kit ; もくせいFIXはしごキット ; 木製固定梯子工具組 ; 木制固定梯子工具组 ; 목제 사다리 FIX 키트 ; kit installation échelle bois ; Holzleiter-Bausatz ; kit de escalerilla de madera ; kit fissa-scala di legno ; houten-ladderopstelpakket ; крепеж дерев. лестницы
+02F9 ; LadderKitC0 ; iron ladder set-up kit ; てつのFIXはしごキット ; 鐵製固定梯子工具組 ; 铁制固定梯子工具组 ; 철제 사다리 FIX 키트 ; kit installation d'échelle fer ; Eisenleiter-Bausatz ; kit de escalerilla de hierro ; kit fissa-scala di ferro ; ijzeren-ladderopstelpakket ; крепеж жел. лестницы
+02EF ; WPaperOrnament ; festive wrapping paper ; クリスマスなラッピングペーパー ; 聖誕包裝紙 ; 圣诞包装纸 ; 크리스마스 포장지 ; papier cadeau festif ; Festtagsgeschenkpapier ; papel de regalo festivo ; carta da regalo festiva ; speelgoeddagcadeaupapier ; новогодняя обертка
+0387 ; FlourWheat ; flour ; こむぎこ ; 麵粉 ; 面粉 ; 밀가루 ; farine ; Mehl ; paquete de harina ; farina ; bloem ; пачка муки
+0389 ; FlourWheatwhole ; whole-wheat flour ; ぜんりゅうふん ; 全麥麵粉 ; 全麦面粉 ; 통밀 가루 ; farine complète ; Vollkornmehl ; paquete de harina integral ; farina integrale ; volkorenmeel ; пачка обойной муки
+038A ; FlourSugar ; sugar ; さとう ; 砂糖 ; 砂糖 ; 설탕 ; sucre ; Zucker ; paquete de azúcar ; zucchero ; suiker ; пачка сахара
+038B ; FlourSugarbrown ; brown sugar ; こくとう ; 黑糖 ; 黑糖 ; 흑설탕 ; sucre brun ; Rohzucker ; paquete de azúcar moreno ; zucchero bruno ; bruine suiker ; пачка коричневого сахара
+0333 ; LadderKitD ; golden ladder set-up kit ; きんのFIXはしごキット ; 黃金固定梯子工具組 ; 黄金固定梯子工具组 ; 황금 사다리 FIX 키트 ; kit installation d'échelle or ; Goldleiter-Bausatz ; kit de escalerilla dorada ; kit fissa-scala d'oro ; gouden-ladderopstelpakket ; крепеж золот. лестницы
+03D6 ; ToolBasketHalloween ; spooky treats basket ; ハロウィンなおやつバスケット ; 萬聖節點心籃 ; 万圣节点心篮 ; 할로윈 간식 바구니 ; panier bonbons Halloween ; Kürbis-Naschkorb ; cesta surtido de Halloween ; cesto di caramelle brividi ; pompoensnoepmand ; жуткая корзинка
+040D ; ToolBranchPlayer ; nice branch ; ほどよいえだ ; 優質樹枝 ; 优质树枝 ; 적당한 나뭇가지 ; branche coupée ; Zweig ; ramita de árbol ; rametto carino ; mooie tak ; хорошая ветка
+040C ; ToolFoxtailPlayer ; foxtail ; ねこじゃらし ; 狗尾草 ; 狗尾草 ; 강아지풀 ; vulpin ; Fuchsschwanzgras ; espiga ; forasacco ; vossenstaart ; лисохвост
+02F3 ; FeatherRainbow ; rainbow feather ; にじいろのはね ; 彩虹羽毛 ; 彩虹羽毛 ; 무지개 깃털 ; plume irisée ; Regenbogenfeder ; pluma arcoíris ; piuma arcobaleno ; regenboogveer ; радужное перо
+0063 ; ItemFenceWallRenga ; brick fence ; レンガのカベ ; 磚塊柵欄 ; 砖块栅栏 ; 벽돌 울타리 ; muret en briques ; Ziegelsteinmauer ; cerca de ladrillo ; muretto di mattoni ; bakstenen muurtje ; кирпичный забор
+0064 ; ItemFenceVerticalWood ; vertical-board fence ; たていたのさく ; 直條木板柵欄 ; 直条木板栅栏 ; 세로 널빤지 울타리 ; clôture lattes verticales ; Bretterzaun ; valla de tablones ; recinzione di assi verticali ; lichte schutting ; штакетник
+0065 ; ItemFenceBamboo ; bamboo lattice fence ; たけがき ; 竹柵欄 ; 竹栅栏 ; 대나무 울타리 ; clôture bambou à treillis ; Bambuszaun ; valla celosía de bambú ; recinzione di bambù ; bamboeschutting ; забор из бамбука
+010D ; ItemFenceHorizontalWood ; corral fence ; よこいたのさく ; 橫條木板柵欄 ; 横条木板栅栏 ; 가로 널빤지 울타리 ; clôture de ferme ; Weidezaun ; valla de corral ; staccionata ranch ; boerderijhek ; дощатый забор
+010C ; ItemFenceLog ; country fence ; まるたのさく ; 圓木柵欄 ; 圆木栅栏 ; 통나무 울타리 ; clôture de rondins ; Baumstammzaun ; valla leños ; staccionata di ceppi ; paalhekje ; забор из столбиков
+0224 ; ItemFenceHorizontalLog ; log fence ; よこむきのまるたのさく ; 橫條圓木柵欄 ; 横条圆木栅栏 ; 가로 통나무 울타리 ; clôture tronc ; Westernzaun ; valla de troncos ; recinzione di tronchi ; weidehek ; забор из жердей
+0225 ; ItemFencePegRope ; rope fence ; ペグとロープ ; 釘子與繩索 ; 钉子与绳索 ; 페그 울타리 ; clôture de corde ; Seilzaun ; valla cordón ; recinzione di corda ; touwhek ; ограда из веревки
+0226 ; ItemFenceChinese ; imperial fence ; オリエンタルなさく ; 東方風柵欄 ; 东方风栅栏 ; 오리엔탈 울타리 ; clôture dynastie orientale ; Asienzaun ; valla dinastía ; recinzione cinese ; keizerlijk hek ; забор в азиатском стиле
+0227 ; ItemFenceConcreteBlock ; block fence ; ブロックべい ; 磚塊圍牆 ; 砖块围墙 ; 돌담 ; muret blocs de béton ; Betonmauer ; cerca de bloques ; muretto a blocchi ; blokkenmuurtje ; забор из блоков
+0228 ; ItemFenceDriedStraw ; straw fence ; わらぼしのさく ; 乾稻草柵欄 ; 干稻草栅栏 ; 짚단 울타리 ; clôture de paille ; Strohzaun ; valla de paja ; recinzione di paglia ; strohek ; соломенный забор
+010B ; ItemFenceSteel ; iron fence ; てつのさく ; 鐵柵欄 ; 铁栅栏 ; 철제 울타리 ; clôture en fer ; Eisenzaun ; verja de hierro ; recinzione di ferro ; ijzeren hek ; железный забор
+0229 ; ItemFenceSharply ; spiky fence ; トゲトゲのさく ; 尖刺柵欄 ; 尖刺栅栏 ; 뾰족뾰족 울타리 ; clôture épieux ; Spitzpfostenzaun ; valla puntiaguda ; recinzione appuntita ; puntig hek ; забор из кольев
+022B ; ItemFenceIronAndStone ; iron-and-stone fence ; ようふうのさく ; 西洋風柵欄 ; 石砌铁艺栅栏 ; 아이언 스톤 울타리 ; clôture manoir ; Villenzaun ; verja de hierro y piedra ; muretto con ringhiera ; hek met pijlers ; кованый забор
+022C ; ItemFenceJapanese ; zen fence ; わふうのさく ; 和風柵欄 ; 和风栅栏 ; 동양풍 울타리 ; muret zen ; Japanmauer ; cerca oriental ; muretto giapponese ; zenmuurtje ; забор-дзен
+022D ; ItemFenceLatticeBig ; large lattice fence ; おおきなラティス ; 大型交叉格柵 ; 大型交叉格栅 ; 커다란 격자 울타리 ; clôture treillis haute ; Riesengitterzaun ; valla alta celosía ; recinzione graticcio XL ; rasterschutting ; высокая решетка
+022F ; ItemFenceLogWall ; log-wall fence ; まるたかべのさく ; 圓木牆柵欄 ; 圆木墙栅栏 ; 통나무 벽 울타리 ; clôture rondins ; Baumstammwandzaun ; valla de maderos ; recinzione muro di tronchi ; boomstammenhek ; бревенчатый забор
+010A ; ItemFenceStone ; stone fence ; いしかべ ; 石柵欄 ; 石栅栏 ; 돌 울타리 ; muret en pierre sèche ; Feldsteinmauer ; cerca de piedra ; muretto di pietra ; stenen muurtje ; каменный забор
+0231 ; ItemFenceBarbedWire ; barbed-wire fence ; ゆうしてっせん ; 有刺鐵絲網 ; 有刺铁丝网 ; 가시철조망 울타리 ; clôture de barbelés ; Stacheldrahtzaun ; valla de alambre ; filo spinato ; prikkeldraadhek ; колючая проволока
+0290 ; ItemFenceNatural ; simple wooden fence ; そぼくなもくせいのさく ; 樸素木製柵欄 ; 朴素木制栅栏 ; 소박한 목제 울타리 ; clôture en bois standard ; Standard-Holzzaun ; valla de madera ; recinzione di legno grezzo ; houten hekje ; простой дерев. забор
+0291 ; ItemFenceLatiiceNatural ; lattice fence ; ラティス ; 交叉格柵 ; 交叉格栅 ; 격자 울타리 ; clôture en treillis standard ; Gitterzaun ; valla celosía ; recinzione graticcio ; rasterhek ; решетка
+02C8 ; ItemFenceEgg ; Bunny Day fence ; イースターなさく ; 復活節柵欄 ; 复活节栅栏 ; 이스터 울타리 ; clôture fête des œufs ; Häschentag-Zaun ; valla Caza del Huevo ; recinzione caccia all'uovo ; eierhek ; забор «День зайцев»
+02C9 ; ItemFenceIkegaki ; hedge ; いけがき ; 樹叢 ; 树篱 ; 낮은 나무 울타리 ; clôture végétale ; Hecke ; seto ; siepe ; heg ; живая изгородь
+02CA ; ItemFenceJuneBride ; wedding fence ; ウェディングなさく ; 婚禮柵欄 ; 婚礼栅栏 ; 웨딩 울타리 ; clôture de mariage ; Hochzeitsabsperrung ; valla de boda ; recinzione nuziale ; trouwhek ; свадебный забор
+02E1 ; ItemFenceHalloween ; spooky fence ; ハロウィンなさく ; 萬聖節柵欄 ; 万圣节栅栏 ; 할로윈 울타리 ; clôture Halloween ; Kürbiszaun ; valla calabaza ; recinzione brividi ; pompoenhek ; жуткий забор
+0308 ; ItemFenceMermaid ; mermaid fence ; マーメイドなさく ; 人魚柵欄 ; 人鱼栅栏 ; 머메이드 울타리 ; clôture sirène ; Nixenzaun ; valla sirena ; recinzione sirena ; meerminnenhek ; забор русалки
+03EF ; ItemFenceCrossedBamboo ; green bamboo fence ; あおたけのさく ; 青竹柵欄 ; 青竹栅栏 ; 초록 대나무 울타리 ; clôture bambou vert ; Grün-Bambuszaun ; valla de bambú verde ; recinzione bambù verde ; groen bamboehek ; зелен. забор из бамбука
+03F0 ; ItemFenceIce ; frozen fence ; こおりのさく ; 冰柵欄 ; 冰栅栏 ; 얼음 울타리 ; clôture arctique ; Eiszaun ; valla iceberg ; recinzione iceberg ; ijshek ; ледяной забор
+03F1 ; ItemFenceSandProtection ; bamboo-slats fence ; すだれのさく ; 竹簾柵欄 ; 竹帘栅栏 ; 대나무 발 울타리 ; clôture lattes bambou ; Bambus-Lamellenzaun ; valla listones bambú ; recinzione stecche bambù ; bamboelattenhek ; штакетник из бамбука
+03F2 ; ItemFenceCorrugatedIron ; corrugated iron fence ; トタンのさく ; 鐵皮柵欄 ; 铁皮栅栏 ; 슬레이트 울타리 ; clôture tôle ondulée ; Blechzaun ; valla de chapa ondulada ; recinzione di ferro ondulato ; golfplatenhek ; ржавый железн. забор
+03F3 ; ItemFencePark ; park fence ; こうえんのさく ; 公園柵欄 ; 公园栅栏 ; 공원 울타리 ; clôture aire de jeu ; Parkzaun ; valla de parque infantil ; recinzione da parco ; parkhek ; забор детской площадки
+0105 ; AccessoryMouthLeafGreen ; leaf ; はっぱ ; 葉子 ; 叶子 ; 나뭇잎 ; feuille ; Blatt ; hoja ; foglia ; blaadje ; листик
+0278 ; BagShoulderAcorn0 ; acorn pochette ; どんぐりポシェット ; 橡栗側背包 ; 橡栗斜挎包 ; 도토리 미니백 ; pochette gland ; Eichel-Pochette ; bolsito bellota ; pochette ghianda ; eikeltasje ; сумочка-желудь
+0285 ; BagBackpackBasket0 ; basket pack ; しょいこ ; 後背架 ; 背篓 ; 바구니 가방 ; claie à panier ; Tragekorb ; mochila cesta ; cesta ; mandrugzak ; заплечная корзина
+02B6 ; BagBackpackEgg0 ; Bunny Day bag ; イースターなバッグ ; 復活節包包 ; 复活节包包 ; 이스터 가방 ; sac fête des œufs ; Häschentag-Rucksack ; mochila Caza del Huevo ; zaino caccia all'uovo ; eiertas ; сумка на День зайцев
+0276 ; BagShoulderCherryblossoms0 ; cherry-blossom pochette ; さくらのポシェット ; 櫻花側背包 ; 樱花斜挎包 ; 벚꽃 미니백 ; pochette fleur de cerisier ; Kirschblüten-Pochette ; bolsito flor de cerezo ; pochette fiore di ciliegio ; kersenbloesemtasje ; сумочка «Лепестки вишни»
+027C ; BagBackpackGrass0 ; knitted-grass backpack ; くさあみリュック ; 草編後背包 ; 草编双肩包 ; 풀잎 니트 배낭 ; sac à dos végétal tressé ; Grasgeflecht-Rucksack ; mochila de mimbre ; zaino di maglia ; rugzak van geweven gras ; плетеный рюкзак
+027E ; BagBackpackWood0 ; log pack ; せおいばしご ; 背薪架 ; 背架 ; 지게 ; claie de portage ; Holzfällerrucksack ; mochila troncos ; zaino con telaio ; boomstammenrugzak ; вязанка дров
+0277 ; BagShoulderMaple0 ; maple-leaf pochette ; もみじのポシェット ; 楓葉側背包 ; 枫叶斜挎包 ; 단풍 미니백 ; pochette feuille d'érable ; Ahorn-Pochette ; bolsito hoja de arce ; pochette foglia d'acero ; esdoornbladtasje ; сумочка «Кленовый лист»
+027A ; BagShoulderShell0 ; shellfish pochette ; かいがらポシェット ; 貝殼側背包 ; 贝壳斜挎包 ; 조개 미니백 ; pochette coquillage ; Muschel-Pochette ; bolsito concha marina ; pochette guscio ; schelpentasje ; сумочка-моллюск
+0279 ; BagShoulderSnow0 ; snowflake pochette ; スノーフレークポシェット ; 雪花側背包 ; 雪花斜挎包 ; 눈꽃 미니백 ; pochette flocon ; Schneeflocken-Pochette ; bolsito copo de nieve ; pochette fiocco di neve ; sneeuwvloktasje ; сумочка-снежинка
+0273 ; BagShoulderStar0 ; star pochette ; スターなポシェット ; 星星側背包 ; 星星斜挎包 ; 별무늬 미니백 ; pochette étoile ; Sternchen-Pochette ; bolsito estrella ; pochette stella ; sterrentasje ; сумочка-звезда
+0337 ; BagShoulderVine0 ; woven-vine pochette ; ツルざいくのポシェット ; 藤蔓編織側背包 ; 藤蔓编织斜挎包 ; 덩굴 미니백 ; pochette vigne tressée ; Rankengeflecht-Pochette ; bolsito enredadera ; pochette edera intrecciata ; tasje van gevlochten ranken ; плетеная сумочка из лозы
+025B ; BottomsTexSkirtBoxGrass0 ; grass skirt ; こしみの ; 草裙 ; 草裙 ; 도롱이 하의 ; jupe savane ; Baströckchen ; falda de paja ; gonna fieno ; rieten rokje ; юбка из сухих листьев
+025D ; BottomsTexSkirtBoxGrass1 ; green grass skirt ; みどりのこしみの ; 綠色草裙 ; 绿色的草裙 ; 초록색 도롱이 하의 ; jupe savane verte ; Grasröckchen ; falda de hojas ; gonna foglie di banano ; groengrasrokje ; юбка из зеленых листьев
+026E ; CapHatApple0 ; apple hat ; リンゴのぼうし ; 蘋果帽子 ; 苹果帽子 ; 사과 모자 ; chapeau pomme ; Apfelhut ; gorro manzana ; berretto mela ; appelmuts ; шапка-яблоко
+025F ; CapHatAjiroBeige ; bamboo hat ; かさぼうし ; 斗笠 ; 斗笠 ; 삼각 삿갓 ; nón lá ; Bambushut ; gorro de bambú cónico ; cappello di bambù ; bamboehoed ; бамбуковая шапочка
+01CB ; CapOrnamentRose4 ; blue rose crown ; バラのかんむり・ブルー ; 藍色玫瑰花冠 ; 蓝色玫瑰花冠 ; 블루 장미 화관 ; coiffe roses bleues ; Blaurosenkrone ; guirnalda rosa azul ; corona di rose blu ; blauwe-rozenkroon ; синий венок из роз
+02B5 ; CapOrnamentCEgg0 ; Bunny Day crown ; イースターなかんむり ; 復活節花冠 ; 复活节花冠 ; 이스터 화관 ; coiffe fête des œufs ; Häschentag-Krone ; guirnalda Caza del Huevo ; corona caccia all'uovo ; eierkroon ; корона на День зайцев
+0265 ; CapHatCherry0 ; cherry hat ; さくらんぼのぼうし ; 櫻桃帽子 ; 樱桃帽子 ; 체리 모자 ; chapeau cerise ; Kirschhut ; gorro cerezas ; berretto ciliegia ; kersenmuts ; шапка-вишня
+0103 ; CapOrnamentMum2 ; chic mum crown ; キクのかんむり・シック ; 典雅菊花花冠 ; 典雅菊花花冠 ; 시크 국화 화관 ; coiffe chrysanth. chic ; Edelchrysanthemenkrone ; guirnalda crisantemo chic ; corona di crisantemi chic ; chique chrysantenkroon ; диво-венок из хризантем
+00FE ; CapOrnamentRose3 ; chic rose crown ; バラのかんむり・シック ; 典雅玫瑰花冠 ; 典雅玫瑰花冠 ; 시크 장미 화관 ; coiffe roses chic ; Edelrosenkrone ; guirnalda rosa oscura ; corona di rose chic ; chique rozenkroon ; диво-венок из роз
+00F4 ; CapOrnamentTulip2 ; chic tulip crown ; チューリップのかんむり・シック ; 典雅鬱金香花冠 ; 典雅郁金香花冠 ; 시크 튤립 화관 ; coiffe tulipes chic ; Edeltulpenkrone ; guirnalda tulipán chic ; corona di tulipani chic ; chique tulpenkroon ; диво-венок из тюльпанов
+00EE ; CapOrnamentHyacinth2 ; cool hyacinth crown ; ヒヤシンスのかんむり・クール ; 清新風信子花冠 ; 清新风信子花冠 ; 쿨 히아신스 화관 ; coiffe jacinthes raffinée ; Bunthyazinthenkrone ; guirnalda jacinto refinada ; corona di giacinti spavalda ; toffe hyacintenkroon ; яркий венок из гиацинтов
+00F7 ; CapOrnamentPansy2 ; cool pansy crown ; パンジーのかんむり・クール ; 清新三色堇花冠 ; 清新三色堇花冠 ; 쿨 팬지 화관 ; coiffe pensées raffinée ; Buntveilchenkrone ; guirnalda viola refinada ; corona di viole spavalda ; toffe viooltjeskroon ; яркий венок из фиалок
+00F1 ; CapOrnamentAnemone2 ; cool windflower crown ; アネモネのかんむり・クール ; 清新銀蓮花花冠 ; 清新银莲花花冠 ; 쿨 아네모네 화관 ; coiffe anémones raffinée ; Buntanemonenkrone ; guirnalda anémona refinada ; corona di anemoni spavalda ; toffe anemonenkroon ; яркий венок из ветрениц
+00F9 ; CapOrnamentCosmos1 ; cosmos crown ; コスモスのかんむり ; 波斯菊花冠 ; 波斯菊花冠 ; 코스모스 화관 ; coiffe cosmos ; Cosmeenkrone ; guirnalda cosmos ; corona di cosmee ; cosmeakroon ; венок из космей
+0100 ; CapOrnamentYuri2 ; cute lily crown ; ユリのかんむり・キュート ; 可愛百合花冠 ; 可爱百合花冠 ; 큐트 백합 화관 ; jolie coiffe lys ; Buntlilienkrone ; guirnalda lirio adorable ; corona di gigli graziosa ; schattige leliekroon ; диво-венок из лилий
+00FD ; CapOrnamentRose2 ; cute rose crown ; バラのかんむり・キュート ; 可愛玫瑰花冠 ; 可爱玫瑰花冠 ; 큐트 장미 화관 ; jolie coiffe roses ; Buntrosenkrone ; guirnalda rosa adorable ; corona di rose graziosa ; schattige rozenkroon ; милый венок из роз
+00FB ; CapOrnamentCosmos3 ; dark cosmos crown ; コスモスのかんむり・ダーク ; 深色波斯菊花冠 ; 深色波斯菊花冠 ; 다크 코스모스 화관 ; coiffe cosmos sombre ; Schwarzcosmeenkrone ; guirnalda cosmos negro ; corona di cosmee cupa ; donkere-cosmeakroon ; темн. венок из космей
+0101 ; CapOrnamentYuri3 ; dark lily crown ; ユリのかんむり・ダーク ; 深色百合花冠 ; 深色百合花冠 ; 다크 백합 화관 ; coiffe lys sombre ; Dunkellilienkrone ; guirnalda lirio negro ; corona di gigli cupa ; donkere-leliekroon ; темный венок из лилий
+00F5 ; CapOrnamentTulip3 ; dark tulip crown ; チューリップのかんむり・ダーク ; 深色鬱金香花冠 ; 深色郁金香花冠 ; 다크 튤립 화관 ; coiffe tulipes sombre ; Römertulpenkrone ; guirnalda tulipán negro ; corona di tulipani cupa ; donkere-tulpenkroon ; темн. венок из тюльпанов
+02A1 ; CapHatEggground0 ; earth-egg shell ; じめんのたまごのから ; 地面蛋殼 ; 地面蛋壳 ; 땅 달걀 껍질 ; coquille d'œuf terrestre ; Erd-Eierschale ; cáscara de huevo terrestre ; guscio d'uovo terrestre ; aarde-eierschaal ; скорлупа земляного яйца
+02B3 ; CapHatEggparty0 ; egg party hat ; たまごのパーティーハット ; 蛋派對帽 ; 蛋派对帽 ; 달걀 파티 모자 ; chapeau festif œuf ; Glücksei-Partyhut ; sombrero de fiesta huevo ; cappello uova da sera ; eierfeesthoed ; шляпка на День зайцев
+03EC ; CapOrnamentFMoss0 ; glowing-moss headband ; ヒカリゴケのカチューシャ ; 光蘚球髮箍 ; 光藓毛球饰品 ; 빛이끼 머리띠 ; bandeau schistostega ; Leuchtmooshaarreif ; diadema musgo luminoso ; fascia muschio luminoso ; lichtmoshaarband ; обруч со светящ. мхом
+03EB ; CapHatMoss0 ; glowing-moss pointed cap ; ヒカリゴケのとんがりぼうし ; 光蘚尖頭帽 ; 光藓尖头帽 ; 빛이끼 마법사 모자 ; chap. pointu schistostega ; Leuchtmoosspitzhut ; gorro cono musgo luminoso ; cappello muschio luminoso ; lichtmospunthoed ; колпак из светящег. мха
+01CC ; CapOrnamentRose5 ; gold rose crown ; バラのかんむり・ゴールド ; 金色玫瑰花冠 ; 金色玫瑰花冠 ; 골드 장미 화관 ; coiffe roses dorées ; Goldrosenkrone ; guirnalda rosa dorada ; corona di rose d'oro ; gouden rozenkroon ; золотой венок из роз
+00ED ; CapOrnamentHyacinth1 ; hyacinth crown ; ヒヤシンスのかんむり ; 風信子花冠 ; 风信子花冠 ; 히아신스 화관 ; coiffe jacinthes ; Hyazinthenkrone ; guirnalda jacinto ; corona di giacinti ; hyacintenkroon ; венок из гиацинтов
+02A7 ; CapHatEggleaf0 ; leaf-egg shell ; はっぱのたまごのから ; 葉子蛋殼 ; 叶子蛋壳 ; 나뭇잎 달걀 껍질 ; coquille d'œuf feuillu ; Laub-Eierschale ; cáscara de huevo boscoso ; guscio d'uovo frondoso ; bladeierschaal ; скорлупа листвен. яйца
+00FF ; CapOrnamentYuri1 ; lily crown ; ユリのかんむり ; 百合花冠 ; 百合花冠 ; 백합 화관 ; coiffe lys ; Lilienkrone ; guirnalda lirio ; corona di gigli ; leliekroon ; венок из лилий
+00FA ; CapOrnamentCosmos2 ; lovely cosmos crown ; コスモスのかんむり・ラブリー ; 甜美波斯菊花冠 ; 甜美波斯菊花冠 ; 러블리 코스모스 화관 ; jolie coiffe cosmos ; Buntcosmeenkrone ; guirnalda cosmos adorable ; corona di cosmee graziosa ; lieflijke cosmeakroon ; чудный венок из космей
+0102 ; CapOrnamentMum1 ; mum crown ; キクのかんむり ; 菊花花冠 ; 菊花花冠 ; 국화 화관 ; coiffe chrysanthèmes ; Chrysanthemenkrone ; guirnalda crisantemo ; corona di crisantemi ; chrysantenkroon ; фиол. венок из хризантем
+0270 ; CapHatOrange ; orange hat ; オレンジのぼうし ; 橘子帽子 ; 橘子帽子 ; 귤 모자 ; chapeau orange ; Orangenhut ; gorro naranja ; cappello arancia ; sinaasappelmuts ; шапка-апельсин
+03F9 ; CapOrnamentCOrnament0 ; ornament crown ; オーナメントのかんむり ; 裝飾花冠 ; 装饰花冠 ; 오너먼트 왕관 ; couronne décorée ; Ornamentkrone ; corona ornamentos ; corona con palline ; kroon met ornamenten ; праздничная корона
+00F6 ; CapOrnamentPansy1 ; pansy crown ; パンジーのかんむり ; 三色堇花冠 ; 三色堇花冠 ; 팬지 화관 ; coiffe pensées ; Veilchenkrone ; guirnalda viola ; corona di viole ; viooltjeskroon ; венок из фиалок
+026B ; CapHatPeach0 ; peach hat ; モモのぼうし ; 桃子帽子 ; 桃子帽子 ; 복숭아 모자 ; chapeau pêche ; Pfirsichhut ; gorro melocotón ; berretto pesca ; perzikmuts ; шапка-персик
+0268 ; CapHatPear0 ; pear hat ; ナシのぼうし ; 梨子帽子 ; 梨子帽子 ; 배 모자 ; chapeau poire ; Birnenhut ; gorro pera ; berretto pera ; perenmuts ; шапка-груша
+00EF ; CapOrnamentHyacinth3 ; purple hyacinth crown ; ヒヤシンスのかんむり・パープル ; 紫色風信子花冠 ; 紫色风信子花冠 ; 퍼플 히아신스 화관 ; coiffe jacinthes mauves ; Purpurhyazinthenkrone ; guirnalda jacinto violeta ; corona di giacinti viola ; paarse-hyacintenkroon ; фиол. венок из гиацинтов
+00F8 ; CapOrnamentPansy3 ; purple pansy crown ; パンジーのかんむり・パープル ; 紫色三色堇花冠 ; 紫色三色堇花冠 ; 퍼플 팬지 화관 ; coiffe pensées mauves ; Hainveilchenkrone ; guirnalda viola violeta ; corona di viole viola ; paarse-viooltjeskroon ; фиол. венок из фиалок
+00F2 ; CapOrnamentAnemone3 ; purple windflower crown ; アネモネのかんむり・パープル ; 紫色銀蓮花花冠 ; 紫色银莲花花冠 ; 퍼플 아네모네 화관 ; coiffe anémones mauves ; Purpuranemonenkrone ; guirnalda anémona violeta ; corona di anemoni viola ; paarse-anemonenkroon ; фиол. венок из ветрениц
+00FC ; CapOrnamentRose1 ; rose crown ; バラのかんむり ; 玫瑰花冠 ; 玫瑰花冠 ; 장미 화관 ; coiffe roses ; Rosenkrone ; guirnalda rosa ; corona di rose ; rozenkroon ; венок из роз
+0104 ; CapOrnamentMum3 ; simple mum crown ; キクのかんむり・シンプル ; 簡約菊花花冠 ; 简约菊花花冠 ; 심플 국화 화관 ; coiffe chrysanth. simple ; Grünchrysanthemenkrone ; guirnalda crisantemo verde ; corona crisantemi semplice ; simpele chrysantenkroon ; веночек из хризантем
+02AD ; CapHatEggsky0 ; sky-egg shell ; そらとぶたまごのから ; 飛天蛋殼 ; 飞天蛋壳 ; 하늘을 나는 달걀 껍질 ; coquille d'œuf aérien ; Luft-Eierschale ; cáscara de huevo celeste ; guscio d'uovo celeste ; luchteierschaal ; скорлупа небесного яйца
+02A4 ; CapHatEggrock0 ; stone-egg shell ; いわのたまごのから ; 岩石蛋殼 ; 岩石蛋壳 ; 바위 달걀 껍질 ; coquille d'œuf minéral ; Fels-Eierschale ; cáscara de huevo rupestre ; guscio d'uovo roccioso ; steeneierschaal ; скорлупа каменного яйца
+025E ; CapHatSandogasa0 ; straw umbrella hat ; さんどがさ ; 三度笠 ; 三度笠 ; 삿갓 ; chapeau de bambou ; Flach-Reishut ; gorro de paja achatado ; cappello di paglia orientale ; ronde strohoed ; соломенная шляпа-зонт
+00F3 ; CapOrnamentTulip1 ; tulip crown ; チューリップのかんむり ; 鬱金香花冠 ; 郁金香花冠 ; 튤립 화관 ; coiffe tulipes ; Tulpenkrone ; guirnalda tulipán ; corona di tulipani ; tulpenkroon ; венок из тюльпанов
+0335 ; CapOrnamentCVine0 ; vine crown ; ツルのかんむり ; 藤蔓花冠 ; 藤蔓花冠 ; 덩굴 왕관 ; couronne vigne tressée ; Rankenkrone ; corona enredadera ; corona edera ; klimplantkroon ; венок из лозы
+02B0 ; CapHatEggfish0 ; water-egg shell ; サカナのたまごのから ; 魚兒蛋殼 ; 鱼儿蛋壳 ; 물고기 달걀 껍질 ; coquille d'œuf aquatique ; Wasser-Eierschale ; cáscara de huevo acuático ; guscio d'uovo acquatico ; watereierschaal ; скорлупа водяного яйца
+00F0 ; CapOrnamentAnemone1 ; windflower crown ; アネモネのかんむり ; 銀蓮花花冠 ; 银莲花花冠 ; 아네모네 화관 ; coiffe anémones ; Anemonenkrone ; guirnalda anémona ; corona di anemoni ; anemonenkroon ; венок из ветрениц
+02AA ; CapHatEggforest0 ; wood-egg shell ; ウッディなたまごのから ; 森林蛋殼 ; 森林蛋壳 ; 나무 달걀 껍질 ; coquille d'œuf boisé ; Holz-Eierschale ; cáscara de huevo leñoso ; guscio d'uovo boscoso ; houteierschaal ; скорлупа лесного яйца
+0334 ; CapHatVine0 ; woven-vines hat ; ツルざいくのぼうし ; 藤蔓編織帽 ; 藤蔓编织帽 ; 덩굴 모자 ; chapeau vigne tressée ; Rankengeflechthut ; sombrero enredadera ; cappello edera intrecciata ; gevlochten klimplanthoed ; плетеная шляпа из лозы
+03EA ; CapCostumeMoss0 ; glowing-moss hood ; ヒカリゴケのかぶりもの ; 光蘚頭套 ; 光藓头套 ; 빛이끼 모자 ; capuche schistostega ; Leuchtmooshaube ; capucha musgo luminoso ; cappuccio muschio lumin. ; lichtmoskap ; капюшон из светящ. мха
+0284 ; CapFullfaceKnightGold ; gold helmet ; ゴールデンアーマーヘルメット ; 金頭盔 ; 金甲头盔 ; 골든 아머 헬멧 ; casque en or ; Goldhelm ; yelmo dorado ; elmo d'oro ; gouden helm ; золотой шлем
+02CC ; CapFullfaceKingtut0 ; King Tut mask ; ツタンカーメン ; 圖坦卡門面具 ; 图坦卡门面具 ; 투탕카멘 ; masque de pharaon ; Pharaomaske ; máscara egipcia ; maschera Re Tut ; faraomasker ; маска фараона Тута
+0281 ; CapFullfaceKnightIron ; knight's helmet ; アイアンアーマーヘルメット ; 鐵甲面罩 ; 铁甲头盔 ; 아이언 아머 헬멧 ; casque de chevalier ; Ritterhelm ; yelmo ; elmo medievale ; ridderhelm ; рыцарский шлем
+027B ; CapMaskLeaf0 ; leaf mask ; はっぱのおめん ; 葉子面具 ; 叶子面具 ; 나뭇잎 가면 ; masque feuille ; Blatt-Maske ; máscara hoja ; maschera a foglia ; bladmasker ; маска-лист
+027D ; CapCostumeSnowball0 ; snowperson head ; ゆきだるまのぼうし ; 雪人帽子 ; 雪人头套 ; 눈사람 모자 ; cagoule neige ; Schneemannhut ; casco de Copito ; testa da pupazzo di neve ; sneeuwpopkop ; шапка снеговика
+0274 ; CapCostumeStar0 ; star head ; おほしさまのあたま ; 星星頭套 ; 星星头套 ; 별님 머리 ; cagoule étoile ; Sternenkapuze ; casco estrella ; cappuccio stella ; sterrenkop ; звездный шлем
+026D ; TopsTexOnepieceAlineNApple0 ; apple dress ; リンゴのふく ; 蘋果服 ; 苹果服 ; 사과 옷 ; robe pomme ; Apfelkleid ; vestido manzana ; vestito mela ; appeljurk ; платье «Яблоко»
+0264 ; TopsTexOnepieceAlineNCherry0 ; cherry dress ; さくらんぼのふく ; 櫻桃服 ; 樱桃服 ; 체리 옷 ; robe cerise ; Kirschkleid ; vestido cerezas ; vestito ciliegia ; kersenjurk ; платье «Вишня»
+02A2 ; TopsTexOnepieceRibNEggground0 ; earth-egg outfit ; じめんのたまごのふく ; 地面蛋衣服 ; 地面蛋衣服 ; 땅 달걀 옷 ; tenue œuf terrestre ; Erd-Glücksei-Outfit ; traje de huevo terrestre ; abito a uovo terrestre ; aarde-ei-outfit ; наряд «Земляное яйцо»
+02B4 ; TopsTexOnepieceBalloonLEgg0 ; egg party dress ; たまごのパーティーワンピ ; 蛋派對連身裙 ; 蛋派对连身裙 ; 달걀 파티 원피스 ; robe de soirée œuf ; Glücksei-Abendkleid ; vestido de fiesta huevo ; abito uova da sera ; eierfeestjurk ; платье на День зайцев
+03ED ; TopsTexOnepieceSalopetteemmLMoss0 ; full-body glowing-moss suit ; ヒカリゴケのぜんしんスーツ ; 光蘚全身套裝 ; 光藓全身套装 ; 빛이끼 전신 슈트 ; costume schistostega ; Leuchtmoos-Overall ; mono musgo luminoso ; tuta muschio luminoso ; lichtmospak ; наряд из светящегося мха
+03EE ; TopsTexOnepieceBalloonemmHMoss0 ; glowing-moss dress ; ヒカリゴケのバルーンドレス ; 光蘚氣球狀洋裝 ; 光藓蓬蓬褶皱洋装 ; 빛이끼 벌룬 드레스 ; robe schistostega ; Leuchtmooskleid ; vestido musgo luminoso ; vestito muschio luminoso ; lichtmosjurk ; платье из светящегося мха
+0236 ; TopsTexOnepieceOverallLPlatearmorGold ; gold armor ; ゴールデンアーマー ; 金盔甲 ; 金盔甲 ; 골든 아머 ; armure en or ; Goldrüstung ; armadura de oro ; armatura dorata ; gouden harnas ; золотые доспехи
+0280 ; TopsTexOnepieceOverallLPlatearmorIron ; iron armor ; アイアンアーマー ; 鐵盔甲 ; 铁盔甲 ; 아이언 아머 ; armure en fer ; Eisenrüstung ; armadura de hierro ; armatura di ferro ; ijzeren harnas ; железные доспехи
+02A8 ; TopsTexOnepieceRibNEggleaf0 ; leaf-egg outfit ; はっぱのたまごのふく ; 葉子蛋衣服 ; 叶子蛋衣服 ; 나뭇잎 달걀 옷 ; tenue œuf feuillu ; Laub-Glücksei-Outfit ; traje de huevo boscoso ; abito a uovo frondoso ; bladerei-outfit ; наряд «Лиственное яйцо»
+0272 ; TopsTexOnepieceAlineNOrange ; orange dress ; オレンジのふく ; 橘子服 ; 橘子服 ; 오렌지 옷 ; robe orange ; Orangenkleid ; vestido naranja ; vestito arancia ; sinaasappeljurk ; платье «Апельсин»
+026A ; TopsTexOnepieceAlineNPeach0 ; peach dress ; モモのふく ; 桃子服 ; 桃子服 ; 복숭아 옷 ; robe pêche ; Pfirsichkleid ; vestido melocotón ; vestito pesca ; perzikjurk ; платье «Персик»
+0267 ; TopsTexOnepieceAlineNPear0 ; pear dress ; ナシのふく ; 梨子服 ; 梨子服 ; 배 옷 ; robe poire ; Birnenkleid ; vestido pera ; vestito pera ; perenjurk ; платье «Груша»
+02AE ; TopsTexOnepieceRibNEggsky0 ; sky-egg outfit ; そらとぶたまごのふく ; 飛天蛋衣服 ; 飞天蛋衣服 ; 하늘을 나는 달걀 옷 ; tenue œuf aérien ; Luft-Glücksei-Outfit ; traje de huevo celeste ; abito a uovo celeste ; luchtei-outfit ; наряд «Небесное яйцо»
+02A5 ; TopsTexOnepieceRibNEggrock0 ; stone-egg outfit ; いわのたまごのふく ; 岩石蛋衣服 ; 岩石蛋衣服 ; 바위 달걀 옷 ; tenue œuf minéral ; Fels-Glücksei-Outfit ; traje de huevo rupestre ; abito a uovo roccioso ; steenei-outfit ; наряд «Каменное яйцо»
+0336 ; TopsTexOnepieceOverallNVine0 ; vine outfit ; ツルのふく ; 藤蔓服 ; 藤蔓服 ; 덩굴 옷 ; tenue vigne ; Ranken-Outfit ; vestido tubo enredadera ; costume edera ; klimplantoutfit ; наряд из лозы
+02B1 ; TopsTexOnepieceRibNEggfish0 ; water-egg outfit ; サカナのたまごのふく ; 魚兒蛋衣服 ; 鱼儿蛋衣服 ; 물고기 달걀 옷 ; tenue œuf aquatique ; Wasser-Glücksei-Outfit ; traje de huevo acuático ; abito a uovo acquatico ; waterei-outfit ; наряд «Водяное яйцо»
+02AB ; TopsTexOnepieceRibNEggforest0 ; wood-egg outfit ; ウッディなたまごのふく ; 森林蛋衣服 ; 森林蛋衣服 ; 나무 달걀 옷 ; tenue œuf boisé ; Holz-Glücksei-Outfit ; traje de huevo leñoso ; abito a uovo boscoso ; houtei-outfit ; наряд «Лесное яйцо»
+0282 ; ShoesKneeKnightIron ; armor shoes ; アイアンアーマーシューズ ; 鐵甲鞋 ; 铁甲靴 ; 아이언 아머 슈즈 ; paire de solerets ; Paar Silberrüstungsschuhe ; escarpe ; paio scarpe armatura ; ridderlaarzen ; рыцарские сапоги
+02A3 ; ShoesLowcutEggground0 ; earth-egg shoes ; じめんのたまごのくつ ; 地面蛋鞋子 ; 地面蛋鞋子 ; 땅 달걀 신발 ; p. chaussures œuf terrestre ; Paar Erd-Ei-Schuhe ; zapato de huevo terrestre ; paio di scarpe uova terrestri ; aarde-ei-schoenen ; боты «Земляное яйцо»
+0283 ; ShoesKneeKnightGold ; gold-armor shoes ; ゴールデンアーマーシューズ ; 金甲鞋 ; 金甲靴 ; 골든 아머 슈즈 ; paire de solerets or ; Paar Goldrüstungsschuhe ; escarpe de oro ; paio scarpe armatura dorata ; gouden ridderlaarzen ; латные золотые сапоги
+02A9 ; ShoesLowcutEggleaf0 ; leaf-egg shoes ; はっぱのたまごのくつ ; 葉子蛋鞋子 ; 叶子蛋鞋子 ; 나뭇잎 달걀 신발 ; p. chaussures œuf feuillu ; Paar Laub-Ei-Schuhe ; zapato de huevo boscoso ; paio scarpe uova frondose ; bladei-schoenen ; боты «Лиственное яйцо»
+0298 ; ShoesKneeRecyclingboots0 ; recycled boots ; リサイクルながぐつ ; 舊長靴 ; 回收长靴 ; 재활용 장화 ; paire de bottes recyclées ; Paar Recyclingstiefel ; bota reciclada ; paio di stivali riciclati ; hergebruikte laarzen ; сапоги из утиль-сырья
+02AF ; ShoesLowcutEggsky0 ; sky-egg shoes ; そらとぶたまごのくつ ; 飛天蛋鞋子 ; 飞天蛋鞋子 ; 하늘을 나는 달걀 신발 ; p. chaussures œuf aérien ; Paar Luft-Ei-Schuhe ; zapato de huevo celeste ; paio di scarpe uova celesti ; luchtei-schoenen ; боты «Небесное яйцо»
+02A6 ; ShoesLowcutEggrock0 ; stone-egg shoes ; いわのたまごのくつ ; 岩石蛋鞋子 ; 岩石蛋鞋子 ; 바위 달걀 신발 ; p. chaussures œuf minéral ; Paar Fels-Ei-Schuhe ; zapato de huevo rupestre ; paio scarpe uova rocciose ; steenei-schoenen ; боты «Каменное яйцо»
+02B2 ; ShoesLowcutEggfish0 ; water-egg shoes ; サカナのたまごのくつ ; 魚兒蛋鞋子 ; 鱼儿蛋鞋子 ; 물고기 달걀 신발 ; p. chaussures œuf aquatiq. ; Paar Wasser-Ei-Schuhe ; zapato de huevo acuático ; p. scarpe uova acquatiche ; waterei-schoenen ; боты «Водяное яйцо»
+02AC ; ShoesLowcutEggforest0 ; wood-egg shoes ; ウッディなたまごのくつ ; 森林蛋鞋子 ; 森林蛋鞋子 ; 나무 달걀 신발 ; p. chaussures œuf boisé ; Paar Holz-Ei-Schuhe ; zapato de huevo leñoso ; paio scarpe uova boscose ; houtei-schoenen ; боты «Лесное яйцо»
+025C ; TopsTexTopCoatLStrawBeige ; traditional straw coat ; みの ; 蓑衣 ; 蓑衣 ; 도롱이 ; manteau en paille ; Strohmantel ; abrigo de paja ; giacca di paglia tradizionale ; traditionele strojas ; соломенная накидка
