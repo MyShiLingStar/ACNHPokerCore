@@ -19,7 +19,7 @@ namespace ACNHPokerCore
         private Boolean idleEmote = false;
         private int idleNum = 0;
         private Boolean HoldingL = false;
-        private PubSub? MyPubSub = null;
+        private PubSub MyPubSub = null;
         private TwitchBot MyTwitchBot;
         private string TwitchBotUserName;
         private string TwitchBotOauth;

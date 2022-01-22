@@ -883,7 +883,9 @@ namespace ACNHPokerCore
 
         private string UpdateTownID()
         {
-            byte[] townID = Utilities.GetTownID(socket, null);
+            if (socket == null && usb == null)
+                return "";
+            byte[] townID = Utilities.GetTownID(socket, usb);
             IslandName = Utilities.GetString(townID, 0x04, 10);
             return "  |  Island Name : " + IslandName;
         }
