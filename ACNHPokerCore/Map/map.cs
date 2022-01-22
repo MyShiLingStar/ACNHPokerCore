@@ -2667,7 +2667,7 @@ namespace ACNHPokerCore
                 FileName = "(" + numberOfRow + ")" + "filename",
             };
 
-            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
             string savepath;
 
@@ -3129,7 +3129,7 @@ namespace ACNHPokerCore
                     Filter = "New Horizons Grid (*.nhg)|*.nhg",
                 };
 
-                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
                 string savepath;
 
@@ -3204,7 +3204,7 @@ namespace ACNHPokerCore
                     Filter = "New Horizons Grid (*.nhg)|*.nhg|New Horizons Inventory(*.nhi) | *.nhi|All files (*.*)|*.*",
                 };
 
-                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
                 string savepath;
 
@@ -3981,7 +3981,7 @@ namespace ACNHPokerCore
                 Filter = "Portable Network Graphics (*.png)|*.png",
             };
 
-            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
             string savepath;
 

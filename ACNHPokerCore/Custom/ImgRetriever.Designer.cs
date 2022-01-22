@@ -44,6 +44,7 @@
             this.progressBar.Location = new System.Drawing.Point(5, 131);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(425, 25);
+            this.progressBar.TabIndex = 5;
             this.progressBar.Visible = false;
             // 
             // yesBtn
@@ -56,6 +57,7 @@
             this.yesBtn.Location = new System.Drawing.Point(85, 81);
             this.yesBtn.Name = "yesBtn";
             this.yesBtn.Size = new System.Drawing.Size(116, 32);
+            this.yesBtn.TabIndex = 4;
             this.yesBtn.Text = "Yes";
             this.yesBtn.UseVisualStyleBackColor = false;
             this.yesBtn.Click += new System.EventHandler(this.yesBtn_Click);
@@ -70,6 +72,7 @@
             this.noBtn.Location = new System.Drawing.Point(236, 81);
             this.noBtn.Name = "noBtn";
             this.noBtn.Size = new System.Drawing.Size(116, 32);
+            this.noBtn.TabIndex = 3;
             this.noBtn.Text = "No";
             this.noBtn.UseVisualStyleBackColor = false;
             this.noBtn.Click += new System.EventHandler(this.noBtn_Click);
@@ -82,6 +85,7 @@
             this.msg.Location = new System.Drawing.Point(23, 9);
             this.msg.Name = "msg";
             this.msg.Size = new System.Drawing.Size(387, 57);
+            this.msg.TabIndex = 2;
             this.msg.Text = "Would you like to download the item sprites now?\r\n\r\n(You can find this dialog in " +
     "          again if needed)";
             this.msg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -94,6 +98,7 @@
             this.waitmsg.Location = new System.Drawing.Point(16, 95);
             this.waitmsg.Name = "waitmsg";
             this.waitmsg.Size = new System.Drawing.Size(399, 96);
+            this.waitmsg.TabIndex = 1;
             this.waitmsg.Text = resources.GetString("waitmsg.Text");
             this.waitmsg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.waitmsg.Visible = false;
@@ -109,6 +114,7 @@
             this.configBtn.Location = new System.Drawing.Point(243, 43);
             this.configBtn.Name = "configBtn";
             this.configBtn.Size = new System.Drawing.Size(25, 25);
+            this.configBtn.TabIndex = 0;
             this.configBtn.UseVisualStyleBackColor = false;
             // 
             // ImgRetriever
@@ -131,7 +137,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(450, 235);
             this.Name = "ImgRetriever";
-            this.Opacity = 0.97D;
+            this.Opacity = 0.95D;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Golden Image Retriever";

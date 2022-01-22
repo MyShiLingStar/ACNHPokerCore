@@ -150,7 +150,6 @@ namespace ACNHPokerCore
             this.Name = "MyStopWatch";
             this.ShowInTaskbar = false;
             this.Text = "PocketCham\'s Timer";
-            this.TransparencyKey = System.Drawing.Color.Lime;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MyStopWatch_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.StopWatchImageBox)).EndInit();
             this.panel1.ResumeLayout(false);

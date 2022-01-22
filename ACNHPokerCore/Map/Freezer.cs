@@ -47,7 +47,7 @@ namespace ACNHPokerCore
                     Filter = "New Horizons Fasil 2 (*.nhf2)|*.nhf2",
                 };
 
-                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
                 string savepath;
 
@@ -286,7 +286,7 @@ namespace ACNHPokerCore
                 Filter = "New Horizons Fasil 2 (*.nhf2)|*.nhf2|All files (*.*)|*.*",
             };
 
-            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
             string savepath;
 
@@ -430,7 +430,7 @@ namespace ACNHPokerCore
                 Filter = "New Horizons Fasil 2 (*.nhf2)|*.nhf2|All files (*.*)|*.*",
             };
 
-            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
             string savepath;
 

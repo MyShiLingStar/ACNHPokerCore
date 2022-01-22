@@ -197,7 +197,7 @@ namespace ACNHPokerCore
             this.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("trayIcon.Icon")));
             this.trayIcon.Text = "ACNHPoker : Map Regenerator";
             this.trayIcon.Visible = true;
-            this.trayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.trayIcon_MouseDoubleClick);
+            this.trayIcon.DoubleClick += new System.EventHandler(this.trayIcon_DoubleClick);
             // 
             // startRegen
             // 

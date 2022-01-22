@@ -270,7 +270,15 @@ namespace ACNHPokerCore
                     {
                         lock (syncRoot)
                         {
-                            this.Image = displayItemImage(large, false);
+                            try
+                            {
+                                this.Image = displayItemImage(large, false);
+                            }
+                            catch
+                            {
+                                refreshing = false;
+                                return;
+                            }
                         };
                     });
                 }
@@ -282,10 +290,15 @@ namespace ACNHPokerCore
                 {
                     await Task.Run(() =>
                     {
-                        lock (syncRoot)
+                        try
                         {
                             this.Image = displayItemImage(large, false);
-                        };
+                        }
+                        catch
+                        {
+                            refreshing = false;
+                            return;
+                        }
                     });
                 }
                 else // seperate
@@ -299,10 +312,15 @@ namespace ACNHPokerCore
 
                     await Task.Run(() =>
                     {
-                        lock (syncRoot)
+                        try
                         {
-                            this.Image = displayItemImage(large, true);
-                        };
+                            this.Image = displayItemImage(large, false);
+                        }
+                        catch
+                        {
+                            refreshing = false;
+                            return;
+                        }
                     });
                 }
             }

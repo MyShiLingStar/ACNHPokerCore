@@ -55,6 +55,8 @@ namespace ACNHPokerCore
         bool L = false;
         bool holdingL = false;
 
+        private CancellationTokenSource cts;
+
         public event CloseHandler closeForm;
         public event ThreadAbortHandler abortAll;
 
@@ -410,11 +412,13 @@ namespace ACNHPokerCore
             DoneAnchor4TestBtn.Enabled = false;
             DoneFullTestBtn.Enabled = false;
 
-            Thread TeleportThread = new Thread(delegate () { TestNormalRestore(); });
+            cts = new CancellationTokenSource();
+            CancellationToken token = cts.Token;
+            Thread TeleportThread = new Thread(delegate () { TestNormalRestore(token); });
             TeleportThread.Start();
         }
 
-        private void TestNormalRestore()
+        private void TestNormalRestore(CancellationToken token)
         {
             controller.clickDown(); // Hide Weapon
             Thread.Sleep(1000);
@@ -438,7 +442,7 @@ namespace ACNHPokerCore
             teleport.TeleportToAnchor(3);
 
             Debug.Print("Get Dodo");
-            controller.talkAndGetDodoCode();
+            controller.talkAndGetDodoCode(token);
             Debug.Print("Finish getting Dodo");
 
             teleport.TeleportToAnchor(4);
@@ -592,10 +596,13 @@ namespace ACNHPokerCore
             });
         }
 
-        public teleport.OverworldState DodoMonitor()
+        public teleport.OverworldState DodoMonitor(CancellationToken token)
         {
             teleport.OverworldState state = teleport.GetOverworldState();
             //WriteLog(state.ToString() + " " + idleNum, true);
+
+            if (token.IsCancellationRequested)
+                return state;
 
             if (CheckOnlineStatus() == 1)
             {
@@ -616,10 +623,12 @@ namespace ACNHPokerCore
                     int retry = 0;
                     do
                     {
+                        if (token.IsCancellationRequested)
+                            return state;
                         if (retry >= 30)
                         {
                             WriteLog("[Warning] Start Hard Restore", true);
-                            HardRestore();
+                            HardRestore(token);
                             break;
                         }
                         if (teleport.GetLocationState() == teleport.LocationState.Announcement)
@@ -647,13 +656,16 @@ namespace ACNHPokerCore
                     HoldingL = false;
                     WriteLog("[Warning] Start Normal Restore", true);
                     WriteLog("Please wait for the bot to finish the sequence.", true);
-                    NormalRestore();
+                    NormalRestore(token);
                     unLockControl();
                     WriteLog("Restore sequence finished.", true);
                     idleNum = 0;
                     state = teleport.OverworldState.OverworldOrInAirport;
                 }
             }
+
+            if (token.IsCancellationRequested)
+                return state;
 
             if (state != teleport.OverworldState.Loading && state != teleport.OverworldState.UserArriveLeavingOrTitleScreen)
             {
@@ -720,10 +732,12 @@ namespace ACNHPokerCore
             return state;
         }
 
-        public void NormalRestore()
+        public void NormalRestore(CancellationToken token)
         {
             do
             {
+                if (token.IsCancellationRequested)
+                    return;
                 if (teleport.GetLocationState() == teleport.LocationState.Announcement)
                 {
                     WriteLog("In Announcement", true);
@@ -747,6 +761,8 @@ namespace ACNHPokerCore
             Thread.Sleep(2000);
             controller.clickDown(); // Hide Weapon
             Thread.Sleep(1000);
+            if (token.IsCancellationRequested)
+                return;
 
             string locationState = teleport.GetLocationState().ToString();
             //Debug.Print(">>>>>>>>>>>>>>>>>>>>>>>>>>" + locationState);
@@ -762,6 +778,8 @@ namespace ACNHPokerCore
 
                 do
                 {
+                    if (token.IsCancellationRequested)
+                        return;
                     WriteLog("Try Entering Airport", true);
                     controller.EnterAirport();
                     Thread.Sleep(2000);
@@ -776,16 +794,22 @@ namespace ACNHPokerCore
 
             WriteLog("Try Getting Dodo", true);
             if (skipDialogCheckBox.Checked)
-                DisplayDodo(controller.talkAndGetDodoCode());
+                DisplayDodo(controller.talkAndGetDodoCode(token));
             else
-                DisplayDodo(controller.talkAndGetDodoCodeLegacy());
+                DisplayDodo(controller.talkAndGetDodoCodeLegacy(token));
             WriteLog("Finish Getting Dodo", true);
+
+            if (token.IsCancellationRequested)
+                return;
+
             CheckOnlineStatus();
 
             teleport.TeleportToAnchor(4);
 
             do
             {
+                if (token.IsCancellationRequested)
+                    return;
                 //Debug.Print(teleport.GetOverworldState().ToString());
                 WriteLog("Try Exiting Airport", true);
                 controller.ExitAirport();
@@ -796,6 +820,8 @@ namespace ACNHPokerCore
             WriteLog("Back to Overworld", true);
             Thread.Sleep(2000);
 
+            if (token.IsCancellationRequested)
+                return;
             teleport.TeleportToAnchor(1);
 
             controller.emote(0);
@@ -803,30 +829,44 @@ namespace ACNHPokerCore
             //controller.detachController();
         }
 
-        public void HardRestore()
+        public void HardRestore(CancellationToken token)
         {
+            if (token.IsCancellationRequested)
+                return;
             WriteLog("Capturing the Crash", true);
             controller.clickCAPTURE();
             Thread.Sleep(2000);
+            if (token.IsCancellationRequested)
+                return;
             WriteLog("Open Home Menu", true);
             controller.clickHOME();
             Thread.Sleep(5000);
-
+            if (token.IsCancellationRequested)
+                return;
             controller.clickX();
             Thread.Sleep(1000);
+            if (token.IsCancellationRequested)
+                return;
             controller.clickA(); //Close Game
             WriteLog("Try Closing the Game", true);
             Thread.Sleep(15000);
-
+            if (token.IsCancellationRequested)
+                return;
             controller.clickA(); //Select Game
             Thread.Sleep(2000);
+            if (token.IsCancellationRequested)
+                return;
             controller.clickA(); //Select first user
             WriteLog("Game & User Selected", true);
             Thread.Sleep(10000);
+            if (token.IsCancellationRequested)
+                return;
 
             int retry = 0;
             do
             {
+                if (token.IsCancellationRequested)
+                    return;
                 //Debug.Print(teleport.GetOverworldState().ToString());
                 //Debug.Print("Waiting for Overworld");
                 if (teleport.GetLocationState() == teleport.LocationState.Announcement)
@@ -848,6 +888,8 @@ namespace ACNHPokerCore
             HoldingL = false;
             WriteLog("Exiting House", true);
             Thread.Sleep(2000);
+            if (token.IsCancellationRequested)
+                return;
         }
 
         private void CloseGate()
@@ -894,17 +936,22 @@ namespace ACNHPokerCore
 
         }
 
-        public void EndSession()
+        public void EndSession(CancellationToken token)
         {
+            if (token.IsCancellationRequested)
+                return;
             controller.clickDown(); // Hide Weapon
             Thread.Sleep(1000);
-
+            if (token.IsCancellationRequested)
+                return;
             controller.clickMINUS(); // Open menu
             Thread.Sleep(2000);
-
+            if (token.IsCancellationRequested)
+                return;
             controller.clickA(); // Open Selection
             Thread.Sleep(1000);
-
+            if (token.IsCancellationRequested)
+                return;
             controller.clickA(); // Select End Session.
             Thread.Sleep(10000);
         }
@@ -1272,17 +1319,18 @@ namespace ACNHPokerCore
 
         private void AbortBtn_Click(object sender, EventArgs e)
         {
-            this.abortAll();
-
             if (standaloneThread != null)
             {
-                standaloneThread.Abort();
+                cts.Cancel();
 
                 standaloneStart.Text = "Start";
                 standaloneStart.Tag = "Start";
                 standaloneRunning = false;
                 standaloneThread = null;
             }
+
+            this.abortAll();
+
             WriteLog(">> Restore Sequence Aborted! <<");
             unLockControl();
             dodoCode.Text = "";
@@ -1349,7 +1397,11 @@ namespace ACNHPokerCore
                 standaloneStart.Text = "Stop";
                 standaloneStart.Tag = "Stop";
                 standaloneRunning = true;
-                standaloneThread = new Thread(delegate () { standaloneLoop(); });
+
+                cts = new CancellationTokenSource();
+                CancellationToken token = cts.Token;
+
+                standaloneThread = new Thread(delegate () { standaloneLoop(token); });
                 standaloneThread.Start();
             }
             else
@@ -1376,11 +1428,16 @@ namespace ACNHPokerCore
             return num;
         }
 
-        private void standaloneLoop()
+        private void standaloneLoop(CancellationToken token)
         {
             bool init = true;
             do
             {
+                if (token.IsCancellationRequested)
+                {
+                    return;
+                }
+
                 teleport.OverworldState state = teleport.GetOverworldState();
                 WriteLog(state.ToString() + " " + idleNum, true);
 
@@ -1405,14 +1462,14 @@ namespace ACNHPokerCore
                             if (visitorNum >= 1)
                             {
                                 WriteLog("Time's up! Resetting session!", true);
-                                EndSession();
+                                EndSession(token);
                                 stopWatch.done = false;
                                 continue;
                             }
                             else
                             {
                                 WriteLog("Time's up! Save and reboot!", true);
-                                EndSession();
+                                EndSession(token);
                                 stopWatch.done = false;
                                 continue;
                             }
@@ -1430,10 +1487,15 @@ namespace ACNHPokerCore
                         int retry = 0;
                         do
                         {
+                            if (token.IsCancellationRequested)
+                            {
+                                return;
+                            }
+
                             if (retry >= 30)
                             {
                                 WriteLog("[Warning] Start Hard Restore", true);
-                                HardRestore();
+                                HardRestore(token);
                                 break;
                             }
                             if (teleport.GetLocationState() == teleport.LocationState.Announcement)
@@ -1461,7 +1523,7 @@ namespace ACNHPokerCore
                         HoldingL = false;
                         WriteLog("[Warning] Start Normal Restore", true);
                         WriteLog("Please wait for the bot to finish the sequence.", true);
-                        NormalRestore();
+                        NormalRestore(token);
                         unLockControl();
 
                         if (stopWatch != null && resetSession)
@@ -1539,6 +1601,7 @@ namespace ACNHPokerCore
                     GetVisitorList();
                 }
                 idleNum++;
+
                 Thread.Sleep(2000);
 
             } while (standaloneRunning);

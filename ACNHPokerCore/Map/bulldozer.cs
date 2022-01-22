@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Net.Sockets;
@@ -200,7 +199,7 @@ namespace ACNHPokerCore
                         style.BackColor = Color.Black;
                     }
 
-                    buildingGridView.Rows[buildingGridView.RowCount-1].Cells["Color"].Style = style;
+                    buildingGridView.Rows[buildingGridView.RowCount - 1].Cells["Color"].Style = style;
                 }
             }
         }
@@ -585,7 +584,7 @@ namespace ACNHPokerCore
                     Filter = "New Horizons Acres (*.nha)|*.nha",
                 };
 
-                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
                 string savepath;
 
@@ -638,7 +637,7 @@ namespace ACNHPokerCore
                     Filter = "New Horizons Acres (*.nha)|*.nha| All files (*.*)|*.*",
                 };
 
-                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
                 string savepath;
 
@@ -671,7 +670,7 @@ namespace ACNHPokerCore
 
                 if (data.Length != 0x90)
                 {
-                    MyMessageBox.Show(  "Incorrect file size!" + " (0x" + data.Length.ToString("X") + ")\n" +
+                    MyMessageBox.Show("Incorrect file size!" + " (0x" + data.Length.ToString("X") + ")\n" +
                                         "Correct file size should be (0x90)", "Who gave you that file?", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -823,7 +822,7 @@ namespace ACNHPokerCore
                     Filter = "New Horizons Building List (*.nhb)|*.nhb",
                 };
 
-                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
                 string savepath;
 
@@ -873,7 +872,7 @@ namespace ACNHPokerCore
                     Filter = "New Horizons Building List (*.nhb)|*.nhb| All files (*.*)|*.*",
                 };
 
-                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
                 string savepath;
 

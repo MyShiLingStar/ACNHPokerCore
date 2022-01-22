@@ -2649,6 +2649,7 @@ namespace ACNHPokerCore
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.ClientSize = new System.Drawing.Size(584, 291);
+            this.ControlBox = false;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.timerSettingPanel);
             this.Controls.Add(this.FullPanel);

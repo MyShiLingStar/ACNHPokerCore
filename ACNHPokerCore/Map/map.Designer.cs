@@ -129,7 +129,7 @@ namespace ACNHPokerCore
             this.saveDebug = new System.Windows.Forms.Button();
             this.clearGridBtn = new System.Windows.Forms.Button();
             this.ClearCopiedAreaBtn = new System.Windows.Forms.Button();
-            this.FlagTextbox = new HexUpDown();
+            this.FlagTextbox = new ACNHPokerCore.HexUpDown();
             this.LayerPanel = new System.Windows.Forms.Panel();
             this.functionPanel = new System.Windows.Forms.Panel();
             this.placeVariationBtn = new System.Windows.Forms.Button();
@@ -165,7 +165,7 @@ namespace ACNHPokerCore
             this.miniMapBox = new System.Windows.Forms.PictureBox();
             this.Language = new System.Windows.Forms.ComboBox();
             this.FlashTimer = new System.Windows.Forms.Timer(this.components);
-            this.HexTextbox = new HexUpDown();
+            this.HexTextbox = new ACNHPokerCore.HexUpDown();
             this.selectedItem = new ACNHPokerCore.inventorySlot();
             ((System.ComponentModel.ISupportInitialize)(this.fieldGridView)).BeginInit();
             this.BtnPanel.SuspendLayout();
@@ -186,7 +186,7 @@ namespace ACNHPokerCore
             // 
             this.xCoordinate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
             this.xCoordinate.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.xCoordinate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xCoordinate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.xCoordinate.ForeColor = System.Drawing.Color.White;
             this.xCoordinate.Location = new System.Drawing.Point(69, 357);
             this.xCoordinate.MaxLength = 3;
@@ -201,7 +201,7 @@ namespace ACNHPokerCore
             // 
             this.yCoordinate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
             this.yCoordinate.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.yCoordinate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.yCoordinate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.yCoordinate.ForeColor = System.Drawing.Color.White;
             this.yCoordinate.Location = new System.Drawing.Point(145, 357);
             this.yCoordinate.MaxLength = 3;
@@ -218,7 +218,7 @@ namespace ACNHPokerCore
             this.moveRightBtn.Enabled = false;
             this.moveRightBtn.FlatAppearance.BorderSize = 0;
             this.moveRightBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moveRightBtn.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
+            this.moveRightBtn.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.moveRightBtn.ForeColor = System.Drawing.Color.White;
             this.moveRightBtn.Location = new System.Drawing.Point(811, 271);
             this.moveRightBtn.Margin = new System.Windows.Forms.Padding(0);
@@ -235,7 +235,7 @@ namespace ACNHPokerCore
             this.moveLeftBtn.Enabled = false;
             this.moveLeftBtn.FlatAppearance.BorderSize = 0;
             this.moveLeftBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moveLeftBtn.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
+            this.moveLeftBtn.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.moveLeftBtn.ForeColor = System.Drawing.Color.White;
             this.moveLeftBtn.Location = new System.Drawing.Point(232, 270);
             this.moveLeftBtn.Margin = new System.Windows.Forms.Padding(0);
@@ -252,7 +252,7 @@ namespace ACNHPokerCore
             this.moveUpBtn.Enabled = false;
             this.moveUpBtn.FlatAppearance.BorderSize = 0;
             this.moveUpBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moveUpBtn.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
+            this.moveUpBtn.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.moveUpBtn.ForeColor = System.Drawing.Color.White;
             this.moveUpBtn.Location = new System.Drawing.Point(500, 3);
             this.moveUpBtn.Margin = new System.Windows.Forms.Padding(0);
@@ -270,7 +270,7 @@ namespace ACNHPokerCore
             this.moveDownBtn.Enabled = false;
             this.moveDownBtn.FlatAppearance.BorderSize = 0;
             this.moveDownBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moveDownBtn.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
+            this.moveDownBtn.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.moveDownBtn.ForeColor = System.Drawing.Color.White;
             this.moveDownBtn.Location = new System.Drawing.Point(500, 582);
             this.moveDownBtn.Margin = new System.Windows.Forms.Padding(0);
@@ -288,7 +288,7 @@ namespace ACNHPokerCore
             this.moveUpRightBtn.Enabled = false;
             this.moveUpRightBtn.FlatAppearance.BorderSize = 0;
             this.moveUpRightBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moveUpRightBtn.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
+            this.moveUpRightBtn.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.moveUpRightBtn.ForeColor = System.Drawing.Color.White;
             this.moveUpRightBtn.Location = new System.Drawing.Point(811, 3);
             this.moveUpRightBtn.Margin = new System.Windows.Forms.Padding(0);
@@ -305,7 +305,7 @@ namespace ACNHPokerCore
             this.moveUpLeftBtn.Enabled = false;
             this.moveUpLeftBtn.FlatAppearance.BorderSize = 0;
             this.moveUpLeftBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moveUpLeftBtn.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
+            this.moveUpLeftBtn.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.moveUpLeftBtn.ForeColor = System.Drawing.Color.White;
             this.moveUpLeftBtn.Location = new System.Drawing.Point(232, 3);
             this.moveUpLeftBtn.Margin = new System.Windows.Forms.Padding(0);
@@ -322,7 +322,7 @@ namespace ACNHPokerCore
             this.moveDownRightBtn.Enabled = false;
             this.moveDownRightBtn.FlatAppearance.BorderSize = 0;
             this.moveDownRightBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moveDownRightBtn.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
+            this.moveDownRightBtn.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.moveDownRightBtn.ForeColor = System.Drawing.Color.White;
             this.moveDownRightBtn.Location = new System.Drawing.Point(811, 582);
             this.moveDownRightBtn.Margin = new System.Windows.Forms.Padding(0);
@@ -339,7 +339,7 @@ namespace ACNHPokerCore
             this.moveDownLeftBtn.Enabled = false;
             this.moveDownLeftBtn.FlatAppearance.BorderSize = 0;
             this.moveDownLeftBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moveDownLeftBtn.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
+            this.moveDownLeftBtn.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.moveDownLeftBtn.ForeColor = System.Drawing.Color.White;
             this.moveDownLeftBtn.Location = new System.Drawing.Point(232, 582);
             this.moveDownLeftBtn.Margin = new System.Windows.Forms.Padding(0);
@@ -383,7 +383,7 @@ namespace ACNHPokerCore
             // 
             this.IdTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
             this.IdTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.IdTextbox.Font = new System.Drawing.Font("Arial", 25F, System.Drawing.FontStyle.Bold);
+            this.IdTextbox.Font = new System.Drawing.Font("Arial", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.IdTextbox.ForeColor = System.Drawing.Color.White;
             this.IdTextbox.Location = new System.Drawing.Point(971, 530);
             this.IdTextbox.MaxLength = 4;
@@ -398,33 +398,33 @@ namespace ACNHPokerCore
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.label1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(968, 514);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 16);
+            this.label1.Size = new System.Drawing.Size(55, 16);
             this.label1.TabIndex = 150;
             this.label1.Text = "Item ID";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.label2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(968, 571);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 16);
+            this.label2.Size = new System.Drawing.Size(76, 16);
             this.label2.TabIndex = 151;
             this.label2.Text = "Hex Value";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.label3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(1162, 514);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 16);
+            this.label3.Size = new System.Drawing.Size(37, 16);
             this.label3.TabIndex = 153;
             this.label3.Text = "Flag";
             // 
@@ -433,7 +433,7 @@ namespace ACNHPokerCore
             this.favModeBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
             this.favModeBtn.FlatAppearance.BorderSize = 0;
             this.favModeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.favModeBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.favModeBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.favModeBtn.ForeColor = System.Drawing.Color.White;
             this.favModeBtn.Location = new System.Drawing.Point(1045, 3);
             this.favModeBtn.Name = "favModeBtn";
@@ -448,7 +448,7 @@ namespace ACNHPokerCore
             this.itemModeBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
             this.itemModeBtn.FlatAppearance.BorderSize = 0;
             this.itemModeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.itemModeBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.itemModeBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.itemModeBtn.ForeColor = System.Drawing.Color.White;
             this.itemModeBtn.Location = new System.Drawing.Point(856, 3);
             this.itemModeBtn.Name = "itemModeBtn";
@@ -463,7 +463,7 @@ namespace ACNHPokerCore
             this.recipeModeBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
             this.recipeModeBtn.FlatAppearance.BorderSize = 0;
             this.recipeModeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.recipeModeBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.recipeModeBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.recipeModeBtn.ForeColor = System.Drawing.Color.White;
             this.recipeModeBtn.Location = new System.Drawing.Point(919, 3);
             this.recipeModeBtn.Name = "recipeModeBtn";
@@ -478,7 +478,7 @@ namespace ACNHPokerCore
             this.flowerModeBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
             this.flowerModeBtn.FlatAppearance.BorderSize = 0;
             this.flowerModeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.flowerModeBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.flowerModeBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.flowerModeBtn.ForeColor = System.Drawing.Color.White;
             this.flowerModeBtn.Location = new System.Drawing.Point(982, 3);
             this.flowerModeBtn.Name = "flowerModeBtn";
@@ -492,7 +492,7 @@ namespace ACNHPokerCore
             // 
             this.itemSearchBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
             this.itemSearchBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.itemSearchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.itemSearchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.itemSearchBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(118)))), ((int)(((byte)(125)))));
             this.itemSearchBox.Location = new System.Drawing.Point(856, 28);
             this.itemSearchBox.Multiline = false;
@@ -569,7 +569,7 @@ namespace ACNHPokerCore
             this.floor1.FlatAppearance.BorderSize = 0;
             this.floor1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor1.flowerQuantity = ((ushort)(0));
-            this.floor1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor1.ForeColor = System.Drawing.Color.White;
             this.floor1.itemData = ((uint)(0u));
             this.floor1.itemDurability = ((ushort)(0));
@@ -598,7 +598,7 @@ namespace ACNHPokerCore
             // floorRightClick
             // 
             this.floorRightClick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.floorRightClick.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.floorRightClick.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floorRightClick.ImageScalingSize = new System.Drawing.Size(0, 0);
             this.floorRightClick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyItemToolStripMenuItem,
@@ -609,14 +609,14 @@ namespace ACNHPokerCore
             this.flag00To04ToolStripMenuItem});
             this.floorRightClick.Name = "floorRightClick";
             this.floorRightClick.ShowImageMargin = false;
-            this.floorRightClick.Size = new System.Drawing.Size(136, 136);
+            this.floorRightClick.Size = new System.Drawing.Size(134, 136);
             this.floorRightClick.Opening += new System.ComponentModel.CancelEventHandler(this.floorRightClick_Opening);
             // 
             // copyItemToolStripMenuItem
             // 
             this.copyItemToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.copyItemToolStripMenuItem.Name = "copyItemToolStripMenuItem";
-            this.copyItemToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.copyItemToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.copyItemToolStripMenuItem.Text = "Copy Item";
             this.copyItemToolStripMenuItem.Click += new System.EventHandler(this.copyItemToolStripMenuItem_Click);
             // 
@@ -624,7 +624,7 @@ namespace ACNHPokerCore
             // 
             this.deleteToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.deleteToolStripMenuItem.Text = "Delete Item";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -632,7 +632,7 @@ namespace ACNHPokerCore
             // 
             this.replaceItemToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.replaceItemToolStripMenuItem.Name = "replaceItemToolStripMenuItem";
-            this.replaceItemToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.replaceItemToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.replaceItemToolStripMenuItem.Text = "Replace Item";
             this.replaceItemToolStripMenuItem.Click += new System.EventHandler(this.replaceItemToolStripMenuItem_Click);
             // 
@@ -640,7 +640,7 @@ namespace ACNHPokerCore
             // 
             this.flag20ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.flag20ToolStripMenuItem.Name = "flag20ToolStripMenuItem";
-            this.flag20ToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.flag20ToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.flag20ToolStripMenuItem.Text = "Flag to 20";
             this.flag20ToolStripMenuItem.Click += new System.EventHandler(this.flag20ToolStripMenuItem_Click);
             // 
@@ -648,7 +648,7 @@ namespace ACNHPokerCore
             // 
             this.flag00ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.flag00ToolStripMenuItem.Name = "flag00ToolStripMenuItem";
-            this.flag00ToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.flag00ToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.flag00ToolStripMenuItem.Text = "Flag to 00";
             this.flag00ToolStripMenuItem.Click += new System.EventHandler(this.flag00ToolStripMenuItem_Click);
             // 
@@ -656,7 +656,7 @@ namespace ACNHPokerCore
             // 
             this.flag00To04ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.flag00To04ToolStripMenuItem.Name = "flag00To04ToolStripMenuItem";
-            this.flag00To04ToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.flag00To04ToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.flag00To04ToolStripMenuItem.Text = "Flag 00 to 04";
             this.flag00To04ToolStripMenuItem.Click += new System.EventHandler(this.flag00To04ToolStripMenuItem_Click);
             // 
@@ -669,7 +669,7 @@ namespace ACNHPokerCore
             this.floor2.FlatAppearance.BorderSize = 0;
             this.floor2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor2.flowerQuantity = ((ushort)(0));
-            this.floor2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor2.ForeColor = System.Drawing.Color.White;
             this.floor2.itemData = ((uint)(0u));
             this.floor2.itemDurability = ((ushort)(0));
@@ -704,7 +704,7 @@ namespace ACNHPokerCore
             this.floor3.FlatAppearance.BorderSize = 0;
             this.floor3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor3.flowerQuantity = ((ushort)(0));
-            this.floor3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor3.ForeColor = System.Drawing.Color.White;
             this.floor3.itemData = ((uint)(0u));
             this.floor3.itemDurability = ((ushort)(0));
@@ -739,7 +739,7 @@ namespace ACNHPokerCore
             this.floor8.FlatAppearance.BorderSize = 0;
             this.floor8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor8.flowerQuantity = ((ushort)(0));
-            this.floor8.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor8.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor8.ForeColor = System.Drawing.Color.White;
             this.floor8.itemData = ((uint)(0u));
             this.floor8.itemDurability = ((ushort)(0));
@@ -774,7 +774,7 @@ namespace ACNHPokerCore
             this.floor9.FlatAppearance.BorderSize = 0;
             this.floor9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor9.flowerQuantity = ((ushort)(0));
-            this.floor9.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor9.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor9.ForeColor = System.Drawing.Color.White;
             this.floor9.itemData = ((uint)(0u));
             this.floor9.itemDurability = ((ushort)(0));
@@ -809,7 +809,7 @@ namespace ACNHPokerCore
             this.floor10.FlatAppearance.BorderSize = 0;
             this.floor10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor10.flowerQuantity = ((ushort)(0));
-            this.floor10.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor10.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor10.ForeColor = System.Drawing.Color.White;
             this.floor10.itemData = ((uint)(0u));
             this.floor10.itemDurability = ((ushort)(0));
@@ -844,7 +844,7 @@ namespace ACNHPokerCore
             this.floor15.FlatAppearance.BorderSize = 0;
             this.floor15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor15.flowerQuantity = ((ushort)(0));
-            this.floor15.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor15.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor15.ForeColor = System.Drawing.Color.White;
             this.floor15.itemData = ((uint)(0u));
             this.floor15.itemDurability = ((ushort)(0));
@@ -879,7 +879,7 @@ namespace ACNHPokerCore
             this.floor16.FlatAppearance.BorderSize = 0;
             this.floor16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor16.flowerQuantity = ((ushort)(0));
-            this.floor16.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor16.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor16.ForeColor = System.Drawing.Color.White;
             this.floor16.itemData = ((uint)(0u));
             this.floor16.itemDurability = ((ushort)(0));
@@ -914,7 +914,7 @@ namespace ACNHPokerCore
             this.floor17.FlatAppearance.BorderSize = 0;
             this.floor17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor17.flowerQuantity = ((ushort)(0));
-            this.floor17.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor17.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor17.ForeColor = System.Drawing.Color.White;
             this.floor17.itemData = ((uint)(0u));
             this.floor17.itemDurability = ((ushort)(0));
@@ -949,7 +949,7 @@ namespace ACNHPokerCore
             this.floor22.FlatAppearance.BorderSize = 0;
             this.floor22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor22.flowerQuantity = ((ushort)(0));
-            this.floor22.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor22.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor22.ForeColor = System.Drawing.Color.White;
             this.floor22.itemData = ((uint)(0u));
             this.floor22.itemDurability = ((ushort)(0));
@@ -984,7 +984,7 @@ namespace ACNHPokerCore
             this.floor23.FlatAppearance.BorderSize = 0;
             this.floor23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor23.flowerQuantity = ((ushort)(0));
-            this.floor23.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor23.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor23.ForeColor = System.Drawing.Color.White;
             this.floor23.itemData = ((uint)(0u));
             this.floor23.itemDurability = ((ushort)(0));
@@ -1019,7 +1019,7 @@ namespace ACNHPokerCore
             this.floor24.FlatAppearance.BorderSize = 0;
             this.floor24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor24.flowerQuantity = ((ushort)(0));
-            this.floor24.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor24.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor24.ForeColor = System.Drawing.Color.White;
             this.floor24.itemData = ((uint)(0u));
             this.floor24.itemDurability = ((ushort)(0));
@@ -1054,7 +1054,7 @@ namespace ACNHPokerCore
             this.floor29.FlatAppearance.BorderSize = 0;
             this.floor29.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor29.flowerQuantity = ((ushort)(0));
-            this.floor29.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor29.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor29.ForeColor = System.Drawing.Color.White;
             this.floor29.itemData = ((uint)(0u));
             this.floor29.itemDurability = ((ushort)(0));
@@ -1089,7 +1089,7 @@ namespace ACNHPokerCore
             this.floor30.FlatAppearance.BorderSize = 0;
             this.floor30.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor30.flowerQuantity = ((ushort)(0));
-            this.floor30.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor30.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor30.ForeColor = System.Drawing.Color.White;
             this.floor30.itemData = ((uint)(0u));
             this.floor30.itemDurability = ((ushort)(0));
@@ -1124,7 +1124,7 @@ namespace ACNHPokerCore
             this.floor31.FlatAppearance.BorderSize = 0;
             this.floor31.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor31.flowerQuantity = ((ushort)(0));
-            this.floor31.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor31.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor31.ForeColor = System.Drawing.Color.White;
             this.floor31.itemData = ((uint)(0u));
             this.floor31.itemDurability = ((ushort)(0));
@@ -1159,7 +1159,7 @@ namespace ACNHPokerCore
             this.floor36.FlatAppearance.BorderSize = 0;
             this.floor36.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor36.flowerQuantity = ((ushort)(0));
-            this.floor36.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor36.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor36.ForeColor = System.Drawing.Color.White;
             this.floor36.itemData = ((uint)(0u));
             this.floor36.itemDurability = ((ushort)(0));
@@ -1194,7 +1194,7 @@ namespace ACNHPokerCore
             this.floor37.FlatAppearance.BorderSize = 0;
             this.floor37.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor37.flowerQuantity = ((ushort)(0));
-            this.floor37.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor37.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor37.ForeColor = System.Drawing.Color.White;
             this.floor37.itemData = ((uint)(0u));
             this.floor37.itemDurability = ((ushort)(0));
@@ -1229,7 +1229,7 @@ namespace ACNHPokerCore
             this.floor38.FlatAppearance.BorderSize = 0;
             this.floor38.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor38.flowerQuantity = ((ushort)(0));
-            this.floor38.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor38.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor38.ForeColor = System.Drawing.Color.White;
             this.floor38.itemData = ((uint)(0u));
             this.floor38.itemDurability = ((ushort)(0));
@@ -1264,7 +1264,7 @@ namespace ACNHPokerCore
             this.floor4.FlatAppearance.BorderSize = 0;
             this.floor4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor4.flowerQuantity = ((ushort)(0));
-            this.floor4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor4.ForeColor = System.Drawing.Color.White;
             this.floor4.itemData = ((uint)(0u));
             this.floor4.itemDurability = ((ushort)(0));
@@ -1299,7 +1299,7 @@ namespace ACNHPokerCore
             this.floor5.FlatAppearance.BorderSize = 0;
             this.floor5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor5.flowerQuantity = ((ushort)(0));
-            this.floor5.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor5.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor5.ForeColor = System.Drawing.Color.White;
             this.floor5.itemData = ((uint)(0u));
             this.floor5.itemDurability = ((ushort)(0));
@@ -1334,7 +1334,7 @@ namespace ACNHPokerCore
             this.floor49.FlatAppearance.BorderSize = 0;
             this.floor49.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor49.flowerQuantity = ((ushort)(0));
-            this.floor49.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor49.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor49.ForeColor = System.Drawing.Color.White;
             this.floor49.itemData = ((uint)(0u));
             this.floor49.itemDurability = ((ushort)(0));
@@ -1369,7 +1369,7 @@ namespace ACNHPokerCore
             this.floor6.FlatAppearance.BorderSize = 0;
             this.floor6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor6.flowerQuantity = ((ushort)(0));
-            this.floor6.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor6.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor6.ForeColor = System.Drawing.Color.White;
             this.floor6.itemData = ((uint)(0u));
             this.floor6.itemDurability = ((ushort)(0));
@@ -1404,7 +1404,7 @@ namespace ACNHPokerCore
             this.floor48.FlatAppearance.BorderSize = 0;
             this.floor48.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor48.flowerQuantity = ((ushort)(0));
-            this.floor48.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor48.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor48.ForeColor = System.Drawing.Color.White;
             this.floor48.itemData = ((uint)(0u));
             this.floor48.itemDurability = ((ushort)(0));
@@ -1439,7 +1439,7 @@ namespace ACNHPokerCore
             this.floor11.FlatAppearance.BorderSize = 0;
             this.floor11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor11.flowerQuantity = ((ushort)(0));
-            this.floor11.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor11.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor11.ForeColor = System.Drawing.Color.White;
             this.floor11.itemData = ((uint)(0u));
             this.floor11.itemDurability = ((ushort)(0));
@@ -1474,7 +1474,7 @@ namespace ACNHPokerCore
             this.floor47.FlatAppearance.BorderSize = 0;
             this.floor47.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor47.flowerQuantity = ((ushort)(0));
-            this.floor47.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor47.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor47.ForeColor = System.Drawing.Color.White;
             this.floor47.itemData = ((uint)(0u));
             this.floor47.itemDurability = ((ushort)(0));
@@ -1509,7 +1509,7 @@ namespace ACNHPokerCore
             this.floor12.FlatAppearance.BorderSize = 0;
             this.floor12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor12.flowerQuantity = ((ushort)(0));
-            this.floor12.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor12.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor12.ForeColor = System.Drawing.Color.White;
             this.floor12.itemData = ((uint)(0u));
             this.floor12.itemDurability = ((ushort)(0));
@@ -1544,7 +1544,7 @@ namespace ACNHPokerCore
             this.floor46.FlatAppearance.BorderSize = 0;
             this.floor46.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor46.flowerQuantity = ((ushort)(0));
-            this.floor46.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor46.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor46.ForeColor = System.Drawing.Color.White;
             this.floor46.itemData = ((uint)(0u));
             this.floor46.itemDurability = ((ushort)(0));
@@ -1579,7 +1579,7 @@ namespace ACNHPokerCore
             this.floor13.FlatAppearance.BorderSize = 0;
             this.floor13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor13.flowerQuantity = ((ushort)(0));
-            this.floor13.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor13.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor13.ForeColor = System.Drawing.Color.White;
             this.floor13.itemData = ((uint)(0u));
             this.floor13.itemDurability = ((ushort)(0));
@@ -1614,7 +1614,7 @@ namespace ACNHPokerCore
             this.floor45.FlatAppearance.BorderSize = 0;
             this.floor45.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor45.flowerQuantity = ((ushort)(0));
-            this.floor45.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor45.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor45.ForeColor = System.Drawing.Color.White;
             this.floor45.itemData = ((uint)(0u));
             this.floor45.itemDurability = ((ushort)(0));
@@ -1649,7 +1649,7 @@ namespace ACNHPokerCore
             this.floor18.FlatAppearance.BorderSize = 0;
             this.floor18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor18.flowerQuantity = ((ushort)(0));
-            this.floor18.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor18.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor18.ForeColor = System.Drawing.Color.White;
             this.floor18.itemData = ((uint)(0u));
             this.floor18.itemDurability = ((ushort)(0));
@@ -1684,7 +1684,7 @@ namespace ACNHPokerCore
             this.floor44.FlatAppearance.BorderSize = 0;
             this.floor44.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor44.flowerQuantity = ((ushort)(0));
-            this.floor44.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor44.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor44.ForeColor = System.Drawing.Color.White;
             this.floor44.itemData = ((uint)(0u));
             this.floor44.itemDurability = ((ushort)(0));
@@ -1719,7 +1719,7 @@ namespace ACNHPokerCore
             this.floor19.FlatAppearance.BorderSize = 0;
             this.floor19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor19.flowerQuantity = ((ushort)(0));
-            this.floor19.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor19.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor19.ForeColor = System.Drawing.Color.White;
             this.floor19.itemData = ((uint)(0u));
             this.floor19.itemDurability = ((ushort)(0));
@@ -1754,7 +1754,7 @@ namespace ACNHPokerCore
             this.floor43.FlatAppearance.BorderSize = 0;
             this.floor43.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor43.flowerQuantity = ((ushort)(0));
-            this.floor43.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor43.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor43.ForeColor = System.Drawing.Color.White;
             this.floor43.itemData = ((uint)(0u));
             this.floor43.itemDurability = ((ushort)(0));
@@ -1789,7 +1789,7 @@ namespace ACNHPokerCore
             this.floor20.FlatAppearance.BorderSize = 0;
             this.floor20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor20.flowerQuantity = ((ushort)(0));
-            this.floor20.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor20.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor20.ForeColor = System.Drawing.Color.White;
             this.floor20.itemData = ((uint)(0u));
             this.floor20.itemDurability = ((ushort)(0));
@@ -1824,7 +1824,7 @@ namespace ACNHPokerCore
             this.floor42.FlatAppearance.BorderSize = 0;
             this.floor42.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor42.flowerQuantity = ((ushort)(0));
-            this.floor42.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor42.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor42.ForeColor = System.Drawing.Color.White;
             this.floor42.itemData = ((uint)(0u));
             this.floor42.itemDurability = ((ushort)(0));
@@ -1859,7 +1859,7 @@ namespace ACNHPokerCore
             this.floor25.FlatAppearance.BorderSize = 0;
             this.floor25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor25.flowerQuantity = ((ushort)(0));
-            this.floor25.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor25.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor25.ForeColor = System.Drawing.Color.White;
             this.floor25.itemData = ((uint)(0u));
             this.floor25.itemDurability = ((ushort)(0));
@@ -1894,7 +1894,7 @@ namespace ACNHPokerCore
             this.floor35.FlatAppearance.BorderSize = 0;
             this.floor35.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor35.flowerQuantity = ((ushort)(0));
-            this.floor35.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor35.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor35.ForeColor = System.Drawing.Color.White;
             this.floor35.itemData = ((uint)(0u));
             this.floor35.itemDurability = ((ushort)(0));
@@ -1929,7 +1929,7 @@ namespace ACNHPokerCore
             this.floor26.FlatAppearance.BorderSize = 0;
             this.floor26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor26.flowerQuantity = ((ushort)(0));
-            this.floor26.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor26.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor26.ForeColor = System.Drawing.Color.White;
             this.floor26.itemData = ((uint)(0u));
             this.floor26.itemDurability = ((ushort)(0));
@@ -1964,7 +1964,7 @@ namespace ACNHPokerCore
             this.floor28.FlatAppearance.BorderSize = 0;
             this.floor28.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor28.flowerQuantity = ((ushort)(0));
-            this.floor28.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor28.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor28.ForeColor = System.Drawing.Color.White;
             this.floor28.itemData = ((uint)(0u));
             this.floor28.itemDurability = ((ushort)(0));
@@ -1999,7 +1999,7 @@ namespace ACNHPokerCore
             this.floor27.FlatAppearance.BorderSize = 0;
             this.floor27.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor27.flowerQuantity = ((ushort)(0));
-            this.floor27.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor27.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor27.ForeColor = System.Drawing.Color.White;
             this.floor27.itemData = ((uint)(0u));
             this.floor27.itemDurability = ((ushort)(0));
@@ -2034,7 +2034,7 @@ namespace ACNHPokerCore
             this.floor21.FlatAppearance.BorderSize = 0;
             this.floor21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor21.flowerQuantity = ((ushort)(0));
-            this.floor21.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor21.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor21.ForeColor = System.Drawing.Color.White;
             this.floor21.itemData = ((uint)(0u));
             this.floor21.itemDurability = ((ushort)(0));
@@ -2069,7 +2069,7 @@ namespace ACNHPokerCore
             this.floor32.FlatAppearance.BorderSize = 0;
             this.floor32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor32.flowerQuantity = ((ushort)(0));
-            this.floor32.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor32.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor32.ForeColor = System.Drawing.Color.White;
             this.floor32.itemData = ((uint)(0u));
             this.floor32.itemDurability = ((ushort)(0));
@@ -2104,7 +2104,7 @@ namespace ACNHPokerCore
             this.floor14.FlatAppearance.BorderSize = 0;
             this.floor14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor14.flowerQuantity = ((ushort)(0));
-            this.floor14.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor14.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor14.ForeColor = System.Drawing.Color.White;
             this.floor14.itemData = ((uint)(0u));
             this.floor14.itemDurability = ((ushort)(0));
@@ -2139,7 +2139,7 @@ namespace ACNHPokerCore
             this.floor33.FlatAppearance.BorderSize = 0;
             this.floor33.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor33.flowerQuantity = ((ushort)(0));
-            this.floor33.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor33.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor33.ForeColor = System.Drawing.Color.White;
             this.floor33.itemData = ((uint)(0u));
             this.floor33.itemDurability = ((ushort)(0));
@@ -2174,7 +2174,7 @@ namespace ACNHPokerCore
             this.floor7.FlatAppearance.BorderSize = 0;
             this.floor7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor7.flowerQuantity = ((ushort)(0));
-            this.floor7.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor7.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor7.ForeColor = System.Drawing.Color.White;
             this.floor7.itemData = ((uint)(0u));
             this.floor7.itemDurability = ((ushort)(0));
@@ -2209,7 +2209,7 @@ namespace ACNHPokerCore
             this.floor34.FlatAppearance.BorderSize = 0;
             this.floor34.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor34.flowerQuantity = ((ushort)(0));
-            this.floor34.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor34.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor34.ForeColor = System.Drawing.Color.White;
             this.floor34.itemData = ((uint)(0u));
             this.floor34.itemDurability = ((ushort)(0));
@@ -2244,7 +2244,7 @@ namespace ACNHPokerCore
             this.floor41.FlatAppearance.BorderSize = 0;
             this.floor41.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor41.flowerQuantity = ((ushort)(0));
-            this.floor41.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor41.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor41.ForeColor = System.Drawing.Color.White;
             this.floor41.itemData = ((uint)(0u));
             this.floor41.itemDurability = ((ushort)(0));
@@ -2279,7 +2279,7 @@ namespace ACNHPokerCore
             this.floor39.FlatAppearance.BorderSize = 0;
             this.floor39.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor39.flowerQuantity = ((ushort)(0));
-            this.floor39.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor39.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor39.ForeColor = System.Drawing.Color.White;
             this.floor39.itemData = ((uint)(0u));
             this.floor39.itemDurability = ((ushort)(0));
@@ -2314,7 +2314,7 @@ namespace ACNHPokerCore
             this.floor40.FlatAppearance.BorderSize = 0;
             this.floor40.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.floor40.flowerQuantity = ((ushort)(0));
-            this.floor40.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.floor40.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.floor40.ForeColor = System.Drawing.Color.White;
             this.floor40.itemData = ((uint)(0u));
             this.floor40.itemDurability = ((ushort)(0));
@@ -2343,19 +2343,19 @@ namespace ACNHPokerCore
             // saveMap
             // 
             this.saveMap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.saveMap.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.saveMap.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.saveMap.ImageScalingSize = new System.Drawing.Size(0, 0);
             this.saveMap.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveTopngToolStripMenuItem});
             this.saveMap.Name = "floorRightClick";
             this.saveMap.ShowImageMargin = false;
-            this.saveMap.Size = new System.Drawing.Size(132, 26);
+            this.saveMap.Size = new System.Drawing.Size(130, 26);
             // 
             // saveTopngToolStripMenuItem
             // 
             this.saveTopngToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveTopngToolStripMenuItem.Name = "saveTopngToolStripMenuItem";
-            this.saveTopngToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.saveTopngToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.saveTopngToolStripMenuItem.Text = "Save to .png";
             this.saveTopngToolStripMenuItem.Click += new System.EventHandler(this.saveTopngToolStripMenuItem_Click);
             // 
@@ -2364,7 +2364,7 @@ namespace ACNHPokerCore
             this.fillRemainBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
             this.fillRemainBtn.FlatAppearance.BorderSize = 0;
             this.fillRemainBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.fillRemainBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.fillRemainBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.fillRemainBtn.ForeColor = System.Drawing.Color.White;
             this.fillRemainBtn.Location = new System.Drawing.Point(17, 465);
             this.fillRemainBtn.Margin = new System.Windows.Forms.Padding(4);
@@ -2382,7 +2382,7 @@ namespace ACNHPokerCore
             this.refreshBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
             this.refreshBtn.FlatAppearance.BorderSize = 0;
             this.refreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.refreshBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.refreshBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.refreshBtn.ForeColor = System.Drawing.Color.White;
             this.refreshBtn.Location = new System.Drawing.Point(18, 43);
             this.refreshBtn.Margin = new System.Windows.Forms.Padding(4);
@@ -2399,7 +2399,7 @@ namespace ACNHPokerCore
             this.saveBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
             this.saveBtn.FlatAppearance.BorderSize = 0;
             this.saveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.saveBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.saveBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.saveBtn.ForeColor = System.Drawing.Color.White;
             this.saveBtn.Location = new System.Drawing.Point(18, 393);
             this.saveBtn.Margin = new System.Windows.Forms.Padding(4);
@@ -2416,7 +2416,7 @@ namespace ACNHPokerCore
             this.loadBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
             this.loadBtn.FlatAppearance.BorderSize = 0;
             this.loadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.loadBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.loadBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.loadBtn.ForeColor = System.Drawing.Color.White;
             this.loadBtn.Location = new System.Drawing.Point(92, 393);
             this.loadBtn.Margin = new System.Windows.Forms.Padding(4);
@@ -2434,7 +2434,7 @@ namespace ACNHPokerCore
             this.fieldModeBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
             this.fieldModeBtn.FlatAppearance.BorderSize = 0;
             this.fieldModeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.fieldModeBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.fieldModeBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.fieldModeBtn.ForeColor = System.Drawing.Color.White;
             this.fieldModeBtn.Location = new System.Drawing.Point(1127, 3);
             this.fieldModeBtn.Name = "fieldModeBtn";
@@ -2450,7 +2450,7 @@ namespace ACNHPokerCore
             this.moveRight7Btn.Enabled = false;
             this.moveRight7Btn.FlatAppearance.BorderSize = 0;
             this.moveRight7Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moveRight7Btn.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            this.moveRight7Btn.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.moveRight7Btn.ForeColor = System.Drawing.Color.White;
             this.moveRight7Btn.Location = new System.Drawing.Point(811, 314);
             this.moveRight7Btn.Margin = new System.Windows.Forms.Padding(0);
@@ -2467,7 +2467,7 @@ namespace ACNHPokerCore
             this.moveLeft7Btn.Enabled = false;
             this.moveLeft7Btn.FlatAppearance.BorderSize = 0;
             this.moveLeft7Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moveLeft7Btn.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            this.moveLeft7Btn.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.moveLeft7Btn.ForeColor = System.Drawing.Color.White;
             this.moveLeft7Btn.Location = new System.Drawing.Point(232, 313);
             this.moveLeft7Btn.Margin = new System.Windows.Forms.Padding(0);
@@ -2484,7 +2484,7 @@ namespace ACNHPokerCore
             this.moveDown7Btn.Enabled = false;
             this.moveDown7Btn.FlatAppearance.BorderSize = 0;
             this.moveDown7Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moveDown7Btn.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            this.moveDown7Btn.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.moveDown7Btn.ForeColor = System.Drawing.Color.White;
             this.moveDown7Btn.Location = new System.Drawing.Point(543, 582);
             this.moveDown7Btn.Margin = new System.Windows.Forms.Padding(0);
@@ -2502,7 +2502,7 @@ namespace ACNHPokerCore
             this.moveUp7Btn.Enabled = false;
             this.moveUp7Btn.FlatAppearance.BorderSize = 0;
             this.moveUp7Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moveUp7Btn.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            this.moveUp7Btn.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.moveUp7Btn.ForeColor = System.Drawing.Color.White;
             this.moveUp7Btn.Location = new System.Drawing.Point(543, 3);
             this.moveUp7Btn.Margin = new System.Windows.Forms.Padding(0);
@@ -2533,7 +2533,7 @@ namespace ACNHPokerCore
             this.layer1Btn.ForeColor = System.Drawing.Color.White;
             this.layer1Btn.Location = new System.Drawing.Point(3, 26);
             this.layer1Btn.Name = "layer1Btn";
-            this.layer1Btn.Size = new System.Drawing.Size(73, 20);
+            this.layer1Btn.Size = new System.Drawing.Size(72, 20);
             this.layer1Btn.TabIndex = 0;
             this.layer1Btn.TabStop = true;
             this.layer1Btn.Text = "Layer 1";
@@ -2548,7 +2548,7 @@ namespace ACNHPokerCore
             this.layer2Btn.ForeColor = System.Drawing.Color.White;
             this.layer2Btn.Location = new System.Drawing.Point(3, 3);
             this.layer2Btn.Name = "layer2Btn";
-            this.layer2Btn.Size = new System.Drawing.Size(73, 20);
+            this.layer2Btn.Size = new System.Drawing.Size(72, 20);
             this.layer2Btn.TabIndex = 1;
             this.layer2Btn.Text = "Layer 2";
             this.formToolTip.SetToolTip(this.layer2Btn, "Change to the top layer. (On top of furnitures. Like tables)");
@@ -2560,7 +2560,7 @@ namespace ACNHPokerCore
             this.bulkSpawnBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
             this.bulkSpawnBtn.FlatAppearance.BorderSize = 0;
             this.bulkSpawnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bulkSpawnBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.bulkSpawnBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.bulkSpawnBtn.ForeColor = System.Drawing.Color.White;
             this.bulkSpawnBtn.Location = new System.Drawing.Point(18, 356);
             this.bulkSpawnBtn.Margin = new System.Windows.Forms.Padding(4);
@@ -2578,7 +2578,7 @@ namespace ACNHPokerCore
             this.fetchMapBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
             this.fetchMapBtn.FlatAppearance.BorderSize = 0;
             this.fetchMapBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.fetchMapBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.fetchMapBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.fetchMapBtn.ForeColor = System.Drawing.Color.White;
             this.fetchMapBtn.Location = new System.Drawing.Point(47, 35);
             this.fetchMapBtn.Margin = new System.Windows.Forms.Padding(4);
@@ -2595,7 +2595,7 @@ namespace ACNHPokerCore
             this.reAnchorBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
             this.reAnchorBtn.FlatAppearance.BorderSize = 0;
             this.reAnchorBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.reAnchorBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.reAnchorBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.reAnchorBtn.ForeColor = System.Drawing.Color.White;
             this.reAnchorBtn.Location = new System.Drawing.Point(18, 7);
             this.reAnchorBtn.Margin = new System.Windows.Forms.Padding(4);
@@ -2612,7 +2612,7 @@ namespace ACNHPokerCore
             this.saveDebug.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
             this.saveDebug.FlatAppearance.BorderSize = 0;
             this.saveDebug.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.saveDebug.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.saveDebug.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.saveDebug.ForeColor = System.Drawing.Color.White;
             this.saveDebug.Location = new System.Drawing.Point(657, 719);
             this.saveDebug.Margin = new System.Windows.Forms.Padding(4);
@@ -2630,7 +2630,7 @@ namespace ACNHPokerCore
             this.clearGridBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
             this.clearGridBtn.FlatAppearance.BorderSize = 0;
             this.clearGridBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.clearGridBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.clearGridBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.clearGridBtn.ForeColor = System.Drawing.Color.White;
             this.clearGridBtn.Location = new System.Drawing.Point(17, 429);
             this.clearGridBtn.Margin = new System.Windows.Forms.Padding(4);
@@ -2648,7 +2648,7 @@ namespace ACNHPokerCore
             this.ClearCopiedAreaBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.ClearCopiedAreaBtn.FlatAppearance.BorderSize = 0;
             this.ClearCopiedAreaBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ClearCopiedAreaBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.ClearCopiedAreaBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ClearCopiedAreaBtn.ForeColor = System.Drawing.Color.White;
             this.ClearCopiedAreaBtn.Location = new System.Drawing.Point(359, 591);
             this.ClearCopiedAreaBtn.Margin = new System.Windows.Forms.Padding(4);
@@ -2665,7 +2665,7 @@ namespace ACNHPokerCore
             // 
             this.FlagTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
             this.FlagTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.FlagTextbox.Font = new System.Drawing.Font("Arial", 22F, System.Drawing.FontStyle.Bold);
+            this.FlagTextbox.Font = new System.Drawing.Font("Arial", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.FlagTextbox.ForeColor = System.Drawing.Color.White;
             this.FlagTextbox.Hexadecimal = true;
             this.FlagTextbox.HexLength = 2;
@@ -2718,7 +2718,7 @@ namespace ACNHPokerCore
             this.placeVariationBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
             this.placeVariationBtn.FlatAppearance.BorderSize = 0;
             this.placeVariationBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.placeVariationBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.placeVariationBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.placeVariationBtn.ForeColor = System.Drawing.Color.White;
             this.placeVariationBtn.Location = new System.Drawing.Point(17, 500);
             this.placeVariationBtn.Margin = new System.Windows.Forms.Padding(4);
@@ -2734,7 +2734,7 @@ namespace ACNHPokerCore
             this.variationBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
             this.variationBtn.FlatAppearance.BorderSize = 0;
             this.variationBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.variationBtn.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            this.variationBtn.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.variationBtn.ForeColor = System.Drawing.Color.White;
             this.variationBtn.Location = new System.Drawing.Point(1127, 566);
             this.variationBtn.Name = "variationBtn";
@@ -2761,7 +2761,7 @@ namespace ACNHPokerCore
             this.WaitMessagebox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.WaitMessagebox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.WaitMessagebox.Cursor = System.Windows.Forms.Cursors.Default;
-            this.WaitMessagebox.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.WaitMessagebox.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.WaitMessagebox.ForeColor = System.Drawing.Color.White;
             this.WaitMessagebox.Location = new System.Drawing.Point(1, 32);
             this.WaitMessagebox.Multiline = false;
@@ -2793,11 +2793,11 @@ namespace ACNHPokerCore
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.label29.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label29.ForeColor = System.Drawing.Color.White;
             this.label29.Location = new System.Drawing.Point(73, 7);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(100, 16);
+            this.label29.Size = new System.Drawing.Size(99, 16);
             this.label29.TabIndex = 215;
             this.label29.Text = "Please Wait...";
             this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2810,29 +2810,29 @@ namespace ACNHPokerCore
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.label4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(44, 358);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(25, 16);
+            this.label4.Size = new System.Drawing.Size(24, 16);
             this.label4.TabIndex = 221;
             this.label4.Text = "X :";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.label5.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(119, 358);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(26, 16);
+            this.label5.Size = new System.Drawing.Size(25, 16);
             this.label5.TabIndex = 222;
             this.label5.Text = "Y :";
             // 
             // removeItemClick
             // 
             this.removeItemClick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.removeItemClick.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.removeItemClick.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.removeItemClick.ImageScalingSize = new System.Drawing.Size(0, 0);
             this.removeItemClick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.weedsToolStripMenuItem,
@@ -2848,13 +2848,13 @@ namespace ACNHPokerCore
             this.bulkSpawnToolStripMenuItem});
             this.removeItemClick.Name = "floorRightClick";
             this.removeItemClick.ShowImageMargin = false;
-            this.removeItemClick.Size = new System.Drawing.Size(128, 230);
+            this.removeItemClick.Size = new System.Drawing.Size(126, 230);
             // 
             // weedsToolStripMenuItem
             // 
             this.weedsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.weedsToolStripMenuItem.Name = "weedsToolStripMenuItem";
-            this.weedsToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.weedsToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.weedsToolStripMenuItem.Text = "Weeds";
             this.weedsToolStripMenuItem.Click += new System.EventHandler(this.weedsToolStripMenuItem_Click);
             // 
@@ -2862,7 +2862,7 @@ namespace ACNHPokerCore
             // 
             this.flowersToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.flowersToolStripMenuItem.Name = "flowersToolStripMenuItem";
-            this.flowersToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.flowersToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.flowersToolStripMenuItem.Text = "Flowers";
             this.flowersToolStripMenuItem.Click += new System.EventHandler(this.flowersToolStripMenuItem_Click);
             // 
@@ -2870,7 +2870,7 @@ namespace ACNHPokerCore
             // 
             this.treesToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.treesToolStripMenuItem.Name = "treesToolStripMenuItem";
-            this.treesToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.treesToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.treesToolStripMenuItem.Text = "Trees";
             this.treesToolStripMenuItem.Click += new System.EventHandler(this.treesToolStripMenuItem_Click);
             // 
@@ -2878,7 +2878,7 @@ namespace ACNHPokerCore
             // 
             this.bushesToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.bushesToolStripMenuItem.Name = "bushesToolStripMenuItem";
-            this.bushesToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.bushesToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.bushesToolStripMenuItem.Text = "Bushes";
             this.bushesToolStripMenuItem.Click += new System.EventHandler(this.bushesToolStripMenuItem_Click);
             // 
@@ -2886,7 +2886,7 @@ namespace ACNHPokerCore
             // 
             this.fencesToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.fencesToolStripMenuItem.Name = "fencesToolStripMenuItem";
-            this.fencesToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.fencesToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.fencesToolStripMenuItem.Text = "Fences";
             this.fencesToolStripMenuItem.Click += new System.EventHandler(this.fencesToolStripMenuItem_Click);
             // 
@@ -2894,7 +2894,7 @@ namespace ACNHPokerCore
             // 
             this.shellsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.shellsToolStripMenuItem.Name = "shellsToolStripMenuItem";
-            this.shellsToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.shellsToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.shellsToolStripMenuItem.Text = "Shells";
             this.shellsToolStripMenuItem.Click += new System.EventHandler(this.shellsToolStripMenuItem_Click);
             // 
@@ -2902,7 +2902,7 @@ namespace ACNHPokerCore
             // 
             this.diysToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.diysToolStripMenuItem.Name = "diysToolStripMenuItem";
-            this.diysToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.diysToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.diysToolStripMenuItem.Text = "DIYs";
             this.diysToolStripMenuItem.Click += new System.EventHandler(this.diysToolStripMenuItem_Click);
             // 
@@ -2910,7 +2910,7 @@ namespace ACNHPokerCore
             // 
             this.rocksToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.rocksToolStripMenuItem.Name = "rocksToolStripMenuItem";
-            this.rocksToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.rocksToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.rocksToolStripMenuItem.Text = "Rocks";
             this.rocksToolStripMenuItem.Click += new System.EventHandler(this.rocksToolStripMenuItem_Click);
             // 
@@ -2918,20 +2918,20 @@ namespace ACNHPokerCore
             // 
             this.everythingToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.everythingToolStripMenuItem.Name = "everythingToolStripMenuItem";
-            this.everythingToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.everythingToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.everythingToolStripMenuItem.Text = "All";
             this.everythingToolStripMenuItem.Click += new System.EventHandler(this.everythingToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(124, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(122, 6);
             // 
             // bulkSpawnToolStripMenuItem
             // 
             this.bulkSpawnToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.bulkSpawnToolStripMenuItem.Name = "bulkSpawnToolStripMenuItem";
-            this.bulkSpawnToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.bulkSpawnToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.bulkSpawnToolStripMenuItem.Text = "Bulk Spawn";
             this.bulkSpawnToolStripMenuItem.Click += new System.EventHandler(this.bulkSpawnToolStripMenuItem_Click);
             // 
@@ -2939,7 +2939,7 @@ namespace ACNHPokerCore
             // 
             this.nextAutoSaveSecond.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
             this.nextAutoSaveSecond.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.nextAutoSaveSecond.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nextAutoSaveSecond.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nextAutoSaveSecond.ForeColor = System.Drawing.Color.White;
             this.nextAutoSaveSecond.Location = new System.Drawing.Point(152, 3);
             this.nextAutoSaveSecond.MaxLength = 3;
@@ -2953,11 +2953,11 @@ namespace ACNHPokerCore
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.label6.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label6.ForeColor = System.Drawing.Color.White;
             this.label6.Location = new System.Drawing.Point(38, 4);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(117, 16);
+            this.label6.Size = new System.Drawing.Size(116, 16);
             this.label6.TabIndex = 225;
             this.label6.Text = "Est. Next Save :";
             // 
@@ -2970,7 +2970,7 @@ namespace ACNHPokerCore
             // 
             this.Corner1YBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
             this.Corner1YBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Corner1YBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Corner1YBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.Corner1YBox.ForeColor = System.Drawing.Color.White;
             this.Corner1YBox.Location = new System.Drawing.Point(318, 587);
             this.Corner1YBox.MaxLength = 3;
@@ -2985,7 +2985,7 @@ namespace ACNHPokerCore
             // 
             this.Corner1XBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
             this.Corner1XBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Corner1XBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Corner1XBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.Corner1XBox.ForeColor = System.Drawing.Color.White;
             this.Corner1XBox.Location = new System.Drawing.Point(277, 587);
             this.Corner1XBox.MaxLength = 3;
@@ -3000,7 +3000,7 @@ namespace ACNHPokerCore
             // 
             this.Corner2YBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
             this.Corner2YBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Corner2YBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Corner2YBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.Corner2YBox.ForeColor = System.Drawing.Color.White;
             this.Corner2YBox.Location = new System.Drawing.Point(318, 606);
             this.Corner2YBox.MaxLength = 3;
@@ -3015,7 +3015,7 @@ namespace ACNHPokerCore
             // 
             this.Corner2XBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
             this.Corner2XBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Corner2XBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Corner2XBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.Corner2XBox.ForeColor = System.Drawing.Color.White;
             this.Corner2XBox.Location = new System.Drawing.Point(277, 606);
             this.Corner2XBox.MaxLength = 3;
@@ -3062,7 +3062,7 @@ namespace ACNHPokerCore
             this.Language.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.Language.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Language.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Language.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.Language.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.Language.ForeColor = System.Drawing.Color.White;
             this.Language.FormattingEnabled = true;
             this.Language.ItemHeight = 16;
@@ -3093,7 +3093,7 @@ namespace ACNHPokerCore
             this.HexTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
             this.HexTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.HexTextbox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.HexTextbox.Font = new System.Drawing.Font("Arial", 22F, System.Drawing.FontStyle.Bold);
+            this.HexTextbox.Font = new System.Drawing.Font("Arial", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.HexTextbox.ForeColor = System.Drawing.Color.White;
             this.HexTextbox.Hexadecimal = true;
             this.HexTextbox.HexLength = 8;
@@ -3116,7 +3116,7 @@ namespace ACNHPokerCore
             this.selectedItem.FlatAppearance.BorderSize = 0;
             this.selectedItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.selectedItem.flowerQuantity = ((ushort)(0));
-            this.selectedItem.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.selectedItem.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.selectedItem.ForeColor = System.Drawing.Color.White;
             this.selectedItem.itemDurability = ((ushort)(0));
             this.selectedItem.itemQuantity = ((ushort)(0));
@@ -3180,13 +3180,14 @@ namespace ACNHPokerCore
             this.Controls.Add(this.BtnPanel);
             this.Controls.Add(this.FlagTextbox);
             this.Controls.Add(this.functionPanel);
-            this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1220, 1000);
             this.MinimumSize = new System.Drawing.Size(1220, 670);
             this.Name = "map";
+            this.Opacity = 0.97D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Map Dropper";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.map_FormClosed);

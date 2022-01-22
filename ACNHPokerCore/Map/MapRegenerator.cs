@@ -37,6 +37,8 @@ namespace ACNHPokerCore
 
         public dodo dodoSetup = null;
 
+        private CancellationTokenSource cts;
+
         public event CloseHandler closeForm;
 
         #region Form Load
@@ -73,7 +75,7 @@ namespace ACNHPokerCore
                     Filter = "New Horizons Fasil (*.nhf)|*.nhf",
                 };
 
-                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
                 string savepath;
 
@@ -146,7 +148,7 @@ namespace ACNHPokerCore
                     Filter = "New Horizons Fasil (*.nhf)|*.nhf|All files (*.*)|*.*",
                 };
 
-                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
                 string savepath;
 
@@ -237,7 +239,7 @@ namespace ACNHPokerCore
                     Filter = "New Horizons Fasil (*.nhf)|*.nhf|All files (*.*)|*.*",
                 };
 
-                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
                 string savepath;
 
@@ -296,7 +298,10 @@ namespace ACNHPokerCore
                 string dodo = controller.setupDodo();
                 MyLog.logEvent("Regen", "Regen1 Dodo: " + dodo);
 
-                RegenThread = new Thread(delegate () { regenMapFloor(b, address, name[name.Length - 1]); });
+                cts = new CancellationTokenSource();
+                CancellationToken token = cts.Token;
+
+                RegenThread = new Thread(delegate () { regenMapFloor(b, address, name[name.Length - 1], token); });
                 RegenThread.Start();
             }
             else
@@ -329,7 +334,7 @@ namespace ACNHPokerCore
                     Filter = "New Horizons Fasil (*.nhf)|*.nhf|All files (*.*)|*.*",
                 };
 
-                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
                 string savepath;
 
@@ -443,7 +448,10 @@ namespace ACNHPokerCore
                     string dodo = controller.setupDodo();
                     MyLog.logEvent("Regen", "Regen2 Dodo: " + dodo);
 
-                    RegenThread = new Thread(delegate () { regenMapFloor2(b, address, isEmpty, tempFilename); });
+                    cts = new CancellationTokenSource();
+                    CancellationToken token = cts.Token;
+
+                    RegenThread = new Thread(delegate () { regenMapFloor2(b, address, isEmpty, tempFilename, token); });
                     RegenThread.Start();
                 }
             }
@@ -503,7 +511,10 @@ namespace ACNHPokerCore
             string dodo = controller.setupDodo();
             MyLog.logEvent("Regen", "Regen2 Dodo: " + dodo);
 
-            RegenThread = new Thread(delegate () { regenMapFloor2(b, address, isEmpty, tempFilename); });
+            cts = new CancellationTokenSource();
+            CancellationToken token = cts.Token;
+
+            RegenThread = new Thread(delegate () { regenMapFloor2(b, address, isEmpty, tempFilename, token); });
             RegenThread.Start();
         }
 
@@ -569,7 +580,7 @@ namespace ACNHPokerCore
         }
         #endregion
 
-        private void regenMapFloor(byte[][] b, UInt32 address, string name)
+        private void regenMapFloor(byte[][] b, UInt32 address, string name, CancellationToken token)
         {
             string regenMsg = "Regenerating... " + name;
 
@@ -600,12 +611,18 @@ namespace ACNHPokerCore
 
             do
             {
+                if (token.IsCancellationRequested)
+                {
+                    break;
+                }
+
                 try
                 {
                     if (dodoSetup != null && dodoSetup.dodoSetupDone)
                     {
-                        state = dodoSetup.DodoMonitor();
-                        dodoSetup.DisplayDodo(controller.setupDodo());
+                        state = dodoSetup.DodoMonitor(token);
+                        if (dodoSetup.CheckOnlineStatus() == 1)
+                            dodoSetup.DisplayDodo(controller.setupDodo());
                     }
                     else
                     {
@@ -617,6 +634,11 @@ namespace ACNHPokerCore
                     writeCount = 0;
 
                     newVisitor = getVisitorName();
+
+                    if (token.IsCancellationRequested)
+                    {
+                        break;
+                    }
 
                     if (!newVisitor.Equals(string.Empty))
                     {
@@ -643,6 +665,11 @@ namespace ACNHPokerCore
                         });
                         wasLoading = true;
                         state = teleport.GetOverworldState();
+                    }
+
+                    if (token.IsCancellationRequested)
+                    {
+                        break;
                     }
 
                     if (state == teleport.OverworldState.Loading || state == teleport.OverworldState.UserArriveLeavingOrTitleScreen)
@@ -726,27 +753,6 @@ namespace ACNHPokerCore
                     });
                     Debug.Print("------ " + runCount + " " + PauseCount);
                 }
-                catch (ThreadAbortException ex)
-                {
-                    MyLog.logEvent("Regen", "Regen1: " + ex.Message.ToString());
-                    MyMessageBox.Show("Dodo Helper & Regen Aborted!\nPlease remember to exit the airport first if you want to restart!", "Airbag deployment!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Invoke((MethodInvoker)delegate
-                    {
-                        stopWatch.Stop();
-                        hideMapWait();
-                        MyLog.logEvent("Regen", "Regen1 Stopped");
-                        loop = false;
-                        startRegen.Tag = "Start";
-                        startRegen.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-                        startRegen.Text = "Cast Regen";
-                        saveMapBtn.Enabled = true;
-                        loadMapBtn.Enabled = true;
-                        backBtn.Enabled = true;
-                        startRegen2.Enabled = true;
-                        keepVillagerBox.Enabled = true;
-                        dodoSetupBtn.Enabled = true;
-                    });
-                }
                 catch (Exception ex)
                 {
                     this.Invoke((MethodInvoker)delegate
@@ -757,26 +763,32 @@ namespace ACNHPokerCore
                         MyMessageBox.Show("Connection to the switch has been lost", "Yeeted", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         CreateLog("Connection to the switch has been lost");
                         this.Close();
-                        /*
-                        stopWatch.Stop();
-                        hideMapWait();
-                        loop = false;
-                        MyLog.logEvent("Regen", "Regen1 Stopped");
-                        loop = false;
-                        startRegen.Tag = "Start";
-                        startRegen.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-                        startRegen.Text = "Cast Regen";
-                        saveMapBtn.Enabled = true;
-                        loadMapBtn.Enabled = true;
-                        backBtn.Enabled = true;
-                        startRegen2.Enabled = true;
-                        keepVillagerBox.Enabled = true;
-                        dodoSetupBtn.Enabled = true;
-                        */
                     });
                     break;
                 }
             } while (loop);
+
+            if (token.IsCancellationRequested)
+            {
+                MyLog.logEvent("Regen", "Regen1: Cancelled");
+                MyMessageBox.Show("Dodo Helper & Regen Aborted!\nPlease remember to exit the airport first if you want to restart!", "Airbag deployment!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Invoke((MethodInvoker)delegate
+                {
+                    stopWatch.Stop();
+                    hideMapWait();
+                    MyLog.logEvent("Regen", "Regen1 Stopped");
+                    loop = false;
+                    startRegen.Tag = "Start";
+                    startRegen.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+                    startRegen.Text = "Cast Regen";
+                    saveMapBtn.Enabled = true;
+                    loadMapBtn.Enabled = true;
+                    backBtn.Enabled = true;
+                    startRegen2.Enabled = true;
+                    keepVillagerBox.Enabled = true;
+                    dodoSetupBtn.Enabled = true;
+                });
+            }
 
             stopWatch.Stop();
 
@@ -786,7 +798,7 @@ namespace ACNHPokerCore
                 System.Media.SystemSounds.Asterisk.Play();
         }
 
-        private void regenMapFloor2(byte[][] b, UInt32 address, bool[][] isEmpty, string name)
+        private void regenMapFloor2(byte[][] b, UInt32 address, bool[][] isEmpty, string name, CancellationToken token)
         {
             string regenMsg = "Regenerating... " + name;
             showMapWait(56, regenMsg);
@@ -821,14 +833,21 @@ namespace ACNHPokerCore
 
             Utilities.sendBlankName(s);
             teleport.OverworldState state;
+
             do
             {
+                if (token.IsCancellationRequested)
+                {
+                    break;
+                }
+
                 try
                 {
                     if (dodoSetup != null && dodoSetup.dodoSetupDone)
                     {
-                        state = dodoSetup.DodoMonitor();
-                        dodoSetup.DisplayDodo(controller.setupDodo());
+                        state = dodoSetup.DodoMonitor(token);
+                        if (dodoSetup.CheckOnlineStatus() == 1)
+                            dodoSetup.DisplayDodo(controller.setupDodo());
                     }
                     else
                     {
@@ -840,6 +859,11 @@ namespace ACNHPokerCore
                     writeCount = 0;
 
                     newVisitor = getVisitorName();
+
+                    if (token.IsCancellationRequested)
+                    {
+                        break;
+                    }
 
                     if (!newVisitor.Equals(string.Empty))
                     {
@@ -867,6 +891,11 @@ namespace ACNHPokerCore
                         state = teleport.GetOverworldState();
                     }
 
+                    if (token.IsCancellationRequested)
+                    {
+                        break;
+                    }
+
                     if (state == teleport.OverworldState.Loading || state == teleport.OverworldState.UserArriveLeavingOrTitleScreen)
                     {
                         Debug.Print("Loading Detected");
@@ -890,6 +919,11 @@ namespace ACNHPokerCore
                             //--------------------------------------------------------------------------------------------------
                             for (int i = 0; i < 56; i++)
                             {
+                                if (token.IsCancellationRequested)
+                                {
+                                    break;
+                                }
+
                                 lock (mapLock)
                                 {
                                     c = Utilities.ReadByteArray8(s, address + (i * 0x1800), 0x1800, ref counter);
@@ -927,6 +961,11 @@ namespace ACNHPokerCore
                         }
                     }
 
+                    if (token.IsCancellationRequested)
+                    {
+                        break;
+                    }
+
                     this.Invoke((MethodInvoker)delegate
                     {
                         ts = stopWatch.Elapsed;
@@ -948,27 +987,6 @@ namespace ACNHPokerCore
                     });
                     Debug.Print("------ " + runCount + " " + PauseCount);
                 }
-                catch (ThreadAbortException ex)
-                {
-                    MyLog.logEvent("Regen", "Regen2: " + ex.Message.ToString());
-                    MyMessageBox.Show("Dodo Helper & Regen Aborted!\nPlease remember to exit the airport first if you want to restart!", "Slamming on the brakes?", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Invoke((MethodInvoker)delegate
-                    {
-                        stopWatch.Stop();
-                        hideMapWait();
-                        MyLog.logEvent("Regen", "Regen2 Stopped");
-                        loop = false;
-                        startRegen2.Tag = "Start";
-                        startRegen2.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-                        startRegen2.Text = "Cast Moogle Regenja";
-                        saveMapBtn.Enabled = true;
-                        loadMapBtn.Enabled = true;
-                        backBtn.Enabled = true;
-                        startRegen.Enabled = true;
-                        keepVillagerBox.Enabled = true;
-                        dodoSetupBtn.Enabled = true;
-                    });
-                }
                 catch (Exception ex)
                 {
                     this.Invoke((MethodInvoker)delegate
@@ -979,25 +997,32 @@ namespace ACNHPokerCore
                         MyMessageBox.Show("Connection to the switch has been lost", "Yeeted", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         CreateLog("Connection to the switch has been lost");
                         this.Close();
-                        /*
-                        stopWatch.Stop();
-                        hideMapWait();
-                        MyLog.logEvent("Regen", "Regen2 Stopped");
-                        loop = false;
-                        startRegen2.Tag = "Start";
-                        startRegen2.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-                        startRegen2.Text = "Cast Moogle Regenja";
-                        saveMapBtn.Enabled = true;
-                        loadMapBtn.Enabled = true;
-                        backBtn.Enabled = true;
-                        startRegen.Enabled = true;
-                        keepVillagerBox.Enabled = true;
-                        dodoSetupBtn.Enabled = true;
-                        */
                     });
                     break;
                 }
             } while (loop);
+
+            if (token.IsCancellationRequested)
+            {
+                MyLog.logEvent("Regen", "Regen2: Cancelled");
+                MyMessageBox.Show("Dodo Helper & Regen Aborted!\nPlease remember to exit the airport first if you want to restart!", "Slamming on the brakes?", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Invoke((MethodInvoker)delegate
+                {
+                    stopWatch.Stop();
+                    hideMapWait();
+                    MyLog.logEvent("Regen", "Regen2 Stopped");
+                    loop = false;
+                    startRegen2.Tag = "Start";
+                    startRegen2.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+                    startRegen2.Text = "Cast Moogle Regenja";
+                    saveMapBtn.Enabled = true;
+                    loadMapBtn.Enabled = true;
+                    backBtn.Enabled = true;
+                    startRegen.Enabled = true;
+                    keepVillagerBox.Enabled = true;
+                    dodoSetupBtn.Enabled = true;
+                });
+            }
 
             stopWatch.Stop();
 
@@ -1069,7 +1094,7 @@ namespace ACNHPokerCore
                 MyLog.logEvent("Regen", "Regen Force Closed");
                 if (sound)
                     System.Media.SystemSounds.Asterisk.Play();
-                RegenThread.Abort();
+                cts.Cancel();
             }
             if (dodoSetup != null)
             {
@@ -1081,21 +1106,15 @@ namespace ACNHPokerCore
             this.closeForm();
         }
 
-        private void trayIcon_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            if (dodoSetup != null)
-                dodoSetup.Show();
-            Show();
-            this.ShowInTaskbar = true;
-            this.WindowState = FormWindowState.Normal;
-        }
-
         private void hideBtn_Click(object sender, EventArgs e)
         {
             if (dodoSetup != null)
+            {
                 dodoSetup.Hide();
+                dodoSetup.BringToFront();
+            }
             this.ShowInTaskbar = false;
-            Hide();
+            this.Hide();
         }
 
         private void backBtn_Click(object sender, EventArgs e)
@@ -1104,7 +1123,7 @@ namespace ACNHPokerCore
             {
                 if (sound)
                     System.Media.SystemSounds.Asterisk.Play();
-                RegenThread.Abort();
+                cts.Cancel();
                 if (dodoSetup != null)
                 {
                     dodoSetup.Close();
@@ -1392,7 +1411,7 @@ namespace ACNHPokerCore
                 Filter = "Comma-Separated Values file (*.csv)|*.csv",
             };
 
-            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
             string savepath;
 
@@ -1450,7 +1469,7 @@ namespace ACNHPokerCore
                 Filter = "Comma-Separated Values file (*.csv)|*.csv",
             };
 
-            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
             string savepath;
 
@@ -1669,10 +1688,18 @@ namespace ACNHPokerCore
 
         public void abort()
         {
-            if (RegenThread.IsAlive)
-                RegenThread.Abort();
+            cts.Cancel();
         }
 
         #endregion
+
+        private void trayIcon_DoubleClick(object sender, EventArgs e)
+        {
+            if (dodoSetup != null)
+                dodoSetup.Show();
+            this.ShowInTaskbar = true;
+            this.WindowState = FormWindowState.Normal;
+            this.Show();
+        }
     }
 }

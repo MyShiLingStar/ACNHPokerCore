@@ -335,21 +335,29 @@ namespace ACNHPokerCore
             Thread.Sleep(after);
         }
 
-        public static string talkAndGetDodoCode()
+        public static string talkAndGetDodoCode(CancellationToken token)
         {
+            if (token.IsCancellationRequested)
+                return "";
             clickA(); // Talk
             Thread.Sleep(1800); // He might need to put away the stupid book
             skip();
+            if (token.IsCancellationRequested)
+                return "";
             clickA(); // End Line "Hey Hey Hey"
             Thread.Sleep(1000);
             //clickA(); // End Line "How can"
             //Thread.Sleep(1000);
 
+            if (token.IsCancellationRequested)
+                return "";
             clickDown(); // move to "I want visitors"
             Thread.Sleep(500);
 
             clickA(); // Click "I want visitors"
 
+            if (token.IsCancellationRequested)
+                return "";
             skip(); // Thread.Sleep(3000);
             clickA(); // End Line "You wanna"
             Thread.Sleep(1000);
@@ -360,17 +368,24 @@ namespace ACNHPokerCore
 
             skip();
 
+            if (token.IsCancellationRequested)
+                return "";
             clickA(); // End Line "Gotcha"
             Thread.Sleep(1000);
 
+            if (token.IsCancellationRequested)
+                return "";
             clickA(); // Roger!
             Thread.Sleep(30000); // Saving
 
+            if (token.IsCancellationRequested)
+                return "";
             clickA(); // End Line "So who"
             Thread.Sleep(1000);
 
 
-
+            if (token.IsCancellationRequested)
+                return "";
             clickUp(); // move to "Actually, I'm good."
             Thread.Sleep(500);
             clickUp(); // move to "Invite via Dodo Code"
@@ -388,11 +403,15 @@ namespace ACNHPokerCore
 
             skip();
 
+            if (token.IsCancellationRequested)
+                return "";
             clickA(); // End Line "Just so you know"
             //Thread.Sleep(1000);
             //clickA(); // End Line "You good"
             Thread.Sleep(1000);
 
+            if (token.IsCancellationRequested)
+                return "";
             clickA(); // Click "Yeah, invite anyone"
 
             Thread.Sleep(6000); // fucking gate open animation
@@ -406,6 +425,8 @@ namespace ACNHPokerCore
 
             skip();
 
+            if (token.IsCancellationRequested)
+                return dodo;
             clickA(); // End Line "Just tell"
             Thread.Sleep(2000);
             //releaseL();
@@ -413,13 +434,17 @@ namespace ACNHPokerCore
             return dodo;
         }
 
-        public static string talkAndGetDodoCodeLegacy()
+        public static string talkAndGetDodoCodeLegacy(CancellationToken token)
         {
+            if (token.IsCancellationRequested)
+                return "";
             releaseL();
             Thread.Sleep(500);
             pressL(); // Speed Up
             Thread.Sleep(500);
 
+            if (token.IsCancellationRequested)
+                return "";
             clickA(); // Talk
             Thread.Sleep(4000);
             clickA(); // End Line "Hey Hey Hey"
@@ -429,11 +454,15 @@ namespace ACNHPokerCore
             clickDown(); // move to "I want visitors"
             Thread.Sleep(500);
 
+            if (token.IsCancellationRequested)
+                return "";
             clickA(); // Click "I want visitors"
             Thread.Sleep(3000);
             clickA(); // End Line "You wanna"
             Thread.Sleep(1000);
 
+            if (token.IsCancellationRequested)
+                return "";
             clickDown(); // move to "Online"
             Thread.Sleep(500);
             clickA(); // Via online play
@@ -441,48 +470,16 @@ namespace ACNHPokerCore
             clickA(); // End Line "Gotcha"
             Thread.Sleep(1000);
 
+            if (token.IsCancellationRequested)
+                return "";
             clickA(); // Roger!
             Thread.Sleep(30000); // Saving
 
             clickA(); // End Line "So who"
             Thread.Sleep(1000);
 
-            /*
-            if (noBestFriend)
-            {
-                clickDown(); // move to "Invite via Dodo Code"
-                Thread.Sleep(500);
-                clickA(); // Click "Invite via Dodo Code"
-                Thread.Sleep(2000);
-
-                clickA(); // End Line "Dodo Code TM"
-                Thread.Sleep(1000);
-
-                clickDown(); // move to "The more the merrier"
-                Thread.Sleep(500);
-                clickA(); // Click "The more the merrier"
-                Thread.Sleep(3000);
-            }
-            else
-            {
-                clickDown(); // move to "Only my Best Friend!"
-                Thread.Sleep(500);
-                clickDown(); // move to "Invite via Dodo Code"
-                Thread.Sleep(500);
-                clickA(); // Click "Invite via Dodo Code"
-                Thread.Sleep(2000);
-
-                clickA(); // End Line "Dodo Code TM"
-                Thread.Sleep(1000);
-
-                clickDown(); // move to "Only my Best Friend"
-                Thread.Sleep(500);
-                clickDown(); // move to "The more the merrier"
-                Thread.Sleep(500);
-                clickA(); // Click "The more the merrier"
-                Thread.Sleep(3000);
-            }*/
-
+            if (token.IsCancellationRequested)
+                return "";
             clickUp(); // move to "Actually, I'm good."
             Thread.Sleep(500);
             clickUp(); // move to "Invite via Dodo Code"
@@ -493,19 +490,27 @@ namespace ACNHPokerCore
             clickA(); // End Line "Dodo Code TM"
             Thread.Sleep(1000);
 
+            if (token.IsCancellationRequested)
+                return "";
             clickUp(); // move to "The more the merrier"
             Thread.Sleep(500);
             clickA(); // Click "The more the merrier"
             Thread.Sleep(3000);
 
+            if (token.IsCancellationRequested)
+                return "";
             clickA(); // End Line "Just so you know"
             Thread.Sleep(1000);
             clickA(); // End Line "You good"
             Thread.Sleep(1000);
 
+            if (token.IsCancellationRequested)
+                return "";
             clickA(); // Click "Yeah, invite anyone"
             Thread.Sleep(5000);
 
+            if (token.IsCancellationRequested)
+                return "";
             clickA(); // End Line "Alright"
             Thread.Sleep(5000);
             clickA(); // End Line "Dodo"

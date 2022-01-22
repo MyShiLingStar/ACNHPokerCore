@@ -779,7 +779,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(980, 545);
             this.Name = "Setting";
-            this.Opacity = 0.97D;
+            this.Opacity = 0.95D;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

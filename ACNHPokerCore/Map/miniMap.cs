@@ -1045,7 +1045,7 @@ namespace ACNHPokerCore
                 plazaTopY = (plazaY - 0x20) / 2;
             }
         }
-        public static Color drawBuildingSetup(byte BuildingByte, int BuildingX, int BuildingY, ref int buildingTopX,ref int buildingTopY,ref int buildingBottomX,ref int buildingBottomY, bool TimesTwo = false)
+        public static Color drawBuildingSetup(byte BuildingByte, int BuildingX, int BuildingY, ref int buildingTopX, ref int buildingTopY, ref int buildingBottomX, ref int buildingBottomY, bool TimesTwo = false)
         {
             Color BuildingColor;
 

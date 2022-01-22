@@ -1,7 +1,6 @@
 ﻿using NAudio.Wave;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Diagnostics;
@@ -13,7 +12,6 @@ using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ACNHPokerCore
@@ -56,6 +54,8 @@ namespace ACNHPokerCore
         private Freezer F = null;
         private Bulldozer B = null;
         private dodo D = null;
+        private teleport T = null;
+        private controller C = null;
 
 
         private inventorySlot selectedButton;
@@ -92,7 +92,6 @@ namespace ACNHPokerCore
         private int[] seaCreatureRate;
         private DataGridView currentGridView;
 
-        private bool Initializing = true;
         private bool offline = true;
         private bool AllowInventoryUpdate = true;
         private bool ChineseFlag = false;
@@ -142,7 +141,7 @@ namespace ACNHPokerCore
             if (overrideSetting)
                 setting.overrideAddresses();
 
-            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe",".dll"));
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
             if (!Directory.Exists(Directory.GetCurrentDirectory() + "\\" + "img") || ConfigurationManager.AppSettings["ForcedImageDownload"] == "true")
             {
@@ -632,6 +631,9 @@ namespace ACNHPokerCore
                     lastRow.Height = 22;
                 }
 
+
+                string hexValue = "0";
+
                 if (e.RowIndex > -1)
                 {
                     lastRow = ItemGridView.Rows[e.RowIndex];
@@ -642,21 +644,22 @@ namespace ACNHPokerCore
                         {
                             AmountOrCountTextbox.Text = "1";
                         }
+
+                        int decValue = Convert.ToInt32(AmountOrCountTextbox.Text) - 1;
+                        if (decValue >= 0)
+                            hexValue = decValue.ToString("X");
                     }
                     else
                     {
                         if (AmountOrCountTextbox.Text == "" || AmountOrCountTextbox.Text == "0")
                         {
-                            AmountOrCountTextbox.Text = "0";
+                            AmountOrCountTextbox.Text = Utilities.precedingZeros("0", 8);
                         }
-                        HexModeButton_Click(sender, e);
+
+                        hexValue = AmountOrCountTextbox.Text;
+                        //HexModeButton_Click(sender, e);
                         //AmountOrCountTextbox.Text = "1";
                     }
-
-                    string hexValue = "0";
-                    int decValue = Convert.ToInt32(AmountOrCountTextbox.Text) - 1;
-                    if (decValue >= 0)
-                        hexValue = decValue.ToString("X");
 
 
                     string id = ItemGridView.Rows[e.RowIndex].Cells["id"].Value.ToString();
@@ -714,7 +717,7 @@ namespace ACNHPokerCore
                     {
                         if (IDTextbox.Text == "315A" || IDTextbox.Text == "1618" || IDTextbox.Text == "342F") // Wall-Mounted
                         {
-                            AmountOrCountTextbox.Text = Utilities.precedingZeros("00" + ItemGridView.Rows[e.RowIndex].Cells["id"].Value.ToString(), 8);
+                            AmountOrCountTextbox.Text = Utilities.precedingZeros(ItemGridView.Rows[e.RowIndex].Cells["id"].Value.ToString(), 8);
                             SelectedItem.setup(name, Convert.ToUInt16(id, 16), Convert.ToUInt32("0x" + AmountOrCountTextbox.Text, 16), path, true, GetImagePathFromID(ItemGridView.Rows[e.RowIndex].Cells["id"].Value.ToString(), itemSource));
                         }
                         else
@@ -744,7 +747,7 @@ namespace ACNHPokerCore
                 HexModeButton.Text = "Normal Mode";
                 if (AmountOrCountTextbox.Text != "")
                 {
-                    int decValue = Convert.ToInt32(AmountOrCountTextbox.Text, 16) - 1;
+                    int decValue = Convert.ToInt32(AmountOrCountTextbox.Text) - 1;
                     string hexValue;
                     if (decValue < 0)
                         hexValue = "0";
@@ -1194,7 +1197,7 @@ namespace ACNHPokerCore
 
                                 if (DataValidation())
                                 {
-                                    string sysbotbaseVersion = Utilities.getVersion(socket);
+                                    string sysbotbaseVersion = Utilities.CheckSysBotBase(socket);
                                     MyMessageBox.Show("You have successfully established a connection!\n" +
                                                     "Your Sys-botbase installation and IP address are correct.\n" +
                                                     "However...\n" +
@@ -1263,8 +1266,8 @@ namespace ACNHPokerCore
                                 LoadGridView(FishSeaAppearParam, SeaFishGridView, ref seaFishRate, Utilities.FishDataSize, Utilities.FishSeaNumRecords, 1);
                                 LoadGridView(CreatureSeaAppearParam, SeaCreatureGridView, ref seaCreatureRate, Utilities.SeaCreatureDataSize, Utilities.SeaCreatureNumRecords, 1);
 
-                                //blinker = new teleport(socket);
-                                //Controller = new controller(socket, IslandName);
+                                T = new teleport(socket);
+                                C = new controller(socket, IslandName);
                             });
 
                         }
@@ -1938,7 +1941,7 @@ namespace ACNHPokerCore
             //this.ShowMessage(IDTextbox.Text);
         }
 
-        private void RecipeSpawn() 
+        private void RecipeSpawn()
         {
             if (RecipeIDTextbox.Text == "")
             {
@@ -1959,7 +1962,7 @@ namespace ACNHPokerCore
 
             selectedButton.setup(GetNameFromID(Utilities.turn2bytes(RecipeIDTextbox.Text), recipeSource), 0x16A2, Convert.ToUInt32("0x" + RecipeIDTextbox.Text, 16), GetImagePathFromID(Utilities.turn2bytes(RecipeIDTextbox.Text), recipeSource));
         }
-        
+
         private void FlowerSpawn()
         {
             if (FlowerIDTextbox.Text == "")
@@ -2068,13 +2071,13 @@ namespace ACNHPokerCore
                     if (SelectedItem.fillItemID() == "FFFE")
                     {
                         HexModeButton_Click(sender, e);
-                        IDTextbox.Text = "";
                         AmountOrCountTextbox.Text = "";
+                        IDTextbox.Text = "";
                     }
                     else
                     {
-                        IDTextbox.Text = Utilities.precedingZeros(SelectedItem.fillItemData(), 8);
-                        AmountOrCountTextbox.Text = Utilities.precedingZeros(SelectedItem.fillItemID(), 4);
+                        AmountOrCountTextbox.Text = Utilities.precedingZeros(SelectedItem.fillItemData(), 8);
+                        IDTextbox.Text = Utilities.precedingZeros(SelectedItem.fillItemID(), 4);
                     }
 
                     string hexValue = Utilities.precedingZeros(IDTextbox.Text, 8);
@@ -3508,7 +3511,7 @@ namespace ACNHPokerCore
             if (V == null && VillagerFirstLoad)
             {
                 VillagerFirstLoad = true;
-                Thread LoadAllVillagerThread = new Thread(delegate () { loadAllVillager(CurrentPlayerIndex); });
+                Thread LoadAllVillagerThread = new Thread(delegate () { loadAllVillager(); });
                 LoadAllVillagerThread.Start();
             }
         }
@@ -3579,10 +3582,28 @@ namespace ACNHPokerCore
         {
             if (D == null)
             {
-                D = new dodo(socket, sound);
+                D = new dodo(socket, true)
+                {
+                    ControlBox = true,
+                    ShowInTaskbar = true
+                };
                 D.closeForm += D_closeForm;
+                D.abortAll += D_abortAll;
                 D.Show();
+                D.WriteLog("[You have started dodo helper in standalone mode.]\n\n" +
+                                    "1. Disconnect all controller by selecting \"Controllers\" > \"Change Grip/Order\"\n" +
+                                    "2. Leave only the Joy-Con docked on your Switch.\n" +
+                                    "3. Return to the game and dock your Switch if needed. Try pressing the buttons below to test the virtual controller.\n" +
+                                    "4. If the virtual controller does not response, try the \"Detach\" button first, then the \"A\" button.\n" +
+                                    "5. If the virtual controller still does not appear, try restart your Switch.\n\n" +
+                                    ">> Please try the buttons below to test the virtual controller. <<"
+                                    );
             }
+        }
+
+        private void D_abortAll()
+        {
+            MyMessageBox.Show("Dodo Helper Aborted!\nPlease remember to exit the airport first if you want to restart!", "Slamming on the brakes?", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void D_closeForm()
@@ -3611,7 +3632,22 @@ namespace ACNHPokerCore
 
         private void DecAndHex_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            char c = e.KeyChar;
+            if (HexModeButton.Tag.ToString() == "Normal")
+            {
+                if (!((c >= '0' && c <= '9')))
+                {
+                    e.Handled = true;
+                }
+            }
+            else
+            {
+                if (!((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f')))
+                {
+                    e.Handled = true;
+                }
+                if (c >= 'a' && c <= 'f') e.KeyChar = char.ToUpper(c);
+            }
         }
 
         private void ItemSearchBox_TextChanged(object sender, EventArgs e)
@@ -3846,8 +3882,8 @@ namespace ACNHPokerCore
                     string name = FavGridView.Rows[e.RowIndex].Cells["Name"].Value.ToString();
                     string data = FavGridView.Rows[e.RowIndex].Cells["value"].Value.ToString();
 
-                    IDTextbox.Text = Utilities.precedingZeros(id, 4);
                     AmountOrCountTextbox.Text = Utilities.precedingZeros(data, 8);
+                    IDTextbox.Text = Utilities.precedingZeros(id, 4);
 
                     string hexValue = Utilities.precedingZeros(data, 8);
                     UInt16 IntId = Convert.ToUInt16("0x" + id, 16);
@@ -4461,7 +4497,7 @@ namespace ACNHPokerCore
             {
                 HexModeButton_Click(null, null);
             }
-            AmountOrCountTextbox.Text = Utilities.precedingZeros(firstByte + secondByte, 8);
+            AmountOrCountTextbox.Text = AmountOrCountTextbox.Text.Substring(0, 6) + firstByte + secondByte;
             SelectedItem.setup(GetNameFromID(IDTextbox.Text, itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + AmountOrCountTextbox.Text, 16), GetImagePathFromID(IDTextbox.Text, itemSource, Convert.ToUInt32("0x" + AmountOrCountTextbox.Text, 16)), true);
             updateSelectedItemInfo(SelectedItem.displayItemName(), SelectedItem.displayItemID(), SelectedItem.displayItemData());
         }
@@ -4689,7 +4725,7 @@ namespace ACNHPokerCore
             }
             string hexValue = reaction;
             int decValue = Convert.ToInt32(hexValue, 16) - 1;
-            if (decValue > 113)
+            if (decValue >= 118)
                 box.SelectedIndex = -1;
             else
                 box.SelectedIndex = decValue;
@@ -5962,7 +5998,7 @@ namespace ACNHPokerCore
         #region Disable & Reset Button
         private void DisableAllButton_Click(object sender, EventArgs e)
         {
-            if (CritterSearchBox.Text != "Search")
+            if (CritterSearchBox.Text != "Search...")
             {
                 CritterSearchBox.Clear();
             }
@@ -5982,7 +6018,7 @@ namespace ACNHPokerCore
             if (rate == null)
                 return;
             string temp = null;
-            if (CritterSearchBox.Text != "Search")
+            if (CritterSearchBox.Text != "Search...")
             {
                 temp = CritterSearchBox.Text;
                 CritterSearchBox.Clear();
@@ -6043,20 +6079,19 @@ namespace ACNHPokerCore
                 grid.InvalidateCell(cell);
             }
 
-            if (temp != null)
-                CritterSearchBox.Text = temp;
-            if (sound)
-                System.Media.SystemSounds.Asterisk.Play();
-
             Invoke((MethodInvoker)delegate
             {
+                if (temp != null)
+                    CritterSearchBox.Text = temp;
                 enableBtn();
             });
+            if (sound)
+                System.Media.SystemSounds.Asterisk.Play();
         }
 
         private void ResetAllButton_Click(object sender, EventArgs e)
         {
-            if (CritterSearchBox.Text != "Search")
+            if (CritterSearchBox.Text != "Search...")
             {
                 CritterSearchBox.Clear();
             }
@@ -6076,7 +6111,7 @@ namespace ACNHPokerCore
             if (rate == null)
                 return;
             string temp = null;
-            if (CritterSearchBox.Text != "Search")
+            if (CritterSearchBox.Text != "Search...")
             {
                 temp = CritterSearchBox.Text;
                 CritterSearchBox.Clear();
@@ -6136,15 +6171,15 @@ namespace ACNHPokerCore
 
                 grid.InvalidateCell(cell);
             }
-            if (temp != null)
-                CritterSearchBox.Text = temp;
-            if (sound)
-                System.Media.SystemSounds.Asterisk.Play();
 
             Invoke((MethodInvoker)delegate
             {
+                if (temp != null)
+                    CritterSearchBox.Text = temp;
                 enableBtn();
             });
+            if (sound)
+                System.Media.SystemSounds.Asterisk.Play();
         }
         #endregion
 
@@ -6187,7 +6222,7 @@ namespace ACNHPokerCore
         #region Mode Button
         private void InsectButton_Click(object sender, EventArgs e)
         {
-            if (CritterSearchBox.Text != "Search")
+            if (CritterSearchBox.Text != "Search...")
             {
                 CritterSearchBox.Clear();
             }
@@ -6209,7 +6244,7 @@ namespace ACNHPokerCore
 
         private void RiverFishButton_Click(object sender, EventArgs e)
         {
-            if (CritterSearchBox.Text != "Search")
+            if (CritterSearchBox.Text != "Search...")
             {
                 CritterSearchBox.Clear();
             }
@@ -6233,7 +6268,7 @@ namespace ACNHPokerCore
         private void SeaFishButton_Click(object sender, EventArgs e)
         {
 
-            if (CritterSearchBox.Text != "Search")
+            if (CritterSearchBox.Text != "Search...")
             {
                 CritterSearchBox.Clear();
             }
@@ -6256,7 +6291,7 @@ namespace ACNHPokerCore
 
         private void SeaCreatureButton_Click(object sender, EventArgs e)
         {
-            if (CritterSearchBox.Text != "Search")
+            if (CritterSearchBox.Text != "Search...")
             {
                 CritterSearchBox.Clear();
             }
@@ -6360,7 +6395,7 @@ namespace ACNHPokerCore
         }
         #endregion
 
-        private void loadAllVillager(int player)
+        private void loadAllVillager()
         {
             lock (villagerLock)
             {
@@ -6415,7 +6450,7 @@ namespace ACNHPokerCore
                     villagerButton[i].TextAlign = System.Drawing.ContentAlignment.TopCenter;
                     villagerButton[i].ForeColor = System.Drawing.Color.White;
                     villagerButton[i].Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
-                    int friendship = V[i].Friendship[player];
+                    int friendship = V[i].Friendship[0];
                     villagerButton[i].BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(friendship)))), ((int)(((byte)(friendship / 2)))), ((int)(((byte)(friendship)))));
                     villagerButton[i].FlatAppearance.BorderSize = 0;
                     villagerButton[i].FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -6664,7 +6699,7 @@ namespace ACNHPokerCore
             }
 
             //if (sound)
-                //System.Media.SystemSounds.Asterisk.Play();
+            //System.Media.SystemSounds.Asterisk.Play();
         }
 
         private void CleanVillagerPage()
@@ -6689,7 +6724,7 @@ namespace ACNHPokerCore
                     this.VillagerLargePanel.Controls.Remove(villagerButton[i]);
             }
 
-            Thread LoadAllVillagerThread = new Thread(delegate () { loadAllVillager(CurrentPlayerIndex); });
+            Thread LoadAllVillagerThread = new Thread(delegate () { loadAllVillager(); });
             LoadAllVillagerThread.Start();
         }
 
@@ -6734,10 +6769,13 @@ namespace ACNHPokerCore
                 phrase[j] = temp[j];
             }
 
-            Utilities.SetCatchphrase(socket,usb, i, phrase);
+            Utilities.SetCatchphrase(socket, usb, i, phrase);
 
             V[i].catchphrase = phrase;
             RefreshVillagerUI(false);
+
+            if (sound)
+                System.Media.SystemSounds.Asterisk.Play();
         }
 
         private void VillagerCatchphraseClearButton_Click(object sender, EventArgs e)
@@ -6751,6 +6789,9 @@ namespace ACNHPokerCore
 
             V[i].catchphrase = phrase;
             RefreshVillagerUI(false);
+
+            if (sound)
+                System.Media.SystemSounds.Asterisk.Play();
         }
 
         private void ReplaceVillagerButton_Click(object sender, EventArgs e)
@@ -6905,6 +6946,9 @@ namespace ACNHPokerCore
             V[i].ForceMoveOutFlag = 1;
             V[i].InvitedFlag = 0;
             RefreshVillagerUI(false);
+
+            if (sound)
+                System.Media.SystemSounds.Asterisk.Play();
         }
 
         private void IrregularMoveoutButton_Click(object sender, EventArgs e)
@@ -6919,6 +6963,9 @@ namespace ACNHPokerCore
             V[i].ForceMoveOutFlag = 0;
             V[i].InvitedFlag = 0;
             RefreshVillagerUI(false);
+
+            if (sound)
+                System.Media.SystemSounds.Asterisk.Play();
         }
 
         private void CancelMoveoutButton_Click(object sender, EventArgs e)
@@ -6933,6 +6980,9 @@ namespace ACNHPokerCore
             V[i].ForceMoveOutFlag = 0;
             V[i].InvitedFlag = 0;
             RefreshVillagerUI(false);
+
+            if (sound)
+                System.Media.SystemSounds.Asterisk.Play();
         }
 
         private void ForcedMoveoutAllButton_Click(object sender, EventArgs e)
@@ -7558,7 +7608,7 @@ namespace ACNHPokerCore
                 if (HexModeButton.Tag.ToString() == "Normal")
                     AmountOrCountTextbox.Text = "1";
                 else
-                    AmountOrCountTextbox.Text = "0";
+                    AmountOrCountTextbox.Text = Utilities.precedingZeros("0", 8);
             }
 
             AmountOrCountTextbox_KeyUp(sender, null);

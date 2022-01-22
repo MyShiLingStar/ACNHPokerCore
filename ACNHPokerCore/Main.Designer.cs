@@ -2307,6 +2307,7 @@
             this.WallMountMsg.Size = new System.Drawing.Size(349, 16);
             this.WallMountMsg.TabIndex = 34;
             this.WallMountMsg.Text = "[Right Click] an item to mount it on to the display.";
+            this.WallMountMsg.Visible = false;
             // 
             // GenePanel
             // 
@@ -3355,11 +3356,11 @@
             "6F: K.K. Slider Sitting (Unused)",
             "70: K.K. nodding while sitting (Unused)",
             "71: K.K. thinking while sitting (Unused)",
-            "72: Hooray (Unused)",
-            "73: Kawaii (Unused)",
-            "74: Moon Jump (Unused)",
-            "75: Smily Face (Unused)",
-            "76: High Jump (Unused)"});
+            "72: Lottie Hooray (Unused)",
+            "73: Lottie Kawaii (Unused)",
+            "74: Niko Moon Jump (Unused)",
+            "75: Niko Smily Face (Unused)",
+            "76: Niko High Jump (Unused)"});
             this.ReactionSlot8.Location = new System.Drawing.Point(136, 70);
             this.ReactionSlot8.Name = "ReactionSlot8";
             this.ReactionSlot8.Size = new System.Drawing.Size(230, 23);
@@ -3487,11 +3488,11 @@
             "6F: K.K. Slider Sitting (Unused)",
             "70: K.K. nodding while sitting (Unused)",
             "71: K.K. thinking while sitting (Unused)",
-            "72: Hooray (Unused)",
-            "73: Kawaii (Unused)",
-            "74: Moon Jump (Unused)",
-            "75: Smily Face (Unused)",
-            "76: High Jump (Unused)"});
+            "72: Lottie Hooray (Unused)",
+            "73: Lottie Kawaii (Unused)",
+            "74: Niko Moon Jump (Unused)",
+            "75: Niko Smily Face (Unused)",
+            "76: Niko High Jump (Unused)"});
             this.ReactionSlot7.Location = new System.Drawing.Point(66, 115);
             this.ReactionSlot7.Name = "ReactionSlot7";
             this.ReactionSlot7.Size = new System.Drawing.Size(230, 23);
@@ -3619,11 +3620,11 @@
             "6F: K.K. Slider Sitting (Unused)",
             "70: K.K. nodding while sitting (Unused)",
             "71: K.K. thinking while sitting (Unused)",
-            "72: Hooray (Unused)",
-            "73: Kawaii (Unused)",
-            "74: Moon Jump (Unused)",
-            "75: Smily Face (Unused)",
-            "76: High Jump (Unused)"});
+            "72: Lottie Hooray (Unused)",
+            "73: Lottie Kawaii (Unused)",
+            "74: Niko Moon Jump (Unused)",
+            "75: Niko Smily Face (Unused)",
+            "76: Niko High Jump (Unused)"});
             this.ReactionSlot6.Location = new System.Drawing.Point(136, 161);
             this.ReactionSlot6.Name = "ReactionSlot6";
             this.ReactionSlot6.Size = new System.Drawing.Size(230, 23);
@@ -3751,11 +3752,11 @@
             "6F: K.K. Slider Sitting (Unused)",
             "70: K.K. nodding while sitting (Unused)",
             "71: K.K. thinking while sitting (Unused)",
-            "72: Hooray (Unused)",
-            "73: Kawaii (Unused)",
-            "74: Moon Jump (Unused)",
-            "75: Smily Face (Unused)",
-            "76: High Jump (Unused)"});
+            "72: Lottie Hooray (Unused)",
+            "73: Lottie Kawaii (Unused)",
+            "74: Niko Moon Jump (Unused)",
+            "75: Niko Smily Face (Unused)",
+            "76: Niko High Jump (Unused)"});
             this.ReactionSlot5.Location = new System.Drawing.Point(258, 202);
             this.ReactionSlot5.Name = "ReactionSlot5";
             this.ReactionSlot5.Size = new System.Drawing.Size(230, 23);
@@ -3883,11 +3884,11 @@
             "6F: K.K. Slider Sitting (Unused)",
             "70: K.K. nodding while sitting (Unused)",
             "71: K.K. thinking while sitting (Unused)",
-            "72: Hooray (Unused)",
-            "73: Kawaii (Unused)",
-            "74: Moon Jump (Unused)",
-            "75: Smily Face (Unused)",
-            "76: High Jump (Unused)"});
+            "72: Lottie Hooray (Unused)",
+            "73: Lottie Kawaii (Unused)",
+            "74: Niko Moon Jump (Unused)",
+            "75: Niko Smily Face (Unused)",
+            "76: Niko High Jump (Unused)"});
             this.ReactionSlot4.Location = new System.Drawing.Point(382, 161);
             this.ReactionSlot4.Name = "ReactionSlot4";
             this.ReactionSlot4.Size = new System.Drawing.Size(230, 23);
@@ -4015,11 +4016,11 @@
             "6F: K.K. Slider Sitting (Unused)",
             "70: K.K. nodding while sitting (Unused)",
             "71: K.K. thinking while sitting (Unused)",
-            "72: Hooray (Unused)",
-            "73: Kawaii (Unused)",
-            "74: Moon Jump (Unused)",
-            "75: Smily Face (Unused)",
-            "76: High Jump (Unused)"});
+            "72: Lottie Hooray (Unused)",
+            "73: Lottie Kawaii (Unused)",
+            "74: Niko Moon Jump (Unused)",
+            "75: Niko Smily Face (Unused)",
+            "76: Niko High Jump (Unused)"});
             this.ReactionSlot3.Location = new System.Drawing.Point(455, 115);
             this.ReactionSlot3.Name = "ReactionSlot3";
             this.ReactionSlot3.Size = new System.Drawing.Size(230, 23);
@@ -4147,11 +4148,11 @@
             "6F: K.K. Slider Sitting (Unused)",
             "70: K.K. nodding while sitting (Unused)",
             "71: K.K. thinking while sitting (Unused)",
-            "72: Hooray (Unused)",
-            "73: Kawaii (Unused)",
-            "74: Moon Jump (Unused)",
-            "75: Smily Face (Unused)",
-            "76: High Jump (Unused)"});
+            "72: Lottie Hooray (Unused)",
+            "73: Lottie Kawaii (Unused)",
+            "74: Niko Moon Jump (Unused)",
+            "75: Niko Smily Face (Unused)",
+            "76: Niko High Jump (Unused)"});
             this.ReactionSlot2.Location = new System.Drawing.Point(382, 70);
             this.ReactionSlot2.Name = "ReactionSlot2";
             this.ReactionSlot2.Size = new System.Drawing.Size(230, 23);
@@ -4279,11 +4280,11 @@
             "6F: K.K. Slider Sitting (Unused)",
             "70: K.K. nodding while sitting (Unused)",
             "71: K.K. thinking while sitting (Unused)",
-            "72: Hooray (Unused)",
-            "73: Kawaii (Unused)",
-            "74: Moon Jump (Unused)",
-            "75: Smily Face (Unused)",
-            "76: High Jump (Unused)"});
+            "72: Lottie Hooray (Unused)",
+            "73: Lottie Kawaii (Unused)",
+            "74: Niko Moon Jump (Unused)",
+            "75: Niko Smily Face (Unused)",
+            "76: Niko High Jump (Unused)"});
             this.ReactionSlot1.Location = new System.Drawing.Point(258, 29);
             this.ReactionSlot1.Name = "ReactionSlot1";
             this.ReactionSlot1.Size = new System.Drawing.Size(230, 23);
@@ -5196,7 +5197,6 @@
             this.VillagerNowLoadingProgressBar.Maximum = 260;
             this.VillagerNowLoadingProgressBar.Name = "VillagerNowLoadingProgressBar";
             this.VillagerNowLoadingProgressBar.Size = new System.Drawing.Size(390, 3);
-            this.VillagerNowLoadingProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.VillagerNowLoadingProgressBar.TabIndex = 34;
             // 
             // VillagerNowLoadingMessage
@@ -5255,7 +5255,7 @@
             this.VillagerHouseIndex.ReadOnly = true;
             this.VillagerHouseIndex.Size = new System.Drawing.Size(56, 28);
             this.VillagerHouseIndex.TabIndex = 106;
-            this.VillagerHouseIndex.Text = "DDD";
+            this.VillagerHouseIndex.Text = "";
             // 
             // VillagerHeaderIgnore
             // 
@@ -5287,7 +5287,7 @@
             this.VillagerFriendship.ReadOnly = true;
             this.VillagerFriendship.Size = new System.Drawing.Size(56, 28);
             this.VillagerFriendship.TabIndex = 105;
-            this.VillagerFriendship.Text = "DDD";
+            this.VillagerFriendship.Text = "";
             // 
             // VillagerIndex
             // 
@@ -5303,7 +5303,7 @@
             this.VillagerIndex.ReadOnly = true;
             this.VillagerIndex.Size = new System.Drawing.Size(56, 28);
             this.VillagerIndex.TabIndex = 104;
-            this.VillagerIndex.Text = "DDD";
+            this.VillagerIndex.Text = "";
             // 
             // VillagerPersonality
             // 
@@ -5319,7 +5319,7 @@
             this.VillagerPersonality.ReadOnly = true;
             this.VillagerPersonality.Size = new System.Drawing.Size(127, 28);
             this.VillagerPersonality.TabIndex = 103;
-            this.VillagerPersonality.Text = "DDD";
+            this.VillagerPersonality.Text = "";
             // 
             // VillagerIName
             // 
@@ -5335,7 +5335,7 @@
             this.VillagerIName.ReadOnly = true;
             this.VillagerIName.Size = new System.Drawing.Size(127, 28);
             this.VillagerIName.TabIndex = 102;
-            this.VillagerIName.Text = "DDD";
+            this.VillagerIName.Text = "";
             // 
             // VillagerHouseIndexLabel
             // 
@@ -5406,7 +5406,7 @@
             this.VillagerName.ReadOnly = true;
             this.VillagerName.Size = new System.Drawing.Size(127, 28);
             this.VillagerName.TabIndex = 96;
-            this.VillagerName.Text = "DDD";
+            this.VillagerName.Text = "";
             // 
             // VillagerNameLabel
             // 
@@ -5579,7 +5579,7 @@
             this.VillagerCatchphrase.Name = "VillagerCatchphrase";
             this.VillagerCatchphrase.Size = new System.Drawing.Size(585, 28);
             this.VillagerCatchphrase.TabIndex = 108;
-            this.VillagerCatchphrase.Text = "DDD";
+            this.VillagerCatchphrase.Text = "";
             // 
             // MysVillagerReplaceSelector
             // 
@@ -6455,6 +6455,7 @@
             this.MysVillagerDisplay.Size = new System.Drawing.Size(125, 125);
             this.MysVillagerDisplay.TabIndex = 127;
             this.MysVillagerDisplay.Tag = "";
+            this.MysVillagerDisplay.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.MysVillagerDisplay.UseVisualStyleBackColor = false;
             // 
             // ReplaceVillagerButton

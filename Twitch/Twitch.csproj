@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <DebugType>none</DebugType>
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
 
   <ItemGroup>

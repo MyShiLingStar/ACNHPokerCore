@@ -2674,7 +2674,6 @@ namespace ACNHPokerCore
         {
             lock (botLock)
             {
-
                 byte[] b = ReadByteArray(socket, VisitorNameAddress, 20);
                 //Debug.Print("[Sys] Peek Visitor Name : " + VisitorNameAddress.ToString("X") + " " + "24");
                 if (b == null)
@@ -2938,13 +2937,13 @@ namespace ACNHPokerCore
             }
         }
 
-        public static string getVersion(Socket socket)
+        public static string CheckSysBotBase(Socket socket)
         {
             lock (botLock)
             {
                 byte[] b = new byte[20];
 
-                Debug.Print("[Sys] GetVersion");
+                Debug.Print("[Sys] Sys-BotBase Version");
 
                 SendString(socket, Version());
                 ReceiveString(socket, b);

@@ -70,7 +70,7 @@ namespace ACNHPokerCore
             // 
             this.heightNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
             this.heightNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.heightNumber.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.heightNumber.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.heightNumber.ForeColor = System.Drawing.Color.White;
             this.heightNumber.Location = new System.Drawing.Point(130, 21);
             this.heightNumber.Margin = new System.Windows.Forms.Padding(4);
@@ -86,7 +86,7 @@ namespace ACNHPokerCore
             // 
             this.yCoordinate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
             this.yCoordinate.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.yCoordinate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.yCoordinate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.yCoordinate.ForeColor = System.Drawing.Color.White;
             this.yCoordinate.Location = new System.Drawing.Point(596, 12);
             this.yCoordinate.Margin = new System.Windows.Forms.Padding(4);
@@ -103,7 +103,7 @@ namespace ACNHPokerCore
             // 
             this.xCoordinate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
             this.xCoordinate.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.xCoordinate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xCoordinate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.xCoordinate.ForeColor = System.Drawing.Color.White;
             this.xCoordinate.Location = new System.Drawing.Point(495, 12);
             this.xCoordinate.Margin = new System.Windows.Forms.Padding(4);
@@ -119,12 +119,12 @@ namespace ACNHPokerCore
             // leftBtn
             // 
             this.leftBtn.AutoSize = true;
-            this.leftBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.leftBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.leftBtn.ForeColor = System.Drawing.Color.White;
             this.leftBtn.Location = new System.Drawing.Point(135, 93);
             this.leftBtn.Margin = new System.Windows.Forms.Padding(4);
             this.leftBtn.Name = "leftBtn";
-            this.leftBtn.Size = new System.Drawing.Size(50, 20);
+            this.leftBtn.Size = new System.Drawing.Size(49, 20);
             this.leftBtn.TabIndex = 76;
             this.leftBtn.Text = "Left";
             this.leftBtn.UseVisualStyleBackColor = true;
@@ -133,12 +133,12 @@ namespace ACNHPokerCore
             // 
             this.rightBtn.AutoSize = true;
             this.rightBtn.Checked = true;
-            this.rightBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.rightBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.rightBtn.ForeColor = System.Drawing.Color.White;
             this.rightBtn.Location = new System.Drawing.Point(135, 75);
             this.rightBtn.Margin = new System.Windows.Forms.Padding(4);
             this.rightBtn.Name = "rightBtn";
-            this.rightBtn.Size = new System.Drawing.Size(59, 20);
+            this.rightBtn.Size = new System.Drawing.Size(58, 20);
             this.rightBtn.TabIndex = 77;
             this.rightBtn.TabStop = true;
             this.rightBtn.Text = "Right";
@@ -158,7 +158,7 @@ namespace ACNHPokerCore
             this.selectBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
             this.selectBtn.FlatAppearance.BorderSize = 0;
             this.selectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.selectBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.selectBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.selectBtn.ForeColor = System.Drawing.Color.White;
             this.selectBtn.Location = new System.Drawing.Point(471, 42);
             this.selectBtn.Margin = new System.Windows.Forms.Padding(4);
@@ -174,7 +174,7 @@ namespace ACNHPokerCore
             this.spawnBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
             this.spawnBtn.FlatAppearance.BorderSize = 0;
             this.spawnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.spawnBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.spawnBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.spawnBtn.ForeColor = System.Drawing.Color.White;
             this.spawnBtn.Location = new System.Drawing.Point(6, 235);
             this.spawnBtn.Margin = new System.Windows.Forms.Padding(4);
@@ -191,7 +191,7 @@ namespace ACNHPokerCore
             this.previewBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
             this.previewBtn.FlatAppearance.BorderSize = 0;
             this.previewBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.previewBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.previewBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.previewBtn.ForeColor = System.Drawing.Color.White;
             this.previewBtn.Location = new System.Drawing.Point(6, 199);
             this.previewBtn.Margin = new System.Windows.Forms.Padding(4);
@@ -206,7 +206,7 @@ namespace ACNHPokerCore
             // 
             this.numOfItemBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
             this.numOfItemBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.numOfItemBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numOfItemBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.numOfItemBox.ForeColor = System.Drawing.Color.Gray;
             this.numOfItemBox.Location = new System.Drawing.Point(596, 82);
             this.numOfItemBox.Margin = new System.Windows.Forms.Padding(4);
@@ -221,11 +221,11 @@ namespace ACNHPokerCore
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.label1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(468, 82);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 16);
+            this.label1.Size = new System.Drawing.Size(106, 16);
             this.label1.TabIndex = 228;
             this.label1.Text = "Num of Items :";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -243,11 +243,11 @@ namespace ACNHPokerCore
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.label2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(55, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 16);
+            this.label2.Size = new System.Drawing.Size(61, 16);
             this.label2.TabIndex = 230;
             this.label2.Text = "Height :";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -265,11 +265,11 @@ namespace ACNHPokerCore
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.label3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(55, 85);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 16);
+            this.label3.Size = new System.Drawing.Size(79, 16);
             this.label3.TabIndex = 232;
             this.label3.Text = "Direction :";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -277,11 +277,11 @@ namespace ACNHPokerCore
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.label4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(470, 13);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(25, 16);
+            this.label4.Size = new System.Drawing.Size(24, 16);
             this.label4.TabIndex = 233;
             this.label4.Text = "X :";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -289,11 +289,11 @@ namespace ACNHPokerCore
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.label5.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(570, 13);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(26, 16);
+            this.label5.Size = new System.Drawing.Size(25, 16);
             this.label5.TabIndex = 234;
             this.label5.Text = "Y :";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -323,7 +323,7 @@ namespace ACNHPokerCore
             this.warningMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.warningMessage.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.warningMessage.Cursor = System.Windows.Forms.Cursors.Default;
-            this.warningMessage.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.warningMessage.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.warningMessage.ForeColor = System.Drawing.Color.Firebrick;
             this.warningMessage.Location = new System.Drawing.Point(6, 179);
             this.warningMessage.Multiline = false;
@@ -338,7 +338,7 @@ namespace ACNHPokerCore
             // 
             this.widthNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
             this.widthNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.widthNumber.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.widthNumber.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.widthNumber.ForeColor = System.Drawing.Color.Gray;
             this.widthNumber.Location = new System.Drawing.Point(130, 144);
             this.widthNumber.Margin = new System.Windows.Forms.Padding(4);
@@ -354,11 +354,11 @@ namespace ACNHPokerCore
             // widthLabel
             // 
             this.widthLabel.AutoSize = true;
-            this.widthLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.widthLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.widthLabel.ForeColor = System.Drawing.Color.White;
             this.widthLabel.Location = new System.Drawing.Point(55, 145);
             this.widthLabel.Name = "widthLabel";
-            this.widthLabel.Size = new System.Drawing.Size(56, 16);
+            this.widthLabel.Size = new System.Drawing.Size(55, 16);
             this.widthLabel.TabIndex = 234;
             this.widthLabel.Text = "Width :";
             this.widthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -381,7 +381,7 @@ namespace ACNHPokerCore
             this.WaitMessagebox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.WaitMessagebox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.WaitMessagebox.Cursor = System.Windows.Forms.Cursors.Default;
-            this.WaitMessagebox.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.WaitMessagebox.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.WaitMessagebox.ForeColor = System.Drawing.Color.White;
             this.WaitMessagebox.Location = new System.Drawing.Point(1, 32);
             this.WaitMessagebox.Multiline = false;
@@ -413,11 +413,11 @@ namespace ACNHPokerCore
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.label29.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label29.ForeColor = System.Drawing.Color.White;
             this.label29.Location = new System.Drawing.Point(64, 7);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(100, 16);
+            this.label29.Size = new System.Drawing.Size(99, 16);
             this.label29.TabIndex = 215;
             this.label29.Text = "Please Wait...";
             this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -442,7 +442,7 @@ namespace ACNHPokerCore
             this.Controls.Add(this.miniMapBox);
             this.Controls.Add(this.yCoordinate);
             this.Controls.Add(this.xCoordinate);
-            this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -451,6 +451,7 @@ namespace ACNHPokerCore
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(690, 450);
             this.Name = "bulkSpawn";
+            this.Opacity = 0.95D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bulk Spawn";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.bulkSpawn_FormClosed);

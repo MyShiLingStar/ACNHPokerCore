@@ -66,7 +66,7 @@ namespace ACNHPokerCore
                 Filter = "New Horizons Bulk Spawn (*.nhbs)|*.nhbs|New Horizons Inventory(*.nhi) | *.nhi",
             };
 
-            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
             string savepath;
 

@@ -16,7 +16,6 @@ namespace ACNHPokerCore
         bool OverrideSetting;
         bool Validation;
 
-        public event CloseHandler closeForm;
         public event OverrideHandler toggleOverride;
         public event ValidationHandler toggleValidation;
         public event SoundHandler toggleSound;
@@ -91,7 +90,7 @@ namespace ACNHPokerCore
 
         public void overrideAddresses()
         {
-            Configuration Config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe",".dll"));
+            Configuration Config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
             this.PlayerSlot.Text = Config.AppSettings.Settings["PlayerSlot"].Value;
             this.PlayerOffset.Text = Config.AppSettings.Settings["PlayerOffset"].Value;
@@ -231,7 +230,7 @@ namespace ACNHPokerCore
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            Configuration Config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe",".dll"));
+            Configuration Config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
             Dictionary<string, UInt32> ConfigValue = new Dictionary<string, uint>();
 
@@ -289,7 +288,7 @@ namespace ACNHPokerCore
 
         private void ImageBtn_Click(object sender, EventArgs e)
         {
-            Configuration Config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe",".dll"));
+            Configuration Config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
             Config.AppSettings.Settings["ForcedImageDownload"].Value = "true";
             Config.Save(ConfigurationSaveMode.Minimal);
             Application.Restart();

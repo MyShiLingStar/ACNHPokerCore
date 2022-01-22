@@ -206,6 +206,9 @@ namespace ACNHPokerCore
         {
             byte[] temp = new byte[teleportSize];
 
+            if (anchorByte == null)
+                return false;
+
             for (int i = 0; i < 5; i++)
             {
                 Buffer.BlockCopy(anchorByte, teleportSize * i, temp, 0, teleportSize);
