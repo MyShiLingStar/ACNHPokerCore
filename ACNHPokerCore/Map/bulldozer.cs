@@ -499,7 +499,14 @@ namespace ACNHPokerCore
                     if (index == 27) // incline
                     {
                         inclinePanel.Visible = true;
-                        inclineAngleSelect.SelectedIndex = (int)AUpDown.Value;
+                        bridgePanel.Visible = false;
+
+                        int Angle = (int)AUpDown.Value;
+                        if (Angle <= 3)
+                            inclineAngleSelect.SelectedIndex = (int)AUpDown.Value;
+                        else
+                            inclineAngleSelect.SelectedIndex = 0;
+
                         switch (TUpDown.Value)
                         {
                             case 0:
@@ -530,10 +537,320 @@ namespace ACNHPokerCore
                                 inclineTypeSelect.SelectedIndex = 0;
                                 break;
                         }
+
+                        if (this.Width > 1110)
+                            this.Width = 1110;
+                    }
+                    else if (index == 26) // bridge
+                    {
+                        inclinePanel.Visible = false;
+                        bridgePanel.Visible = true;
+
+                        int Angle = (int)AUpDown.Value;
+                        if (Angle <= 3)
+                            BridgeAngleSelect.SelectedIndex = (int)AUpDown.Value;
+                        else
+                            BridgeAngleSelect.SelectedIndex = 0;
+
+                        switch (TUpDown.Value)
+                        {
+                            case 0:
+                                BridgeTypeSelect.SelectedIndex = 2;
+                                BridgeLengthUpDown.Value = 3;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 1:
+                                BridgeTypeSelect.SelectedIndex = 2;
+                                BridgeLengthUpDown.Value = 4;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 2:
+                                BridgeTypeSelect.SelectedIndex = 2;
+                                BridgeLengthUpDown.Value = 5;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 3:
+                                BridgeTypeSelect.SelectedIndex = 2;
+                                BridgeLengthUpDown.Value = 3;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            case 4:
+                                BridgeTypeSelect.SelectedIndex = 2;
+                                BridgeLengthUpDown.Value = 4;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            case 5:
+                                BridgeTypeSelect.SelectedIndex = 2;
+                                BridgeLengthUpDown.Value = 5;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            //======================================
+                            case 6:
+                                BridgeTypeSelect.SelectedIndex = 1;
+                                BridgeLengthUpDown.Value = 4;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 7:
+                                BridgeTypeSelect.SelectedIndex = 1;
+                                BridgeLengthUpDown.Value = 3;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 8:
+                                BridgeTypeSelect.SelectedIndex = 1;
+                                BridgeLengthUpDown.Value = 5;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 9:
+                                BridgeTypeSelect.SelectedIndex = 1;
+                                BridgeLengthUpDown.Value = 3;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            case 10:
+                                BridgeTypeSelect.SelectedIndex = 1;
+                                BridgeLengthUpDown.Value = 4;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            case 11:
+                                BridgeTypeSelect.SelectedIndex = 1;
+                                BridgeLengthUpDown.Value = 5;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            //======================================
+                            case 12:
+                                BridgeTypeSelect.SelectedIndex = 7;
+                                BridgeLengthUpDown.Value = 4;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            //======================================
+                            case 13:
+                                BridgeTypeSelect.SelectedIndex = 0;
+                                BridgeLengthUpDown.Value = 4;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 14:
+                                BridgeTypeSelect.SelectedIndex = 0;
+                                BridgeLengthUpDown.Value = 3;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 15:
+                                BridgeTypeSelect.SelectedIndex = 0;
+                                BridgeLengthUpDown.Value = 5;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 16:
+                                BridgeTypeSelect.SelectedIndex = 0;
+                                BridgeLengthUpDown.Value = 3;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            case 17:
+                                BridgeTypeSelect.SelectedIndex = 0;
+                                BridgeLengthUpDown.Value = 4;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            case 18:
+                                BridgeTypeSelect.SelectedIndex = 0;
+                                BridgeLengthUpDown.Value = 5;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            //======================================
+                            case 19:
+                                BridgeTypeSelect.SelectedIndex = 7;
+                                BridgeLengthUpDown.Value = 3;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 20:
+                                BridgeTypeSelect.SelectedIndex = 7;
+                                BridgeLengthUpDown.Value = 5;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 21:
+                                BridgeTypeSelect.SelectedIndex = 7;
+                                BridgeLengthUpDown.Value = 3;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            case 22:
+                                BridgeTypeSelect.SelectedIndex = 7;
+                                BridgeLengthUpDown.Value = 4;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            case 23:
+                                BridgeTypeSelect.SelectedIndex = 7;
+                                BridgeLengthUpDown.Value = 5;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            //======================================
+                            case 24:
+                                BridgeTypeSelect.SelectedIndex = 6;
+                                BridgeLengthUpDown.Value = 4;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 25:
+                                BridgeTypeSelect.SelectedIndex = 5;
+                                BridgeLengthUpDown.Value = 4;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            //======================================
+                            case 26:
+                                BridgeTypeSelect.SelectedIndex = 8;
+                                BridgeLengthUpDown.Value = 3;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 27:
+                                BridgeTypeSelect.SelectedIndex = 8;
+                                BridgeLengthUpDown.Value = 4;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 28:
+                                BridgeTypeSelect.SelectedIndex = 8;
+                                BridgeLengthUpDown.Value = 5;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 29:
+                                BridgeTypeSelect.SelectedIndex = 8;
+                                BridgeLengthUpDown.Value = 3;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            case 30:
+                                BridgeTypeSelect.SelectedIndex = 8;
+                                BridgeLengthUpDown.Value = 4;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            case 31:
+                                BridgeTypeSelect.SelectedIndex = 8;
+                                BridgeLengthUpDown.Value = 5;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            //======================================
+                            case 32:
+                                BridgeTypeSelect.SelectedIndex = 6;
+                                BridgeLengthUpDown.Value = 3;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 33:
+                                BridgeTypeSelect.SelectedIndex = 6;
+                                BridgeLengthUpDown.Value = 5;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 34:
+                                BridgeTypeSelect.SelectedIndex = 6;
+                                BridgeLengthUpDown.Value = 3;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            case 35:
+                                BridgeTypeSelect.SelectedIndex = 6;
+                                BridgeLengthUpDown.Value = 4;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            case 36:
+                                BridgeTypeSelect.SelectedIndex = 6;
+                                BridgeLengthUpDown.Value = 5;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            //======================================
+                            case 37:
+                                BridgeTypeSelect.SelectedIndex = 3;
+                                BridgeLengthUpDown.Value = 4;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 38:
+                                BridgeTypeSelect.SelectedIndex = 4;
+                                BridgeLengthUpDown.Value = 4;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            //======================================
+                            case 39:
+                                BridgeTypeSelect.SelectedIndex = 5;
+                                BridgeLengthUpDown.Value = 3;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 40:
+                                BridgeTypeSelect.SelectedIndex = 5;
+                                BridgeLengthUpDown.Value = 5;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 41:
+                                BridgeTypeSelect.SelectedIndex = 5;
+                                BridgeLengthUpDown.Value = 3;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            case 42:
+                                BridgeTypeSelect.SelectedIndex = 5;
+                                BridgeLengthUpDown.Value = 4;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            case 43:
+                                BridgeTypeSelect.SelectedIndex = 5;
+                                BridgeLengthUpDown.Value = 5;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            //======================================
+                            case 44:
+                                BridgeTypeSelect.SelectedIndex = 3;
+                                BridgeLengthUpDown.Value = 3;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 45:
+                                BridgeTypeSelect.SelectedIndex = 3;
+                                BridgeLengthUpDown.Value = 5;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 46:
+                                BridgeTypeSelect.SelectedIndex = 3;
+                                BridgeLengthUpDown.Value = 3;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            case 47:
+                                BridgeTypeSelect.SelectedIndex = 3;
+                                BridgeLengthUpDown.Value = 4;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            case 48:
+                                BridgeTypeSelect.SelectedIndex = 3;
+                                BridgeLengthUpDown.Value = 5;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            //======================================
+                            case 49:
+                                BridgeTypeSelect.SelectedIndex = 4;
+                                BridgeLengthUpDown.Value = 3;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 52:
+                                BridgeTypeSelect.SelectedIndex = 4;
+                                BridgeLengthUpDown.Value = 5;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                            case 53:
+                                BridgeTypeSelect.SelectedIndex = 4;
+                                BridgeLengthUpDown.Value = 3;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            case 54:
+                                BridgeTypeSelect.SelectedIndex = 4;
+                                BridgeLengthUpDown.Value = 4;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            case 55:
+                                BridgeTypeSelect.SelectedIndex = 4;
+                                BridgeLengthUpDown.Value = 5;
+                                BridgeDiagonalToggle.Checked = true;
+                                break;
+                            //======================================
+                            default:
+                                BridgeTypeSelect.SelectedIndex = 0;
+                                BridgeLengthUpDown.Value = 3;
+                                BridgeDiagonalToggle.Checked = false;
+                                break;
+                        }
+                        UpdateBridgeImage((int)TUpDown.Value, (int)AUpDown.Value);
                     }
                     else
                     {
+                        bridgePanel.Visible = false;
                         inclinePanel.Visible = false;
+
+                        if (this.Width > 1110)
+                            this.Width = 1110;
                     }
 
                     valueUpdated = false;
@@ -736,10 +1053,24 @@ namespace ACNHPokerCore
             if (BuildingType.SelectedIndex == 27) // incline
             {
                 inclinePanel.Visible = true;
+                bridgePanel.Visible = false;
+            }
+            else if (BuildingType.SelectedIndex == 26) // bridge
+            {
+                inclinePanel.Visible = false;
+                bridgePanel.Visible = true;
+
+                TUpDown.Value = 0;
+                AUpDown.Value = 0;
+                BridgeTypeSelect.SelectedIndex = 0;
+                BridgeAngleSelect.SelectedIndex = 0;
+                BridgeLengthUpDown.Value = 3;
+                BridgeDiagonalToggle.Checked = false;
             }
             else
             {
                 inclinePanel.Visible = false;
+                bridgePanel.Visible = false;
             }
         }
 
@@ -1014,6 +1345,311 @@ namespace ACNHPokerCore
                         TUpDown.Value = 0;
                         break;
                 }
+            }
+        }
+
+        private void BridgeAngleSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (valueUpdated)
+                return;
+            ComboBox comboBox = (ComboBox)sender;
+            if (comboBox.SelectedIndex > -1)
+                AUpDown.Value = comboBox.SelectedIndex;
+
+            UpdateBridgeImage((int)TUpDown.Value, (int)AUpDown.Value);
+        }
+
+        private void BridgeTypeSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (valueUpdated)
+                return;
+            bridgeSettingChanged();
+        }
+
+        private void BridgeLengthUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (valueUpdated)
+                return;
+            bridgeSettingChanged();
+        }
+
+        private void BridgeDiagonalToggle_CheckedChanged(object sender, EventArgs e)
+        {
+            if (valueUpdated)
+                return;
+            bridgeSettingChanged();
+        }
+
+        private void bridgeSettingChanged()
+        {
+            switch (BridgeTypeSelect.SelectedIndex)
+            {
+                case 0: // Log
+                    switch ((int)BridgeLengthUpDown.Value)
+                    {
+                        case 3:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 16;
+                            else
+                                TUpDown.Value = 14;
+                            break;
+                        case 4:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 17;
+                            else
+                                TUpDown.Value = 13;
+                            break;
+                        case 5:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 18;
+                            else
+                                TUpDown.Value = 15;
+                            break;
+                        default:
+                            TUpDown.Value = 14;
+                            break;
+                    }
+                    break;
+                case 1: // Suspension
+                    switch ((int)BridgeLengthUpDown.Value)
+                    {
+                        case 3:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 9;
+                            else
+                                TUpDown.Value = 7;
+                            break;
+                        case 4:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 10;
+                            else
+                                TUpDown.Value = 6;
+                            break;
+                        case 5:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 11;
+                            else
+                                TUpDown.Value = 8;
+                            break;
+                        default:
+                            TUpDown.Value = 7;
+                            break;
+                    }
+                    break;
+                case 2: // Stone
+                    switch ((int)BridgeLengthUpDown.Value)
+                    {
+                        case 3:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 3;
+                            else
+                                TUpDown.Value = 0;
+                            break;
+                        case 4:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 4;
+                            else
+                                TUpDown.Value = 1;
+                            break;
+                        case 5:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 5;
+                            else
+                                TUpDown.Value = 2;
+                            break;
+                        default:
+                            TUpDown.Value = 0;
+                            break;
+                    }
+                    break;
+                case 3: // Wooden
+                    switch ((int)BridgeLengthUpDown.Value)
+                    {
+                        case 3:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 46;
+                            else
+                                TUpDown.Value = 44;
+                            break;
+                        case 4:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 47;
+                            else
+                                TUpDown.Value = 37;
+                            break;
+                        case 5:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 48;
+                            else
+                                TUpDown.Value = 45;
+                            break;
+                        default:
+                            TUpDown.Value = 44;
+                            break;
+                    }
+                    break;
+                case 4: // Brick
+                    switch ((int)BridgeLengthUpDown.Value)
+                    {
+                        case 3:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 53;
+                            else
+                                TUpDown.Value = 49;
+                            break;
+                        case 4:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 54;
+                            else
+                                TUpDown.Value = 38;
+                            break;
+                        case 5:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 55;
+                            else
+                                TUpDown.Value = 52;
+                            break;
+                        default:
+                            TUpDown.Value = 49;
+                            break;
+                    }
+                    break;
+                case 5: // Iron
+                    switch ((int)BridgeLengthUpDown.Value)
+                    {
+                        case 3:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 41;
+                            else
+                                TUpDown.Value = 39;
+                            break;
+                        case 4:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 42;
+                            else
+                                TUpDown.Value = 25;
+                            break;
+                        case 5:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 43;
+                            else
+                                TUpDown.Value = 40;
+                            break;
+                        default:
+                            TUpDown.Value = 39;
+                            break;
+                    }
+                    break;
+                case 6: // Red Zen
+                    switch ((int)BridgeLengthUpDown.Value)
+                    {
+                        case 3:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 34;
+                            else
+                                TUpDown.Value = 32;
+                            break;
+                        case 4:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 35;
+                            else
+                                TUpDown.Value = 24;
+                            break;
+                        case 5:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 36;
+                            else
+                                TUpDown.Value = 33;
+                            break;
+                        default:
+                            TUpDown.Value = 32;
+                            break;
+                    }
+                    break;
+                case 7: // Zen
+                    switch ((int)BridgeLengthUpDown.Value)
+                    {
+                        case 3:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 21;
+                            else
+                                TUpDown.Value = 19;
+                            break;
+                        case 4:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 22;
+                            else
+                                TUpDown.Value = 12;
+                            break;
+                        case 5:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 23;
+                            else
+                                TUpDown.Value = 20;
+                            break;
+                        default:
+                            TUpDown.Value = 19;
+                            break;
+                    }
+                    break;
+                case 8: // Under Construction
+                    switch ((int)BridgeLengthUpDown.Value)
+                    {
+                        case 3:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 29;
+                            else
+                                TUpDown.Value = 26;
+                            break;
+                        case 4:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 30;
+                            else
+                                TUpDown.Value = 27;
+                            break;
+                        case 5:
+                            if (BridgeDiagonalToggle.Checked)
+                                TUpDown.Value = 31;
+                            else
+                                TUpDown.Value = 28;
+                            break;
+                        default:
+                            TUpDown.Value = 26;
+                            break;
+                    }
+                    break;
+                default:
+                    TUpDown.Value = 0;
+                    break;
+            }
+            UpdateBridgeImage((int)TUpDown.Value, (int)AUpDown.Value);
+        }
+
+        private void UpdateBridgeImage(int value, int angle)
+        {
+            string ImagePath = Utilities.BridgeImagePath + Utilities.precedingZeros(value.ToString(), 2) + ".png";
+            if (File.Exists(ImagePath))
+            {
+                BridgeImage.Visible = true;
+                Image image = new Bitmap(Image.FromFile(ImagePath), new Size(BridgeImage.Width, BridgeImage.Height));
+                switch (angle)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                        break;
+                    case 2:
+                        image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                        break;
+                    case 3:
+                        image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                        break;
+                    default:
+                        break;
+                }
+                BridgeImage.Image = image;
+                this.Width = 1320;
             }
         }
     }

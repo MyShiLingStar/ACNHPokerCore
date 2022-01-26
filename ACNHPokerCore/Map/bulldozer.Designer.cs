@@ -53,16 +53,25 @@ namespace ACNHPokerCore
             this.allFlatBtn = new System.Windows.Forms.Button();
             this.TerrainBtn = new System.Windows.Forms.Button();
             this.buildingPanel = new System.Windows.Forms.Panel();
+            this.buildingGridView = new System.Windows.Forms.DataGridView();
             this.BuildingControl = new System.Windows.Forms.Panel();
+            this.bridgePanel = new System.Windows.Forms.Panel();
+            this.BridgeDiagonalToggle = new JCS.ToggleSwitch();
+            this.BridgeLengthUpDown = new System.Windows.Forms.NumericUpDown();
+            this.BridgeDiagonalLabel = new System.Windows.Forms.Label();
+            this.BridgeLengthLabel = new System.Windows.Forms.Label();
+            this.BridgeAngleSelect = new System.Windows.Forms.ComboBox();
+            this.BridgeAngleLabel = new System.Windows.Forms.Label();
+            this.BridgeTypeSelect = new System.Windows.Forms.ComboBox();
+            this.BridgeTypeLabel = new System.Windows.Forms.Label();
             this.inclinePanel = new System.Windows.Forms.Panel();
             this.inclineTypeSelect = new System.Windows.Forms.ComboBox();
             this.inclineAngleSelect = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.InclineTypeLabel = new System.Windows.Forms.Label();
+            this.InclineAngleLabel = new System.Windows.Forms.Label();
             this.saveBuildingBtn = new System.Windows.Forms.Button();
             this.loadBuildingBtn = new System.Windows.Forms.Button();
-            this.PreviewBtn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.BuildingTypeLabel = new System.Windows.Forms.Label();
             this.updateBtn = new System.Windows.Forms.Button();
             this.buildingConfirmBtn = new System.Windows.Forms.Button();
             this.BuildingType = new System.Windows.Forms.ComboBox();
@@ -74,22 +83,26 @@ namespace ACNHPokerCore
             this.YUpDown = new System.Windows.Forms.NumericUpDown();
             this.AUpDown = new System.Windows.Forms.NumericUpDown();
             this.angleLabel = new System.Windows.Forms.Label();
-            this.buildingGridView = new System.Windows.Forms.DataGridView();
+            this.PreviewBtn = new System.Windows.Forms.Button();
             this.LoadingPanel = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.NowLoadingLabel = new System.Windows.Forms.Label();
             this.NowLoading = new System.Windows.Forms.PictureBox();
+            this.BridgeImage = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.miniMapBox)).BeginInit();
             this.acrePanel.SuspendLayout();
             this.buildingPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.buildingGridView)).BeginInit();
             this.BuildingControl.SuspendLayout();
+            this.bridgePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BridgeLengthUpDown)).BeginInit();
             this.inclinePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.XUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.YUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buildingGridView)).BeginInit();
             this.LoadingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NowLoading)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BridgeImage)).BeginInit();
             this.SuspendLayout();
             // 
             // miniMapBox
@@ -117,7 +130,7 @@ namespace ACNHPokerCore
             this.realYLabel.AutoSize = true;
             this.realYLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.realYLabel.ForeColor = System.Drawing.Color.White;
-            this.realYLabel.Location = new System.Drawing.Point(656, 519);
+            this.realYLabel.Location = new System.Drawing.Point(656, 521);
             this.realYLabel.Name = "realYLabel";
             this.realYLabel.Size = new System.Drawing.Size(25, 16);
             this.realYLabel.TabIndex = 226;
@@ -128,7 +141,7 @@ namespace ACNHPokerCore
             this.realXLabel.AutoSize = true;
             this.realXLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.realXLabel.ForeColor = System.Drawing.Color.White;
-            this.realXLabel.Location = new System.Drawing.Point(581, 519);
+            this.realXLabel.Location = new System.Drawing.Point(581, 521);
             this.realXLabel.Name = "realXLabel";
             this.realXLabel.Size = new System.Drawing.Size(24, 16);
             this.realXLabel.TabIndex = 225;
@@ -140,7 +153,7 @@ namespace ACNHPokerCore
             this.RealYCoordinate.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.RealYCoordinate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.RealYCoordinate.ForeColor = System.Drawing.Color.White;
-            this.RealYCoordinate.Location = new System.Drawing.Point(682, 518);
+            this.RealYCoordinate.Location = new System.Drawing.Point(682, 519);
             this.RealYCoordinate.MaxLength = 3;
             this.RealYCoordinate.Multiline = false;
             this.RealYCoordinate.Name = "RealYCoordinate";
@@ -155,7 +168,7 @@ namespace ACNHPokerCore
             this.RealXCoordinate.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.RealXCoordinate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.RealXCoordinate.ForeColor = System.Drawing.Color.White;
-            this.RealXCoordinate.Location = new System.Drawing.Point(606, 518);
+            this.RealXCoordinate.Location = new System.Drawing.Point(606, 519);
             this.RealXCoordinate.MaxLength = 3;
             this.RealXCoordinate.Multiline = false;
             this.RealXCoordinate.Name = "RealXCoordinate";
@@ -240,7 +253,7 @@ namespace ACNHPokerCore
             this.sendBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sendBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.sendBtn.ForeColor = System.Drawing.Color.White;
-            this.sendBtn.Location = new System.Drawing.Point(416, 435);
+            this.sendBtn.Location = new System.Drawing.Point(230, 435);
             this.sendBtn.Name = "sendBtn";
             this.sendBtn.Size = new System.Drawing.Size(86, 30);
             this.sendBtn.TabIndex = 232;
@@ -346,7 +359,7 @@ namespace ACNHPokerCore
             this.saveAcreBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveAcreBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.saveAcreBtn.ForeColor = System.Drawing.Color.White;
-            this.saveAcreBtn.Location = new System.Drawing.Point(324, 399);
+            this.saveAcreBtn.Location = new System.Drawing.Point(7, 399);
             this.saveAcreBtn.Name = "saveAcreBtn";
             this.saveAcreBtn.Size = new System.Drawing.Size(86, 30);
             this.saveAcreBtn.TabIndex = 238;
@@ -361,7 +374,7 @@ namespace ACNHPokerCore
             this.loadAcreBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loadAcreBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.loadAcreBtn.ForeColor = System.Drawing.Color.White;
-            this.loadAcreBtn.Location = new System.Drawing.Point(416, 399);
+            this.loadAcreBtn.Location = new System.Drawing.Point(99, 399);
             this.loadAcreBtn.Name = "loadAcreBtn";
             this.loadAcreBtn.Size = new System.Drawing.Size(86, 30);
             this.loadAcreBtn.TabIndex = 237;
@@ -401,21 +414,46 @@ namespace ACNHPokerCore
             // 
             // buildingPanel
             // 
-            this.buildingPanel.Controls.Add(this.BuildingControl);
             this.buildingPanel.Controls.Add(this.buildingGridView);
+            this.buildingPanel.Controls.Add(this.BuildingControl);
             this.buildingPanel.Location = new System.Drawing.Point(578, 42);
             this.buildingPanel.Name = "buildingPanel";
             this.buildingPanel.Size = new System.Drawing.Size(513, 470);
             this.buildingPanel.TabIndex = 240;
             this.buildingPanel.Visible = false;
             // 
+            // buildingGridView
+            // 
+            this.buildingGridView.AllowUserToAddRows = false;
+            this.buildingGridView.AllowUserToDeleteRows = false;
+            this.buildingGridView.AllowUserToResizeRows = false;
+            this.buildingGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(54)))));
+            this.buildingGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft JhengHei", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.buildingGridView.DefaultCellStyle = dataGridViewCellStyle1;
+            this.buildingGridView.Location = new System.Drawing.Point(0, 0);
+            this.buildingGridView.MultiSelect = false;
+            this.buildingGridView.Name = "buildingGridView";
+            this.buildingGridView.ReadOnly = true;
+            this.buildingGridView.RowHeadersVisible = false;
+            this.buildingGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.buildingGridView.Size = new System.Drawing.Size(513, 332);
+            this.buildingGridView.TabIndex = 30;
+            this.buildingGridView.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.buildingGridView_CellMouseUp);
+            // 
             // BuildingControl
             // 
+            this.BuildingControl.Controls.Add(this.bridgePanel);
             this.BuildingControl.Controls.Add(this.inclinePanel);
             this.BuildingControl.Controls.Add(this.saveBuildingBtn);
             this.BuildingControl.Controls.Add(this.loadBuildingBtn);
-            this.BuildingControl.Controls.Add(this.PreviewBtn);
-            this.BuildingControl.Controls.Add(this.label1);
+            this.BuildingControl.Controls.Add(this.BuildingTypeLabel);
             this.BuildingControl.Controls.Add(this.updateBtn);
             this.BuildingControl.Controls.Add(this.buildingConfirmBtn);
             this.BuildingControl.Controls.Add(this.BuildingType);
@@ -433,15 +471,170 @@ namespace ACNHPokerCore
             this.BuildingControl.TabIndex = 95;
             this.BuildingControl.Visible = false;
             // 
+            // bridgePanel
+            // 
+            this.bridgePanel.Controls.Add(this.BridgeDiagonalToggle);
+            this.bridgePanel.Controls.Add(this.BridgeLengthUpDown);
+            this.bridgePanel.Controls.Add(this.BridgeDiagonalLabel);
+            this.bridgePanel.Controls.Add(this.BridgeLengthLabel);
+            this.bridgePanel.Controls.Add(this.BridgeAngleSelect);
+            this.bridgePanel.Controls.Add(this.BridgeAngleLabel);
+            this.bridgePanel.Controls.Add(this.BridgeTypeSelect);
+            this.bridgePanel.Controls.Add(this.BridgeTypeLabel);
+            this.bridgePanel.Location = new System.Drawing.Point(214, 31);
+            this.bridgePanel.Name = "bridgePanel";
+            this.bridgePanel.Size = new System.Drawing.Size(297, 92);
+            this.bridgePanel.TabIndex = 242;
+            this.bridgePanel.Visible = false;
+            // 
+            // BridgeDiagonalToggle
+            // 
+            this.BridgeDiagonalToggle.Location = new System.Drawing.Point(149, 65);
+            this.BridgeDiagonalToggle.Name = "BridgeDiagonalToggle";
+            this.BridgeDiagonalToggle.OffFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BridgeDiagonalToggle.OffForeColor = System.Drawing.Color.White;
+            this.BridgeDiagonalToggle.OffText = "False";
+            this.BridgeDiagonalToggle.OnFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BridgeDiagonalToggle.OnForeColor = System.Drawing.Color.White;
+            this.BridgeDiagonalToggle.OnText = "On";
+            this.BridgeDiagonalToggle.Size = new System.Drawing.Size(74, 23);
+            this.BridgeDiagonalToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            this.BridgeDiagonalToggle.TabIndex = 251;
+            this.BridgeDiagonalToggle.UseAnimation = false;
+            this.BridgeDiagonalToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.BridgeDiagonalToggle_CheckedChanged);
+            // 
+            // BridgeLengthUpDown
+            // 
+            this.BridgeLengthUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
+            this.BridgeLengthUpDown.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.BridgeLengthUpDown.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BridgeLengthUpDown.ForeColor = System.Drawing.Color.White;
+            this.BridgeLengthUpDown.Location = new System.Drawing.Point(7, 65);
+            this.BridgeLengthUpDown.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.BridgeLengthUpDown.Minimum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.BridgeLengthUpDown.Name = "BridgeLengthUpDown";
+            this.BridgeLengthUpDown.Size = new System.Drawing.Size(56, 25);
+            this.BridgeLengthUpDown.TabIndex = 250;
+            this.BridgeLengthUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.BridgeLengthUpDown.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.BridgeLengthUpDown.ValueChanged += new System.EventHandler(this.BridgeLengthUpDown_ValueChanged);
+            // 
+            // BridgeDiagonalLabel
+            // 
+            this.BridgeDiagonalLabel.AutoSize = true;
+            this.BridgeDiagonalLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BridgeDiagonalLabel.ForeColor = System.Drawing.Color.White;
+            this.BridgeDiagonalLabel.Location = new System.Drawing.Point(147, 46);
+            this.BridgeDiagonalLabel.Name = "BridgeDiagonalLabel";
+            this.BridgeDiagonalLabel.Size = new System.Drawing.Size(76, 16);
+            this.BridgeDiagonalLabel.TabIndex = 249;
+            this.BridgeDiagonalLabel.Text = "Diagonal :";
+            // 
+            // BridgeLengthLabel
+            // 
+            this.BridgeLengthLabel.AutoSize = true;
+            this.BridgeLengthLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BridgeLengthLabel.ForeColor = System.Drawing.Color.White;
+            this.BridgeLengthLabel.Location = new System.Drawing.Point(4, 46);
+            this.BridgeLengthLabel.Name = "BridgeLengthLabel";
+            this.BridgeLengthLabel.Size = new System.Drawing.Size(64, 16);
+            this.BridgeLengthLabel.TabIndex = 248;
+            this.BridgeLengthLabel.Text = "Length :";
+            // 
+            // BridgeAngleSelect
+            // 
+            this.BridgeAngleSelect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            this.BridgeAngleSelect.DropDownHeight = 200;
+            this.BridgeAngleSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.BridgeAngleSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BridgeAngleSelect.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BridgeAngleSelect.ForeColor = System.Drawing.Color.White;
+            this.BridgeAngleSelect.FormattingEnabled = true;
+            this.BridgeAngleSelect.IntegralHeight = false;
+            this.BridgeAngleSelect.ItemHeight = 16;
+            this.BridgeAngleSelect.Items.AddRange(new object[] {
+            "→ or ↗ : 0x0",
+            " ↑ or ↖ : 0x1",
+            " ← or ↙ : 0x2",
+            " ↓ or ↘: 0x3"});
+            this.BridgeAngleSelect.Location = new System.Drawing.Point(149, 19);
+            this.BridgeAngleSelect.MaxDropDownItems = 10;
+            this.BridgeAngleSelect.Name = "BridgeAngleSelect";
+            this.BridgeAngleSelect.Size = new System.Drawing.Size(143, 24);
+            this.BridgeAngleSelect.TabIndex = 247;
+            this.BridgeAngleSelect.SelectedIndexChanged += new System.EventHandler(this.BridgeAngleSelect_SelectedIndexChanged);
+            // 
+            // BridgeAngleLabel
+            // 
+            this.BridgeAngleLabel.AutoSize = true;
+            this.BridgeAngleLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BridgeAngleLabel.ForeColor = System.Drawing.Color.White;
+            this.BridgeAngleLabel.Location = new System.Drawing.Point(147, 1);
+            this.BridgeAngleLabel.Name = "BridgeAngleLabel";
+            this.BridgeAngleLabel.Size = new System.Drawing.Size(55, 16);
+            this.BridgeAngleLabel.TabIndex = 246;
+            this.BridgeAngleLabel.Text = "Angle :";
+            // 
+            // BridgeTypeSelect
+            // 
+            this.BridgeTypeSelect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            this.BridgeTypeSelect.DropDownHeight = 200;
+            this.BridgeTypeSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.BridgeTypeSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BridgeTypeSelect.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BridgeTypeSelect.ForeColor = System.Drawing.Color.White;
+            this.BridgeTypeSelect.FormattingEnabled = true;
+            this.BridgeTypeSelect.IntegralHeight = false;
+            this.BridgeTypeSelect.ItemHeight = 16;
+            this.BridgeTypeSelect.Items.AddRange(new object[] {
+            "Log",
+            "Suspension",
+            "Stone",
+            "Wooden",
+            "Brick",
+            "Iron",
+            "Red Zen",
+            "Zen",
+            "Under Construction"});
+            this.BridgeTypeSelect.Location = new System.Drawing.Point(7, 19);
+            this.BridgeTypeSelect.MaxDropDownItems = 10;
+            this.BridgeTypeSelect.Name = "BridgeTypeSelect";
+            this.BridgeTypeSelect.Size = new System.Drawing.Size(135, 24);
+            this.BridgeTypeSelect.TabIndex = 245;
+            this.BridgeTypeSelect.SelectedIndexChanged += new System.EventHandler(this.BridgeTypeSelect_SelectedIndexChanged);
+            // 
+            // BridgeTypeLabel
+            // 
+            this.BridgeTypeLabel.AutoSize = true;
+            this.BridgeTypeLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BridgeTypeLabel.ForeColor = System.Drawing.Color.White;
+            this.BridgeTypeLabel.Location = new System.Drawing.Point(4, 1);
+            this.BridgeTypeLabel.Name = "BridgeTypeLabel";
+            this.BridgeTypeLabel.Size = new System.Drawing.Size(47, 16);
+            this.BridgeTypeLabel.TabIndex = 243;
+            this.BridgeTypeLabel.Text = "Type :";
+            // 
             // inclinePanel
             // 
             this.inclinePanel.Controls.Add(this.inclineTypeSelect);
             this.inclinePanel.Controls.Add(this.inclineAngleSelect);
-            this.inclinePanel.Controls.Add(this.label4);
-            this.inclinePanel.Controls.Add(this.label3);
-            this.inclinePanel.Location = new System.Drawing.Point(209, 29);
+            this.inclinePanel.Controls.Add(this.InclineTypeLabel);
+            this.inclinePanel.Controls.Add(this.InclineAngleLabel);
+            this.inclinePanel.Location = new System.Drawing.Point(214, 31);
             this.inclinePanel.Name = "inclinePanel";
-            this.inclinePanel.Size = new System.Drawing.Size(300, 70);
+            this.inclinePanel.Size = new System.Drawing.Size(297, 70);
             this.inclinePanel.TabIndex = 242;
             this.inclinePanel.Visible = false;
             // 
@@ -465,7 +658,7 @@ namespace ACNHPokerCore
             "Natural : 0x1D",
             "Blue-Plank : 0x1E",
             "Blue Steel : 0x1F"});
-            this.inclineTypeSelect.Location = new System.Drawing.Point(162, 30);
+            this.inclineTypeSelect.Location = new System.Drawing.Point(7, 26);
             this.inclineTypeSelect.MaxDropDownItems = 10;
             this.inclineTypeSelect.Name = "inclineTypeSelect";
             this.inclineTypeSelect.Size = new System.Drawing.Size(135, 24);
@@ -488,34 +681,34 @@ namespace ACNHPokerCore
             "South ↑ North : 0x1",
             "East ← West : 0x2",
             "North ↓ South : 0x3"});
-            this.inclineAngleSelect.Location = new System.Drawing.Point(4, 30);
+            this.inclineAngleSelect.Location = new System.Drawing.Point(149, 26);
             this.inclineAngleSelect.MaxDropDownItems = 10;
             this.inclineAngleSelect.Name = "inclineAngleSelect";
             this.inclineAngleSelect.Size = new System.Drawing.Size(143, 24);
             this.inclineAngleSelect.TabIndex = 243;
             this.inclineAngleSelect.SelectedIndexChanged += new System.EventHandler(this.inclineAngleSelect_SelectedIndexChanged);
             // 
-            // label4
+            // InclineTypeLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(158, 5);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 22);
-            this.label4.TabIndex = 242;
-            this.label4.Text = "Type :";
+            this.InclineTypeLabel.AutoSize = true;
+            this.InclineTypeLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.InclineTypeLabel.ForeColor = System.Drawing.Color.White;
+            this.InclineTypeLabel.Location = new System.Drawing.Point(4, 1);
+            this.InclineTypeLabel.Name = "InclineTypeLabel";
+            this.InclineTypeLabel.Size = new System.Drawing.Size(68, 22);
+            this.InclineTypeLabel.TabIndex = 242;
+            this.InclineTypeLabel.Text = "Type :";
             // 
-            // label3
+            // InclineAngleLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(0, 5);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(75, 22);
-            this.label3.TabIndex = 242;
-            this.label3.Text = "Angle :";
+            this.InclineAngleLabel.AutoSize = true;
+            this.InclineAngleLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.InclineAngleLabel.ForeColor = System.Drawing.Color.White;
+            this.InclineAngleLabel.Location = new System.Drawing.Point(147, 1);
+            this.InclineAngleLabel.Name = "InclineAngleLabel";
+            this.InclineAngleLabel.Size = new System.Drawing.Size(75, 22);
+            this.InclineAngleLabel.TabIndex = 242;
+            this.InclineAngleLabel.Text = "Angle :";
             // 
             // saveBuildingBtn
             // 
@@ -524,7 +717,7 @@ namespace ACNHPokerCore
             this.saveBuildingBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveBuildingBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.saveBuildingBtn.ForeColor = System.Drawing.Color.White;
-            this.saveBuildingBtn.Location = new System.Drawing.Point(232, 101);
+            this.saveBuildingBtn.Location = new System.Drawing.Point(7, 64);
             this.saveBuildingBtn.Name = "saveBuildingBtn";
             this.saveBuildingBtn.Size = new System.Drawing.Size(86, 30);
             this.saveBuildingBtn.TabIndex = 241;
@@ -539,7 +732,7 @@ namespace ACNHPokerCore
             this.loadBuildingBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loadBuildingBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.loadBuildingBtn.ForeColor = System.Drawing.Color.White;
-            this.loadBuildingBtn.Location = new System.Drawing.Point(324, 101);
+            this.loadBuildingBtn.Location = new System.Drawing.Point(99, 64);
             this.loadBuildingBtn.Name = "loadBuildingBtn";
             this.loadBuildingBtn.Size = new System.Drawing.Size(86, 30);
             this.loadBuildingBtn.TabIndex = 240;
@@ -547,31 +740,16 @@ namespace ACNHPokerCore
             this.loadBuildingBtn.UseVisualStyleBackColor = false;
             this.loadBuildingBtn.Click += new System.EventHandler(this.loadBuildingBtn_Click);
             // 
-            // PreviewBtn
+            // BuildingTypeLabel
             // 
-            this.PreviewBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.PreviewBtn.FlatAppearance.BorderSize = 0;
-            this.PreviewBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PreviewBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.PreviewBtn.ForeColor = System.Drawing.Color.White;
-            this.PreviewBtn.Location = new System.Drawing.Point(99, 101);
-            this.PreviewBtn.Name = "PreviewBtn";
-            this.PreviewBtn.Size = new System.Drawing.Size(86, 30);
-            this.PreviewBtn.TabIndex = 239;
-            this.PreviewBtn.Text = "Preview";
-            this.PreviewBtn.UseVisualStyleBackColor = false;
-            this.PreviewBtn.Visible = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(3, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(150, 22);
-            this.label1.TabIndex = 39;
-            this.label1.Text = "Building Type :";
+            this.BuildingTypeLabel.AutoSize = true;
+            this.BuildingTypeLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BuildingTypeLabel.ForeColor = System.Drawing.Color.White;
+            this.BuildingTypeLabel.Location = new System.Drawing.Point(3, 4);
+            this.BuildingTypeLabel.Name = "BuildingTypeLabel";
+            this.BuildingTypeLabel.Size = new System.Drawing.Size(150, 22);
+            this.BuildingTypeLabel.TabIndex = 39;
+            this.BuildingTypeLabel.Text = "Building Type :";
             // 
             // updateBtn
             // 
@@ -595,7 +773,7 @@ namespace ACNHPokerCore
             this.buildingConfirmBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buildingConfirmBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.buildingConfirmBtn.ForeColor = System.Drawing.Color.White;
-            this.buildingConfirmBtn.Location = new System.Drawing.Point(416, 101);
+            this.buildingConfirmBtn.Location = new System.Drawing.Point(99, 101);
             this.buildingConfirmBtn.Name = "buildingConfirmBtn";
             this.buildingConfirmBtn.Size = new System.Drawing.Size(86, 30);
             this.buildingConfirmBtn.TabIndex = 237;
@@ -657,7 +835,7 @@ namespace ACNHPokerCore
             this.LargeXLabel.AutoSize = true;
             this.LargeXLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.LargeXLabel.ForeColor = System.Drawing.Color.White;
-            this.LargeXLabel.Location = new System.Drawing.Point(249, 4);
+            this.LargeXLabel.Location = new System.Drawing.Point(249, 5);
             this.LargeXLabel.Name = "LargeXLabel";
             this.LargeXLabel.Size = new System.Drawing.Size(35, 22);
             this.LargeXLabel.TabIndex = 32;
@@ -692,7 +870,7 @@ namespace ACNHPokerCore
             this.TUpDown.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TUpDown.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.TUpDown.ForeColor = System.Drawing.Color.White;
-            this.TUpDown.Location = new System.Drawing.Point(441, 33);
+            this.TUpDown.Location = new System.Drawing.Point(291, 32);
             this.TUpDown.Maximum = new decimal(new int[] {
             255,
             0,
@@ -713,7 +891,7 @@ namespace ACNHPokerCore
             this.LargeYLabel.AutoSize = true;
             this.LargeYLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.LargeYLabel.ForeColor = System.Drawing.Color.White;
-            this.LargeYLabel.Location = new System.Drawing.Point(400, 4);
+            this.LargeYLabel.Location = new System.Drawing.Point(400, 5);
             this.LargeYLabel.Name = "LargeYLabel";
             this.LargeYLabel.Size = new System.Drawing.Size(35, 22);
             this.LargeYLabel.TabIndex = 34;
@@ -724,7 +902,7 @@ namespace ACNHPokerCore
             this.typeLabel.AutoSize = true;
             this.typeLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.typeLabel.ForeColor = System.Drawing.Color.White;
-            this.typeLabel.Location = new System.Drawing.Point(367, 34);
+            this.typeLabel.Location = new System.Drawing.Point(217, 32);
             this.typeLabel.Name = "typeLabel";
             this.typeLabel.Size = new System.Drawing.Size(68, 22);
             this.typeLabel.TabIndex = 38;
@@ -759,7 +937,7 @@ namespace ACNHPokerCore
             this.AUpDown.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AUpDown.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.AUpDown.ForeColor = System.Drawing.Color.White;
-            this.AUpDown.Location = new System.Drawing.Point(291, 33);
+            this.AUpDown.Location = new System.Drawing.Point(441, 32);
             this.AUpDown.Maximum = new decimal(new int[] {
             255,
             0,
@@ -780,56 +958,46 @@ namespace ACNHPokerCore
             this.angleLabel.AutoSize = true;
             this.angleLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.angleLabel.ForeColor = System.Drawing.Color.White;
-            this.angleLabel.Location = new System.Drawing.Point(209, 34);
+            this.angleLabel.Location = new System.Drawing.Point(361, 32);
             this.angleLabel.Name = "angleLabel";
             this.angleLabel.Size = new System.Drawing.Size(75, 22);
             this.angleLabel.TabIndex = 36;
             this.angleLabel.Text = "Angle :";
             // 
-            // buildingGridView
+            // PreviewBtn
             // 
-            this.buildingGridView.AllowUserToAddRows = false;
-            this.buildingGridView.AllowUserToDeleteRows = false;
-            this.buildingGridView.AllowUserToResizeRows = false;
-            this.buildingGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(54)))));
-            this.buildingGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft JhengHei", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.buildingGridView.DefaultCellStyle = dataGridViewCellStyle1;
-            this.buildingGridView.Location = new System.Drawing.Point(0, 0);
-            this.buildingGridView.MultiSelect = false;
-            this.buildingGridView.Name = "buildingGridView";
-            this.buildingGridView.ReadOnly = true;
-            this.buildingGridView.RowHeadersVisible = false;
-            this.buildingGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.buildingGridView.Size = new System.Drawing.Size(513, 332);
-            this.buildingGridView.TabIndex = 30;
-            this.buildingGridView.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.buildingGridView_CellMouseUp);
+            this.PreviewBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.PreviewBtn.FlatAppearance.BorderSize = 0;
+            this.PreviewBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PreviewBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.PreviewBtn.ForeColor = System.Drawing.Color.White;
+            this.PreviewBtn.Location = new System.Drawing.Point(1005, 519);
+            this.PreviewBtn.Name = "PreviewBtn";
+            this.PreviewBtn.Size = new System.Drawing.Size(86, 30);
+            this.PreviewBtn.TabIndex = 239;
+            this.PreviewBtn.Text = "Preview";
+            this.PreviewBtn.UseVisualStyleBackColor = false;
+            this.PreviewBtn.Visible = false;
             // 
             // LoadingPanel
             // 
-            this.LoadingPanel.Controls.Add(this.label2);
+            this.LoadingPanel.Controls.Add(this.NowLoadingLabel);
             this.LoadingPanel.Controls.Add(this.NowLoading);
             this.LoadingPanel.Location = new System.Drawing.Point(470, 241);
             this.LoadingPanel.Name = "LoadingPanel";
             this.LoadingPanel.Size = new System.Drawing.Size(185, 30);
             this.LoadingPanel.TabIndex = 241;
             // 
-            // label2
+            // NowLoadingLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(29, 4);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(146, 22);
-            this.label2.TabIndex = 242;
-            this.label2.Text = "Now Loading...";
+            this.NowLoadingLabel.AutoSize = true;
+            this.NowLoadingLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.NowLoadingLabel.ForeColor = System.Drawing.Color.White;
+            this.NowLoadingLabel.Location = new System.Drawing.Point(29, 4);
+            this.NowLoadingLabel.Name = "NowLoadingLabel";
+            this.NowLoadingLabel.Size = new System.Drawing.Size(146, 22);
+            this.NowLoadingLabel.TabIndex = 242;
+            this.NowLoadingLabel.Text = "Now Loading...";
             // 
             // NowLoading
             // 
@@ -840,14 +1008,25 @@ namespace ACNHPokerCore
             this.NowLoading.TabIndex = 217;
             this.NowLoading.TabStop = false;
             // 
+            // BridgeImage
+            // 
+            this.BridgeImage.Location = new System.Drawing.Point(1097, 12);
+            this.BridgeImage.Name = "BridgeImage";
+            this.BridgeImage.Size = new System.Drawing.Size(200, 200);
+            this.BridgeImage.TabIndex = 242;
+            this.BridgeImage.TabStop = false;
+            this.BridgeImage.Visible = false;
+            // 
             // Bulldozer
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.ClientSize = new System.Drawing.Size(1094, 511);
+            this.Controls.Add(this.BridgeImage);
             this.Controls.Add(this.LoadingPanel);
             this.Controls.Add(this.TerrainBtn);
             this.Controls.Add(this.BuildingBtn);
+            this.Controls.Add(this.PreviewBtn);
             this.Controls.Add(this.AcreBtn);
             this.Controls.Add(this.selectedAcreValueBox);
             this.Controls.Add(this.selectedAcreBox);
@@ -874,18 +1053,22 @@ namespace ACNHPokerCore
             ((System.ComponentModel.ISupportInitialize)(this.miniMapBox)).EndInit();
             this.acrePanel.ResumeLayout(false);
             this.buildingPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.buildingGridView)).EndInit();
             this.BuildingControl.ResumeLayout(false);
             this.BuildingControl.PerformLayout();
+            this.bridgePanel.ResumeLayout(false);
+            this.bridgePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BridgeLengthUpDown)).EndInit();
             this.inclinePanel.ResumeLayout(false);
             this.inclinePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.XUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.YUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buildingGridView)).EndInit();
             this.LoadingPanel.ResumeLayout(false);
             this.LoadingPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NowLoading)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BridgeImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -918,7 +1101,7 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Label LargeXLabel;
         private System.Windows.Forms.NumericUpDown YUpDown;
         private System.Windows.Forms.Label LargeYLabel;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label BuildingTypeLabel;
         private System.Windows.Forms.NumericUpDown TUpDown;
         private System.Windows.Forms.Label typeLabel;
         private System.Windows.Forms.NumericUpDown AUpDown;
@@ -933,12 +1116,22 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Button saveBuildingBtn;
         private System.Windows.Forms.Button loadBuildingBtn;
         private System.Windows.Forms.Panel LoadingPanel;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label NowLoadingLabel;
         private System.Windows.Forms.PictureBox NowLoading;
         private System.Windows.Forms.Panel inclinePanel;
         private System.Windows.Forms.ComboBox inclineTypeSelect;
         private System.Windows.Forms.ComboBox inclineAngleSelect;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label InclineTypeLabel;
+        private System.Windows.Forms.Label InclineAngleLabel;
+        private System.Windows.Forms.Panel bridgePanel;
+        private System.Windows.Forms.Label BridgeDiagonalLabel;
+        private System.Windows.Forms.Label BridgeLengthLabel;
+        private System.Windows.Forms.ComboBox BridgeAngleSelect;
+        private System.Windows.Forms.Label BridgeAngleLabel;
+        private System.Windows.Forms.ComboBox BridgeTypeSelect;
+        private System.Windows.Forms.Label BridgeTypeLabel;
+        private System.Windows.Forms.NumericUpDown BridgeLengthUpDown;
+        private JCS.ToggleSwitch BridgeDiagonalToggle;
+        private System.Windows.Forms.PictureBox BridgeImage;
     }
 }

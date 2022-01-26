@@ -1155,7 +1155,7 @@ namespace ACNHPokerCore
                                     this.IPAddressInputBackground.BackColor = Color.Red;
                                 });
                                 MyMessageBox.Show("You have successfully started a connection!\n" +
-                                                "Your IP address is correct!\n" +
+                                                "Your IP address seems to be correct!\n" +
                                                 "However...\n" +
                                                 "Sys-botbase is not responding...\n\n\n" +
 
@@ -1299,8 +1299,8 @@ namespace ACNHPokerCore
                 RefreshButton.Visible = false;
                 PlayerInventorySelector.Visible = false;
 
-                this.InventoryAutoRefreshToggle.Visible = true;
-                this.AutoRefreshLabel.Visible = true;
+                this.InventoryAutoRefreshToggle.Visible = false;
+                this.AutoRefreshLabel.Visible = false;
 
                 //this.USBConnectionButton.Visible = true;
                 InventoryTabButton_Click(sender, e);

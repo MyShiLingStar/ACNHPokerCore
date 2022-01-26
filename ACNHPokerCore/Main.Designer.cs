@@ -663,7 +663,7 @@
             this.EasterEggButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EasterEggButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.EasterEggButton.ForeColor = System.Drawing.Color.White;
-            this.EasterEggButton.Location = new System.Drawing.Point(-6, -6);
+            this.EasterEggButton.Location = new System.Drawing.Point(-7, -7);
             this.EasterEggButton.Name = "EasterEggButton";
             this.EasterEggButton.Size = new System.Drawing.Size(10, 10);
             this.EasterEggButton.TabIndex = 27;

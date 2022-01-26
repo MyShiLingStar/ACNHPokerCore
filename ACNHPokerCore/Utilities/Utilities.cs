@@ -250,6 +250,8 @@ namespace ACNHPokerCore
         public static string RecipeOverlayFile = @"PaperRecipe.png";
         public static string RecipeOverlayPath = imagePath + RecipeOverlayFile;
 
+        public static string BridgeImagePath = @"BridgeImage\";
+
         public static Dictionary<string, string> itemkind = new Dictionary<string, string>();
 
         private static Object botLock = new Object();

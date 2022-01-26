@@ -793,10 +793,17 @@ namespace ACNHPokerCore
             teleport.TeleportToAnchor(3);
 
             WriteLog("Try Getting Dodo", true);
+            string NewDodo;
             if (skipDialogCheckBox.Checked)
-                DisplayDodo(controller.talkAndGetDodoCode(token));
+                NewDodo = controller.talkAndGetDodoCode(token);
             else
-                DisplayDodo(controller.talkAndGetDodoCodeLegacy(token));
+                NewDodo = controller.talkAndGetDodoCodeLegacy(token);
+
+            if (token.IsCancellationRequested)
+                return;
+
+            DisplayDodo(NewDodo);
+
             WriteLog("Finish Getting Dodo", true);
 
             if (token.IsCancellationRequested)
@@ -1524,6 +1531,7 @@ namespace ACNHPokerCore
                         WriteLog("[Warning] Start Normal Restore", true);
                         WriteLog("Please wait for the bot to finish the sequence.", true);
                         NormalRestore(token);
+
                         unLockControl();
 
                         if (stopWatch != null && resetSession)
