@@ -621,7 +621,7 @@ namespace ACNHPokerCore
                     if (dodoSetup != null && dodoSetup.dodoSetupDone)
                     {
                         state = dodoSetup.DodoMonitor(token);
-                        if (dodoSetup.CheckOnlineStatus() == 1)
+                        if (dodoSetup.CheckOnlineStatus() == true)
                             dodoSetup.DisplayDodo(controller.setupDodo());
                     }
                     else
@@ -846,7 +846,7 @@ namespace ACNHPokerCore
                     if (dodoSetup != null && dodoSetup.dodoSetupDone)
                     {
                         state = dodoSetup.DodoMonitor(token);
-                        if (dodoSetup.CheckOnlineStatus() == 1)
+                        if (dodoSetup.CheckOnlineStatus() == true)
                             dodoSetup.DisplayDodo(controller.setupDodo());
                     }
                     else

@@ -515,7 +515,7 @@ namespace ACNHPokerCore
             FullPanel.Location = Start;
         }
 
-        public int CheckOnlineStatus()
+        public bool CheckOnlineStatus()
         {
             if (teleport.checkOnlineStatus() == 0x1)
             {
@@ -524,7 +524,7 @@ namespace ACNHPokerCore
                     onlineLabel.Text = "ONLINE";
                     onlineLabel.ForeColor = Color.Green;
                 });
-                return 1;
+                return true;
             }
             else if (teleport.checkOnlineStatus(true) == 0x1) //Check again for Chinese
             {
@@ -533,7 +533,7 @@ namespace ACNHPokerCore
                     onlineLabel.Text = "ONLINE";
                     onlineLabel.ForeColor = Color.Lime;
                 });
-                return 1;
+                return true;
             }
             else
             {
@@ -542,7 +542,7 @@ namespace ACNHPokerCore
                     onlineLabel.Text = "OFFLINE";
                     onlineLabel.ForeColor = Color.Red;
                 });
-                return 0;
+                return false;
             }
         }
 
@@ -604,7 +604,7 @@ namespace ACNHPokerCore
             if (token.IsCancellationRequested)
                 return state;
 
-            if (CheckOnlineStatus() == 1)
+            if (CheckOnlineStatus() == true)
             {
                 if (state == teleport.OverworldState.Loading || state == teleport.OverworldState.UserArriveLeavingOrTitleScreen)
                 {
@@ -1438,6 +1438,8 @@ namespace ACNHPokerCore
         private void standaloneLoop(CancellationToken token)
         {
             bool init = true;
+            idleNum = 0;
+
             do
             {
                 if (token.IsCancellationRequested)
@@ -1448,13 +1450,14 @@ namespace ACNHPokerCore
                 teleport.OverworldState state = teleport.GetOverworldState();
                 WriteLog(state.ToString() + " " + idleNum, true);
 
-                if (CheckOnlineStatus() == 1)
+                if (CheckOnlineStatus() == true)
                 {
                     if (init)
                     {
                         DisplayDodo(controller.setupDodo());
                         init = false;
                     }
+
                     if (state == teleport.OverworldState.Loading || state == teleport.OverworldState.UserArriveLeavingOrTitleScreen)
                     {
                         idleNum = 0;
@@ -1547,6 +1550,11 @@ namespace ACNHPokerCore
                     }
                 }
 
+                if (token.IsCancellationRequested)
+                {
+                    return;
+                }
+
                 if (state != teleport.OverworldState.Loading && state != teleport.OverworldState.UserArriveLeavingOrTitleScreen)
                 {
                     if (MyPubSub != null)
@@ -1603,9 +1611,13 @@ namespace ACNHPokerCore
                     }
                 }
 
+                if (token.IsCancellationRequested)
+                {
+                    return;
+                }
+
                 if (wasLoading)
                 {
-                    //MapRegenerator.prepareVillager(s);
                     GetVisitorList();
                 }
                 idleNum++;
@@ -1900,7 +1912,7 @@ namespace ACNHPokerCore
                 {
                     currentDirection = MovingDirection.UpRight;
                     resetted = false;
-                    Debug.Print("TopRight");
+                    //Debug.Print("TopRight");
                     controller.LstickTopRight();
                 }
             }

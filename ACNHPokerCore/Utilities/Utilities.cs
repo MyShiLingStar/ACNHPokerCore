@@ -1176,7 +1176,7 @@ namespace ACNHPokerCore
                         //Thread.Sleep(10);
                     }
                     else
-                        throw ex;  // any serious error occurr
+                        throw;  // any serious error occurr
                 }
             } while (sent < size);
         }
@@ -1204,7 +1204,7 @@ namespace ACNHPokerCore
                         //Thread.Sleep(30);
                     }
                     else
-                        throw ex;  // any serious error occurr
+                        throw;  // any serious error occurr
                 }
             } while (received < size && buffer[received - 1] != 0xA);
             return received;
@@ -3057,10 +3057,50 @@ namespace ACNHPokerCore
 
         public static string getChannelId(string channelName)
         {
-            HttpWebRequest rq = (HttpWebRequest)WebRequest.Create("https://api.twitch.tv/kraken/users?login=" + channelName + "&api_version=5");
+            string client_id = "py5rhko7jo3f00ypq83he8oomz0adu";
+            string client_secret = "d0685tl6iniqgszzpr4gdszhey27m1";
+            string grant_type = "client_credentials";
+            string scope = "user:read:email";
+            HttpWebRequest OAuthRq = (HttpWebRequest)WebRequest.Create("https://id.twitch.tv/oauth2/token?client_id=" + client_id +
+                                                                        "&client_secret=" + client_secret +
+                                                                        "&grant_type=" + grant_type +
+                                                                        "&scope=" + scope);
+            OAuthRq.Method = "POST";
+
+            string OAuthTarget = string.Empty;
+
+            HttpWebResponse OAuthresp = (HttpWebResponse)OAuthRq.GetResponse();
+            try
+            {
+                StreamReader streamReader = new StreamReader(OAuthresp.GetResponseStream(), true);
+                try
+                {
+                    OAuthTarget = streamReader.ReadToEnd();
+                }
+                finally
+                {
+                    streamReader.Close();
+                }
+            }
+            finally
+            {
+                OAuthresp.Close();
+            }
+
+            JObject o = JObject.Parse(OAuthTarget);
+            var token = o.SelectToken("access_token");
+
+            if (token == null)
+                return string.Empty;
+
+            string access_token = token.ToString();
+
+
+
+            HttpWebRequest rq = (HttpWebRequest)WebRequest.Create("https://api.twitch.tv/helix/users?login=" + channelName);
             rq.Method = "GET";
-            rq.Headers.Add("20", "application/vnd.twitchtv.v5+json");
-            rq.Headers["Client-ID"] = "roo8qlza39yjj8tzgzhcrsxrbpwqaw";
+            rq.Headers["Authorization"] = "Bearer " + access_token;
+            rq.Headers["Client-ID"] = "py5rhko7jo3f00ypq83he8oomz0adu";
 
             string target = string.Empty;
 
@@ -3082,8 +3122,8 @@ namespace ACNHPokerCore
                 resp.Close();
             }
 
-            JObject o = JObject.Parse(target);
-            var value = o.SelectToken("users[0]._id");
+            JObject DataObject = JObject.Parse(target);
+            var value = DataObject.SelectToken("data[0].id");
             if (value == null)
                 return string.Empty;
             else
