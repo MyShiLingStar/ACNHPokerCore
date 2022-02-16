@@ -16,7 +16,11 @@
 
 ## Installation
 
-   1. Download and install the x64 .NET Desktop Runtime [Here](https://dotnet.microsoft.com/en-us/download/dotnet/5.0/runtime). Please select "Download x64" under "Run desktop apps".
+   1. Download and install the x64 .NET Desktop Runtime [Here](https://dotnet.microsoft.com/en-us/download/dotnet/5.0/runtime). 
+
+   ![Image](https://i.ibb.co/ZSbmjqg/runtime.png)
+   
+   Please select "Download x64" under "Run desktop apps".
 
    2. Download and unzip the latest release of ACNHPokerCore at [Azure Pipelines](https://berichan.github.io/GetNHSE/?org=MyShiLingStar&proj=ACNHPokerCore&projurl=https://github.com/MyShiLingStar/ACNHPokerCore)
 
