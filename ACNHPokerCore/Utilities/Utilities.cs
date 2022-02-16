@@ -16,23 +16,23 @@ namespace ACNHPokerCore
 {
     public static class Utilities
     {
-        public static UInt32 masterAddress = 0xAF71E6E0; //0xAF70D6E0;
+        public static UInt32 masterAddress = 0xAFB1E6E0; // 0xAF71E6E0;
 
         public static UInt32 ItemSlotBase = masterAddress;
         public static UInt32 ItemSlot21Base = masterAddress - 0xB8;
 
         //AE6022CC
 
-        public static UInt32 MasterRecyclingBase = 0xAEA6F978; //0xAEA5E978;
+        public static UInt32 MasterRecyclingBase = 0xAEE6F978; //0xAEA6F978;
         public static UInt32 MasterRecycling21Base = MasterRecyclingBase + 0xA0;
 
-        public static UInt32 TurnipPurchasePriceAddr = 0xAE6140F4; //0xAE6030F4;
+        public static UInt32 TurnipPurchasePriceAddr = 0xAEA140F4; //0xAE6140F4;
         public static UInt32 TurnipSellPriceAddr = TurnipPurchasePriceAddr + 0xC;
         public static UInt32 TurnipBuffer = 0x8F1BD0;
 
         //=================================================================
 
-        public static UInt32 VillagerAddress = 0xAE1B5EB8; //0xAE1A4EB8;
+        public static UInt32 VillagerAddress = 0xAE5B5EB8; //0xAE1B5EB8;
         public static UInt32 VillagerSize = 0x13230;
         public static UInt32 VillagerOldSize = 0x12AB0;
         public static UInt32 VillagerMemorySize = 0x5F0;
@@ -47,22 +47,22 @@ namespace ACNHPokerCore
         public static UInt32 VillagerFriendshipOffset = 0x46;
         public static UInt32 VillagerCatchphraseOffset = 0x10794;
 
-        public static UInt32 VillagerHouseAddress = 0xAE6056A4; //0xAE5F46A4;
+        public static UInt32 VillagerHouseAddress = 0xAEA056A4; //0xAE6056A4;
         public static UInt32 VillagerHouseSize = 0x12E8;
         public static UInt32 VillagerHouseOldSize = 0x1D4;
         public static UInt32 VillagerHouseBufferDiff = 0x8F1BD0;
         public static UInt32 VillagerHouseOwnerOffset = 0x1C4;
 
-        public static UInt32 MysIslandVillagerAddress = 0x38B33C1C; //0x38B23C1C;
+        public static UInt32 MysIslandVillagerAddress = 0x38B33C1C;
         public static UInt32 MysIslandVillagerSpecies = MysIslandVillagerAddress + 0x110;
 
         //=================================================================
 
-        public static UInt32 weatherSeed = 0xAE3994B0; //0xAE3884B0;
+        public static UInt32 weatherSeed = 0xAE7994B0; //0xAE3994B0;
 
-        public static UInt32 coordinate = 0x3E33A288; //0x3E32A288;
+        public static UInt32 coordinate = 0x3E35A288; //0x3E33A288;
 
-        public static UInt32 mapZero = 0xAE3E5298; //0xAE3D4298;
+        public static UInt32 mapZero = 0xAE7E5298; //0xAE3E5298;
 
         public static UInt32 mapOffset = 0x8F1BD0;
 
@@ -70,19 +70,19 @@ namespace ACNHPokerCore
 
         //=================================================================
 
-        public static UInt32 VisitorNameAddress = 0xB710ED78; //0xB70FDD30;
+        public static UInt32 VisitorNameAddress = 0xB750ED78; //0xB710ED78;
 
-        public static UInt32 dodoAddress = 0xABE015C; //0xABCF15C;
-        public static UInt32 OnlineSessionAddress = 0x945F740; //0x944E740;
+        public static UInt32 dodoAddress = 0xABE015C; //0xABE015C;
+        public static UInt32 OnlineSessionAddress = 0x945F740; //
 
         public static UInt32 VisitorList = VisitorNameAddress - 0x118;
         public static UInt32 VisitorListSize = 0x1C;
 
-        public static UInt32 TextSpeedAddress = 0x0BD43084; //0xBD32084;
+        public static UInt32 TextSpeedAddress = 0x0BD43084; //
 
-        public static UInt32 ChineseLanguageOffset = 0x7000;
+        public static UInt32 ChineseLanguageOffset = 0x7000; //
 
-        public static UInt32 savingOffset = 0x457B05AC; //0x457A05AC;
+        public static UInt32 savingOffset = 0x457B05AC; //
 
         //=================================================================
 
@@ -151,27 +151,27 @@ namespace ACNHPokerCore
         public static UInt32 player8House21Base = player8HouseBase + 0xA0;
 
         // ---- Critter
-        public static UInt32 InsectAppearPointer = 0x404DB718; //0x404C4D18; //0x404C4BF8;
+        public static UInt32 InsectAppearPointer = 0x404DB718; //
         public static Int32 InsectDataSize = 2 * (1 + 6 * 12 + 5);
         public static Int32 InsectNumRecords = 166;
 
         public static Int32 FishDataSize = 88;
 
-        public static UInt32 FishRiverAppearPointer = 0x4051AEA8; //0x405044A8; //0x40504388; 
+        public static UInt32 FishRiverAppearPointer = 0x4051AEA8; //
         public static Int32 FishRiverNumRecords = 100;
 
-        public static UInt32 FishSeaAppearPointer = 0x40531088; //0x4051A688; //0x4051A568;
+        public static UInt32 FishSeaAppearPointer = 0x40531088; //
         public static Int32 FishSeaNumRecords = 76;
 
-        public static UInt32 CreatureSeaAppearPointer = 0x4049D3AC; //0x404869AC; //0x4048688C;
+        public static UInt32 CreatureSeaAppearPointer = 0x4049D3AC; //
         public static Int32 SeaCreatureDataSize = 88;
         public static Int32 SeaCreatureNumRecords = 41 * 2;
         // ----
 
-        public static UInt32 staminaAddress = 0xB6872358; //0xB6861358;
-        public static UInt32 readTimeAddress = 0x0BD3A188; //0x0BD29188;
+        public static UInt32 staminaAddress = 0xB6C72358; //0xB6872358;
+        public static UInt32 readTimeAddress = 0x0BD3A188; //
 
-        public static readonly UInt32 MaxSpeedAddress = 0x0BF5934C; //0x0BF4834C;
+        public static readonly UInt32 MaxSpeedAddress = 0x0BF5934C; //
         public static readonly string MaxSpeedX1 = "0000A03F";
         public static readonly string MaxSpeedX2 = "00002040";
         public static readonly string MaxSpeedX3 = "00007040";
@@ -179,21 +179,21 @@ namespace ACNHPokerCore
         public static readonly string MaxSpeedX100 = "0000FA42";
 
         // ---- Main
-        public static UInt32 freezeTimeAddress = 0x00328BB0; //0x00328530;
+        public static UInt32 freezeTimeAddress = 0x00328BD0; //0x00328BB0;
         public static readonly string freezeTimeValue = "D503201F";
         public static readonly string unfreezeTimeValue = "F9203260";
 
-        public static UInt32 wSpeedAddress = 0x01612720; //0x01605EB0; //0x01605E90; // 0x01605E20; //0x01605DF0;
+        public static UInt32 wSpeedAddress = 0x01612740; //0x01612720;
         public static readonly string wSpeedX1 = "BD578661";
         public static readonly string wSpeedX2 = "1E201001";
         public static readonly string wSpeedX3 = "1E211001";
         public static readonly string wSpeedX4 = "1E221001";
 
-        public static UInt32 CollisionAddress = 0x0155FD40; //0x01554E10; //0x01554DF0; // 0x01554D80; //0x01554D50;
+        public static UInt32 CollisionAddress = 0x0155FD60; //0x0155FD40;
         public static readonly string CollisionDisable = "12800014";
         public static readonly string CollisionEnable = "B95BA014";
 
-        public static UInt32 aSpeedAddress = 0x043BC3C0; //0x043A4B30;
+        public static UInt32 aSpeedAddress = 0x043BC3C0; //
         public static readonly string aSpeedX1 = "3F800000";
         public static readonly string aSpeedX2 = "40000000";
         public static readonly string aSpeedX5 = "40A00000";

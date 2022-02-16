@@ -30,7 +30,7 @@ namespace ACNHPokerCore
         #region variable
         private static Socket socket;
         private static USBBot usb = null;
-        private string version = "ACNHPokerCore R20 for v2.0.4";
+        private string version = "ACNHPokerCore R20 for v2.0.5";
 
         private Panel currentPanel;
 
@@ -7760,6 +7760,26 @@ namespace ACNHPokerCore
                 }
             }
             updateSelectedItemInfo(SelectedItem.displayItemName(), SelectedItem.displayItemID(), SelectedItem.displayItemData());
+        }
+
+        private void VersionButton_Click(object sender, EventArgs e)
+        {
+            MyMessageBox.Show(Utilities.CheckSysBotBase(socket), "Sys-botbase Version");
+        }
+
+        private void CheckStateButton_Click(object sender, EventArgs e)
+        {
+            Thread stateThread = new Thread(delegate () { trystate(); });
+            stateThread.Start();
+        }
+        private void trystate()
+        {
+            do
+            {
+                Debug.Print(teleport.GetOverworldState().ToString());
+                Debug.Print(teleport.GetLocationState().ToString());
+                Thread.Sleep(2000);
+            } while (true);
         }
     }
 }

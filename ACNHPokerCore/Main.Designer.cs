@@ -319,6 +319,8 @@
             this.FriendshipButton = new System.Windows.Forms.Button();
             this.VillagerProgressTimer = new System.Windows.Forms.Timer(this.components);
             this.VillagerAutoCompleteMenu = new AutocompleteMenuNS.AutocompleteMenu();
+            this.CheckStateButton = new System.Windows.Forms.Button();
+            this.VersionButton = new System.Windows.Forms.Button();
             this.AlwaysOnControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IPAddressInputBackground)).BeginInit();
             this.InventoryLargePanel.SuspendLayout();
@@ -7146,12 +7148,46 @@
             this.VillagerAutoCompleteMenu.LeftPadding = 0;
             this.VillagerAutoCompleteMenu.TargetControlWrapper = null;
             // 
+            // CheckStateButton
+            // 
+            this.CheckStateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.CheckStateButton.FlatAppearance.BorderSize = 0;
+            this.CheckStateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CheckStateButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CheckStateButton.ForeColor = System.Drawing.Color.White;
+            this.CheckStateButton.Location = new System.Drawing.Point(1, 556);
+            this.CheckStateButton.Name = "CheckStateButton";
+            this.CheckStateButton.Size = new System.Drawing.Size(100, 23);
+            this.CheckStateButton.TabIndex = 36;
+            this.CheckStateButton.Tag = "";
+            this.CheckStateButton.Text = "State";
+            this.CheckStateButton.UseVisualStyleBackColor = false;
+            this.CheckStateButton.Click += new System.EventHandler(this.CheckStateButton_Click);
+            // 
+            // VersionButton
+            // 
+            this.VersionButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.VersionButton.FlatAppearance.BorderSize = 0;
+            this.VersionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.VersionButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.VersionButton.ForeColor = System.Drawing.Color.White;
+            this.VersionButton.Location = new System.Drawing.Point(107, 556);
+            this.VersionButton.Name = "VersionButton";
+            this.VersionButton.Size = new System.Drawing.Size(100, 23);
+            this.VersionButton.TabIndex = 37;
+            this.VersionButton.Tag = "";
+            this.VersionButton.Text = "Version";
+            this.VersionButton.UseVisualStyleBackColor = false;
+            this.VersionButton.Click += new System.EventHandler(this.VersionButton_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.ClientSize = new System.Drawing.Size(1204, 516);
+            this.Controls.Add(this.VersionButton);
+            this.Controls.Add(this.CheckStateButton);
             this.Controls.Add(this.AlwaysOnTab);
             this.Controls.Add(this.AlwaysOnControl);
             this.Controls.Add(this.InventoryLargePanel);
@@ -7516,5 +7552,7 @@
         private System.Windows.Forms.RichTextBox VillagerMoveInFlag;
         private System.Windows.Forms.RichTextBox VillagerHeader;
         private AutocompleteMenuNS.AutocompleteMenu VillagerAutoCompleteMenu;
+        private System.Windows.Forms.Button CheckStateButton;
+        private System.Windows.Forms.Button VersionButton;
     }
 }

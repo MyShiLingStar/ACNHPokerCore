@@ -55,7 +55,7 @@ namespace ACNHPokerCore
                 unzipThread.Start();
             };
 
-            webClient.DownloadFileAsync(new Uri("https://github.com/MyShiLingStar/ACNHPoker/releases/download/ImgPack8/img.zip"), "img.zip");
+            webClient.DownloadFileAsync(new Uri("https://github.com/MyShiLingStar/ACNHPokerCore/releases/download/ImgPack8/img.zip"), "img.zip");
 
         }
 
