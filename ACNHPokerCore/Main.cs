@@ -1166,12 +1166,13 @@ namespace ACNHPokerCore
                                                 "Second, \n" +
                                                 "check that you are connecting to the correct IP address.\n" +
                                                 "On your Switch, go to \"System Settings\"->\"Internet\"\n" +
-                                                "Check the \"IP address\" under \"Connection status\"\n" +
+                                                "Check the \"IP address\" under \"Connection status\"\n\n" +
                                                 "Third, \n" +
                                                 "check that you have the latest version of Sys-botbase installed.\n" +
                                                 "You can get the latest version at \n        https://github.com/olliz0r/sys-botbase/releases \n" +
-                                                "Double check your installation and make sure that the \n \"430000000000000B\" folder is inside the \"atmosphere\\contents\" folder.\n\n" +
-                                                "And when you boot up your Switch in CFW mode, the Home button LED of your attached Joy-Con should light up too"
+                                                "You should double check your installation and make sure that the \n \"430000000000000B\" folder is inside the \"atmosphere\\contents\" folder.\n" +
+                                                "Also when your Switch is starting up,\n" +
+                                                "please also check that the LED of the \"Home button\" on your attached Joy-Con is lighting up. "
 
                                                 , "Where are you, my socket 6000?", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
