@@ -10,14 +10,13 @@
 
 ## Prerequisite
 
-   1. A Nintendo Switch capable of running unsigned code
+   1. A Nintendo Switch capable of running unsigned code.
    2. [sys-botbase](https://github.com/olliz0r/sys-botbase) installed on your Switch.
    3. A copy of Animal Crossing™: New Horizons for the Nintendo Switch ?
 
 ## Installation
 
-   1. Download and install the x64 .NET Desktop Runtime [Here](https://dotnet.microsoft.com/en-us/download/dotnet/6.0/runtime)
-		Please select "Download x64" under "Run desktop apps".
+   1. Download and install the x64 .NET Desktop Runtime [Here](https://dotnet.microsoft.com/en-us/download/dotnet/5.0/runtime). Please select "Download x64" under "Run desktop apps".
 
    2. Download and unzip the latest release of ACNHPokerCore at [Azure Pipelines](https://berichan.github.io/GetNHSE/?org=MyShiLingStar&proj=ACNHPokerCore&projurl=https://github.com/MyShiLingStar/ACNHPokerCore)
 
