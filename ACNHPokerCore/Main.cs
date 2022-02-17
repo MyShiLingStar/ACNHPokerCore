@@ -1,4 +1,5 @@
-﻿using NAudio.Wave;
+﻿//Modded by ELY M.
+using NAudio.Wave;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -114,6 +115,9 @@ namespace ACNHPokerCore
         private void Main_Load(object sender, EventArgs e)
         {
             this.Text = version;
+
+            //elys mod
+            this.Icon = Properties.Resources.NewLeaf;
 
             this.IPAddressInputBox.Text = ConfigurationManager.AppSettings["ipAddress"];
             IPAddressInputBox.SelectionAlignment = HorizontalAlignment.Center;
@@ -7782,5 +7786,190 @@ namespace ACNHPokerCore
                 Thread.Sleep(2000);
             } while (true);
         }
+
+
+
+        private void Converttocheat_Click(object sender, EventArgs e)
+        {
+
+            StringBuilder cheatmaker = new StringBuilder();
+
+            uint n1 = Utilities.GetItemSlotUIntAddress(1);
+            uint n2 = Utilities.GetItemSlotUIntAddress(2);
+            uint n3 = Utilities.GetItemSlotUIntAddress(3);
+            uint n4 = Utilities.GetItemSlotUIntAddress(4);
+            uint n5 = Utilities.GetItemSlotUIntAddress(5);
+            uint n6 = Utilities.GetItemSlotUIntAddress(6);
+            uint n7 = Utilities.GetItemSlotUIntAddress(7);
+            uint n8 = Utilities.GetItemSlotUIntAddress(8);
+            uint n9 = Utilities.GetItemSlotUIntAddress(9);
+            uint n10 = Utilities.GetItemSlotUIntAddress(10);
+            uint n11 = Utilities.GetItemSlotUIntAddress(11);
+            uint n12 = Utilities.GetItemSlotUIntAddress(12);
+            uint n13 = Utilities.GetItemSlotUIntAddress(13);
+            uint n14 = Utilities.GetItemSlotUIntAddress(14);
+            uint n15 = Utilities.GetItemSlotUIntAddress(15);
+            uint n16 = Utilities.GetItemSlotUIntAddress(16);
+            uint n17 = Utilities.GetItemSlotUIntAddress(17);
+            uint n18 = Utilities.GetItemSlotUIntAddress(18);
+            uint n19 = Utilities.GetItemSlotUIntAddress(19);
+            uint n20 = Utilities.GetItemSlotUIntAddress(20);
+            uint n21 = Utilities.GetItemSlotUIntAddress(21);
+            uint n22 = Utilities.GetItemSlotUIntAddress(22);
+            uint n23 = Utilities.GetItemSlotUIntAddress(23);
+            uint n24 = Utilities.GetItemSlotUIntAddress(24);
+            uint n25 = Utilities.GetItemSlotUIntAddress(25);
+            uint n26 = Utilities.GetItemSlotUIntAddress(26);
+            uint n27 = Utilities.GetItemSlotUIntAddress(27);
+            uint n28 = Utilities.GetItemSlotUIntAddress(28);
+            uint n29 = Utilities.GetItemSlotUIntAddress(29);
+            uint n30 = Utilities.GetItemSlotUIntAddress(30);
+            uint n31 = Utilities.GetItemSlotUIntAddress(31);
+            uint n32 = Utilities.GetItemSlotUIntAddress(32);
+            uint n33 = Utilities.GetItemSlotUIntAddress(33);
+            uint n34 = Utilities.GetItemSlotUIntAddress(34);
+            uint n35 = Utilities.GetItemSlotUIntAddress(35);
+            uint n36 = Utilities.GetItemSlotUIntAddress(36);
+            uint n37 = Utilities.GetItemSlotUIntAddress(37);
+            uint n38 = Utilities.GetItemSlotUIntAddress(38);
+            uint n39 = Utilities.GetItemSlotUIntAddress(39);
+            uint n40 = Utilities.GetItemSlotUIntAddress(40);
+
+
+            //Thank you to the code in Utilities.cs for auto updating offests for the cheat convertor.  
+            //ELY M.  
+
+string[] offsets = {
+"08100000 "+n1.ToString("X"),
+"08100000 "+n2.ToString("X"),
+"08100000 "+n3.ToString("X"),
+"08100000 "+n4.ToString("X"),
+"08100000 "+n5.ToString("X"),
+"08100000 "+n6.ToString("X"),
+"08100000 "+n7.ToString("X"),
+"08100000 "+n8.ToString("X"),
+"08100000 "+n9.ToString("X"),
+"08100000 "+n10.ToString("X"),
+"08100000 "+n11.ToString("X"),
+"08100000 "+n12.ToString("X"),
+"08100000 "+n13.ToString("X"),
+"08100000 "+n14.ToString("X"),
+"08100000 "+n15.ToString("X"),
+"08100000 "+n16.ToString("X"),
+"08100000 "+n17.ToString("X"),
+"08100000 "+n18.ToString("X"),
+"08100000 "+n19.ToString("X"),
+"08100000 "+n20.ToString("X"),
+"08100000 "+n21.ToString("X"),
+"08100000 "+n22.ToString("X"),
+"08100000 "+n23.ToString("X"),
+"08100000 "+n24.ToString("X"),
+"08100000 "+n25.ToString("X"),
+"08100000 "+n26.ToString("X"),
+"08100000 "+n27.ToString("X"),
+"08100000 "+n28.ToString("X"),
+"08100000 "+n29.ToString("X"),
+"08100000 "+n30.ToString("X"),
+"08100000 "+n31.ToString("X"),
+"08100000 "+n32.ToString("X"),
+"08100000 "+n33.ToString("X"),
+"08100000 "+n34.ToString("X"),
+"08100000 "+n35.ToString("X"),
+"08100000 "+n36.ToString("X"),
+"08100000 "+n37.ToString("X"),
+"08100000 "+n38.ToString("X"),
+"08100000 "+n39.ToString("X"),
+"08100000 "+n40.ToString("X"),
+
+};
+
+
+            try
+            {
+
+
+
+                cheatmaker.AppendLine("\n[Your Cheat Name Here]");
+
+                inventorySlot[] SlotPointer = new inventorySlot[40];
+                foreach (inventorySlot btn in this.InventoryPanel.Controls.OfType<inventorySlot>())
+                {
+                    int slotId = int.Parse(btn.Tag.ToString());
+                    SlotPointer[slotId - 1] = btn;
+                }
+                for (int i = 0; i < SlotPointer.Length; i++)
+                {
+
+                    string first = Utilities.precedingZeros(SlotPointer[i].getFlag1() + SlotPointer[i].getFlag2() + Utilities.precedingZeros(SlotPointer[i].fillItemID(), 4), 8);
+                    string second = Utilities.precedingZeros(SlotPointer[i].fillItemData(), 8);
+
+                    cheatmaker.AppendLine(offsets[i] + " " + second + " " + first);
+
+
+                    Debug.Print(first + " " + second + " " + SlotPointer[i].getFlag1() + " " + SlotPointer[i].getFlag2() + " " + SlotPointer[i].fillItemID());
+
+                }
+
+
+
+
+
+
+                //save to your own filename :)   
+                SaveFileDialog file = new SaveFileDialog()
+                {
+                    Filter = "Cheat Text (*.txt)|*.txt",
+                    //FileName = "items.nhi",
+                };
+
+                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
+
+                string savepath;
+
+                if (config.AppSettings.Settings["LastSave"].Value.Equals(string.Empty))
+                    savepath = Directory.GetCurrentDirectory() + @"\save";
+                else
+                    savepath = config.AppSettings.Settings["LastSave"].Value;
+
+                //Debug.Print(savepath);
+                if (Directory.Exists(savepath))
+                {
+                    file.InitialDirectory = savepath;
+                }
+                else
+                {
+                    file.InitialDirectory = @"C:\";
+                }
+
+                if (file.ShowDialog() != DialogResult.OK)
+                    return;
+
+                string[] temp = file.FileName.Split('\\');
+                string path = "";
+                for (int i = 0; i < temp.Length - 1; i++)
+                    path = path + temp[i] + "\\";
+
+                config.AppSettings.Settings["LastSave"].Value = path;
+                config.Save(ConfigurationSaveMode.Minimal);
+
+
+                //write to cheat//  
+                File.WriteAllText(file.FileName, cheatmaker.ToString());
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MyLog.logEvent("MainForm", "Convert to Cheat txt: " + ex.Message.ToString());
+                MyMessageBox.Show(ex.Message.ToString(), "Convert to Cheat Crashed");
+            }
+        }
+        //end of elys mod  
+
+
+
+
     }
 }
