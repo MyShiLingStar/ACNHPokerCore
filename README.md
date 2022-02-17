@@ -1,5 +1,9 @@
 # ACNHPokerCore
 
+## Ely's Changes:   
+1. Added function to convert the inventory to cheat sheet txt.  
+2. Icon change to show that it is modded ACNHPoker - Not Official one.  
+	
 ![Release Image](https://i.ibb.co/txCNG22/131313.png)
 
    1. Spawns items for you on  Animal Crossing™: New Horizons using [sys-botbase](https://github.com/olliz0r/sys-botbase)
