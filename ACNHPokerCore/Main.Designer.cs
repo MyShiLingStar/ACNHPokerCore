@@ -1,4 +1,5 @@
-﻿namespace ACNHPokerCore
+﻿//modded by ELY M. 
+namespace ACNHPokerCore
 {
     partial class Main
     {
@@ -55,6 +56,8 @@
             this.OtherTabButton = new System.Windows.Forms.Button();
             this.InventoryTabButton = new System.Windows.Forms.Button();
             this.InventoryLargePanel = new System.Windows.Forms.Panel();
+            /* elys mod */
+            this.Converttocheat = new System.Windows.Forms.Button();
             this.SelectedItemName = new System.Windows.Forms.Label();
             this.RetainNameToggle = new JCS.ToggleSwitch();
             this.RetainNameLabel = new System.Windows.Forms.Label();
@@ -768,6 +771,8 @@
             // 
             // InventoryLargePanel
             // 
+            /* elys mod */
+            this.InventoryLargePanel.Controls.Add(this.Converttocheat);
             this.InventoryLargePanel.Controls.Add(this.SelectedItemName);
             this.InventoryLargePanel.Controls.Add(this.RetainNameToggle);
             this.InventoryLargePanel.Controls.Add(this.RetainNameLabel);
@@ -807,6 +812,24 @@
             this.InventoryLargePanel.Name = "InventoryLargePanel";
             this.InventoryLargePanel.Size = new System.Drawing.Size(1225, 550);
             this.InventoryLargePanel.TabIndex = 18;
+            /* elys mod */
+            // 
+            // Converttocheat
+            // 
+            this.Converttocheat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.Converttocheat.FlatAppearance.BorderSize = 0;
+            this.Converttocheat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Converttocheat.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Converttocheat.ForeColor = System.Drawing.Color.White;
+            this.Converttocheat.Location = new System.Drawing.Point(1039, 492);
+            this.Converttocheat.Name = "Converttocheat";
+            this.Converttocheat.Size = new System.Drawing.Size(163, 22);
+            this.Converttocheat.TabIndex = 36;
+            this.Converttocheat.Tag = "";
+            this.Converttocheat.Text = "Convert to Cheat Txt";
+            this.Converttocheat.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.Converttocheat.UseVisualStyleBackColor = false;
+            this.Converttocheat.Click += new System.EventHandler(this.Converttocheat_Click);
             // 
             // SelectedItemName
             // 
@@ -7552,5 +7575,7 @@
         private AutocompleteMenuNS.AutocompleteMenu VillagerAutoCompleteMenu;
         private System.Windows.Forms.Button CheckStateButton;
         private System.Windows.Forms.Button VersionButton;
+        /* elys mod */
+        private System.Windows.Forms.Button Converttocheat;
     }
 }
