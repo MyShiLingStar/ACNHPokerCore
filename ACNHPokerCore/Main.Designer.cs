@@ -56,8 +56,7 @@ namespace ACNHPokerCore
             this.OtherTabButton = new System.Windows.Forms.Button();
             this.InventoryTabButton = new System.Windows.Forms.Button();
             this.InventoryLargePanel = new System.Windows.Forms.Panel();
-            /* elys mod */
-            this.Converttocheat = new System.Windows.Forms.Button();
+            this.ConvertToCheat = new System.Windows.Forms.Button();
             this.SelectedItemName = new System.Windows.Forms.Label();
             this.RetainNameToggle = new JCS.ToggleSwitch();
             this.RetainNameLabel = new System.Windows.Forms.Label();
@@ -771,8 +770,7 @@ namespace ACNHPokerCore
             // 
             // InventoryLargePanel
             // 
-            /* elys mod */
-            this.InventoryLargePanel.Controls.Add(this.Converttocheat);
+            this.InventoryLargePanel.Controls.Add(this.ConvertToCheat);
             this.InventoryLargePanel.Controls.Add(this.SelectedItemName);
             this.InventoryLargePanel.Controls.Add(this.RetainNameToggle);
             this.InventoryLargePanel.Controls.Add(this.RetainNameLabel);
@@ -812,24 +810,23 @@ namespace ACNHPokerCore
             this.InventoryLargePanel.Name = "InventoryLargePanel";
             this.InventoryLargePanel.Size = new System.Drawing.Size(1225, 550);
             this.InventoryLargePanel.TabIndex = 18;
-            /* elys mod */
             // 
-            // Converttocheat
+            // ConvertToCheat
             // 
-            this.Converttocheat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.Converttocheat.FlatAppearance.BorderSize = 0;
-            this.Converttocheat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Converttocheat.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Converttocheat.ForeColor = System.Drawing.Color.White;
-            this.Converttocheat.Location = new System.Drawing.Point(1039, 492);
-            this.Converttocheat.Name = "Converttocheat";
-            this.Converttocheat.Size = new System.Drawing.Size(163, 22);
-            this.Converttocheat.TabIndex = 36;
-            this.Converttocheat.Tag = "";
-            this.Converttocheat.Text = "Convert to Cheat Txt";
-            this.Converttocheat.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.Converttocheat.UseVisualStyleBackColor = false;
-            this.Converttocheat.Click += new System.EventHandler(this.Converttocheat_Click);
+            this.ConvertToCheat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.ConvertToCheat.FlatAppearance.BorderSize = 0;
+            this.ConvertToCheat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ConvertToCheat.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ConvertToCheat.ForeColor = System.Drawing.Color.White;
+            this.ConvertToCheat.Location = new System.Drawing.Point(1039, 492);
+            this.ConvertToCheat.Name = "ConvertToCheat";
+            this.ConvertToCheat.Size = new System.Drawing.Size(163, 22);
+            this.ConvertToCheat.TabIndex = 36;
+            this.ConvertToCheat.Tag = "";
+            this.ConvertToCheat.Text = "Convert to Cheat Txt";
+            this.ConvertToCheat.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.ConvertToCheat.UseVisualStyleBackColor = false;
+            this.ConvertToCheat.Click += new System.EventHandler(this.Converttocheat_Click);
             // 
             // SelectedItemName
             // 
@@ -7576,6 +7573,6 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Button CheckStateButton;
         private System.Windows.Forms.Button VersionButton;
         /* elys mod */
-        private System.Windows.Forms.Button Converttocheat;
+        private System.Windows.Forms.Button ConvertToCheat;
     }
 }

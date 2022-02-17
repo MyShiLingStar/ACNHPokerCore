@@ -1,8 +1,4 @@
 # ACNHPokerCore
-
-## Ely's Changes:   
-1. Added function to convert the inventory to cheat sheet txt.  
-2. Icon change to show that it is modded ACNHPoker - Not Official one.  
 	
 ![Release Image](https://i.ibb.co/txCNG22/131313.png)
 
@@ -38,6 +34,11 @@
     * Added preview image for bridges in "Bulldozer"
 	* Update for Twitch Helix API
 	* Update for Game version "Ver. 2.0.5"
+	
+## Ely's Changes:   
+
+	1. Added function to convert the inventory to cheat sheet txt.  
+	2. Icon change to show that it is modded ACNHPoker - Not Official one.  
 	
 ## Donate
 
