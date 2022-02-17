@@ -1041,7 +1041,6 @@ namespace ACNHPokerCore
             this.Controls.Add(this.miniMapBox);
             this.Controls.Add(this.buildingPanel);
             this.Controls.Add(this.acrePanel);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1110, 550);

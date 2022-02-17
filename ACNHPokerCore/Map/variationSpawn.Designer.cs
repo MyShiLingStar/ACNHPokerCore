@@ -1374,8 +1374,7 @@ namespace ACNHPokerCore
             // 
             // variationSpawn
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.ClientSize = new System.Drawing.Size(674, 411);
             this.Controls.Add(this.miniMapBox);
@@ -1383,7 +1382,6 @@ namespace ACNHPokerCore
             this.Controls.Add(this.label14);
             this.Controls.Add(this.horiPanel);
             this.Controls.Add(this.vertPanel);
-            this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);

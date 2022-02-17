@@ -204,6 +204,7 @@ namespace ACNHPokerCore
             /// </summary>
             private void InitializeComponent()
             {
+                this.TopMost = true;
                 this.components = new System.ComponentModel.Container();
                 this.button1 = new System.Windows.Forms.Button();
                 this.richTextBoxMessage = new System.Windows.Forms.RichTextBox();

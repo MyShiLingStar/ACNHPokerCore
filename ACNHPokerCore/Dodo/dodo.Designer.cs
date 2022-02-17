@@ -360,7 +360,7 @@ namespace ACNHPokerCore
             this.restoreDodobox.ForeColor = System.Drawing.Color.White;
             this.restoreDodobox.Location = new System.Drawing.Point(5, 87);
             this.restoreDodobox.Name = "restoreDodobox";
-            this.restoreDodobox.Size = new System.Drawing.Size(111, 20);
+            this.restoreDodobox.Size = new System.Drawing.Size(97, 19);
             this.restoreDodobox.TabIndex = 337;
             this.restoreDodobox.Text = "Restore Dodo";
             this.HoverToolTip.SetToolTip(this.restoreDodobox, "Control whether the bot will try to restore the Dodo code\r\nwhen the island is dis" +
@@ -376,7 +376,7 @@ namespace ACNHPokerCore
             this.injectVillagerBox.ForeColor = System.Drawing.Color.White;
             this.injectVillagerBox.Location = new System.Drawing.Point(5, 70);
             this.injectVillagerBox.Name = "injectVillagerBox";
-            this.injectVillagerBox.Size = new System.Drawing.Size(121, 20);
+            this.injectVillagerBox.Size = new System.Drawing.Size(102, 19);
             this.injectVillagerBox.TabIndex = 340;
             this.injectVillagerBox.Text = "Inject Villagers";
             this.HoverToolTip.SetToolTip(this.injectVillagerBox, "Control whether the bot will process villager order from Twitch.\r\n*Require you to" +
@@ -393,7 +393,7 @@ namespace ACNHPokerCore
             this.dropItemBox.ForeColor = System.Drawing.Color.White;
             this.dropItemBox.Location = new System.Drawing.Point(5, 53);
             this.dropItemBox.Name = "dropItemBox";
-            this.dropItemBox.Size = new System.Drawing.Size(94, 20);
+            this.dropItemBox.Size = new System.Drawing.Size(84, 19);
             this.dropItemBox.TabIndex = 339;
             this.dropItemBox.Text = "Drop items";
             this.HoverToolTip.SetToolTip(this.dropItemBox, "Control whether the bot will drop the item order from Twitch.\r\n*Require you to ha" +
@@ -470,7 +470,7 @@ namespace ACNHPokerCore
             this.skipDialogCheckBox.ForeColor = System.Drawing.Color.White;
             this.skipDialogCheckBox.Location = new System.Drawing.Point(13, 137);
             this.skipDialogCheckBox.Name = "skipDialogCheckBox";
-            this.skipDialogCheckBox.Size = new System.Drawing.Size(99, 20);
+            this.skipDialogCheckBox.Size = new System.Drawing.Size(85, 19);
             this.skipDialogCheckBox.TabIndex = 334;
             this.skipDialogCheckBox.Text = "Skip Dialog";
             this.HoverToolTip.SetToolTip(this.skipDialogCheckBox, "Skip unnecessary Orville to speed up getting the dodo code.\r\n\r\nOnly save a few se" +
@@ -624,7 +624,7 @@ namespace ACNHPokerCore
             this.idleEmoteCheckBox.ForeColor = System.Drawing.Color.White;
             this.idleEmoteCheckBox.Location = new System.Drawing.Point(13, 156);
             this.idleEmoteCheckBox.Name = "idleEmoteCheckBox";
-            this.idleEmoteCheckBox.Size = new System.Drawing.Size(98, 20);
+            this.idleEmoteCheckBox.Size = new System.Drawing.Size(85, 19);
             this.idleEmoteCheckBox.TabIndex = 333;
             this.idleEmoteCheckBox.Text = " Idle Emote";
             this.HoverToolTip.SetToolTip(this.idleEmoteCheckBox, "Control whether the bot will do a random emote if\r\nit is idle for some time.\r\n\r\n*" +
@@ -2285,7 +2285,7 @@ namespace ACNHPokerCore
             this.sessionBox.ForeColor = System.Drawing.Color.White;
             this.sessionBox.Location = new System.Drawing.Point(3, 78);
             this.sessionBox.Name = "sessionBox";
-            this.sessionBox.Size = new System.Drawing.Size(200, 20);
+            this.sessionBox.Size = new System.Drawing.Size(171, 19);
             this.sessionBox.TabIndex = 341;
             this.sessionBox.Text = "End session when time\'s up";
             this.HoverToolTip.SetToolTip(this.sessionBox, "This will end the session and kick everyone off the island.");
@@ -2656,7 +2656,6 @@ namespace ACNHPokerCore
             this.Controls.Add(this.DoneAnchor1Btn);
             this.Controls.Add(this.DoneAnchor0Btn);
             this.Controls.Add(this.DoneAnchor2Btn);
-            this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(1200, 440);

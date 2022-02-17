@@ -110,7 +110,6 @@ namespace ACNHPokerCore
             // 
             this.WaitMessagebox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.WaitMessagebox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.WaitMessagebox.Cursor = System.Windows.Forms.Cursors.Default;
             this.WaitMessagebox.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.WaitMessagebox.ForeColor = System.Drawing.Color.White;
             this.WaitMessagebox.Location = new System.Drawing.Point(4, 32);
@@ -285,7 +284,6 @@ namespace ACNHPokerCore
             // 
             this.FinMsg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.FinMsg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.FinMsg.Cursor = System.Windows.Forms.Cursors.Default;
             this.FinMsg.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.FinMsg.ForeColor = System.Drawing.Color.White;
             this.FinMsg.Location = new System.Drawing.Point(6, 281);
@@ -667,7 +665,6 @@ namespace ACNHPokerCore
             this.Controls.Add(this.keepVillagerBox);
             this.Controls.Add(this.mapPanel);
             this.Controls.Add(this.logPanel);
-            this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;

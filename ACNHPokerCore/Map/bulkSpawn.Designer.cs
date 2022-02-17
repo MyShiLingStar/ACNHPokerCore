@@ -322,7 +322,6 @@ namespace ACNHPokerCore
             // 
             this.warningMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.warningMessage.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.warningMessage.Cursor = System.Windows.Forms.Cursors.Default;
             this.warningMessage.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.warningMessage.ForeColor = System.Drawing.Color.Firebrick;
             this.warningMessage.Location = new System.Drawing.Point(6, 179);
@@ -380,7 +379,6 @@ namespace ACNHPokerCore
             // 
             this.WaitMessagebox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.WaitMessagebox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.WaitMessagebox.Cursor = System.Windows.Forms.Cursors.Default;
             this.WaitMessagebox.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.WaitMessagebox.ForeColor = System.Drawing.Color.White;
             this.WaitMessagebox.Location = new System.Drawing.Point(1, 32);
@@ -442,7 +440,6 @@ namespace ACNHPokerCore
             this.Controls.Add(this.miniMapBox);
             this.Controls.Add(this.yCoordinate);
             this.Controls.Add(this.xCoordinate);
-            this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);

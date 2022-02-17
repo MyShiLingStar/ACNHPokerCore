@@ -1686,7 +1686,7 @@ namespace ACNHPokerCore
             selection = new variation();
             selection.sendVariationData += Selection_sendVariationData;
             selection.Show();
-            selection.Location = new System.Drawing.Point(this.Location.X + 7, this.Location.Y + 550);
+            selection.Location = new System.Drawing.Point(this.Location.X + 7, this.Location.Y + this.Height);
             string id = Utilities.precedingZeros(SelectedItem.fillItemID(), 4);
             string value = Utilities.precedingZeros(SelectedItem.fillItemData(), 8);
             UInt16 IntId = Convert.ToUInt16(id, 16);
@@ -1802,7 +1802,7 @@ namespace ACNHPokerCore
         {
             if (selection != null)
             {
-                selection.Location = new System.Drawing.Point(this.Location.X + 7, this.Location.Y + 550);
+                selection.Location = new System.Drawing.Point(this.Location.X + 7, this.Location.Y + this.Height);
             }
         }
 

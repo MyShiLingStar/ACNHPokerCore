@@ -2533,7 +2533,7 @@ namespace ACNHPokerCore
             this.layer1Btn.ForeColor = System.Drawing.Color.White;
             this.layer1Btn.Location = new System.Drawing.Point(3, 26);
             this.layer1Btn.Name = "layer1Btn";
-            this.layer1Btn.Size = new System.Drawing.Size(72, 20);
+            this.layer1Btn.Size = new System.Drawing.Size(62, 19);
             this.layer1Btn.TabIndex = 0;
             this.layer1Btn.TabStop = true;
             this.layer1Btn.Text = "Layer 1";
@@ -2548,7 +2548,7 @@ namespace ACNHPokerCore
             this.layer2Btn.ForeColor = System.Drawing.Color.White;
             this.layer2Btn.Location = new System.Drawing.Point(3, 3);
             this.layer2Btn.Name = "layer2Btn";
-            this.layer2Btn.Size = new System.Drawing.Size(72, 20);
+            this.layer2Btn.Size = new System.Drawing.Size(62, 19);
             this.layer2Btn.TabIndex = 1;
             this.layer2Btn.Text = "Layer 2";
             this.formToolTip.SetToolTip(this.layer2Btn, "Change to the top layer. (On top of furnitures. Like tables)");
@@ -2760,7 +2760,6 @@ namespace ACNHPokerCore
             // 
             this.WaitMessagebox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.WaitMessagebox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.WaitMessagebox.Cursor = System.Windows.Forms.Cursors.Default;
             this.WaitMessagebox.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.WaitMessagebox.ForeColor = System.Drawing.Color.White;
             this.WaitMessagebox.Location = new System.Drawing.Point(1, 32);
@@ -3180,7 +3179,6 @@ namespace ACNHPokerCore
             this.Controls.Add(this.BtnPanel);
             this.Controls.Add(this.FlagTextbox);
             this.Controls.Add(this.functionPanel);
-            this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
