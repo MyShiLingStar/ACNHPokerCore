@@ -37,8 +37,7 @@
 	
 ## Ely's Changes:   
 
-	1. Added function to convert the inventory to cheat sheet txt.  
-	2. Icon change to show that it is modded ACNHPoker - Not Official one.  
+    * Added function to convert the inventory to cheat sheet txt.  
 	
 ## Donate
 
