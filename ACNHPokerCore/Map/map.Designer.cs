@@ -2530,10 +2530,11 @@ namespace ACNHPokerCore
             this.layer1Btn.AutoSize = true;
             this.layer1Btn.BackColor = System.Drawing.Color.Transparent;
             this.layer1Btn.Checked = true;
+            this.layer1Btn.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.layer1Btn.ForeColor = System.Drawing.Color.White;
             this.layer1Btn.Location = new System.Drawing.Point(3, 26);
             this.layer1Btn.Name = "layer1Btn";
-            this.layer1Btn.Size = new System.Drawing.Size(62, 19);
+            this.layer1Btn.Size = new System.Drawing.Size(75, 20);
             this.layer1Btn.TabIndex = 0;
             this.layer1Btn.TabStop = true;
             this.layer1Btn.Text = "Layer 1";
@@ -2545,10 +2546,11 @@ namespace ACNHPokerCore
             // 
             this.layer2Btn.AutoSize = true;
             this.layer2Btn.BackColor = System.Drawing.Color.Transparent;
+            this.layer2Btn.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.layer2Btn.ForeColor = System.Drawing.Color.White;
             this.layer2Btn.Location = new System.Drawing.Point(3, 3);
             this.layer2Btn.Name = "layer2Btn";
-            this.layer2Btn.Size = new System.Drawing.Size(62, 19);
+            this.layer2Btn.Size = new System.Drawing.Size(75, 20);
             this.layer2Btn.TabIndex = 1;
             this.layer2Btn.Text = "Layer 2";
             this.formToolTip.SetToolTip(this.layer2Btn, "Change to the top layer. (On top of furnitures. Like tables)");

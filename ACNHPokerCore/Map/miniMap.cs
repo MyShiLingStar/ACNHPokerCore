@@ -715,6 +715,10 @@ namespace ACNHPokerCore
                     {
                         tilesType[i][j] = 12;
                     }
+                    else if (ItemAttr.isPlacedFence(itemID))
+                    {
+                        tilesType[i][j] = 13; // PlacedFence
+                    }
                     else if (strPart1.Equals("FEFF000000000000") && strPart2.Equals("FEFF000000000000") && strPart3.Equals("FEFF000000000000") && strPart4.Equals("FEFF000000000000"))
                     {
                         tilesType[i][j] = 0; // Empty
@@ -784,6 +788,10 @@ namespace ACNHPokerCore
                         else if (tilesType[i][j] == 12)
                         {
                             PutPixel(gr, i * mapSize, j * mapSize, Color.Maroon);
+                        }
+                        else if (tilesType[i][j] == 13)
+                        {
+                            PutPixel(gr, i * mapSize, j * mapSize, Color.Tan);
                         }
                         else
                         {

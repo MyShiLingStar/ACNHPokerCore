@@ -200,8 +200,9 @@ namespace ACNHPokerCore
         public static readonly string aSpeedX50 = "42480000";
         public static readonly string aSpeedX01 = "3DCCCCCD";
 
-
-
+        public const int MapTileCount16x16 = 16 * 16 * 7 * 6;
+        public const int TerrainTileSize = 0xE;
+        public const int AllTerrainSize = MapTileCount16x16 * TerrainTileSize;
 
         public static string csvFolder = @"csv\";
         public static string imagePath = @"img\";
@@ -2426,6 +2427,73 @@ namespace ACNHPokerCore
                         if (b == null)
                         {
                             MessageBox.Show("Wait something is wrong here!? \n\n Building");
+                        }
+                        return b;
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    return null;
+                }
+            }
+        }
+
+        public static void sendTerrain(Socket socket, USBBot bot, byte[] terrain, ref int counter)
+        {
+            lock (botLock)
+            {
+                try
+                {
+                    if (bot == null)
+                    {
+                        Debug.Print("[Sys] Poke : Terrain " + TerrainOffset.ToString("X"));
+
+                        SendByteArray8(socket, TerrainOffset, terrain, AllTerrainSize);
+                        SendByteArray8(socket, TerrainOffset + mapOffset, terrain, AllTerrainSize);
+                    }
+                    else
+                    {
+                        Debug.Print("[Usb] Poke : Terrain " + TerrainOffset.ToString("X"));
+
+                        WriteLargeBytes(bot, TerrainOffset, terrain, AllTerrainSize, ref counter);
+                        WriteLargeBytes(bot, TerrainOffset + mapOffset, terrain, AllTerrainSize, ref counter);
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                }
+            }
+        }
+
+        public static byte[] getTerrain(Socket socket, USBBot bot)
+        {
+            lock (botLock)
+            {
+                try
+                {
+                    if (bot == null)
+                    {
+                        Debug.Print("[Sys] Peek : Terrain " + TerrainOffset.ToString("X"));
+
+                        byte[] b = ReadByteArray8(socket, TerrainOffset, AllTerrainSize);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n Terrain");
+                        }
+                        return b;
+                    }
+                    else
+                    {
+                        Debug.Print("[Usb] Peek : Terrain " + TerrainOffset.ToString("X"));
+
+                        byte[] b = bot.ReadBytes(TerrainOffset, AllTerrainSize);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n Terrain");
                         }
                         return b;
                     }

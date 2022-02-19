@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Net.Sockets;
@@ -171,6 +172,7 @@ namespace ACNHPokerCore
                 miniMapBox.Visible = true;
                 AcreBtn.Visible = true;
                 BuildingBtn.Visible = true;
+                TerrainBtn.Visible = true;
                 acrePanel.Visible = true;
             });
         }
@@ -387,6 +389,8 @@ namespace ACNHPokerCore
         {
             if (selectedAcre < 0)
                 return;
+            if (acreList.FocusedItem == null)
+                return;
             Acre[selectedAcre * 2] = (byte)Int32.Parse(acreList.Items[acreList.FocusedItem.Index].Text);
             miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawFullBackground(), MiniMap.drawEdge());
             sendBtn.BackColor = Color.Orange;
@@ -433,9 +437,11 @@ namespace ACNHPokerCore
         {
             BuildingBtn.BackColor = Color.FromArgb(80, 80, 255);
             AcreBtn.BackColor = Color.FromArgb(114, 137, 218);
+            TerrainBtn.BackColor = Color.FromArgb(114, 137, 218);
 
             acrePanel.Visible = false;
             buildingPanel.Visible = true;
+            terrainPanel.Visible = false;
             selectedPanel = buildingPanel;
             miniMapBox.Image = null;
             selectedAcre = -1;
@@ -445,10 +451,26 @@ namespace ACNHPokerCore
         {
             BuildingBtn.BackColor = Color.FromArgb(114, 137, 218);
             AcreBtn.BackColor = Color.FromArgb(80, 80, 255);
+            TerrainBtn.BackColor = Color.FromArgb(114, 137, 218);
 
             acrePanel.Visible = true;
             buildingPanel.Visible = false;
+            terrainPanel.Visible = false;
             selectedPanel = acrePanel;
+            miniMapBox.Image = null;
+            selectedAcre = -1;
+        }
+
+        private void TerrainBtn_Click(object sender, EventArgs e)
+        {
+            BuildingBtn.BackColor = Color.FromArgb(114, 137, 218);
+            AcreBtn.BackColor = Color.FromArgb(114, 137, 218);
+            TerrainBtn.BackColor = Color.FromArgb(80, 80, 255);
+
+            acrePanel.Visible =false;
+            buildingPanel.Visible = false;
+            terrainPanel.Visible = true;
+            selectedPanel = terrainPanel;
             miniMapBox.Image = null;
             selectedAcre = -1;
         }
@@ -1650,6 +1672,204 @@ namespace ACNHPokerCore
                 }
                 BridgeImage.Image = image;
                 this.Width = 1320;
+            }
+        }
+
+        private void flattenAllBtn_Click(object sender, EventArgs e)
+        {
+            MyWarning flattenWarning = new MyWarning(s,sound);
+            flattenWarning.ShowDialog();
+        }
+
+        private void saveTerrianBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveFileDialog file = new SaveFileDialog()
+                {
+                    Filter = "New Horizons Terrain (*.nht)|*.nht",
+                };
+
+                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
+
+                string savepath;
+
+                if (config.AppSettings.Settings["LastSave"].Value.Equals(string.Empty))
+                    savepath = Directory.GetCurrentDirectory() + @"\save";
+                else
+                    savepath = config.AppSettings.Settings["LastSave"].Value;
+
+                if (Directory.Exists(savepath))
+                {
+                    file.InitialDirectory = savepath;
+                }
+                else
+                {
+                    file.InitialDirectory = @"C:\";
+                }
+
+                if (file.ShowDialog() != DialogResult.OK)
+                    return;
+
+                string[] temp = file.FileName.Split('\\');
+                string path = "";
+                for (int i = 0; i < temp.Length - 1; i++)
+                    path = path + temp[i] + "\\";
+
+                config.AppSettings.Settings["LastSave"].Value = path;
+                config.Save(ConfigurationSaveMode.Minimal);
+
+                terrainPanel.Enabled = false;
+                PleaseWaitPanel.Visible = true;
+
+                Thread SaveThread = new Thread(delegate () { SaveTerrain(file); });
+                SaveThread.Start();
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        private void SaveTerrain(SaveFileDialog file)
+        {
+            try
+            {
+                byte[] terrain = Utilities.getTerrain(s, null);
+
+                File.WriteAllBytes(file.FileName, terrain);
+
+                this.Invoke((MethodInvoker)delegate
+                {
+                    PleaseWaitPanel.Visible = false;
+                    terrainPanel.Enabled = true;
+                });
+            }
+            catch (Exception ex)
+            {
+                MyLog.logEvent("Bulldozer", "SaveTerrain: " + ex.Message.ToString());
+                MyMessageBox.Show(ex.Message.ToString(), "drunk, fix later");
+            }
+
+            if (sound)
+                System.Media.SystemSounds.Asterisk.Play();
+        }
+
+        private void loadTerrianBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog file = new OpenFileDialog()
+                {
+                    Filter = "New Horizons Terrain (*.nht)|*.nht| All files (*.*)|*.*",
+                };
+
+                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
+
+                string savepath;
+
+                if (config.AppSettings.Settings["LastLoad"].Value.Equals(string.Empty))
+                    savepath = Directory.GetCurrentDirectory() + @"\save";
+                else
+                    savepath = config.AppSettings.Settings["LastLoad"].Value;
+
+                if (Directory.Exists(savepath))
+                {
+                    file.InitialDirectory = savepath;
+                }
+                else
+                {
+                    file.InitialDirectory = @"C:\";
+                }
+
+                if (file.ShowDialog() != DialogResult.OK)
+                    return;
+
+                string[] temp = file.FileName.Split('\\');
+                string path = "";
+                for (int i = 0; i < temp.Length - 1; i++)
+                    path = path + temp[i] + "\\";
+
+                config.AppSettings.Settings["LastLoad"].Value = path;
+                config.Save(ConfigurationSaveMode.Minimal);
+
+                byte[] data = File.ReadAllBytes(file.FileName);
+
+                if (data.Length != Utilities.AllTerrainSize)
+                {
+                    MyMessageBox.Show("Incorrect file size!" + " (0x" + data.Length.ToString("X") + ")\n" +
+                                        "Correct file size should be (0x" + Utilities.AllTerrainSize.ToString("X") + ")", "Who gave you that file?", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                PleaseWaitPanel.Visible = true;
+                terrainPanel.Enabled = false;
+
+                Thread LoadThread = new Thread(delegate () { LoadTerrain(data); });
+                LoadThread.Start();
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        private void LoadTerrain(byte[] terrain)
+        {
+            try
+            {
+                int counter = 0;
+
+                while (isAboutToSave(10))
+                {
+                    Thread.Sleep(2000);
+                }
+
+                Utilities.sendTerrain(s, null, terrain, ref counter);
+
+                this.Invoke((MethodInvoker)delegate
+                {
+                    PleaseWaitPanel.Visible = false;
+                    terrainPanel.Enabled = true;
+                });
+            }
+            catch (Exception ex)
+            {
+                MyLog.logEvent("Bulldozer", "LoadTerrain: " + ex.Message.ToString());
+                MyMessageBox.Show(ex.Message.ToString(), "drunk, fix later");
+            }
+
+            if (sound)
+                System.Media.SystemSounds.Asterisk.Play();
+        }
+
+        private bool isAboutToSave(int second)
+        {
+            byte[] b = Utilities.getSaving(s, null);
+
+            if (b == null)
+                return true;
+            if (b[0] != 0)
+                return true;
+            else
+            {
+                byte[] currentFrame = new byte[4];
+                byte[] lastFrame = new byte[4];
+                Buffer.BlockCopy(b, 12, currentFrame, 0, 4);
+                Buffer.BlockCopy(b, 16, lastFrame, 0, 4);
+
+                int currentFrameStr = Convert.ToInt32("0x" + Utilities.flip(Utilities.ByteToHexString(currentFrame)), 16);
+                int lastFrameStr = Convert.ToInt32("0x" + Utilities.flip(Utilities.ByteToHexString(lastFrame)), 16);
+
+                if (((0x1518 - (currentFrameStr - lastFrameStr))) < 30 * second)
+                    return true;
+                else if (((0x1518 - (currentFrameStr - lastFrameStr))) >= 30 * 175)
+                    return true;
+                else
+                {
+                    Debug.Print(((0x1518 - (currentFrameStr - lastFrameStr))).ToString());
+                    return false;
+                }
             }
         }
     }

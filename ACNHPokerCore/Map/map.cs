@@ -183,6 +183,8 @@ namespace ACNHPokerCore
                     fieldGridView.Columns["rus"].HeaderText = "Name";
 
                     currentDataTable = source;
+
+                    fieldGridView.DefaultCellStyle.Font = new Font("Microsoft JhengHei UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
                 }
 
 
@@ -4328,7 +4330,7 @@ namespace ACNHPokerCore
                 {
                     Buffer.BlockCopy(Layer1, i * 0x1800 + j * 0x10, tempID, 0, 2);
                     itemID = Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(tempID)), 16);
-                    if (ItemAttr.isFence(itemID))
+                    if (ItemAttr.isPlacedFence(itemID))
                     {
                         Buffer.BlockCopy(emptyLeft, 0, processLayer, i * 0x1800 + j * 0x10, 16);
                         Buffer.BlockCopy(emptyRight, 0, processLayer, i * 0x1800 + 0x600 + j * 0x10, 16);
@@ -4337,7 +4339,7 @@ namespace ACNHPokerCore
 
                     Buffer.BlockCopy(Layer1, i * 0x1800 + 0xC00 + j * 0x10, tempID, 0, 2);
                     itemID = Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(tempID)), 16);
-                    if (ItemAttr.isFence(itemID))
+                    if (ItemAttr.isPlacedFence(itemID))
                     {
                         Buffer.BlockCopy(emptyLeft, 0, processLayer, i * 0x1800 + 0xC00 + j * 0x10, 16);
                         Buffer.BlockCopy(emptyRight, 0, processLayer, i * 0x1800 + 0xC00 + 0x600 + j * 0x10, 16);
@@ -4675,7 +4677,7 @@ namespace ACNHPokerCore
         {
             if (ignore)
                 return false;
-            if (saveTime > 100)
+            if (saveTime > 100 && saveTime < 175)
                 return false;
 
             byte[] b = Utilities.getSaving(s, bot);
@@ -4695,6 +4697,8 @@ namespace ACNHPokerCore
                 int lastFrameStr = Convert.ToInt32("0x" + Utilities.flip(Utilities.ByteToHexString(lastFrame)), 16);
 
                 if (((0x1518 - (currentFrameStr - lastFrameStr))) < 30 * second)
+                    return true;
+                else if (((0x1518 - (currentFrameStr - lastFrameStr))) >= 30 * 175)
                     return true;
                 else
                 {

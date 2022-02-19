@@ -738,34 +738,110 @@ namespace ACNHPokerCore
             0x39A5,
             0x39A6,
             0x39A7,
-
-
-            /*
-                0xECC2, // simple wooden fence
-                0xEB00, // brick fence
-                0xEBBA, // vertical-board fence
-                0xEBBF, // bamboo lattice fence
-                0xECC3, // lattice fence
-                0xEBD5, // corral fence
-                0xEBD6, // country fence
-                0xEBD8, //; rope fence
-                0xEC74, // imperial fence
-                0xEC7C, // straw fence
-                0xEC7D, // iron fence
-                0xEC7E, // spiky fence
-                0xEC9B, // stone fence
-                0xECB2, // barbed-wire fence
-                0xECB6, // zen fence
-                0xECB7, // iron-and-stone fence
-                0xED0C, // Bunny Day fence
-                0xED0B, // wedding fence(Green)
-                0xED0D, // wedding fence
-                0xED0E, // wedding fence(Pink)
-                0xED08, // hedge
-                0xED21, // mermaid fence
-                0xED25, // spooky fence
-                0xECC4, // Harvey's island fence
-            */
+        };
+        private static readonly HashSet<UInt16> isPlacedFenceSet = new HashSet<UInt16>
+        {
+            0xEBD5, //corral fence
+            0xEBBA, //vertical-board fence
+            0xECB8, //vertical-board fence (Black)
+            0xECC9, //vertical-board fence (Blue)
+            0xECCA, //vertical-board fence (Green)
+            0xECCB, //vertical-board fence (Pink)
+            0xECCC, //vertical-board fence (Yellow)
+            0xED5B, //vertical-board fence (Purple)
+            0xED5C, //vertical-board fence (White)
+            0xEBD6, //country fence
+            0xEC7E, //spiky fence
+            0xECB2, //barbed-wire fence
+            0xECB3, //log-wall fence
+            0xEBD7, //log fence
+            0xEAA1, //simple wooden fence (White)
+            0xEC94, //simple wooden fence (Blue)
+            0xECB5, //simple wooden fence (Pink)
+            0xECC2, //simple wooden fence
+            0xECC5, //simple wooden fence (Black)
+            0xECC6, //simple wooden fence (Orange)
+            0xECC7, //simple wooden fence (Purple)
+            0xECC8, //simple wooden fence (Green)
+            0xEBD4, //lattice fence (Blue)
+            0xECBA, //lattice fence (White)
+            0xECC3, //lattice fence
+            0xECCD, //lattice fence (Purple)
+            0xECCE, //lattice fence (Black)
+            0xECCF, //lattice fence (Yellow)
+            0xECD0, //lattice fence (Green)
+            0xECD1, //lattice fence (Pink)
+            0xECB4, //large lattice fence
+            0xECBB, //large lattice fence (White)
+            0xECD2, //large lattice fence (Black)
+            0xECD3, //large lattice fence (Blue)
+            0xECD4, //large lattice fence (Green)
+            0xECD5, //large lattice fence (Purple)
+            0xECD6, //large lattice fence (Red)
+            0xECD7, //large lattice fence (Orange)
+            0xEC74, //imperial fence
+            0xEB00, //brick fence
+            0xEC9B, //stone fence
+            0xECB7, //iron-and-stone fence
+            0xEC7B, //block fence
+            0xECB6, //zen fence
+            0xECD8, //zen fence (Purple)
+            0xECD9, //zen fence (Green)
+            0xECDA, //zen fence (Yellow)
+            0xECDB, //zen fence (Beige)
+            0xECDC, //zen fence (Blue)
+            0xECDD, //zen fence (Red)
+            0xECDE, //zen fence (Orange)
+            0xEBD8, //rope fence
+            0xEC7D, //iron fence
+            0xECDF, //iron fence (Red)
+            0xECE0, //iron fence (Yellow)
+            0xECE1, //iron fence (Green)
+            0xED55, //iron fence (Black)
+            0xED56, //iron fence (White)
+            0xED57, //iron fence (Navy)
+            0xED58, //iron fence (Orange)
+            0xED48, //park fence (Blue)
+            0xED49, //park fence (Red)
+            0xED4A, //park fence (Pink)
+            0xED4B, //park fence (Green)
+            0xED4C, //park fence (Red and Yellow)
+            0xED4D, //park fence (Yellow)
+            0xED4E, //park fence (Blue and Pink)
+            0xED4F, //park fence (Green and Orange)
+            0xED47, //corrugated iron fence
+            0xED50, //corrugated iron fence (Blue)
+            0xED51, //corrugated iron fence (Yellow)
+            0xED52, //corrugated iron fence (Green)
+            0xED53, //corrugated iron fence (Orange)
+            0xED54, //corrugated iron fence (Red)
+            0xED59, //corrugated iron fence (White)
+            0xED5A, //corrugated iron fence (Black)
+            0xEC7C, //straw fence
+            0xED08, //hedge
+            0xEBBF, //bamboo lattice fence
+            0xECE3, //green bamboo fence
+            0xECE2, //bamboo-slats fence
+            0xED21, //mermaid fence
+            0xECE4, //frozen fence
+            0xECE6, //frozen fence (Green)
+            0xECE7, //frozen fence (Orange)
+            0xECE8, //frozen fence (Purple)
+            0xECE9, //frozen fence (Blue)
+            0xECEA, //frozen fence (Pink)
+            0xECEB, //frozen fence (Yellow)
+            0xED0C, //Bunny Day fence
+            0xED09, //wedding fence (Red)
+            0xED0A, //wedding fence (Blue)
+            0xED0B, //wedding fence (Green)
+            0xED0D, //wedding fence
+            0xED0E, //wedding fence (Pink)
+            0xED5D, //wedding fence (Black)
+            0xED5E, //wedding fence (Purple)
+            0xED5F, //wedding fence (Yellow)
+            0xED25, //spooky fence
+            0xECC4, //Harvey's island fence
+            0xED46, //庭専用柵（編集外用）
         };
         private static readonly HashSet<UInt16> isFenceWithVariation = new HashSet<UInt16>{
             0x0D4A, // vertical-board fence
@@ -870,7 +946,7 @@ namespace ACNHPokerCore
             0x0BD6, // wheat start
             0x0BDB, // sugarcane start
             0x0BE0, // seed potato
-            0x0BE5, // arrot start
+            0x0BE5, // carrot start
         };
         private static readonly HashSet<UInt16> isBushStartSet = new HashSet<UInt16>
         {
@@ -1127,6 +1203,10 @@ namespace ACNHPokerCore
         public static bool isFence(UInt16 item)
         {
             return isFenceSet.Contains(item);
+        }
+        public static bool isPlacedFence(UInt16 item)
+        {
+            return isPlacedFenceSet.Contains(item);
         }
         public static bool isBush(UInt16 item)
         {

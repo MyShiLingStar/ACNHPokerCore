@@ -65,7 +65,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Custom\" />
     <Folder Include="BridgeImage\" />
     <Folder Include="Setting\" />
   </ItemGroup>

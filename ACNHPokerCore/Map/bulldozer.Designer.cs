@@ -88,6 +88,13 @@ namespace ACNHPokerCore
             this.NowLoadingLabel = new System.Windows.Forms.Label();
             this.NowLoading = new System.Windows.Forms.PictureBox();
             this.BridgeImage = new System.Windows.Forms.PictureBox();
+            this.terrainPanel = new System.Windows.Forms.Panel();
+            this.flattenAllBtn = new System.Windows.Forms.Button();
+            this.saveTerrianBtn = new System.Windows.Forms.Button();
+            this.loadTerrianBtn = new System.Windows.Forms.Button();
+            this.PleaseWaitPanel = new System.Windows.Forms.Panel();
+            this.PleaseWaitLabel = new System.Windows.Forms.Label();
+            this.PleaseWaitImage = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.miniMapBox)).BeginInit();
             this.acrePanel.SuspendLayout();
             this.buildingPanel.SuspendLayout();
@@ -103,6 +110,9 @@ namespace ACNHPokerCore
             this.LoadingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NowLoading)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BridgeImage)).BeginInit();
+            this.terrainPanel.SuspendLayout();
+            this.PleaseWaitPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PleaseWaitImage)).BeginInit();
             this.SuspendLayout();
             // 
             // miniMapBox
@@ -411,6 +421,7 @@ namespace ACNHPokerCore
             this.TerrainBtn.Text = "Terrain";
             this.TerrainBtn.UseVisualStyleBackColor = false;
             this.TerrainBtn.Visible = false;
+            this.TerrainBtn.Click += new System.EventHandler(this.TerrainBtn_Click);
             // 
             // buildingPanel
             // 
@@ -1017,11 +1028,98 @@ namespace ACNHPokerCore
             this.BridgeImage.TabStop = false;
             this.BridgeImage.Visible = false;
             // 
+            // terrainPanel
+            // 
+            this.terrainPanel.Controls.Add(this.flattenAllBtn);
+            this.terrainPanel.Controls.Add(this.saveTerrianBtn);
+            this.terrainPanel.Controls.Add(this.loadTerrianBtn);
+            this.terrainPanel.Location = new System.Drawing.Point(578, 42);
+            this.terrainPanel.Name = "terrainPanel";
+            this.terrainPanel.Size = new System.Drawing.Size(513, 470);
+            this.terrainPanel.TabIndex = 243;
+            this.terrainPanel.Visible = false;
+            // 
+            // flattenAllBtn
+            // 
+            this.flattenAllBtn.BackColor = System.Drawing.Color.Red;
+            this.flattenAllBtn.FlatAppearance.BorderSize = 0;
+            this.flattenAllBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.flattenAllBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.flattenAllBtn.ForeColor = System.Drawing.Color.White;
+            this.flattenAllBtn.Location = new System.Drawing.Point(7, 435);
+            this.flattenAllBtn.Name = "flattenAllBtn";
+            this.flattenAllBtn.Size = new System.Drawing.Size(178, 30);
+            this.flattenAllBtn.TabIndex = 243;
+            this.flattenAllBtn.Text = "Flatten All Terrrain";
+            this.flattenAllBtn.UseVisualStyleBackColor = false;
+            this.flattenAllBtn.Click += new System.EventHandler(this.flattenAllBtn_Click);
+            // 
+            // saveTerrianBtn
+            // 
+            this.saveTerrianBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.saveTerrianBtn.FlatAppearance.BorderSize = 0;
+            this.saveTerrianBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveTerrianBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.saveTerrianBtn.ForeColor = System.Drawing.Color.White;
+            this.saveTerrianBtn.Location = new System.Drawing.Point(7, 399);
+            this.saveTerrianBtn.Name = "saveTerrianBtn";
+            this.saveTerrianBtn.Size = new System.Drawing.Size(86, 30);
+            this.saveTerrianBtn.TabIndex = 238;
+            this.saveTerrianBtn.Text = "Save";
+            this.saveTerrianBtn.UseVisualStyleBackColor = false;
+            this.saveTerrianBtn.Click += new System.EventHandler(this.saveTerrianBtn_Click);
+            // 
+            // loadTerrianBtn
+            // 
+            this.loadTerrianBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.loadTerrianBtn.FlatAppearance.BorderSize = 0;
+            this.loadTerrianBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.loadTerrianBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.loadTerrianBtn.ForeColor = System.Drawing.Color.White;
+            this.loadTerrianBtn.Location = new System.Drawing.Point(99, 399);
+            this.loadTerrianBtn.Name = "loadTerrianBtn";
+            this.loadTerrianBtn.Size = new System.Drawing.Size(86, 30);
+            this.loadTerrianBtn.TabIndex = 237;
+            this.loadTerrianBtn.Text = "Load";
+            this.loadTerrianBtn.UseVisualStyleBackColor = false;
+            this.loadTerrianBtn.Click += new System.EventHandler(this.loadTerrianBtn_Click);
+            // 
+            // PleaseWaitPanel
+            // 
+            this.PleaseWaitPanel.Controls.Add(this.PleaseWaitLabel);
+            this.PleaseWaitPanel.Controls.Add(this.PleaseWaitImage);
+            this.PleaseWaitPanel.Location = new System.Drawing.Point(906, 476);
+            this.PleaseWaitPanel.Name = "PleaseWaitPanel";
+            this.PleaseWaitPanel.Size = new System.Drawing.Size(185, 30);
+            this.PleaseWaitPanel.TabIndex = 244;
+            this.PleaseWaitPanel.Visible = false;
+            // 
+            // PleaseWaitLabel
+            // 
+            this.PleaseWaitLabel.AutoSize = true;
+            this.PleaseWaitLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.PleaseWaitLabel.ForeColor = System.Drawing.Color.White;
+            this.PleaseWaitLabel.Location = new System.Drawing.Point(29, 4);
+            this.PleaseWaitLabel.Name = "PleaseWaitLabel";
+            this.PleaseWaitLabel.Size = new System.Drawing.Size(130, 22);
+            this.PleaseWaitLabel.TabIndex = 242;
+            this.PleaseWaitLabel.Text = "Please Wait...";
+            // 
+            // PleaseWaitImage
+            // 
+            this.PleaseWaitImage.Image = global::ACNHPokerCore.Properties.Resources.loading;
+            this.PleaseWaitImage.Location = new System.Drawing.Point(2, 3);
+            this.PleaseWaitImage.Name = "PleaseWaitImage";
+            this.PleaseWaitImage.Size = new System.Drawing.Size(24, 24);
+            this.PleaseWaitImage.TabIndex = 217;
+            this.PleaseWaitImage.TabStop = false;
+            // 
             // Bulldozer
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.ClientSize = new System.Drawing.Size(1094, 511);
+            this.Controls.Add(this.PleaseWaitPanel);
             this.Controls.Add(this.BridgeImage);
             this.Controls.Add(this.LoadingPanel);
             this.Controls.Add(this.TerrainBtn);
@@ -1039,6 +1137,7 @@ namespace ACNHPokerCore
             this.Controls.Add(this.RealYCoordinate);
             this.Controls.Add(this.RealXCoordinate);
             this.Controls.Add(this.miniMapBox);
+            this.Controls.Add(this.terrainPanel);
             this.Controls.Add(this.buildingPanel);
             this.Controls.Add(this.acrePanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1068,6 +1167,10 @@ namespace ACNHPokerCore
             this.LoadingPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NowLoading)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BridgeImage)).EndInit();
+            this.terrainPanel.ResumeLayout(false);
+            this.PleaseWaitPanel.ResumeLayout(false);
+            this.PleaseWaitPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PleaseWaitImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1132,5 +1235,12 @@ namespace ACNHPokerCore
         private System.Windows.Forms.NumericUpDown BridgeLengthUpDown;
         private JCS.ToggleSwitch BridgeDiagonalToggle;
         private System.Windows.Forms.PictureBox BridgeImage;
+        private System.Windows.Forms.Panel terrainPanel;
+        private System.Windows.Forms.Button flattenAllBtn;
+        private System.Windows.Forms.Button saveTerrianBtn;
+        private System.Windows.Forms.Button loadTerrianBtn;
+        private System.Windows.Forms.Panel PleaseWaitPanel;
+        private System.Windows.Forms.Label PleaseWaitLabel;
+        private System.Windows.Forms.PictureBox PleaseWaitImage;
     }
 }
