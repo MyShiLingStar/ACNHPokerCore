@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Net.Sockets;
 using System.Threading;
@@ -30,30 +31,38 @@ namespace ACNHPokerCore
 
         private void confirmBtn_Click(object sender, EventArgs e)
         {
-            SaveFileDialog file = new SaveFileDialog();
-            DateTime localDate = DateTime.Now;
-            file.FileName = Directory.GetCurrentDirectory() + @"\save\" + localDate.ToString().Replace(" ","").Replace(":","-") + ".nht";
-
             confirmBtn.Visible = false;
             answerBox.Enabled = false;
             PleaseWaitPanel.Visible = true;
 
-            Thread FlattenThread = new Thread(delegate () { FlattenTerrain(file); });
+            Thread FlattenThread = new Thread(delegate () { FlattenTerrain(); });
             FlattenThread.Start();
         }
 
-        private void FlattenTerrain(SaveFileDialog file)
+        private void FlattenTerrain()
         {
+            SaveFileDialog file = new SaveFileDialog();
+
             byte[] CurrentTerrainData = Utilities.getTerrain(socket, null);
+
+            DateTime localDate = DateTime.Now;
+            var culture = new CultureInfo("en-US");
+            file.FileName = Directory.GetCurrentDirectory() + @"\save\" + localDate.ToString(culture).Replace(" ", "_").Replace(":", "-").Replace("/", "-").Replace("\\", "-").Replace("|", "-").Replace(".","-") + ".nht";
             File.WriteAllBytes(file.FileName, CurrentTerrainData);
+
+            int counter = 0;
 
             while (isAboutToSave(10))
             {
+                if (counter > 15)
+                    break;
                 Thread.Sleep(2000);
+                counter++;
             }
 
+            counter = 0;
+
             byte[] EmptyTerrainData = new byte[Utilities.AllTerrainSize];
-            int counter = 0;
             Utilities.sendTerrain(socket, null, EmptyTerrainData, ref counter);
 
             if (sound)
@@ -72,6 +81,10 @@ namespace ACNHPokerCore
                 if (e.KeyCode.ToString() == "C" || e.KeyCode.ToString() == "V")
                 {
                     MyMessageBox.Show("You are being lazy, aren't you?", "Epic's Easy Anti-Cheat", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else if (e.KeyCode.ToString() == "F1")
+                {
+                    answerBox.Text = sampleBox.Text;
                 }
             }
         }

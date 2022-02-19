@@ -1822,8 +1822,13 @@ namespace ACNHPokerCore
 
                 while (isAboutToSave(10))
                 {
+                    if (counter > 15)
+                        break;
                     Thread.Sleep(2000);
+                    counter++;
                 }
+
+                counter = 0;
 
                 Utilities.sendTerrain(s, null, terrain, ref counter);
 
