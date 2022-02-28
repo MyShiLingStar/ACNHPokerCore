@@ -790,7 +790,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public static byte[] peekAddress(Socket socket, USBBot bot, long address, int size)
+        public static byte[] peekAddress(Socket socket, USBBot bot, UInt32 address, int size)
         {
             lock (botLock)
             {

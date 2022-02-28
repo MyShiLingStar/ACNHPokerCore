@@ -1059,12 +1059,9 @@ namespace ACNHPokerCore
             if (waveOut == null)
             {
                 MyLog.logEvent("MainForm", "EasterEgg Started");
-                string path = AppDomain.CurrentDomain.BaseDirectory;
-                AudioFileReader audioFileReader = new AudioFileReader(path + Utilities.villagerPath + "Io.nhv2");
-                LoopStream loop = new LoopStream(audioFileReader);
-                waveOut = new WaveOut();
-                waveOut.Init(loop);
-                waveOut.Play();
+
+                Thread songThread = new Thread(delegate () { egg(); });
+                songThread.Start();
             }
             else
             {
@@ -1074,6 +1071,17 @@ namespace ACNHPokerCore
                 waveOut = null;
             }
         }
+
+        private void egg()
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            AudioFileReader audioFileReader = new AudioFileReader(path + Utilities.villagerPath + "Io.nhv2");
+            LoopStream loop = new LoopStream(audioFileReader);
+            waveOut = new WaveOut();
+            waveOut.Init(loop);
+            waveOut.Play();
+        }
+
         #endregion
 
         #region Tab
@@ -1400,7 +1408,7 @@ namespace ACNHPokerCore
 
             for (int i = 0; i < 8; i++)
             {
-                byte[] b = Utilities.peekAddress(socket, usb, (Utilities.player1SlotBase + (i * Utilities.playerOffset)) + Utilities.InventoryNameOffset, 0x34);
+                byte[] b = Utilities.peekAddress(socket, usb, (uint)(Utilities.player1SlotBase + (i * Utilities.playerOffset)) + Utilities.InventoryNameOffset, 0x34);
                 namelist[i] = Encoding.Unicode.GetString(b, 32, 20);
                 namelist[i] = namelist[i].Replace("\0", string.Empty);
                 if (namelist[i].Equals(string.Empty) && !headerFound)
@@ -2014,6 +2022,29 @@ namespace ACNHPokerCore
 
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
+        }
+
+        private void CopyItem(object sender, KeyEventArgs e)
+        {
+            ItemModeButton_Click(sender, e);
+            if (HexModeButton.Tag.ToString() == "Normal")
+            {
+                HexModeButton_Click(sender, e);
+            }
+
+            string hexValue = "0";
+            int decValue = Convert.ToInt32("0x" + AmountOrCountTextbox.Text, 16) - 1;
+            if (decValue >= 0)
+                hexValue = decValue.ToString("X");
+
+            SelectedItem.setup(selectedButton);
+            if (selection != null)
+            {
+                selection.receiveID(Utilities.precedingZeros(SelectedItem.fillItemID(), 4), languageSetting, Utilities.precedingZeros(hexValue, 8));
+            }
+            updateSelectedItemInfo(SelectedItem.displayItemName(), SelectedItem.displayItemID(), SelectedItem.displayItemData());
+            AmountOrCountTextbox.Text = Utilities.precedingZeros(SelectedItem.fillItemData(), 8);
+            IDTextbox.Text = Utilities.precedingZeros(SelectedItem.fillItemID(), 4);
         }
 
         private void InventorySlot_Click(object sender, EventArgs e)
@@ -7783,7 +7814,315 @@ namespace ACNHPokerCore
             } while (true);
         }
 
+        public void KeyboardKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode.ToString() == "F2" || e.KeyCode.ToString() == "Insert")
+            {
+                if (selectedButton == null & (socket != null))
+                {
+                    int firstSlot = findEmpty();
+                    if (firstSlot > 0)
+                    {
+                        selectedSlot = firstSlot;
+                        updateSlot(firstSlot);
+                    }
+                }
 
+                if (currentPanel == ItemModePanel)
+                {
+                    NormalItemSpawn();
+                }
+                else if (currentPanel == RecipeModePanel)
+                {
+                    RecipeSpawn();
+                }
+                else if (currentPanel == FlowerModePanel)
+                {
+                    FlowerSpawn();
+                }
+
+                int nextSlot = findEmpty();
+                if (nextSlot > 0)
+                {
+                    selectedSlot = nextSlot;
+                    updateSlot(nextSlot);
+                }
+                if (sound)
+                    System.Media.SystemSounds.Asterisk.Play();
+            }
+            else if (e.KeyCode.ToString() == "F1")
+            {
+                DeleteItem();
+                if (sound)
+                    System.Media.SystemSounds.Asterisk.Play();
+            }
+            else if (e.KeyCode.ToString() == "F3")
+            {
+                CopyItem(sender, e);
+                if (sound)
+                    System.Media.SystemSounds.Asterisk.Play();
+            }
+            else if (e.KeyCode.ToString() == "End")
+            {
+                if (ItemGridView.CurrentRow == null)
+                    return;
+                if (currentPanel == ItemModePanel)
+                {
+                    if (ItemGridView.Rows.Count <= 0)
+                    {
+                        return;
+                    }
+                    if (ItemGridView.CurrentRow == null)
+                    {
+                        return;
+                    }
+
+                    if (ItemGridView.Rows.Count == 1)
+                    {
+                        lastRow = ItemGridView.Rows[ItemGridView.CurrentRow.Index];
+                        ItemGridView.Rows[ItemGridView.CurrentRow.Index].Height = 160;
+
+                        if (HexModeButton.Tag.ToString() == "Normal")
+                        {
+                            if (AmountOrCountTextbox.Text == "" || AmountOrCountTextbox.Text == "0")
+                            {
+                                AmountOrCountTextbox.Text = "1";
+                            }
+                        }
+                        else
+                        {
+                            HexModeButton_Click(sender, e);
+                        }
+
+                        string hexValue = "0";
+                        int decValue = int.Parse(AmountOrCountTextbox.Text) - 1;
+                        if (decValue >= 0)
+                            hexValue = decValue.ToString("X");
+
+                        IDTextbox.Text = ItemGridView.Rows[ItemGridView.CurrentRow.Index].Cells["id"].Value.ToString();
+
+                        SelectedItem.setup(ItemGridView.Rows[ItemGridView.CurrentRow.Index].Cells[languageSetting].Value.ToString(), Convert.ToUInt16("0x" + ItemGridView.Rows[ItemGridView.CurrentRow.Index].Cells["id"].Value.ToString(), 16), 0x0, GetImagePathFromID(ItemGridView.Rows[ItemGridView.CurrentRow.Index].Cells["id"].Value.ToString(), itemSource), true);
+                        if (selection != null)
+                        {
+                            selection.receiveID(Utilities.precedingZeros(SelectedItem.fillItemID(), 4), languageSetting, Utilities.precedingZeros(hexValue, 8));
+                        }
+                        updateSelectedItemInfo(SelectedItem.displayItemName(), SelectedItem.displayItemID(), SelectedItem.displayItemData());
+                    }
+                    else if (ItemGridView.CurrentRow.Index + 1 < ItemGridView.Rows.Count)
+                    {
+                        if (lastRow != null)
+                        {
+                            lastRow.Height = 22;
+                        }
+                        lastRow = ItemGridView.Rows[ItemGridView.CurrentRow.Index + 1];
+                        ItemGridView.Rows[ItemGridView.CurrentRow.Index + 1].Height = 160;
+
+                        if (HexModeButton.Tag.ToString() == "Normal")
+                        {
+                            if (AmountOrCountTextbox.Text == "" || AmountOrCountTextbox.Text == "0")
+                            {
+                                AmountOrCountTextbox.Text = "1";
+                            }
+                        }
+                        else
+                        {
+                            HexModeButton_Click(sender, e);
+                            //AmountOrCountTextbox.Text = "1";
+                        }
+
+                        string hexValue = "0";
+                        int decValue = int.Parse(AmountOrCountTextbox.Text) - 1;
+                        if (decValue >= 0)
+                            hexValue = decValue.ToString("X");
+
+                        IDTextbox.Text = ItemGridView.Rows[ItemGridView.CurrentRow.Index + 1].Cells["id"].Value.ToString();
+
+                        SelectedItem.setup(ItemGridView.Rows[ItemGridView.CurrentRow.Index + 1].Cells[languageSetting].Value.ToString(), Convert.ToUInt16("0x" + ItemGridView.Rows[ItemGridView.CurrentRow.Index + 1].Cells["id"].Value.ToString(), 16), 0x0, GetImagePathFromID(ItemGridView.Rows[ItemGridView.CurrentRow.Index + 1].Cells["id"].Value.ToString(), itemSource), true);
+                        if (selection != null)
+                        {
+                            selection.receiveID(Utilities.precedingZeros(SelectedItem.fillItemID(), 4), languageSetting, Utilities.precedingZeros(hexValue, 8));
+                        }
+                        updateSelectedItemInfo(SelectedItem.displayItemName(), SelectedItem.displayItemID(), SelectedItem.displayItemData());
+
+                        ItemGridView.CurrentCell = ItemGridView.Rows[ItemGridView.CurrentRow.Index + 1].Cells[languageSetting];
+
+                        //Debug.Print(ItemGridView.CurrentRow.Index.ToString());
+                    }
+                }
+                else if (currentPanel == RecipeModePanel)
+                {
+                    if (RecipeGridView.Rows.Count <= 0)
+                    {
+                        return;
+                    }
+                    if (RecipeGridView.CurrentRow == null)
+                    {
+                        return;
+                    }
+
+                    if (RecipeGridView.Rows.Count == 1)
+                    {
+                        recipelastRow = RecipeGridView.Rows[RecipeGridView.CurrentRow.Index];
+                        RecipeGridView.Rows[RecipeGridView.CurrentRow.Index].Height = 160;
+
+                        RecipeIDTextbox.Text = RecipeGridView.Rows[RecipeGridView.CurrentRow.Index].Cells["id"].Value.ToString();
+
+                        SelectedItem.setup(RecipeGridView.Rows[RecipeGridView.CurrentRow.Index].Cells[languageSetting].Value.ToString(), 0x16A2, Convert.ToUInt32("0x" + RecipeGridView.Rows[RecipeGridView.CurrentRow.Index].Cells["id"].Value.ToString(), 16), GetImagePathFromID(RecipeGridView.Rows[RecipeGridView.CurrentRow.Index].Cells["id"].Value.ToString(), recipeSource), true);
+                        updateSelectedItemInfo(SelectedItem.displayItemName(), SelectedItem.displayItemID(), SelectedItem.displayItemData());
+                    }
+                    else if (RecipeGridView.CurrentRow.Index + 1 < RecipeGridView.Rows.Count)
+                    {
+                        if (recipelastRow != null)
+                        {
+                            recipelastRow.Height = 22;
+                        }
+
+                        recipelastRow = RecipeGridView.Rows[RecipeGridView.CurrentRow.Index + 1];
+                        RecipeGridView.Rows[RecipeGridView.CurrentRow.Index + 1].Height = 160;
+
+                        RecipeIDTextbox.Text = RecipeGridView.Rows[RecipeGridView.CurrentRow.Index + 1].Cells["id"].Value.ToString();
+
+                        SelectedItem.setup(RecipeGridView.Rows[RecipeGridView.CurrentRow.Index + 1].Cells[languageSetting].Value.ToString(), 0x16A2, Convert.ToUInt32("0x" + RecipeGridView.Rows[RecipeGridView.CurrentRow.Index + 1].Cells["id"].Value.ToString(), 16), GetImagePathFromID(RecipeGridView.Rows[RecipeGridView.CurrentRow.Index + 1].Cells["id"].Value.ToString(), recipeSource), true);
+                        updateSelectedItemInfo(SelectedItem.displayItemName(), SelectedItem.displayItemID(), SelectedItem.displayItemData());
+
+                        RecipeGridView.CurrentCell = RecipeGridView.Rows[RecipeGridView.CurrentRow.Index + 1].Cells[languageSetting];
+                    }
+                }
+                else if (currentPanel == FlowerModePanel)
+                {
+
+                }
+            }
+            else if (e.KeyCode.ToString() == "Home")
+            {
+                if (currentPanel == ItemModePanel)
+                {
+                    if (ItemGridView.Rows.Count <= 0)
+                    {
+                        return;
+                    }
+                    if (ItemGridView.CurrentRow == null)
+                    {
+                        return;
+                    }
+
+                    if (ItemGridView.Rows.Count == 1)
+                    {
+                        lastRow = ItemGridView.Rows[ItemGridView.CurrentRow.Index];
+                        ItemGridView.Rows[ItemGridView.CurrentRow.Index].Height = 160;
+
+                        if (HexModeButton.Tag.ToString() == "Normal")
+                        {
+                            if (AmountOrCountTextbox.Text == "" || AmountOrCountTextbox.Text == "0")
+                            {
+                                AmountOrCountTextbox.Text = "1";
+                            }
+                        }
+                        else
+                        {
+                            HexModeButton_Click(sender, e);
+                            //AmountOrCountTextbox.Text = "1";
+                        }
+
+                        string hexValue = "0";
+                        int decValue = int.Parse(AmountOrCountTextbox.Text) - 1;
+                        if (decValue >= 0)
+                            hexValue = decValue.ToString("X");
+
+                        IDTextbox.Text = ItemGridView.Rows[ItemGridView.CurrentRow.Index].Cells["id"].Value.ToString();
+
+                        SelectedItem.setup(ItemGridView.Rows[ItemGridView.CurrentRow.Index].Cells[languageSetting].Value.ToString(), Convert.ToUInt16("0x" + ItemGridView.Rows[ItemGridView.CurrentRow.Index].Cells["id"].Value.ToString(), 16), 0x0, GetImagePathFromID(ItemGridView.Rows[ItemGridView.CurrentRow.Index].Cells["id"].Value.ToString(), itemSource), true);
+                        if (selection != null)
+                        {
+                            selection.receiveID(Utilities.precedingZeros(SelectedItem.fillItemID(), 4), languageSetting, Utilities.precedingZeros(hexValue, 8));
+                        }
+                        updateSelectedItemInfo(SelectedItem.displayItemName(), SelectedItem.displayItemID(), SelectedItem.displayItemData());
+                    }
+                    else if (ItemGridView.CurrentRow.Index > 0)
+                    {
+                        if (lastRow != null)
+                        {
+                            lastRow.Height = 22;
+                        }
+
+                        lastRow = ItemGridView.Rows[ItemGridView.CurrentRow.Index - 1];
+                        ItemGridView.Rows[ItemGridView.CurrentRow.Index - 1].Height = 160;
+
+                        if (HexModeButton.Tag.ToString() == "Normal")
+                        {
+                            if (AmountOrCountTextbox.Text == "" || AmountOrCountTextbox.Text == "0")
+                            {
+                                AmountOrCountTextbox.Text = "1";
+                            }
+                        }
+                        else
+                        {
+                            HexModeButton_Click(sender, e);
+                            //AmountOrCountTextbox.Text = "1";
+                        }
+
+                        string hexValue = "0";
+                        int decValue = int.Parse(AmountOrCountTextbox.Text) - 1;
+                        if (decValue >= 0)
+                            hexValue = decValue.ToString("X");
+
+                        IDTextbox.Text = ItemGridView.Rows[ItemGridView.CurrentRow.Index - 1].Cells["id"].Value.ToString();
+
+                        SelectedItem.setup(ItemGridView.Rows[ItemGridView.CurrentRow.Index - 1].Cells[languageSetting].Value.ToString(), Convert.ToUInt16("0x" + ItemGridView.Rows[ItemGridView.CurrentRow.Index - 1].Cells["id"].Value.ToString(), 16), 0x0, GetImagePathFromID(ItemGridView.Rows[ItemGridView.CurrentRow.Index - 1].Cells["id"].Value.ToString(), itemSource), true);
+                        if (selection != null)
+                        {
+                            selection.receiveID(Utilities.precedingZeros(SelectedItem.fillItemID(), 4), languageSetting, Utilities.precedingZeros(hexValue, 8));
+                        }
+                        updateSelectedItemInfo(SelectedItem.displayItemName(), SelectedItem.displayItemID(), SelectedItem.displayItemData());
+
+                        ItemGridView.CurrentCell = ItemGridView.Rows[ItemGridView.CurrentRow.Index - 1].Cells[languageSetting];
+                    }
+                }
+                else if (currentPanel == RecipeModePanel)
+                {
+                    if (RecipeGridView.Rows.Count <= 0)
+                    {
+                        return;
+                    }
+                    if (RecipeGridView.CurrentRow == null)
+                    {
+                        return;
+                    }
+
+                    if (RecipeGridView.Rows.Count == 1)
+                    {
+                        recipelastRow = RecipeGridView.Rows[RecipeGridView.CurrentRow.Index];
+                        RecipeGridView.Rows[RecipeGridView.CurrentRow.Index].Height = 160;
+
+                        RecipeIDTextbox.Text = RecipeGridView.Rows[RecipeGridView.CurrentRow.Index].Cells["id"].Value.ToString();
+
+                        SelectedItem.setup(RecipeGridView.Rows[RecipeGridView.CurrentRow.Index].Cells[languageSetting].Value.ToString(), 0x16A2, Convert.ToUInt32("0x" + RecipeGridView.Rows[RecipeGridView.CurrentRow.Index].Cells["id"].Value.ToString(), 16), GetImagePathFromID(RecipeGridView.Rows[RecipeGridView.CurrentRow.Index].Cells["id"].Value.ToString(), recipeSource), true);
+                        updateSelectedItemInfo(SelectedItem.displayItemName(), SelectedItem.displayItemID(), SelectedItem.displayItemData());
+                    }
+                    else if (RecipeGridView.CurrentRow.Index > 0)
+                    {
+                        if (recipelastRow != null)
+                        {
+                            recipelastRow.Height = 22;
+                        }
+
+                        recipelastRow = RecipeGridView.Rows[RecipeGridView.CurrentRow.Index - 1];
+                        RecipeGridView.Rows[RecipeGridView.CurrentRow.Index - 1].Height = 160;
+
+                        RecipeIDTextbox.Text = RecipeGridView.Rows[RecipeGridView.CurrentRow.Index - 1].Cells["id"].Value.ToString();
+
+                        SelectedItem.setup(RecipeGridView.Rows[RecipeGridView.CurrentRow.Index - 1].Cells[languageSetting].Value.ToString(), 0x16A2, Convert.ToUInt32("0x" + RecipeGridView.Rows[RecipeGridView.CurrentRow.Index - 1].Cells["id"].Value.ToString(), 16), GetImagePathFromID(RecipeGridView.Rows[RecipeGridView.CurrentRow.Index - 1].Cells["id"].Value.ToString(), recipeSource), true);
+                        updateSelectedItemInfo(SelectedItem.displayItemName(), SelectedItem.displayItemID(), SelectedItem.displayItemData());
+
+                        RecipeGridView.CurrentCell = RecipeGridView.Rows[RecipeGridView.CurrentRow.Index - 1].Cells[languageSetting];
+                    }
+                }
+                else if (currentPanel == FlowerModePanel)
+                {
+
+                }
+            }
+        }
 
         private void Converttocheat_Click(object sender, EventArgs e)
         {
@@ -7867,6 +8206,77 @@ namespace ACNHPokerCore
                 MyLog.logEvent("MainForm", "Convert to Cheat txt: " + ex.Message.ToString());
                 MyMessageBox.Show(ex.Message.ToString(), "Convert to Cheat Crashed");
             }
+        }
+
+        private void PeekButton_Click(object sender, EventArgs e)
+        {
+            var Address = Convert.ToUInt32(DebugAddress.Text, 16);
+            byte[] AddressBank = Utilities.peekAddress(socket, null, Address, 256);
+
+            byte[] firstBytes = new byte[4];
+            byte[] secondBytes = new byte[4];
+            byte[] thirdBytes = new byte[4];
+            byte[] fourthBytes = new byte[4];
+
+            byte[] firstFullResult = new byte[32];
+            byte[] secondFullResult = new byte[32];
+            byte[] thirdFullResult = new byte[32];
+            byte[] fourthFullResult = new byte[32];
+            byte[] fifthFullResult = new byte[32];
+
+            Buffer.BlockCopy(AddressBank, 0x0, firstBytes, 0x0, 0x4);
+            Buffer.BlockCopy(AddressBank, 0x4, secondBytes, 0x0, 0x4);
+            Buffer.BlockCopy(AddressBank, 0x8, thirdBytes, 0x0, 0x4);
+            Buffer.BlockCopy(AddressBank, 0xC, fourthBytes, 0x0, 0x4);
+
+            Buffer.BlockCopy(AddressBank, 0x0, firstFullResult, 0x0, 0x20);
+            Buffer.BlockCopy(AddressBank, 0x20, secondFullResult, 0x0, 0x20);
+            Buffer.BlockCopy(AddressBank, 0x40, thirdFullResult, 0x0, 0x20);
+            Buffer.BlockCopy(AddressBank, 0x60, fourthFullResult, 0x0, 0x20);
+            Buffer.BlockCopy(AddressBank, 0x80, fifthFullResult, 0x0, 0x20);
+
+            string firstResult = Utilities.ByteToHexString(firstBytes);
+            string secondResult = Utilities.ByteToHexString(secondBytes);
+            string thirdResult = Utilities.ByteToHexString(thirdBytes);
+            string fourthResult = Utilities.ByteToHexString(fourthBytes);
+
+            string FullResult1 = Utilities.ByteToHexString(firstFullResult);
+            string FullResult2 = Utilities.ByteToHexString(secondFullResult);
+            string FullResult3 = Utilities.ByteToHexString(thirdFullResult);
+            string FullResult4 = Utilities.ByteToHexString(fourthFullResult);
+            string FullResult5 = Utilities.ByteToHexString(fifthFullResult);
+
+            PeekResult1.Text = Utilities.flip(firstResult);
+            PeekResult2.Text = Utilities.flip(secondResult);
+            PeekResult3.Text = Utilities.flip(thirdResult);
+            PeekResult4.Text = Utilities.flip(fourthResult);
+
+            FullPeekResult1.Text = FullResult1.Insert(56, " ").Insert(48, " ").Insert(40, " ").Insert(32, " ").Insert(24, " ").Insert(16, " ").Insert(8, " ");
+            FullPeekResult2.Text = FullResult2.Insert(56, " ").Insert(48, " ").Insert(40, " ").Insert(32, " ").Insert(24, " ").Insert(16, " ").Insert(8, " ");
+            FullPeekResult3.Text = FullResult3.Insert(56, " ").Insert(48, " ").Insert(40, " ").Insert(32, " ").Insert(24, " ").Insert(16, " ").Insert(8, " ");
+            FullPeekResult4.Text = FullResult4.Insert(56, " ").Insert(48, " ").Insert(40, " ").Insert(32, " ").Insert(24, " ").Insert(16, " ").Insert(8, " ");
+            FullPeekResult5.Text = FullResult5.Insert(56, " ").Insert(48, " ").Insert(40, " ").Insert(32, " ").Insert(24, " ").Insert(16, " ").Insert(8, " ");
+        }
+
+        private void PokeButton_Click(object sender, EventArgs e)
+        {
+            Utilities.pokeAddress(socket, null, DebugAddress.Text, DebugValue.Text);
+        }
+
+        private void UnhideButton_Click(object sender, EventArgs e)
+        {
+            if (currentPanel == ItemModePanel)
+            {
+                ItemGridView.Columns["id"].Visible = true;
+                ItemGridView.Columns["iName"].Visible = true;
+            }
+            else if (currentPanel == RecipeModePanel)
+            {
+                RecipeGridView.Columns["id"].Visible = true;
+                RecipeGridView.Columns["iName"].Visible = true;
+            }
+            else
+                return;
         }
     }
 }
