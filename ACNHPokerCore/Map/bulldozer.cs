@@ -467,7 +467,7 @@ namespace ACNHPokerCore
             AcreBtn.BackColor = Color.FromArgb(114, 137, 218);
             TerrainBtn.BackColor = Color.FromArgb(80, 80, 255);
 
-            acrePanel.Visible =false;
+            acrePanel.Visible = false;
             buildingPanel.Visible = false;
             terrainPanel.Visible = true;
             selectedPanel = terrainPanel;
@@ -1677,7 +1677,7 @@ namespace ACNHPokerCore
 
         private void flattenAllBtn_Click(object sender, EventArgs e)
         {
-            MyWarning flattenWarning = new MyWarning(s,sound);
+            MyWarning flattenWarning = new MyWarning(s, sound);
             flattenWarning.ShowDialog();
         }
 

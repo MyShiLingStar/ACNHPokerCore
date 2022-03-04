@@ -2070,7 +2070,10 @@ namespace ACNHPokerCore
 
             this.Invoke((MethodInvoker)delegate
             {
-                setBtn(btn, itemID, itemData, "0000FFFD", "0100" + itemID, "0000FFFD", "0001" + itemID, "0000FFFD", "0101" + itemID, "00", flag2);
+                if (itemID == "FFFE")
+                    setBtn(btn, itemID, itemData, "0000FFFE", "00000000", "0000FFFE", "00000000", "0000FFFE", "00000000", "00", flag2);
+                else
+                    setBtn(btn, itemID, itemData, "0000FFFD", "0100" + itemID, "0000FFFD", "0001" + itemID, "0000FFFD", "0101" + itemID, "00", flag2);
                 updataData(btn.mapX, btn.mapY, itemID, itemData, flag2);
                 resetBtnColor();
                 enableBtn();
@@ -2652,12 +2655,7 @@ namespace ACNHPokerCore
                     else
                         Buffer.BlockCopy(Layer2, (int)((0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY))), tempItem, 0, sizeOfRow);
 
-                    if (Utilities.ByteToHexString(tempItem).StartsWith("FEFF0000") || Utilities.ByteToHexString(tempItem).StartsWith("FDFF0000"))
-                    {
-
-                    }
-                    else
-                        save = Utilities.add(save, tempItem);
+                    save = Utilities.add(save, tempItem);
                 }
             }
 
@@ -5175,15 +5173,13 @@ namespace ACNHPokerCore
                         {
                             Buffer.BlockCopy(Layer1, (int)((0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY))), SavedArea[i * 2], 0x10 * j, 0x10);
                             Buffer.BlockCopy(Layer1, (int)((0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY)) + 0x600), SavedArea[i * 2 + 1], 0x10 * j, 0x10);
-                            if (SavedArea[i * 2][0x10 * j] != 0xFE || SavedArea[i * 2][0x10 * j + 1] != 0xFF)
-                                SavedArea[i * 2][0x10 * j + 2] = 0x00;
+                            SavedArea[i * 2][0x10 * j + 2] = 0x00;
                         }
                         else
                         {
                             Buffer.BlockCopy(Layer2, (int)((0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY))), SavedArea[i * 2], 0x10 * j, 0x10);
                             Buffer.BlockCopy(Layer2, (int)((0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY)) + 0x600), SavedArea[i * 2 + 1], 0x10 * j, 0x10);
-                            if (SavedArea[i * 2][0x10 * j] != 0xFE || SavedArea[i * 2][0x10 * j + 1] != 0xFF)
-                                SavedArea[i * 2][0x10 * j + 2] = 0x00;
+                            SavedArea[i * 2][0x10 * j + 2] = 0x00;
                         }
                     }
                 }

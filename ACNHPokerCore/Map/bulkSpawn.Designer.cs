@@ -41,13 +41,13 @@ namespace ACNHPokerCore
             this.spawnBtn = new System.Windows.Forms.Button();
             this.previewBtn = new System.Windows.Forms.Button();
             this.numOfItemBox = new System.Windows.Forms.RichTextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.numOfItemLabel = new System.Windows.Forms.Label();
             this.HeightImageBox = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.heightLabel = new System.Windows.Forms.Label();
             this.DirectionImageBox = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.directionLabel = new System.Windows.Forms.Label();
+            this.XLabel = new System.Windows.Forms.Label();
+            this.YLabel = new System.Windows.Forms.Label();
             this.settingPanel = new System.Windows.Forms.Panel();
             this.warningMessage = new System.Windows.Forms.RichTextBox();
             this.widthNumber = new System.Windows.Forms.RichTextBox();
@@ -56,8 +56,12 @@ namespace ACNHPokerCore
             this.WaitMessagebox = new System.Windows.Forms.RichTextBox();
             this.MapProgressBar = new System.Windows.Forms.ProgressBar();
             this.NowLoading = new System.Windows.Forms.PictureBox();
-            this.label29 = new System.Windows.Forms.Label();
+            this.PleaseWaitLabel = new System.Windows.Forms.Label();
             this.ProgressTimer = new System.Windows.Forms.Timer(this.components);
+            this.IgnoreSpaceToggle = new JCS.ToggleSwitch();
+            this.ignoreSpaceLabel = new System.Windows.Forms.Label();
+            this.numOfSpaceLabel = new System.Windows.Forms.Label();
+            this.numOfSpaceBox = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.miniMapBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HeightImageBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DirectionImageBox)).BeginInit();
@@ -208,7 +212,7 @@ namespace ACNHPokerCore
             this.numOfItemBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numOfItemBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.numOfItemBox.ForeColor = System.Drawing.Color.Gray;
-            this.numOfItemBox.Location = new System.Drawing.Point(596, 82);
+            this.numOfItemBox.Location = new System.Drawing.Point(596, 80);
             this.numOfItemBox.Margin = new System.Windows.Forms.Padding(4);
             this.numOfItemBox.MaxLength = 3;
             this.numOfItemBox.Multiline = false;
@@ -218,17 +222,17 @@ namespace ACNHPokerCore
             this.numOfItemBox.TabIndex = 227;
             this.numOfItemBox.Text = "0";
             // 
-            // label1
+            // numOfItemLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(468, 82);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(106, 16);
-            this.label1.TabIndex = 228;
-            this.label1.Text = "Num of Items :";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.numOfItemLabel.AutoSize = true;
+            this.numOfItemLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.numOfItemLabel.ForeColor = System.Drawing.Color.White;
+            this.numOfItemLabel.Location = new System.Drawing.Point(468, 82);
+            this.numOfItemLabel.Name = "numOfItemLabel";
+            this.numOfItemLabel.Size = new System.Drawing.Size(106, 16);
+            this.numOfItemLabel.TabIndex = 228;
+            this.numOfItemLabel.Text = "Num of Items :";
+            this.numOfItemLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // HeightImageBox
             // 
@@ -240,17 +244,17 @@ namespace ACNHPokerCore
             this.HeightImageBox.TabIndex = 229;
             this.HeightImageBox.TabStop = false;
             // 
-            // label2
+            // heightLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(55, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 16);
-            this.label2.TabIndex = 230;
-            this.label2.Text = "Height :";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.heightLabel.AutoSize = true;
+            this.heightLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.heightLabel.ForeColor = System.Drawing.Color.White;
+            this.heightLabel.Location = new System.Drawing.Point(55, 22);
+            this.heightLabel.Name = "heightLabel";
+            this.heightLabel.Size = new System.Drawing.Size(61, 16);
+            this.heightLabel.TabIndex = 230;
+            this.heightLabel.Text = "Height :";
+            this.heightLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DirectionImageBox
             // 
@@ -262,54 +266,56 @@ namespace ACNHPokerCore
             this.DirectionImageBox.TabIndex = 231;
             this.DirectionImageBox.TabStop = false;
             // 
-            // label3
+            // directionLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(55, 85);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 16);
-            this.label3.TabIndex = 232;
-            this.label3.Text = "Direction :";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.directionLabel.AutoSize = true;
+            this.directionLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.directionLabel.ForeColor = System.Drawing.Color.White;
+            this.directionLabel.Location = new System.Drawing.Point(55, 85);
+            this.directionLabel.Name = "directionLabel";
+            this.directionLabel.Size = new System.Drawing.Size(79, 16);
+            this.directionLabel.TabIndex = 232;
+            this.directionLabel.Text = "Direction :";
+            this.directionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label4
+            // XLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(470, 13);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(24, 16);
-            this.label4.TabIndex = 233;
-            this.label4.Text = "X :";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.XLabel.AutoSize = true;
+            this.XLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.XLabel.ForeColor = System.Drawing.Color.White;
+            this.XLabel.Location = new System.Drawing.Point(470, 13);
+            this.XLabel.Name = "XLabel";
+            this.XLabel.Size = new System.Drawing.Size(24, 16);
+            this.XLabel.TabIndex = 233;
+            this.XLabel.Text = "X :";
+            this.XLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label5
+            // YLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(570, 13);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(25, 16);
-            this.label5.TabIndex = 234;
-            this.label5.Text = "Y :";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.YLabel.AutoSize = true;
+            this.YLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.YLabel.ForeColor = System.Drawing.Color.White;
+            this.YLabel.Location = new System.Drawing.Point(570, 13);
+            this.YLabel.Name = "YLabel";
+            this.YLabel.Size = new System.Drawing.Size(25, 16);
+            this.YLabel.TabIndex = 234;
+            this.YLabel.Text = "Y :";
+            this.YLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // settingPanel
             // 
+            this.settingPanel.Controls.Add(this.ignoreSpaceLabel);
+            this.settingPanel.Controls.Add(this.IgnoreSpaceToggle);
             this.settingPanel.Controls.Add(this.warningMessage);
             this.settingPanel.Controls.Add(this.widthNumber);
             this.settingPanel.Controls.Add(this.widthLabel);
             this.settingPanel.Controls.Add(this.rightBtn);
             this.settingPanel.Controls.Add(this.heightNumber);
             this.settingPanel.Controls.Add(this.leftBtn);
-            this.settingPanel.Controls.Add(this.label3);
+            this.settingPanel.Controls.Add(this.directionLabel);
             this.settingPanel.Controls.Add(this.HeightImageBox);
             this.settingPanel.Controls.Add(this.DirectionImageBox);
-            this.settingPanel.Controls.Add(this.label2);
+            this.settingPanel.Controls.Add(this.heightLabel);
             this.settingPanel.Controls.Add(this.previewBtn);
             this.settingPanel.Controls.Add(this.spawnBtn);
             this.settingPanel.Location = new System.Drawing.Point(465, 127);
@@ -368,7 +374,7 @@ namespace ACNHPokerCore
             this.PleaseWaitPanel.Controls.Add(this.WaitMessagebox);
             this.PleaseWaitPanel.Controls.Add(this.MapProgressBar);
             this.PleaseWaitPanel.Controls.Add(this.NowLoading);
-            this.PleaseWaitPanel.Controls.Add(this.label29);
+            this.PleaseWaitPanel.Controls.Add(this.PleaseWaitLabel);
             this.PleaseWaitPanel.Location = new System.Drawing.Point(465, 328);
             this.PleaseWaitPanel.Name = "PleaseWaitPanel";
             this.PleaseWaitPanel.Size = new System.Drawing.Size(198, 60);
@@ -408,33 +414,90 @@ namespace ACNHPokerCore
             this.NowLoading.TabIndex = 216;
             this.NowLoading.TabStop = false;
             // 
-            // label29
+            // PleaseWaitLabel
             // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label29.ForeColor = System.Drawing.Color.White;
-            this.label29.Location = new System.Drawing.Point(64, 7);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(99, 16);
-            this.label29.TabIndex = 215;
-            this.label29.Text = "Please Wait...";
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.PleaseWaitLabel.AutoSize = true;
+            this.PleaseWaitLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.PleaseWaitLabel.ForeColor = System.Drawing.Color.White;
+            this.PleaseWaitLabel.Location = new System.Drawing.Point(64, 7);
+            this.PleaseWaitLabel.Name = "PleaseWaitLabel";
+            this.PleaseWaitLabel.Size = new System.Drawing.Size(99, 16);
+            this.PleaseWaitLabel.TabIndex = 215;
+            this.PleaseWaitLabel.Text = "Please Wait...";
+            this.PleaseWaitLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ProgressTimer
             // 
             this.ProgressTimer.Interval = 1000;
             this.ProgressTimer.Tick += new System.EventHandler(this.ProgressTimer_Tick);
             // 
+            // IgnoreSpaceToggle
+            // 
+            this.IgnoreSpaceToggle.Checked = true;
+            this.IgnoreSpaceToggle.Location = new System.Drawing.Point(140, 121);
+            this.IgnoreSpaceToggle.Name = "IgnoreSpaceToggle";
+            this.IgnoreSpaceToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.IgnoreSpaceToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.IgnoreSpaceToggle.Size = new System.Drawing.Size(35, 16);
+            this.IgnoreSpaceToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            this.IgnoreSpaceToggle.TabIndex = 236;
+            this.IgnoreSpaceToggle.UseAnimation = false;
+            this.IgnoreSpaceToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.IgnoreSpaceToggle_CheckedChanged);
+            // 
+            // ignoreSpaceLabel
+            // 
+            this.ignoreSpaceLabel.AutoSize = true;
+            this.ignoreSpaceLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ignoreSpaceLabel.ForeColor = System.Drawing.Color.White;
+            this.ignoreSpaceLabel.Location = new System.Drawing.Point(26, 121);
+            this.ignoreSpaceLabel.Name = "ignoreSpaceLabel";
+            this.ignoreSpaceLabel.Size = new System.Drawing.Size(108, 16);
+            this.ignoreSpaceLabel.TabIndex = 237;
+            this.ignoreSpaceLabel.Text = "Ignore Space :";
+            this.ignoreSpaceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // numOfSpaceLabel
+            // 
+            this.numOfSpaceLabel.AutoSize = true;
+            this.numOfSpaceLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.numOfSpaceLabel.ForeColor = System.Drawing.Color.White;
+            this.numOfSpaceLabel.Location = new System.Drawing.Point(468, 104);
+            this.numOfSpaceLabel.Name = "numOfSpaceLabel";
+            this.numOfSpaceLabel.Size = new System.Drawing.Size(111, 16);
+            this.numOfSpaceLabel.TabIndex = 237;
+            this.numOfSpaceLabel.Text = "Num of Space :";
+            this.numOfSpaceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.numOfSpaceLabel.Visible = false;
+            // 
+            // numOfSpaceBox
+            // 
+            this.numOfSpaceBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
+            this.numOfSpaceBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.numOfSpaceBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.numOfSpaceBox.ForeColor = System.Drawing.Color.Gray;
+            this.numOfSpaceBox.Location = new System.Drawing.Point(596, 102);
+            this.numOfSpaceBox.Margin = new System.Windows.Forms.Padding(4);
+            this.numOfSpaceBox.MaxLength = 3;
+            this.numOfSpaceBox.Multiline = false;
+            this.numOfSpaceBox.Name = "numOfSpaceBox";
+            this.numOfSpaceBox.ReadOnly = true;
+            this.numOfSpaceBox.Size = new System.Drawing.Size(61, 18);
+            this.numOfSpaceBox.TabIndex = 238;
+            this.numOfSpaceBox.Text = "0";
+            this.numOfSpaceBox.Visible = false;
+            // 
             // bulkSpawn
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.ClientSize = new System.Drawing.Size(674, 411);
+            this.Controls.Add(this.numOfSpaceBox);
+            this.Controls.Add(this.numOfSpaceLabel);
             this.Controls.Add(this.PleaseWaitPanel);
             this.Controls.Add(this.settingPanel);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.YLabel);
+            this.Controls.Add(this.XLabel);
+            this.Controls.Add(this.numOfItemLabel);
             this.Controls.Add(this.numOfItemBox);
             this.Controls.Add(this.selectBtn);
             this.Controls.Add(this.miniMapBox);
@@ -477,13 +540,13 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Button spawnBtn;
         private System.Windows.Forms.Button previewBtn;
         private System.Windows.Forms.RichTextBox numOfItemBox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label numOfItemLabel;
         private System.Windows.Forms.PictureBox HeightImageBox;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label heightLabel;
         private System.Windows.Forms.PictureBox DirectionImageBox;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label directionLabel;
+        private System.Windows.Forms.Label XLabel;
+        private System.Windows.Forms.Label YLabel;
         private System.Windows.Forms.Panel settingPanel;
         private System.Windows.Forms.RichTextBox widthNumber;
         private System.Windows.Forms.Label widthLabel;
@@ -492,7 +555,11 @@ namespace ACNHPokerCore
         private System.Windows.Forms.RichTextBox WaitMessagebox;
         private System.Windows.Forms.ProgressBar MapProgressBar;
         private System.Windows.Forms.PictureBox NowLoading;
-        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label PleaseWaitLabel;
         private System.Windows.Forms.Timer ProgressTimer;
+        private System.Windows.Forms.Label ignoreSpaceLabel;
+        private JCS.ToggleSwitch IgnoreSpaceToggle;
+        private System.Windows.Forms.Label numOfSpaceLabel;
+        private System.Windows.Forms.RichTextBox numOfSpaceBox;
     }
 }
