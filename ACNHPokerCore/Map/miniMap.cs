@@ -578,9 +578,10 @@ namespace ACNHPokerCore
             return myBitmap;
         }
 
-        public Bitmap drawPreview(int row, int column, int x, int y, bool right)
+        public Bitmap drawPreview(int row, int column, int x, int y, bool right, bool[] isSpace = null)
         {
             int[][] previewtilesType = null;
+            int Counter = 0;
 
             if (right)
             {
@@ -593,9 +594,23 @@ namespace ACNHPokerCore
                     for (int j = 0; j < numOfRow; j++)
                     {
                         if (i == x && j == y)
+                        {
                             previewtilesType[i][j] = 2;
+                            Counter++;
+                        }
                         else if (i >= x && i < x + column && j >= y && j < y + row)
-                            previewtilesType[i][j] = 1;
+                        {
+                            if (isSpace != null)
+                            {
+                                if (isSpace[Counter] == true)
+                                    previewtilesType[i][j] = 3;
+                                else
+                                    previewtilesType[i][j] = 1;
+                            }
+                            else
+                                previewtilesType[i][j] = 1;
+                            Counter++;
+                        }
                         else
                             previewtilesType[i][j] = 0;
                     }
@@ -612,11 +627,27 @@ namespace ACNHPokerCore
                     for (int j = 0; j < numOfRow; j++)
                     {
                         if (i == x && j == y)
+                        {
                             previewtilesType[i][j] = 2;
+                            Counter++;
+                        }
                         else if (i <= x && i > x - column && j >= y && j < y + row)
-                            previewtilesType[i][j] = 1;
+                        {
+                            if (isSpace != null)
+                            {
+                                if (isSpace[Counter] == true)
+                                    previewtilesType[i][j] = 3;
+                                else
+                                    previewtilesType[i][j] = 1;
+                            }
+                            else
+                                previewtilesType[i][j] = 1;
+                            Counter++;
+                        }
                         else
                             previewtilesType[i][j] = 0;
+
+                        Counter++;
                     }
                 }
             }
@@ -639,6 +670,8 @@ namespace ACNHPokerCore
                             PutPixel(gr, i * mapSize, j * mapSize, Color.FromArgb(200, Color.Red));
                         else if (previewtilesType[i][j] == 2)
                             PutPixel(gr, i * mapSize, j * mapSize, Color.LightSkyBlue);
+                        else if (previewtilesType[i][j] == 3)
+                            PutPixel(gr, i * mapSize, j * mapSize, Color.FromArgb(100, Color.Red));
 
                     }
                 }

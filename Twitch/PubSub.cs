@@ -534,7 +534,7 @@ namespace Twitch
                     return;
                 }
 
-                
+
                 string Rname = RealName[Iname];
                 /*
                 Image img;

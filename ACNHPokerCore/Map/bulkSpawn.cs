@@ -25,6 +25,10 @@ namespace ACNHPokerCore
         private byte[] Building = null;
 
         private byte[][] item = null;
+        private byte[][] itemWithSpace = null;
+        private int numOfitem = 0;
+        private int numOfSpace = 0;
+        private bool[] isSpace;
         private int rowNum;
         private byte[][] SpawnArea = null;
         private bool spawnlock = false;
@@ -97,16 +101,20 @@ namespace ACNHPokerCore
 
             byte[] data = File.ReadAllBytes(file.FileName);
 
-            item = processNHBS(data);
-            numOfItemBox.Text = item.Length.ToString();
+            processNHBS(data);
+            numOfItemBox.Text = numOfitem.ToString();
+            numOfSpaceBox.Text = numOfSpace.ToString();
             settingPanel.Visible = true;
         }
 
-        private byte[][] processNHBS(byte[] data)
+        private void processNHBS(byte[] data)
         {
             byte[] tempItem = new byte[8];
             bool[] isItem = new bool[data.Length / 8];
-            int numOfitem = 0;
+            isSpace = new bool[data.Length / 8];
+
+            numOfitem = 0;
+            numOfSpace = 0;
 
             for (int i = 0; i < data.Length / 8; i++)
             {
@@ -115,11 +123,20 @@ namespace ACNHPokerCore
                 {
                     isItem[i] = true;
                     numOfitem++;
+                    isSpace[i] = false;
+                }
+                else
+                {
+                    numOfSpace++;
+                    isSpace[i] = true;
                 }
             }
 
-            byte[][] item = new byte[numOfitem][];
+            item = new byte[numOfitem][];
+            itemWithSpace = new byte[numOfitem + numOfSpace][];
+
             int itemNum = 0;
+            
             for (int j = 0; j < data.Length / 8; j++)
             {
                 if (isItem[j])
@@ -128,9 +145,10 @@ namespace ACNHPokerCore
                     Buffer.BlockCopy(data, 0x8 * j, item[itemNum], 0, 8);
                     itemNum++;
                 }
-            }
 
-            return item;
+                itemWithSpace[j] = new byte[8];
+                Buffer.BlockCopy(data, 0x8 * j, itemWithSpace[j], 0, 8);
+            }
         }
 
         private void previewBtn_Click(object sender, EventArgs e)
@@ -158,7 +176,10 @@ namespace ACNHPokerCore
                 xCoordinate.Text = anchorX.ToString();
                 yCoordinate.Text = anchorY.ToString();
 
-                miniMapBox.Image = MiniMap.drawPreview(rowNum, SpawnArea.Length / 2, anchorX, anchorY, right);
+                if (IgnoreSpaceToggle.Checked)
+                    miniMapBox.Image = MiniMap.drawPreview(rowNum, SpawnArea.Length / 2, anchorX, anchorY, right);
+                else
+                    miniMapBox.Image = MiniMap.drawPreview(rowNum, SpawnArea.Length / 2, anchorX, anchorY, right, isSpace);
 
                 if (anchorY + rowNum > 96)
                 {
@@ -188,12 +209,22 @@ namespace ACNHPokerCore
             int itemNum = 0;
             byte[] emptyLeft = Utilities.stringToByte("FEFF000000000000FEFF000000000000");
             byte[] emptyRight = Utilities.stringToByte("FEFF000000000000FEFF000000000000");
+            byte[][] processingArea;
+
+            if (IgnoreSpaceToggle.Checked)
+            {
+                processingArea = item;
+            }
+            else
+            {
+                processingArea = itemWithSpace;
+            }
 
             int numberOfColumn;
-            if (item.Length % t == 0)
-                numberOfColumn = (item.Length / t);
+            if (processingArea.Length % t == 0)
+                numberOfColumn = (processingArea.Length / t);
             else
-                numberOfColumn = (item.Length / t + 1);
+                numberOfColumn = (processingArea.Length / t + 1);
 
             int sizeOfRow = 16;
 
@@ -208,9 +239,9 @@ namespace ACNHPokerCore
             {
                 for (int j = 0; j < t; j++)
                 {
-                    if (itemNum < item.Length)
+                    if (itemNum < processingArea.Length)
                     {
-                        transformToFloorItem(ref b[i * 2], ref b[i * 2 + 1], j, item[itemNum]);
+                        transformToFloorItem(ref b[i * 2], ref b[i * 2 + 1], j, processingArea[itemNum]);
                         itemNum++;
                     }
                     else
@@ -220,8 +251,6 @@ namespace ACNHPokerCore
                     }
                 }
             }
-
-
             return b;
         }
 
@@ -240,7 +269,11 @@ namespace ACNHPokerCore
             string itemID = Utilities.flip(Utilities.ByteToHexString(slotBytes));
             string itemData = Utilities.flip(Utilities.ByteToHexString(dataBytes));
             string flag1 = Utilities.ByteToHexString(flag1Bytes);
-            string flag2 = "20";
+            string flag2;
+            if (itemID == "FFFE" || itemID == "FFFD")
+                flag2 = "00";
+            else
+                flag2 = "20";
 
             byte[] dropItemLeft = Utilities.stringToByte(Utilities.buildDropStringLeft(itemID, itemData, flag1, flag2));
             byte[] dropItemRight = Utilities.stringToByte(Utilities.buildDropStringRight(itemID));
@@ -434,6 +467,8 @@ namespace ACNHPokerCore
 
                     if (((0x1518 - (currentFrameStr - lastFrameStr))) < 30 * second)
                         return true;
+                    else if (((0x1518 - (currentFrameStr - lastFrameStr))) >= 30 * 175)
+                        return true;
                     else
                     {
                         Debug.Print(((0x1518 - (currentFrameStr - lastFrameStr))).ToString());
@@ -443,7 +478,7 @@ namespace ACNHPokerCore
             }
             catch (Exception ex)
             {
-                MyLog.logEvent("BulkSpawn", "sAboutToSave: " + ex.Message.ToString());
+                MyLog.logEvent("BulkSpawn", "isAboutToSave: " + ex.Message.ToString());
                 MyMessageBox.Show(ex.Message.ToString(), "This is utterly fucking retarded.");
                 return false;
             }
@@ -495,6 +530,24 @@ namespace ACNHPokerCore
             if (!(c >= '0' && c <= '9'))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void IgnoreSpaceToggle_CheckedChanged(object sender, EventArgs e)
+        {
+            miniMapBox.Image = null;
+            warningMessage.Visible = false;
+            spawnBtn.Visible = false;
+
+            if (IgnoreSpaceToggle.Checked)
+            {
+                numOfSpaceLabel.Visible = false;
+                numOfSpaceBox.Visible = false;
+            }
+            else
+            {
+                numOfSpaceLabel.Visible = true;
+                numOfSpaceBox.Visible = true;
             }
         }
     }
