@@ -385,9 +385,10 @@ namespace ACNHPokerCore
                     {
                         byte[] Acre = Utilities.getAcre(s, null);
                         byte[] Building = Utilities.getBuilding(s, null);
+                        Byte[] Terrain = Utilities.getTerrain(s, null);
 
                         if (MiniMap == null)
-                            MiniMap = new miniMap(data, Acre, Building);
+                            MiniMap = new miniMap(data, Acre, Building, Terrain);
 
                         miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawBackground(), MiniMap.drawItemMap());
                     }

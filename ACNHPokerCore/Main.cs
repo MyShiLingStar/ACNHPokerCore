@@ -178,6 +178,7 @@ namespace ACNHPokerCore
                 ItemGridView.Columns["dut"].Visible = false;
                 ItemGridView.Columns["rus"].Visible = false;
                 ItemGridView.Columns["color"].Visible = false;
+                ItemGridView.Columns["size"].Visible = false;
 
                 ItemGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 ItemGridView.DefaultCellStyle.BackColor = Color.FromArgb(255, 47, 49, 54);
@@ -8269,6 +8270,8 @@ namespace ACNHPokerCore
             {
                 ItemGridView.Columns["id"].Visible = true;
                 ItemGridView.Columns["iName"].Visible = true;
+                ItemGridView.Columns["color"].Visible = true;
+                ItemGridView.Columns["size"].Visible = true;
             }
             else if (currentPanel == RecipeModePanel)
             {

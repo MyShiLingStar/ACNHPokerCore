@@ -59,6 +59,8 @@ namespace ACNHPokerCore
         private DataTable currentDataTable;
         private bool sound;
         private bool ignore = false;
+        private bool keepProtection = false;
+        private int keepProtectionCounter = 0;
         public static int numOfColumn = 0;
         public static int numOfRow = 0;
 
@@ -66,6 +68,7 @@ namespace ACNHPokerCore
         byte[] Layer2 = null;
         byte[] Acre = null;
         byte[] Building = null;
+        byte[] Terrain = null;
 
         public event CloseHandler closeForm;
 
@@ -254,11 +257,12 @@ namespace ACNHPokerCore
                 Layer2 = Utilities.getMapLayer(s, bot, layer2Address, ref counter);
                 Acre = Utilities.getAcre(s, bot);
                 Building = Utilities.getBuilding(s, bot);
+                Terrain = Utilities.getTerrain(s, bot);
 
                 if (Layer1 != null && Layer2 != null && Acre != null)
                 {
                     if (MiniMap == null)
-                        MiniMap = new miniMap(Layer1, Acre, Building, 2);
+                        MiniMap = new miniMap(Layer1, Acre, Building, Terrain, 2);
                 }
                 else
                     throw new NullReferenceException("Layer1/Layer2/Acre");
@@ -1220,6 +1224,7 @@ namespace ACNHPokerCore
 
                         IdTextbox.Text = id;
                         HexTextbox.Text = "00000000";
+                        SizeBox.Text = fieldGridView.Rows[e.RowIndex].Cells["size"].Value.ToString().Replace("_5",".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("x", "x ");
 
                         selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), 0x0, GetImagePathFromID(id, source), true, "");
                     }
@@ -1231,6 +1236,7 @@ namespace ACNHPokerCore
 
                         IdTextbox.Text = id;
                         HexTextbox.Text = Utilities.precedingZeros(hexValue, 8);
+                        SizeBox.Text = "";
 
                         selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(hexValue, recipeSource), true, "");
                     }
@@ -1244,7 +1250,7 @@ namespace ACNHPokerCore
                         HexTextbox.Text = Utilities.precedingZeros(hexValue, 8);
 
                         selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source), true, "");
-
+                        SizeBox.Text = "";
                     }
                     else if (currentDataTable == favSource)
                     {
@@ -1254,6 +1260,7 @@ namespace ACNHPokerCore
 
                         IdTextbox.Text = id;
                         HexTextbox.Text = Utilities.precedingZeros(hexValue, 8);
+                        SizeBox.Text = "";
 
                         selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source, Convert.ToUInt32("0x" + hexValue, 16)), true, "");
                     }
@@ -3975,7 +3982,7 @@ namespace ACNHPokerCore
 
         private void saveTopngToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            miniMap big = new miniMap(Layer1, Acre, Building, 4);
+            miniMap big = new miniMap(Layer1, Acre, Building, Terrain, 4);
             SaveFileDialog file = new SaveFileDialog()
             {
                 Filter = "Portable Network Graphics (*.png)|*.png",
@@ -4140,7 +4147,7 @@ namespace ACNHPokerCore
         private void bulkSpawnToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (bulk == null)
-                bulk = new bulkSpawn(s, bot, Layer1, Layer2, Acre, Building, anchorX, anchorY, this, ignore, sound); ;
+                bulk = new bulkSpawn(s, bot, Layer1, Layer2, Acre, Building, Terrain, anchorX, anchorY, this, ignore, sound); ;
             bulk.StartPosition = FormStartPosition.CenterParent;
             bulk.ShowDialog();
         }
@@ -4737,24 +4744,39 @@ namespace ACNHPokerCore
         {
             if (saveTime <= -30)
             {
-                NextSaveTimer.Stop();
-                DialogResult result = MyMessageBox.Show("It seems autosave have been paused.\n" +
-                                                "You might have a visitor on your island, or your inventory stay open.\n" +
-                                                "Or you are at the title screen waiting to \"Press A\".\n" +
-                                                "Or you are still listening to Isabelle's useless announcement...\n\n" +
-                                                "Anyhow, would you like the Map Dropper to ignore the autosave protection at the moment?\n\n" +
-                                                "Note that spawning item during autosave might crash the game."
-                                                , "Waiting for autosave to complete...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
+                if (!keepProtection)
                 {
-                    ignore = true;
-                    nextAutoSaveSecond.Text = string.Empty;
-                    MyLog.logEvent("Map", "Autosave Ignored");
+                    NextSaveTimer.Stop();
+                    DialogResult result = MyMessageBox.Show("It seems autosave have been paused.\n" +
+                                                    "You might have a visitor on your island, or your inventory stay open.\n" +
+                                                    "Or you are at the title screen waiting to \"Press A\".\n" +
+                                                    "Or you are still listening to Isabelle's useless announcement...\n\n" +
+                                                    "Anyhow, would you like the Map Dropper to ignore the autosave protection at the moment?\n\n" +
+                                                    "Note that spawning item during autosave might crash the game."
+                                                    , "Waiting for autosave to complete...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        ignore = true;
+                        nextAutoSaveSecond.Text = string.Empty;
+                        MyLog.logEvent("Map", "Autosave Ignored");
+                    }
+                    else
+                    {
+                        keepProtection = true;
+                        saveTime = nextAutosave();
+                        nextAutoSaveSecond.Text = saveTime.ToString();
+                        NextSaveTimer.Start();
+                        keepProtectionCounter++;
+                    }
                 }
                 else
                 {
-                    saveTime = nextAutosave();
-                    NextSaveTimer.Start();
+                    if (keepProtectionCounter % 10 == 0)
+                    {
+                        saveTime = nextAutosave();
+                        nextAutoSaveSecond.Text = saveTime.ToString();
+                    }
+                    keepProtectionCounter++;
                 }
             }
             else if (saveTime <= 0)
@@ -5454,7 +5476,7 @@ namespace ACNHPokerCore
                 int main = variationList.GetLength(0);
                 int sub = variationList.GetLength(1);
 
-                variationSpawn variationSpawner = new variationSpawn(variationList, Layer1, Acre, Building, TopLeftX, TopLeftY);
+                variationSpawn variationSpawner = new variationSpawn(variationList, Layer1, Acre, Building, Terrain, TopLeftX, TopLeftY);
                 int result = (int)variationSpawner.ShowDialog(this);
 
                 if (result == 1) // Main

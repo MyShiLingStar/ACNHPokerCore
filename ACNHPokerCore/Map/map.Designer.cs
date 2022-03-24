@@ -167,6 +167,7 @@ namespace ACNHPokerCore
             this.FlashTimer = new System.Windows.Forms.Timer(this.components);
             this.HexTextbox = new ACNHPokerCore.HexUpDown();
             this.selectedItem = new ACNHPokerCore.inventorySlot();
+            this.SizeBox = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.fieldGridView)).BeginInit();
             this.BtnPanel.SuspendLayout();
             this.floorRightClick.SuspendLayout();
@@ -3131,11 +3132,27 @@ namespace ACNHPokerCore
             this.selectedItem.UseVisualStyleBackColor = false;
             this.selectedItem.Click += new System.EventHandler(this.selectedItem_Click);
             // 
+            // SizeBox
+            // 
+            this.SizeBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
+            this.SizeBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.SizeBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SizeBox.ForeColor = System.Drawing.Color.White;
+            this.SizeBox.Location = new System.Drawing.Point(683, 606);
+            this.SizeBox.MaxLength = 30;
+            this.SizeBox.Multiline = false;
+            this.SizeBox.Name = "SizeBox";
+            this.SizeBox.ReadOnly = true;
+            this.SizeBox.Size = new System.Drawing.Size(125, 18);
+            this.SizeBox.TabIndex = 236;
+            this.SizeBox.Text = "";
+            // 
             // map
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.ClientSize = new System.Drawing.Size(1204, 631);
+            this.Controls.Add(this.SizeBox);
             this.Controls.Add(this.HexTextbox);
             this.Controls.Add(this.Language);
             this.Controls.Add(this.panel1);
@@ -3350,5 +3367,6 @@ namespace ACNHPokerCore
         private System.Windows.Forms.ComboBox Language;
         private System.Windows.Forms.Timer FlashTimer;
         private HexUpDown HexTextbox;
+        private System.Windows.Forms.RichTextBox SizeBox;
     }
 }

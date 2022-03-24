@@ -24,6 +24,7 @@ namespace ACNHPokerCore
         private byte[] Layer1;
         private byte[] Acre;
         private byte[] Building;
+        private byte[] Terrain;
 
         private byte[][] buildingList = null;
         private const int BuildingSize = 0x14;
@@ -71,11 +72,12 @@ namespace ACNHPokerCore
                 //Layer2 = Utilities.getMapLayer(s, bot, layer2Address, ref counter);
                 Acre = Utilities.getAcre(s, null);
                 Building = Utilities.getBuilding(s, null);
+                Terrain = Utilities.getTerrain(s, null);
 
                 if (Layer1 != null && Acre != null)
                 {
                     if (MiniMap == null)
-                        MiniMap = new miniMap(Layer1, Acre, Building, 4);
+                        MiniMap = new miniMap(Layer1, Acre, Building, Terrain, 4);
                 }
                 else
                     throw new NullReferenceException("Layer1/Acre");
