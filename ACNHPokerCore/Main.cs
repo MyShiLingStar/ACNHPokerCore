@@ -1209,7 +1209,7 @@ namespace ACNHPokerCore
 
                                 if (DataValidation())
                                 {
-                                    string sysbotbaseVersion = Utilities.CheckSysBotBase(socket);
+                                    string sysbotbaseVersion = Utilities.CheckSysBotBase(socket,usb);
                                     MyMessageBox.Show("You have successfully established a connection!\n" +
                                                     "Your Sys-botbase installation and IP address are correct.\n" +
                                                     "However...\n" +
@@ -7797,7 +7797,7 @@ namespace ACNHPokerCore
 
         private void VersionButton_Click(object sender, EventArgs e)
         {
-            MyMessageBox.Show(Utilities.CheckSysBotBase(socket), "Sys-botbase Version");
+            MyMessageBox.Show(Utilities.CheckSysBotBase(socket, usb), "Sys-botbase Version");
         }
 
         private void CheckStateButton_Click(object sender, EventArgs e)
@@ -8280,6 +8280,92 @@ namespace ACNHPokerCore
             }
             else
                 return;
+        }
+
+        private void USBConnectionButton_Click(object sender, EventArgs e)
+        {
+            if (USBConnectionButton.Tag.ToString() == "connect")
+            {
+                usb = new USBBot();
+                if (usb.Connect())
+                {
+                    MyLog.logEvent("MainForm", "Connection Succeeded : USB");
+
+                    this.RefreshButton.Visible = true;
+                    this.PlayerInventorySelector.Visible = true;
+
+                    this.InventoryAutoRefreshToggle.Visible = true;
+                    this.AutoRefreshLabel.Visible = true;
+
+                    this.OtherTabButton.Visible = true;
+                    this.CritterTabButton.Visible = true;
+                    this.VillagerTabButton.Visible = true;
+
+                    this.WrapSelector.SelectedIndex = 0;
+
+                    this.USBConnectionButton.Text = "Disconnect";
+                    this.USBConnectionButton.Tag = "Disconnect";
+                    this.StartConnectionButton.Visible = false;
+                    this.SettingButton.Visible = false;
+
+                    offline = false;
+
+                    CurrentPlayerIndex = updateDropdownBox();
+
+                    PlayerInventorySelector.SelectedIndex = CurrentPlayerIndex;
+                    PlayerInventorySelectorOther.SelectedIndex = CurrentPlayerIndex;
+                    this.Text = this.Text + UpdateTownID() + "|  [Connected via USB]";
+
+                    setEatButton();
+                    UpdateTurnipPrices();
+                    readWeatherSeed();
+
+                    this.IPAddressInputBox.Visible = false;
+                    this.IPAddressInputBackground.Visible = false;
+
+                    currentGridView = InsectGridView;
+                    LoadGridView(InsectAppearParam, InsectGridView, ref insectRate, Utilities.InsectDataSize, Utilities.InsectNumRecords);
+                    LoadGridView(FishRiverAppearParam, RiverFishGridView, ref riverFishRate, Utilities.FishDataSize, Utilities.FishRiverNumRecords, 1);
+                    LoadGridView(FishSeaAppearParam, SeaFishGridView, ref seaFishRate, Utilities.FishDataSize, Utilities.FishSeaNumRecords, 1);
+                    LoadGridView(CreatureSeaAppearParam, SeaCreatureGridView, ref seaCreatureRate, Utilities.SeaCreatureDataSize, Utilities.SeaCreatureNumRecords, 1);
+                }
+                else
+                {
+                    MyLog.logEvent("MainForm", "Connection Failed : USB");
+                    usb = null;
+                }
+            }
+            else
+            {
+                usb.Disconnect();
+
+                foreach (inventorySlot btn in this.InventoryPanel.Controls.OfType<inventorySlot>())
+                {
+                    btn.reset();
+                }
+
+                this.RefreshButton.Visible = false;
+                this.PlayerInventorySelector.Visible = false;
+
+                this.InventoryAutoRefreshToggle.Visible = false;
+                this.AutoRefreshLabel.Visible = false;
+
+                this.OtherTabButton.Visible = false;
+                this.CritterTabButton.Visible = false;
+                this.VillagerTabButton.Visible = false;
+
+                this.SettingButton.Visible = true;
+
+                this.IPAddressInputBox.Visible = true;
+                this.IPAddressInputBackground.Visible = true;
+
+                InventoryTabButton_Click(sender, e);
+                CleanVillagerPage();
+
+                this.USBConnectionButton.Text = "USB";
+                this.USBConnectionButton.Tag = "connect";
+                this.Text = version;
+            }
         }
     }
 }

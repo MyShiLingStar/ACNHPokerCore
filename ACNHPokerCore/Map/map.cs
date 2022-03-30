@@ -137,6 +137,7 @@ namespace ACNHPokerCore
                     fieldGridView.Columns["dut"].Visible = false;
                     fieldGridView.Columns["rus"].Visible = false;
                     fieldGridView.Columns["color"].Visible = false;
+                    fieldGridView.Columns["size"].Visible = false;
 
                     //select the full row and change color cause windows blue sux
                     fieldGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;

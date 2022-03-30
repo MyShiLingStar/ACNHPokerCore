@@ -1648,7 +1648,7 @@ namespace ACNHPokerCore
             this.USBConnectionButton.Tag = "connect";
             this.USBConnectionButton.Text = "USB";
             this.USBConnectionButton.UseVisualStyleBackColor = false;
-            this.USBConnectionButton.Visible = false;
+            this.USBConnectionButton.Click += new System.EventHandler(this.USBConnectionButton_Click);
             // 
             // MapDropperButton
             // 

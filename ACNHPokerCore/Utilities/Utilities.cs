@@ -877,7 +877,8 @@ namespace ACNHPokerCore
                     }
                     else
                     {
-                        bot.WriteBytes(stringToByte(value), Convert.ToUInt32(address, 16));
+                        bot.WriteBytesMain(stringToByte(flip(value)), Convert.ToUInt32(address, 16));
+                        Debug.Print("PokeMain [USB] : " + Convert.ToUInt32(address, 16).ToString() + " " + flip(value).ToString());
                     }
                 }
                 catch
@@ -3007,18 +3008,27 @@ namespace ACNHPokerCore
             }
         }
 
-        public static string CheckSysBotBase(Socket socket)
+        public static string CheckSysBotBase(Socket socket, USBBot usb)
         {
             lock (botLock)
             {
-                byte[] b = new byte[20];
+                if (usb == null)
+                {
+                    byte[] b = new byte[20];
 
-                Debug.Print("[Sys] Sys-BotBase Version");
+                    Debug.Print("[Sys] Sys-BotBase Version");
 
-                SendString(socket, Version());
-                ReceiveString(socket, b);
+                    SendString(socket, Version());
+                    ReceiveString(socket, b);
 
-                return TrimFromZero(Encoding.UTF8.GetString(b).Replace("\n", String.Empty));
+                    return TrimFromZero(Encoding.UTF8.GetString(b).Replace("\n", String.Empty));
+                }
+                else
+                {
+                    byte[] b = usb.GetVersion();
+                    Debug.Print("[USB] Sys-BotBase Version");
+                    return TrimFromZero(Encoding.UTF8.GetString(b).Replace("\n", String.Empty));
+                }
             }
         }
 

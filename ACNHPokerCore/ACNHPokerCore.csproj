@@ -17,11 +17,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <NoWarn>1701;1702;NU1701</NoWarn>
+    <NoWarn>1701;1702;NU1701;CS0169</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <NoWarn>1701;1702;NU1701</NoWarn>
+    <NoWarn>1701;1702;NU1701;CS0169</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -251,7 +251,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="robocopy $(ProjectDir)\csv $(TargetDir)\csv&#xD;&#xA;robocopy $(ProjectDir)\save $(TargetDir)\save&#xD;&#xA;robocopy $(ProjectDir)\VillagerDatabase $(TargetDir)\villager&#xD;&#xA;exit 0" />
+    <Exec Command="robocopy $(ProjectDir)\csv $(TargetDir)\csv&#xD;&#xA;robocopy $(ProjectDir)\save $(TargetDir)\save&#xD;&#xA;robocopy $(ProjectDir)\VillagerDatabase $(TargetDir)\villager&#xD;&#xA;robocopy $(ProjectDir)\plugin $(TargetDir)&#xD;&#xA;exit 0" />
   </Target>
 
 </Project>
