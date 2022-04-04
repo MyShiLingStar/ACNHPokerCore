@@ -7,7 +7,7 @@ using System.Drawing.Imaging;
 
 namespace ACNHPokerCore
 {
-    class miniMap
+    public class miniMap
     {
         private byte[][] ItemMapData;
         private int[][] tilesType;
@@ -58,16 +58,20 @@ namespace ACNHPokerCore
 
             updatePlaza();
 
-            ItemMapData = new byte[numOfColumn][];
-
-            mapSize = size;
-            for (int i = 0; i < numOfColumn; i++)
+            if (ItemMapByte != null)
             {
-                ItemMapData[i] = new byte[columnSize];
-                Buffer.BlockCopy(ItemMapByte, i * columnSize, ItemMapData[i], 0x0, columnSize);
+                ItemMapData = new byte[numOfColumn][];
+
+                mapSize = size;
+                for (int i = 0; i < numOfColumn; i++)
+                {
+                    ItemMapData[i] = new byte[columnSize];
+                    Buffer.BlockCopy(ItemMapByte, i * columnSize, ItemMapData[i], 0x0, columnSize);
+                }
+
+                transformItemMap();
             }
 
-            transformItemMap();
             buildTerrainUnits();
         }
 
@@ -1490,6 +1494,12 @@ namespace ACNHPokerCore
                 BuildingColor = Color.Black;
 
             return BuildingColor;
+        }
+
+        public void updateTerrain(byte[] NewTerrain)
+        {
+            TerrainByte = NewTerrain;
+            buildTerrainUnits();
         }
 
         private static readonly Dictionary<byte, Color> Pixel = new Dictionary<byte, Color>

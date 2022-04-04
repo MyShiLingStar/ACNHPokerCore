@@ -12,10 +12,12 @@ namespace ACNHPokerCore
     {
         Socket socket;
         bool sound;
-        public MyWarning(Socket S, Boolean Sound)
+        miniMap map;
+        public MyWarning(Socket S, Boolean Sound, miniMap Map)
         {
             socket = S;
             sound = Sound;
+            map = Map;
             InitializeComponent();
             this.KeyPreview = true;
         }
@@ -62,6 +64,14 @@ namespace ACNHPokerCore
             counter = 0;
 
             byte[] EmptyTerrainData = new byte[Utilities.AllTerrainSize];
+
+            for (int i = 0; i < Utilities.MapTileCount16x16; i++)
+            {
+                Buffer.BlockCopy(CurrentTerrainData, i * Utilities.TerrainTileSize + 6, EmptyTerrainData, i * Utilities.TerrainTileSize + 6, 6);
+            }
+
+            map.updateTerrain(EmptyTerrainData);
+
             Utilities.sendTerrain(socket, null, EmptyTerrainData, ref counter);
 
             if (sound)

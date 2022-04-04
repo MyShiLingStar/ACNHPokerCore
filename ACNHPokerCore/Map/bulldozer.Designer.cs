@@ -728,7 +728,7 @@ namespace ACNHPokerCore
             this.saveBuildingBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveBuildingBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.saveBuildingBtn.ForeColor = System.Drawing.Color.White;
-            this.saveBuildingBtn.Location = new System.Drawing.Point(7, 64);
+            this.saveBuildingBtn.Location = new System.Drawing.Point(7, 66);
             this.saveBuildingBtn.Name = "saveBuildingBtn";
             this.saveBuildingBtn.Size = new System.Drawing.Size(86, 30);
             this.saveBuildingBtn.TabIndex = 241;
@@ -743,7 +743,7 @@ namespace ACNHPokerCore
             this.loadBuildingBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loadBuildingBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.loadBuildingBtn.ForeColor = System.Drawing.Color.White;
-            this.loadBuildingBtn.Location = new System.Drawing.Point(99, 64);
+            this.loadBuildingBtn.Location = new System.Drawing.Point(99, 66);
             this.loadBuildingBtn.Name = "loadBuildingBtn";
             this.loadBuildingBtn.Size = new System.Drawing.Size(86, 30);
             this.loadBuildingBtn.TabIndex = 240;
@@ -769,7 +769,7 @@ namespace ACNHPokerCore
             this.updateBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.updateBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.updateBtn.ForeColor = System.Drawing.Color.White;
-            this.updateBtn.Location = new System.Drawing.Point(7, 101);
+            this.updateBtn.Location = new System.Drawing.Point(7, 102);
             this.updateBtn.Name = "updateBtn";
             this.updateBtn.Size = new System.Drawing.Size(86, 30);
             this.updateBtn.TabIndex = 238;
@@ -784,7 +784,7 @@ namespace ACNHPokerCore
             this.buildingConfirmBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buildingConfirmBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.buildingConfirmBtn.ForeColor = System.Drawing.Color.White;
-            this.buildingConfirmBtn.Location = new System.Drawing.Point(99, 101);
+            this.buildingConfirmBtn.Location = new System.Drawing.Point(99, 102);
             this.buildingConfirmBtn.Name = "buildingConfirmBtn";
             this.buildingConfirmBtn.Size = new System.Drawing.Size(86, 30);
             this.buildingConfirmBtn.TabIndex = 237;
@@ -1137,9 +1137,9 @@ namespace ACNHPokerCore
             this.Controls.Add(this.RealYCoordinate);
             this.Controls.Add(this.RealXCoordinate);
             this.Controls.Add(this.miniMapBox);
+            this.Controls.Add(this.acrePanel);
             this.Controls.Add(this.terrainPanel);
             this.Controls.Add(this.buildingPanel);
-            this.Controls.Add(this.acrePanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1110, 550);

@@ -3587,7 +3587,7 @@ namespace ACNHPokerCore
         {
             if (B == null)
             {
-                B = new Bulldozer(socket, sound);
+                B = new Bulldozer(socket, usb, sound);
                 B.closeForm += B_closeForm;
                 B.Show();
             }
@@ -4858,6 +4858,22 @@ namespace ACNHPokerCore
             else
             {
                 Utilities.pokeMainAddress(socket, usb, Utilities.CollisionAddress.ToString("X"), Utilities.CollisionEnable);
+                if (sound)
+                    System.Media.SystemSounds.Asterisk.Play();
+            }
+        }
+
+        private void FastSwimToggle_CheckedChanged(object sender, EventArgs e)
+        {
+            if (FastSwimToggle.Checked)
+            {
+                Utilities.SetFastSwimSpeed(socket, usb, true);
+                if (sound)
+                    System.Media.SystemSounds.Asterisk.Play();
+            }
+            else
+            {
+                Utilities.SetFastSwimSpeed(socket, usb, false);
                 if (sound)
                     System.Media.SystemSounds.Asterisk.Play();
             }
@@ -8308,6 +8324,8 @@ namespace ACNHPokerCore
                     this.StartConnectionButton.Visible = false;
                     this.SettingButton.Visible = false;
 
+                    //this.BulldozerButton.Visible = true;
+
                     offline = false;
 
                     CurrentPlayerIndex = updateDropdownBox();
@@ -8366,6 +8384,70 @@ namespace ACNHPokerCore
                 this.USBConnectionButton.Tag = "connect";
                 this.Text = version;
             }
+        }
+
+        int startID = 0x38c8;
+
+        private void FillButton_Click(object sender, EventArgs e)
+        {
+            string Bank1 = "";
+            string Bank2 = "";
+            int counter = 0;
+
+            do
+            {
+                string id = Utilities.precedingZeros(startID.ToString("X"), 4);
+                if (itemExist(id))
+                {
+
+                }
+                else
+                {
+                    string first = Utilities.flip(Utilities.precedingZeros("00" + "00" + id, 8));
+                    string second = "00000000";
+                    if (counter < 20)
+                        Bank1 = Bank1 + first + second;
+                    else
+                        Bank2 = Bank2 + first + second;
+                    counter++;
+                }
+
+                startID++;
+
+            } while (counter < 40);
+
+            byte[] Inventory1 = new byte[160];
+            byte[] Inventory2 = new byte[160];
+
+            for (int i = 0; i < Bank1.Length / 2 - 1; i++)
+            {
+                string tempStr1 = String.Concat(Bank1[(i * 2)].ToString(), Bank1[((i * 2) + 1)].ToString());
+                string tempStr2 = String.Concat(Bank2[(i * 2)].ToString(), Bank2[((i * 2) + 1)].ToString());
+                //Debug.Print(i.ToString() + " " + data);
+                Inventory1[i] = Convert.ToByte(tempStr1, 16);
+                Inventory2[i] = Convert.ToByte(tempStr2, 16);
+            }
+
+            Utilities.OverwriteAll(socket, usb, Inventory1, Inventory2, ref counter);
+
+            UpdateInventory();
+            if (sound)
+                System.Media.SystemSounds.Asterisk.Play();
+        }
+
+        private bool itemExist(string id)
+        {
+            if (itemSource == null)
+            {
+                return false;
+            }
+
+            DataRow row = itemSource.Rows.Find(id);
+
+            if (row == null)
+                return false;
+            else
+                return true;
         }
     }
 }

@@ -337,6 +337,9 @@ namespace ACNHPokerCore
             this.VillagerProgressTimer = new System.Windows.Forms.Timer(this.components);
             this.PeekButton = new System.Windows.Forms.Button();
             this.PokeButton = new System.Windows.Forms.Button();
+            this.FillButton = new System.Windows.Forms.Button();
+            this.FastSwimToggle = new JCS.ToggleSwitch();
+            this.label1 = new System.Windows.Forms.Label();
             VillagerAutoCompleteMenu = new AutocompleteMenuNS.AutocompleteMenu();
             this.AlwaysOnControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IPAddressInputBackground)).BeginInit();
@@ -2295,7 +2298,7 @@ namespace ACNHPokerCore
             this.ClearAllButton.Size = new System.Drawing.Size(100, 23);
             this.ClearAllButton.TabIndex = 34;
             this.ClearAllButton.Tag = "";
-            this.ClearAllButton.Text = "ClearAll";
+            this.ClearAllButton.Text = "Clear All";
             this.ClearAllButton.UseVisualStyleBackColor = false;
             this.ClearAllButton.Click += new System.EventHandler(this.ClearAllButton_Click);
             // 
@@ -4026,6 +4029,8 @@ namespace ACNHPokerCore
             // 
             // CheatPanel
             // 
+            this.CheatPanel.Controls.Add(this.FastSwimToggle);
+            this.CheatPanel.Controls.Add(this.label1);
             this.CheatPanel.Controls.Add(this.DisableCollisionToggle);
             this.CheatPanel.Controls.Add(this.animationSpeedx1);
             this.CheatPanel.Controls.Add(this.animationSpeedx0_1);
@@ -4050,7 +4055,7 @@ namespace ACNHPokerCore
             // 
             // DisableCollisionToggle
             // 
-            this.DisableCollisionToggle.Location = new System.Drawing.Point(190, 203);
+            this.DisableCollisionToggle.Location = new System.Drawing.Point(190, 188);
             this.DisableCollisionToggle.Name = "DisableCollisionToggle";
             this.DisableCollisionToggle.OffFont = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.DisableCollisionToggle.OffForeColor = System.Drawing.Color.White;
@@ -4272,7 +4277,7 @@ namespace ACNHPokerCore
             this.DisableCollisionLabel.AutoSize = true;
             this.DisableCollisionLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.DisableCollisionLabel.ForeColor = System.Drawing.Color.White;
-            this.DisableCollisionLabel.Location = new System.Drawing.Point(11, 203);
+            this.DisableCollisionLabel.Location = new System.Drawing.Point(11, 188);
             this.DisableCollisionLabel.Name = "DisableCollisionLabel";
             this.DisableCollisionLabel.Size = new System.Drawing.Size(177, 22);
             this.DisableCollisionLabel.TabIndex = 79;
@@ -7436,11 +7441,55 @@ namespace ACNHPokerCore
             this.PokeButton.UseVisualStyleBackColor = false;
             this.PokeButton.Click += new System.EventHandler(this.PokeButton_Click);
             // 
+            // FillButton
+            // 
+            this.FillButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.FillButton.FlatAppearance.BorderSize = 0;
+            this.FillButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.FillButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.FillButton.ForeColor = System.Drawing.Color.White;
+            this.FillButton.Location = new System.Drawing.Point(1059, 556);
+            this.FillButton.Name = "FillButton";
+            this.FillButton.Size = new System.Drawing.Size(79, 55);
+            this.FillButton.TabIndex = 50;
+            this.FillButton.Tag = "";
+            this.FillButton.Text = "Fill";
+            this.FillButton.UseVisualStyleBackColor = false;
+            this.FillButton.Click += new System.EventHandler(this.FillButton_Click);
+            // 
+            // FastSwimToggle
+            // 
+            this.FastSwimToggle.Location = new System.Drawing.Point(190, 220);
+            this.FastSwimToggle.Name = "FastSwimToggle";
+            this.FastSwimToggle.OffFont = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.FastSwimToggle.OffForeColor = System.Drawing.Color.White;
+            this.FastSwimToggle.OffText = "Off";
+            this.FastSwimToggle.OnFont = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.FastSwimToggle.OnForeColor = System.Drawing.Color.White;
+            this.FastSwimToggle.OnText = "On";
+            this.FastSwimToggle.Size = new System.Drawing.Size(71, 22);
+            this.FastSwimToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            this.FastSwimToggle.TabIndex = 95;
+            this.FastSwimToggle.UseAnimation = false;
+            this.FastSwimToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.FastSwimToggle_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(12, 220);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(177, 22);
+            this.label1.TabIndex = 94;
+            this.label1.Text = "Swim Club Mode :";
+            // 
             // Main
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.ClientSize = new System.Drawing.Size(1204, 516);
+            this.Controls.Add(this.FillButton);
             this.Controls.Add(this.FullPeekResult5);
             this.Controls.Add(this.FullPeekResult4);
             this.Controls.Add(this.FullPeekResult3);
@@ -7835,5 +7884,8 @@ namespace ACNHPokerCore
         private System.Windows.Forms.RichTextBox FullPeekResult3;
         private System.Windows.Forms.RichTextBox FullPeekResult4;
         private System.Windows.Forms.RichTextBox FullPeekResult5;
+        private System.Windows.Forms.Button FillButton;
+        private JCS.ToggleSwitch FastSwimToggle;
+        private System.Windows.Forms.Label label1;
     }
 }
