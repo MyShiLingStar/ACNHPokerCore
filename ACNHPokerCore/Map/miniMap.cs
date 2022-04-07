@@ -306,6 +306,11 @@ namespace ACNHPokerCore
             return myBitmap;
         }
 
+        public string getTerrainData(int x, int y)
+        {
+            return terrainUnits[x][y].DisplayData();
+        }
+
         public Bitmap drawFullBuildingMap()
         {
             if (BuildingByte != null)

@@ -946,7 +946,8 @@ namespace ACNHPokerCore
                                     "Part2 : " + button.part2.ToString("X") + " " + Utilities.precedingZeros(button.part2Data.ToString("X"), 8) + "\n" +
                                     "Part3 : " + button.part3.ToString("X") + " " + Utilities.precedingZeros(button.part3Data.ToString("X"), 8) + "\n" +
                                     "Part4 : " + button.part4.ToString("X") + " " + Utilities.precedingZeros(button.part4Data.ToString("X"), 8) + "\n" +
-                                    "Locked : " + locked
+                                    //"Locked : " + locked + 
+                                    "Terrain : " + MiniMap.getTerrainData(button.mapX, button.mapY)
                                     );
         }
         #endregion
@@ -4701,10 +4702,13 @@ namespace ACNHPokerCore
 
                 int currentFrameStr = Convert.ToInt32("0x" + Utilities.flip(Utilities.ByteToHexString(currentFrame)), 16);
                 int lastFrameStr = Convert.ToInt32("0x" + Utilities.flip(Utilities.ByteToHexString(lastFrame)), 16);
+                int FrameRemain = ((0x1518 - (currentFrameStr - lastFrameStr)));
 
-                if (((0x1518 - (currentFrameStr - lastFrameStr))) < 30 * second)
+                if (FrameRemain < 30 * second) // Not enough
                     return true;
-                else if (((0x1518 - (currentFrameStr - lastFrameStr))) >= 30 * 175)
+                else if (FrameRemain >= 30 * 300) // Have too too many for some reason?
+                    return false;
+                else if (FrameRemain >= 30 * 175) // Just finish save buffer
                     return true;
                 else
                 {
