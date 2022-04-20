@@ -104,7 +104,7 @@ namespace ACNHPokerCore
 
             if (b == null)
                 return true;
-            if (b[0] != 0)
+            if (b[0] == 1)
                 return true;
             else
             {

@@ -28,6 +28,8 @@ namespace ACNHPokerCore
     public partial class Main : Form
     {
         #region variable
+        private static bool DEBUGGING = false;
+
         private static Socket socket;
         private static USBBot usb = null;
         private string version = "ACNHPokerCore R20 for v2.0.5";
@@ -453,6 +455,15 @@ namespace ACNHPokerCore
             Utilities.buildDictionary();
 
             this.KeyPreview = true;
+
+            if (DEBUGGING)
+            {
+                this.MapDropperButton.Visible = true;
+                this.RegeneratorButton.Visible = true;
+                this.FreezerButton.Visible = true;
+                this.DodoHelperButton.Visible = true;
+                this.BulldozerButton.Visible = true;
+            }
         }
 
         private void Setting_toggleSound(bool SoundOn)

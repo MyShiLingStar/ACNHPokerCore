@@ -317,9 +317,38 @@ namespace ACNHPokerCore
 
                 Debug.Print("Length :" + SpawnArea.Length + " Time : " + time);
 
+                int counter = 0;
 
                 while (isAboutToSave(time + 10))
                 {
+                    if (counter > 5)
+                    {
+                        DialogResult result = MyMessageBox.Show("Something seems to be wrong with the autosave detection.\n" +
+                                                        "Would you like to ignore the autosave protection and spawn the item(s) anyway?\n\n" +
+                                                        "Please be noted that spawning item during autosave might crash the game."
+                                                        , "Waiting for autosave to complete...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (result == DialogResult.Yes)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            if (sound)
+                                System.Media.SystemSounds.Asterisk.Play();
+
+                            hideMapWait();
+
+                            spawnlock = false;
+
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                main.moveAnchor(anchorX, anchorY);
+                                this.Close();
+                            });
+                            return;
+                        }
+                    }
+                    counter++;
                     Thread.Sleep(5000);
                 }
 
@@ -455,7 +484,7 @@ namespace ACNHPokerCore
 
                 if (b == null)
                     return true;
-                if (b[0] != 0)
+                if (b[0] == 1)
                     return true;
                 else
                 {

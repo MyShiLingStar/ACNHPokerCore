@@ -155,7 +155,7 @@ namespace ACNHPokerCore
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.bulkSpawnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nextAutoSaveSecond = new System.Windows.Forms.RichTextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.EstimateNextSaveLabel = new System.Windows.Forms.Label();
             this.NextSaveTimer = new System.Windows.Forms.Timer(this.components);
             this.Corner1YBox = new System.Windows.Forms.RichTextBox();
             this.Corner1XBox = new System.Windows.Forms.RichTextBox();
@@ -2951,17 +2951,19 @@ namespace ACNHPokerCore
             this.nextAutoSaveSecond.Size = new System.Drawing.Size(40, 18);
             this.nextAutoSaveSecond.TabIndex = 224;
             this.nextAutoSaveSecond.Text = "";
+            this.nextAutoSaveSecond.DoubleClick += new System.EventHandler(this.nextAutoSaveSecond_DoubleClick);
             // 
-            // label6
+            // EstimateNextSaveLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(38, 4);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(116, 16);
-            this.label6.TabIndex = 225;
-            this.label6.Text = "Est. Next Save :";
+            this.EstimateNextSaveLabel.AutoSize = true;
+            this.EstimateNextSaveLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.EstimateNextSaveLabel.ForeColor = System.Drawing.Color.White;
+            this.EstimateNextSaveLabel.Location = new System.Drawing.Point(38, 4);
+            this.EstimateNextSaveLabel.Name = "EstimateNextSaveLabel";
+            this.EstimateNextSaveLabel.Size = new System.Drawing.Size(116, 16);
+            this.EstimateNextSaveLabel.TabIndex = 225;
+            this.EstimateNextSaveLabel.Text = "Est. Next Save :";
+            this.EstimateNextSaveLabel.DoubleClick += new System.EventHandler(this.nextAutoSaveSecond_DoubleClick);
             // 
             // NextSaveTimer
             // 
@@ -3163,7 +3165,7 @@ namespace ACNHPokerCore
             this.Controls.Add(this.Corner1YBox);
             this.Controls.Add(this.Corner1XBox);
             this.Controls.Add(this.nextAutoSaveSecond);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.EstimateNextSaveLabel);
             this.Controls.Add(this.saveDebug);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -3348,7 +3350,7 @@ namespace ACNHPokerCore
         private System.Windows.Forms.ToolStripMenuItem bushesToolStripMenuItem;
         private System.Windows.Forms.Button saveDebug;
         private System.Windows.Forms.RichTextBox nextAutoSaveSecond;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label EstimateNextSaveLabel;
         private System.Windows.Forms.Timer NextSaveTimer;
         private System.Windows.Forms.RichTextBox Corner1YBox;
         private System.Windows.Forms.RichTextBox Corner1XBox;
