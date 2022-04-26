@@ -23,6 +23,7 @@ namespace ACNHPokerCore
         private byte[] Layer2 = null;
         private byte[] Acre = null;
         private byte[] Building = null;
+        private byte[] Terrain = null;
 
         private byte[][] item = null;
         private byte[][] itemWithSpace = null;
@@ -32,7 +33,7 @@ namespace ACNHPokerCore
         private int rowNum;
         private byte[][] SpawnArea = null;
         private bool spawnlock = false;
-        public bulkSpawn(Socket S, USBBot Bot, byte[] layer1, byte[] layer2, byte[] acre, byte[] building, int x, int y, map Map, bool Ignore, bool Sound)
+        public bulkSpawn(Socket S, USBBot Bot, byte[] layer1, byte[] layer2, byte[] acre, byte[] building, byte[] terrain, int x, int y, map Map, bool Ignore, bool Sound)
         {
             try
             {
@@ -42,12 +43,13 @@ namespace ACNHPokerCore
                 Layer2 = layer2;
                 Acre = acre;
                 Building = building;
+                Terrain = terrain;
                 anchorX = x;
                 anchorY = y;
                 main = Map;
                 ignore = Ignore;
                 sound = Sound;
-                MiniMap = new miniMap(Layer1, Acre, Building, 4);
+                MiniMap = new miniMap(Layer1, Acre, Building, Terrain, 4);
                 InitializeComponent();
                 xCoordinate.Text = x.ToString();
                 yCoordinate.Text = y.ToString();
@@ -315,9 +317,38 @@ namespace ACNHPokerCore
 
                 Debug.Print("Length :" + SpawnArea.Length + " Time : " + time);
 
+                int counter = 0;
 
                 while (isAboutToSave(time + 10))
                 {
+                    if (counter > 5)
+                    {
+                        DialogResult result = MyMessageBox.Show("Something seems to be wrong with the autosave detection.\n" +
+                                                        "Would you like to ignore the autosave protection and spawn the item(s) anyway?\n\n" +
+                                                        "Please be noted that spawning item during autosave might crash the game."
+                                                        , "Waiting for autosave to complete...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (result == DialogResult.Yes)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            if (sound)
+                                System.Media.SystemSounds.Asterisk.Play();
+
+                            hideMapWait();
+
+                            spawnlock = false;
+
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                main.moveAnchor(anchorX, anchorY);
+                                this.Close();
+                            });
+                            return;
+                        }
+                    }
+                    counter++;
                     Thread.Sleep(5000);
                 }
 
@@ -453,7 +484,7 @@ namespace ACNHPokerCore
 
                 if (b == null)
                     return true;
-                if (b[0] != 0)
+                if (b[0] == 1)
                     return true;
                 else
                 {
@@ -464,10 +495,13 @@ namespace ACNHPokerCore
 
                     int currentFrameStr = Convert.ToInt32("0x" + Utilities.flip(Utilities.ByteToHexString(currentFrame)), 16);
                     int lastFrameStr = Convert.ToInt32("0x" + Utilities.flip(Utilities.ByteToHexString(lastFrame)), 16);
+                    int FrameRemain = ((0x1518 - (currentFrameStr - lastFrameStr)));
 
-                    if (((0x1518 - (currentFrameStr - lastFrameStr))) < 30 * second)
+                    if (FrameRemain < 30 * second) // Not enough
                         return true;
-                    else if (((0x1518 - (currentFrameStr - lastFrameStr))) >= 30 * 175)
+                    else if (FrameRemain >= 30 * 300) // Have too too many for some reason?
+                        return false;
+                    else if (FrameRemain >= 30 * 175) // Just finish save buffer
                         return true;
                     else
                     {

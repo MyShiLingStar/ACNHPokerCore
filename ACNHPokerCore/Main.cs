@@ -28,6 +28,8 @@ namespace ACNHPokerCore
     public partial class Main : Form
     {
         #region variable
+        private static bool DEBUGGING = false;
+
         private static Socket socket;
         private static USBBot usb = null;
         private string version = "ACNHPokerCore R20 for v2.0.5";
@@ -178,6 +180,7 @@ namespace ACNHPokerCore
                 ItemGridView.Columns["dut"].Visible = false;
                 ItemGridView.Columns["rus"].Visible = false;
                 ItemGridView.Columns["color"].Visible = false;
+                ItemGridView.Columns["size"].Visible = false;
 
                 ItemGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 ItemGridView.DefaultCellStyle.BackColor = Color.FromArgb(255, 47, 49, 54);
@@ -452,6 +455,15 @@ namespace ACNHPokerCore
             Utilities.buildDictionary();
 
             this.KeyPreview = true;
+
+            if (DEBUGGING)
+            {
+                this.MapDropperButton.Visible = true;
+                this.RegeneratorButton.Visible = true;
+                this.FreezerButton.Visible = true;
+                this.DodoHelperButton.Visible = true;
+                this.BulldozerButton.Visible = true;
+            }
         }
 
         private void Setting_toggleSound(bool SoundOn)
@@ -1208,7 +1220,7 @@ namespace ACNHPokerCore
 
                                 if (DataValidation())
                                 {
-                                    string sysbotbaseVersion = Utilities.CheckSysBotBase(socket);
+                                    string sysbotbaseVersion = Utilities.CheckSysBotBase(socket,usb);
                                     MyMessageBox.Show("You have successfully established a connection!\n" +
                                                     "Your Sys-botbase installation and IP address are correct.\n" +
                                                     "However...\n" +
@@ -3586,7 +3598,7 @@ namespace ACNHPokerCore
         {
             if (B == null)
             {
-                B = new Bulldozer(socket, sound);
+                B = new Bulldozer(socket, usb, sound);
                 B.closeForm += B_closeForm;
                 B.Show();
             }
@@ -4857,6 +4869,22 @@ namespace ACNHPokerCore
             else
             {
                 Utilities.pokeMainAddress(socket, usb, Utilities.CollisionAddress.ToString("X"), Utilities.CollisionEnable);
+                if (sound)
+                    System.Media.SystemSounds.Asterisk.Play();
+            }
+        }
+
+        private void FastSwimToggle_CheckedChanged(object sender, EventArgs e)
+        {
+            if (FastSwimToggle.Checked)
+            {
+                Utilities.SetFastSwimSpeed(socket, usb, true);
+                if (sound)
+                    System.Media.SystemSounds.Asterisk.Play();
+            }
+            else
+            {
+                Utilities.SetFastSwimSpeed(socket, usb, false);
                 if (sound)
                     System.Media.SystemSounds.Asterisk.Play();
             }
@@ -7796,7 +7824,7 @@ namespace ACNHPokerCore
 
         private void VersionButton_Click(object sender, EventArgs e)
         {
-            MyMessageBox.Show(Utilities.CheckSysBotBase(socket), "Sys-botbase Version");
+            MyMessageBox.Show(Utilities.CheckSysBotBase(socket, usb), "Sys-botbase Version");
         }
 
         private void CheckStateButton_Click(object sender, EventArgs e)
@@ -8269,6 +8297,8 @@ namespace ACNHPokerCore
             {
                 ItemGridView.Columns["id"].Visible = true;
                 ItemGridView.Columns["iName"].Visible = true;
+                ItemGridView.Columns["color"].Visible = true;
+                ItemGridView.Columns["size"].Visible = true;
             }
             else if (currentPanel == RecipeModePanel)
             {
@@ -8277,6 +8307,158 @@ namespace ACNHPokerCore
             }
             else
                 return;
+        }
+
+        private void USBConnectionButton_Click(object sender, EventArgs e)
+        {
+            if (USBConnectionButton.Tag.ToString() == "connect")
+            {
+                usb = new USBBot();
+                if (usb.Connect())
+                {
+                    MyLog.logEvent("MainForm", "Connection Succeeded : USB");
+
+                    this.RefreshButton.Visible = true;
+                    this.PlayerInventorySelector.Visible = true;
+
+                    this.InventoryAutoRefreshToggle.Visible = true;
+                    this.AutoRefreshLabel.Visible = true;
+
+                    this.OtherTabButton.Visible = true;
+                    this.CritterTabButton.Visible = true;
+                    this.VillagerTabButton.Visible = true;
+
+                    this.WrapSelector.SelectedIndex = 0;
+
+                    this.USBConnectionButton.Text = "Disconnect";
+                    this.USBConnectionButton.Tag = "Disconnect";
+                    this.StartConnectionButton.Visible = false;
+                    this.SettingButton.Visible = false;
+
+                    //this.BulldozerButton.Visible = true;
+
+                    offline = false;
+
+                    CurrentPlayerIndex = updateDropdownBox();
+
+                    PlayerInventorySelector.SelectedIndex = CurrentPlayerIndex;
+                    PlayerInventorySelectorOther.SelectedIndex = CurrentPlayerIndex;
+                    this.Text = this.Text + UpdateTownID() + "|  [Connected via USB]";
+
+                    setEatButton();
+                    UpdateTurnipPrices();
+                    readWeatherSeed();
+
+                    this.IPAddressInputBox.Visible = false;
+                    this.IPAddressInputBackground.Visible = false;
+
+                    currentGridView = InsectGridView;
+                    LoadGridView(InsectAppearParam, InsectGridView, ref insectRate, Utilities.InsectDataSize, Utilities.InsectNumRecords);
+                    LoadGridView(FishRiverAppearParam, RiverFishGridView, ref riverFishRate, Utilities.FishDataSize, Utilities.FishRiverNumRecords, 1);
+                    LoadGridView(FishSeaAppearParam, SeaFishGridView, ref seaFishRate, Utilities.FishDataSize, Utilities.FishSeaNumRecords, 1);
+                    LoadGridView(CreatureSeaAppearParam, SeaCreatureGridView, ref seaCreatureRate, Utilities.SeaCreatureDataSize, Utilities.SeaCreatureNumRecords, 1);
+                }
+                else
+                {
+                    MyLog.logEvent("MainForm", "Connection Failed : USB");
+                    usb = null;
+                }
+            }
+            else
+            {
+                usb.Disconnect();
+
+                foreach (inventorySlot btn in this.InventoryPanel.Controls.OfType<inventorySlot>())
+                {
+                    btn.reset();
+                }
+
+                this.RefreshButton.Visible = false;
+                this.PlayerInventorySelector.Visible = false;
+
+                this.InventoryAutoRefreshToggle.Visible = false;
+                this.AutoRefreshLabel.Visible = false;
+
+                this.OtherTabButton.Visible = false;
+                this.CritterTabButton.Visible = false;
+                this.VillagerTabButton.Visible = false;
+
+                this.SettingButton.Visible = true;
+
+                this.IPAddressInputBox.Visible = true;
+                this.IPAddressInputBackground.Visible = true;
+
+                InventoryTabButton_Click(sender, e);
+                CleanVillagerPage();
+
+                this.USBConnectionButton.Text = "USB";
+                this.USBConnectionButton.Tag = "connect";
+                this.Text = version;
+            }
+        }
+
+        int startID = 0x38c8;
+
+        private void FillButton_Click(object sender, EventArgs e)
+        {
+            string Bank1 = "";
+            string Bank2 = "";
+            int counter = 0;
+
+            do
+            {
+                string id = Utilities.precedingZeros(startID.ToString("X"), 4);
+                if (itemExist(id))
+                {
+
+                }
+                else
+                {
+                    string first = Utilities.flip(Utilities.precedingZeros("00" + "00" + id, 8));
+                    string second = "00000000";
+                    if (counter < 20)
+                        Bank1 = Bank1 + first + second;
+                    else
+                        Bank2 = Bank2 + first + second;
+                    counter++;
+                }
+
+                startID++;
+
+            } while (counter < 40);
+
+            byte[] Inventory1 = new byte[160];
+            byte[] Inventory2 = new byte[160];
+
+            for (int i = 0; i < Bank1.Length / 2 - 1; i++)
+            {
+                string tempStr1 = String.Concat(Bank1[(i * 2)].ToString(), Bank1[((i * 2) + 1)].ToString());
+                string tempStr2 = String.Concat(Bank2[(i * 2)].ToString(), Bank2[((i * 2) + 1)].ToString());
+                //Debug.Print(i.ToString() + " " + data);
+                Inventory1[i] = Convert.ToByte(tempStr1, 16);
+                Inventory2[i] = Convert.ToByte(tempStr2, 16);
+            }
+
+            Utilities.OverwriteAll(socket, usb, Inventory1, Inventory2, ref counter);
+
+            UpdateInventory();
+            if (sound)
+                System.Media.SystemSounds.Asterisk.Play();
+        }
+
+        private bool itemExist(string id)
+        {
+            if (itemSource == null)
+            {
+                return false;
+            }
+
+            DataRow row = itemSource.Rows.Find(id);
+
+            if (row == null)
+                return false;
+            else
+                return true;
         }
     }
 }

@@ -18,6 +18,7 @@ namespace ACNHPokerCore
         private byte[] Layer1 = null;
         private byte[] Acre = null;
         private byte[] Building = null;
+        private byte[] Terrain = null;
         private bool previewOn = false;
 
         int main;
@@ -25,11 +26,12 @@ namespace ACNHPokerCore
         int X;
         int Y;
 
-        public variationSpawn(inventorySlot[,] variationList, byte[] layer1, byte[] acre, byte[] building, int x, int y)
+        public variationSpawn(inventorySlot[,] variationList, byte[] layer1, byte[] acre, byte[] building, byte[] terrain, int x, int y)
         {
             Layer1 = layer1;
             Acre = acre;
             Building = building;
+            Terrain = terrain;
             X = x;
             Y = y;
 
@@ -153,7 +155,7 @@ namespace ACNHPokerCore
 
             updateSize();
 
-            MiniMap = new miniMap(Layer1, Acre, Building, 4);
+            MiniMap = new miniMap(Layer1, Acre, Building, Terrain, 4);
             miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawBackground(), MiniMap.drawItemMap());
         }
 

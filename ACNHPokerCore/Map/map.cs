@@ -59,6 +59,8 @@ namespace ACNHPokerCore
         private DataTable currentDataTable;
         private bool sound;
         private bool ignore = false;
+        private bool keepProtection = false;
+        private int keepProtectionCounter = 0;
         public static int numOfColumn = 0;
         public static int numOfRow = 0;
 
@@ -66,6 +68,7 @@ namespace ACNHPokerCore
         byte[] Layer2 = null;
         byte[] Acre = null;
         byte[] Building = null;
+        byte[] Terrain = null;
 
         public event CloseHandler closeForm;
 
@@ -134,6 +137,7 @@ namespace ACNHPokerCore
                     fieldGridView.Columns["dut"].Visible = false;
                     fieldGridView.Columns["rus"].Visible = false;
                     fieldGridView.Columns["color"].Visible = false;
+                    fieldGridView.Columns["size"].Visible = false;
 
                     //select the full row and change color cause windows blue sux
                     fieldGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -254,11 +258,12 @@ namespace ACNHPokerCore
                 Layer2 = Utilities.getMapLayer(s, bot, layer2Address, ref counter);
                 Acre = Utilities.getAcre(s, bot);
                 Building = Utilities.getBuilding(s, bot);
+                Terrain = Utilities.getTerrain(s, bot);
 
                 if (Layer1 != null && Layer2 != null && Acre != null)
                 {
                     if (MiniMap == null)
-                        MiniMap = new miniMap(Layer1, Acre, Building, 2);
+                        MiniMap = new miniMap(Layer1, Acre, Building, Terrain, 2);
                 }
                 else
                     throw new NullReferenceException("Layer1/Layer2/Acre");
@@ -941,7 +946,8 @@ namespace ACNHPokerCore
                                     "Part2 : " + button.part2.ToString("X") + " " + Utilities.precedingZeros(button.part2Data.ToString("X"), 8) + "\n" +
                                     "Part3 : " + button.part3.ToString("X") + " " + Utilities.precedingZeros(button.part3Data.ToString("X"), 8) + "\n" +
                                     "Part4 : " + button.part4.ToString("X") + " " + Utilities.precedingZeros(button.part4Data.ToString("X"), 8) + "\n" +
-                                    "Locked : " + locked
+                                    //"Locked : " + locked + 
+                                    "Terrain : " + MiniMap.getTerrainData(button.mapX, button.mapY)
                                     );
         }
         #endregion
@@ -1220,6 +1226,7 @@ namespace ACNHPokerCore
 
                         IdTextbox.Text = id;
                         HexTextbox.Text = "00000000";
+                        SizeBox.Text = fieldGridView.Rows[e.RowIndex].Cells["size"].Value.ToString().Replace("_5",".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("x", "x ");
 
                         selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), 0x0, GetImagePathFromID(id, source), true, "");
                     }
@@ -1231,6 +1238,7 @@ namespace ACNHPokerCore
 
                         IdTextbox.Text = id;
                         HexTextbox.Text = Utilities.precedingZeros(hexValue, 8);
+                        SizeBox.Text = "";
 
                         selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(hexValue, recipeSource), true, "");
                     }
@@ -1244,7 +1252,7 @@ namespace ACNHPokerCore
                         HexTextbox.Text = Utilities.precedingZeros(hexValue, 8);
 
                         selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source), true, "");
-
+                        SizeBox.Text = "";
                     }
                     else if (currentDataTable == favSource)
                     {
@@ -1254,6 +1262,7 @@ namespace ACNHPokerCore
 
                         IdTextbox.Text = id;
                         HexTextbox.Text = Utilities.precedingZeros(hexValue, 8);
+                        SizeBox.Text = "";
 
                         selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source, Convert.ToUInt32("0x" + hexValue, 16)), true, "");
                     }
@@ -2057,14 +2066,38 @@ namespace ACNHPokerCore
         {
             showMapWait(2, "Spawning Item...");
 
-            while (isAboutToSave(10))
+            int c = 0;
+
+            while (isAboutToSave(5))
             {
-                this.Invoke((MethodInvoker)delegate
+                if (c > 10)
                 {
-                    disableBtn();
-                });
+                    if (ignoreAutosave())
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            enableBtn();
+                        });
+
+                        if (sound)
+                            System.Media.SystemSounds.Asterisk.Play();
+
+                        hideMapWait();
+                        return;
+                    }
+                }
+                c++;
                 Thread.Sleep(3000);
             }
+
+            this.Invoke((MethodInvoker)delegate
+            {
+                disableBtn();
+            });
 
             Utilities.dropItem(s, bot, address, itemID, itemData, flag1, flag2);
 
@@ -2299,8 +2332,31 @@ namespace ACNHPokerCore
 
                 Debug.Print("Length :" + SpawnArea.Length + " Time : " + time);
 
+                int c = 0;
+
                 while (isAboutToSave(time + 10))
                 {
+                    if (c > 10)
+                    {
+                        if (ignoreAutosave())
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                enableBtn();
+                            });
+
+                            if (sound)
+                                System.Media.SystemSounds.Asterisk.Play();
+
+                            hideMapWait();
+                            return;
+                        }
+                    }
+                    c++;
                     Thread.Sleep(3000);
                 }
 
@@ -2531,9 +2587,31 @@ namespace ACNHPokerCore
 
                 Debug.Print("Length :" + numberOfColumn + " Time : " + time);
 
+                int c = 0;
 
                 while (isAboutToSave(time + 10))
                 {
+                    if (c > 10)
+                    {
+                        if (ignoreAutosave())
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                enableBtn();
+                            });
+
+                            if (sound)
+                                System.Media.SystemSounds.Asterisk.Play();
+
+                            hideMapWait();
+                            return;
+                        }
+                    }
+                    c++;
                     Thread.Sleep(3000);
                 }
 
@@ -2736,14 +2814,38 @@ namespace ACNHPokerCore
         {
             showMapWait(2, "Deleting Item...");
 
-            while (isAboutToSave(10))
+            int c = 0;
+
+            while (isAboutToSave(5))
             {
-                this.Invoke((MethodInvoker)delegate
+                if (c > 10)
                 {
-                    disableBtn();
-                });
+                    if (ignoreAutosave())
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            enableBtn();
+                        });
+
+                        if (sound)
+                            System.Media.SystemSounds.Asterisk.Play();
+
+                        hideMapWait();
+                        return;
+                    }
+                }
+                c++;
                 Thread.Sleep(3000);
             }
+
+            this.Invoke((MethodInvoker)delegate
+            {
+                disableBtn();
+            });
 
             Utilities.deleteFloorItem(s, bot, address);
 
@@ -2945,8 +3047,31 @@ namespace ACNHPokerCore
                 else
                     return;
 
+                int c = 0;
+
                 while (isAboutToSave(10))
                 {
+                    if (c > 10)
+                    {
+                        if (ignoreAutosave())
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                enableBtn();
+                            });
+
+                            if (sound)
+                                System.Media.SystemSounds.Asterisk.Play();
+
+                            hideMapWait();
+                            return;
+                        }
+                    }
+                    c++;
                     Thread.Sleep(3000);
                 }
 
@@ -3072,8 +3197,31 @@ namespace ACNHPokerCore
                 else
                     return;
 
+                int c = 0;
+
                 while (isAboutToSave(10))
                 {
+                    if (c > 10)
+                    {
+                        if (ignoreAutosave())
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                enableBtn();
+                            });
+
+                            if (sound)
+                                System.Media.SystemSounds.Asterisk.Play();
+
+                            hideMapWait();
+                            return;
+                        }
+                    }
+                    c++;
                     Thread.Sleep(3000);
                 }
 
@@ -3358,11 +3506,6 @@ namespace ACNHPokerCore
                 }
                 else
                     return;
-
-                /*while (isAboutToSave(5))
-                {
-                    Thread.Sleep(2000);
-                }*/
 
                 List<Task> tasks = new List<Task>
                 {
@@ -3975,7 +4118,7 @@ namespace ACNHPokerCore
 
         private void saveTopngToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            miniMap big = new miniMap(Layer1, Acre, Building, 4);
+            miniMap big = new miniMap(Layer1, Acre, Building, Terrain, 4);
             SaveFileDialog file = new SaveFileDialog()
             {
                 Filter = "Portable Network Graphics (*.png)|*.png",
@@ -4140,7 +4283,7 @@ namespace ACNHPokerCore
         private void bulkSpawnToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (bulk == null)
-                bulk = new bulkSpawn(s, bot, Layer1, Layer2, Acre, Building, anchorX, anchorY, this, ignore, sound); ;
+                bulk = new bulkSpawn(s, bot, Layer1, Layer2, Acre, Building, Terrain, anchorX, anchorY, this, ignore, sound); ;
             bulk.StartPosition = FormStartPosition.CenterParent;
             bulk.ShowDialog();
         }
@@ -4531,8 +4674,31 @@ namespace ACNHPokerCore
 
                 Debug.Print("Length :" + num + " Time : " + (num + 3));
 
+                int c = 0;
+
                 while (isAboutToSave(num))
                 {
+                    if (c > 10)
+                    {
+                        if (ignoreAutosave())
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                enableBtn();
+                            });
+
+                            if (sound)
+                                System.Media.SystemSounds.Asterisk.Play();
+
+                            hideMapWait();
+                            return;
+                        }
+                    }
+                    c++;
                     Thread.Sleep(3000);
                 }
 
@@ -4589,8 +4755,31 @@ namespace ACNHPokerCore
 
                 Debug.Print("Length :" + num + " Time : " + (num + 3));
 
+                int c = 0;
+
                 while (isAboutToSave(num + 10))
                 {
+                    if (c > 10)
+                    {
+                        if (ignoreAutosave())
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                enableBtn();
+                            });
+
+                            if (sound)
+                                System.Media.SystemSounds.Asterisk.Play();
+
+                            hideMapWait();
+                            return;
+                        }
+                    }
+                    c++;
                     Thread.Sleep(3000);
                 }
 
@@ -4682,7 +4871,7 @@ namespace ACNHPokerCore
 
             if (b == null)
                 return true;
-            if (b[0] != 0)
+            if (b[0] == 1)
                 return true;
             else
             {
@@ -4693,10 +4882,13 @@ namespace ACNHPokerCore
 
                 int currentFrameStr = Convert.ToInt32("0x" + Utilities.flip(Utilities.ByteToHexString(currentFrame)), 16);
                 int lastFrameStr = Convert.ToInt32("0x" + Utilities.flip(Utilities.ByteToHexString(lastFrame)), 16);
+                int FrameRemain = ((0x1518 - (currentFrameStr - lastFrameStr)));
 
-                if (((0x1518 - (currentFrameStr - lastFrameStr))) < 30 * second)
+                if (FrameRemain < 30 * second) // Not enough
                     return true;
-                else if (((0x1518 - (currentFrameStr - lastFrameStr))) >= 30 * 175)
+                else if (FrameRemain >= 30 * 300) // Have too too many for some reason?
+                    return false;
+                else if (FrameRemain >= 30 * 175) // Just finish save buffer
                     return true;
                 else
                 {
@@ -4737,24 +4929,39 @@ namespace ACNHPokerCore
         {
             if (saveTime <= -30)
             {
-                NextSaveTimer.Stop();
-                DialogResult result = MyMessageBox.Show("It seems autosave have been paused.\n" +
-                                                "You might have a visitor on your island, or your inventory stay open.\n" +
-                                                "Or you are at the title screen waiting to \"Press A\".\n" +
-                                                "Or you are still listening to Isabelle's useless announcement...\n\n" +
-                                                "Anyhow, would you like the Map Dropper to ignore the autosave protection at the moment?\n\n" +
-                                                "Note that spawning item during autosave might crash the game."
-                                                , "Waiting for autosave to complete...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
+                if (!keepProtection)
                 {
-                    ignore = true;
-                    nextAutoSaveSecond.Text = string.Empty;
-                    MyLog.logEvent("Map", "Autosave Ignored");
+                    NextSaveTimer.Stop();
+                    DialogResult result = MyMessageBox.Show("It seems autosave have been paused.\n" +
+                                                    "You might have a visitor on your island, or your inventory stay open.\n" +
+                                                    "Or you are at the title screen waiting to \"Press A\".\n" +
+                                                    "Or you are still listening to Isabelle's useless announcement...\n\n" +
+                                                    "Anyhow, would you like the Map Dropper to ignore the autosave protection at the moment?\n\n" +
+                                                    "Note that spawning item during autosave might crash the game."
+                                                    , "Waiting for autosave to complete...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        ignore = true;
+                        nextAutoSaveSecond.ForeColor = Color.Red;
+                        MyLog.logEvent("Map", "Autosave Ignored");
+                    }
+                    else
+                    {
+                        keepProtection = true;
+                        saveTime = nextAutosave();
+                        nextAutoSaveSecond.Text = saveTime.ToString();
+                        NextSaveTimer.Start();
+                        keepProtectionCounter++;
+                    }
                 }
                 else
                 {
-                    saveTime = nextAutosave();
-                    NextSaveTimer.Start();
+                    if (keepProtectionCounter % 10 == 0)
+                    {
+                        saveTime = nextAutosave();
+                        nextAutoSaveSecond.Text = saveTime.ToString();
+                    }
+                    keepProtectionCounter++;
                 }
             }
             else if (saveTime <= 0)
@@ -4865,8 +5072,31 @@ namespace ACNHPokerCore
                 UInt32 address6 = (UInt32)(address + (0xC00 * (anchorX + 2)) + (0x10 * (anchorY - 3)));
                 UInt32 address7 = (UInt32)(address + (0xC00 * (anchorX + 3)) + (0x10 * (anchorY - 3)));
 
+                int c = 0;
+
                 while (isAboutToSave(10))
                 {
+                    if (c > 10)
+                    {
+                        if (ignoreAutosave())
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                enableBtn();
+                            });
+
+                            if (sound)
+                                System.Media.SystemSounds.Asterisk.Play();
+
+                            hideMapWait();
+                            return;
+                        }
+                    }
+                    c++;
                     Thread.Sleep(3000);
                 }
 
@@ -5454,7 +5684,7 @@ namespace ACNHPokerCore
                 int main = variationList.GetLength(0);
                 int sub = variationList.GetLength(1);
 
-                variationSpawn variationSpawner = new variationSpawn(variationList, Layer1, Acre, Building, TopLeftX, TopLeftY);
+                variationSpawn variationSpawner = new variationSpawn(variationList, Layer1, Acre, Building, Terrain, TopLeftX, TopLeftY);
                 int result = (int)variationSpawner.ShowDialog(this);
 
                 if (result == 1) // Main
@@ -6048,6 +6278,44 @@ namespace ACNHPokerCore
                     selection.receiveID(Utilities.precedingZeros(selectedItem.fillItemID(), 4), languageSetting);
                 }
             }
+        }
+
+        private void nextAutoSaveSecond_DoubleClick(object sender, EventArgs e)
+        {
+            if (!ignore)
+            {
+                ignore = true;
+                nextAutoSaveSecond.ForeColor = Color.Red;
+                NextSaveTimer.Stop();
+                MyLog.logEvent("Map", "Autosave Ignored");
+            }
+            else
+            {
+                ignore = false;
+                nextAutoSaveSecond.ForeColor = Color.White;
+                NextSaveTimer.Start();
+                MyLog.logEvent("Map", "Autosave Protection Activated");
+            }
+        }
+
+        private bool ignoreAutosave()
+        {
+                DialogResult result = MyMessageBox.Show("Something seems to be wrong with the autosave detection.\n" +
+                                                "Would you like to ignore the autosave protection and spawn the item(s) anyway?\n\n" +
+                                                "Please be noted that spawning item during autosave might crash the game."
+                                                , "Waiting for autosave to complete...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Invoke((MethodInvoker)delegate
+                {
+                    NextSaveTimer.Stop();
+                    ignore = true;
+                    nextAutoSaveSecond.ForeColor = Color.Red;
+                });
+                return true;
+            }
+            else
+                return false;
         }
     }
 }

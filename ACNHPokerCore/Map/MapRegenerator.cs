@@ -385,9 +385,10 @@ namespace ACNHPokerCore
                     {
                         byte[] Acre = Utilities.getAcre(s, null);
                         byte[] Building = Utilities.getBuilding(s, null);
+                        Byte[] Terrain = Utilities.getTerrain(s, null);
 
                         if (MiniMap == null)
-                            MiniMap = new miniMap(data, Acre, Building);
+                            MiniMap = new miniMap(data, Acre, Building, Terrain);
 
                         miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawBackground(), MiniMap.drawItemMap());
                     }
@@ -1338,11 +1339,35 @@ namespace ACNHPokerCore
                         sw.WriteLine(logheader);
                     }
                 }
-                logGridView.DataSource = loadCSV(Utilities.VisitorLogPath);
-                logGridView.Columns["Timestamp"].Width = 195;
-                logGridView.Columns["Name"].Width = 128;
-                logGridView.Sort(logGridView.Columns[0], ListSortDirection.Descending);
-                logPanel.Visible = true;
+                try
+                {
+                    logGridView.DataSource = loadCSV(Utilities.VisitorLogPath);
+                    logGridView.Columns["Timestamp"].Width = 195;
+                    logGridView.Columns["Name"].Width = 128;
+                    logGridView.Sort(logGridView.Columns[0], ListSortDirection.Descending);
+                    logPanel.Visible = true;
+                }
+                catch
+                {
+                    File.Move(Utilities.VisitorLogPath, Utilities.saveFolder + @"OldVisitorLog.csv");
+
+                    string logheader = "Timestamp" + "," + "Name";
+
+                    using (StreamWriter sw = File.CreateText(Utilities.VisitorLogPath))
+                    {
+                        sw.WriteLine(logheader);
+                    }
+
+                    MyMessageBox.Show("An error was encountered while loading the visitor log file.\n\n" +
+                                      "But don't worry! A new visitor log file have been created.\n" +
+                                      "Your existing visitor log file has been renamed to \"OldVisitorLog.csv\".", "Error loading existing visitor log file!",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+
+                    logGridView.DataSource = loadCSV(Utilities.VisitorLogPath);
+                    logGridView.Columns["Timestamp"].Width = 195;
+                    logGridView.Columns["Name"].Width = 128;
+                    logGridView.Sort(logGridView.Columns[0], ListSortDirection.Descending);
+                    logPanel.Visible = true;
+                }
             }
             if (this.Width < 610)
             {

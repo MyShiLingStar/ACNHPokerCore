@@ -155,7 +155,7 @@ namespace ACNHPokerCore
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.bulkSpawnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nextAutoSaveSecond = new System.Windows.Forms.RichTextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.EstimateNextSaveLabel = new System.Windows.Forms.Label();
             this.NextSaveTimer = new System.Windows.Forms.Timer(this.components);
             this.Corner1YBox = new System.Windows.Forms.RichTextBox();
             this.Corner1XBox = new System.Windows.Forms.RichTextBox();
@@ -167,6 +167,7 @@ namespace ACNHPokerCore
             this.FlashTimer = new System.Windows.Forms.Timer(this.components);
             this.HexTextbox = new ACNHPokerCore.HexUpDown();
             this.selectedItem = new ACNHPokerCore.inventorySlot();
+            this.SizeBox = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.fieldGridView)).BeginInit();
             this.BtnPanel.SuspendLayout();
             this.floorRightClick.SuspendLayout();
@@ -2950,17 +2951,19 @@ namespace ACNHPokerCore
             this.nextAutoSaveSecond.Size = new System.Drawing.Size(40, 18);
             this.nextAutoSaveSecond.TabIndex = 224;
             this.nextAutoSaveSecond.Text = "";
+            this.nextAutoSaveSecond.DoubleClick += new System.EventHandler(this.nextAutoSaveSecond_DoubleClick);
             // 
-            // label6
+            // EstimateNextSaveLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(38, 4);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(116, 16);
-            this.label6.TabIndex = 225;
-            this.label6.Text = "Est. Next Save :";
+            this.EstimateNextSaveLabel.AutoSize = true;
+            this.EstimateNextSaveLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.EstimateNextSaveLabel.ForeColor = System.Drawing.Color.White;
+            this.EstimateNextSaveLabel.Location = new System.Drawing.Point(38, 4);
+            this.EstimateNextSaveLabel.Name = "EstimateNextSaveLabel";
+            this.EstimateNextSaveLabel.Size = new System.Drawing.Size(116, 16);
+            this.EstimateNextSaveLabel.TabIndex = 225;
+            this.EstimateNextSaveLabel.Text = "Est. Next Save :";
+            this.EstimateNextSaveLabel.DoubleClick += new System.EventHandler(this.nextAutoSaveSecond_DoubleClick);
             // 
             // NextSaveTimer
             // 
@@ -3131,11 +3134,27 @@ namespace ACNHPokerCore
             this.selectedItem.UseVisualStyleBackColor = false;
             this.selectedItem.Click += new System.EventHandler(this.selectedItem_Click);
             // 
+            // SizeBox
+            // 
+            this.SizeBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
+            this.SizeBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.SizeBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SizeBox.ForeColor = System.Drawing.Color.White;
+            this.SizeBox.Location = new System.Drawing.Point(683, 606);
+            this.SizeBox.MaxLength = 30;
+            this.SizeBox.Multiline = false;
+            this.SizeBox.Name = "SizeBox";
+            this.SizeBox.ReadOnly = true;
+            this.SizeBox.Size = new System.Drawing.Size(125, 18);
+            this.SizeBox.TabIndex = 236;
+            this.SizeBox.Text = "";
+            // 
             // map
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.ClientSize = new System.Drawing.Size(1204, 631);
+            this.Controls.Add(this.SizeBox);
             this.Controls.Add(this.HexTextbox);
             this.Controls.Add(this.Language);
             this.Controls.Add(this.panel1);
@@ -3146,7 +3165,7 @@ namespace ACNHPokerCore
             this.Controls.Add(this.Corner1YBox);
             this.Controls.Add(this.Corner1XBox);
             this.Controls.Add(this.nextAutoSaveSecond);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.EstimateNextSaveLabel);
             this.Controls.Add(this.saveDebug);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -3331,7 +3350,7 @@ namespace ACNHPokerCore
         private System.Windows.Forms.ToolStripMenuItem bushesToolStripMenuItem;
         private System.Windows.Forms.Button saveDebug;
         private System.Windows.Forms.RichTextBox nextAutoSaveSecond;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label EstimateNextSaveLabel;
         private System.Windows.Forms.Timer NextSaveTimer;
         private System.Windows.Forms.RichTextBox Corner1YBox;
         private System.Windows.Forms.RichTextBox Corner1XBox;
@@ -3350,5 +3369,6 @@ namespace ACNHPokerCore
         private System.Windows.Forms.ComboBox Language;
         private System.Windows.Forms.Timer FlashTimer;
         private HexUpDown HexTextbox;
+        private System.Windows.Forms.RichTextBox SizeBox;
     }
 }

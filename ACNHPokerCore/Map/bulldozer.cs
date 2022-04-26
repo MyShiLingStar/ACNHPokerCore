@@ -18,12 +18,14 @@ namespace ACNHPokerCore
         public static extern int SendMessage(IntPtr hWnd, int msg, IntPtr wParam, IntPtr lParam);
 
         private static Socket s;
+        private static USBBot usb;
         private bool sound;
         private miniMap MiniMap = null;
 
         private byte[] Layer1;
         private byte[] Acre;
         private byte[] Building;
+        private byte[] Terrain;
 
         private byte[][] buildingList = null;
         private const int BuildingSize = 0x14;
@@ -40,9 +42,10 @@ namespace ACNHPokerCore
 
         public event CloseHandler closeForm;
 
-        public Bulldozer(Socket S, bool Sound)
+        public Bulldozer(Socket S, USBBot USB, bool Sound)
         {
             s = S;
+            usb = USB;
             sound = Sound;
 
             InitializeComponent();
@@ -65,20 +68,22 @@ namespace ACNHPokerCore
             }
             ListViewItem_SetSpacing(acreList, 64 + 15, 80 + 15);
 
-            if (s != null)
+            if (s != null || usb != null)
             {
-                Layer1 = Utilities.getMapLayer(s, null, layer1Address, ref counter);
+                //Layer1 = Utilities.getMapLayer(s, usb, layer1Address, ref counter);
+                Layer1 = null;
                 //Layer2 = Utilities.getMapLayer(s, bot, layer2Address, ref counter);
-                Acre = Utilities.getAcre(s, null);
-                Building = Utilities.getBuilding(s, null);
+                Acre = Utilities.getAcre(s, usb);
+                Building = Utilities.getBuilding(s, usb);
+                Terrain = Utilities.getTerrain(s, usb);
 
-                if (Layer1 != null && Acre != null)
+                if (Acre != null && Building != null && Terrain != null)
                 {
                     if (MiniMap == null)
-                        MiniMap = new miniMap(Layer1, Acre, Building, 4);
+                        MiniMap = new miniMap(Layer1, Acre, Building, Terrain, 4);
                 }
                 else
-                    throw new NullReferenceException("Layer1/Acre");
+                    throw new NullReferenceException("Acre/Building/Terrain");
 
                 selectedPanel = acrePanel;
 
@@ -378,7 +383,7 @@ namespace ACNHPokerCore
             byte[] AcreOnly = new byte[0x90];
             Buffer.BlockCopy(Acre, 0x0, AcreOnly, 0x0, 0x90);
             int counter = 0;
-            Utilities.sendAcre(s, null, AcreOnly, ref counter);
+            Utilities.sendAcre(s, usb, AcreOnly, ref counter);
             sendBtn.BackColor = Color.FromArgb(114, 137, 218);
 
             if (sound)
@@ -1154,10 +1159,10 @@ namespace ACNHPokerCore
             {
                 byte[] PlazaOnly = new byte[0x8];
                 Buffer.BlockCopy(Acre, 0x94, PlazaOnly, 0x0, 0x8);
-                Utilities.sendPlaza(s, null, PlazaOnly, ref counter);
+                Utilities.sendPlaza(s, usb, PlazaOnly, ref counter);
             }
 
-            Utilities.sendBuilding(s, null, Building, ref counter);
+            Utilities.sendBuilding(s, usb, Building, ref counter);
             buildingConfirmBtn.BackColor = Color.FromArgb(114, 137, 218);
             miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawFullBackground(), MiniMap.drawEdge());
             miniMapBox.Image = null;
@@ -1677,8 +1682,10 @@ namespace ACNHPokerCore
 
         private void flattenAllBtn_Click(object sender, EventArgs e)
         {
-            MyWarning flattenWarning = new MyWarning(s, sound);
+            MyWarning flattenWarning = new MyWarning(s, sound, MiniMap);
             flattenWarning.ShowDialog();
+            miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawFullBackground(), MiniMap.drawEdge());
+            miniMapBox.Image = null;
         }
 
         private void saveTerrianBtn_Click(object sender, EventArgs e)
@@ -1735,7 +1742,7 @@ namespace ACNHPokerCore
         {
             try
             {
-                byte[] terrain = Utilities.getTerrain(s, null);
+                byte[] terrain = Utilities.getTerrain(s, usb);
 
                 File.WriteAllBytes(file.FileName, terrain);
 
@@ -1805,6 +1812,8 @@ namespace ACNHPokerCore
                 PleaseWaitPanel.Visible = true;
                 terrainPanel.Enabled = false;
 
+                MiniMap.updateTerrain(data);
+
                 Thread LoadThread = new Thread(delegate () { LoadTerrain(data); });
                 LoadThread.Start();
             }
@@ -1830,12 +1839,14 @@ namespace ACNHPokerCore
 
                 counter = 0;
 
-                Utilities.sendTerrain(s, null, terrain, ref counter);
+                Utilities.sendTerrain(s, usb, terrain, ref counter);
 
                 this.Invoke((MethodInvoker)delegate
                 {
                     PleaseWaitPanel.Visible = false;
                     terrainPanel.Enabled = true;
+                    miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawFullBackground(), MiniMap.drawEdge());
+                    miniMapBox.Image = null;
                 });
             }
             catch (Exception ex)
@@ -1850,11 +1861,11 @@ namespace ACNHPokerCore
 
         private bool isAboutToSave(int second)
         {
-            byte[] b = Utilities.getSaving(s, null);
+            byte[] b = Utilities.getSaving(s, usb);
 
             if (b == null)
                 return true;
-            if (b[0] != 0)
+            if (b[0] == 1)
                 return true;
             else
             {
@@ -1865,10 +1876,13 @@ namespace ACNHPokerCore
 
                 int currentFrameStr = Convert.ToInt32("0x" + Utilities.flip(Utilities.ByteToHexString(currentFrame)), 16);
                 int lastFrameStr = Convert.ToInt32("0x" + Utilities.flip(Utilities.ByteToHexString(lastFrame)), 16);
+                int FrameRemain = ((0x1518 - (currentFrameStr - lastFrameStr)));
 
-                if (((0x1518 - (currentFrameStr - lastFrameStr))) < 30 * second)
+                if (FrameRemain < 30 * second) // Not enough
                     return true;
-                else if (((0x1518 - (currentFrameStr - lastFrameStr))) >= 30 * 175)
+                else if (FrameRemain >= 30 * 300) // Have too too many for some reason?
+                    return false;
+                else if (FrameRemain >= 30 * 175) // Just finish save buffer
                     return true;
                 else
                 {
