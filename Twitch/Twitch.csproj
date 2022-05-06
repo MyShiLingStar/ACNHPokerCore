@@ -4,6 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <DebugType>none</DebugType>
     <NoWin32Manifest>true</NoWin32Manifest>
+    <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>

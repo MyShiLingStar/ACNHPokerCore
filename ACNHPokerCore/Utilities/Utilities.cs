@@ -3336,6 +3336,59 @@ namespace ACNHPokerCore
                 return false;
         }
 
+        public static string translateVariationValue(string input)
+        {
+            if (input.Length > 4)
+                return "0000";
+            int hexValue = Convert.ToUInt16("0x" + input, 16);
+            int firstHalf = 0;
+            int secondHalf = 0;
+            string output;
+
+            if (hexValue <= 0x7)
+            {
+                return Utilities.precedingZeros(input, 4);
+            }
+            else if (hexValue <= 0x27)
+            {
+                firstHalf = (0x20 / 4);
+                secondHalf = (hexValue - 0x20);
+            }
+            else if (hexValue <= 0x47)
+            {
+                firstHalf = (0x40 / 4);
+                secondHalf = (hexValue - 0x40);
+            }
+            else if (hexValue <= 0x67)
+            {
+                firstHalf = (0x60 / 4);
+                secondHalf = (hexValue - 0x60);
+            }
+            else if (hexValue <= 0x87)
+            {
+                firstHalf = (0x80 / 4);
+                secondHalf = (hexValue - 0x80);
+            }
+            else if (hexValue <= 0xA7)
+            {
+                firstHalf = (0xA0 / 4);
+                secondHalf = (hexValue - 0xA0);
+            }
+            else if (hexValue <= 0xC7)
+            {
+                firstHalf = (0xC0 / 4);
+                secondHalf = (hexValue - 0xC0);
+            }
+            else if (hexValue <= 0xE7)
+            {
+                firstHalf = (0xE0 / 4);
+                secondHalf = (hexValue - 0xE0);
+            }
+
+            output = Utilities.precedingZeros((firstHalf + secondHalf).ToString("X"), 4);
+            return output;
+        }
+
         public static string translateVariationValueBack(string input)
         {
             if (input.Length > 4)

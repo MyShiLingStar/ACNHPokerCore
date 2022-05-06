@@ -14,6 +14,11 @@ using System.Windows.Forms;
 
 namespace ACNHPokerCore
 {
+
+    #region event
+    public delegate void ObeySizeHandler(bool toggle, int itemHeight = 0, int itemWidth = 0, int newSpawnHeight = 0, int newSpawnWidth = 0, bool wallmount = false);
+    #endregion
+
     public partial class map : Form
     {
         #region Variable
@@ -27,6 +32,7 @@ namespace ACNHPokerCore
         private DataTable favSource;
         private DataTable fieldSource;
         private floorSlot selectedButton = null;
+        private string selectedSize;
         private floorSlot[] floorSlots;
         private variation selection = null;
         private miniMap MiniMap = null;
@@ -63,6 +69,14 @@ namespace ACNHPokerCore
         private int keepProtectionCounter = 0;
         public static int numOfColumn = 0;
         public static int numOfRow = 0;
+
+        private inventorySlot[,] variationList;
+        private bool obeySize = false;
+        private int itemWidth = 0;
+        private int itemHeight = 0;
+        private int newSpawnWidth = 0;
+        private int newSpawnHeight = 0;
+        private bool wallmount = false;
 
         byte[] Layer1 = null;
         byte[] Layer2 = null;
@@ -930,11 +944,13 @@ namespace ACNHPokerCore
         {
             var button = (floorSlot)sender;
 
+            /*
             string locked;
             if (button.locked)
                 locked = "✓ True";
             else
                 locked = "✘ False";
+            */
             btnToolTip.SetToolTip(button,
                                     button.itemName +
                                     "\n\n" + "" +
@@ -1097,6 +1113,20 @@ namespace ACNHPokerCore
             }
         }
 
+        private string GetSize(string itemID)
+        {
+            DataRow row = source.Rows.Find(itemID);
+
+            if (row == null)
+            {
+                return ""; //row not found
+            }
+            else
+            {
+                return (string)row["size"];
+            }
+        }
+
         public string GetNameFromID(string itemID, DataTable table)
         {
             if (fieldSource != null)
@@ -1226,7 +1256,8 @@ namespace ACNHPokerCore
 
                         IdTextbox.Text = id;
                         HexTextbox.Text = "00000000";
-                        SizeBox.Text = fieldGridView.Rows[e.RowIndex].Cells["size"].Value.ToString().Replace("_5",".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("x", "x ");
+                        selectedSize = fieldGridView.Rows[e.RowIndex].Cells["size"].Value.ToString();
+                        SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("x", "x ");
 
                         selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), 0x0, GetImagePathFromID(id, source), true, "");
                     }
@@ -1274,6 +1305,7 @@ namespace ACNHPokerCore
 
                         IdTextbox.Text = id;
                         HexTextbox.Text = Utilities.precedingZeros(hexValue, 8);
+                        SizeBox.Text = "";
 
                         selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, fieldSource), true, "");
                     }
@@ -1804,6 +1836,9 @@ namespace ACNHPokerCore
                 selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source, Convert.ToUInt32("0x" + front, 16)), true, "", flag1, flag2);
             else
                 selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source, Convert.ToUInt32("0x" + hexValue, 16)), true, "", flag1, flag2);
+
+            selectedSize = GetSize(id);
+            SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("x", "x ");
         }
 
         private void KeyboardKeyDown(object sender, KeyEventArgs e)
@@ -1931,6 +1966,9 @@ namespace ACNHPokerCore
 
                 IdTextbox.Text = id;
                 HexTextbox.Text = "00000000";
+                selectedSize = fieldGridView.Rows[index].Cells["size"].Value.ToString();
+                SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("x", "x ");
+
 
                 selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), 0x0, GetImagePathFromID(id, source), true, "");
             }
@@ -1942,6 +1980,7 @@ namespace ACNHPokerCore
 
                 IdTextbox.Text = id;
                 HexTextbox.Text = Utilities.precedingZeros(hexValue, 8);
+                SizeBox.Text = "";
 
                 selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(hexValue, recipeSource), true, "");
             }
@@ -1953,6 +1992,7 @@ namespace ACNHPokerCore
 
                 IdTextbox.Text = id;
                 HexTextbox.Text = Utilities.precedingZeros(hexValue, 8);
+                SizeBox.Text = "";
 
                 selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source), true, "");
 
@@ -1965,6 +2005,7 @@ namespace ACNHPokerCore
 
                 IdTextbox.Text = id;
                 HexTextbox.Text = Utilities.precedingZeros(hexValue, 8);
+                SizeBox.Text = "";
 
                 selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source), true, "");
             }
@@ -1976,6 +2017,7 @@ namespace ACNHPokerCore
 
                 IdTextbox.Text = id;
                 HexTextbox.Text = Utilities.precedingZeros(hexValue, 8);
+                SizeBox.Text = "";
 
                 selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, fieldSource), true, "");
             }
@@ -2895,6 +2937,10 @@ namespace ACNHPokerCore
                         selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source, Convert.ToUInt32("0x" + front, 16)), true, "", flag1, flag2);
                     else
                         selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source, Convert.ToUInt32("0x" + hexValue, 16)), true, "", flag1, flag2);
+
+                    selectedSize = GetSize(id);
+                    SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("x", "x ");
+
                     if (sound)
                         System.Media.SystemSounds.Asterisk.Play();
                 }
@@ -5667,7 +5713,7 @@ namespace ACNHPokerCore
             string flag1 = selectedItem.getFlag1();
             string flag2 = Utilities.precedingZeros(FlagTextbox.Text, 2);
 
-            inventorySlot[,] variationList = variation.getVariationList(IdTextbox.Text, flag1, flag2, HexTextbox.Text);
+            variationList = variation.getVariationList(IdTextbox.Text, flag1, flag2, HexTextbox.Text);
             byte[][] spawnArea = null;
 
 
@@ -5684,7 +5730,8 @@ namespace ACNHPokerCore
                 int main = variationList.GetLength(0);
                 int sub = variationList.GetLength(1);
 
-                variationSpawn variationSpawner = new variationSpawn(variationList, Layer1, Acre, Building, Terrain, TopLeftX, TopLeftY);
+                variationSpawn variationSpawner = new variationSpawn(variationList, Layer1, Acre, Building, Terrain, TopLeftX, TopLeftY, flag2, selectedSize);
+                variationSpawner.SendObeySizeEvent += VariationSpawner_SendObeySizeEvent;
                 int result = (int)variationSpawner.ShowDialog(this);
 
                 if (result == 1) // Main
@@ -5692,14 +5739,28 @@ namespace ACNHPokerCore
                     BottomRightX = selectedButton.mapX + numOfColumn - 1;
                     row = variationList.GetLength(0);
                     BottomRightY = TopLeftY + row - 1;
-                    spawnArea = buildVariationArea(variationList, row, numOfColumn, 1);
+                    if (obeySize)
+                    {
+                        spawnArea = buildVariationAreaObeySize(variationList, row, numOfColumn, 1);
+                    }
+                    else
+                    {
+                        spawnArea = buildVariationArea(variationList, row, numOfColumn, 1);
+                    }
                 }
                 else if (result == 6) // Sub
                 {
                     BottomRightX = selectedButton.mapX + numOfColumn - 1;
                     row = variationList.GetLength(1);
                     BottomRightY = TopLeftY + row - 1;
-                    spawnArea = buildVariationArea(variationList, row, numOfColumn, 6);
+                    if (obeySize)
+                    {
+                        spawnArea = buildVariationAreaObeySize(variationList, row, numOfColumn, 6);
+                    }
+                    else
+                    {
+                        spawnArea = buildVariationArea(variationList, row, numOfColumn, 6);
+                    }
                 }
                 else if (result == 5) // All
                 {
@@ -5707,21 +5768,42 @@ namespace ACNHPokerCore
                     row = sub;
                     column = main;
                     BottomRightY = TopLeftY + row - 1;
-                    spawnArea = buildVariationArea(variationList, row, column, 5);
+                    if (obeySize)
+                    {
+                        spawnArea = buildVariationAreaObeySize(variationList, row, column, 5);
+                    }
+                    else
+                    {
+                        spawnArea = buildVariationArea(variationList, row, column, 5);
+                    }
                 }
                 else if (result == 3) // Main H
                 {
                     BottomRightY = selectedButton.mapY + numOfRow - 1;
                     column = variationList.GetLength(0);
                     BottomRightX = TopLeftX + column - 1;
-                    spawnArea = buildVertVariationArea(variationList, column, numOfRow, 3);
+                    if (obeySize)
+                    {
+                        spawnArea = buildVertVariationAreaObeySize(variationList, column, numOfRow, 3);
+                    }
+                    else
+                    {
+                        spawnArea = buildVertVariationArea(variationList, column, numOfRow, 3);
+                    }
                 }
                 else if (result == 7) // Sub H
                 {
                     BottomRightY = selectedButton.mapY + numOfRow - 1;
                     column = variationList.GetLength(1);
                     BottomRightX = TopLeftX + column - 1;
-                    spawnArea = buildVertVariationArea(variationList, column, numOfRow, 7);
+                    if (obeySize)
+                    {
+                        spawnArea = buildVertVariationAreaObeySize(variationList, column, numOfRow, 7);
+                    }
+                    else
+                    {
+                        spawnArea = buildVertVariationArea(variationList, column, numOfRow, 7);
+                    }
                 }
                 else if (result == 4) // All H
                 {
@@ -5729,7 +5811,14 @@ namespace ACNHPokerCore
                     row = main;
                     column = sub;
                     BottomRightX = TopLeftX + column - 1;
-                    spawnArea = buildVertVariationArea(variationList, column, row, 4);
+                    if (obeySize)
+                    {
+                        spawnArea = buildVertVariationAreaObeySize(variationList, column, row, 4);
+                    }
+                    else
+                    {
+                        spawnArea = buildVertVariationArea(variationList, column, row, 4);
+                    }
                 }
                 else
                 {
@@ -5763,7 +5852,17 @@ namespace ACNHPokerCore
             }
         }
 
-        private byte[][] buildVariationArea(inventorySlot[,] variation, int numberOfRow, int multiple = 1, int mode = 1)
+        private void VariationSpawner_SendObeySizeEvent(bool toggle, int ItemHeight = 0, int ItemWidth = 0, int NewSpawnHeight = 0, int NewSpawnWidth = 0, bool Wallmount = false)
+        {
+            obeySize = toggle;
+            itemHeight = ItemHeight;
+            itemWidth = ItemWidth;
+            newSpawnHeight = NewSpawnHeight;
+            newSpawnWidth = NewSpawnWidth;
+            wallmount = Wallmount;
+        }
+
+        private byte[][] buildVariationArea(inventorySlot[,] variation, int numberOfRow, int multiple, int mode)
         {
             int numberOfColumn = multiple;
             int sizeOfRow = 16;
@@ -5836,7 +5935,104 @@ namespace ACNHPokerCore
             return b;
         }
 
-        private byte[][] buildVertVariationArea(inventorySlot[,] variation, int numberOfColumn, int multiple = 1, int mode = 3)
+        private byte[][] buildVariationAreaObeySize(inventorySlot[,] variation, int oldRow, int oldColumn, int mode)
+        {
+            int sizeOfRow = 16;
+
+            byte[][] b = new byte[newSpawnWidth * 2][];
+
+            for (int i = 0; i < newSpawnWidth * 2; i++)
+            {
+                b[i] = new byte[newSpawnHeight * sizeOfRow];
+            }
+
+            int iterator = 0;
+            inventorySlot[] serialList = new inventorySlot[oldRow * oldColumn];
+
+            if (mode == 1) // Main
+            {
+                for (int i = 0; i < oldColumn; i++)
+                {
+                    for (int j = 0; j < oldRow; j++)
+                    {
+                        serialList[iterator] = variation[j, 0];
+                        iterator++;
+                    }
+                }
+            }
+            else if (mode == 6) // Sub
+            {
+                for (int i = 0; i < oldColumn; i++)
+                {
+                    for (int j = 0; j < oldRow; j++)
+                    {
+                        serialList[iterator] = variation[0, j];
+                        iterator++;
+                    }
+                }
+            }
+            else if (mode == 5) // All
+            {
+                for (int i = 0; i < oldColumn; i++)
+                {
+                    for (int j = 0; j < oldRow; j++)
+                    {
+                        serialList[iterator] = variation[i, j];
+                        iterator++;
+                    }
+                }
+            }
+
+            iterator = 0;
+            byte[] ItemLeft;
+            byte[] ItemRight;
+
+            string flag = Utilities.precedingZeros(FlagTextbox.Text, 2);
+
+            for (int i = 0; i < newSpawnWidth; i++)
+            {
+                for (int j = 0; j < newSpawnHeight; j++)
+                {
+                    if (i % itemWidth == 0 && j % itemHeight == 0)
+                    {
+                        if (wallmount && flag != "20")
+                        {
+                            string itemID = "1618";
+                            string itemData = Utilities.translateVariationValue(serialList[iterator].fillItemData()) + Utilities.precedingZeros(serialList[iterator].fillItemID(), 4);
+                            string flag1 = Utilities.precedingZeros(serialList[iterator].getFlag1(), 2);
+                            string flag2 = Utilities.precedingZeros(serialList[iterator].getFlag2(), 2);
+
+                            ItemLeft = Utilities.stringToByte(Utilities.buildDropStringLeft(itemID, itemData, flag1, flag2));
+                            ItemRight = Utilities.stringToByte(Utilities.buildDropStringRight(itemID));
+                            iterator++;
+                        }
+                        else
+                        {
+                            string itemID = Utilities.precedingZeros(serialList[iterator].fillItemID(), 4);
+                            string itemData = Utilities.precedingZeros(serialList[iterator].fillItemData(), 8);
+                            string flag1 = Utilities.precedingZeros(serialList[iterator].getFlag1(), 2);
+                            string flag2 = Utilities.precedingZeros(serialList[iterator].getFlag2(), 2);
+
+                            ItemLeft = Utilities.stringToByte(Utilities.buildDropStringLeft(itemID, itemData, flag1, flag2));
+                            ItemRight = Utilities.stringToByte(Utilities.buildDropStringRight(itemID));
+                            iterator++;
+                        }
+                    }
+                    else
+                    {
+                        ItemLeft = Utilities.stringToByte(Utilities.buildDropStringLeft("FFFE", "00000000", "00", "00", true));
+                        ItemRight = Utilities.stringToByte(Utilities.buildDropStringRight("FFFE", true));
+                    }
+
+                    Buffer.BlockCopy(ItemLeft, 0, b[i * 2], 0x10 * j, 16);
+                    Buffer.BlockCopy(ItemRight, 0, b[i * 2 + 1], 0x10 * j, 16);
+                }
+            }
+
+            return b;
+        }
+
+        private byte[][] buildVertVariationArea(inventorySlot[,] variation, int numberOfColumn, int multiple, int mode)
         {
             int numberOfRow = multiple;
             int sizeOfRow = 16;
@@ -5903,6 +6099,103 @@ namespace ACNHPokerCore
                         Buffer.BlockCopy(ItemLeft, 0, b[i * 2], 0x10 * j, 16);
                         Buffer.BlockCopy(ItemRight, 0, b[i * 2 + 1], 0x10 * j, 16);
                     }
+                }
+            }
+
+            return b;
+        }
+
+        private byte[][] buildVertVariationAreaObeySize(inventorySlot[,] variation, int oldRow, int oldColumn, int mode)
+        {
+            int sizeOfRow = 16;
+
+            byte[][] b = new byte[newSpawnWidth * 2][];
+
+            for (int i = 0; i < newSpawnWidth * 2; i++)
+            {
+                b[i] = new byte[newSpawnHeight * sizeOfRow];
+            }
+
+            int iterator = 0;
+            inventorySlot[] serialList = new inventorySlot[oldRow * oldColumn];
+
+            if (mode == 3) // Main
+            {
+                for (int i = 0; i < oldRow; i++)
+                {
+                    for (int j = 0; j < oldColumn; j++)
+                    {
+                        serialList[iterator] = variation[i, 0];
+                        iterator++;
+                    }
+                }
+            }
+            else if (mode == 7) // Sub
+            {
+                for (int i = 0; i < oldRow; i++)
+                {
+                    for (int j = 0; j < oldColumn; j++)
+                    {
+                        serialList[iterator] = variation[0, i];
+                        iterator++;
+                    }
+                }
+            }
+            else if (mode == 4) // All
+            {
+                for (int i = 0; i < oldRow; i++)
+                {
+                    for (int j = 0; j < oldColumn; j++)
+                    {
+                        serialList[iterator] = variation[j, i];
+                        iterator++;
+                    }
+                }
+            }
+
+            iterator = 0;
+            byte[] ItemLeft;
+            byte[] ItemRight;
+
+            string flag = Utilities.precedingZeros(FlagTextbox.Text, 2);
+
+            for (int i = 0; i < newSpawnWidth; i++)
+            {
+                for (int j = 0; j < newSpawnHeight; j++)
+                {
+                    if (i % itemWidth == 0 && j % itemHeight == 0)
+                    {
+                        if (wallmount && flag != "20")
+                        {
+                            string itemID = "1618";
+                            string itemData = Utilities.translateVariationValue(serialList[iterator].fillItemData()) + Utilities.precedingZeros(serialList[iterator].fillItemID(), 4);
+                            string flag1 = Utilities.precedingZeros(serialList[iterator].getFlag1(), 2);
+                            string flag2 = Utilities.precedingZeros(serialList[iterator].getFlag2(), 2);
+
+                            ItemLeft = Utilities.stringToByte(Utilities.buildDropStringLeft(itemID, itemData, flag1, flag2));
+                            ItemRight = Utilities.stringToByte(Utilities.buildDropStringRight(itemID));
+                            iterator++;
+                        }
+                        else
+                        {
+                            string itemID = Utilities.precedingZeros(serialList[iterator].fillItemID(), 4);
+                            string itemData = Utilities.precedingZeros(serialList[iterator].fillItemData(), 8);
+                            string flag1 = Utilities.precedingZeros(serialList[iterator].getFlag1(), 2);
+                            string flag2 = Utilities.precedingZeros(serialList[iterator].getFlag2(), 2);
+
+                            ItemLeft = Utilities.stringToByte(Utilities.buildDropStringLeft(itemID, itemData, flag1, flag2));
+                            ItemRight = Utilities.stringToByte(Utilities.buildDropStringRight(itemID));
+                            iterator++;
+                        }
+                    }
+                    else
+                    {
+                        ItemLeft = Utilities.stringToByte(Utilities.buildDropStringLeft("FFFE", "00000000", "00", "00", true));
+                        ItemRight = Utilities.stringToByte(Utilities.buildDropStringRight("FFFE", true));
+                    }
+
+                    Buffer.BlockCopy(ItemLeft, 0, b[i * 2], 0x10 * j, 16);
+                    Buffer.BlockCopy(ItemRight, 0, b[i * 2 + 1], 0x10 * j, 16);
                 }
             }
 
@@ -6300,10 +6593,10 @@ namespace ACNHPokerCore
 
         private bool ignoreAutosave()
         {
-                DialogResult result = MyMessageBox.Show("Something seems to be wrong with the autosave detection.\n" +
-                                                "Would you like to ignore the autosave protection and spawn the item(s) anyway?\n\n" +
-                                                "Please be noted that spawning item during autosave might crash the game."
-                                                , "Waiting for autosave to complete...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MyMessageBox.Show("Something seems to be wrong with the autosave detection.\n" +
+                                            "Would you like to ignore the autosave protection and spawn the item(s) anyway?\n\n" +
+                                            "Please be noted that spawning item during autosave might crash the game."
+                                            , "Waiting for autosave to complete...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 this.Invoke((MethodInvoker)delegate

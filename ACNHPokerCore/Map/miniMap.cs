@@ -799,7 +799,7 @@ namespace ACNHPokerCore
                         else if (previewtilesType[i][j] == 2)
                             PutPixel(gr, i * mapSize, j * mapSize, Color.LightSkyBlue);
                         else if (previewtilesType[i][j] == 3)
-                            PutPixel(gr, i * mapSize, j * mapSize, Color.FromArgb(100, Color.Red));
+                            PutPixel(gr, i * mapSize, j * mapSize, Color.FromArgb(100, Color.HotPink));
 
                     }
                 }

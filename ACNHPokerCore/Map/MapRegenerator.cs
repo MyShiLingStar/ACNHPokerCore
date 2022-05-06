@@ -1360,7 +1360,7 @@ namespace ACNHPokerCore
 
                     MyMessageBox.Show("An error was encountered while loading the visitor log file.\n\n" +
                                       "But don't worry! A new visitor log file have been created.\n" +
-                                      "Your existing visitor log file has been renamed to \"OldVisitorLog.csv\".", "Error loading existing visitor log file!",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                                      "Your existing visitor log file has been renamed to \"OldVisitorLog.csv\".", "Error loading existing visitor log file!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                     logGridView.DataSource = loadCSV(Utilities.VisitorLogPath);
                     logGridView.Columns["Timestamp"].Width = 195;

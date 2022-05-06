@@ -32,43 +32,43 @@ namespace ACNHPokerCore
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(variationSpawn));
             this.mainPanel = new System.Windows.Forms.Panel();
             this.timesLabel1 = new System.Windows.Forms.RichTextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.dotdotdot15 = new System.Windows.Forms.Label();
+            this.dotdotdot14 = new System.Windows.Forms.Label();
+            this.dotdotdot13 = new System.Windows.Forms.Label();
+            this.dotdotdot12 = new System.Windows.Forms.Label();
             this.main02 = new ACNHPokerCore.inventorySlot();
             this.main01 = new ACNHPokerCore.inventorySlot();
             this.main00 = new ACNHPokerCore.inventorySlot();
             this.subPanel = new System.Windows.Forms.Panel();
             this.timesLabel2 = new System.Windows.Forms.RichTextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.dotdotdot18 = new System.Windows.Forms.Label();
+            this.dotdotdot19 = new System.Windows.Forms.Label();
+            this.dotdotdot17 = new System.Windows.Forms.Label();
             this.sub00 = new ACNHPokerCore.inventorySlot();
-            this.label10 = new System.Windows.Forms.Label();
+            this.dotdotdot16 = new System.Windows.Forms.Label();
             this.sub01 = new ACNHPokerCore.inventorySlot();
             this.sub02 = new ACNHPokerCore.inventorySlot();
             this.allPanel = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.dotdotdot22 = new System.Windows.Forms.Label();
+            this.dotdotdot24 = new System.Windows.Forms.Label();
+            this.dotdotdot21 = new System.Windows.Forms.Label();
+            this.dotdotdot23 = new System.Windows.Forms.Label();
+            this.dotdotdot20 = new System.Windows.Forms.Label();
             this.all12 = new ACNHPokerCore.inventorySlot();
             this.all00 = new ACNHPokerCore.inventorySlot();
             this.all11 = new ACNHPokerCore.inventorySlot();
             this.all01 = new ACNHPokerCore.inventorySlot();
             this.all10 = new ACNHPokerCore.inventorySlot();
             this.all02 = new ACNHPokerCore.inventorySlot();
-            this.label14 = new System.Windows.Forms.Label();
+            this.SelectionLabel = new System.Windows.Forms.Label();
             this.mainOnly = new System.Windows.Forms.RadioButton();
             this.subOnly = new System.Windows.Forms.RadioButton();
             this.all = new System.Windows.Forms.RadioButton();
             this.okBtn = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
+            this.HowManyColumnLabel = new System.Windows.Forms.Label();
             this.columnBox = new System.Windows.Forms.NumericUpDown();
             this.columnPanel = new System.Windows.Forms.Panel();
-            this.label16 = new System.Windows.Forms.Label();
+            this.VerticalSizeLabel = new System.Windows.Forms.Label();
             this.size = new System.Windows.Forms.RichTextBox();
             this.vertPanel = new System.Windows.Forms.Panel();
             this.previewBtn = new System.Windows.Forms.Button();
@@ -77,31 +77,31 @@ namespace ACNHPokerCore
             this.mainHOnly = new System.Windows.Forms.RadioButton();
             this.sizeH = new System.Windows.Forms.RichTextBox();
             this.mainHPanel = new System.Windows.Forms.Panel();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
+            this.dotdotdot3 = new System.Windows.Forms.Label();
+            this.dotdotdot2 = new System.Windows.Forms.Label();
             this.timesHLabel1 = new System.Windows.Forms.RichTextBox();
-            this.label17 = new System.Windows.Forms.Label();
+            this.dotdotdot1 = new System.Windows.Forms.Label();
             this.mainH02 = new ACNHPokerCore.inventorySlot();
             this.mainH01 = new ACNHPokerCore.inventorySlot();
             this.mainH00 = new ACNHPokerCore.inventorySlot();
-            this.label21 = new System.Windows.Forms.Label();
+            this.HorizontalSizeLabel = new System.Windows.Forms.Label();
             this.subHPanel = new System.Windows.Forms.Panel();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
+            this.dotdotdot6 = new System.Windows.Forms.Label();
+            this.dotdotdot5 = new System.Windows.Forms.Label();
             this.timesHLabel2 = new System.Windows.Forms.RichTextBox();
-            this.label23 = new System.Windows.Forms.Label();
+            this.dotdotdot4 = new System.Windows.Forms.Label();
             this.subH00 = new ACNHPokerCore.inventorySlot();
             this.subH01 = new ACNHPokerCore.inventorySlot();
             this.subH02 = new ACNHPokerCore.inventorySlot();
             this.rowPanel = new System.Windows.Forms.Panel();
-            this.label26 = new System.Windows.Forms.Label();
+            this.HowManyRowLabel = new System.Windows.Forms.Label();
             this.rowBox = new System.Windows.Forms.NumericUpDown();
             this.allHPanel = new System.Windows.Forms.Panel();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
+            this.dotdotdot9 = new System.Windows.Forms.Label();
+            this.dotdotdot11 = new System.Windows.Forms.Label();
+            this.dotdotdot8 = new System.Windows.Forms.Label();
+            this.dotdotdot10 = new System.Windows.Forms.Label();
+            this.dotdotdot7 = new System.Windows.Forms.Label();
             this.allH12 = new ACNHPokerCore.inventorySlot();
             this.allH00 = new ACNHPokerCore.inventorySlot();
             this.allH11 = new ACNHPokerCore.inventorySlot();
@@ -113,6 +113,12 @@ namespace ACNHPokerCore
             this.allH = new System.Windows.Forms.RadioButton();
             this.toggleBtn = new System.Windows.Forms.Button();
             this.miniMapBox = new System.Windows.Forms.PictureBox();
+            this.ObeySizeLabel = new System.Windows.Forms.Label();
+            this.ObeySizeToggle = new JCS.ToggleSwitch();
+            this.ExtraColumnLabel = new System.Windows.Forms.Label();
+            this.ExtraRowLabel = new System.Windows.Forms.Label();
+            this.ExtraColumnBox = new System.Windows.Forms.NumericUpDown();
+            this.ExtraRowBox = new System.Windows.Forms.NumericUpDown();
             this.mainPanel.SuspendLayout();
             this.subPanel.SuspendLayout();
             this.allPanel.SuspendLayout();
@@ -126,16 +132,18 @@ namespace ACNHPokerCore
             ((System.ComponentModel.ISupportInitialize)(this.rowBox)).BeginInit();
             this.allHPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.miniMapBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExtraColumnBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExtraRowBox)).BeginInit();
             this.SuspendLayout();
             // 
             // mainPanel
             // 
             this.mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.mainPanel.Controls.Add(this.timesLabel1);
-            this.mainPanel.Controls.Add(this.label3);
-            this.mainPanel.Controls.Add(this.label2);
-            this.mainPanel.Controls.Add(this.label1);
-            this.mainPanel.Controls.Add(this.label6);
+            this.mainPanel.Controls.Add(this.dotdotdot15);
+            this.mainPanel.Controls.Add(this.dotdotdot14);
+            this.mainPanel.Controls.Add(this.dotdotdot13);
+            this.mainPanel.Controls.Add(this.dotdotdot12);
             this.mainPanel.Controls.Add(this.main02);
             this.mainPanel.Controls.Add(this.main01);
             this.mainPanel.Controls.Add(this.main00);
@@ -159,49 +167,49 @@ namespace ACNHPokerCore
             this.timesLabel1.TabIndex = 238;
             this.timesLabel1.Text = "× 1";
             // 
-            // label3
+            // dotdotdot15
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(33, 227);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(11, 48);
-            this.label3.TabIndex = 229;
-            this.label3.Text = ".\r\n.\r\n.";
+            this.dotdotdot15.AutoSize = true;
+            this.dotdotdot15.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot15.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot15.Location = new System.Drawing.Point(33, 227);
+            this.dotdotdot15.Name = "dotdotdot15";
+            this.dotdotdot15.Size = new System.Drawing.Size(11, 48);
+            this.dotdotdot15.TabIndex = 229;
+            this.dotdotdot15.Text = ".\r\n.\r\n.";
             // 
-            // label2
+            // dotdotdot14
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(112, 181);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 16);
-            this.label2.TabIndex = 228;
-            this.label2.Text = ".   .   .";
+            this.dotdotdot14.AutoSize = true;
+            this.dotdotdot14.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot14.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot14.Location = new System.Drawing.Point(112, 181);
+            this.dotdotdot14.Name = "dotdotdot14";
+            this.dotdotdot14.Size = new System.Drawing.Size(43, 16);
+            this.dotdotdot14.TabIndex = 228;
+            this.dotdotdot14.Text = ".   .   .";
             // 
-            // label1
+            // dotdotdot13
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(112, 105);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 16);
-            this.label1.TabIndex = 227;
-            this.label1.Text = ".   .   .";
+            this.dotdotdot13.AutoSize = true;
+            this.dotdotdot13.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot13.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot13.Location = new System.Drawing.Point(112, 105);
+            this.dotdotdot13.Name = "dotdotdot13";
+            this.dotdotdot13.Size = new System.Drawing.Size(43, 16);
+            this.dotdotdot13.TabIndex = 227;
+            this.dotdotdot13.Text = ".   .   .";
             // 
-            // label6
+            // dotdotdot12
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(112, 29);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(43, 16);
-            this.label6.TabIndex = 226;
-            this.label6.Text = ".   .   .";
+            this.dotdotdot12.AutoSize = true;
+            this.dotdotdot12.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot12.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot12.Location = new System.Drawing.Point(112, 29);
+            this.dotdotdot12.Name = "dotdotdot12";
+            this.dotdotdot12.Size = new System.Drawing.Size(43, 16);
+            this.dotdotdot12.TabIndex = 226;
+            this.dotdotdot12.Text = ".   .   .";
             // 
             // main02
             // 
@@ -264,11 +272,11 @@ namespace ACNHPokerCore
             // 
             this.subPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.subPanel.Controls.Add(this.timesLabel2);
-            this.subPanel.Controls.Add(this.label8);
-            this.subPanel.Controls.Add(this.label4);
-            this.subPanel.Controls.Add(this.label9);
+            this.subPanel.Controls.Add(this.dotdotdot18);
+            this.subPanel.Controls.Add(this.dotdotdot19);
+            this.subPanel.Controls.Add(this.dotdotdot17);
             this.subPanel.Controls.Add(this.sub00);
-            this.subPanel.Controls.Add(this.label10);
+            this.subPanel.Controls.Add(this.dotdotdot16);
             this.subPanel.Controls.Add(this.sub01);
             this.subPanel.Controls.Add(this.sub02);
             this.subPanel.Location = new System.Drawing.Point(224, 26);
@@ -291,38 +299,38 @@ namespace ACNHPokerCore
             this.timesLabel2.TabIndex = 239;
             this.timesLabel2.Text = "× 1";
             // 
-            // label8
+            // dotdotdot18
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(112, 181);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(43, 16);
-            this.label8.TabIndex = 232;
-            this.label8.Text = ".   .   .";
+            this.dotdotdot18.AutoSize = true;
+            this.dotdotdot18.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot18.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot18.Location = new System.Drawing.Point(112, 181);
+            this.dotdotdot18.Name = "dotdotdot18";
+            this.dotdotdot18.Size = new System.Drawing.Size(43, 16);
+            this.dotdotdot18.TabIndex = 232;
+            this.dotdotdot18.Text = ".   .   .";
             // 
-            // label4
+            // dotdotdot19
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(33, 227);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(11, 48);
-            this.label4.TabIndex = 230;
-            this.label4.Text = ".\r\n.\r\n.";
+            this.dotdotdot19.AutoSize = true;
+            this.dotdotdot19.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot19.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot19.Location = new System.Drawing.Point(33, 227);
+            this.dotdotdot19.Name = "dotdotdot19";
+            this.dotdotdot19.Size = new System.Drawing.Size(11, 48);
+            this.dotdotdot19.TabIndex = 230;
+            this.dotdotdot19.Text = ".\r\n.\r\n.";
             // 
-            // label9
+            // dotdotdot17
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(112, 105);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(43, 16);
-            this.label9.TabIndex = 231;
-            this.label9.Text = ".   .   .";
+            this.dotdotdot17.AutoSize = true;
+            this.dotdotdot17.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot17.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot17.Location = new System.Drawing.Point(112, 105);
+            this.dotdotdot17.Name = "dotdotdot17";
+            this.dotdotdot17.Size = new System.Drawing.Size(43, 16);
+            this.dotdotdot17.TabIndex = 231;
+            this.dotdotdot17.Text = ".   .   .";
             // 
             // sub00
             // 
@@ -343,16 +351,16 @@ namespace ACNHPokerCore
             this.sub00.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.sub00.UseVisualStyleBackColor = false;
             // 
-            // label10
+            // dotdotdot16
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(112, 29);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(43, 16);
-            this.label10.TabIndex = 230;
-            this.label10.Text = ".   .   .";
+            this.dotdotdot16.AutoSize = true;
+            this.dotdotdot16.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot16.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot16.Location = new System.Drawing.Point(112, 29);
+            this.dotdotdot16.Name = "dotdotdot16";
+            this.dotdotdot16.Size = new System.Drawing.Size(43, 16);
+            this.dotdotdot16.TabIndex = 230;
+            this.dotdotdot16.Text = ".   .   .";
             // 
             // sub01
             // 
@@ -395,11 +403,11 @@ namespace ACNHPokerCore
             // allPanel
             // 
             this.allPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.allPanel.Controls.Add(this.label11);
-            this.allPanel.Controls.Add(this.label7);
-            this.allPanel.Controls.Add(this.label12);
-            this.allPanel.Controls.Add(this.label5);
-            this.allPanel.Controls.Add(this.label13);
+            this.allPanel.Controls.Add(this.dotdotdot22);
+            this.allPanel.Controls.Add(this.dotdotdot24);
+            this.allPanel.Controls.Add(this.dotdotdot21);
+            this.allPanel.Controls.Add(this.dotdotdot23);
+            this.allPanel.Controls.Add(this.dotdotdot20);
             this.allPanel.Controls.Add(this.all12);
             this.allPanel.Controls.Add(this.all00);
             this.allPanel.Controls.Add(this.all11);
@@ -411,60 +419,60 @@ namespace ACNHPokerCore
             this.allPanel.Size = new System.Drawing.Size(205, 285);
             this.allPanel.TabIndex = 97;
             // 
-            // label11
+            // dotdotdot22
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(154, 181);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(43, 16);
-            this.label11.TabIndex = 235;
-            this.label11.Text = ".   .   .";
+            this.dotdotdot22.AutoSize = true;
+            this.dotdotdot22.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot22.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot22.Location = new System.Drawing.Point(154, 181);
+            this.dotdotdot22.Name = "dotdotdot22";
+            this.dotdotdot22.Size = new System.Drawing.Size(43, 16);
+            this.dotdotdot22.TabIndex = 235;
+            this.dotdotdot22.Text = ".   .   .";
             // 
-            // label7
+            // dotdotdot24
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(109, 227);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(11, 48);
-            this.label7.TabIndex = 232;
-            this.label7.Text = ".\r\n.\r\n.";
+            this.dotdotdot24.AutoSize = true;
+            this.dotdotdot24.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot24.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot24.Location = new System.Drawing.Point(109, 227);
+            this.dotdotdot24.Name = "dotdotdot24";
+            this.dotdotdot24.Size = new System.Drawing.Size(11, 48);
+            this.dotdotdot24.TabIndex = 232;
+            this.dotdotdot24.Text = ".\r\n.\r\n.";
             // 
-            // label12
+            // dotdotdot21
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(154, 105);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(43, 16);
-            this.label12.TabIndex = 234;
-            this.label12.Text = ".   .   .";
+            this.dotdotdot21.AutoSize = true;
+            this.dotdotdot21.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot21.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot21.Location = new System.Drawing.Point(154, 105);
+            this.dotdotdot21.Name = "dotdotdot21";
+            this.dotdotdot21.Size = new System.Drawing.Size(43, 16);
+            this.dotdotdot21.TabIndex = 234;
+            this.dotdotdot21.Text = ".   .   .";
             // 
-            // label5
+            // dotdotdot23
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(33, 227);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(11, 48);
-            this.label5.TabIndex = 231;
-            this.label5.Text = ".\r\n.\r\n.";
+            this.dotdotdot23.AutoSize = true;
+            this.dotdotdot23.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot23.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot23.Location = new System.Drawing.Point(33, 227);
+            this.dotdotdot23.Name = "dotdotdot23";
+            this.dotdotdot23.Size = new System.Drawing.Size(11, 48);
+            this.dotdotdot23.TabIndex = 231;
+            this.dotdotdot23.Text = ".\r\n.\r\n.";
             // 
-            // label13
+            // dotdotdot20
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(154, 29);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(43, 16);
-            this.label13.TabIndex = 233;
-            this.label13.Text = ".   .   .";
+            this.dotdotdot20.AutoSize = true;
+            this.dotdotdot20.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot20.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot20.Location = new System.Drawing.Point(154, 29);
+            this.dotdotdot20.Name = "dotdotdot20";
+            this.dotdotdot20.Size = new System.Drawing.Size(43, 16);
+            this.dotdotdot20.TabIndex = 233;
+            this.dotdotdot20.Text = ".   .   .";
             // 
             // all12
             // 
@@ -580,16 +588,16 @@ namespace ACNHPokerCore
             this.all02.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.all02.UseVisualStyleBackColor = false;
             // 
-            // label14
+            // SelectionLabel
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(12, 9);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(330, 16);
-            this.label14.TabIndex = 226;
-            this.label14.Text = "Which variation type would you like to spawn?";
+            this.SelectionLabel.AutoSize = true;
+            this.SelectionLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SelectionLabel.ForeColor = System.Drawing.Color.White;
+            this.SelectionLabel.Location = new System.Drawing.Point(12, 9);
+            this.SelectionLabel.Name = "SelectionLabel";
+            this.SelectionLabel.Size = new System.Drawing.Size(330, 16);
+            this.SelectionLabel.TabIndex = 226;
+            this.SelectionLabel.Text = "Which variation type would you like to spawn?";
             // 
             // mainOnly
             // 
@@ -647,17 +655,18 @@ namespace ACNHPokerCore
             this.okBtn.TabIndex = 230;
             this.okBtn.Text = "OK";
             this.okBtn.UseVisualStyleBackColor = false;
+            this.okBtn.Click += new System.EventHandler(this.okBtn_Click);
             // 
-            // label15
+            // HowManyColumnLabel
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(0, 11);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(330, 16);
-            this.label15.TabIndex = 231;
-            this.label15.Text = "How many column(s) would you like to spawn?\r\n";
+            this.HowManyColumnLabel.AutoSize = true;
+            this.HowManyColumnLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.HowManyColumnLabel.ForeColor = System.Drawing.Color.White;
+            this.HowManyColumnLabel.Location = new System.Drawing.Point(0, 11);
+            this.HowManyColumnLabel.Name = "HowManyColumnLabel";
+            this.HowManyColumnLabel.Size = new System.Drawing.Size(330, 16);
+            this.HowManyColumnLabel.TabIndex = 231;
+            this.HowManyColumnLabel.Text = "How many column(s) would you like to spawn?\r\n";
             // 
             // columnBox
             // 
@@ -688,23 +697,23 @@ namespace ACNHPokerCore
             // 
             // columnPanel
             // 
-            this.columnPanel.Controls.Add(this.label15);
+            this.columnPanel.Controls.Add(this.HowManyColumnLabel);
             this.columnPanel.Controls.Add(this.columnBox);
             this.columnPanel.Location = new System.Drawing.Point(1, 311);
             this.columnPanel.Name = "columnPanel";
             this.columnPanel.Size = new System.Drawing.Size(428, 34);
             this.columnPanel.TabIndex = 235;
             // 
-            // label16
+            // VerticalSizeLabel
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(201, 352);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(128, 16);
-            this.label16.TabIndex = 236;
-            this.label16.Text = "Spawn area size :";
+            this.VerticalSizeLabel.AutoSize = true;
+            this.VerticalSizeLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.VerticalSizeLabel.ForeColor = System.Drawing.Color.White;
+            this.VerticalSizeLabel.Location = new System.Drawing.Point(201, 352);
+            this.VerticalSizeLabel.Name = "VerticalSizeLabel";
+            this.VerticalSizeLabel.Size = new System.Drawing.Size(128, 16);
+            this.VerticalSizeLabel.TabIndex = 236;
+            this.VerticalSizeLabel.Text = "Spawn area size :";
             // 
             // size
             // 
@@ -727,7 +736,7 @@ namespace ACNHPokerCore
             this.vertPanel.Controls.Add(this.mainOnly);
             this.vertPanel.Controls.Add(this.size);
             this.vertPanel.Controls.Add(this.mainPanel);
-            this.vertPanel.Controls.Add(this.label16);
+            this.vertPanel.Controls.Add(this.VerticalSizeLabel);
             this.vertPanel.Controls.Add(this.subPanel);
             this.vertPanel.Controls.Add(this.columnPanel);
             this.vertPanel.Controls.Add(this.allPanel);
@@ -761,7 +770,7 @@ namespace ACNHPokerCore
             this.horiPanel.Controls.Add(this.mainHOnly);
             this.horiPanel.Controls.Add(this.sizeH);
             this.horiPanel.Controls.Add(this.mainHPanel);
-            this.horiPanel.Controls.Add(this.label21);
+            this.horiPanel.Controls.Add(this.HorizontalSizeLabel);
             this.horiPanel.Controls.Add(this.subHPanel);
             this.horiPanel.Controls.Add(this.rowPanel);
             this.horiPanel.Controls.Add(this.allHPanel);
@@ -823,10 +832,10 @@ namespace ACNHPokerCore
             // mainHPanel
             // 
             this.mainHPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.mainHPanel.Controls.Add(this.label19);
-            this.mainHPanel.Controls.Add(this.label18);
+            this.mainHPanel.Controls.Add(this.dotdotdot3);
+            this.mainHPanel.Controls.Add(this.dotdotdot2);
             this.mainHPanel.Controls.Add(this.timesHLabel1);
-            this.mainHPanel.Controls.Add(this.label17);
+            this.mainHPanel.Controls.Add(this.dotdotdot1);
             this.mainHPanel.Controls.Add(this.mainH02);
             this.mainHPanel.Controls.Add(this.mainH01);
             this.mainHPanel.Controls.Add(this.mainH00);
@@ -835,27 +844,27 @@ namespace ACNHPokerCore
             this.mainHPanel.Size = new System.Drawing.Size(205, 285);
             this.mainHPanel.TabIndex = 95;
             // 
-            // label19
+            // dotdotdot3
             // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label19.ForeColor = System.Drawing.Color.White;
-            this.label19.Location = new System.Drawing.Point(180, 81);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(11, 48);
-            this.label19.TabIndex = 240;
-            this.label19.Text = ".\r\n.\r\n.";
+            this.dotdotdot3.AutoSize = true;
+            this.dotdotdot3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot3.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot3.Location = new System.Drawing.Point(180, 81);
+            this.dotdotdot3.Name = "dotdotdot3";
+            this.dotdotdot3.Size = new System.Drawing.Size(11, 48);
+            this.dotdotdot3.TabIndex = 240;
+            this.dotdotdot3.Text = ".\r\n.\r\n.";
             // 
-            // label18
+            // dotdotdot2
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label18.ForeColor = System.Drawing.Color.White;
-            this.label18.Location = new System.Drawing.Point(108, 81);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(11, 48);
-            this.label18.TabIndex = 239;
-            this.label18.Text = ".\r\n.\r\n.";
+            this.dotdotdot2.AutoSize = true;
+            this.dotdotdot2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot2.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot2.Location = new System.Drawing.Point(108, 81);
+            this.dotdotdot2.Name = "dotdotdot2";
+            this.dotdotdot2.Size = new System.Drawing.Size(11, 48);
+            this.dotdotdot2.TabIndex = 239;
+            this.dotdotdot2.Text = ".\r\n.\r\n.";
             // 
             // timesHLabel1
             // 
@@ -872,16 +881,16 @@ namespace ACNHPokerCore
             this.timesHLabel1.TabIndex = 238;
             this.timesHLabel1.Text = "× 1";
             // 
-            // label17
+            // dotdotdot1
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label17.ForeColor = System.Drawing.Color.White;
-            this.label17.Location = new System.Drawing.Point(33, 81);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(11, 48);
-            this.label17.TabIndex = 229;
-            this.label17.Text = ".\r\n.\r\n.";
+            this.dotdotdot1.AutoSize = true;
+            this.dotdotdot1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot1.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot1.Location = new System.Drawing.Point(33, 81);
+            this.dotdotdot1.Name = "dotdotdot1";
+            this.dotdotdot1.Size = new System.Drawing.Size(11, 48);
+            this.dotdotdot1.TabIndex = 229;
+            this.dotdotdot1.Text = ".\r\n.\r\n.";
             // 
             // mainH02
             // 
@@ -940,24 +949,24 @@ namespace ACNHPokerCore
             this.mainH00.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.mainH00.UseVisualStyleBackColor = false;
             // 
-            // label21
+            // HorizontalSizeLabel
             // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label21.ForeColor = System.Drawing.Color.White;
-            this.label21.Location = new System.Drawing.Point(182, 352);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(128, 16);
-            this.label21.TabIndex = 236;
-            this.label21.Text = "Spawn area size :";
+            this.HorizontalSizeLabel.AutoSize = true;
+            this.HorizontalSizeLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.HorizontalSizeLabel.ForeColor = System.Drawing.Color.White;
+            this.HorizontalSizeLabel.Location = new System.Drawing.Point(182, 352);
+            this.HorizontalSizeLabel.Name = "HorizontalSizeLabel";
+            this.HorizontalSizeLabel.Size = new System.Drawing.Size(128, 16);
+            this.HorizontalSizeLabel.TabIndex = 236;
+            this.HorizontalSizeLabel.Text = "Spawn area size :";
             // 
             // subHPanel
             // 
             this.subHPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.subHPanel.Controls.Add(this.label22);
-            this.subHPanel.Controls.Add(this.label20);
+            this.subHPanel.Controls.Add(this.dotdotdot6);
+            this.subHPanel.Controls.Add(this.dotdotdot5);
             this.subHPanel.Controls.Add(this.timesHLabel2);
-            this.subHPanel.Controls.Add(this.label23);
+            this.subHPanel.Controls.Add(this.dotdotdot4);
             this.subHPanel.Controls.Add(this.subH00);
             this.subHPanel.Controls.Add(this.subH01);
             this.subHPanel.Controls.Add(this.subH02);
@@ -966,27 +975,27 @@ namespace ACNHPokerCore
             this.subHPanel.Size = new System.Drawing.Size(205, 285);
             this.subHPanel.TabIndex = 96;
             // 
-            // label22
+            // dotdotdot6
             // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label22.ForeColor = System.Drawing.Color.White;
-            this.label22.Location = new System.Drawing.Point(180, 81);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(11, 48);
-            this.label22.TabIndex = 241;
-            this.label22.Text = ".\r\n.\r\n.";
+            this.dotdotdot6.AutoSize = true;
+            this.dotdotdot6.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot6.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot6.Location = new System.Drawing.Point(180, 81);
+            this.dotdotdot6.Name = "dotdotdot6";
+            this.dotdotdot6.Size = new System.Drawing.Size(11, 48);
+            this.dotdotdot6.TabIndex = 241;
+            this.dotdotdot6.Text = ".\r\n.\r\n.";
             // 
-            // label20
+            // dotdotdot5
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(108, 81);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(11, 48);
-            this.label20.TabIndex = 240;
-            this.label20.Text = ".\r\n.\r\n.";
+            this.dotdotdot5.AutoSize = true;
+            this.dotdotdot5.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot5.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot5.Location = new System.Drawing.Point(108, 81);
+            this.dotdotdot5.Name = "dotdotdot5";
+            this.dotdotdot5.Size = new System.Drawing.Size(11, 48);
+            this.dotdotdot5.TabIndex = 240;
+            this.dotdotdot5.Text = ".\r\n.\r\n.";
             // 
             // timesHLabel2
             // 
@@ -1003,16 +1012,16 @@ namespace ACNHPokerCore
             this.timesHLabel2.TabIndex = 239;
             this.timesHLabel2.Text = "× 1";
             // 
-            // label23
+            // dotdotdot4
             // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label23.ForeColor = System.Drawing.Color.White;
-            this.label23.Location = new System.Drawing.Point(33, 81);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(11, 48);
-            this.label23.TabIndex = 230;
-            this.label23.Text = ".\r\n.\r\n.";
+            this.dotdotdot4.AutoSize = true;
+            this.dotdotdot4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot4.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot4.Location = new System.Drawing.Point(33, 81);
+            this.dotdotdot4.Name = "dotdotdot4";
+            this.dotdotdot4.Size = new System.Drawing.Size(11, 48);
+            this.dotdotdot4.TabIndex = 230;
+            this.dotdotdot4.Text = ".\r\n.\r\n.";
             // 
             // subH00
             // 
@@ -1073,23 +1082,23 @@ namespace ACNHPokerCore
             // 
             // rowPanel
             // 
-            this.rowPanel.Controls.Add(this.label26);
+            this.rowPanel.Controls.Add(this.HowManyRowLabel);
             this.rowPanel.Controls.Add(this.rowBox);
             this.rowPanel.Location = new System.Drawing.Point(1, 311);
             this.rowPanel.Name = "rowPanel";
             this.rowPanel.Size = new System.Drawing.Size(428, 34);
             this.rowPanel.TabIndex = 235;
             // 
-            // label26
+            // HowManyRowLabel
             // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label26.ForeColor = System.Drawing.Color.White;
-            this.label26.Location = new System.Drawing.Point(0, 11);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(305, 16);
-            this.label26.TabIndex = 231;
-            this.label26.Text = "How many row(s) would you like to spawn?\r\n";
+            this.HowManyRowLabel.AutoSize = true;
+            this.HowManyRowLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.HowManyRowLabel.ForeColor = System.Drawing.Color.White;
+            this.HowManyRowLabel.Location = new System.Drawing.Point(0, 11);
+            this.HowManyRowLabel.Name = "HowManyRowLabel";
+            this.HowManyRowLabel.Size = new System.Drawing.Size(305, 16);
+            this.HowManyRowLabel.TabIndex = 231;
+            this.HowManyRowLabel.Text = "How many row(s) would you like to spawn?\r\n";
             // 
             // rowBox
             // 
@@ -1121,11 +1130,11 @@ namespace ACNHPokerCore
             // allHPanel
             // 
             this.allHPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.allHPanel.Controls.Add(this.label27);
-            this.allHPanel.Controls.Add(this.label28);
-            this.allHPanel.Controls.Add(this.label29);
-            this.allHPanel.Controls.Add(this.label30);
-            this.allHPanel.Controls.Add(this.label31);
+            this.allHPanel.Controls.Add(this.dotdotdot9);
+            this.allHPanel.Controls.Add(this.dotdotdot11);
+            this.allHPanel.Controls.Add(this.dotdotdot8);
+            this.allHPanel.Controls.Add(this.dotdotdot10);
+            this.allHPanel.Controls.Add(this.dotdotdot7);
             this.allHPanel.Controls.Add(this.allH12);
             this.allHPanel.Controls.Add(this.allH00);
             this.allHPanel.Controls.Add(this.allH11);
@@ -1137,60 +1146,60 @@ namespace ACNHPokerCore
             this.allHPanel.Size = new System.Drawing.Size(205, 285);
             this.allHPanel.TabIndex = 97;
             // 
-            // label27
+            // dotdotdot9
             // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label27.ForeColor = System.Drawing.Color.White;
-            this.label27.Location = new System.Drawing.Point(154, 181);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(43, 16);
-            this.label27.TabIndex = 235;
-            this.label27.Text = ".   .   .";
+            this.dotdotdot9.AutoSize = true;
+            this.dotdotdot9.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot9.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot9.Location = new System.Drawing.Point(154, 181);
+            this.dotdotdot9.Name = "dotdotdot9";
+            this.dotdotdot9.Size = new System.Drawing.Size(43, 16);
+            this.dotdotdot9.TabIndex = 235;
+            this.dotdotdot9.Text = ".   .   .";
             // 
-            // label28
+            // dotdotdot11
             // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label28.ForeColor = System.Drawing.Color.White;
-            this.label28.Location = new System.Drawing.Point(109, 227);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(11, 48);
-            this.label28.TabIndex = 232;
-            this.label28.Text = ".\r\n.\r\n.";
+            this.dotdotdot11.AutoSize = true;
+            this.dotdotdot11.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot11.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot11.Location = new System.Drawing.Point(109, 227);
+            this.dotdotdot11.Name = "dotdotdot11";
+            this.dotdotdot11.Size = new System.Drawing.Size(11, 48);
+            this.dotdotdot11.TabIndex = 232;
+            this.dotdotdot11.Text = ".\r\n.\r\n.";
             // 
-            // label29
+            // dotdotdot8
             // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label29.ForeColor = System.Drawing.Color.White;
-            this.label29.Location = new System.Drawing.Point(154, 105);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(43, 16);
-            this.label29.TabIndex = 234;
-            this.label29.Text = ".   .   .";
+            this.dotdotdot8.AutoSize = true;
+            this.dotdotdot8.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot8.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot8.Location = new System.Drawing.Point(154, 105);
+            this.dotdotdot8.Name = "dotdotdot8";
+            this.dotdotdot8.Size = new System.Drawing.Size(43, 16);
+            this.dotdotdot8.TabIndex = 234;
+            this.dotdotdot8.Text = ".   .   .";
             // 
-            // label30
+            // dotdotdot10
             // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label30.ForeColor = System.Drawing.Color.White;
-            this.label30.Location = new System.Drawing.Point(33, 227);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(11, 48);
-            this.label30.TabIndex = 231;
-            this.label30.Text = ".\r\n.\r\n.";
+            this.dotdotdot10.AutoSize = true;
+            this.dotdotdot10.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot10.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot10.Location = new System.Drawing.Point(33, 227);
+            this.dotdotdot10.Name = "dotdotdot10";
+            this.dotdotdot10.Size = new System.Drawing.Size(11, 48);
+            this.dotdotdot10.TabIndex = 231;
+            this.dotdotdot10.Text = ".\r\n.\r\n.";
             // 
-            // label31
+            // dotdotdot7
             // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label31.ForeColor = System.Drawing.Color.White;
-            this.label31.Location = new System.Drawing.Point(154, 29);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(43, 16);
-            this.label31.TabIndex = 233;
-            this.label31.Text = ".   .   .";
+            this.dotdotdot7.AutoSize = true;
+            this.dotdotdot7.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dotdotdot7.ForeColor = System.Drawing.Color.White;
+            this.dotdotdot7.Location = new System.Drawing.Point(154, 29);
+            this.dotdotdot7.Name = "dotdotdot7";
+            this.dotdotdot7.Size = new System.Drawing.Size(43, 16);
+            this.dotdotdot7.TabIndex = 233;
+            this.dotdotdot7.Text = ".   .   .";
             // 
             // allH12
             // 
@@ -1321,6 +1330,7 @@ namespace ACNHPokerCore
             this.okHBtn.TabIndex = 230;
             this.okHBtn.Text = "OK";
             this.okHBtn.UseVisualStyleBackColor = false;
+            this.okHBtn.Click += new System.EventHandler(this.okHBtn_Click);
             // 
             // subHOnly
             // 
@@ -1372,14 +1382,107 @@ namespace ACNHPokerCore
             this.miniMapBox.TabIndex = 240;
             this.miniMapBox.TabStop = false;
             // 
+            // ObeySizeLabel
+            // 
+            this.ObeySizeLabel.AutoSize = true;
+            this.ObeySizeLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ObeySizeLabel.ForeColor = System.Drawing.Color.White;
+            this.ObeySizeLabel.Location = new System.Drawing.Point(16, 410);
+            this.ObeySizeLabel.Name = "ObeySizeLabel";
+            this.ObeySizeLabel.Size = new System.Drawing.Size(117, 16);
+            this.ObeySizeLabel.TabIndex = 240;
+            this.ObeySizeLabel.Text = "Obey item size :";
+            // 
+            // ObeySizeToggle
+            // 
+            this.ObeySizeToggle.Location = new System.Drawing.Point(134, 410);
+            this.ObeySizeToggle.Name = "ObeySizeToggle";
+            this.ObeySizeToggle.OffFont = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ObeySizeToggle.OffForeColor = System.Drawing.Color.White;
+            this.ObeySizeToggle.OffText = "No";
+            this.ObeySizeToggle.OnFont = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ObeySizeToggle.OnForeColor = System.Drawing.Color.White;
+            this.ObeySizeToggle.OnText = "Yes";
+            this.ObeySizeToggle.Size = new System.Drawing.Size(53, 16);
+            this.ObeySizeToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            this.ObeySizeToggle.TabIndex = 241;
+            this.ObeySizeToggle.UseAnimation = false;
+            this.ObeySizeToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.ObeySizeToggle_CheckedChanged);
+            // 
+            // ExtraColumnLabel
+            // 
+            this.ExtraColumnLabel.AutoSize = true;
+            this.ExtraColumnLabel.Enabled = false;
+            this.ExtraColumnLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ExtraColumnLabel.ForeColor = System.Drawing.Color.White;
+            this.ExtraColumnLabel.Location = new System.Drawing.Point(193, 410);
+            this.ExtraColumnLabel.Name = "ExtraColumnLabel";
+            this.ExtraColumnLabel.Size = new System.Drawing.Size(112, 16);
+            this.ExtraColumnLabel.TabIndex = 242;
+            this.ExtraColumnLabel.Text = "Extra Column : ";
+            // 
+            // ExtraRowLabel
+            // 
+            this.ExtraRowLabel.AutoSize = true;
+            this.ExtraRowLabel.Enabled = false;
+            this.ExtraRowLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ExtraRowLabel.ForeColor = System.Drawing.Color.White;
+            this.ExtraRowLabel.Location = new System.Drawing.Point(346, 410);
+            this.ExtraRowLabel.Name = "ExtraRowLabel";
+            this.ExtraRowLabel.Size = new System.Drawing.Size(89, 16);
+            this.ExtraRowLabel.TabIndex = 243;
+            this.ExtraRowLabel.Text = "Extra Row : ";
+            // 
+            // ExtraColumnBox
+            // 
+            this.ExtraColumnBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
+            this.ExtraColumnBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ExtraColumnBox.Enabled = false;
+            this.ExtraColumnBox.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ExtraColumnBox.ForeColor = System.Drawing.Color.White;
+            this.ExtraColumnBox.Location = new System.Drawing.Point(302, 410);
+            this.ExtraColumnBox.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.ExtraColumnBox.Name = "ExtraColumnBox";
+            this.ExtraColumnBox.Size = new System.Drawing.Size(40, 19);
+            this.ExtraColumnBox.TabIndex = 235;
+            this.ExtraColumnBox.ValueChanged += new System.EventHandler(this.ExtraColumnBox_ValueChanged);
+            // 
+            // ExtraRowBox
+            // 
+            this.ExtraRowBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
+            this.ExtraRowBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ExtraRowBox.Enabled = false;
+            this.ExtraRowBox.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ExtraRowBox.ForeColor = System.Drawing.Color.White;
+            this.ExtraRowBox.Location = new System.Drawing.Point(432, 410);
+            this.ExtraRowBox.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.ExtraRowBox.Name = "ExtraRowBox";
+            this.ExtraRowBox.Size = new System.Drawing.Size(40, 19);
+            this.ExtraRowBox.TabIndex = 244;
+            this.ExtraRowBox.ValueChanged += new System.EventHandler(this.ExtraRowBox_ValueChanged);
+            // 
             // variationSpawn
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.ClientSize = new System.Drawing.Size(674, 411);
+            this.ClientSize = new System.Drawing.Size(674, 431);
+            this.Controls.Add(this.ExtraRowBox);
+            this.Controls.Add(this.ExtraColumnBox);
+            this.Controls.Add(this.ExtraRowLabel);
+            this.Controls.Add(this.ExtraColumnLabel);
+            this.Controls.Add(this.ObeySizeToggle);
+            this.Controls.Add(this.ObeySizeLabel);
             this.Controls.Add(this.miniMapBox);
             this.Controls.Add(this.toggleBtn);
-            this.Controls.Add(this.label14);
+            this.Controls.Add(this.SelectionLabel);
             this.Controls.Add(this.horiPanel);
             this.Controls.Add(this.vertPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -1388,7 +1491,7 @@ namespace ACNHPokerCore
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1150, 900);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(690, 450);
+            this.MinimumSize = new System.Drawing.Size(690, 470);
             this.Name = "variationSpawn";
             this.Opacity = 0.95D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -1416,6 +1519,8 @@ namespace ACNHPokerCore
             this.allHPanel.ResumeLayout(false);
             this.allHPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.miniMapBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExtraColumnBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExtraRowBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1437,28 +1542,28 @@ namespace ACNHPokerCore
         private inventorySlot all01;
         private inventorySlot all10;
         private inventorySlot all02;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label dotdotdot12;
+        private System.Windows.Forms.Label dotdotdot15;
+        private System.Windows.Forms.Label dotdotdot14;
+        private System.Windows.Forms.Label dotdotdot13;
+        private System.Windows.Forms.Label dotdotdot18;
+        private System.Windows.Forms.Label dotdotdot19;
+        private System.Windows.Forms.Label dotdotdot17;
+        private System.Windows.Forms.Label dotdotdot16;
+        private System.Windows.Forms.Label dotdotdot22;
+        private System.Windows.Forms.Label dotdotdot24;
+        private System.Windows.Forms.Label dotdotdot21;
+        private System.Windows.Forms.Label dotdotdot23;
+        private System.Windows.Forms.Label dotdotdot20;
+        private System.Windows.Forms.Label SelectionLabel;
         private System.Windows.Forms.RadioButton mainOnly;
         private System.Windows.Forms.RadioButton subOnly;
         private System.Windows.Forms.RadioButton all;
         private System.Windows.Forms.Button okBtn;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label HowManyColumnLabel;
         private System.Windows.Forms.NumericUpDown columnBox;
         private System.Windows.Forms.Panel columnPanel;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label VerticalSizeLabel;
         private System.Windows.Forms.RichTextBox size;
         private System.Windows.Forms.RichTextBox timesLabel1;
         private System.Windows.Forms.RichTextBox timesLabel2;
@@ -1467,31 +1572,31 @@ namespace ACNHPokerCore
         private System.Windows.Forms.RadioButton mainHOnly;
         private System.Windows.Forms.RichTextBox sizeH;
         private System.Windows.Forms.Panel mainHPanel;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label dotdotdot3;
+        private System.Windows.Forms.Label dotdotdot2;
         private System.Windows.Forms.RichTextBox timesHLabel1;
-        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label dotdotdot1;
         private inventorySlot mainH02;
         private inventorySlot mainH01;
         private inventorySlot mainH00;
-        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label HorizontalSizeLabel;
         private System.Windows.Forms.Panel subHPanel;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label dotdotdot6;
+        private System.Windows.Forms.Label dotdotdot5;
         private System.Windows.Forms.RichTextBox timesHLabel2;
-        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label dotdotdot4;
         private inventorySlot subH00;
         private inventorySlot subH01;
         private inventorySlot subH02;
         private System.Windows.Forms.Panel rowPanel;
-        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label HowManyRowLabel;
         private System.Windows.Forms.NumericUpDown rowBox;
         private System.Windows.Forms.Panel allHPanel;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label dotdotdot9;
+        private System.Windows.Forms.Label dotdotdot11;
+        private System.Windows.Forms.Label dotdotdot8;
+        private System.Windows.Forms.Label dotdotdot10;
+        private System.Windows.Forms.Label dotdotdot7;
         private inventorySlot allH12;
         private inventorySlot allH00;
         private inventorySlot allH11;
@@ -1505,5 +1610,11 @@ namespace ACNHPokerCore
         private System.Windows.Forms.PictureBox miniMapBox;
         private System.Windows.Forms.Button previewBtn;
         private System.Windows.Forms.Button previewHBtn;
+        private System.Windows.Forms.Label ObeySizeLabel;
+        private JCS.ToggleSwitch ObeySizeToggle;
+        private System.Windows.Forms.Label ExtraColumnLabel;
+        private System.Windows.Forms.Label ExtraRowLabel;
+        private System.Windows.Forms.NumericUpDown ExtraColumnBox;
+        private System.Windows.Forms.NumericUpDown ExtraRowBox;
     }
 }
