@@ -138,7 +138,7 @@ namespace ACNHPokerCore
             itemWithSpace = new byte[numOfitem + numOfSpace][];
 
             int itemNum = 0;
-            
+
             for (int j = 0; j < data.Length / 8; j++)
             {
                 if (isItem[j])

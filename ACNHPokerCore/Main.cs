@@ -1220,7 +1220,7 @@ namespace ACNHPokerCore
 
                                 if (DataValidation())
                                 {
-                                    string sysbotbaseVersion = Utilities.CheckSysBotBase(socket,usb);
+                                    string sysbotbaseVersion = Utilities.CheckSysBotBase(socket, usb);
                                     MyMessageBox.Show("You have successfully established a connection!\n" +
                                                     "Your Sys-botbase installation and IP address are correct.\n" +
                                                     "However...\n" +
@@ -1747,65 +1747,12 @@ namespace ACNHPokerCore
                         HexModeButton_Click(null, null);
                     }
 
-                    string count = translateVariationValue(item.fillItemData()) + Utilities.precedingZeros(item.fillItemID(), 4);
+                    string count = Utilities.translateVariationValue(item.fillItemData()) + Utilities.precedingZeros(item.fillItemID(), 4);
 
                     SelectedItem.setup(GetNameFromID(Utilities.turn2bytes(IDTextbox.Text), itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + count, 16), GetImagePathFromID(Utilities.turn2bytes(IDTextbox.Text), itemSource), true, item.getPath(), SelectedItem.getFlag1(), SelectedItem.getFlag2());
                     AmountOrCountTextbox.Text = count;
                 }
             }
-        }
-
-        private static string translateVariationValue(string input)
-        {
-            if (input.Length > 4)
-                return "0000";
-            int hexValue = Convert.ToUInt16("0x" + input, 16);
-            int firstHalf = 0;
-            int secondHalf = 0;
-            string output;
-
-            if (hexValue <= 0x7)
-            {
-                return Utilities.precedingZeros(input, 4);
-            }
-            else if (hexValue <= 0x27)
-            {
-                firstHalf = (0x20 / 4);
-                secondHalf = (hexValue - 0x20);
-            }
-            else if (hexValue <= 0x47)
-            {
-                firstHalf = (0x40 / 4);
-                secondHalf = (hexValue - 0x40);
-            }
-            else if (hexValue <= 0x67)
-            {
-                firstHalf = (0x60 / 4);
-                secondHalf = (hexValue - 0x60);
-            }
-            else if (hexValue <= 0x87)
-            {
-                firstHalf = (0x80 / 4);
-                secondHalf = (hexValue - 0x80);
-            }
-            else if (hexValue <= 0xA7)
-            {
-                firstHalf = (0xA0 / 4);
-                secondHalf = (hexValue - 0xA0);
-            }
-            else if (hexValue <= 0xC7)
-            {
-                firstHalf = (0xC0 / 4);
-                secondHalf = (hexValue - 0xC0);
-            }
-            else if (hexValue <= 0xE7)
-            {
-                firstHalf = (0xE0 / 4);
-                secondHalf = (hexValue - 0xE0);
-            }
-
-            output = Utilities.precedingZeros((firstHalf + secondHalf).ToString("X"), 4);
-            return output;
         }
 
         private void closeVariationMenu()
@@ -8343,7 +8290,7 @@ namespace ACNHPokerCore
 
                     PlayerInventorySelector.SelectedIndex = CurrentPlayerIndex;
                     PlayerInventorySelectorOther.SelectedIndex = CurrentPlayerIndex;
-                    this.Text = this.Text + UpdateTownID() + "|  [Connected via USB]";
+                    this.Text = this.Text + UpdateTownID() + " | [Connected via USB]";
 
                     setEatButton();
                     UpdateTurnipPrices();

@@ -14,28 +14,42 @@ namespace ACNHPokerCore
         inventorySlot[,] subHSlot = new inventorySlot[3, 1];
         inventorySlot[,] allHSlot = new inventorySlot[2, 3];
 
+        private inventorySlot[,] VariationList;
         private miniMap MiniMap = null;
         private byte[] Layer1 = null;
         private byte[] Acre = null;
         private byte[] Building = null;
         private byte[] Terrain = null;
+        private string Flag;
         private bool previewOn = false;
 
-        int main;
-        int sub;
-        int X;
-        int Y;
+        private int main;
+        private int sub;
+        private int X;
+        private int Y;
 
-        public variationSpawn(inventorySlot[,] variationList, byte[] layer1, byte[] acre, byte[] building, byte[] terrain, int x, int y)
+        private double width;
+        private double height;
+        private bool wallmount;
+        private bool rug;
+
+        private bool init = true;
+
+        public event ObeySizeHandler SendObeySizeEvent;
+
+        public variationSpawn(inventorySlot[,] variationList, byte[] layer1, byte[] acre, byte[] building, byte[] terrain, int x, int y, string flag, string size)
         {
+            VariationList = variationList;
             Layer1 = layer1;
             Acre = acre;
             Building = building;
             Terrain = terrain;
+            Flag = flag;
             X = x;
             Y = y;
 
             InitializeComponent();
+            processSize(size);
             map.numOfColumn = (int)columnBox.Value;
             map.numOfRow = (int)rowBox.Value;
 
@@ -153,10 +167,14 @@ namespace ACNHPokerCore
                 }
             }
 
-            updateSize();
+            if (Flag == "00" || Flag == "01" || Flag == "02" || Flag == "03" || Flag == "04")
+                ObeySizeToggle.Checked = true;
 
             MiniMap = new miniMap(Layer1, Acre, Building, Terrain, 4);
             miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawBackground(), MiniMap.drawItemMap());
+            init = false;
+
+            updateSize();
         }
 
         private void mainOnly_CheckedChanged(object sender, EventArgs e)
@@ -218,47 +236,192 @@ namespace ACNHPokerCore
 
         private void updateSize()
         {
+            if (init)
+                return;
+            int totalHeight = 0;
+            int totalWidth = 0;
+            int extraHeight = 0;
+            int extraWidth = 0;
+            int extraColumn = (int)ExtraColumnBox.Value;
+            int extraRow = (int)ExtraRowBox.Value;
+            int wallMountExtra = 0;
+
+            if (wallmount)
+                wallMountExtra = 1;
+
             if (toggleBtn.Tag.ToString().Equals("Vertical"))
             {
+                int column = (int)columnBox.Value;
+
                 if (mainOnly.Checked)
                 {
-                    size.Text = main.ToString() + " × " + columnBox.Value;
+                    if (ObeySizeToggle.Checked)
+                    {
+                        if (placeHorizontal())
+                        {
+                            totalHeight = main * ((int)Math.Ceiling(height) + extraRow);
+                            totalWidth = column * ((int)Math.Ceiling(width) + extraColumn + wallMountExtra);
+                        }
+                        else
+                        {
+                            totalHeight = main * ((int)Math.Ceiling(width) + extraRow + wallMountExtra);
+                            totalWidth = column * ((int)Math.Ceiling(height) + extraColumn);
+                        }
+                        extraHeight = totalHeight - main;
+                        extraWidth = totalWidth - column;
+                    }
+
+                    size.Text = (main + extraHeight).ToString() + " × " + (column + extraWidth).ToString();
+
                     if (previewOn)
-                        miniMapBox.Image = MiniMap.drawPreview(main, (int)columnBox.Value, X, Y, true);
+                        miniMapBox.Image = MiniMap.drawPreview(main + extraHeight, column + extraWidth, X, Y, true);
                 }
                 else if (subOnly.Checked)
                 {
-                    size.Text = sub.ToString() + " × " + columnBox.Value;
+                    if (ObeySizeToggle.Checked)
+                    {
+                        if (placeHorizontal())
+                        {
+                            totalHeight = sub * ((int)Math.Ceiling(height) + extraRow);
+                            totalWidth = column * ((int)Math.Ceiling(width) + extraColumn + wallMountExtra);
+                        }
+                        else
+                        {
+                            totalHeight = sub * ((int)Math.Ceiling(width) + extraRow + wallMountExtra);
+                            totalWidth = column * ((int)Math.Ceiling(height) + extraColumn);
+                        }
+                        extraHeight = totalHeight - sub;
+                        extraWidth = totalWidth - column;
+                    }
+
+                    size.Text = (sub + extraHeight).ToString() + " × " + (column + extraWidth).ToString();
+
                     if (previewOn)
-                        miniMapBox.Image = MiniMap.drawPreview(sub, (int)columnBox.Value, X, Y, true);
+                        miniMapBox.Image = MiniMap.drawPreview(sub + extraHeight, column + extraWidth, X, Y, true);
                 }
                 else
                 {
-                    size.Text = sub.ToString() + " × " + main.ToString();
+                    if (ObeySizeToggle.Checked)
+                    {
+                        if (placeHorizontal())
+                        {
+                            totalHeight = sub * ((int)Math.Ceiling(height) + extraRow);
+                            totalWidth = main * ((int)Math.Ceiling(width) + extraColumn + wallMountExtra);
+                        }
+                        else
+                        {
+                            totalHeight = sub * ((int)Math.Ceiling(width) + extraRow + wallMountExtra);
+                            totalWidth = main * ((int)Math.Ceiling(height) + extraColumn);
+                        }
+                        extraHeight = totalHeight - sub;
+                        extraWidth = totalWidth - main;
+                    }
+
+                    size.Text = (sub + extraHeight).ToString() + " × " + (main + extraWidth).ToString();
+
                     if (previewOn)
-                        miniMapBox.Image = MiniMap.drawPreview(sub, main, X, Y, true);
+                        miniMapBox.Image = MiniMap.drawPreview(sub + extraHeight, main + extraWidth, X, Y, true);
                 }
             }
             else
             {
+                int row = (int)rowBox.Value;
+
                 if (mainHOnly.Checked)
                 {
-                    sizeH.Text = rowBox.Value + " × " + main.ToString();
+                    if (ObeySizeToggle.Checked)
+                    {
+                        if (placeHorizontal())
+                        {
+                            totalHeight = row * ((int)Math.Ceiling(height) + extraRow);
+                            totalWidth = main * ((int)Math.Ceiling(width) + extraColumn + wallMountExtra);
+                        }
+                        else
+                        {
+                            totalHeight = row * ((int)Math.Ceiling(width) + extraRow + wallMountExtra);
+                            totalWidth = main * ((int)Math.Ceiling(height) + extraColumn);
+                        }
+                        extraHeight = totalHeight - row;
+                        extraWidth = totalWidth - main;
+                    }
+
+                    sizeH.Text = (row + extraHeight).ToString() + " × " + (main + extraWidth).ToString();
+
                     if (previewOn)
-                        miniMapBox.Image = MiniMap.drawPreview((int)rowBox.Value, main, X, Y, true);
+                        miniMapBox.Image = MiniMap.drawPreview(row + extraHeight, main + extraWidth, X, Y, true);
                 }
                 else if (subHOnly.Checked)
                 {
-                    sizeH.Text = rowBox.Value + " × " + sub.ToString();
+                    if (ObeySizeToggle.Checked)
+                    {
+                        if (placeHorizontal())
+                        {
+                            totalHeight = row * ((int)Math.Ceiling(height) + extraRow);
+                            totalWidth = sub * ((int)Math.Ceiling(width) + extraColumn + wallMountExtra);
+                        }
+                        else
+                        {
+                            totalHeight = row * ((int)Math.Ceiling(width) + extraRow + wallMountExtra);
+                            totalWidth = sub * ((int)Math.Ceiling(height) + extraColumn);
+                        }
+                        extraHeight = totalHeight - row;
+                        extraWidth = totalWidth - sub;
+                    }
+
+                    sizeH.Text = (row + extraHeight).ToString() + " × " + (sub + extraWidth).ToString();
+
                     if (previewOn)
-                        miniMapBox.Image = MiniMap.drawPreview((int)rowBox.Value, sub, X, Y, true);
+                        miniMapBox.Image = MiniMap.drawPreview(row + extraHeight, sub + extraWidth, X, Y, true);
                 }
                 else
                 {
-                    sizeH.Text = main.ToString() + " × " + sub.ToString();
+                    if (ObeySizeToggle.Checked)
+                    {
+                        if (placeHorizontal())
+                        {
+                            totalHeight = main * ((int)Math.Ceiling(height) + extraRow);
+                            totalWidth = sub * ((int)Math.Ceiling(width) + extraColumn + wallMountExtra);
+                        }
+                        else
+                        {
+                            totalHeight = main * ((int)Math.Ceiling(width) + extraRow + wallMountExtra);
+                            totalWidth = sub * ((int)Math.Ceiling(height) + extraColumn);
+                        }
+                        extraHeight = totalHeight - main;
+                        extraWidth = totalWidth - sub;
+                    }
+
+                    sizeH.Text = (main + extraHeight).ToString() + " × " + (sub + extraWidth).ToString();
+
                     if (previewOn)
-                        miniMapBox.Image = MiniMap.drawPreview(main, sub, X, Y, true);
+                        miniMapBox.Image = MiniMap.drawPreview(main + extraHeight, sub + extraWidth, X, Y, true);
                 }
+            }
+
+            if (ObeySizeToggle.Checked)
+            {
+                if (SendObeySizeEvent != null)
+                {
+                    if (placeHorizontal())
+                    {
+                        if (wallmount)
+                            this.SendObeySizeEvent(true, ((int)Math.Ceiling(height) + extraRow), ((int)Math.Ceiling(width) + extraColumn + wallMountExtra), totalHeight, totalWidth, true);
+                        else
+                            this.SendObeySizeEvent(true, ((int)Math.Ceiling(height) + extraRow), ((int)Math.Ceiling(width) + extraColumn), totalHeight, totalWidth, false);
+                    }
+                    else
+                    {
+                        if(wallmount)
+                            this.SendObeySizeEvent(true, ((int)Math.Ceiling(width) + extraRow + wallMountExtra), ((int)Math.Ceiling(height) + extraColumn), totalHeight, totalWidth, true);
+                        else
+                            this.SendObeySizeEvent(true, ((int)Math.Ceiling(width) + extraRow), ((int)Math.Ceiling(height) + extraColumn), totalHeight, totalWidth, false);
+                    }
+                }
+            }
+            else
+            {
+                if (SendObeySizeEvent != null)
+                    this.SendObeySizeEvent(false);
             }
         }
 
@@ -312,6 +475,106 @@ namespace ACNHPokerCore
                 previewOn = true;
                 updateSize();
             }
+        }
+
+        private void processSize(string size)
+        {
+            if (size == null)
+            {
+                height = 1;
+                width = 1;
+                wallmount = false;
+                rug = false;
+                MyMessageBox.Show("Missing Size data", "Sadge", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+            else if (size == "")
+            {
+                height = 1;
+                width = 1;
+                wallmount = false;
+                rug = false;
+                MyMessageBox.Show("Missing Size data", "Sadge", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+
+            if (size.Contains("_Wall"))
+            {
+                wallmount = true;
+                rug = false;
+            }
+            else if (size.Contains("_Rug"))
+            {
+                wallmount = false;
+                rug = true;
+            }
+            else
+            {
+                wallmount = false;
+                rug = false;
+            }
+
+            if (size.Contains("x"))
+            {
+                string[] dimension = size.Replace("_Wall", "").Replace("_Rug", "").Split("x");
+                string[] front = dimension[0].Split("_");
+                string[] back = dimension[1].Split("_");
+
+                width = double.Parse(front[0], System.Globalization.CultureInfo.InvariantCulture);
+                if (front[1] == "5")
+                    width += 0.5;
+                height = double.Parse(back[0], System.Globalization.CultureInfo.InvariantCulture);
+                if (back[1] == "5")
+                    height += 0.5;
+            }
+        }
+
+        private bool placeHorizontal()
+        {
+            if (Flag == "00" || Flag == "02" || Flag == "04")
+                return true;
+            else
+                return false;
+        }
+
+        private void ObeySizeToggle_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ObeySizeToggle.Checked)
+            {
+                ExtraColumnLabel.Enabled = true;
+                ExtraRowLabel.Enabled = true;
+                ExtraColumnBox.Enabled = true;
+                ExtraRowBox.Enabled = true;
+            }
+            else
+            {
+                ExtraColumnLabel.Enabled = false;
+                ExtraRowLabel.Enabled = false;
+                ExtraColumnBox.Enabled = false;
+                ExtraRowBox.Enabled = false;
+            }
+            if (init)
+                return;
+
+            updateSize();
+        }
+
+        private void okHBtn_Click(object sender, EventArgs e)
+        {
+            updateSize();
+        }
+
+        private void okBtn_Click(object sender, EventArgs e)
+        {
+            updateSize();
+        }
+
+        private void ExtraColumnBox_ValueChanged(object sender, EventArgs e)
+        {
+            updateSize();
+        }
+
+        private void ExtraRowBox_ValueChanged(object sender, EventArgs e)
+        {
+            updateSize();
         }
     }
 }

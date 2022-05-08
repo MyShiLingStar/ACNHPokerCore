@@ -14,13 +14,22 @@
     <PackageIcon>Leaf.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
     <NeutralLanguage>en-US</NeutralLanguage>
+    <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;NU1701;CS0169</NoWarn>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <NoWarn>1701;1702;NU1701;CS0169</NoWarn>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;NU1701;CS0169</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <NoWarn>1701;1702;NU1701;CS0169</NoWarn>
   </PropertyGroup>
 
