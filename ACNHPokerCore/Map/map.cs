@@ -16,7 +16,7 @@ namespace ACNHPokerCore
 {
 
     #region event
-    public delegate void ObeySizeHandler(bool toggle, int itemHeight = 0, int itemWidth = 0, int newSpawnHeight = 0, int newSpawnWidth = 0, bool wallmount = false);
+    public delegate void ObeySizeHandler(bool toggle, int itemHeight = 0, int itemWidth = 0, int newSpawnHeight = 0, int newSpawnWidth = 0, bool wallmount = false, bool ceiling = false);
     #endregion
 
     public partial class map : Form
@@ -77,6 +77,7 @@ namespace ACNHPokerCore
         private int newSpawnWidth = 0;
         private int newSpawnHeight = 0;
         private bool wallmount = false;
+        private bool ceiling = false;
 
         byte[] Layer1 = null;
         byte[] Layer2 = null;
@@ -1257,7 +1258,7 @@ namespace ACNHPokerCore
                         IdTextbox.Text = id;
                         HexTextbox.Text = "00000000";
                         selectedSize = fieldGridView.Rows[e.RowIndex].Cells["size"].Value.ToString();
-                        SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("x", "x ");
+                        SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("_Pillar", "Pillar").Replace("_Ceiling", "Ceiling").Replace("x", "x ");
 
                         selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), 0x0, GetImagePathFromID(id, source), true, "");
                     }
@@ -1838,7 +1839,7 @@ namespace ACNHPokerCore
                 selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source, Convert.ToUInt32("0x" + hexValue, 16)), true, "", flag1, flag2);
 
             selectedSize = GetSize(id);
-            SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("x", "x ");
+            SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("_Pillar", "Pillar").Replace("_Ceiling", "Ceiling").Replace("x", "x ");
         }
 
         private void KeyboardKeyDown(object sender, KeyEventArgs e)
@@ -1967,7 +1968,7 @@ namespace ACNHPokerCore
                 IdTextbox.Text = id;
                 HexTextbox.Text = "00000000";
                 selectedSize = fieldGridView.Rows[index].Cells["size"].Value.ToString();
-                SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("x", "x ");
+                SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("_Pillar", "Pillar").Replace("_Ceiling", "Ceiling").Replace("x", "x ");
 
 
                 selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), 0x0, GetImagePathFromID(id, source), true, "");
@@ -2939,7 +2940,7 @@ namespace ACNHPokerCore
                         selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source, Convert.ToUInt32("0x" + hexValue, 16)), true, "", flag1, flag2);
 
                     selectedSize = GetSize(id);
-                    SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("x", "x ");
+                    SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("_Pillar", "Pillar").Replace("_Ceiling", "Ceiling").Replace("x", "x ");
 
                     if (sound)
                         System.Media.SystemSounds.Asterisk.Play();
@@ -5852,7 +5853,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void VariationSpawner_SendObeySizeEvent(bool toggle, int ItemHeight = 0, int ItemWidth = 0, int NewSpawnHeight = 0, int NewSpawnWidth = 0, bool Wallmount = false)
+        private void VariationSpawner_SendObeySizeEvent(bool toggle, int ItemHeight = 0, int ItemWidth = 0, int NewSpawnHeight = 0, int NewSpawnWidth = 0, bool Wallmount = false, bool Ceiling = false)
         {
             obeySize = toggle;
             itemHeight = ItemHeight;
@@ -5860,6 +5861,7 @@ namespace ACNHPokerCore
             newSpawnHeight = NewSpawnHeight;
             newSpawnWidth = NewSpawnWidth;
             wallmount = Wallmount;
+            ceiling = Ceiling;
         }
 
         private byte[][] buildVariationArea(inventorySlot[,] variation, int numberOfRow, int multiple, int mode)
@@ -5998,6 +6000,17 @@ namespace ACNHPokerCore
                         if (wallmount && flag != "20")
                         {
                             string itemID = "1618";
+                            string itemData = Utilities.translateVariationValue(serialList[iterator].fillItemData()) + Utilities.precedingZeros(serialList[iterator].fillItemID(), 4);
+                            string flag1 = Utilities.precedingZeros(serialList[iterator].getFlag1(), 2);
+                            string flag2 = Utilities.precedingZeros(serialList[iterator].getFlag2(), 2);
+
+                            ItemLeft = Utilities.stringToByte(Utilities.buildDropStringLeft(itemID, itemData, flag1, flag2));
+                            ItemRight = Utilities.stringToByte(Utilities.buildDropStringRight(itemID));
+                            iterator++;
+                        }
+                        else if (ceiling && flag != "20")
+                        {
+                            string itemID = "342F";
                             string itemData = Utilities.translateVariationValue(serialList[iterator].fillItemData()) + Utilities.precedingZeros(serialList[iterator].fillItemID(), 4);
                             string flag1 = Utilities.precedingZeros(serialList[iterator].getFlag1(), 2);
                             string flag2 = Utilities.precedingZeros(serialList[iterator].getFlag2(), 2);
@@ -6168,6 +6181,17 @@ namespace ACNHPokerCore
                         if (wallmount && flag != "20")
                         {
                             string itemID = "1618";
+                            string itemData = Utilities.translateVariationValue(serialList[iterator].fillItemData()) + Utilities.precedingZeros(serialList[iterator].fillItemID(), 4);
+                            string flag1 = Utilities.precedingZeros(serialList[iterator].getFlag1(), 2);
+                            string flag2 = Utilities.precedingZeros(serialList[iterator].getFlag2(), 2);
+
+                            ItemLeft = Utilities.stringToByte(Utilities.buildDropStringLeft(itemID, itemData, flag1, flag2));
+                            ItemRight = Utilities.stringToByte(Utilities.buildDropStringRight(itemID));
+                            iterator++;
+                        }
+                        else if (ceiling && flag != "20")
+                        {
+                            string itemID = "342F";
                             string itemData = Utilities.translateVariationValue(serialList[iterator].fillItemData()) + Utilities.precedingZeros(serialList[iterator].fillItemID(), 4);
                             string flag1 = Utilities.precedingZeros(serialList[iterator].getFlag1(), 2);
                             string flag2 = Utilities.precedingZeros(serialList[iterator].getFlag2(), 2);
