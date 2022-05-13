@@ -407,7 +407,7 @@ namespace ACNHPokerCore
                     {
                         if (wallmount)
                             this.SendObeySizeEvent(true, ((int)Math.Ceiling(height) + extraRow), ((int)Math.Ceiling(width) + extraColumn + wallMountExtra), totalHeight, totalWidth, true, false);
-                        if (ceiling)
+                        else if (ceiling)
                             this.SendObeySizeEvent(true, ((int)Math.Ceiling(height) + extraRow), ((int)Math.Ceiling(width) + extraColumn), totalHeight, totalWidth, false, true);
                         else
                             this.SendObeySizeEvent(true, ((int)Math.Ceiling(height) + extraRow), ((int)Math.Ceiling(width) + extraColumn), totalHeight, totalWidth, false, false);
@@ -416,7 +416,7 @@ namespace ACNHPokerCore
                     {
                         if (wallmount)
                             this.SendObeySizeEvent(true, ((int)Math.Ceiling(width) + extraRow + wallMountExtra), ((int)Math.Ceiling(height) + extraColumn), totalHeight, totalWidth, true, false);
-                        if (ceiling)
+                        else if (ceiling)
                             this.SendObeySizeEvent(true, ((int)Math.Ceiling(width) + extraRow), ((int)Math.Ceiling(height) + extraColumn), totalHeight, totalWidth, false, true);
                         else
                             this.SendObeySizeEvent(true, ((int)Math.Ceiling(width) + extraRow), ((int)Math.Ceiling(height) + extraColumn), totalHeight, totalWidth, false, false);

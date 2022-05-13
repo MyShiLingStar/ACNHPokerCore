@@ -68,6 +68,10 @@ namespace ACNHPokerCore
 
         public static UInt32 mapSize = 0x54000;
 
+        public static UInt32 mapActivate = mapZero + 0xA8000;
+
+        public static UInt32 mapActivateSize = 0x1500;
+
         //=================================================================
 
         public static UInt32 VisitorNameAddress = 0xB750ED78; //0xB710ED78;
@@ -2509,6 +2513,45 @@ namespace ACNHPokerCore
                         if (b == null)
                         {
                             MessageBox.Show("Wait something is wrong here!? \n\n Terrain");
+                        }
+                        return b;
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    return null;
+                }
+            }
+        }
+
+        public static byte[] getActivate(Socket socket, USBBot usb, long address, ref int counter)
+        {
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        Debug.Print("[Sys] Peek : Activate " + address.ToString("X"));
+
+                        byte[] b = ReadByteArray8(socket, address, (int)mapActivateSize, ref counter);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n Activate");
+                        }
+                        return b;
+                    }
+                    else
+                    {
+                        Debug.Print("[Usb] Peek : Activate " + address.ToString("X"));
+
+                        byte[] b = ReadLargeBytes(usb, (uint)address, (int)mapActivateSize, ref counter);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n Activate");
                         }
                         return b;
                     }
