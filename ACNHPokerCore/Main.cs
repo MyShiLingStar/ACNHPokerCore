@@ -32,7 +32,7 @@ namespace ACNHPokerCore
 
         private static Socket socket;
         private static USBBot usb = null;
-        private string version = "ACNHPokerCore R20 for v2.0.5";
+        private string version = "ACNHPokerCore R21 for v2.0.5";
 
         private Panel currentPanel;
 

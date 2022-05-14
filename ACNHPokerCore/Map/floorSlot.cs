@@ -38,6 +38,10 @@ namespace ACNHPokerCore
         public Boolean locked = false;
         public Boolean corner = false;
 
+        private Boolean refreshing = false;
+        private static object syncRoot = new();
+        private static object lockObject = new();
+
         public UInt16 itemDurability
         {
             get
@@ -71,9 +75,6 @@ namespace ACNHPokerCore
                 itemData = (itemData & 0xFFFFFF00) + value;
             }
         }
-
-        private Boolean refreshing = false;
-        private static object syncRoot = new Object();
         public floorSlot()
         {
             if (File.Exists(Utilities.RecipeOverlayPath))
@@ -517,125 +518,128 @@ namespace ACNHPokerCore
 
         public Image displayItemImage(Boolean large, Boolean separate)
         {
-            if (separate)
+            lock (lockObject)
             {
-                Size size;
-
-                if (large)
+                if (separate)
                 {
-                    size = new Size(128, 128);
+                    Size size;
+
+                    if (large)
+                    {
+                        size = new Size(128, 128);
+                    }
+                    else
+                    {
+                        size = new Size(64, 64);
+                    }
+
+                    if (large)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        Image background = new Bitmap(75, 75);
+                        Image topleft = null;
+                        Image topright = null;
+                        Image bottomleft = null;
+                        Image bottomright = null;
+
+                        if (image1Path != "")
+                        {
+                            topleft = (new Bitmap(Image.FromFile(image1Path), new Size((this.Width) / 2, (this.Height) / 2)));
+                        }
+                        else if (itemID != 0xFFFE)
+                        {
+                            topleft = (new Bitmap(Properties.Resources.Leaf, new Size((this.Width) / 2, (this.Height) / 2)));
+                        }
+                        if (image2Path != "")
+                        {
+                            bottomleft = (new Bitmap(Image.FromFile(image2Path), new Size((this.Width) / 2, (this.Height) / 2)));
+                        }
+                        else if (part2 != 0x0000FFFE)
+                        {
+                            bottomleft = (new Bitmap(Properties.Resources.Leaf, new Size((this.Width) / 2, (this.Height) / 2)));
+                        }
+                        if (image3Path != "")
+                        {
+                            topright = (new Bitmap(Image.FromFile(image3Path), new Size((this.Width) / 2, (this.Height) / 2)));
+                        }
+                        else if (part3 != 0x0000FFFE)
+                        {
+                            topright = (new Bitmap(Properties.Resources.Leaf, new Size((this.Width) / 2, (this.Height) / 2)));
+                        }
+                        if (image4Path != "")
+                        {
+                            bottomright = (new Bitmap(Image.FromFile(image4Path), new Size((this.Width) / 2, (this.Height) / 2)));
+                        }
+                        else if (part4 != 0x0000FFFE)
+                        {
+                            bottomright = (new Bitmap(Properties.Resources.Leaf, new Size((this.Width) / 2, (this.Height) / 2)));
+                        }
+
+                        Image img = PlaceImages(background, topleft, topright, bottomleft, bottomright, 1);
+                        return (Image)(new Bitmap(img, size));
+                    }
                 }
                 else
                 {
-                    size = new Size(64, 64);
-                }
+                    Size size;
+                    Double recipeMultiplier;
+                    Double wallMultiplier;
 
-                if (large)
-                {
-                    return null;
-                }
-                else
-                {
-                    Image background = new Bitmap(75, 75);
-                    Image topleft = null;
-                    Image topright = null;
-                    Image bottomleft = null;
-                    Image bottomright = null;
-
-                    if (image1Path != "")
+                    if (large)
                     {
-                        topleft = (new Bitmap(Image.FromFile(image1Path), new Size((this.Width) / 2, (this.Height) / 2)));
+                        size = new Size(128, 128);
+                        recipeMultiplier = 0.3;
+                        wallMultiplier = 0.45;
                     }
-                    else if (itemID != 0xFFFE)
+                    else
                     {
-                        topleft = (new Bitmap(Properties.Resources.Leaf, new Size((this.Width) / 2, (this.Height) / 2)));
-                    }
-                    if (image2Path != "")
-                    {
-                        bottomleft = (new Bitmap(Image.FromFile(image2Path), new Size((this.Width) / 2, (this.Height) / 2)));
-                    }
-                    else if (part2 != 0x0000FFFE)
-                    {
-                        bottomleft = (new Bitmap(Properties.Resources.Leaf, new Size((this.Width) / 2, (this.Height) / 2)));
-                    }
-                    if (image3Path != "")
-                    {
-                        topright = (new Bitmap(Image.FromFile(image3Path), new Size((this.Width) / 2, (this.Height) / 2)));
-                    }
-                    else if (part3 != 0x0000FFFE)
-                    {
-                        topright = (new Bitmap(Properties.Resources.Leaf, new Size((this.Width) / 2, (this.Height) / 2)));
-                    }
-                    if (image4Path != "")
-                    {
-                        bottomright = (new Bitmap(Image.FromFile(image4Path), new Size((this.Width) / 2, (this.Height) / 2)));
-                    }
-                    else if (part4 != 0x0000FFFE)
-                    {
-                        bottomright = (new Bitmap(Properties.Resources.Leaf, new Size((this.Width) / 2, (this.Height) / 2)));
+                        size = new Size(64, 64);
+                        recipeMultiplier = 0.5;
+                        wallMultiplier = 0.6;
                     }
 
-                    Image img = PlaceImages(background, topleft, topright, bottomleft, bottomright, 1);
-                    return (Image)(new Bitmap(img, size));
-                }
-            }
-            else
-            {
-                Size size;
-                Double recipeMultiplier;
-                Double wallMultiplier;
-
-                if (large)
-                {
-                    size = new Size(128, 128);
-                    recipeMultiplier = 0.3;
-                    wallMultiplier = 0.45;
-                }
-                else
-                {
-                    size = new Size(64, 64);
-                    recipeMultiplier = 0.5;
-                    wallMultiplier = 0.6;
-                }
-
-                if (image1Path == "" & itemID != 0xFFFE)
-                {
-                    return (Image)(new Bitmap(Properties.Resources.Leaf, size));
-                }
-                else if (itemID == 0x16A2) // recipe
-                {
-                    Image background = Image.FromFile(image1Path);
-                    int imageSize = (int)(background.Width * recipeMultiplier);
-                    Image icon = (new Bitmap(recipe, new Size(imageSize, imageSize)));
-
-                    Image img = PlaceImageOverImage(background, icon, background.Width - (imageSize - 5), background.Width - (imageSize - 5), 1);
-                    return (Image)(new Bitmap(img, size));
-                }
-                else if (itemID == 0x315A || itemID == 0x1618 || itemID == 0x342F) // Wall-Mount
-                {
-                    if (File.Exists(containItemPath))
+                    if (image1Path == "" & itemID != 0xFFFE)
+                    {
+                        return (Image)(new Bitmap(Properties.Resources.Leaf, size));
+                    }
+                    else if (itemID == 0x16A2) // recipe
                     {
                         Image background = Image.FromFile(image1Path);
-                        int imageSize = (int)(background.Width * wallMultiplier);
-                        Image icon = (new Bitmap(Image.FromFile(containItemPath), new Size(imageSize, imageSize)));
+                        int imageSize = (int)(background.Width * recipeMultiplier);
+                        Image icon = (new Bitmap(recipe, new Size(imageSize, imageSize)));
 
                         Image img = PlaceImageOverImage(background, icon, background.Width - (imageSize - 5), background.Width - (imageSize - 5), 1);
                         return (Image)(new Bitmap(img, size));
                     }
-                    else
+                    else if (itemID == 0x315A || itemID == 0x1618 || itemID == 0x342F) // Wall-Mount
+                    {
+                        if (File.Exists(containItemPath))
+                        {
+                            Image background = Image.FromFile(image1Path);
+                            int imageSize = (int)(background.Width * wallMultiplier);
+                            Image icon = (new Bitmap(Image.FromFile(containItemPath), new Size(imageSize, imageSize)));
+
+                            Image img = PlaceImageOverImage(background, icon, background.Width - (imageSize - 5), background.Width - (imageSize - 5), 1);
+                            return (Image)(new Bitmap(img, size));
+                        }
+                        else
+                        {
+                            Image img = Image.FromFile(image1Path);
+                            return (Image)(new Bitmap(img, size));
+                        }
+                    }
+                    else if (image1Path != "")
                     {
                         Image img = Image.FromFile(image1Path);
                         return (Image)(new Bitmap(img, size));
                     }
-                }
-                else if (image1Path != "")
-                {
-                    Image img = Image.FromFile(image1Path);
-                    return (Image)(new Bitmap(img, size));
-                }
-                else
-                {
-                    return null;
+                    else
+                    {
+                        return null;
+                    }
                 }
             }
         }

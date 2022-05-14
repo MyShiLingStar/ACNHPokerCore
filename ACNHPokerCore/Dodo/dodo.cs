@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.Sockets;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -1439,6 +1440,7 @@ namespace ACNHPokerCore
         {
             bool init = true;
             idleNum = 0;
+            string newVisitor;
 
             do
             {
@@ -1462,6 +1464,16 @@ namespace ACNHPokerCore
                     {
                         idleNum = 0;
                         wasLoading = true;
+
+                        newVisitor = getVisitorName();
+
+                        if (!newVisitor.Equals(string.Empty))
+                        {
+                            CreateLog(newVisitor);
+                            Thread.Sleep(70000);
+                            Utilities.sendBlankName(s);
+                            state = teleport.GetOverworldState();
+                        }
                     }
 
                     if (stopWatch != null)
@@ -1627,6 +1639,18 @@ namespace ACNHPokerCore
             } while (standaloneRunning);
         }
 
+        private string getVisitorName()
+        {
+            byte[] b = Utilities.getVisitorName(s);
+            if (b == null)
+            {
+                return string.Empty;
+            }
+            //Debug.Print("Byte :   " +Utilities.ByteToHexString(b));
+            string tempName = Encoding.Unicode.GetString(b, 0, 20);
+            return tempName.Replace("\0", string.Empty);
+        }
+
         private void GetVisitorList()
         {
             string[] namelist = new string[8];
@@ -1653,6 +1677,27 @@ namespace ACNHPokerCore
                 }*/
             }
             //Debug.Print("Visitor Update");
+        }
+
+        private void CreateLog(string newVisitor)
+        {
+            if (!File.Exists(Utilities.VisitorLogPath))
+            {
+                string logheader = "Timestamp" + "," + "Name";
+
+                using (StreamWriter sw = File.CreateText(Utilities.VisitorLogPath))
+                {
+                    sw.WriteLine(logheader);
+                }
+            }
+
+            DateTime localDate = DateTime.Now;
+            string newLog = localDate.ToString() + "," + newVisitor;
+
+            using (StreamWriter sw = File.AppendText(Utilities.VisitorLogPath))
+            {
+                sw.WriteLine(newLog);
+            }
         }
 
         private void StopWatchBtn_Click(object sender, EventArgs e)

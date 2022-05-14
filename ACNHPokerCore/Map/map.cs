@@ -87,8 +87,14 @@ namespace ACNHPokerCore
         byte[] ActivateLayer1 = null;
         byte[] ActivateLayer2 = null;
 
-        public event CloseHandler closeForm;
+        bool[,] ActivateTable1;
+        bool[,] ActivateTable2;
 
+        private ToolStripMenuItem ActivateItem;
+        private ToolStripMenuItem DeactivateItem;
+
+        public event CloseHandler closeForm;
+        private static object lockObject = new object();
         Color[] target =
         {
             Color.FromArgb(252, 3, 3),
@@ -220,6 +226,14 @@ namespace ACNHPokerCore
                 SaveArea = new ToolStripMenuItem("Save Area to File", null, saveAreaToolStripMenuItem_Click);
                 SaveArea.ForeColor = Color.White;
 
+                ActivateItem = new ToolStripMenuItem("Activate", null, ActivateItemToolStripMenuItem_Click);
+                ActivateItem.ForeColor = Color.White;
+                ActivateItem.BackColor = Color.Green;
+
+                DeactivateItem = new ToolStripMenuItem("Deactivate", null, DeactivateItemToolStripMenuItem_Click);
+                DeactivateItem.ForeColor = Color.White;
+                DeactivateItem.BackColor = Color.Crimson;
+
                 this.KeyPreview = true;
 
                 LanguageSetup(LanguageSetting);
@@ -287,6 +301,8 @@ namespace ACNHPokerCore
                 else
                     throw new NullReferenceException("Layer1/Layer2/Acre");
 
+                buildActivateTable(ActivateLayer1, ref ActivateTable1);
+                buildActivateTable(ActivateLayer2, ref ActivateTable2);
 
                 byte[] Coordinate = Utilities.getCoordinate(s, usb);
 
@@ -383,15 +399,18 @@ namespace ACNHPokerCore
         {
             miniMapBox.Image = MiniMap.drawSelectSquare(anchorX, anchorY);
 
-            BtnSetup(floorByte[0], floorByte[1], (anchorX - 3), (anchorY - 3), floor1, floor2, floor3, floor4, floor5, floor6, floor7, 0, false);
-            BtnSetup(floorByte[2], floorByte[3], (anchorX - 2), (anchorY - 3), floor8, floor9, floor10, floor11, floor12, floor13, floor14, 1, false);
-            BtnSetup(floorByte[4], floorByte[5], (anchorX - 1), (anchorY - 3), floor15, floor16, floor17, floor18, floor19, floor20, floor21, 2, false);
-            BtnSetup(floorByte[6], floorByte[7], (anchorX - 0), (anchorY - 3), floor22, floor23, floor24, floor25, floor26, floor27, floor28, 3, true);
-            BtnSetup(floorByte[8], floorByte[9], (anchorX + 1), (anchorY - 3), floor29, floor30, floor31, floor32, floor33, floor34, floor35, 4, false);
-            BtnSetup(floorByte[10], floorByte[11], (anchorX + 2), (anchorY - 3), floor36, floor37, floor38, floor39, floor40, floor41, floor42, 5, false);
-            BtnSetup(floorByte[12], floorByte[13], (anchorX + 3), (anchorY - 3), floor43, floor44, floor45, floor46, floor47, floor48, floor49, 6, false);
+            lock (lockObject)
+            {
+                BtnSetup(floorByte[0], floorByte[1], (anchorX - 3), (anchorY - 3), floor1, floor2, floor3, floor4, floor5, floor6, floor7, 0, false);
+                BtnSetup(floorByte[2], floorByte[3], (anchorX - 2), (anchorY - 3), floor8, floor9, floor10, floor11, floor12, floor13, floor14, 1, false);
+                BtnSetup(floorByte[4], floorByte[5], (anchorX - 1), (anchorY - 3), floor15, floor16, floor17, floor18, floor19, floor20, floor21, 2, false);
+                BtnSetup(floorByte[6], floorByte[7], (anchorX - 0), (anchorY - 3), floor22, floor23, floor24, floor25, floor26, floor27, floor28, 3, true);
+                BtnSetup(floorByte[8], floorByte[9], (anchorX + 1), (anchorY - 3), floor29, floor30, floor31, floor32, floor33, floor34, floor35, 4, false);
+                BtnSetup(floorByte[10], floorByte[11], (anchorX + 2), (anchorY - 3), floor36, floor37, floor38, floor39, floor40, floor41, floor42, 5, false);
+                BtnSetup(floorByte[12], floorByte[13], (anchorX + 3), (anchorY - 3), floor43, floor44, floor45, floor46, floor47, floor48, floor49, 6, false);
 
-            resetBtnColor();
+                resetBtnColor();
+            }
         }
 
         private void BtnSetup(byte[] b, byte[] b2, int x, int y, floorSlot slot1, floorSlot slot2, floorSlot slot3, floorSlot slot4, floorSlot slot5, floorSlot slot6, floorSlot slot7, int colume, Boolean anchor = false)
@@ -633,23 +652,30 @@ namespace ACNHPokerCore
 
             int x = anchorX;
             int y = anchorY;
+            List<Task> tasks;
 
-            List<Task> tasks = new List<Task>
+            lock (lockObject)
             {
-                Task.Run(() => BtnSetupAsync(floorByte[0], floorByte[1], (x - 3), (y - 3), floor1, floor2, floor3, floor4, floor5, floor6, floor7, 0, false)),
-                Task.Run(() => BtnSetupAsync(floorByte[2], floorByte[3], (x - 2), (y - 3), floor8, floor9, floor10, floor11, floor12, floor13, floor14, 1, false)),
-                Task.Run(() => BtnSetupAsync(floorByte[4], floorByte[5], (x - 1), (y - 3), floor15, floor16, floor17, floor18, floor19, floor20, floor21, 2, false)),
-                Task.Run(() => BtnSetupAsync(floorByte[6], floorByte[7], (x - 0), (y - 3), floor22, floor23, floor24, floor25, floor26, floor27, floor28, 3, true)),
-                Task.Run(() => BtnSetupAsync(floorByte[8], floorByte[9], (x + 1), (y - 3), floor29, floor30, floor31, floor32, floor33, floor34, floor35, 4, false)),
-                Task.Run(() => BtnSetupAsync(floorByte[10], floorByte[11], (x + 2), (y - 3), floor36, floor37, floor38, floor39, floor40, floor41, floor42, 5, false)),
-                Task.Run(() => BtnSetupAsync(floorByte[12], floorByte[13], (x + 3), (y - 3), floor43, floor44, floor45, floor46, floor47, floor48, floor49, 6, false))
-            };
+                tasks = new List<Task>
+                {
+                    Task.Run(() => BtnSetupAsync(floorByte[0], floorByte[1], (x - 3), (y - 3), floor1, floor2, floor3, floor4, floor5, floor6, floor7, 0, false)),
+                    Task.Run(() => BtnSetupAsync(floorByte[2], floorByte[3], (x - 2), (y - 3), floor8, floor9, floor10, floor11, floor12, floor13, floor14, 1, false)),
+                    Task.Run(() => BtnSetupAsync(floorByte[4], floorByte[5], (x - 1), (y - 3), floor15, floor16, floor17, floor18, floor19, floor20, floor21, 2, false)),
+                    Task.Run(() => BtnSetupAsync(floorByte[6], floorByte[7], (x - 0), (y - 3), floor22, floor23, floor24, floor25, floor26, floor27, floor28, 3, true)),
+                    Task.Run(() => BtnSetupAsync(floorByte[8], floorByte[9], (x + 1), (y - 3), floor29, floor30, floor31, floor32, floor33, floor34, floor35, 4, false)),
+                    Task.Run(() => BtnSetupAsync(floorByte[10], floorByte[11], (x + 2), (y - 3), floor36, floor37, floor38, floor39, floor40, floor41, floor42, 5, false)),
+                    Task.Run(() => BtnSetupAsync(floorByte[12], floorByte[13], (x + 3), (y - 3), floor43, floor44, floor45, floor46, floor47, floor48, floor49, 6, false))
+                };
+            }
 
             await Task.WhenAll(tasks);
 
-            resetBtnColor();
+            lock (lockObject)
+            {
+                resetBtnColor();
 
-            drawing = false;
+                drawing = false;
+            }
         }
 
         private async Task BtnSetupAsync(byte[] b, byte[] b2, int x, int y, floorSlot slot1, floorSlot slot2, floorSlot slot3, floorSlot slot4, floorSlot slot5, floorSlot slot6, floorSlot slot7, int colume, Boolean anchor = false)
@@ -956,6 +982,12 @@ namespace ACNHPokerCore
             else
                 locked = "✘ False";
             */
+            string activateInfo;
+            if (layer1Btn.Checked)
+                activateInfo = displayActivate(button.mapX, button.mapY, ActivateTable1);
+            else
+                activateInfo = displayActivate(button.mapX, button.mapY, ActivateTable2);
+
             btnToolTip.SetToolTip(button,
                                     button.itemName +
                                     "\n\n" + "" +
@@ -968,7 +1000,8 @@ namespace ACNHPokerCore
                                     "Part3 : " + button.part3.ToString("X") + " " + Utilities.precedingZeros(button.part3Data.ToString("X"), 8) + "\n" +
                                     "Part4 : " + button.part4.ToString("X") + " " + Utilities.precedingZeros(button.part4Data.ToString("X"), 8) + "\n" +
                                     //"Locked : " + locked + 
-                                    "Terrain : " + MiniMap.getTerrainData(button.mapX, button.mapY)
+                                    "Terrain : " + MiniMap.getTerrainData(button.mapX, button.mapY) + "\n" +
+                                    "Activate : " + activateInfo
                                     );
         }
         #endregion
@@ -1839,10 +1872,15 @@ namespace ACNHPokerCore
                 selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.turn2bytes(hexValue), recipeSource), true, "", flag1, flag2);
             else if (ItemAttr.hasFenceWithVariation(IntId))  // Fence Variation
                 selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source, Convert.ToUInt32("0x" + front, 16)), true, "", flag1, flag2);
+            else if (id == "315A" || id == "1618" || id == "342F")
+                selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source, Convert.ToUInt32("0x" + hexValue, 16)), true, GetImagePathFromID((Utilities.turn2bytes(hexValue)), source, Convert.ToUInt32("0x" + Utilities.translateVariationValueBack(front), 16)), flag1, flag2);
             else
                 selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source, Convert.ToUInt32("0x" + hexValue, 16)), true, "", flag1, flag2);
 
-            selectedSize = GetSize(id);
+            if (id == "315A" || id == "1618" || id == "342F")
+                selectedSize = GetSize(back);
+            else
+                selectedSize = GetSize(id);
             SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("_Pillar", "Pillar").Replace("_Ceiling", "Ceiling").Replace("x", "x ");
         }
 
@@ -2450,6 +2488,37 @@ namespace ACNHPokerCore
                 floorRightClick.Items.Add(PasteArea);
             if (AreaSet && !floorRightClick.Items.Contains(SaveArea))
                 floorRightClick.Items.Add(SaveArea);
+
+            if (layer1Btn.Checked)
+            {
+                if (isActivate(selectedButton.mapX, selectedButton.mapY, ActivateTable1))
+                {
+                    floorRightClick.Items.Add(DeactivateItem);
+                    if (floorRightClick.Items.Contains(ActivateItem))
+                        floorRightClick.Items.Remove(ActivateItem);
+                }
+                else
+                {
+                    floorRightClick.Items.Add(ActivateItem);
+                    if (floorRightClick.Items.Contains(DeactivateItem))
+                        floorRightClick.Items.Remove(DeactivateItem);
+                }
+            }
+            else
+            {
+                if (isActivate(selectedButton.mapX, selectedButton.mapY, ActivateTable2))
+                {
+                    floorRightClick.Items.Add(DeactivateItem);
+                    if (floorRightClick.Items.Contains(ActivateItem))
+                        floorRightClick.Items.Remove(ActivateItem);
+                }
+                else
+                {
+                    floorRightClick.Items.Add(ActivateItem);
+                    if (floorRightClick.Items.Contains(DeactivateItem))
+                        floorRightClick.Items.Remove(DeactivateItem);
+                }
+            }
         }
 
         private void copyAreaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2826,6 +2895,21 @@ namespace ACNHPokerCore
                 System.Media.SystemSounds.Asterisk.Play();
         }
 
+        private void ActivateItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (layer1Btn.Checked)
+                setActivate(selectedButton.mapX, selectedButton.mapY, ref ActivateLayer1, ref ActivateTable1);
+            else
+                setActivate(selectedButton.mapX, selectedButton.mapY, ref ActivateLayer2, ref ActivateTable2);
+        }
+
+        private void DeactivateItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (layer1Btn.Checked)
+                setDeactivate(selectedButton.mapX, selectedButton.mapY, ref ActivateLayer1, ref ActivateTable1);
+            else
+                setDeactivate(selectedButton.mapX, selectedButton.mapY, ref ActivateLayer2, ref ActivateTable2);
+        }
         #endregion
 
         #region Delete Item
@@ -2940,10 +3024,15 @@ namespace ACNHPokerCore
                         selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.turn2bytes(hexValue), recipeSource), true, "", flag1, flag2);
                     else if (ItemAttr.hasFenceWithVariation(IntId))  // Fence Variation
                         selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source, Convert.ToUInt32("0x" + front, 16)), true, "", flag1, flag2);
+                    else if (id == "315A" || id == "1618" || id == "342F")
+                        selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source, Convert.ToUInt32("0x" + hexValue, 16)), true, GetImagePathFromID((Utilities.turn2bytes(hexValue)), source, Convert.ToUInt32("0x" + Utilities.translateVariationValueBack(front), 16)), flag1, flag2);
                     else
                         selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source, Convert.ToUInt32("0x" + hexValue, 16)), true, "", flag1, flag2);
 
-                    selectedSize = GetSize(id);
+                    if (id == "315A" || id == "1618" || id == "342F")
+                        selectedSize = GetSize(back);
+                    else
+                        selectedSize = GetSize(id);
                     SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("_Pillar", "Pillar").Replace("_Ceiling", "Ceiling").Replace("x", "x ");
 
                     if (sound)
@@ -3010,7 +3099,7 @@ namespace ACNHPokerCore
 
         private void refreshMap(UInt32 layer1Address, UInt32 layer2Address)
         {
-            showMapWait(42 * 2, "Fetching Map...");
+            showMapWait((42 + 2) * 2, "Fetching Map...");
 
             try
             {
@@ -3021,6 +3110,20 @@ namespace ACNHPokerCore
                     miniMapBox.BackgroundImage = MiniMap.refreshItemMap(Layer1);
                 else
                     miniMapBox.BackgroundImage = MiniMap.refreshItemMap(Layer2);
+
+                ActivateLayer1 = Utilities.getActivate(s, usb, Utilities.mapActivate, ref counter);
+                ActivateLayer2 = Utilities.getActivate(s, usb, Utilities.mapActivate + Utilities.mapActivateSize, ref counter);
+
+                if (Layer1 != null && Layer2 != null && Acre != null)
+                {
+                    if (MiniMap == null)
+                        MiniMap = new miniMap(Layer1, Acre, Building, Terrain, 2);
+                }
+                else
+                    throw new NullReferenceException("Layer1/Layer2/Acre");
+
+                buildActivateTable(ActivateLayer1, ref ActivateTable1);
+                buildActivateTable(ActivateLayer2, ref ActivateTable2);
 
                 this.Invoke((MethodInvoker)delegate
                 {
@@ -6637,6 +6740,254 @@ namespace ACNHPokerCore
             }
             else
                 return false;
+        }
+
+        private void buildActivateTable(byte[] ActivateLayer, ref bool[,] ActivateTable)
+        {
+            int width = 112;
+            int height = 96 * 2;
+
+            ActivateTable = new bool[width, height];
+
+            for (int i = 0; i < ActivateLayer.Length; i++)
+            {
+                var left = (ActivateLayer[i] & 0x0F);
+                var right = (ActivateLayer[i] & 0xF0) >> 4;
+
+                checkActivate(left, i % (width / 4) * 4, i % (width / 4) * 4 + 1, i / (width / 4), ref ActivateTable);
+                checkActivate(right, i % (width / 4) * 4 + 2, i % (width / 4) * 4 + 3, i / (width / 4), ref ActivateTable);
+            }
+        }
+
+        private void checkActivate(int value, int left, int right, int y, ref bool[,] ActivateTable)
+        {
+            if (value == 0 || value == 2 || value == 8 || value == 0xA)
+            {
+                ActivateTable[left, y] = false;
+                ActivateTable[right, y] = false;
+            }
+            else if (value == 1 || value == 3 || value == 9 || value == 0xB)
+            {
+                ActivateTable[left, y] = true;
+                ActivateTable[right, y] = false;
+            }
+            else if (value == 4 || value == 6 || value == 0xC || value == 0xE)
+            {
+                ActivateTable[left, y] = false;
+                ActivateTable[right, y] = true;
+            }
+            else if (value == 5 || value == 7 || value == 0xD || value == 0xF)
+            {
+                ActivateTable[left, y] = true;
+                ActivateTable[right, y] = true;
+            }
+        }
+
+        private string displayActivate(int x, int y, bool[,] ActivateTable)
+        {
+            string top;
+            string bottom;
+
+            if (ActivateTable[x, y * 2])
+                top = "✓ True";
+            else
+                top = "✘ False";
+
+            if (ActivateTable[x, y * 2 + 1])
+                bottom = "✓ True";
+            else
+                bottom = "✘ False";
+
+            return top + " " + bottom;
+        }
+
+        private bool isActivate(int x, int y, bool[,] ActivateTable)
+        {
+            return ActivateTable[x, y * 2]; // || ActivateTable[x, y * 2 + 1];
+        }
+
+        private void setActivate(int x, int y, ref byte[] ActivateLayer, ref bool[,] ActivateTable)
+        {
+            int offset = (x / 4) + (y * 2 * 28);
+            var b = ActivateLayer[offset];
+
+            byte upper = (byte)(b & 0xF0);
+            byte lower = (byte)(b & 0x0F);
+
+            byte newValue = 0x0;
+
+            if (x % 4 == 0)
+            {
+                if (isActivate(x + 1, y, ActivateTable))
+                {
+                    newValue = (byte)(upper + 0xF);
+                }
+                else
+                {
+                    newValue = (byte)(upper + 0x3);
+                }
+            }
+            else if (x % 4 == 1)
+            {
+                if (isActivate(x - 1, y, ActivateTable))
+                {
+                    newValue = (byte)(upper + 0xF);
+                }
+                else
+                {
+                    newValue = (byte)(upper + 0xC);
+                }
+            }
+            else if (x % 4 == 2)
+            {
+                if (isActivate(x + 1, y, ActivateTable))
+                {
+                    newValue = (byte)(0xF0 + lower);
+                }
+                else
+                {
+                    newValue = (byte)(0x30 + lower);
+                }
+            }
+            else if (x % 4 == 3)
+            {
+                if (isActivate(x - 1, y, ActivateTable))
+                {
+                    newValue = (byte)(0xF0 + lower);
+                }
+                else
+                {
+                    newValue = (byte)(0xC0 + lower);
+                }
+            }
+
+            int c = 0;
+            while (isAboutToSave(2))
+            {
+                if (c > 10)
+                {
+                    if (ignoreAutosave())
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        if (sound)
+                            System.Media.SystemSounds.Asterisk.Play();
+                        return;
+                    }
+                }
+                c++;
+                Thread.Sleep(3000);
+            }
+
+            if (layer1Btn.Checked)
+            {
+                Utilities.pokeAddress(s, usb, (Utilities.mapActivate + offset).ToString("X"), newValue.ToString("X"));
+                Utilities.pokeAddress(s, usb, (Utilities.mapActivate + Utilities.mapOffset + offset).ToString("X"), newValue.ToString("X"));
+            }
+            else
+            {
+                Utilities.pokeAddress(s, usb, (Utilities.mapActivate + Utilities.mapActivateSize + offset).ToString("X"), newValue.ToString("X"));
+                Utilities.pokeAddress(s, usb, (Utilities.mapActivate + Utilities.mapActivateSize + Utilities.mapOffset + offset).ToString("X"), newValue.ToString("X"));
+            }
+            ActivateTable[x, y * 2] = true;
+            ActivateLayer[offset] = newValue;
+            if (sound)
+                System.Media.SystemSounds.Asterisk.Play();
+        }
+
+        private void setDeactivate(int x, int y, ref byte[] ActivateLayer, ref bool[,] ActivateTable)
+        {
+            int offset = (x / 4) + (y * 2 * 28);
+            var b = ActivateLayer[offset];
+
+            byte upper = (byte)(b & 0xF0);
+            byte lower = (byte)(b & 0x0F);
+
+            byte newValue = 0x0;
+
+            if (x % 4 == 0)
+            {
+                if (isActivate(x + 1, y, ActivateTable))
+                {
+                    newValue = (byte)(upper + 0xC); // c
+                }
+                else
+                {
+                    newValue = upper; // 0
+                }
+            }
+            else if (x % 4 == 1)
+            {
+                if (isActivate(x - 1, y, ActivateTable))
+                {
+                    newValue = (byte)(upper + 0x3); // 3
+                }
+                else
+                {
+                    newValue = upper; // 0
+                }
+            }
+            else if (x % 4 == 2)
+            {
+                if (isActivate(x + 1, y, ActivateTable))
+                {
+                    newValue = (byte)(0xC0 + lower); // c
+                }
+                else
+                {
+                    newValue = lower; // 0
+                }
+            }
+            else if (x % 4 == 3)
+            {
+                if (isActivate(x - 1, y, ActivateTable))
+                {
+                    newValue = (byte)(0x30 + lower); // 3
+                }
+                else
+                {
+                    newValue = lower; // 0
+                }
+            }
+
+            int c = 0;
+
+            while (isAboutToSave(2))
+            {
+                if (c > 10)
+                {
+                    if (ignoreAutosave())
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        if (sound)
+                            System.Media.SystemSounds.Asterisk.Play();
+                        return;
+                    }
+                }
+                c++;
+                Thread.Sleep(3000);
+            }
+
+            if (layer1Btn.Checked)
+            {
+                Utilities.pokeAddress(s, usb, (Utilities.mapActivate + offset).ToString("X"), newValue.ToString("X"));
+                Utilities.pokeAddress(s, usb, (Utilities.mapActivate + Utilities.mapOffset + offset).ToString("X"), newValue.ToString("X"));
+            }
+            else
+            {
+                Utilities.pokeAddress(s, usb, (Utilities.mapActivate + Utilities.mapActivateSize + offset).ToString("X"), newValue.ToString("X"));
+                Utilities.pokeAddress(s, usb, (Utilities.mapActivate + Utilities.mapActivateSize + Utilities.mapOffset + offset).ToString("X"), newValue.ToString("X"));
+            }
+
+            ActivateTable[x, y * 2] = false;
+            ActivateLayer[offset] = newValue;
+            if (sound)
+                System.Media.SystemSounds.Asterisk.Play();
         }
     }
 }

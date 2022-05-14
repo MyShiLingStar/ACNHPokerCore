@@ -513,7 +513,7 @@ namespace ACNHPokerCore
                 rug = true;
                 ceiling = false;
             }
-            else if(size.Contains("_Ceiling"))
+            else if (size.Contains("_Ceiling"))
             {
                 wallmount = false;
                 rug = false;
