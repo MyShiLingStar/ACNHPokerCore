@@ -58,7 +58,7 @@ namespace ACNHPokerCore
         private dodo D = null;
         private teleport T = null;
         private controller C = null;
-
+        private RoadRoller Ro = null;
 
         private inventorySlot selectedButton;
         private int selectedSlot = 1;
@@ -461,6 +461,7 @@ namespace ACNHPokerCore
                 this.MapDropperButton.Visible = true;
                 this.RegeneratorButton.Visible = true;
                 this.FreezerButton.Visible = true;
+                this.RoadRollerButton.Visible = true;
                 this.DodoHelperButton.Visible = true;
                 this.BulldozerButton.Visible = true;
             }
@@ -1270,6 +1271,7 @@ namespace ACNHPokerCore
                                 this.FreezerButton.Visible = true;
                                 this.DodoHelperButton.Visible = true;
                                 this.BulldozerButton.Visible = true;
+                                this.RoadRollerButton.Visible = true;
 
                                 offline = false;
 
@@ -1335,6 +1337,7 @@ namespace ACNHPokerCore
                 this.FreezerButton.Visible = false;
                 this.DodoHelperButton.Visible = false;
                 this.BulldozerButton.Visible = false;
+                this.RoadRollerButton.Visible = false;
 
                 offline = true;
 
@@ -8406,6 +8409,12 @@ namespace ACNHPokerCore
                 return false;
             else
                 return true;
+        }
+
+        private void RoadRollerButton_Click(object sender, EventArgs e)
+        {
+            Ro = new(socket, usb, sound);
+            Ro.Show();
         }
     }
 }

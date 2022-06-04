@@ -34,6 +34,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="bin\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <None Remove="bin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="NewLeaf.ico" />
   </ItemGroup>
 
@@ -42,10 +48,10 @@
     <PackageReference Include="AutoCompleteMenu-ScintillaNET" Version="1.6.2" />
     <PackageReference Include="DotNetZip" Version="1.16.0" />
     <PackageReference Include="LibUsbDotNet" Version="2.2.29" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
-    <PackageReference Include="NAudio" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+    <PackageReference Include="NAudio" Version="2.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="TwitchLib.Communication" Version="1.0.3" />
+    <PackageReference Include="TwitchLib.Communication" Version="1.0.4" />
     <PackageReference Include="TwitchLib.PubSub" Version="3.2.3" />
     <PackageReference Include="WinFormsToggleSwitch" Version="1.1.0" />
   </ItemGroup>

@@ -22,6 +22,8 @@ namespace ACNHPokerCore
         private static int coordinateSize = 20;
         private static int turningSize = 4;
         private static int teleportSize = coordinateSize + turningSize;
+
+        private static object lockObject = new object();
         public enum OverworldState
         {
             Null,
@@ -69,44 +71,47 @@ namespace ACNHPokerCore
 
         public static ulong GetCoordinateAddress()
         {
-            // Regex pattern to get operators and offsets from pointer expression.	
-            string pattern = @"(\+|\-)([A-Fa-f0-9]+)";
-            Regex regex = new Regex(pattern);
-            Match match = regex.Match(offset);
-
-            // Get first offset from pointer expression and read address at that offset from main start.	
-            var ofs = Convert.ToUInt64(match.Groups[2].Value, 16);
-            var address = BitConverter.ToUInt64(Utilities.peekMainAddress(s, ofs.ToString("X"), 0x8), 0);
-            match = match.NextMatch();
-
-            // Matches the rest of the operators and offsets in the pointer expression.	
-            while (match.Success)
+            lock (lockObject)
             {
-                // Get operator and offset from match.	
-                string opp = match.Groups[1].Value;
-                ofs = Convert.ToUInt64(match.Groups[2].Value, 16);
+                // Regex pattern to get operators and offsets from pointer expression.	
+                string pattern = @"(\+|\-)([A-Fa-f0-9]+)";
+                Regex regex = new Regex(pattern);
+                Match match = regex.Match(offset);
 
-                // Add or subtract the offset from the current stored address based on operator in front of offset.	
-                switch (opp)
-                {
-                    case "+":
-                        address += ofs;
-                        break;
-                    case "-":
-                        address -= ofs;
-                        break;
-                }
-
-                // Attempt another match and if successful read bytes at address and store the new address.	
+                // Get first offset from pointer expression and read address at that offset from main start.	
+                var ofs = Convert.ToUInt64(match.Groups[2].Value, 16);
+                var address = BitConverter.ToUInt64(Utilities.peekMainAddress(s, ofs.ToString("X"), 0x8), 0);
                 match = match.NextMatch();
-                if (match.Success)
-                {
-                    byte[] bytes = Utilities.peekAbsoluteAddress(s, address.ToString("X"), 0x8);
-                    address = BitConverter.ToUInt64(bytes, 0);
-                }
-            }
 
-            return address;
+                // Matches the rest of the operators and offsets in the pointer expression.	
+                while (match.Success)
+                {
+                    // Get operator and offset from match.	
+                    string opp = match.Groups[1].Value;
+                    ofs = Convert.ToUInt64(match.Groups[2].Value, 16);
+
+                    // Add or subtract the offset from the current stored address based on operator in front of offset.	
+                    switch (opp)
+                    {
+                        case "+":
+                            address += ofs;
+                            break;
+                        case "-":
+                            address -= ofs;
+                            break;
+                    }
+
+                    // Attempt another match and if successful read bytes at address and store the new address.	
+                    match = match.NextMatch();
+                    if (match.Success)
+                    {
+                        byte[] bytes = Utilities.peekAbsoluteAddress(s, address.ToString("X"), 0x8);
+                        address = BitConverter.ToUInt64(bytes, 0);
+                    }
+                }
+
+                return address;
+            }
         }
 
         public static Boolean TeleportTo(int num)

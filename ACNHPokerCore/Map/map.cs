@@ -1847,6 +1847,8 @@ namespace ACNHPokerCore
             else
                 return;
 
+            disableBtn();
+
             Thread deleteThread = new Thread(delegate () { deleteItem(address, btn); });
             deleteThread.Start();
         }
@@ -2143,6 +2145,8 @@ namespace ACNHPokerCore
             string flag2 = Utilities.precedingZeros(FlagTextbox.Text, 2);
             string flag1 = selectedItem.getFlag1();
 
+            disableBtn();
+
             Thread spawnThread = new Thread(delegate () { dropItem(address, itemID, itemData, flag1, flag2, selectedButton); });
             spawnThread.Start();
         }
@@ -2178,11 +2182,6 @@ namespace ACNHPokerCore
                 c++;
                 Thread.Sleep(3000);
             }
-
-            this.Invoke((MethodInvoker)delegate
-            {
-                disableBtn();
-            });
 
             Utilities.dropItem(s, usb, address, itemID, itemData, flag1, flag2);
 
@@ -2935,6 +2934,8 @@ namespace ACNHPokerCore
                     else
                         return;
 
+                    disableBtn();
+
                     Thread deleteThread = new Thread(delegate () { deleteItem(address, btn); });
                     deleteThread.Start();
                 }
@@ -2972,11 +2973,6 @@ namespace ACNHPokerCore
                 c++;
                 Thread.Sleep(3000);
             }
-
-            this.Invoke((MethodInvoker)delegate
-            {
-                disableBtn();
-            });
 
             Utilities.deleteFloorItem(s, usb, address);
 
@@ -4006,17 +4002,6 @@ namespace ACNHPokerCore
             }
         }
 
-        private void updataData(byte[] newLayer1, byte[] newLayer2)
-        {
-            Layer1 = newLayer1;
-            Layer2 = newLayer2;
-
-            if (layer1Btn.Checked)
-                miniMapBox.BackgroundImage = MiniMap.refreshItemMap(Layer1);
-            else if (layer2Btn.Checked)
-                miniMapBox.BackgroundImage = MiniMap.refreshItemMap(Layer2);
-        }
-
         #endregion
 
         #region Layer
@@ -4039,7 +4024,7 @@ namespace ACNHPokerCore
         {
             if (Layer2 == null)
                 return;
-            bulkSpawnBtn.Enabled = false;
+            //bulkSpawnBtn.Enabled = false;
             saveBtn.Enabled = false;
             loadBtn.Enabled = false;
             fillRemainBtn.Enabled = false;
@@ -4437,14 +4422,19 @@ namespace ACNHPokerCore
         private void bulkSpawnToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (bulk == null)
-                bulk = new bulkSpawn(s, usb, Layer1, Layer2, Acre, Building, Terrain, anchorX, anchorY, this, ignore, sound); ;
+            {
+                if (layer1Btn.Checked)
+                    bulk = new bulkSpawn(s, usb, Layer1, Layer2, Acre, Building, Terrain, anchorX, anchorY, this, ignore, sound, true);
+                else
+                    bulk = new bulkSpawn(s, usb, Layer1, Layer2, Acre, Building, Terrain, anchorX, anchorY, this, ignore, sound, false);
+            }
             bulk.StartPosition = FormStartPosition.CenterParent;
             bulk.ShowDialog();
         }
 
         private void weedsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all weeds on your island?", "Oh No! Not the Weeds!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all weeds on your island (Layer 1 only)?", "Oh No! Not the Weeds!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.No)
                 return;
 
@@ -4485,7 +4475,7 @@ namespace ACNHPokerCore
 
         private void flowersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all flowers on your island?", "Photoshop Flowey", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all flowers on your island (Layer 1 only)?", "Photoshop Flowey", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.No)
                 return;
 
@@ -4526,7 +4516,7 @@ namespace ACNHPokerCore
 
         private void treesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all trees on your island?", "Team Trees is stupid!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all trees on your island (Layer 1 only)?", "Team Trees is stupid!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.No)
                 return;
 
@@ -4567,7 +4557,7 @@ namespace ACNHPokerCore
 
         private void bushesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all bushes on your island?", "Have you ever seen an elephant hiding in the bushes?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all bushes on your island (Layer 1 only)?", "Have you ever seen an elephant hiding in the bushes?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.No)
                 return;
 
@@ -4608,7 +4598,7 @@ namespace ACNHPokerCore
 
         private void fencesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all fences on your island?", "I said to my mate Noah: \"You should change your surname to Fence...\"", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all fences on your island (Layer 1 only)?", "I said to my mate Noah: \"You should change your surname to Fence...\"", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.No)
                 return;
 
@@ -4649,7 +4639,7 @@ namespace ACNHPokerCore
 
         private void shellsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all shells on your island?", "You would think that a snail without a shell would move a bit faster...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all shells on your island (Layer 1 only)?", "You would think that a snail without a shell would move a bit faster...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.No)
                 return;
 
@@ -4690,7 +4680,7 @@ namespace ACNHPokerCore
 
         private void diysToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all DIYs on your island?", "DiWHY - Reddit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all DIYs on your island (Layer 1 only)?", "DiWHY - Reddit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.No)
                 return;
 
@@ -4731,7 +4721,7 @@ namespace ACNHPokerCore
 
         private void rocksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all ore/bell rocks on your island?", "Girls are like rocks, the flat ones get skipped...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all ore/bell rocks on your island (Layer 1 only)?", "Girls are like rocks, the flat ones get skipped...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.No)
                 return;
 
@@ -4772,16 +4762,28 @@ namespace ACNHPokerCore
 
         private void everythingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all dropped/placed item on your island?", "Is everything a joke to you ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialogResult == DialogResult.No)
-                return;
-
+            DialogResult dialogResult;
+            if (layer1Btn.Checked)
+            {
+                dialogResult = MyMessageBox.Show("Are you sure you want to remove all dropped/placed item on your island (Layer 1 only)?", "Is everything a joke to you ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.No)
+                    return;
+                processLayer(Layer1, Utilities.mapZero);
+            }
+            else
+            {
+                dialogResult = MyMessageBox.Show("Are you sure you want to remove all dropped/placed item on your island (Layer 2 only)?", "Is everything a joke to you ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.No)
+                    return;
+                processLayer(Layer2, Utilities.mapZero + Utilities.mapSize);
+            }
+        }
+        private void processLayer(byte[] Layer, long Address)
+        {
             byte[] empty = Utilities.stringToByte("FEFF000000000000");
 
-            byte[] processLayer1 = Layer1;
-            Boolean[] HasChange1 = new Boolean[56];
-            byte[] processLayer2 = Layer2;
-            Boolean[] HasChange2 = new Boolean[56];
+            byte[] processLayer = Layer;
+            Boolean[] HasChange = new Boolean[56];
 
             byte[] tempID = new byte[2];
             ushort itemID;
@@ -4789,25 +4791,19 @@ namespace ACNHPokerCore
             {
                 for (int j = 0; j < 96 * 8; j++)
                 {
-                    Buffer.BlockCopy(Layer1, i * 0x1800 + j * 0x8, tempID, 0, 2);
+                    Buffer.BlockCopy(Layer, i * 0x1800 + j * 0x8, tempID, 0, 2);
                     itemID = Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(tempID)), 16);
                     if (!itemID.Equals(0xFFFE))
                     {
-                        Buffer.BlockCopy(empty, 0, processLayer1, i * 0x1800 + j * 0x8, 8);
-                        HasChange1[i] = true;
-                    }
-
-                    Buffer.BlockCopy(Layer2, i * 0x1800 + j * 0x8, tempID, 0, 2);
-                    itemID = Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(tempID)), 16);
-                    if (!itemID.Equals(0xFFFE))
-                    {
-                        Buffer.BlockCopy(empty, 0, processLayer2, i * 0x1800 + j * 0x8, 8);
-                        HasChange2[i] = true;
+                        Buffer.BlockCopy(empty, 0, processLayer, i * 0x1800 + j * 0x8, 8);
+                        HasChange[i] = true;
                     }
                 }
             }
 
-            Thread renewThread = new Thread(delegate () { renew(processLayer1, HasChange1, processLayer2, HasChange2); });
+            disableBtn();
+
+            Thread renewThread = new Thread(delegate () { renew(processLayer, HasChange, Address); });
             renewThread.Start();
         }
 
@@ -4821,11 +4817,6 @@ namespace ACNHPokerCore
 
             try
             {
-                this.Invoke((MethodInvoker)delegate
-                {
-                    disableBtn();
-                });
-
                 Debug.Print("Length :" + num + " Time : " + (num + 3));
 
                 int c = 0;
@@ -4892,9 +4883,9 @@ namespace ACNHPokerCore
             hideMapWait();
         }
 
-        private void renew(byte[] newLayer1, Boolean[] HasChange1, byte[] newLayer2, Boolean[] HasChange2)
+        private void renew(byte[] newLayer, Boolean[] change, long address)
         {
-            int num = numOfWrite(HasChange1) + numOfWrite(HasChange2);
+            int num = numOfWrite(change);
             if (num == 0)
                 return;
 
@@ -4902,11 +4893,6 @@ namespace ACNHPokerCore
 
             try
             {
-                this.Invoke((MethodInvoker)delegate
-                {
-                    disableBtn();
-                });
-
                 Debug.Print("Length :" + num + " Time : " + (num + 3));
 
                 int c = 0;
@@ -4939,26 +4925,18 @@ namespace ACNHPokerCore
 
                 for (int i = 0; i < 56; i++)
                 {
-                    if (HasChange1[i])
+                    if (change[i])
                     {
                         byte[] column = new byte[0x1800];
-                        Buffer.BlockCopy(newLayer1, i * 0x1800, column, 0, 0x1800);
-                        Utilities.SendByteArray8(s, Utilities.mapZero + (i * 0x1800), column, 0x1800, ref counter);
-                        Utilities.SendByteArray8(s, Utilities.mapZero + (i * 0x1800) + Utilities.mapOffset, column, 0x1800, ref counter);
-                    }
-
-                    if (HasChange2[i])
-                    {
-                        byte[] column = new byte[0x1800];
-                        Buffer.BlockCopy(newLayer2, i * 0x1800, column, 0, 0x1800);
-                        Utilities.SendByteArray8(s, Utilities.mapZero + Utilities.mapSize + (i * 0x1800), column, 0x1800, ref counter);
-                        Utilities.SendByteArray8(s, Utilities.mapZero + Utilities.mapSize + (i * 0x1800) + Utilities.mapOffset, column, 0x1800, ref counter);
+                        Buffer.BlockCopy(newLayer, i * 0x1800, column, 0, 0x1800);
+                        Utilities.SendByteArray8(s, address + (i * 0x1800), column, 0x1800, ref counter);
+                        Utilities.SendByteArray8(s, address + (i * 0x1800) + Utilities.mapOffset, column, 0x1800, ref counter);
                     }
                 }
 
                 this.Invoke((MethodInvoker)delegate
                 {
-                    updataData(newLayer1, newLayer2);
+                    updataData(newLayer);
                     moveAnchor(anchorX, anchorY);
                     resetBtnColor();
                 });
@@ -6861,40 +6839,29 @@ namespace ACNHPokerCore
                 }
             }
 
-            int c = 0;
-            while (isAboutToSave(2))
-            {
-                if (c > 10)
-                {
-                    if (ignoreAutosave())
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        if (sound)
-                            System.Media.SystemSounds.Asterisk.Play();
-                        return;
-                    }
-                }
-                c++;
-                Thread.Sleep(3000);
-            }
+            disableBtn();
+
+            btnToolTip.RemoveAll();
+
+            long Address1;
+            long Address2;
 
             if (layer1Btn.Checked)
             {
-                Utilities.pokeAddress(s, usb, (Utilities.mapActivate + offset).ToString("X"), newValue.ToString("X"));
-                Utilities.pokeAddress(s, usb, (Utilities.mapActivate + Utilities.mapOffset + offset).ToString("X"), newValue.ToString("X"));
+                Address1 = Utilities.mapActivate + offset;
+                Address2 = Utilities.mapActivate + Utilities.mapOffset + offset;
             }
             else
             {
-                Utilities.pokeAddress(s, usb, (Utilities.mapActivate + Utilities.mapActivateSize + offset).ToString("X"), newValue.ToString("X"));
-                Utilities.pokeAddress(s, usb, (Utilities.mapActivate + Utilities.mapActivateSize + Utilities.mapOffset + offset).ToString("X"), newValue.ToString("X"));
+                Address1 = Utilities.mapActivate + Utilities.mapActivateSize + offset;
+                Address2 = Utilities.mapActivate + Utilities.mapActivateSize + Utilities.mapOffset + offset;
             }
-            ActivateTable[x, y * 2] = true;
+
+            Thread toggleThread = new Thread(delegate () { toggleItem(Address1, Address2, newValue); });
+            toggleThread.Start();
+
+            ActivateTable[x, y * 2] = false;
             ActivateLayer[offset] = newValue;
-            if (sound)
-                System.Media.SystemSounds.Asterisk.Play();
         }
 
         private void setDeactivate(int x, int y, ref byte[] ActivateLayer, ref bool[,] ActivateTable)
@@ -6973,21 +6940,75 @@ namespace ACNHPokerCore
                 Thread.Sleep(3000);
             }
 
+            disableBtn();
+
+            btnToolTip.RemoveAll();
+
+            long Address1;
+            long Address2;
+
             if (layer1Btn.Checked)
             {
-                Utilities.pokeAddress(s, usb, (Utilities.mapActivate + offset).ToString("X"), newValue.ToString("X"));
-                Utilities.pokeAddress(s, usb, (Utilities.mapActivate + Utilities.mapOffset + offset).ToString("X"), newValue.ToString("X"));
+                Address1 = Utilities.mapActivate + offset;
+                Address2 = Utilities.mapActivate + Utilities.mapOffset + offset;
             }
             else
             {
-                Utilities.pokeAddress(s, usb, (Utilities.mapActivate + Utilities.mapActivateSize + offset).ToString("X"), newValue.ToString("X"));
-                Utilities.pokeAddress(s, usb, (Utilities.mapActivate + Utilities.mapActivateSize + Utilities.mapOffset + offset).ToString("X"), newValue.ToString("X"));
+                Address1 = Utilities.mapActivate + Utilities.mapActivateSize + offset;
+                Address2 = Utilities.mapActivate + Utilities.mapActivateSize + Utilities.mapOffset + offset;
             }
+
+            Thread toggleThread = new Thread(delegate () { toggleItem(Address1, Address2, newValue); });
+            toggleThread.Start();
 
             ActivateTable[x, y * 2] = false;
             ActivateLayer[offset] = newValue;
+        }
+
+        private void toggleItem(long Address1, long Address2, byte value)
+        {
+            showMapWait(2, "Toggling Item...");
+
+            int c = 0;
+
+            while (isAboutToSave(2))
+            {
+                if (c > 10)
+                {
+                    if (ignoreAutosave())
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            enableBtn();
+                        });
+
+                        if (sound)
+                            System.Media.SystemSounds.Asterisk.Play();
+
+                        hideMapWait();
+                        return;
+                    }
+                }
+                c++;
+                Thread.Sleep(3000);
+            }
+
+            Utilities.pokeAddress(s, usb, Address1.ToString("X"), value.ToString("X"));
+            Utilities.pokeAddress(s, usb, Address2.ToString("X"), value.ToString("X"));
+
+            this.Invoke((MethodInvoker)delegate
+            {
+                enableBtn();
+            });
+
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
+
+            hideMapWait();
         }
     }
 }

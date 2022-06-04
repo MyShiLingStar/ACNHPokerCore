@@ -2468,8 +2468,8 @@ namespace ACNHPokerCore
                     {
                         Debug.Print("[Sys] Poke : Terrain " + TerrainOffset.ToString("X"));
 
-                        SendByteArray8(socket, TerrainOffset, terrain, AllTerrainSize);
-                        SendByteArray8(socket, TerrainOffset + mapOffset, terrain, AllTerrainSize);
+                        SendByteArray8(socket, TerrainOffset, terrain, AllTerrainSize, ref counter);
+                        SendByteArray8(socket, TerrainOffset + mapOffset, terrain, AllTerrainSize, ref counter);
                     }
                     else
                     {
