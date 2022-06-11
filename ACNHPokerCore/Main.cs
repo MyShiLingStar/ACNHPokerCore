@@ -8263,7 +8263,11 @@ namespace ACNHPokerCore
         {
             if (USBConnectionButton.Tag.ToString() == "connect")
             {
-                usb = new USBBot();
+                if (Control.ModifierKeys == Keys.Shift)
+                    usb = new USBBot(true);
+                else
+                    usb = new USBBot(false);
+
                 if (usb.Connect())
                 {
                     MyLog.logEvent("MainForm", "Connection Succeeded : USB");

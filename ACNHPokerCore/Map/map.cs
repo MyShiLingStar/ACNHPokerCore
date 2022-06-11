@@ -6860,8 +6860,10 @@ namespace ACNHPokerCore
             Thread toggleThread = new Thread(delegate () { toggleItem(Address1, Address2, newValue); });
             toggleThread.Start();
 
-            ActivateTable[x, y * 2] = false;
+            ActivateTable[x, y * 2] = true;
+            ActivateTable[x, y * 2 + 1] = true;
             ActivateLayer[offset] = newValue;
+            ActivateLayer[offset + 0x1C] = newValue;
         }
 
         private void setDeactivate(int x, int y, ref byte[] ActivateLayer, ref bool[,] ActivateTable)
@@ -6962,7 +6964,9 @@ namespace ACNHPokerCore
             toggleThread.Start();
 
             ActivateTable[x, y * 2] = false;
+            ActivateTable[x, y * 2 + 1] = false;
             ActivateLayer[offset] = newValue;
+            ActivateLayer[offset + 0x1C] = newValue;
         }
 
         private void toggleItem(long Address1, long Address2, byte value)
@@ -6998,7 +7002,9 @@ namespace ACNHPokerCore
             }
 
             Utilities.pokeAddress(s, usb, Address1.ToString("X"), value.ToString("X"));
+            Utilities.pokeAddress(s, usb, (Address1 + 0x1C).ToString("X"), value.ToString("X"));
             Utilities.pokeAddress(s, usb, Address2.ToString("X"), value.ToString("X"));
+            Utilities.pokeAddress(s, usb, (Address2 + 0x1C).ToString("X"), value.ToString("X"));
 
             this.Invoke((MethodInvoker)delegate
             {
