@@ -13,6 +13,7 @@ namespace ACNHPokerCore
 
         private static string chat = "[main+4AA9CD8]+40";
 
+        private static int GameCap = 24;
         private static int SoftCap = 37;
         private static int MidCap = 57;
         private static int HardCap = 64;
@@ -118,8 +119,10 @@ namespace ACNHPokerCore
         {
             string cleanStr = chatBox.Text.Trim().Replace("\n", " ");
 
-            if (cleanStr.Length <= SoftCap)
+            if (cleanStr.Length <= GameCap)
                 chatBox.ForeColor = Color.White;
+            else if (cleanStr.Length <= SoftCap)
+                chatBox.ForeColor = Color.Pink;
             else if (cleanStr.Length <= MidCap)
                 chatBox.ForeColor = Color.Yellow;
             else if (cleanStr.Length < HardCap)
@@ -145,6 +148,20 @@ namespace ACNHPokerCore
             {
                 chatButton_Click(null, null);
                 e.Handled = true;
+            }
+        }
+
+        private void SafetyCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            if (SafetyCheck.Checked)
+            {
+                chatBox.MaxLength = 24;
+                SafetyCheck.ForeColor = Color.White;
+            }
+            else
+            {
+                chatBox.MaxLength = 64;
+                SafetyCheck.ForeColor = Color.Red;
             }
         }
     }

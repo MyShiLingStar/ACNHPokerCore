@@ -31,6 +31,7 @@
             this.chatBox = new System.Windows.Forms.RichTextBox();
             this.chatButton = new System.Windows.Forms.Button();
             this.RetainChat = new System.Windows.Forms.CheckBox();
+            this.SafetyCheck = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // chatBox
@@ -41,7 +42,7 @@
             this.chatBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.chatBox.ForeColor = System.Drawing.Color.White;
             this.chatBox.Location = new System.Drawing.Point(12, 12);
-            this.chatBox.MaxLength = 64;
+            this.chatBox.MaxLength = 24;
             this.chatBox.Name = "chatBox";
             this.chatBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.chatBox.Size = new System.Drawing.Size(365, 90);
@@ -71,12 +72,27 @@
             this.RetainChat.AutoSize = true;
             this.RetainChat.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.RetainChat.ForeColor = System.Drawing.Color.White;
-            this.RetainChat.Location = new System.Drawing.Point(383, 15);
+            this.RetainChat.Location = new System.Drawing.Point(383, 21);
             this.RetainChat.Name = "RetainChat";
             this.RetainChat.Size = new System.Drawing.Size(62, 19);
             this.RetainChat.TabIndex = 42;
             this.RetainChat.Text = "Retain";
             this.RetainChat.UseVisualStyleBackColor = true;
+            // 
+            // SafetyCheck
+            // 
+            this.SafetyCheck.AutoSize = true;
+            this.SafetyCheck.Checked = true;
+            this.SafetyCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.SafetyCheck.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SafetyCheck.ForeColor = System.Drawing.Color.White;
+            this.SafetyCheck.Location = new System.Drawing.Point(383, 3);
+            this.SafetyCheck.Name = "SafetyCheck";
+            this.SafetyCheck.Size = new System.Drawing.Size(62, 19);
+            this.SafetyCheck.TabIndex = 43;
+            this.SafetyCheck.Text = "Safety";
+            this.SafetyCheck.UseVisualStyleBackColor = true;
+            this.SafetyCheck.CheckedChanged += new System.EventHandler(this.SafetyCheck_CheckedChanged);
             // 
             // Chat
             // 
@@ -85,9 +101,10 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.ClientSize = new System.Drawing.Size(448, 114);
             this.ControlBox = false;
-            this.Controls.Add(this.RetainChat);
             this.Controls.Add(this.chatButton);
             this.Controls.Add(this.chatBox);
+            this.Controls.Add(this.RetainChat);
+            this.Controls.Add(this.SafetyCheck);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -108,5 +125,6 @@
         private System.Windows.Forms.RichTextBox chatBox;
         private System.Windows.Forms.Button chatButton;
         private System.Windows.Forms.CheckBox RetainChat;
+        private System.Windows.Forms.CheckBox SafetyCheck;
     }
 }
