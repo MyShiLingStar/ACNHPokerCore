@@ -31,7 +31,7 @@ namespace ACNHPokerCore
         public const int AcreWidth = 7 + (2 * 1);
         private const int AcreHeight = 6 + (2 * 1);
         private const int AcreMax = AcreWidth * AcreHeight;
-        private static Color[][] floorBackgroundColor; 
+        private static Color[][] floorBackgroundColor;
 
         private int counter = 0;
         private int GridSize = 0;
@@ -63,6 +63,7 @@ namespace ACNHPokerCore
         private Bitmap CurrentMainMap;
         private Bitmap CurrentMiniMap;
 
+        public event CloseHandler closeForm;
 
         private static object lockObject = new object();
         public RoadRoller(Socket S, USBBot USB, bool Sound)
@@ -420,12 +421,12 @@ namespace ACNHPokerCore
 
         private void showMapWait(int size)
         {
-                PleaseWaitPanel.Visible = true;
-                counter = 0;
-                MapProgressBar.Maximum = size + 5;
-                MapProgressBar.Value = counter;
-                PleaseWaitPanel.Visible = true;
-                ProgressTimer.Start();
+            PleaseWaitPanel.Visible = true;
+            counter = 0;
+            MapProgressBar.Maximum = size + 5;
+            MapProgressBar.Value = counter;
+            PleaseWaitPanel.Visible = true;
+            ProgressTimer.Start();
         }
 
         private void hideMapWait()
@@ -1786,10 +1787,15 @@ namespace ACNHPokerCore
 
         private void ProgressTimer_Tick(object sender, EventArgs e)
         {
-                if (counter <= MapProgressBar.Maximum)
-                    MapProgressBar.Value = counter;
-                else
-                    MapProgressBar.Value = MapProgressBar.Maximum;
+            if (counter <= MapProgressBar.Maximum)
+                MapProgressBar.Value = counter;
+            else
+                MapProgressBar.Value = MapProgressBar.Maximum;
+        }
+
+        private void RoadRoller_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.closeForm();
         }
     }
 }

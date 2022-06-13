@@ -59,6 +59,7 @@ namespace ACNHPokerCore
         private teleport T = null;
         private controller C = null;
         private RoadRoller Ro = null;
+        private Chat Ch = null;
 
         private inventorySlot selectedButton;
         private int selectedSlot = 1;
@@ -464,6 +465,7 @@ namespace ACNHPokerCore
                 this.RoadRollerButton.Visible = true;
                 this.DodoHelperButton.Visible = true;
                 this.BulldozerButton.Visible = true;
+                this.chatButton.Visible = true;
             }
         }
 
@@ -1272,6 +1274,7 @@ namespace ACNHPokerCore
                                 this.DodoHelperButton.Visible = true;
                                 this.BulldozerButton.Visible = true;
                                 this.RoadRollerButton.Visible = true;
+                                this.chatButton.Visible = true;
 
                                 offline = false;
 
@@ -1338,7 +1341,12 @@ namespace ACNHPokerCore
                 this.DodoHelperButton.Visible = false;
                 this.BulldozerButton.Visible = false;
                 this.RoadRollerButton.Visible = false;
-
+                this.chatButton.Visible = false;
+                if (Ch != null)
+                {
+                    Ch.Close();
+                    Ch = null;
+                }
                 offline = true;
 
                 this.StartConnectionButton.Tag = "connect";
@@ -1708,7 +1716,7 @@ namespace ACNHPokerCore
         {
             selection = new variation();
             selection.sendVariationData += Selection_sendVariationData;
-            selection.Show();
+            selection.Show(this);
             selection.Location = new System.Drawing.Point(this.Location.X + 7, this.Location.Y + this.Height);
             string id = Utilities.precedingZeros(SelectedItem.fillItemID(), 4);
             string value = Utilities.precedingZeros(SelectedItem.fillItemData(), 8);
@@ -1773,6 +1781,10 @@ namespace ACNHPokerCore
             if (selection != null)
             {
                 selection.Location = new System.Drawing.Point(this.Location.X + 7, this.Location.Y + this.Height);
+            }
+            if (Ch != null)
+            {
+                Ch.Location = new System.Drawing.Point(this.Location.X + this.Width - Ch.Width - 7, this.Location.Y + this.Height);
             }
         }
 
@@ -8417,8 +8429,38 @@ namespace ACNHPokerCore
 
         private void RoadRollerButton_Click(object sender, EventArgs e)
         {
-            Ro = new(socket, usb, sound);
-            Ro.Show();
+            if (Ro == null)
+            {
+                Ro = new(socket, usb, sound);
+                Ro.closeForm += Ro_closeForm;
+                Ro.Show();
+            }
+        }
+
+        private void Ro_closeForm()
+        {
+            Ro = null;
+        }
+
+        private void chatButton_Click(object sender, EventArgs e)
+        {
+            if (Ch == null)
+            {
+                Ch = new Chat(socket);
+                Ch.closeForm += Ch_closeForm;
+                Ch.Show(this);
+                Ch.Location = new System.Drawing.Point(this.Location.X + this.Width - Ch.Width - 7, this.Location.Y + this.Height);
+            }
+            else
+            {
+                Ch.Close();
+                Ch = null;
+            }
+        }
+
+        private void Ch_closeForm()
+        {
+            Ch = null;
         }
     }
 }

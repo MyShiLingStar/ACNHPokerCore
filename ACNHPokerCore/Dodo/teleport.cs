@@ -69,14 +69,14 @@ namespace ACNHPokerCore
             InitializeComponent();
         }
 
-        public static ulong GetCoordinateAddress()
+        public static ulong GetCoordinateAddress(string strInput)
         {
             lock (lockObject)
             {
                 // Regex pattern to get operators and offsets from pointer expression.	
                 string pattern = @"(\+|\-)([A-Fa-f0-9]+)";
                 Regex regex = new Regex(pattern);
-                Match match = regex.Match(offset);
+                Match match = regex.Match(strInput);
 
                 // Get first offset from pointer expression and read address at that offset from main start.	
                 var ofs = Convert.ToUInt64(match.Groups[2].Value, 16);
@@ -128,7 +128,7 @@ namespace ACNHPokerCore
                 return false;
             }
 
-            ulong address = GetCoordinateAddress();
+            ulong address = GetCoordinateAddress(offset);
 
             int trials = 0;
 
@@ -156,7 +156,7 @@ namespace ACNHPokerCore
             Buffer.BlockCopy(anchorByte, teleportSize * num, coordinate, 0, coordinateSize);
             Buffer.BlockCopy(anchorByte, teleportSize * num + coordinateSize, turning, 0, turningSize);
 
-            ulong address = GetCoordinateAddress();
+            ulong address = GetCoordinateAddress(offset);
 
             int trials = 0;
 
@@ -184,7 +184,7 @@ namespace ACNHPokerCore
             Buffer.BlockCopy(ByteUsing, teleportSize * num, coordinate, 0, coordinateSize);
             Buffer.BlockCopy(ByteUsing, teleportSize * num + coordinateSize, turning, 0, turningSize);
 
-            ulong address = GetCoordinateAddress();
+            ulong address = GetCoordinateAddress(offset);
 
             byte[] CurCoordinate = Utilities.peekAbsoluteAddress(s, (address - 0x2).ToString("X"), coordinateSize);
             byte[] CurTurning = Utilities.peekAbsoluteAddress(s, (address + 0x3A).ToString("X"), turningSize);
@@ -225,7 +225,7 @@ namespace ACNHPokerCore
 
         public static void SetTeleport(int num)
         {
-            ulong address = GetCoordinateAddress();
+            ulong address = GetCoordinateAddress(offset);
 
             byte[] CurCoordinate = Utilities.peekAbsoluteAddress(s, (address - 0x2).ToString("X"), coordinateSize);
             byte[] CurTurning = Utilities.peekAbsoluteAddress(s, (address + 0x3A).ToString("X"), turningSize);
@@ -238,7 +238,7 @@ namespace ACNHPokerCore
 
         public static void SetAnchor(int num)
         {
-            ulong address = GetCoordinateAddress();
+            ulong address = GetCoordinateAddress(offset);
 
             byte[] CurCoordinate = Utilities.peekAbsoluteAddress(s, (address - 0x2).ToString("X"), coordinateSize);
             byte[] CurTurning = Utilities.peekAbsoluteAddress(s, (address + 0x3A).ToString("X"), turningSize);
@@ -260,7 +260,7 @@ namespace ACNHPokerCore
 
         public static OverworldState GetOverworldState()
         {
-            ulong address = GetCoordinateAddress();
+            ulong address = GetCoordinateAddress(offset);
             uint value = BitConverter.ToUInt32(Utilities.peekAbsoluteAddress(s, (address + 0x1E).ToString("X"), 0x4), 0);
 
             return DecodeOverworldState(value);
@@ -293,7 +293,7 @@ namespace ACNHPokerCore
 
         public static void dump()
         {
-            ulong address = GetCoordinateAddress();
+            ulong address = GetCoordinateAddress(offset);
 
             SaveFileDialog file = new SaveFileDialog()
             {
@@ -347,7 +347,7 @@ namespace ACNHPokerCore
 
         public static LocationState GetLocationState()
         {
-            ulong address = GetCoordinateAddress();
+            ulong address = GetCoordinateAddress(offset);
             uint value = BitConverter.ToUInt32(Utilities.peekAbsoluteAddress(s, (address + 0x6E).ToString("X"), 0x4), 0);
             Debug.Print("Location : " + value.ToString("X"));
             switch (value)

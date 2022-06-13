@@ -58,7 +58,7 @@ namespace ACNHPokerCore
                 xCoordinate.Text = x.ToString();
                 yCoordinate.Text = y.ToString();
                 miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawBackground(), MiniMap.drawItemMap());
-                if(Layer1Selected)
+                if (Layer1Selected)
                 {
                     SpawnAddress = Utilities.mapZero;
                 }

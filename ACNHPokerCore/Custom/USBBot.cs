@@ -2,7 +2,6 @@
 using MonoLibUsb.Profile;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -34,7 +33,7 @@ namespace ACNHPokerCore
         private MonoUsbSessionHandle context;
 
         public USBBot(bool Debug)
-        { 
+        {
             debug = Debug;
         }
         public bool Connect()
@@ -62,7 +61,7 @@ namespace ACNHPokerCore
                         var deviceHandle = profile.OpenDeviceHandle();
                         string VendorID = profile.DeviceDescriptor.VendorID.ToString();
                         string ProductID = profile.DeviceDescriptor.ProductID.ToString();
-                        if  (VendorID.Equals("1406") && ProductID.Equals("12288"))
+                        if (VendorID.Equals("1406") && ProductID.Equals("12288"))
                         {
                             deviceList += "SWITCH FOUND - " + "VendorID : " + VendorID + " " + " ProductID : " + ProductID + "\n";
                         }
@@ -74,7 +73,7 @@ namespace ACNHPokerCore
 
                     if (deviceList.Equals(""))
                     {
-                        MyMessageBox.Show("NO USB DEVICES FOUND!", "List of USB devices",System.Windows.Forms.MessageBoxButtons.OK,System.Windows.Forms.MessageBoxIcon.Warning);
+                        MyMessageBox.Show("NO USB DEVICES FOUND!", "List of USB devices", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
                     }
                     else
                         MyMessageBox.Show(deviceList, "List of USB devices", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);

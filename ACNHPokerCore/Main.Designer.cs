@@ -107,6 +107,7 @@ namespace ACNHPokerCore
             this.OtherTabButton = new System.Windows.Forms.Button();
             this.InventoryTabButton = new System.Windows.Forms.Button();
             this.InventoryLargePanel = new System.Windows.Forms.Panel();
+            this.chatButton = new System.Windows.Forms.Button();
             this.RoadRollerButton = new System.Windows.Forms.Button();
             this.UnhideButton = new System.Windows.Forms.Button();
             this.ConvertToCheat = new System.Windows.Forms.Button();
@@ -1995,6 +1996,7 @@ namespace ACNHPokerCore
             // 
             // InventoryLargePanel
             // 
+            this.InventoryLargePanel.Controls.Add(this.chatButton);
             this.InventoryLargePanel.Controls.Add(this.RoadRollerButton);
             this.InventoryLargePanel.Controls.Add(this.UnhideButton);
             this.InventoryLargePanel.Controls.Add(this.ConvertToCheat);
@@ -2039,6 +2041,24 @@ namespace ACNHPokerCore
             this.InventoryLargePanel.Name = "InventoryLargePanel";
             this.InventoryLargePanel.Size = new System.Drawing.Size(1225, 550);
             this.InventoryLargePanel.TabIndex = 18;
+            // 
+            // chatButton
+            // 
+            this.chatButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.chatButton.FlatAppearance.BorderSize = 0;
+            this.chatButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chatButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.chatButton.ForeColor = System.Drawing.Color.White;
+            this.chatButton.Location = new System.Drawing.Point(858, 492);
+            this.chatButton.Name = "chatButton";
+            this.chatButton.Size = new System.Drawing.Size(90, 22);
+            this.chatButton.TabIndex = 40;
+            this.chatButton.Tag = "";
+            this.chatButton.Text = "Chat";
+            this.chatButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.chatButton.UseVisualStyleBackColor = false;
+            this.chatButton.Visible = false;
+            this.chatButton.Click += new System.EventHandler(this.chatButton_Click);
             // 
             // RoadRollerButton
             // 
@@ -7907,5 +7927,6 @@ namespace ACNHPokerCore
         private JCS.ToggleSwitch FastSwimToggle;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button RoadRollerButton;
+        private System.Windows.Forms.Button chatButton;
     }
 }

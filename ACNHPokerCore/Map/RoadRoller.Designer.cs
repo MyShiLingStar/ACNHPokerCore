@@ -653,6 +653,7 @@
             this.Name = "RoadRoller";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Road Roller";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.RoadRoller_FormClosed);
             this.Resize += new System.EventHandler(this.RoadRoller_Resize);
             this.MainDivider.ResumeLayout(false);
             this.SubDivider.ResumeLayout(false);

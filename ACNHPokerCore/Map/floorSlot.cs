@@ -315,7 +315,7 @@ namespace ACNHPokerCore
                     {
                         try
                         {
-                            this.Image = displayItemImage(large, false);
+                            this.Image = displayItemImage(large, true);
                         }
                         catch
                         {

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -2416,7 +2415,7 @@ namespace ACNHPokerCore
             setTerrainAngle(direction);
             setTerrainElevation(elevation);
 
-            if(HasTerrainVariation(writeValue))
+            if (HasTerrainVariation(writeValue))
             {
                 Random rnd = new Random();
                 ushort newVariation = (ushort)rnd.Next(0, 3);
@@ -2852,7 +2851,7 @@ namespace ACNHPokerCore
                 CorrectConnectNeighbour = ConnectNeighbour;
                 CorrectDirection = 0;
             }
-            else if(CliffDirection == 2) //Right
+            else if (CliffDirection == 2) //Right
             {
                 CorrectConnectNeighbour = RotateMatrix(RotateMatrix(RotateMatrix(ConnectNeighbour)));
                 CorrectDirection = 1;
@@ -2874,12 +2873,12 @@ namespace ACNHPokerCore
 
             if (!left && !right) //10x
             {
-                if(up && down)
+                if (up && down)
                 {
                     //Debug.Print("100");
                     setFall("100", CorrectDirection);
                 }
-                else if(up && !down)
+                else if (up && !down)
                 {
                     //Debug.Print("101");
                     setFall("101", CorrectDirection);
@@ -3022,7 +3021,7 @@ namespace ACNHPokerCore
                 }
             }
             else if (right && left) //40x
-            { 
+            {
                 if (topleft && up && topright &&
                     bottomleft && down && bottomright)
                 {
@@ -3357,11 +3356,11 @@ namespace ACNHPokerCore
             }
 
             iterator = 0;
-            for (int i = 2; i >= 0 ; i--)
+            for (int i = 2; i >= 0; i--)
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    NewMatrix[j,i] = serialize[iterator];
+                    NewMatrix[j, i] = serialize[iterator];
                     iterator++;
                 }
             }
@@ -3496,7 +3495,7 @@ namespace ACNHPokerCore
             Buffer.BlockCopy(bytes, 0, TerrainData, 12, 2);
         }
 
-        private Bitmap drawImage(int size, Color border, Color background,Color building, Color terrain, Color road, bool drawBorder, bool drawBackground, bool drawBuilding, bool drawTerrain, bool drawRoad)
+        private Bitmap drawImage(int size, Color border, Color background, Color building, Color terrain, Color road, bool drawBorder, bool drawBackground, bool drawBuilding, bool drawTerrain, bool drawRoad)
         {
             Bitmap Bottom;
             Bottom = new Bitmap(size, size);
@@ -3629,7 +3628,7 @@ namespace ACNHPokerCore
                            TerrainColor[(int)TerrainType.Fall],
                            TerrainColor[(int)TerrainType.River]);
 
-                        switch(CurrentTerrain)
+                        switch (CurrentTerrain)
                         {
                             case (ushort)TerrainUnitModel.Fall100:
                                 gr.FillRectangle(linGrBrush, 4, 1, size - 8, size - 2);
@@ -3730,7 +3729,7 @@ namespace ACNHPokerCore
                                 gr.FillPolygon(linGrBrush, Terrain405);
                                 break;
                             case (ushort)TerrainUnitModel.Fall406:
-                                Point[] Terrain406 = new Point[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 1), new Point(1,  size - 1), new Point(1, 4), new Point(4, 4) };
+                                Point[] Terrain406 = new Point[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4) };
                                 gr.FillPolygon(linGrBrush, Terrain406);
                                 break;
                             case (ushort)TerrainUnitModel.Fall407:
@@ -4005,7 +4004,7 @@ namespace ACNHPokerCore
 
             if (getRoadAngle() == 1)
                 Top.RotateFlip(RotateFlipType.Rotate270FlipNone);
-            else if(getRoadAngle() == 2)
+            else if (getRoadAngle() == 2)
                 Top.RotateFlip(RotateFlipType.Rotate180FlipNone);
             else if (getRoadAngle() == 3)
                 Top.RotateFlip(RotateFlipType.Rotate90FlipNone);
