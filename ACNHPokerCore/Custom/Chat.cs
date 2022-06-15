@@ -14,7 +14,7 @@ namespace ACNHPokerCore
         private static string chat = "[main+4AA9CD8]+40";
 
         private static int GameCap = 24;
-        private static int SoftCap = 37;
+        private static int SoftCap = 32;
         private static int MidCap = 57;
         private static int HardCap = 64;
 

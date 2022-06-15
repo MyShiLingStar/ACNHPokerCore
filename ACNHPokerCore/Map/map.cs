@@ -4064,7 +4064,7 @@ namespace ACNHPokerCore
         {
             selection = new variation(115);
             selection.sendVariationData += Selection_sendVariationData;
-            selection.Show();
+            selection.Show(this);
             selection.Location = new System.Drawing.Point(this.Location.X + 533, this.Location.Y + 660);
             string id = Utilities.precedingZeros(selectedItem.fillItemID(), 4);
             string value = Utilities.precedingZeros(selectedItem.fillItemData(), 8);

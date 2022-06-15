@@ -900,8 +900,14 @@ namespace ACNHPokerCore
         {
             if (socket == null && usb == null)
                 return "";
+
+            MyLog.logEvent("MainForm", "Reading Island Name :");
+
             byte[] townID = Utilities.GetTownID(socket, usb);
             IslandName = Utilities.GetString(townID, 0x04, 10);
+
+            MyLog.logEvent("MainForm", IslandName);
+
             return "  |  Island Name : " + IslandName;
         }
 
@@ -1223,7 +1229,12 @@ namespace ACNHPokerCore
 
                                 if (DataValidation())
                                 {
+                                    MyLog.logEvent("MainForm", "Checking sys-botbase version");
+
                                     string sysbotbaseVersion = Utilities.CheckSysBotBase(socket, usb);
+
+                                    MyLog.logEvent("MainForm", "sys-botbase version : " + sysbotbaseVersion);
+
                                     MyMessageBox.Show("You have successfully established a connection!\n" +
                                                     "Your Sys-botbase installation and IP address are correct.\n" +
                                                     "However...\n" +
@@ -1289,15 +1300,21 @@ namespace ACNHPokerCore
                                 readWeatherSeed();
 
                                 currentGridView = InsectGridView;
+
+                                MyLog.logEvent("MainForm", "Loading Param Files");
+
                                 LoadGridView(InsectAppearParam, InsectGridView, ref insectRate, Utilities.InsectDataSize, Utilities.InsectNumRecords);
                                 LoadGridView(FishRiverAppearParam, RiverFishGridView, ref riverFishRate, Utilities.FishDataSize, Utilities.FishRiverNumRecords, 1);
                                 LoadGridView(FishSeaAppearParam, SeaFishGridView, ref seaFishRate, Utilities.FishDataSize, Utilities.FishSeaNumRecords, 1);
                                 LoadGridView(CreatureSeaAppearParam, SeaCreatureGridView, ref seaCreatureRate, Utilities.SeaCreatureDataSize, Utilities.SeaCreatureNumRecords, 1);
 
+                                MyLog.logEvent("MainForm", "Start Teleport and Controller");
+
                                 T = new teleport(socket);
                                 C = new controller(socket, IslandName);
                             });
 
+                            MyLog.logEvent("MainForm", "Data Reading Ended");
                         }
                         else
                         {
@@ -1361,9 +1378,15 @@ namespace ACNHPokerCore
         {
             //return true;
             if (!validation)
+            {
+                MyLog.logEvent("MainForm", "Skip Data Validation");
                 return false;
+            }
+
             try
             {
+                MyLog.logEvent("MainForm", "Start Data Validation");
+
                 byte[] Bank1 = Utilities.peekAddress(socket, usb, Utilities.TownNameddress, 150); //TownNameddress
                 byte[] Bank2 = Utilities.peekAddress(socket, usb, Utilities.TurnipPurchasePriceAddr, 150); //TurnipPurchasePriceAddr
                 byte[] Bank3 = Utilities.peekAddress(socket, usb, Utilities.MasterRecyclingBase, 150); //MasterRecyclingBase
@@ -1375,6 +1398,13 @@ namespace ACNHPokerCore
                 string HexString3 = Utilities.ByteToHexString(Bank3);
                 string HexString4 = Utilities.ByteToHexString(Bank4);
                 string HexString5 = Utilities.ByteToHexString(Bank5);
+
+                MyLog.logEvent("MainForm", "Data Validation : ");
+                MyLog.logEvent("MainForm", HexString1);
+                MyLog.logEvent("MainForm", HexString2);
+                MyLog.logEvent("MainForm", HexString3);
+                MyLog.logEvent("MainForm", HexString4);
+                MyLog.logEvent("MainForm", HexString5);
 
                 Debug.Print(HexString1);
                 Debug.Print(HexString2);
@@ -1451,12 +1481,16 @@ namespace ACNHPokerCore
 
         private int updateDropdownBox()
         {
+            MyLog.logEvent("MainForm", "Reading Player Name :");
+
             string[] namelist = getInventoryName();
             int currentPlayer = 0;
             for (int i = 7; i >= 0; i--)
             {
                 if (namelist[i] != string.Empty)
                 {
+                    MyLog.logEvent("MainForm", namelist[i]);
+
                     PlayerInventorySelector.Items.RemoveAt(i);
                     PlayerInventorySelector.Items.Insert(i, namelist[i]);
                     PlayerInventorySelector.Items.RemoveAt(i + 8);
@@ -4546,11 +4580,15 @@ namespace ACNHPokerCore
 
         private void readWeatherSeed()
         {
+            MyLog.logEvent("MainForm", "Reading Weather Seed :");
+
             byte[] b = Utilities.GetWeatherSeed(socket, usb);
             string result = Utilities.ByteToHexString(b);
             UInt32 decValue = Convert.ToUInt32(Utilities.flip(result), 16);
             UInt32 Seed = decValue - 2147483648;
             WeatherSeedTextbox.Text = Seed.ToString();
+
+            MyLog.logEvent("MainForm", Seed.ToString());
         }
 
         private void EatButton_Click(object sender, EventArgs e)
@@ -4573,6 +4611,8 @@ namespace ACNHPokerCore
 
         private void UpdateTurnipPrices()
         {
+            MyLog.logEvent("MainForm", "Reading Turnip Prices :");
+
             UInt64[] turnipPrices = Utilities.GetTurnipPrices(socket, usb);
             turnipBuyPrice.Clear();
             turnipBuyPrice.SelectionAlignment = HorizontalAlignment.Center;
@@ -4638,6 +4678,20 @@ namespace ACNHPokerCore
             turnipSell6PM.Text = String.Format("{0}", turnipPrices[11]);
             UInt64 SaturdayPM = UInt64.Parse(String.Format("{0}", turnipPrices[11]));
             setTurnipColor(buyPrice, SaturdayPM, turnipSell6PM);
+
+            MyLog.logEvent("MainForm", "BuyPrice : " + String.Format("{0}", turnipPrices[12]));
+            MyLog.logEvent("MainForm", "MondayAM : " + String.Format("{0}", turnipPrices[0]));
+            MyLog.logEvent("MainForm", "MondayPM : " + String.Format("{0}", turnipPrices[1]));
+            MyLog.logEvent("MainForm", "TuesdayAM : " + String.Format("{0}", turnipPrices[2]));
+            MyLog.logEvent("MainForm", "TuesdayPM : " + String.Format("{0}", turnipPrices[3]));
+            MyLog.logEvent("MainForm", "WednesdayAM : " + String.Format("{0}", turnipPrices[4]));
+            MyLog.logEvent("MainForm", "WednesdayPM : " + String.Format("{0}", turnipPrices[5]));
+            MyLog.logEvent("MainForm", "ThursdayAM : " + String.Format("{0}", turnipPrices[6]));
+            MyLog.logEvent("MainForm", "ThursdayPM : " + String.Format("{0}", turnipPrices[7]));
+            MyLog.logEvent("MainForm", "FridayAM : " + String.Format("{0}", turnipPrices[8]));
+            MyLog.logEvent("MainForm", "FridayPM : " + String.Format("{0}", turnipPrices[9]));
+            MyLog.logEvent("MainForm", "SaturdayAM : " + String.Format("{0}", turnipPrices[10]));
+            MyLog.logEvent("MainForm", "SaturdayPM : " + String.Format("{0}", turnipPrices[11]));
 
             UInt64[] price = { MondayAM, MondayPM, TuesdayAM, TuesdayPM, WednesdayAM, WednesdayPM, ThursdayAM, ThursdayPM, FridayAM, FridayPM, SaturdayAM, SaturdayPM };
             UInt64 highest = findHighest(price);
