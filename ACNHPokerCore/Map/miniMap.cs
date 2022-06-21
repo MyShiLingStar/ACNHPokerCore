@@ -231,35 +231,35 @@ namespace ACNHPokerCore
                         {
                             if (terrainUnits[i][j].HasRoadWood())
                             {
-                                terrainColor = TerrainColor[(int)TerrainType.RoadWood];
+                                terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadWood];
                             }
                             else if (terrainUnits[i][j].HasRoadTile())
                             {
-                                terrainColor = TerrainColor[(int)TerrainType.RoadTile];
+                                terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadTile];
                             }
                             else if (terrainUnits[i][j].HasRoadSand())
                             {
-                                terrainColor = TerrainColor[(int)TerrainType.RoadSand];
+                                terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadSand];
                             }
                             else if (terrainUnits[i][j].HasRoadPattern())
                             {
-                                terrainColor = TerrainColor[(int)TerrainType.RoadPattern];
+                                terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadPattern];
                             }
                             else if (terrainUnits[i][j].HasRoadDarkSoil())
                             {
-                                terrainColor = TerrainColor[(int)TerrainType.RoadDarkSoil];
+                                terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadDarkSoil];
                             }
                             else if (terrainUnits[i][j].HasRoadBrick())
                             {
-                                terrainColor = TerrainColor[(int)TerrainType.RoadBrick];
+                                terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadBrick];
                             }
                             else if (terrainUnits[i][j].HasRoadStone())
                             {
-                                terrainColor = TerrainColor[(int)TerrainType.RoadStone];
+                                terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadStone];
                             }
                             else if (terrainUnits[i][j].HasRoadSoil())
                             {
-                                terrainColor = TerrainColor[(int)TerrainType.RoadSoil];
+                                terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadSoil];
                             }
                             PutPixel(gr, i * mapSize, j * mapSize, terrainColor);
                         }
@@ -267,34 +267,34 @@ namespace ACNHPokerCore
                         {
                             if (terrainUnits[i][j].isCliff())
                             {
-                                terrainColor = TerrainColor[(int)TerrainType.Cliff];
+                                terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Cliff];
                                 PutPixel(gr, i * mapSize, j * mapSize, terrainColor);
                             }
                             else if (terrainUnits[i][j].isFall())
                             {
-                                terrainColor = TerrainColor[(int)TerrainType.Fall];
+                                terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Fall];
                                 PutPixel(gr, i * mapSize, j * mapSize, terrainColor);
                             }
                             else if (terrainUnits[i][j].isRiver())
                             {
-                                terrainColor = TerrainColor[(int)TerrainType.River];
+                                terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.River];
                                 PutPixel(gr, i * mapSize, j * mapSize, terrainColor);
                             }
                             else
                             {
                                 if (terrainUnits[i][j].getElevation() == 1)
                                 {
-                                    terrainColor = TerrainColor[(int)TerrainType.Elevation1];
+                                    terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation1];
                                     PutPixel(gr, i * mapSize, j * mapSize, terrainColor);
                                 }
                                 else if (terrainUnits[i][j].getElevation() == 2)
                                 {
-                                    terrainColor = TerrainColor[(int)TerrainType.Elevation2];
+                                    terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation2];
                                     PutPixel(gr, i * mapSize, j * mapSize, terrainColor);
                                 }
                                 else if (terrainUnits[i][j].getElevation() >= 3)
                                 {
-                                    terrainColor = TerrainColor[(int)TerrainType.Elevation3];
+                                    terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation3];
                                     PutPixel(gr, i * mapSize, j * mapSize, terrainColor);
                                 }
                                 else
@@ -1069,35 +1069,35 @@ namespace ACNHPokerCore
                     {
                         if (terrainUnits[j][i].HasRoadWood())
                         {
-                            terrainColor = TerrainColor[(int)TerrainType.RoadWood];
+                            terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadWood];
                         }
                         else if (terrainUnits[j][i].HasRoadTile())
                         {
-                            terrainColor = TerrainColor[(int)TerrainType.RoadTile];
+                            terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadTile];
                         }
                         else if (terrainUnits[j][i].HasRoadSand())
                         {
-                            terrainColor = TerrainColor[(int)TerrainType.RoadSand];
+                            terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadSand];
                         }
                         else if (terrainUnits[j][i].HasRoadPattern())
                         {
-                            terrainColor = TerrainColor[(int)TerrainType.RoadPattern];
+                            terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadPattern];
                         }
                         else if (terrainUnits[j][i].HasRoadDarkSoil())
                         {
-                            terrainColor = TerrainColor[(int)TerrainType.RoadDarkSoil];
+                            terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadDarkSoil];
                         }
                         else if (terrainUnits[j][i].HasRoadBrick())
                         {
-                            terrainColor = TerrainColor[(int)TerrainType.RoadBrick];
+                            terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadBrick];
                         }
                         else if (terrainUnits[j][i].HasRoadStone())
                         {
-                            terrainColor = TerrainColor[(int)TerrainType.RoadStone];
+                            terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadStone];
                         }
                         else if (terrainUnits[j][i].HasRoadSoil())
                         {
-                            terrainColor = TerrainColor[(int)TerrainType.RoadSoil];
+                            terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadSoil];
                         }
                         floorBackgroundColor[i][j] = terrainColor;
                     }
@@ -1105,34 +1105,34 @@ namespace ACNHPokerCore
                     {
                         if (terrainUnits[j][i].isCliff())
                         {
-                            terrainColor = TerrainColor[(int)TerrainType.Cliff];
+                            terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Cliff];
                             floorBackgroundColor[i][j] = terrainColor;
                         }
                         else if (terrainUnits[j][i].isFall())
                         {
-                            terrainColor = TerrainColor[(int)TerrainType.Fall];
+                            terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Fall];
                             floorBackgroundColor[i][j] = terrainColor;
                         }
                         else if (terrainUnits[j][i].isRiver())
                         {
-                            terrainColor = TerrainColor[(int)TerrainType.River];
+                            terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.River];
                             floorBackgroundColor[i][j] = terrainColor;
                         }
                         else
                         {
                             if (terrainUnits[j][i].getElevation() == 1)
                             {
-                                terrainColor = TerrainColor[(int)TerrainType.Elevation1];
+                                terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation1];
                                 floorBackgroundColor[i][j] = terrainColor;
                             }
                             else if (terrainUnits[j][i].getElevation() == 2)
                             {
-                                terrainColor = TerrainColor[(int)TerrainType.Elevation2];
+                                terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation2];
                                 floorBackgroundColor[i][j] = terrainColor;
                             }
                             else if (terrainUnits[j][i].getElevation() >= 3)
                             {
-                                terrainColor = TerrainColor[(int)TerrainType.Elevation3];
+                                terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation3];
                                 floorBackgroundColor[i][j] = terrainColor;
                             }
                             else
@@ -1798,42 +1798,6 @@ namespace ACNHPokerCore
             ReddsTreasureTrawler = 0x1C,
             Studio = 0x1D,
         }
-
-        private enum TerrainType : int
-        {
-            RoadWood = 0,       //Wooden path
-            RoadTile = 1,       //Terra-cotta tiles
-            RoadSand = 2,       //Sand path
-            RoadPattern = 3,    //Arched tile path
-            RoadDarkSoil = 4,   //Dark dirt path
-            RoadBrick = 5,      //Brick path
-            RoadStone = 6,      //Stone path
-            RoadSoil = 7,       //Dirt path
-            Fall = 10,
-            Cliff = 11,
-            River = 12,
-            Elevation1 = 20,
-            Elevation2 = 21,
-            Elevation3 = 22,
-        }
-
-        public static readonly Dictionary<int, Color> TerrainColor = new Dictionary<int, Color>
-        {
-            {0, Color.FromArgb(170, 105, 89)},
-            {1, Color.FromArgb(232, 178, 128)},
-            {2, Color.FromArgb(234, 206, 142)},
-            {3, Color.FromArgb(133, 155, 149)},
-            {4, Color.FromArgb(185, 128, 95)},
-            {5, Color.FromArgb(239, 159, 100)},
-            {6, Color.FromArgb(125, 142, 138)},
-            {7, Color.FromArgb(218, 179, 116)},
-            {10, Color.FromArgb(52, 36, 237)},
-            {11, Color.FromArgb(17, 43, 18)},
-            {12, Color.FromArgb(52, 170, 247)},
-            {20, Color.FromArgb(55, 92, 56)},
-            {21, Color.FromArgb(44, 74, 45)},
-            {22, Color.FromArgb(33, 56, 34)},
-        };
 
         public static readonly Dictionary<byte, Color> ByteToBuildingColor = new Dictionary<byte, Color>
         {
