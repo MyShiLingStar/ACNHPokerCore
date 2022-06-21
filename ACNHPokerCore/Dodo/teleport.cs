@@ -22,6 +22,8 @@ namespace ACNHPokerCore
         private static int coordinateSize = 20;
         private static int turningSize = 4;
         private static int teleportSize = coordinateSize + turningSize;
+
+        private static object lockObject = new object();
         public enum OverworldState
         {
             Null,
@@ -67,46 +69,49 @@ namespace ACNHPokerCore
             InitializeComponent();
         }
 
-        public static ulong GetCoordinateAddress()
+        public static ulong GetCoordinateAddress(string strInput)
         {
-            // Regex pattern to get operators and offsets from pointer expression.	
-            string pattern = @"(\+|\-)([A-Fa-f0-9]+)";
-            Regex regex = new Regex(pattern);
-            Match match = regex.Match(offset);
-
-            // Get first offset from pointer expression and read address at that offset from main start.	
-            var ofs = Convert.ToUInt64(match.Groups[2].Value, 16);
-            var address = BitConverter.ToUInt64(Utilities.peekMainAddress(s, ofs.ToString("X"), 0x8), 0);
-            match = match.NextMatch();
-
-            // Matches the rest of the operators and offsets in the pointer expression.	
-            while (match.Success)
+            lock (lockObject)
             {
-                // Get operator and offset from match.	
-                string opp = match.Groups[1].Value;
-                ofs = Convert.ToUInt64(match.Groups[2].Value, 16);
+                // Regex pattern to get operators and offsets from pointer expression.	
+                string pattern = @"(\+|\-)([A-Fa-f0-9]+)";
+                Regex regex = new Regex(pattern);
+                Match match = regex.Match(strInput);
 
-                // Add or subtract the offset from the current stored address based on operator in front of offset.	
-                switch (opp)
-                {
-                    case "+":
-                        address += ofs;
-                        break;
-                    case "-":
-                        address -= ofs;
-                        break;
-                }
-
-                // Attempt another match and if successful read bytes at address and store the new address.	
+                // Get first offset from pointer expression and read address at that offset from main start.	
+                var ofs = Convert.ToUInt64(match.Groups[2].Value, 16);
+                var address = BitConverter.ToUInt64(Utilities.peekMainAddress(s, ofs.ToString("X"), 0x8), 0);
                 match = match.NextMatch();
-                if (match.Success)
-                {
-                    byte[] bytes = Utilities.peekAbsoluteAddress(s, address.ToString("X"), 0x8);
-                    address = BitConverter.ToUInt64(bytes, 0);
-                }
-            }
 
-            return address;
+                // Matches the rest of the operators and offsets in the pointer expression.	
+                while (match.Success)
+                {
+                    // Get operator and offset from match.	
+                    string opp = match.Groups[1].Value;
+                    ofs = Convert.ToUInt64(match.Groups[2].Value, 16);
+
+                    // Add or subtract the offset from the current stored address based on operator in front of offset.	
+                    switch (opp)
+                    {
+                        case "+":
+                            address += ofs;
+                            break;
+                        case "-":
+                            address -= ofs;
+                            break;
+                    }
+
+                    // Attempt another match and if successful read bytes at address and store the new address.	
+                    match = match.NextMatch();
+                    if (match.Success)
+                    {
+                        byte[] bytes = Utilities.peekAbsoluteAddress(s, address.ToString("X"), 0x8);
+                        address = BitConverter.ToUInt64(bytes, 0);
+                    }
+                }
+
+                return address;
+            }
         }
 
         public static Boolean TeleportTo(int num)
@@ -123,7 +128,7 @@ namespace ACNHPokerCore
                 return false;
             }
 
-            ulong address = GetCoordinateAddress();
+            ulong address = GetCoordinateAddress(offset);
 
             int trials = 0;
 
@@ -151,7 +156,7 @@ namespace ACNHPokerCore
             Buffer.BlockCopy(anchorByte, teleportSize * num, coordinate, 0, coordinateSize);
             Buffer.BlockCopy(anchorByte, teleportSize * num + coordinateSize, turning, 0, turningSize);
 
-            ulong address = GetCoordinateAddress();
+            ulong address = GetCoordinateAddress(offset);
 
             int trials = 0;
 
@@ -179,7 +184,7 @@ namespace ACNHPokerCore
             Buffer.BlockCopy(ByteUsing, teleportSize * num, coordinate, 0, coordinateSize);
             Buffer.BlockCopy(ByteUsing, teleportSize * num + coordinateSize, turning, 0, turningSize);
 
-            ulong address = GetCoordinateAddress();
+            ulong address = GetCoordinateAddress(offset);
 
             byte[] CurCoordinate = Utilities.peekAbsoluteAddress(s, (address - 0x2).ToString("X"), coordinateSize);
             byte[] CurTurning = Utilities.peekAbsoluteAddress(s, (address + 0x3A).ToString("X"), turningSize);
@@ -220,7 +225,7 @@ namespace ACNHPokerCore
 
         public static void SetTeleport(int num)
         {
-            ulong address = GetCoordinateAddress();
+            ulong address = GetCoordinateAddress(offset);
 
             byte[] CurCoordinate = Utilities.peekAbsoluteAddress(s, (address - 0x2).ToString("X"), coordinateSize);
             byte[] CurTurning = Utilities.peekAbsoluteAddress(s, (address + 0x3A).ToString("X"), turningSize);
@@ -233,7 +238,7 @@ namespace ACNHPokerCore
 
         public static void SetAnchor(int num)
         {
-            ulong address = GetCoordinateAddress();
+            ulong address = GetCoordinateAddress(offset);
 
             byte[] CurCoordinate = Utilities.peekAbsoluteAddress(s, (address - 0x2).ToString("X"), coordinateSize);
             byte[] CurTurning = Utilities.peekAbsoluteAddress(s, (address + 0x3A).ToString("X"), turningSize);
@@ -255,7 +260,7 @@ namespace ACNHPokerCore
 
         public static OverworldState GetOverworldState()
         {
-            ulong address = GetCoordinateAddress();
+            ulong address = GetCoordinateAddress(offset);
             uint value = BitConverter.ToUInt32(Utilities.peekAbsoluteAddress(s, (address + 0x1E).ToString("X"), 0x4), 0);
 
             return DecodeOverworldState(value);
@@ -288,7 +293,7 @@ namespace ACNHPokerCore
 
         public static void dump()
         {
-            ulong address = GetCoordinateAddress();
+            ulong address = GetCoordinateAddress(offset);
 
             SaveFileDialog file = new SaveFileDialog()
             {
@@ -342,7 +347,7 @@ namespace ACNHPokerCore
 
         public static LocationState GetLocationState()
         {
-            ulong address = GetCoordinateAddress();
+            ulong address = GetCoordinateAddress(offset);
             uint value = BitConverter.ToUInt32(Utilities.peekAbsoluteAddress(s, (address + 0x6E).ToString("X"), 0x4), 0);
             Debug.Print("Location : " + value.ToString("X"));
             switch (value)

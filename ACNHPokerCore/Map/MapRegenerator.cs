@@ -34,6 +34,7 @@ namespace ACNHPokerCore
         private static byte[][] villagerFlag;
         private static byte[][] villager;
         private static Boolean[] haveVillager;
+        private static Boolean FormIsClosing = false;
 
         public dodo dodoSetup = null;
 
@@ -643,27 +644,32 @@ namespace ACNHPokerCore
 
                     if (!newVisitor.Equals(string.Empty))
                     {
-                        this.Invoke((MethodInvoker)delegate
+                        if (!FormIsClosing)
                         {
-                            visitorNameBox.Text = newVisitor;
-                            WaitMessagebox.Text = "Paused. " + newVisitor + " arriving!";
-                            CreateLog(newVisitor);
-                            PauseTimeLabel.Visible = true;
-                            PauseTimer.Start();
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                visitorNameBox.Text = newVisitor;
+                                WaitMessagebox.Text = "Paused. " + newVisitor + " arriving!";
+                                CreateLog(newVisitor);
+                                PauseTimeLabel.Visible = true;
+                                PauseTimer.Start();
 
-                        });
+                            });
+                        }
 
                         Thread.Sleep(70000);
                         Utilities.sendBlankName(s);
-
-                        this.Invoke((MethodInvoker)delegate
+                        if (!FormIsClosing)
                         {
-                            PauseTimeLabel.Visible = false;
-                            PauseTimer.Stop();
-                            pauseTime = 70;
-                            PauseTimeLabel.Text = pauseTime.ToString();
-                            WaitMessagebox.Text = regenMsg;
-                        });
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                PauseTimeLabel.Visible = false;
+                                PauseTimer.Stop();
+                                pauseTime = 70;
+                                PauseTimeLabel.Text = pauseTime.ToString();
+                                WaitMessagebox.Text = regenMsg;
+                            });
+                        }
                         wasLoading = true;
                         state = teleport.GetOverworldState();
                     }
@@ -756,15 +762,18 @@ namespace ACNHPokerCore
                 }
                 catch (Exception ex)
                 {
-                    this.Invoke((MethodInvoker)delegate
+                    if (!FormIsClosing)
                     {
-                        MyLog.logEvent("Regen", "Regen1: " + ex.Message.ToString());
-                        //DateTime localDate = DateTime.Now;
-                        //myMessageBox.Show("Hey you! Stop messing with the switch!\n\n" + "Lost connection to the switch on " + localDate.ToString(), "Hey Listen!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        MyMessageBox.Show("Connection to the switch has been lost", "Yeeted", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        CreateLog("Connection to the switch has been lost");
-                        this.Close();
-                    });
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            MyLog.logEvent("Regen", "Regen1: " + ex.Message.ToString());
+                            //DateTime localDate = DateTime.Now;
+                            //myMessageBox.Show("Hey you! Stop messing with the switch!\n\n" + "Lost connection to the switch on " + localDate.ToString(), "Hey Listen!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MyMessageBox.Show("Connection to the switch has been lost", "Yeeted", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            CreateLog("Connection to the switch has been lost");
+                            this.Close();
+                        });
+                    }
                     break;
                 }
             } while (loop);
@@ -773,22 +782,25 @@ namespace ACNHPokerCore
             {
                 MyLog.logEvent("Regen", "Regen1: Cancelled");
                 MyMessageBox.Show("Dodo Helper & Regen Aborted!\nPlease remember to exit the airport first if you want to restart!", "Airbag deployment!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Invoke((MethodInvoker)delegate
+                if (!FormIsClosing)
                 {
-                    stopWatch.Stop();
-                    hideMapWait();
-                    MyLog.logEvent("Regen", "Regen1 Stopped");
-                    loop = false;
-                    startRegen.Tag = "Start";
-                    startRegen.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-                    startRegen.Text = "Cast Regen";
-                    saveMapBtn.Enabled = true;
-                    loadMapBtn.Enabled = true;
-                    backBtn.Enabled = true;
-                    startRegen2.Enabled = true;
-                    keepVillagerBox.Enabled = true;
-                    dodoSetupBtn.Enabled = true;
-                });
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        stopWatch.Stop();
+                        hideMapWait();
+                        MyLog.logEvent("Regen", "Regen1 Stopped");
+                        loop = false;
+                        startRegen.Tag = "Start";
+                        startRegen.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+                        startRegen.Text = "Cast Regen";
+                        saveMapBtn.Enabled = true;
+                        loadMapBtn.Enabled = true;
+                        backBtn.Enabled = true;
+                        startRegen2.Enabled = true;
+                        keepVillagerBox.Enabled = true;
+                        dodoSetupBtn.Enabled = true;
+                    });
+                }
             }
 
             stopWatch.Stop();
@@ -868,26 +880,32 @@ namespace ACNHPokerCore
 
                     if (!newVisitor.Equals(string.Empty))
                     {
-                        this.Invoke((MethodInvoker)delegate
+                        if (!FormIsClosing)
                         {
-                            visitorNameBox.Text = newVisitor;
-                            WaitMessagebox.Text = "Paused. " + newVisitor + " arriving!";
-                            CreateLog(newVisitor);
-                            PauseTimeLabel.Visible = true;
-                            PauseTimer.Start();
-                        });
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                visitorNameBox.Text = newVisitor;
+                                WaitMessagebox.Text = "Paused. " + newVisitor + " arriving!";
+                                CreateLog(newVisitor);
+                                PauseTimeLabel.Visible = true;
+                                PauseTimer.Start();
+                            });
+                        }
 
                         Thread.Sleep(70000);
                         Utilities.sendBlankName(s);
 
-                        this.Invoke((MethodInvoker)delegate
+                        if (!FormIsClosing)
                         {
-                            PauseTimeLabel.Visible = false;
-                            PauseTimer.Stop();
-                            pauseTime = 70;
-                            PauseTimeLabel.Text = pauseTime.ToString();
-                            WaitMessagebox.Text = regenMsg;
-                        });
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                PauseTimeLabel.Visible = false;
+                                PauseTimer.Stop();
+                                pauseTime = 70;
+                                PauseTimeLabel.Text = pauseTime.ToString();
+                                WaitMessagebox.Text = regenMsg;
+                            });
+                        }
                         wasLoading = true;
                         state = teleport.GetOverworldState();
                     }
@@ -967,38 +985,44 @@ namespace ACNHPokerCore
                         break;
                     }
 
-                    this.Invoke((MethodInvoker)delegate
+                    if (!FormIsClosing)
                     {
-                        ts = stopWatch.Elapsed;
-                        timeLabel.Text = Utilities.precedingZeros(ts.Hours.ToString(), 2) + ":" + Utilities.precedingZeros(ts.Minutes.ToString(), 2) + ":" + Utilities.precedingZeros(ts.Seconds.ToString(), 2);
-                        if (keepVillagerBox.Checked)
+                        this.Invoke((MethodInvoker)delegate
                         {
-                            int index = runCount % 10;
-                            CheckAndResetVillager(villagerFlag[index], haveVillager[index], index, ref writeCount);
-                        }
-                        runCount++;
-                        if (PauseCount > 0)
-                        {
-                            WaitMessagebox.Text = "Regen idling...";
-                        }
-                        else
-                        {
-                            WaitMessagebox.Text = regenMsg;
-                        }
-                    });
+                            ts = stopWatch.Elapsed;
+                            timeLabel.Text = Utilities.precedingZeros(ts.Hours.ToString(), 2) + ":" + Utilities.precedingZeros(ts.Minutes.ToString(), 2) + ":" + Utilities.precedingZeros(ts.Seconds.ToString(), 2);
+                            if (keepVillagerBox.Checked)
+                            {
+                                int index = runCount % 10;
+                                CheckAndResetVillager(villagerFlag[index], haveVillager[index], index, ref writeCount);
+                            }
+                            runCount++;
+                            if (PauseCount > 0)
+                            {
+                                WaitMessagebox.Text = "Regen idling...";
+                            }
+                            else
+                            {
+                                WaitMessagebox.Text = regenMsg;
+                            }
+                        });
+                    }
                     Debug.Print("------ " + runCount + " " + PauseCount);
                 }
                 catch (Exception ex)
                 {
-                    this.Invoke((MethodInvoker)delegate
+                    if (!FormIsClosing)
                     {
-                        MyLog.logEvent("Regen", "Regen2: " + ex.Message.ToString());
-                        //DateTime localDate = DateTime.Now;
-                        //myMessageBox.Show("Hey you! Stop messing with the switch!\n\n" + "Lost connection to the switch on " + localDate.ToString(), "Hey Listen!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        MyMessageBox.Show("Connection to the switch has been lost", "Yeeted", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        CreateLog("Connection to the switch has been lost");
-                        this.Close();
-                    });
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            MyLog.logEvent("Regen", "Regen2: " + ex.Message.ToString());
+                            //DateTime localDate = DateTime.Now;
+                            //myMessageBox.Show("Hey you! Stop messing with the switch!\n\n" + "Lost connection to the switch on " + localDate.ToString(), "Hey Listen!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MyMessageBox.Show("Connection to the switch has been lost", "Yeeted", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            CreateLog("Connection to the switch has been lost");
+                            this.Close();
+                        });
+                    }
                     break;
                 }
             } while (loop);
@@ -1007,22 +1031,25 @@ namespace ACNHPokerCore
             {
                 MyLog.logEvent("Regen", "Regen2: Cancelled");
                 MyMessageBox.Show("Dodo Helper & Regen Aborted!\nPlease remember to exit the airport first if you want to restart!", "Slamming on the brakes?", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Invoke((MethodInvoker)delegate
+                if (!FormIsClosing)
                 {
-                    stopWatch.Stop();
-                    hideMapWait();
-                    MyLog.logEvent("Regen", "Regen2 Stopped");
-                    loop = false;
-                    startRegen2.Tag = "Start";
-                    startRegen2.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-                    startRegen2.Text = "Cast Moogle Regenja";
-                    saveMapBtn.Enabled = true;
-                    loadMapBtn.Enabled = true;
-                    backBtn.Enabled = true;
-                    startRegen.Enabled = true;
-                    keepVillagerBox.Enabled = true;
-                    dodoSetupBtn.Enabled = true;
-                });
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        stopWatch.Stop();
+                        hideMapWait();
+                        MyLog.logEvent("Regen", "Regen2 Stopped");
+                        loop = false;
+                        startRegen2.Tag = "Start";
+                        startRegen2.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+                        startRegen2.Text = "Cast Moogle Regenja";
+                        saveMapBtn.Enabled = true;
+                        loadMapBtn.Enabled = true;
+                        backBtn.Enabled = true;
+                        startRegen.Enabled = true;
+                        keepVillagerBox.Enabled = true;
+                        dodoSetupBtn.Enabled = true;
+                    });
+                }
             }
 
             stopWatch.Stop();
@@ -1050,40 +1077,50 @@ namespace ACNHPokerCore
 
         private void showMapWait(int size, string msg = "")
         {
-            this.Invoke((MethodInvoker)delegate
+            if (!FormIsClosing)
             {
-                WaitMessagebox.SelectionAlignment = HorizontalAlignment.Center;
-                WaitMessagebox.Text = msg;
-                counter = 0;
-                MapProgressBar.Maximum = size + 5;
-                MapProgressBar.Value = counter;
-                PleaseWaitPanel.Visible = true;
-                ProgressTimer.Start();
-            });
+                this.Invoke((MethodInvoker)delegate
+                {
+                    WaitMessagebox.SelectionAlignment = HorizontalAlignment.Center;
+                    WaitMessagebox.Text = msg;
+                    counter = 0;
+                    MapProgressBar.Maximum = size + 5;
+                    MapProgressBar.Value = counter;
+                    PleaseWaitPanel.Visible = true;
+                    ProgressTimer.Start();
+                });
+            }
         }
 
         private void hideMapWait()
         {
-            this.Invoke((MethodInvoker)delegate
+            if (!FormIsClosing)
             {
-                PleaseWaitPanel.Visible = false;
-                ProgressTimer.Stop();
-            });
+                this.Invoke((MethodInvoker)delegate
+                {
+                    PleaseWaitPanel.Visible = false;
+                    ProgressTimer.Stop();
+                });
+            }
         }
 
         private void ProgressTimer_Tick(object sender, EventArgs e)
         {
-            Invoke((MethodInvoker)delegate
+            if (!FormIsClosing)
             {
-                if (counter <= MapProgressBar.Maximum)
-                    MapProgressBar.Value = counter;
-                else
-                    MapProgressBar.Value = MapProgressBar.Maximum;
-            });
+                Invoke((MethodInvoker)delegate
+                {
+                    if (counter <= MapProgressBar.Maximum)
+                        MapProgressBar.Value = counter;
+                    else
+                        MapProgressBar.Value = MapProgressBar.Maximum;
+                });
+            }
         }
 
         private void MapRegenerator_FormClosed(object sender, FormClosedEventArgs e)
         {
+            FormIsClosing = true;
             CloseCleaning();
         }
 
@@ -1319,11 +1356,14 @@ namespace ACNHPokerCore
 
         private void PauseTimer_Tick(object sender, EventArgs e)
         {
-            this.Invoke((MethodInvoker)delegate
+            if (!FormIsClosing)
             {
-                pauseTime--;
-                PauseTimeLabel.Text = pauseTime.ToString();
-            });
+                this.Invoke((MethodInvoker)delegate
+                {
+                    pauseTime--;
+                    PauseTimeLabel.Text = pauseTime.ToString();
+                });
+            }
         }
 
         private void logBtn_Click(object sender, EventArgs e)

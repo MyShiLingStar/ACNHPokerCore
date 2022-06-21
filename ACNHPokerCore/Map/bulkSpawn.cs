@@ -25,6 +25,9 @@ namespace ACNHPokerCore
         private byte[] Building = null;
         private byte[] Terrain = null;
 
+        private bool layer1Selected;
+        private long SpawnAddress;
+
         private byte[][] item = null;
         private byte[][] itemWithSpace = null;
         private int numOfitem = 0;
@@ -33,7 +36,7 @@ namespace ACNHPokerCore
         private int rowNum;
         private byte[][] SpawnArea = null;
         private bool spawnlock = false;
-        public bulkSpawn(Socket S, USBBot Bot, byte[] layer1, byte[] layer2, byte[] acre, byte[] building, byte[] terrain, int x, int y, map Map, bool Ignore, bool Sound)
+        public bulkSpawn(Socket S, USBBot Bot, byte[] layer1, byte[] layer2, byte[] acre, byte[] building, byte[] terrain, int x, int y, map Map, bool Ignore, bool Sound, bool Layer1Selected = true)
         {
             try
             {
@@ -49,11 +52,21 @@ namespace ACNHPokerCore
                 main = Map;
                 ignore = Ignore;
                 sound = Sound;
+                layer1Selected = Layer1Selected;
                 MiniMap = new miniMap(Layer1, Acre, Building, Terrain, 4);
                 InitializeComponent();
                 xCoordinate.Text = x.ToString();
                 yCoordinate.Text = y.ToString();
                 miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawBackground(), MiniMap.drawItemMap());
+                if (Layer1Selected)
+                {
+                    SpawnAddress = Utilities.mapZero;
+                }
+                else
+                {
+                    miniMapBox.BackgroundImage = MiniMap.refreshItemMap(Layer2);
+                    SpawnAddress = Utilities.mapZero + Utilities.mapSize;
+                }
                 miniMapBox.Image = MiniMap.drawMarker(anchorX, anchorY);
                 warningMessage.SelectionAlignment = HorizontalAlignment.Center;
                 MyLog.logEvent("BulkSpawn", "BulkSpawnForm Started Successfully");
@@ -357,7 +370,7 @@ namespace ACNHPokerCore
                 {
                     for (int i = 0; i < SpawnArea.Length / 2; i++)
                     {
-                        UInt32 address = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX + i)) + (0x10 * (anchorY)));
+                        UInt32 address = (UInt32)(SpawnAddress + (0xC00 * (anchorX + i)) + (0x10 * (anchorY)));
 
                         Utilities.dropColumn(s, bot, address, address + 0x600, SpawnArea[i * 2], SpawnArea[i * 2 + 1], ref counter);
                     }
@@ -371,7 +384,7 @@ namespace ACNHPokerCore
                 {
                     for (int i = 0; i < SpawnArea.Length / 2; i++)
                     {
-                        UInt32 address = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - i)) + (0x10 * (anchorY)));
+                        UInt32 address = (UInt32)(SpawnAddress + (0xC00 * (anchorX - i)) + (0x10 * (anchorY)));
 
                         Utilities.dropColumn(s, bot, address, address + 0x600, SpawnArea[i * 2], SpawnArea[i * 2 + 1], ref counter);
                     }

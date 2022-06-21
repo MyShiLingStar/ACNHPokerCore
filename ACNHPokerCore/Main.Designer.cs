@@ -107,6 +107,8 @@ namespace ACNHPokerCore
             this.OtherTabButton = new System.Windows.Forms.Button();
             this.InventoryTabButton = new System.Windows.Forms.Button();
             this.InventoryLargePanel = new System.Windows.Forms.Panel();
+            this.chatButton = new System.Windows.Forms.Button();
+            this.RoadRollerButton = new System.Windows.Forms.Button();
             this.UnhideButton = new System.Windows.Forms.Button();
             this.ConvertToCheat = new System.Windows.Forms.Button();
             this.SelectedItemName = new System.Windows.Forms.Label();
@@ -226,6 +228,8 @@ namespace ACNHPokerCore
             this.FreezeTimeButton = new System.Windows.Forms.Button();
             this.WeatherSeedLabel = new System.Windows.Forms.Label();
             this.CheatPanel = new System.Windows.Forms.Panel();
+            this.FastSwimToggle = new JCS.ToggleSwitch();
+            this.label1 = new System.Windows.Forms.Label();
             this.DisableCollisionToggle = new JCS.ToggleSwitch();
             this.animationSpeedx1 = new System.Windows.Forms.Button();
             this.animationSpeedx0_1 = new System.Windows.Forms.Button();
@@ -338,8 +342,6 @@ namespace ACNHPokerCore
             this.PeekButton = new System.Windows.Forms.Button();
             this.PokeButton = new System.Windows.Forms.Button();
             this.FillButton = new System.Windows.Forms.Button();
-            this.FastSwimToggle = new JCS.ToggleSwitch();
-            this.label1 = new System.Windows.Forms.Label();
             VillagerAutoCompleteMenu = new AutocompleteMenuNS.AutocompleteMenu();
             this.AlwaysOnControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IPAddressInputBackground)).BeginInit();
@@ -1994,6 +1996,8 @@ namespace ACNHPokerCore
             // 
             // InventoryLargePanel
             // 
+            this.InventoryLargePanel.Controls.Add(this.chatButton);
+            this.InventoryLargePanel.Controls.Add(this.RoadRollerButton);
             this.InventoryLargePanel.Controls.Add(this.UnhideButton);
             this.InventoryLargePanel.Controls.Add(this.ConvertToCheat);
             this.InventoryLargePanel.Controls.Add(this.SelectedItemName);
@@ -2037,6 +2041,41 @@ namespace ACNHPokerCore
             this.InventoryLargePanel.Name = "InventoryLargePanel";
             this.InventoryLargePanel.Size = new System.Drawing.Size(1225, 550);
             this.InventoryLargePanel.TabIndex = 18;
+            // 
+            // chatButton
+            // 
+            this.chatButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.chatButton.FlatAppearance.BorderSize = 0;
+            this.chatButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chatButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.chatButton.ForeColor = System.Drawing.Color.White;
+            this.chatButton.Location = new System.Drawing.Point(858, 492);
+            this.chatButton.Name = "chatButton";
+            this.chatButton.Size = new System.Drawing.Size(90, 22);
+            this.chatButton.TabIndex = 40;
+            this.chatButton.Tag = "";
+            this.chatButton.Text = "Chat";
+            this.chatButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.chatButton.UseVisualStyleBackColor = false;
+            this.chatButton.Visible = false;
+            this.chatButton.Click += new System.EventHandler(this.chatButton_Click);
+            // 
+            // RoadRollerButton
+            // 
+            this.RoadRollerButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.RoadRollerButton.FlatAppearance.BorderSize = 0;
+            this.RoadRollerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RoadRollerButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.RoadRollerButton.ForeColor = System.Drawing.Color.White;
+            this.RoadRollerButton.Location = new System.Drawing.Point(473, 1);
+            this.RoadRollerButton.Name = "RoadRollerButton";
+            this.RoadRollerButton.Size = new System.Drawing.Size(100, 23);
+            this.RoadRollerButton.TabIndex = 39;
+            this.RoadRollerButton.Tag = "";
+            this.RoadRollerButton.Text = "Road Roller";
+            this.RoadRollerButton.UseVisualStyleBackColor = false;
+            this.RoadRollerButton.Visible = false;
+            this.RoadRollerButton.Click += new System.EventHandler(this.RoadRollerButton_Click);
             // 
             // UnhideButton
             // 
@@ -4052,6 +4091,33 @@ namespace ACNHPokerCore
             this.CheatPanel.Name = "CheatPanel";
             this.CheatPanel.Size = new System.Drawing.Size(366, 253);
             this.CheatPanel.TabIndex = 32;
+            // 
+            // FastSwimToggle
+            // 
+            this.FastSwimToggle.Location = new System.Drawing.Point(190, 220);
+            this.FastSwimToggle.Name = "FastSwimToggle";
+            this.FastSwimToggle.OffFont = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.FastSwimToggle.OffForeColor = System.Drawing.Color.White;
+            this.FastSwimToggle.OffText = "Off";
+            this.FastSwimToggle.OnFont = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.FastSwimToggle.OnForeColor = System.Drawing.Color.White;
+            this.FastSwimToggle.OnText = "On";
+            this.FastSwimToggle.Size = new System.Drawing.Size(71, 22);
+            this.FastSwimToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            this.FastSwimToggle.TabIndex = 95;
+            this.FastSwimToggle.UseAnimation = false;
+            this.FastSwimToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.FastSwimToggle_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(12, 220);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(177, 22);
+            this.label1.TabIndex = 94;
+            this.label1.Text = "Swim Club Mode :";
             // 
             // DisableCollisionToggle
             // 
@@ -7457,33 +7523,6 @@ namespace ACNHPokerCore
             this.FillButton.UseVisualStyleBackColor = false;
             this.FillButton.Click += new System.EventHandler(this.FillButton_Click);
             // 
-            // FastSwimToggle
-            // 
-            this.FastSwimToggle.Location = new System.Drawing.Point(190, 220);
-            this.FastSwimToggle.Name = "FastSwimToggle";
-            this.FastSwimToggle.OffFont = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FastSwimToggle.OffForeColor = System.Drawing.Color.White;
-            this.FastSwimToggle.OffText = "Off";
-            this.FastSwimToggle.OnFont = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FastSwimToggle.OnForeColor = System.Drawing.Color.White;
-            this.FastSwimToggle.OnText = "On";
-            this.FastSwimToggle.Size = new System.Drawing.Size(71, 22);
-            this.FastSwimToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
-            this.FastSwimToggle.TabIndex = 95;
-            this.FastSwimToggle.UseAnimation = false;
-            this.FastSwimToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.FastSwimToggle_CheckedChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(12, 220);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(177, 22);
-            this.label1.TabIndex = 94;
-            this.label1.Text = "Swim Club Mode :";
-            // 
             // Main
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -7887,5 +7926,7 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Button FillButton;
         private JCS.ToggleSwitch FastSwimToggle;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button RoadRollerButton;
+        private System.Windows.Forms.Button chatButton;
     }
 }

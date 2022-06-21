@@ -30,8 +30,9 @@ namespace ACNHPokerCore
 
         private double width;
         private double height;
-        private bool wallmount;
-        private bool rug;
+        private bool wallmount = false;
+        private bool rug = false;
+        private bool ceiling = false;
 
         private bool init = true;
 
@@ -405,16 +406,20 @@ namespace ACNHPokerCore
                     if (placeHorizontal())
                     {
                         if (wallmount)
-                            this.SendObeySizeEvent(true, ((int)Math.Ceiling(height) + extraRow), ((int)Math.Ceiling(width) + extraColumn + wallMountExtra), totalHeight, totalWidth, true);
+                            this.SendObeySizeEvent(true, ((int)Math.Ceiling(height) + extraRow), ((int)Math.Ceiling(width) + extraColumn + wallMountExtra), totalHeight, totalWidth, true, false);
+                        else if (ceiling)
+                            this.SendObeySizeEvent(true, ((int)Math.Ceiling(height) + extraRow), ((int)Math.Ceiling(width) + extraColumn), totalHeight, totalWidth, false, true);
                         else
-                            this.SendObeySizeEvent(true, ((int)Math.Ceiling(height) + extraRow), ((int)Math.Ceiling(width) + extraColumn), totalHeight, totalWidth, false);
+                            this.SendObeySizeEvent(true, ((int)Math.Ceiling(height) + extraRow), ((int)Math.Ceiling(width) + extraColumn), totalHeight, totalWidth, false, false);
                     }
                     else
                     {
-                        if(wallmount)
-                            this.SendObeySizeEvent(true, ((int)Math.Ceiling(width) + extraRow + wallMountExtra), ((int)Math.Ceiling(height) + extraColumn), totalHeight, totalWidth, true);
+                        if (wallmount)
+                            this.SendObeySizeEvent(true, ((int)Math.Ceiling(width) + extraRow + wallMountExtra), ((int)Math.Ceiling(height) + extraColumn), totalHeight, totalWidth, true, false);
+                        else if (ceiling)
+                            this.SendObeySizeEvent(true, ((int)Math.Ceiling(width) + extraRow), ((int)Math.Ceiling(height) + extraColumn), totalHeight, totalWidth, false, true);
                         else
-                            this.SendObeySizeEvent(true, ((int)Math.Ceiling(width) + extraRow), ((int)Math.Ceiling(height) + extraColumn), totalHeight, totalWidth, false);
+                            this.SendObeySizeEvent(true, ((int)Math.Ceiling(width) + extraRow), ((int)Math.Ceiling(height) + extraColumn), totalHeight, totalWidth, false, false);
                     }
                 }
             }
@@ -500,21 +505,30 @@ namespace ACNHPokerCore
             {
                 wallmount = true;
                 rug = false;
+                ceiling = false;
             }
             else if (size.Contains("_Rug"))
             {
                 wallmount = false;
                 rug = true;
+                ceiling = false;
+            }
+            else if (size.Contains("_Ceiling"))
+            {
+                wallmount = false;
+                rug = false;
+                ceiling = true;
             }
             else
             {
                 wallmount = false;
                 rug = false;
+                ceiling = false;
             }
 
             if (size.Contains("x"))
             {
-                string[] dimension = size.Replace("_Wall", "").Replace("_Rug", "").Split("x");
+                string[] dimension = size.Replace("_Wall", "").Replace("_Rug", "").Replace("_Pillar", "").Replace("_Ceiling", "").Split("x");
                 string[] front = dimension[0].Split("_");
                 string[] back = dimension[1].Split("_");
 

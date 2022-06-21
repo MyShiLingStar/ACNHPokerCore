@@ -1,4 +1,5 @@
 ﻿using MonoLibUsb;
+using MonoLibUsb.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace ACNHPokerCore
 
     public class USBBot
     {
+        private static bool debug = false;
         private const byte READPOINT = 129;
         private const byte WRITEPOINT = 1;
 
@@ -30,6 +32,10 @@ namespace ACNHPokerCore
 
         private MonoUsbSessionHandle context;
 
+        public USBBot(bool Debug)
+        {
+            debug = Debug;
+        }
         public bool Connect()
         {
             lock (_sync)
@@ -40,6 +46,37 @@ namespace ACNHPokerCore
                         context.Close();
                     context.Dispose();
                     context = null;
+                }
+
+                var sessionHandle = new MonoUsbSessionHandle();
+                var profileList = new MonoUsbProfileList();
+                profileList.Refresh(sessionHandle);
+
+                if (debug)
+                {
+                    List<MonoUsbProfile> usbList = profileList.GetList();
+                    string deviceList = "";
+                    foreach (MonoUsbProfile profile in usbList)
+                    {
+                        var deviceHandle = profile.OpenDeviceHandle();
+                        string VendorID = profile.DeviceDescriptor.VendorID.ToString();
+                        string ProductID = profile.DeviceDescriptor.ProductID.ToString();
+                        if (VendorID.Equals("1406") && ProductID.Equals("12288"))
+                        {
+                            deviceList += "SWITCH FOUND - " + "VendorID : " + VendorID + " " + " ProductID : " + ProductID + "\n";
+                        }
+                        else
+                        {
+                            deviceList += "VendorID : " + VendorID + " " + " ProductID : " + ProductID + "\n";
+                        }
+                    }
+
+                    if (deviceList.Equals(""))
+                    {
+                        MyMessageBox.Show("NO USB DEVICES FOUND!", "List of USB devices", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
+                    }
+                    else
+                        MyMessageBox.Show(deviceList, "List of USB devices", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
                 }
 
                 context = new MonoUsbSessionHandle();

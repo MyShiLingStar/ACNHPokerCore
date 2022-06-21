@@ -35,6 +35,8 @@ namespace ACNHPokerCore
 
         private static byte[] AcreData = Properties.Resources.acre;
         private static Color[][] floorBackgroundColor;
+        private static Color[][] floorBackgroundColorLess;
+        private static Color[][] floorBuildingColor;
 
         public const int MapTileCount16x16 = 16 * 16 * 7 * 6;
         public const int TerrainTileSize = 0xE;
@@ -96,6 +98,8 @@ namespace ACNHPokerCore
             Bitmap buildingMap = drawBuildingMap();
 
             buildBackgroundColor(AcreWOOutside);
+            buildBackgroundColorLess(AcreWOOutside);
+            buildBuildingColor();
 
             Bitmap[] AcreImage = new Bitmap[7 * 6];
 
@@ -510,6 +514,35 @@ namespace ACNHPokerCore
         public Bitmap drawSelectSquare(int x, int y)
         {
             Bitmap square = new Bitmap(7 * mapSize + 2, 7 * mapSize + 2);
+            Pen p = new Pen(Color.Red, 2 * mapSize);
+            using (Graphics g = Graphics.FromImage(square))
+            {
+                g.Clear(Color.Transparent);
+                g.DrawRectangle(p, new Rectangle(0, 0, square.Width, square.Height));
+            }
+
+
+            Bitmap myBitmap;
+            myBitmap = new Bitmap(16 * 7 * mapSize, 16 * 6 * mapSize);
+
+            using (Graphics graphics = Graphics.FromImage(myBitmap))
+            {
+                graphics.Clear(Color.Transparent);
+
+                var cm = new ColorMatrix();
+                cm.Matrix33 = 1;
+
+                var ia = new ImageAttributes();
+                ia.SetColorMatrix(cm);
+
+                graphics.DrawImage(square, new Rectangle(x * mapSize - square.Width / 2 + mapSize / 2, y * mapSize - square.Height / 2 + mapSize / 2, square.Width, square.Height), 0, 0, square.Width, square.Height, GraphicsUnit.Pixel, ia);
+            }
+            return myBitmap;
+        }
+
+        public Bitmap drawSelectSquare16(int x, int y)
+        {
+            Bitmap square = new Bitmap(16 * mapSize + 2, 16 * mapSize + 2);
             Pen p = new Pen(Color.Red, 2 * mapSize);
             using (Graphics g = Graphics.FromImage(square))
             {
@@ -1247,6 +1280,187 @@ namespace ACNHPokerCore
             }
         }
 
+        private void buildBackgroundColorLess(byte[] AcreWOOutside)
+        {
+            floorBackgroundColorLess = new Color[numOfRow][];
+
+            for (int i = 0; i < numOfRow; i++)
+            {
+                floorBackgroundColorLess[i] = new Color[numOfColumn];
+                for (int j = 0; j < numOfColumn; j++)
+                {
+                    floorBackgroundColorLess[i][j] = Color.Tomato;
+                }
+            }
+
+            for (int i = 0; i < 6; i++) // y
+            {
+                for (int j = 0; j < 7; j++) // x
+                {
+                    byte[] Acre = GetAcreData(AcreWOOutside[i * 7 + j]);
+
+                    for (int m = 0; m < 16; m++) // y
+                    {
+                        for (int n = 0; n < 16; n++) // x
+                        {
+                            if (floorBackgroundColorLess[i * 16 + m][j * 16 + n] != Color.Tomato)
+                                Debug.Print(i + " " + j + " " + m + " " + n);
+                            floorBackgroundColorLess[i * 16 + m][j * 16 + n] = Pixel[Acre[m * 16 + n]];
+                        }
+                    }
+                }
+            }
+        }
+
+        public void buildBuildingColor()
+        {
+            floorBuildingColor = new Color[numOfRow][];
+
+            for (int i = 0; i < numOfRow; i++)
+            {
+                floorBuildingColor[i] = new Color[numOfColumn];
+                for (int j = 0; j < numOfColumn; j++)
+                {
+                    floorBuildingColor[i][j] = Color.Transparent;
+                }
+            }
+
+            for (int m = plazaTopX; m <= plazaTopX + 11; m++)
+            {
+                if (m < 0 || m >= numOfColumn)
+                    continue;
+                for (int n = plazaTopY; n <= plazaTopY + 9; n++)
+                {
+                    if (n < 0 || n >= numOfRow)
+                        continue;
+                    floorBuildingColor[n][m] = Color.DarkSalmon;
+                }
+            }
+
+            if (buildingList != null)
+            {
+                for (int i = 0; i < NumOfBuilding; i++)
+                {
+                    int buildingTopX;
+                    int buildingTopY;
+                    int buildingBottomX;
+                    int buildingBottomY;
+                    Color BuildingColor;
+
+                    BuildingType CurrentBuilding = (BuildingType)buildingList[i][0];
+                    int BuildingX = (buildingList[i][2] - 0x20) / 2;
+                    int BuildingY = (buildingList[i][4] - 0x20) / 2;
+
+                    if (CurrentBuilding != BuildingType.None)
+                    {
+                        if (BuildingX < 0 || BuildingX >= numOfColumn || BuildingY < 0 || BuildingY >= numOfRow)
+                        {
+
+                        }
+                        else
+                            floorBuildingColor[BuildingY][BuildingX] = Color.Red;
+
+                        if (CurrentBuilding == BuildingType.ResidentServicesBuilding)
+                        {
+                            buildingTopX = BuildingX - 3;
+                            buildingTopY = BuildingY - 2;
+                            buildingBottomX = BuildingX + 2;
+                            buildingBottomY = BuildingY;
+                        }
+                        else if (CurrentBuilding >= BuildingType.PlayerHouse1 && CurrentBuilding <= BuildingType.PlayerHouse8)
+                        {
+                            buildingTopX = BuildingX - 2;
+                            buildingTopY = BuildingY - 2;
+                            buildingBottomX = BuildingX + 2;
+                            buildingBottomY = BuildingY;
+                        }
+                        else if (CurrentBuilding >= BuildingType.VillagerHouse1 && CurrentBuilding <= BuildingType.VillagerHouse10)
+                        {
+                            buildingTopX = BuildingX - 2;
+                            buildingTopY = BuildingY - 2;
+                            buildingBottomX = BuildingX + 1;
+                            buildingBottomY = BuildingY;
+                        }
+                        else if (CurrentBuilding == BuildingType.NooksCranny)
+                        {
+                            buildingTopX = BuildingX - 3;
+                            buildingTopY = BuildingY - 2;
+                            buildingBottomX = BuildingX + 2;
+                            buildingBottomY = BuildingY + 2;
+                        }
+                        else if (CurrentBuilding == BuildingType.Museum)
+                        {
+                            buildingTopX = BuildingX - 4;
+                            buildingTopY = BuildingY - 2;
+                            buildingBottomX = BuildingX + 3;
+                            buildingBottomY = BuildingY + 1;
+                        }
+                        else if (CurrentBuilding == BuildingType.AblesSisters)
+                        {
+                            buildingTopX = BuildingX - 3;
+                            buildingTopY = BuildingY - 2;
+                            buildingBottomX = BuildingX + 2;
+                            buildingBottomY = BuildingY + 1;
+                        }
+                        else if (CurrentBuilding == BuildingType.Airport)
+                        {
+                            buildingTopX = BuildingX - 5;
+                            buildingTopY = BuildingY - 5;
+                            buildingBottomX = BuildingX + 4;
+                            buildingBottomY = BuildingY + 3;
+                        }
+                        else if (CurrentBuilding == BuildingType.Campsite)
+                        {
+                            buildingTopX = BuildingX - 2;
+                            buildingTopY = BuildingY - 2;
+                            buildingBottomX = BuildingX + 1;
+                            buildingBottomY = BuildingY + 1;
+                        }
+                        else if (CurrentBuilding == BuildingType.ReddsTreasureTrawler)
+                        {
+                            buildingTopX = BuildingX - 2;
+                            buildingTopY = BuildingY - 2;
+                            buildingBottomX = BuildingX + 2;
+                            buildingBottomY = BuildingY;
+                        }
+                        else if (CurrentBuilding == BuildingType.Bridge || CurrentBuilding == BuildingType.Incline)
+                        {
+                            buildingTopX = BuildingX - 1;
+                            buildingTopY = BuildingY - 1;
+                            buildingBottomX = BuildingX;
+                            buildingBottomY = BuildingY;
+                        }
+                        else
+                        {
+                            buildingTopX = BuildingX - 1;
+                            buildingTopY = BuildingY - 1;
+                            buildingBottomX = BuildingX;
+                            buildingBottomY = BuildingY;
+                        }
+
+                        if (ByteToBuildingColor.ContainsKey(buildingList[i][0]))
+                            BuildingColor = ByteToBuildingColor[buildingList[i][0]];
+                        else
+                            BuildingColor = Color.Black;
+
+                        for (int j = buildingTopX; j <= buildingBottomX; j++)
+                        {
+                            if (j < 0 || j >= numOfColumn)
+                                continue;
+                            for (int k = buildingTopY; k <= buildingBottomY; k++)
+                            {
+                                if (k < 0 || k >= numOfRow)
+                                    continue;
+                                floorBuildingColor[k][j] = BuildingColor;
+                                if (k == BuildingY && j == BuildingX)
+                                    floorBuildingColor[k][j] = Color.Red;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         public static Color GetBackgroundColor(int x, int y, bool Layer1 = true)
         {
             if (floorBackgroundColor == null)
@@ -1258,6 +1472,27 @@ namespace ACNHPokerCore
                 Color newColor = Color.FromArgb(150, floorBackgroundColor[y][x]);
                 return newColor;
             }
+        }
+
+        public static Color GetBackgroundColorLess(int x, int y, bool Layer1 = true)
+        {
+            if (floorBackgroundColorLess == null)
+                return Color.White;
+            else if (Layer1)
+                return floorBackgroundColorLess[y][x];
+            else
+            {
+                Color newColor = Color.FromArgb(150, floorBackgroundColorLess[y][x]);
+                return newColor;
+            }
+        }
+
+        public static Color GetBuildingColor(int x, int y)
+        {
+            if (floorBuildingColor == null)
+                return Color.Transparent;
+            else
+                return floorBuildingColor[y][x];
         }
 
         private static void PutPixel(Graphics g, int x, int y, Color c)

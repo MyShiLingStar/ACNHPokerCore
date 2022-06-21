@@ -34,6 +34,16 @@
     * Added preview image for bridges in "Bulldozer"
 	* Update for Twitch Helix API
 	* Update for Game version "Ver. 2.0.5"
+* R21
+    * Added keyboard shortcut and debug menu.
+    * Added options to NOT skip empty space in bulk spawn.
+    * Added terrain display on mini map.
+    * Added USB support for basic item spawning.
+    * Added HHP DLC NPC's items.
+    * Added toggle for auto save protection. (Double click the Est. timer)
+    * Added extra spacing options for variation spawn.
+    * Added item activate/deactivate in Map Dropper.
+    * Minor bug fixes every where.
 	
 ## Ely's Changes:   
 

@@ -16,14 +16,14 @@ namespace ACNHPokerCore
 {
 
     #region event
-    public delegate void ObeySizeHandler(bool toggle, int itemHeight = 0, int itemWidth = 0, int newSpawnHeight = 0, int newSpawnWidth = 0, bool wallmount = false);
+    public delegate void ObeySizeHandler(bool toggle, int itemHeight = 0, int itemWidth = 0, int newSpawnHeight = 0, int newSpawnWidth = 0, bool wallmount = false, bool ceiling = false);
     #endregion
 
     public partial class map : Form
     {
         #region Variable
         private static Socket s;
-        private USBBot bot;
+        private USBBot usb;
 
         private DataTable source;
         private DataTable recipeSource;
@@ -77,15 +77,24 @@ namespace ACNHPokerCore
         private int newSpawnWidth = 0;
         private int newSpawnHeight = 0;
         private bool wallmount = false;
+        private bool ceiling = false;
 
         byte[] Layer1 = null;
         byte[] Layer2 = null;
         byte[] Acre = null;
         byte[] Building = null;
         byte[] Terrain = null;
+        byte[] ActivateLayer1 = null;
+        byte[] ActivateLayer2 = null;
+
+        bool[,] ActivateTable1;
+        bool[,] ActivateTable2;
+
+        private ToolStripMenuItem ActivateItem;
+        private ToolStripMenuItem DeactivateItem;
 
         public event CloseHandler closeForm;
-
+        private static object lockObject = new object();
         Color[] target =
         {
             Color.FromArgb(252, 3, 3),
@@ -100,12 +109,12 @@ namespace ACNHPokerCore
         #endregion
 
         #region Form Load
-        public map(Socket S, USBBot Bot, string itemPath, string recipePath, string flowerPath, string variationPath, string favPath, string ImagePath, string LanguageSetting, Dictionary<string, string> overrideDict, bool Sound)
+        public map(Socket S, USBBot USB, string itemPath, string recipePath, string flowerPath, string variationPath, string favPath, string ImagePath, string LanguageSetting, Dictionary<string, string> overrideDict, bool Sound)
         {
             try
             {
                 s = S;
-                bot = Bot;
+                usb = USB;
                 if (File.Exists(itemPath))
                     source = loadItemCSV(itemPath);
                 if (File.Exists(recipePath))
@@ -217,6 +226,14 @@ namespace ACNHPokerCore
                 SaveArea = new ToolStripMenuItem("Save Area to File", null, saveAreaToolStripMenuItem_Click);
                 SaveArea.ForeColor = Color.White;
 
+                ActivateItem = new ToolStripMenuItem("Activate", null, ActivateItemToolStripMenuItem_Click);
+                ActivateItem.ForeColor = Color.White;
+                ActivateItem.BackColor = Color.Green;
+
+                DeactivateItem = new ToolStripMenuItem("Deactivate", null, DeactivateItemToolStripMenuItem_Click);
+                DeactivateItem.ForeColor = Color.White;
+                DeactivateItem.BackColor = Color.Crimson;
+
                 this.KeyPreview = true;
 
                 LanguageSetup(LanguageSetting);
@@ -252,7 +269,7 @@ namespace ACNHPokerCore
 
             btnToolTip.RemoveAll();
 
-            if ((s == null || s.Connected == false) & bot == null)
+            if ((s == null || s.Connected == false) & usb == null)
             {
                 MessageBox.Show("Please connect to the switch first");
                 return;
@@ -266,13 +283,15 @@ namespace ACNHPokerCore
         {
             try
             {
-                showMapWait(42 * 2, "Fetching Map...");
+                showMapWait((42 + 2) * 2, "Fetching Map...");
 
-                Layer1 = Utilities.getMapLayer(s, bot, layer1Address, ref counter);
-                Layer2 = Utilities.getMapLayer(s, bot, layer2Address, ref counter);
-                Acre = Utilities.getAcre(s, bot);
-                Building = Utilities.getBuilding(s, bot);
-                Terrain = Utilities.getTerrain(s, bot);
+                Layer1 = Utilities.getMapLayer(s, usb, layer1Address, ref counter);
+                Layer2 = Utilities.getMapLayer(s, usb, layer2Address, ref counter);
+                Acre = Utilities.getAcre(s, usb);
+                Building = Utilities.getBuilding(s, usb);
+                Terrain = Utilities.getTerrain(s, usb);
+                ActivateLayer1 = Utilities.getActivate(s, usb, Utilities.mapActivate, ref counter);
+                ActivateLayer2 = Utilities.getActivate(s, usb, Utilities.mapActivate + Utilities.mapActivateSize, ref counter);
 
                 if (Layer1 != null && Layer2 != null && Acre != null)
                 {
@@ -282,8 +301,10 @@ namespace ACNHPokerCore
                 else
                     throw new NullReferenceException("Layer1/Layer2/Acre");
 
+                buildActivateTable(ActivateLayer1, ref ActivateTable1);
+                buildActivateTable(ActivateLayer2, ref ActivateTable2);
 
-                byte[] Coordinate = Utilities.getCoordinate(s, bot);
+                byte[] Coordinate = Utilities.getCoordinate(s, usb);
 
                 if (Coordinate != null)
                 {
@@ -378,15 +399,18 @@ namespace ACNHPokerCore
         {
             miniMapBox.Image = MiniMap.drawSelectSquare(anchorX, anchorY);
 
-            BtnSetup(floorByte[0], floorByte[1], (anchorX - 3), (anchorY - 3), floor1, floor2, floor3, floor4, floor5, floor6, floor7, 0, false);
-            BtnSetup(floorByte[2], floorByte[3], (anchorX - 2), (anchorY - 3), floor8, floor9, floor10, floor11, floor12, floor13, floor14, 1, false);
-            BtnSetup(floorByte[4], floorByte[5], (anchorX - 1), (anchorY - 3), floor15, floor16, floor17, floor18, floor19, floor20, floor21, 2, false);
-            BtnSetup(floorByte[6], floorByte[7], (anchorX - 0), (anchorY - 3), floor22, floor23, floor24, floor25, floor26, floor27, floor28, 3, true);
-            BtnSetup(floorByte[8], floorByte[9], (anchorX + 1), (anchorY - 3), floor29, floor30, floor31, floor32, floor33, floor34, floor35, 4, false);
-            BtnSetup(floorByte[10], floorByte[11], (anchorX + 2), (anchorY - 3), floor36, floor37, floor38, floor39, floor40, floor41, floor42, 5, false);
-            BtnSetup(floorByte[12], floorByte[13], (anchorX + 3), (anchorY - 3), floor43, floor44, floor45, floor46, floor47, floor48, floor49, 6, false);
+            lock (lockObject)
+            {
+                BtnSetup(floorByte[0], floorByte[1], (anchorX - 3), (anchorY - 3), floor1, floor2, floor3, floor4, floor5, floor6, floor7, 0, false);
+                BtnSetup(floorByte[2], floorByte[3], (anchorX - 2), (anchorY - 3), floor8, floor9, floor10, floor11, floor12, floor13, floor14, 1, false);
+                BtnSetup(floorByte[4], floorByte[5], (anchorX - 1), (anchorY - 3), floor15, floor16, floor17, floor18, floor19, floor20, floor21, 2, false);
+                BtnSetup(floorByte[6], floorByte[7], (anchorX - 0), (anchorY - 3), floor22, floor23, floor24, floor25, floor26, floor27, floor28, 3, true);
+                BtnSetup(floorByte[8], floorByte[9], (anchorX + 1), (anchorY - 3), floor29, floor30, floor31, floor32, floor33, floor34, floor35, 4, false);
+                BtnSetup(floorByte[10], floorByte[11], (anchorX + 2), (anchorY - 3), floor36, floor37, floor38, floor39, floor40, floor41, floor42, 5, false);
+                BtnSetup(floorByte[12], floorByte[13], (anchorX + 3), (anchorY - 3), floor43, floor44, floor45, floor46, floor47, floor48, floor49, 6, false);
 
-            resetBtnColor();
+                resetBtnColor();
+            }
         }
 
         private void BtnSetup(byte[] b, byte[] b2, int x, int y, floorSlot slot1, floorSlot slot2, floorSlot slot3, floorSlot slot4, floorSlot slot5, floorSlot slot6, floorSlot slot7, int colume, Boolean anchor = false)
@@ -628,23 +652,30 @@ namespace ACNHPokerCore
 
             int x = anchorX;
             int y = anchorY;
+            List<Task> tasks;
 
-            List<Task> tasks = new List<Task>
+            lock (lockObject)
             {
-                Task.Run(() => BtnSetupAsync(floorByte[0], floorByte[1], (x - 3), (y - 3), floor1, floor2, floor3, floor4, floor5, floor6, floor7, 0, false)),
-                Task.Run(() => BtnSetupAsync(floorByte[2], floorByte[3], (x - 2), (y - 3), floor8, floor9, floor10, floor11, floor12, floor13, floor14, 1, false)),
-                Task.Run(() => BtnSetupAsync(floorByte[4], floorByte[5], (x - 1), (y - 3), floor15, floor16, floor17, floor18, floor19, floor20, floor21, 2, false)),
-                Task.Run(() => BtnSetupAsync(floorByte[6], floorByte[7], (x - 0), (y - 3), floor22, floor23, floor24, floor25, floor26, floor27, floor28, 3, true)),
-                Task.Run(() => BtnSetupAsync(floorByte[8], floorByte[9], (x + 1), (y - 3), floor29, floor30, floor31, floor32, floor33, floor34, floor35, 4, false)),
-                Task.Run(() => BtnSetupAsync(floorByte[10], floorByte[11], (x + 2), (y - 3), floor36, floor37, floor38, floor39, floor40, floor41, floor42, 5, false)),
-                Task.Run(() => BtnSetupAsync(floorByte[12], floorByte[13], (x + 3), (y - 3), floor43, floor44, floor45, floor46, floor47, floor48, floor49, 6, false))
-            };
+                tasks = new List<Task>
+                {
+                    Task.Run(() => BtnSetupAsync(floorByte[0], floorByte[1], (x - 3), (y - 3), floor1, floor2, floor3, floor4, floor5, floor6, floor7, 0, false)),
+                    Task.Run(() => BtnSetupAsync(floorByte[2], floorByte[3], (x - 2), (y - 3), floor8, floor9, floor10, floor11, floor12, floor13, floor14, 1, false)),
+                    Task.Run(() => BtnSetupAsync(floorByte[4], floorByte[5], (x - 1), (y - 3), floor15, floor16, floor17, floor18, floor19, floor20, floor21, 2, false)),
+                    Task.Run(() => BtnSetupAsync(floorByte[6], floorByte[7], (x - 0), (y - 3), floor22, floor23, floor24, floor25, floor26, floor27, floor28, 3, true)),
+                    Task.Run(() => BtnSetupAsync(floorByte[8], floorByte[9], (x + 1), (y - 3), floor29, floor30, floor31, floor32, floor33, floor34, floor35, 4, false)),
+                    Task.Run(() => BtnSetupAsync(floorByte[10], floorByte[11], (x + 2), (y - 3), floor36, floor37, floor38, floor39, floor40, floor41, floor42, 5, false)),
+                    Task.Run(() => BtnSetupAsync(floorByte[12], floorByte[13], (x + 3), (y - 3), floor43, floor44, floor45, floor46, floor47, floor48, floor49, 6, false))
+                };
+            }
 
             await Task.WhenAll(tasks);
 
-            resetBtnColor();
+            lock (lockObject)
+            {
+                resetBtnColor();
 
-            drawing = false;
+                drawing = false;
+            }
         }
 
         private async Task BtnSetupAsync(byte[] b, byte[] b2, int x, int y, floorSlot slot1, floorSlot slot2, floorSlot slot3, floorSlot slot4, floorSlot slot5, floorSlot slot6, floorSlot slot7, int colume, Boolean anchor = false)
@@ -951,6 +982,12 @@ namespace ACNHPokerCore
             else
                 locked = "✘ False";
             */
+            string activateInfo;
+            if (layer1Btn.Checked)
+                activateInfo = displayActivate(button.mapX, button.mapY, ActivateTable1);
+            else
+                activateInfo = displayActivate(button.mapX, button.mapY, ActivateTable2);
+
             btnToolTip.SetToolTip(button,
                                     button.itemName +
                                     "\n\n" + "" +
@@ -963,7 +1000,8 @@ namespace ACNHPokerCore
                                     "Part3 : " + button.part3.ToString("X") + " " + Utilities.precedingZeros(button.part3Data.ToString("X"), 8) + "\n" +
                                     "Part4 : " + button.part4.ToString("X") + " " + Utilities.precedingZeros(button.part4Data.ToString("X"), 8) + "\n" +
                                     //"Locked : " + locked + 
-                                    "Terrain : " + MiniMap.getTerrainData(button.mapX, button.mapY)
+                                    "Terrain : " + MiniMap.getTerrainData(button.mapX, button.mapY) + "\n" +
+                                    "Activate : " + activateInfo
                                     );
         }
         #endregion
@@ -1257,7 +1295,7 @@ namespace ACNHPokerCore
                         IdTextbox.Text = id;
                         HexTextbox.Text = "00000000";
                         selectedSize = fieldGridView.Rows[e.RowIndex].Cells["size"].Value.ToString();
-                        SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("x", "x ");
+                        SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("_Pillar", "Pillar").Replace("_Ceiling", "Ceiling").Replace("x", "x ");
 
                         selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), 0x0, GetImagePathFromID(id, source), true, "");
                     }
@@ -1809,6 +1847,8 @@ namespace ACNHPokerCore
             else
                 return;
 
+            disableBtn();
+
             Thread deleteThread = new Thread(delegate () { deleteItem(address, btn); });
             deleteThread.Start();
         }
@@ -1834,32 +1874,37 @@ namespace ACNHPokerCore
                 selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.turn2bytes(hexValue), recipeSource), true, "", flag1, flag2);
             else if (ItemAttr.hasFenceWithVariation(IntId))  // Fence Variation
                 selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source, Convert.ToUInt32("0x" + front, 16)), true, "", flag1, flag2);
+            else if (id == "315A" || id == "1618" || id == "342F")
+                selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source, Convert.ToUInt32("0x" + hexValue, 16)), true, GetImagePathFromID((Utilities.turn2bytes(hexValue)), source, Convert.ToUInt32("0x" + Utilities.translateVariationValueBack(front), 16)), flag1, flag2);
             else
                 selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source, Convert.ToUInt32("0x" + hexValue, 16)), true, "", flag1, flag2);
 
-            selectedSize = GetSize(id);
-            SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("x", "x ");
+            if (id == "315A" || id == "1618" || id == "342F")
+                selectedSize = GetSize(back);
+            else
+                selectedSize = GetSize(id);
+            SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("_Pillar", "Pillar").Replace("_Ceiling", "Ceiling").Replace("x", "x ");
         }
 
         private void KeyboardKeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode.ToString() == "F2" || e.KeyCode.ToString() == "Insert")
             {
-                if (selectedButton != null & (s != null || bot != null))
+                if (selectedButton != null & (s != null || usb != null))
                 {
                     dropItem(selectedButton);
                 }
             }
             else if (e.KeyCode.ToString() == "F1") // Delete
             {
-                if (selectedButton != null & (s != null || bot != null))
+                if (selectedButton != null & (s != null || usb != null))
                 {
                     deleteItem(selectedButton);
                 }
             }
             else if (e.KeyCode.ToString() == "F3") // Copy
             {
-                if (selectedButton != null & (s != null || bot != null))
+                if (selectedButton != null & (s != null || usb != null))
                 {
                     copyItem(selectedButton);
                 }
@@ -1967,7 +2012,7 @@ namespace ACNHPokerCore
                 IdTextbox.Text = id;
                 HexTextbox.Text = "00000000";
                 selectedSize = fieldGridView.Rows[index].Cells["size"].Value.ToString();
-                SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("x", "x ");
+                SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("_Pillar", "Pillar").Replace("_Ceiling", "Ceiling").Replace("x", "x ");
 
 
                 selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), 0x0, GetImagePathFromID(id, source), true, "");
@@ -2100,6 +2145,8 @@ namespace ACNHPokerCore
             string flag2 = Utilities.precedingZeros(FlagTextbox.Text, 2);
             string flag1 = selectedItem.getFlag1();
 
+            disableBtn();
+
             Thread spawnThread = new Thread(delegate () { dropItem(address, itemID, itemData, flag1, flag2, selectedButton); });
             spawnThread.Start();
         }
@@ -2136,12 +2183,7 @@ namespace ACNHPokerCore
                 Thread.Sleep(3000);
             }
 
-            this.Invoke((MethodInvoker)delegate
-            {
-                disableBtn();
-            });
-
-            Utilities.dropItem(s, bot, address, itemID, itemData, flag1, flag2);
+            Utilities.dropItem(s, usb, address, itemID, itemData, flag1, flag2);
 
             this.Invoke((MethodInvoker)delegate
             {
@@ -2406,7 +2448,7 @@ namespace ACNHPokerCore
                 {
                     UInt32 currentColumn = (UInt32)(address + (0xC00 * (TopLeftX + i)) + (0x10 * (TopLeftY)));
 
-                    Utilities.dropColumn(s, bot, currentColumn, currentColumn + 0x600, SpawnArea[i * 2], SpawnArea[i * 2 + 1], ref counter);
+                    Utilities.dropColumn(s, usb, currentColumn, currentColumn + 0x600, SpawnArea[i * 2], SpawnArea[i * 2 + 1], ref counter);
                 }
 
             }
@@ -2445,6 +2487,37 @@ namespace ACNHPokerCore
                 floorRightClick.Items.Add(PasteArea);
             if (AreaSet && !floorRightClick.Items.Contains(SaveArea))
                 floorRightClick.Items.Add(SaveArea);
+
+            if (layer1Btn.Checked)
+            {
+                if (isActivate(selectedButton.mapX, selectedButton.mapY, ActivateTable1))
+                {
+                    floorRightClick.Items.Add(DeactivateItem);
+                    if (floorRightClick.Items.Contains(ActivateItem))
+                        floorRightClick.Items.Remove(ActivateItem);
+                }
+                else
+                {
+                    floorRightClick.Items.Add(ActivateItem);
+                    if (floorRightClick.Items.Contains(DeactivateItem))
+                        floorRightClick.Items.Remove(DeactivateItem);
+                }
+            }
+            else
+            {
+                if (isActivate(selectedButton.mapX, selectedButton.mapY, ActivateTable2))
+                {
+                    floorRightClick.Items.Add(DeactivateItem);
+                    if (floorRightClick.Items.Contains(ActivateItem))
+                        floorRightClick.Items.Remove(ActivateItem);
+                }
+                else
+                {
+                    floorRightClick.Items.Add(ActivateItem);
+                    if (floorRightClick.Items.Contains(DeactivateItem))
+                        floorRightClick.Items.Remove(DeactivateItem);
+                }
+            }
         }
 
         private void copyAreaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2661,7 +2734,7 @@ namespace ACNHPokerCore
                 {
                     UInt32 CurAddress = (UInt32)(address + (0xC00 * (TopLeftX + i)) + (0x10 * (TopLeftY)));
 
-                    Utilities.dropColumn(s, bot, CurAddress, CurAddress + 0x600, SavedArea[i * 2], SavedArea[i * 2 + 1], ref counter);
+                    Utilities.dropColumn(s, usb, CurAddress, CurAddress + 0x600, SavedArea[i * 2], SavedArea[i * 2 + 1], ref counter);
                 }
 
                 this.Invoke((MethodInvoker)delegate
@@ -2821,6 +2894,21 @@ namespace ACNHPokerCore
                 System.Media.SystemSounds.Asterisk.Play();
         }
 
+        private void ActivateItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (layer1Btn.Checked)
+                setActivate(selectedButton.mapX, selectedButton.mapY, ref ActivateLayer1, ref ActivateTable1);
+            else
+                setActivate(selectedButton.mapX, selectedButton.mapY, ref ActivateLayer2, ref ActivateTable2);
+        }
+
+        private void DeactivateItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (layer1Btn.Checked)
+                setDeactivate(selectedButton.mapX, selectedButton.mapY, ref ActivateLayer1, ref ActivateTable1);
+            else
+                setDeactivate(selectedButton.mapX, selectedButton.mapY, ref ActivateLayer2, ref ActivateTable2);
+        }
         #endregion
 
         #region Delete Item
@@ -2845,6 +2933,8 @@ namespace ACNHPokerCore
                     }
                     else
                         return;
+
+                    disableBtn();
 
                     Thread deleteThread = new Thread(delegate () { deleteItem(address, btn); });
                     deleteThread.Start();
@@ -2884,12 +2974,7 @@ namespace ACNHPokerCore
                 Thread.Sleep(3000);
             }
 
-            this.Invoke((MethodInvoker)delegate
-            {
-                disableBtn();
-            });
-
-            Utilities.deleteFloorItem(s, bot, address);
+            Utilities.deleteFloorItem(s, usb, address);
 
             this.Invoke((MethodInvoker)delegate
             {
@@ -2935,11 +3020,16 @@ namespace ACNHPokerCore
                         selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.turn2bytes(hexValue), recipeSource), true, "", flag1, flag2);
                     else if (ItemAttr.hasFenceWithVariation(IntId))  // Fence Variation
                         selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source, Convert.ToUInt32("0x" + front, 16)), true, "", flag1, flag2);
+                    else if (id == "315A" || id == "1618" || id == "342F")
+                        selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source, Convert.ToUInt32("0x" + hexValue, 16)), true, GetImagePathFromID((Utilities.turn2bytes(hexValue)), source, Convert.ToUInt32("0x" + Utilities.translateVariationValueBack(front), 16)), flag1, flag2);
                     else
                         selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, source, Convert.ToUInt32("0x" + hexValue, 16)), true, "", flag1, flag2);
 
-                    selectedSize = GetSize(id);
-                    SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("x", "x ");
+                    if (id == "315A" || id == "1618" || id == "342F")
+                        selectedSize = GetSize(back);
+                    else
+                        selectedSize = GetSize(id);
+                    SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("_Pillar", "Pillar").Replace("_Ceiling", "Ceiling").Replace("x", "x ");
 
                     if (sound)
                         System.Media.SystemSounds.Asterisk.Play();
@@ -3005,17 +3095,31 @@ namespace ACNHPokerCore
 
         private void refreshMap(UInt32 layer1Address, UInt32 layer2Address)
         {
-            showMapWait(42 * 2, "Fetching Map...");
+            showMapWait((42 + 2) * 2, "Fetching Map...");
 
             try
             {
-                Layer1 = Utilities.getMapLayer(s, bot, layer1Address, ref counter);
-                Layer2 = Utilities.getMapLayer(s, bot, layer2Address, ref counter);
+                Layer1 = Utilities.getMapLayer(s, usb, layer1Address, ref counter);
+                Layer2 = Utilities.getMapLayer(s, usb, layer2Address, ref counter);
 
                 if (layer1Btn.Checked)
                     miniMapBox.BackgroundImage = MiniMap.refreshItemMap(Layer1);
                 else
                     miniMapBox.BackgroundImage = MiniMap.refreshItemMap(Layer2);
+
+                ActivateLayer1 = Utilities.getActivate(s, usb, Utilities.mapActivate, ref counter);
+                ActivateLayer2 = Utilities.getActivate(s, usb, Utilities.mapActivate + Utilities.mapActivateSize, ref counter);
+
+                if (Layer1 != null && Layer2 != null && Acre != null)
+                {
+                    if (MiniMap == null)
+                        MiniMap = new miniMap(Layer1, Acre, Building, Terrain, 2);
+                }
+                else
+                    throw new NullReferenceException("Layer1/Layer2/Acre");
+
+                buildActivateTable(ActivateLayer1, ref ActivateTable1);
+                buildActivateTable(ActivateLayer2, ref ActivateTable2);
 
                 this.Invoke((MethodInvoker)delegate
                 {
@@ -3121,13 +3225,13 @@ namespace ACNHPokerCore
                     Thread.Sleep(3000);
                 }
 
-                Utilities.dropColumn(s, bot, address1, address1 + 0x600, b[0], b[1], ref counter);
-                Utilities.dropColumn(s, bot, address2, address2 + 0x600, b[2], b[3], ref counter);
-                Utilities.dropColumn(s, bot, address3, address3 + 0x600, b[4], b[5], ref counter);
-                Utilities.dropColumn(s, bot, address4, address4 + 0x600, b[6], b[7], ref counter);
-                Utilities.dropColumn(s, bot, address5, address5 + 0x600, b[8], b[9], ref counter);
-                Utilities.dropColumn(s, bot, address6, address6 + 0x600, b[10], b[11], ref counter);
-                Utilities.dropColumn(s, bot, address7, address7 + 0x600, b[12], b[13], ref counter);
+                Utilities.dropColumn(s, usb, address1, address1 + 0x600, b[0], b[1], ref counter);
+                Utilities.dropColumn(s, usb, address2, address2 + 0x600, b[2], b[3], ref counter);
+                Utilities.dropColumn(s, usb, address3, address3 + 0x600, b[4], b[5], ref counter);
+                Utilities.dropColumn(s, usb, address4, address4 + 0x600, b[6], b[7], ref counter);
+                Utilities.dropColumn(s, usb, address5, address5 + 0x600, b[8], b[9], ref counter);
+                Utilities.dropColumn(s, usb, address6, address6 + 0x600, b[10], b[11], ref counter);
+                Utilities.dropColumn(s, usb, address7, address7 + 0x600, b[12], b[13], ref counter);
 
                 this.Invoke((MethodInvoker)delegate
                 {
@@ -3271,13 +3375,13 @@ namespace ACNHPokerCore
                     Thread.Sleep(3000);
                 }
 
-                Utilities.dropColumn(s, bot, address1, address1 + 0x600, b[0], b[1], ref counter);
-                Utilities.dropColumn(s, bot, address2, address2 + 0x600, b[2], b[3], ref counter);
-                Utilities.dropColumn(s, bot, address3, address3 + 0x600, b[4], b[5], ref counter);
-                Utilities.dropColumn(s, bot, address4, address4 + 0x600, b[6], b[7], ref counter);
-                Utilities.dropColumn(s, bot, address5, address5 + 0x600, b[8], b[9], ref counter);
-                Utilities.dropColumn(s, bot, address6, address6 + 0x600, b[10], b[11], ref counter);
-                Utilities.dropColumn(s, bot, address7, address7 + 0x600, b[12], b[13], ref counter);
+                Utilities.dropColumn(s, usb, address1, address1 + 0x600, b[0], b[1], ref counter);
+                Utilities.dropColumn(s, usb, address2, address2 + 0x600, b[2], b[3], ref counter);
+                Utilities.dropColumn(s, usb, address3, address3 + 0x600, b[4], b[5], ref counter);
+                Utilities.dropColumn(s, usb, address4, address4 + 0x600, b[6], b[7], ref counter);
+                Utilities.dropColumn(s, usb, address5, address5 + 0x600, b[8], b[9], ref counter);
+                Utilities.dropColumn(s, usb, address6, address6 + 0x600, b[10], b[11], ref counter);
+                Utilities.dropColumn(s, usb, address7, address7 + 0x600, b[12], b[13], ref counter);
 
                 this.Invoke((MethodInvoker)delegate
                 {
@@ -3555,13 +3659,13 @@ namespace ACNHPokerCore
 
                 List<Task> tasks = new List<Task>
                 {
-                    Task.Run(() => Utilities.dropColumn2(s, bot, address1, address1 + 0x600, b[0], b[1])),
-                    Task.Run(() => Utilities.dropColumn2(s, bot, address2, address2 + 0x600, b[2], b[3])),
-                    Task.Run(() => Utilities.dropColumn2(s, bot, address3, address3 + 0x600, b[4], b[5])),
-                    Task.Run(() => Utilities.dropColumn2(s, bot, address4, address4 + 0x600, b[6], b[7])),
-                    Task.Run(() => Utilities.dropColumn2(s, bot, address5, address5 + 0x600, b[8], b[9])),
-                    Task.Run(() => Utilities.dropColumn2(s, bot, address6, address6 + 0x600, b[10], b[11])),
-                    Task.Run(() => Utilities.dropColumn2(s, bot, address7, address7 + 0x600, b[12], b[13]))
+                    Task.Run(() => Utilities.dropColumn2(s, usb, address1, address1 + 0x600, b[0], b[1])),
+                    Task.Run(() => Utilities.dropColumn2(s, usb, address2, address2 + 0x600, b[2], b[3])),
+                    Task.Run(() => Utilities.dropColumn2(s, usb, address3, address3 + 0x600, b[4], b[5])),
+                    Task.Run(() => Utilities.dropColumn2(s, usb, address4, address4 + 0x600, b[6], b[7])),
+                    Task.Run(() => Utilities.dropColumn2(s, usb, address5, address5 + 0x600, b[8], b[9])),
+                    Task.Run(() => Utilities.dropColumn2(s, usb, address6, address6 + 0x600, b[10], b[11])),
+                    Task.Run(() => Utilities.dropColumn2(s, usb, address7, address7 + 0x600, b[12], b[13]))
                 };
 
                 await Task.WhenAll(tasks);
@@ -3898,17 +4002,6 @@ namespace ACNHPokerCore
             }
         }
 
-        private void updataData(byte[] newLayer1, byte[] newLayer2)
-        {
-            Layer1 = newLayer1;
-            Layer2 = newLayer2;
-
-            if (layer1Btn.Checked)
-                miniMapBox.BackgroundImage = MiniMap.refreshItemMap(Layer1);
-            else if (layer2Btn.Checked)
-                miniMapBox.BackgroundImage = MiniMap.refreshItemMap(Layer2);
-        }
-
         #endregion
 
         #region Layer
@@ -3931,7 +4024,7 @@ namespace ACNHPokerCore
         {
             if (Layer2 == null)
                 return;
-            bulkSpawnBtn.Enabled = false;
+            //bulkSpawnBtn.Enabled = false;
             saveBtn.Enabled = false;
             loadBtn.Enabled = false;
             fillRemainBtn.Enabled = false;
@@ -3971,7 +4064,7 @@ namespace ACNHPokerCore
         {
             selection = new variation(115);
             selection.sendVariationData += Selection_sendVariationData;
-            selection.Show();
+            selection.Show(this);
             selection.Location = new System.Drawing.Point(this.Location.X + 533, this.Location.Y + 660);
             string id = Utilities.precedingZeros(selectedItem.fillItemID(), 4);
             string value = Utilities.precedingZeros(selectedItem.fillItemData(), 8);
@@ -4286,7 +4379,7 @@ namespace ACNHPokerCore
         {
             try
             {
-                byte[] Coordinate = Utilities.getCoordinate(s, bot);
+                byte[] Coordinate = Utilities.getCoordinate(s, usb);
                 int x = BitConverter.ToInt32(Coordinate, 0);
                 int y = BitConverter.ToInt32(Coordinate, 4);
 
@@ -4329,14 +4422,19 @@ namespace ACNHPokerCore
         private void bulkSpawnToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (bulk == null)
-                bulk = new bulkSpawn(s, bot, Layer1, Layer2, Acre, Building, Terrain, anchorX, anchorY, this, ignore, sound); ;
+            {
+                if (layer1Btn.Checked)
+                    bulk = new bulkSpawn(s, usb, Layer1, Layer2, Acre, Building, Terrain, anchorX, anchorY, this, ignore, sound, true);
+                else
+                    bulk = new bulkSpawn(s, usb, Layer1, Layer2, Acre, Building, Terrain, anchorX, anchorY, this, ignore, sound, false);
+            }
             bulk.StartPosition = FormStartPosition.CenterParent;
             bulk.ShowDialog();
         }
 
         private void weedsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all weeds on your island?", "Oh No! Not the Weeds!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all weeds on your island (Layer 1 only)?", "Oh No! Not the Weeds!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.No)
                 return;
 
@@ -4377,7 +4475,7 @@ namespace ACNHPokerCore
 
         private void flowersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all flowers on your island?", "Photoshop Flowey", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all flowers on your island (Layer 1 only)?", "Photoshop Flowey", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.No)
                 return;
 
@@ -4418,7 +4516,7 @@ namespace ACNHPokerCore
 
         private void treesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all trees on your island?", "Team Trees is stupid!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all trees on your island (Layer 1 only)?", "Team Trees is stupid!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.No)
                 return;
 
@@ -4459,7 +4557,7 @@ namespace ACNHPokerCore
 
         private void bushesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all bushes on your island?", "Have you ever seen an elephant hiding in the bushes?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all bushes on your island (Layer 1 only)?", "Have you ever seen an elephant hiding in the bushes?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.No)
                 return;
 
@@ -4500,7 +4598,7 @@ namespace ACNHPokerCore
 
         private void fencesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all fences on your island?", "I said to my mate Noah: \"You should change your surname to Fence...\"", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all fences on your island (Layer 1 only)?", "I said to my mate Noah: \"You should change your surname to Fence...\"", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.No)
                 return;
 
@@ -4541,7 +4639,7 @@ namespace ACNHPokerCore
 
         private void shellsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all shells on your island?", "You would think that a snail without a shell would move a bit faster...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all shells on your island (Layer 1 only)?", "You would think that a snail without a shell would move a bit faster...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.No)
                 return;
 
@@ -4582,7 +4680,7 @@ namespace ACNHPokerCore
 
         private void diysToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all DIYs on your island?", "DiWHY - Reddit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all DIYs on your island (Layer 1 only)?", "DiWHY - Reddit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.No)
                 return;
 
@@ -4623,7 +4721,7 @@ namespace ACNHPokerCore
 
         private void rocksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all ore/bell rocks on your island?", "Girls are like rocks, the flat ones get skipped...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all ore/bell rocks on your island (Layer 1 only)?", "Girls are like rocks, the flat ones get skipped...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.No)
                 return;
 
@@ -4664,16 +4762,28 @@ namespace ACNHPokerCore
 
         private void everythingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all dropped/placed item on your island?", "Is everything a joke to you ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialogResult == DialogResult.No)
-                return;
-
+            DialogResult dialogResult;
+            if (layer1Btn.Checked)
+            {
+                dialogResult = MyMessageBox.Show("Are you sure you want to remove all dropped/placed item on your island (Layer 1 only)?", "Is everything a joke to you ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.No)
+                    return;
+                processLayer(Layer1, Utilities.mapZero);
+            }
+            else
+            {
+                dialogResult = MyMessageBox.Show("Are you sure you want to remove all dropped/placed item on your island (Layer 2 only)?", "Is everything a joke to you ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.No)
+                    return;
+                processLayer(Layer2, Utilities.mapZero + Utilities.mapSize);
+            }
+        }
+        private void processLayer(byte[] Layer, long Address)
+        {
             byte[] empty = Utilities.stringToByte("FEFF000000000000");
 
-            byte[] processLayer1 = Layer1;
-            Boolean[] HasChange1 = new Boolean[56];
-            byte[] processLayer2 = Layer2;
-            Boolean[] HasChange2 = new Boolean[56];
+            byte[] processLayer = Layer;
+            Boolean[] HasChange = new Boolean[56];
 
             byte[] tempID = new byte[2];
             ushort itemID;
@@ -4681,25 +4791,19 @@ namespace ACNHPokerCore
             {
                 for (int j = 0; j < 96 * 8; j++)
                 {
-                    Buffer.BlockCopy(Layer1, i * 0x1800 + j * 0x8, tempID, 0, 2);
+                    Buffer.BlockCopy(Layer, i * 0x1800 + j * 0x8, tempID, 0, 2);
                     itemID = Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(tempID)), 16);
                     if (!itemID.Equals(0xFFFE))
                     {
-                        Buffer.BlockCopy(empty, 0, processLayer1, i * 0x1800 + j * 0x8, 8);
-                        HasChange1[i] = true;
-                    }
-
-                    Buffer.BlockCopy(Layer2, i * 0x1800 + j * 0x8, tempID, 0, 2);
-                    itemID = Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(tempID)), 16);
-                    if (!itemID.Equals(0xFFFE))
-                    {
-                        Buffer.BlockCopy(empty, 0, processLayer2, i * 0x1800 + j * 0x8, 8);
-                        HasChange2[i] = true;
+                        Buffer.BlockCopy(empty, 0, processLayer, i * 0x1800 + j * 0x8, 8);
+                        HasChange[i] = true;
                     }
                 }
             }
 
-            Thread renewThread = new Thread(delegate () { renew(processLayer1, HasChange1, processLayer2, HasChange2); });
+            disableBtn();
+
+            Thread renewThread = new Thread(delegate () { renew(processLayer, HasChange, Address); });
             renewThread.Start();
         }
 
@@ -4713,11 +4817,6 @@ namespace ACNHPokerCore
 
             try
             {
-                this.Invoke((MethodInvoker)delegate
-                {
-                    disableBtn();
-                });
-
                 Debug.Print("Length :" + num + " Time : " + (num + 3));
 
                 int c = 0;
@@ -4784,9 +4883,9 @@ namespace ACNHPokerCore
             hideMapWait();
         }
 
-        private void renew(byte[] newLayer1, Boolean[] HasChange1, byte[] newLayer2, Boolean[] HasChange2)
+        private void renew(byte[] newLayer, Boolean[] change, long address)
         {
-            int num = numOfWrite(HasChange1) + numOfWrite(HasChange2);
+            int num = numOfWrite(change);
             if (num == 0)
                 return;
 
@@ -4794,11 +4893,6 @@ namespace ACNHPokerCore
 
             try
             {
-                this.Invoke((MethodInvoker)delegate
-                {
-                    disableBtn();
-                });
-
                 Debug.Print("Length :" + num + " Time : " + (num + 3));
 
                 int c = 0;
@@ -4831,26 +4925,18 @@ namespace ACNHPokerCore
 
                 for (int i = 0; i < 56; i++)
                 {
-                    if (HasChange1[i])
+                    if (change[i])
                     {
                         byte[] column = new byte[0x1800];
-                        Buffer.BlockCopy(newLayer1, i * 0x1800, column, 0, 0x1800);
-                        Utilities.SendByteArray8(s, Utilities.mapZero + (i * 0x1800), column, 0x1800, ref counter);
-                        Utilities.SendByteArray8(s, Utilities.mapZero + (i * 0x1800) + Utilities.mapOffset, column, 0x1800, ref counter);
-                    }
-
-                    if (HasChange2[i])
-                    {
-                        byte[] column = new byte[0x1800];
-                        Buffer.BlockCopy(newLayer2, i * 0x1800, column, 0, 0x1800);
-                        Utilities.SendByteArray8(s, Utilities.mapZero + Utilities.mapSize + (i * 0x1800), column, 0x1800, ref counter);
-                        Utilities.SendByteArray8(s, Utilities.mapZero + Utilities.mapSize + (i * 0x1800) + Utilities.mapOffset, column, 0x1800, ref counter);
+                        Buffer.BlockCopy(newLayer, i * 0x1800, column, 0, 0x1800);
+                        Utilities.SendByteArray8(s, address + (i * 0x1800), column, 0x1800, ref counter);
+                        Utilities.SendByteArray8(s, address + (i * 0x1800) + Utilities.mapOffset, column, 0x1800, ref counter);
                     }
                 }
 
                 this.Invoke((MethodInvoker)delegate
                 {
-                    updataData(newLayer1, newLayer2);
+                    updataData(newLayer);
                     moveAnchor(anchorX, anchorY);
                     resetBtnColor();
                 });
@@ -4888,7 +4974,7 @@ namespace ACNHPokerCore
         #region Debug
         private void saveDebug_Click(object sender, EventArgs e)
         {
-            byte[] b = Utilities.getSaving(s, bot);
+            byte[] b = Utilities.getSaving(s, usb);
             if (b == null)
                 return;
             byte saving = b[0];
@@ -4913,7 +4999,7 @@ namespace ACNHPokerCore
             if (saveTime > 100 && saveTime < 175)
                 return false;
 
-            byte[] b = Utilities.getSaving(s, bot);
+            byte[] b = Utilities.getSaving(s, usb);
 
             if (b == null)
                 return true;
@@ -4948,7 +5034,7 @@ namespace ACNHPokerCore
         {
             try
             {
-                byte[] b = Utilities.getSaving(s, bot);
+                byte[] b = Utilities.getSaving(s, usb);
                 if (b == null)
                     throw new NullReferenceException("Save");
 
@@ -5148,13 +5234,13 @@ namespace ACNHPokerCore
 
                 List<Task> tasks = new List<Task>
                 {
-                    Task.Run(() => Utilities.dropColumn2(s, bot, address1, address1 + 0x600, b[0], b[1])),
-                    Task.Run(() => Utilities.dropColumn2(s, bot, address2, address2 + 0x600, b[2], b[3])),
-                    Task.Run(() => Utilities.dropColumn2(s, bot, address3, address3 + 0x600, b[4], b[5])),
-                    Task.Run(() => Utilities.dropColumn2(s, bot, address4, address4 + 0x600, b[6], b[7])),
-                    Task.Run(() => Utilities.dropColumn2(s, bot, address5, address5 + 0x600, b[8], b[9])),
-                    Task.Run(() => Utilities.dropColumn2(s, bot, address6, address6 + 0x600, b[10], b[11])),
-                    Task.Run(() => Utilities.dropColumn2(s, bot, address7, address7 + 0x600, b[12], b[13]))
+                    Task.Run(() => Utilities.dropColumn2(s, usb, address1, address1 + 0x600, b[0], b[1])),
+                    Task.Run(() => Utilities.dropColumn2(s, usb, address2, address2 + 0x600, b[2], b[3])),
+                    Task.Run(() => Utilities.dropColumn2(s, usb, address3, address3 + 0x600, b[4], b[5])),
+                    Task.Run(() => Utilities.dropColumn2(s, usb, address4, address4 + 0x600, b[6], b[7])),
+                    Task.Run(() => Utilities.dropColumn2(s, usb, address5, address5 + 0x600, b[8], b[9])),
+                    Task.Run(() => Utilities.dropColumn2(s, usb, address6, address6 + 0x600, b[10], b[11])),
+                    Task.Run(() => Utilities.dropColumn2(s, usb, address7, address7 + 0x600, b[12], b[13]))
                 };
 
                 await Task.WhenAll(tasks);
@@ -5852,7 +5938,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void VariationSpawner_SendObeySizeEvent(bool toggle, int ItemHeight = 0, int ItemWidth = 0, int NewSpawnHeight = 0, int NewSpawnWidth = 0, bool Wallmount = false)
+        private void VariationSpawner_SendObeySizeEvent(bool toggle, int ItemHeight = 0, int ItemWidth = 0, int NewSpawnHeight = 0, int NewSpawnWidth = 0, bool Wallmount = false, bool Ceiling = false)
         {
             obeySize = toggle;
             itemHeight = ItemHeight;
@@ -5860,6 +5946,7 @@ namespace ACNHPokerCore
             newSpawnHeight = NewSpawnHeight;
             newSpawnWidth = NewSpawnWidth;
             wallmount = Wallmount;
+            ceiling = Ceiling;
         }
 
         private byte[][] buildVariationArea(inventorySlot[,] variation, int numberOfRow, int multiple, int mode)
@@ -5998,6 +6085,17 @@ namespace ACNHPokerCore
                         if (wallmount && flag != "20")
                         {
                             string itemID = "1618";
+                            string itemData = Utilities.translateVariationValue(serialList[iterator].fillItemData()) + Utilities.precedingZeros(serialList[iterator].fillItemID(), 4);
+                            string flag1 = Utilities.precedingZeros(serialList[iterator].getFlag1(), 2);
+                            string flag2 = Utilities.precedingZeros(serialList[iterator].getFlag2(), 2);
+
+                            ItemLeft = Utilities.stringToByte(Utilities.buildDropStringLeft(itemID, itemData, flag1, flag2));
+                            ItemRight = Utilities.stringToByte(Utilities.buildDropStringRight(itemID));
+                            iterator++;
+                        }
+                        else if (ceiling && flag != "20")
+                        {
+                            string itemID = "342F";
                             string itemData = Utilities.translateVariationValue(serialList[iterator].fillItemData()) + Utilities.precedingZeros(serialList[iterator].fillItemID(), 4);
                             string flag1 = Utilities.precedingZeros(serialList[iterator].getFlag1(), 2);
                             string flag2 = Utilities.precedingZeros(serialList[iterator].getFlag2(), 2);
@@ -6168,6 +6266,17 @@ namespace ACNHPokerCore
                         if (wallmount && flag != "20")
                         {
                             string itemID = "1618";
+                            string itemData = Utilities.translateVariationValue(serialList[iterator].fillItemData()) + Utilities.precedingZeros(serialList[iterator].fillItemID(), 4);
+                            string flag1 = Utilities.precedingZeros(serialList[iterator].getFlag1(), 2);
+                            string flag2 = Utilities.precedingZeros(serialList[iterator].getFlag2(), 2);
+
+                            ItemLeft = Utilities.stringToByte(Utilities.buildDropStringLeft(itemID, itemData, flag1, flag2));
+                            ItemRight = Utilities.stringToByte(Utilities.buildDropStringRight(itemID));
+                            iterator++;
+                        }
+                        else if (ceiling && flag != "20")
+                        {
+                            string itemID = "342F";
                             string itemData = Utilities.translateVariationValue(serialList[iterator].fillItemData()) + Utilities.precedingZeros(serialList[iterator].fillItemID(), 4);
                             string flag1 = Utilities.precedingZeros(serialList[iterator].getFlag1(), 2);
                             string flag2 = Utilities.precedingZeros(serialList[iterator].getFlag2(), 2);
@@ -6609,6 +6718,303 @@ namespace ACNHPokerCore
             }
             else
                 return false;
+        }
+
+        private void buildActivateTable(byte[] ActivateLayer, ref bool[,] ActivateTable)
+        {
+            int width = 112;
+            int height = 96 * 2;
+
+            ActivateTable = new bool[width, height];
+
+            for (int i = 0; i < ActivateLayer.Length; i++)
+            {
+                var left = (ActivateLayer[i] & 0x0F);
+                var right = (ActivateLayer[i] & 0xF0) >> 4;
+
+                checkActivate(left, i % (width / 4) * 4, i % (width / 4) * 4 + 1, i / (width / 4), ref ActivateTable);
+                checkActivate(right, i % (width / 4) * 4 + 2, i % (width / 4) * 4 + 3, i / (width / 4), ref ActivateTable);
+            }
+        }
+
+        private void checkActivate(int value, int left, int right, int y, ref bool[,] ActivateTable)
+        {
+            if (value == 0 || value == 2 || value == 8 || value == 0xA)
+            {
+                ActivateTable[left, y] = false;
+                ActivateTable[right, y] = false;
+            }
+            else if (value == 1 || value == 3 || value == 9 || value == 0xB)
+            {
+                ActivateTable[left, y] = true;
+                ActivateTable[right, y] = false;
+            }
+            else if (value == 4 || value == 6 || value == 0xC || value == 0xE)
+            {
+                ActivateTable[left, y] = false;
+                ActivateTable[right, y] = true;
+            }
+            else if (value == 5 || value == 7 || value == 0xD || value == 0xF)
+            {
+                ActivateTable[left, y] = true;
+                ActivateTable[right, y] = true;
+            }
+        }
+
+        private string displayActivate(int x, int y, bool[,] ActivateTable)
+        {
+            string top;
+            string bottom;
+
+            if (ActivateTable[x, y * 2])
+                top = "✓ True";
+            else
+                top = "✘ False";
+
+            if (ActivateTable[x, y * 2 + 1])
+                bottom = "✓ True";
+            else
+                bottom = "✘ False";
+
+            return top + " " + bottom;
+        }
+
+        private bool isActivate(int x, int y, bool[,] ActivateTable)
+        {
+            return ActivateTable[x, y * 2]; // || ActivateTable[x, y * 2 + 1];
+        }
+
+        private void setActivate(int x, int y, ref byte[] ActivateLayer, ref bool[,] ActivateTable)
+        {
+            int offset = (x / 4) + (y * 2 * 28);
+            var b = ActivateLayer[offset];
+
+            byte upper = (byte)(b & 0xF0);
+            byte lower = (byte)(b & 0x0F);
+
+            byte newValue = 0x0;
+
+            if (x % 4 == 0)
+            {
+                if (isActivate(x + 1, y, ActivateTable))
+                {
+                    newValue = (byte)(upper + 0xF);
+                }
+                else
+                {
+                    newValue = (byte)(upper + 0x3);
+                }
+            }
+            else if (x % 4 == 1)
+            {
+                if (isActivate(x - 1, y, ActivateTable))
+                {
+                    newValue = (byte)(upper + 0xF);
+                }
+                else
+                {
+                    newValue = (byte)(upper + 0xC);
+                }
+            }
+            else if (x % 4 == 2)
+            {
+                if (isActivate(x + 1, y, ActivateTable))
+                {
+                    newValue = (byte)(0xF0 + lower);
+                }
+                else
+                {
+                    newValue = (byte)(0x30 + lower);
+                }
+            }
+            else if (x % 4 == 3)
+            {
+                if (isActivate(x - 1, y, ActivateTable))
+                {
+                    newValue = (byte)(0xF0 + lower);
+                }
+                else
+                {
+                    newValue = (byte)(0xC0 + lower);
+                }
+            }
+
+            disableBtn();
+
+            btnToolTip.RemoveAll();
+
+            long Address1;
+            long Address2;
+
+            if (layer1Btn.Checked)
+            {
+                Address1 = Utilities.mapActivate + offset;
+                Address2 = Utilities.mapActivate + Utilities.mapOffset + offset;
+            }
+            else
+            {
+                Address1 = Utilities.mapActivate + Utilities.mapActivateSize + offset;
+                Address2 = Utilities.mapActivate + Utilities.mapActivateSize + Utilities.mapOffset + offset;
+            }
+
+            Thread toggleThread = new Thread(delegate () { toggleItem(Address1, Address2, newValue); });
+            toggleThread.Start();
+
+            ActivateTable[x, y * 2] = true;
+            ActivateTable[x, y * 2 + 1] = true;
+            ActivateLayer[offset] = newValue;
+            ActivateLayer[offset + 0x1C] = newValue;
+        }
+
+        private void setDeactivate(int x, int y, ref byte[] ActivateLayer, ref bool[,] ActivateTable)
+        {
+            int offset = (x / 4) + (y * 2 * 28);
+            var b = ActivateLayer[offset];
+
+            byte upper = (byte)(b & 0xF0);
+            byte lower = (byte)(b & 0x0F);
+
+            byte newValue = 0x0;
+
+            if (x % 4 == 0)
+            {
+                if (isActivate(x + 1, y, ActivateTable))
+                {
+                    newValue = (byte)(upper + 0xC); // c
+                }
+                else
+                {
+                    newValue = upper; // 0
+                }
+            }
+            else if (x % 4 == 1)
+            {
+                if (isActivate(x - 1, y, ActivateTable))
+                {
+                    newValue = (byte)(upper + 0x3); // 3
+                }
+                else
+                {
+                    newValue = upper; // 0
+                }
+            }
+            else if (x % 4 == 2)
+            {
+                if (isActivate(x + 1, y, ActivateTable))
+                {
+                    newValue = (byte)(0xC0 + lower); // c
+                }
+                else
+                {
+                    newValue = lower; // 0
+                }
+            }
+            else if (x % 4 == 3)
+            {
+                if (isActivate(x - 1, y, ActivateTable))
+                {
+                    newValue = (byte)(0x30 + lower); // 3
+                }
+                else
+                {
+                    newValue = lower; // 0
+                }
+            }
+
+            int c = 0;
+
+            while (isAboutToSave(2))
+            {
+                if (c > 10)
+                {
+                    if (ignoreAutosave())
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        if (sound)
+                            System.Media.SystemSounds.Asterisk.Play();
+                        return;
+                    }
+                }
+                c++;
+                Thread.Sleep(3000);
+            }
+
+            disableBtn();
+
+            btnToolTip.RemoveAll();
+
+            long Address1;
+            long Address2;
+
+            if (layer1Btn.Checked)
+            {
+                Address1 = Utilities.mapActivate + offset;
+                Address2 = Utilities.mapActivate + Utilities.mapOffset + offset;
+            }
+            else
+            {
+                Address1 = Utilities.mapActivate + Utilities.mapActivateSize + offset;
+                Address2 = Utilities.mapActivate + Utilities.mapActivateSize + Utilities.mapOffset + offset;
+            }
+
+            Thread toggleThread = new Thread(delegate () { toggleItem(Address1, Address2, newValue); });
+            toggleThread.Start();
+
+            ActivateTable[x, y * 2] = false;
+            ActivateTable[x, y * 2 + 1] = false;
+            ActivateLayer[offset] = newValue;
+            ActivateLayer[offset + 0x1C] = newValue;
+        }
+
+        private void toggleItem(long Address1, long Address2, byte value)
+        {
+            showMapWait(2, "Toggling Item...");
+
+            int c = 0;
+
+            while (isAboutToSave(2))
+            {
+                if (c > 10)
+                {
+                    if (ignoreAutosave())
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            enableBtn();
+                        });
+
+                        if (sound)
+                            System.Media.SystemSounds.Asterisk.Play();
+
+                        hideMapWait();
+                        return;
+                    }
+                }
+                c++;
+                Thread.Sleep(3000);
+            }
+
+            Utilities.pokeAddress(s, usb, Address1.ToString("X"), value.ToString("X"));
+            Utilities.pokeAddress(s, usb, (Address1 + 0x1C).ToString("X"), value.ToString("X"));
+            Utilities.pokeAddress(s, usb, Address2.ToString("X"), value.ToString("X"));
+            Utilities.pokeAddress(s, usb, (Address2 + 0x1C).ToString("X"), value.ToString("X"));
+
+            this.Invoke((MethodInvoker)delegate
+            {
+                enableBtn();
+            });
+
+            if (sound)
+                System.Media.SystemSounds.Asterisk.Play();
+
+            hideMapWait();
         }
     }
 }
