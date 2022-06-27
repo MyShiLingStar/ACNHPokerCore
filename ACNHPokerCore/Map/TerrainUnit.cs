@@ -1476,7 +1476,7 @@ namespace ACNHPokerCore
                 MyMessageBox.Show("No Solution!", "Wait? WTF?", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void setRoad(ushort road, string type, ushort direction)
+        public void setRoad(ushort road, string type, ushort direction)
         {
             ushort writeValue = 0;
 
@@ -2352,7 +2352,7 @@ namespace ACNHPokerCore
                 MyMessageBox.Show("No Solution!", "Wait? WTF?", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void setCliff(string type, ushort elevation, ushort direction)
+        public void setCliff(string type, ushort elevation, ushort direction)
         {
             ushort writeValue = 0;
 
@@ -2762,7 +2762,7 @@ namespace ACNHPokerCore
                 MyMessageBox.Show("No Solution!", "Wait? WTF?", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void setRiver(string type, ushort elevation, ushort direction)
+        public void setRiver(string type, ushort elevation, ushort direction)
         {
             ushort writeValue = 0;
 
@@ -4025,7 +4025,7 @@ namespace ACNHPokerCore
             return Final;
         }
 
-        private enum TerrainType : int
+        public enum TerrainType : int
         {
             RoadWood = 0,       //Wooden path
             RoadTile = 1,       //Terra-cotta tiles
@@ -4038,10 +4038,15 @@ namespace ACNHPokerCore
             Fall = 10,
             Cliff = 11,
             River = 12,
+            Elevation0 = 19,
             Elevation1 = 20,
             Elevation2 = 21,
             Elevation3 = 22,
-            Elevation0 = 23,
+            Elevation4 = 23,
+            Elevation5 = 24,
+            Elevation6 = 25,
+            Elevation7 = 26,
+            Elevation8 = 27,
         }
         public static readonly Dictionary<int, Color> TerrainColor = new Dictionary<int, Color>
         {
@@ -4056,10 +4061,15 @@ namespace ACNHPokerCore
             {10, Color.FromArgb(52, 36, 237)},
             {11, Color.FromArgb(17, 43, 18)},
             {12, Color.FromArgb(52, 170, 247)},
+            {19, Color.FromArgb(70, 116, 71)},
             {20, Color.FromArgb(55, 92, 56)},
             {21, Color.FromArgb(44, 74, 45)},
             {22, Color.FromArgb(33, 56, 34)},
-            {23, Color.FromArgb(70, 116, 71)},
+            {23, Color.FromArgb(255, 209, 253)},
+            {24, Color.FromArgb(252, 174, 249)},
+            {25, Color.FromArgb(252, 136, 248)},
+            {26, Color.FromArgb(250, 90, 244)},
+            {27, Color.FromArgb(250, 47, 242)},
         };
         public enum TerrainUnitModel : ushort
         {

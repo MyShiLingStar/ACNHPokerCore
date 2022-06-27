@@ -1,8 +1,11 @@
-﻿using System;
+﻿using AutocompleteMenuNS;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Threading;
@@ -27,11 +30,9 @@ namespace ACNHPokerCore
         private const int columnSize = 0xC00;
         private const int TerrainSize = 0xE;
 
-        private static byte[] AcreData = Properties.Resources.acre;
         public const int AcreWidth = 7 + (2 * 1);
         private const int AcreHeight = 6 + (2 * 1);
         private const int AcreMax = AcreWidth * AcreHeight;
-        private static Color[][] floorBackgroundColor;
 
         private int counter = 0;
         private int GridSize = 0;
@@ -62,6 +63,20 @@ namespace ACNHPokerCore
 
         private Bitmap CurrentMainMap;
         private Bitmap CurrentMiniMap;
+
+        private bool manualModeActivated = false;
+        private Panel selectedManualMode;
+        private ushort manualSelectedRoad = 7;
+        private ushort manualSelectedRoadDirection = 0;
+        private Button manualSelectedRoadModel = null;
+
+        private ushort manualSelectedCliffDirection = 0;
+        private ushort manualSelectedCliffElevation = 1;
+        private Button manualSelectedCliffModel = null;
+
+        private ushort manualSelectedRiverDirection = 0;
+        private ushort manualSelectedRiverElevation = 0;
+        private Button manualSelectedRiverModel = null;
 
         public event CloseHandler closeForm;
 
@@ -95,6 +110,24 @@ namespace ACNHPokerCore
             StoneBtn.Image = StoneImg;
             Bitmap DirtImg = new Bitmap(Properties.Resources.dirt, new Size(50, 50));
             DirtBtn.Image = DirtImg;
+
+            Bitmap MiniCliffImg = new Bitmap(Properties.Resources.cliff, new Size(40, 40));
+            ManualCliffModeButton.BackgroundImage = MiniCliffImg;
+            Bitmap MiniRiverImg = new Bitmap(Properties.Resources.river, new Size(40, 40));
+            ManualRiverModeButton.BackgroundImage = MiniRiverImg;
+            Bitmap RotateImg = new Bitmap(Properties.Resources.rotate, new Size(36, 36));
+            RotateRoadButton.BackgroundImage = RotateImg;
+            RotateCliffButton.BackgroundImage = RotateImg;
+            RotateRiverButton.BackgroundImage = RotateImg;
+
+            if (RoadDropdownBox.Items.Count > 0)
+                RoadDropdownBox.SelectedIndex = RoadDropdownBox.Items.Count - 1;
+
+            drawRoadImages();
+            drawCliffImages();
+            drawRiverImages();
+
+            selectedManualMode = ManualRoadPanel;
 
             showMapWait(42);
 
@@ -194,13 +227,10 @@ namespace ACNHPokerCore
             }
         }
 
-        private void DrawMainMap(int x, int y, bool force = false)
+        private void DrawMainMap(int x, int y)
         {
-            if (!force)
-            {
-                if (mapDrawing)
-                    return;
-            }
+            if (mapDrawing)
+                return;
 
             if (x < 0 || y < 0)
                 return;
@@ -447,7 +477,17 @@ namespace ACNHPokerCore
             terrainUnits[x][y].updateRoad(road, neighbour);
             fixNeighbourRoad(x, y, road, neighbour);
             _ = UpdateMainMapAsync(x, y);
-            AddMiniMapPixel(x, y, miniMap.TerrainColor[road]);
+            AddMiniMapPixel(x, y, TerrainUnit.TerrainColor[road]);
+        }
+
+        private void PlaceManualRoad(int x, int y)
+        {
+            ushort road = manualSelectedRoad;
+            string type = findModel(manualSelectedRoadModel);
+
+            terrainUnits[x][y].setRoad(road, type, manualSelectedRoadDirection);
+            _ = UpdateMainMapAsync(x, y);
+            AddMiniMapPixel(x, y, TerrainUnit.TerrainColor[road]);
         }
 
         private void ChangeRoadCorner(int x, int y)
@@ -497,14 +537,33 @@ namespace ACNHPokerCore
 
             _ = UpdateMainMapAsync(x, y);
 
-
             Color c;
             if (placeElevation == 0)
                 c = miniMap.GetBackgroundColorLess(x, y);
             else
             {
                 int terrainNum = placeElevation + 19;
-                c = miniMap.TerrainColor[terrainNum];
+                c = TerrainUnit.TerrainColor[terrainNum];
+            }
+            AddMiniMapPixel(x, y, c);
+        }
+
+        private void PlaceManualCliff(int x, int y)
+        {
+            TerrainUnit CurrentUnit = terrainUnits[x][y];
+            string type = findModel(manualSelectedCliffModel);
+
+            CurrentUnit.setCliff(type, manualSelectedCliffElevation, manualSelectedCliffDirection);
+
+            _ = UpdateMainMapAsync(x, y);
+
+            Color c;
+            if (manualSelectedCliffElevation == 0)
+                c = miniMap.GetBackgroundColorLess(x, y);
+            else
+            {
+                int terrainNum = manualSelectedCliffElevation + 19;
+                c = TerrainUnit.TerrainColor[terrainNum];
             }
             AddMiniMapPixel(x, y, c);
         }
@@ -530,7 +589,7 @@ namespace ACNHPokerCore
                     bool[,] TerrainNeighbour = FindTerrainNeighbourForFix(x, y);
                     fixNeighbourTerrain(x, y, TerrainNeighbour);
                     _ = UpdateMainMapAsync(x, y);
-                    AddMiniMapPixel(x, y, miniMap.TerrainColor[10]);
+                    AddMiniMapPixel(x, y, TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Fall]);
                 }
             }
             else if (!CurrentUnit.isFall()) // Place River
@@ -542,8 +601,18 @@ namespace ACNHPokerCore
                 bool[,] TerrainNeighbour = FindTerrainNeighbourForFix(x, y);
                 fixNeighbourTerrain(x, y, TerrainNeighbour);
                 _ = UpdateMainMapAsync(x, y);
-                AddMiniMapPixel(x, y, miniMap.TerrainColor[12]);
+                AddMiniMapPixel(x, y, TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.River]);
             }
+        }
+
+        private void PlaceManualRiver(int x, int y)
+        {
+            TerrainUnit CurrentUnit = terrainUnits[x][y];
+            string type = findModel(manualSelectedRiverModel);
+
+            CurrentUnit.setRiver(type, manualSelectedRiverElevation, manualSelectedRiverDirection);
+            _ = UpdateMainMapAsync(x, y);
+            AddMiniMapPixel(x, y, TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.River]);
         }
 
         private void CleanUpRiverOrFall(int x, int y, bool[,] neighbour, ushort PlacingElevation, ushort CurrentElevation)
@@ -592,13 +661,26 @@ namespace ACNHPokerCore
 
         private void DeleteRoad(int x, int y, bool MainUpdateNeeded = true)
         {
-            ushort road = 99;
             TerrainUnit CurrentUnit = terrainUnits[x][y];
             ushort elevation = CurrentUnit.getElevation();
+            ushort road = 99;
 
             bool[,] neighbour = FindSameNeighbourRoad(road, elevation, x, y);
             CurrentUnit.updateRoad(road, neighbour);
             fixNeighbourRoad(x, y, road, neighbour);
+
+            if (MainUpdateNeeded)
+                _ = UpdateMainMapAsync(x, y);
+            RemoveMiniMapPixel(x, y, elevation);
+        }
+
+        private void DeleteManualRoad(int x, int y, bool MainUpdateNeeded = true)
+        {
+            TerrainUnit CurrentUnit = terrainUnits[x][y];
+            ushort elevation = CurrentUnit.getElevation();
+            ushort road = 99;
+
+            CurrentUnit.setRoad(road, "", 0);
 
             if (MainUpdateNeeded)
                 _ = UpdateMainMapAsync(x, y);
@@ -651,6 +733,18 @@ namespace ACNHPokerCore
             RemoveMiniMapPixel(x, y, elevation);
         }
 
+        private void DeleteManualRiver(int x, int y, bool MainUpdateNeeded = true)
+        {
+            TerrainUnit CurrentUnit = terrainUnits[x][y];
+            ushort elevation = CurrentUnit.getElevation();
+
+            CurrentUnit.setCliff("8", elevation, 0);
+
+            if (MainUpdateNeeded)
+                _ = UpdateMainMapAsync(x, y);
+            RemoveMiniMapPixel(x, y, elevation);
+        }
+
         private void DeleteCliff(int x, int y, bool MainUpdateNeeded = true)
         {
             TerrainUnit CurrentUnit = terrainUnits[x][y];
@@ -667,6 +761,17 @@ namespace ACNHPokerCore
             CurrentUnit.updateCliff(neighbour, elevation);
             bool[,] TerrainNeighbour = FindTerrainNeighbourForFix(x, y);
             fixNeighbourTerrain(x, y, TerrainNeighbour);
+
+            if (MainUpdateNeeded)
+                _ = UpdateMainMapAsync(x, y);
+            RemoveMiniMapPixel(x, y, elevation);
+        }
+
+        private void DeleteManualCliff(int x, int y, bool MainUpdateNeeded = true)
+        {
+            TerrainUnit CurrentUnit = terrainUnits[x][y];
+            ushort elevation = 0;
+            CurrentUnit.setCliff("8", elevation, 0);
 
             if (MainUpdateNeeded)
                 _ = UpdateMainMapAsync(x, y);
@@ -725,34 +830,6 @@ namespace ACNHPokerCore
             CurrentMiniMap = myBitmap;
         }
 
-        /*
-        private void RemoveMiniMapPixel(int x, int y)
-        {
-            Bitmap myBitmap;
-
-            myBitmap = new Bitmap(CurrentMiniMap);
-
-            Color c = miniMap.GetBackgroundColorLess(x, y);
-
-            using (Graphics g = Graphics.FromImage(myBitmap))
-            {
-                g.SmoothingMode = SmoothingMode.None;
-                Bitmap Bmp = new Bitmap(2, 2);
-
-                using (Graphics gfx = Graphics.FromImage(Bmp))
-                using (SolidBrush brush = new SolidBrush(c))
-                {
-                    gfx.SmoothingMode = SmoothingMode.None;
-                    gfx.FillRectangle(brush, 0, 0, 2, 2);
-                }
-
-                g.DrawImageUnscaled(Bmp, x * 2, y * 2);
-            }
-
-            miniMapBox.BackgroundImage = myBitmap;
-            CurrentMiniMap = myBitmap;
-        }*/
-
         private void RemoveMiniMapPixel(int x, int y, ushort elevation)
         {
             Bitmap myBitmap;
@@ -766,7 +843,7 @@ namespace ACNHPokerCore
             else
             {
                 int terrainNum = elevation + 19;
-                c = miniMap.TerrainColor[terrainNum];
+                c = TerrainUnit.TerrainColor[terrainNum];
             }
 
             using (Graphics g = Graphics.FromImage(myBitmap))
@@ -1188,7 +1265,7 @@ namespace ACNHPokerCore
             wasPlacing = false;
             wasRemoving = false;
 
-            foreach (Button btn in ButtonPanel.Controls.OfType<Button>())
+            foreach (Button btn in AutoButtonPanel.Controls.OfType<Button>())
             {
                 if (btn == ConfirmBtn)
                     continue;
@@ -1371,15 +1448,6 @@ namespace ACNHPokerCore
             if (terrainSaving)
                 return;
 
-            if (selectedButton == null)
-                return;
-
-            if (firstEdit)
-            {
-                firstEdit = false;
-                ConfirmBtn.Visible = true;
-            }
-
             int x = e.X;
             int y = e.Y;
 
@@ -1403,86 +1471,198 @@ namespace ACNHPokerCore
 
             TerrainUnit CurrentUnit = terrainUnits[Xcoordinate + anchorX][Ycoordinate + anchorY];
 
-            if (e.Button == MouseButtons.Left)
+            if (manualModeActivated)
             {
-                if (cornerMode)
+                if (e.Button == MouseButtons.Left)
                 {
-                    if (CurrentUnit.canChangeCornerRoad())
-                        ChangeRoadCorner(Xcoordinate + anchorX, Ycoordinate + anchorY);
-                    else if (CurrentUnit.canChangeCornerCliff())
-                        ChangeCliffCorner(Xcoordinate + anchorX, Ycoordinate + anchorY);
-                    else if (CurrentUnit.canChangeCornerRiver())
-                        ChangeRiverCorner(Xcoordinate + anchorX, Ycoordinate + anchorY);
-                    else
-                        return;
+                    if (selectedManualMode == ManualCliffPanel)
+                    {
+                        if (manualSelectedCliffModel == null)
+                            return;
+                        else
+                        {
+                            if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
+                                return;
+
+                            PlaceManualCliff(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                        }
+                    }
+                    else if (selectedManualMode == ManualRiverPanel)
+                    {
+                        if (manualSelectedRiverModel == null)
+                            return;
+                        else
+                        {
+                            if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
+                                return;
+
+                            PlaceManualRiver(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                        }
+                    }
+                    else if (selectedManualMode == ManualRoadPanel)
+                    {
+                        if (manualSelectedRoadModel == null)
+                            return;
+                        else
+                        {
+                            if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
+                                return;
+
+                            if (CurrentUnit.isFallOrRiver())
+                                return;
+
+                            if (CurrentUnit.isRoundCornerTerrain())
+                                return;
+
+                            PlaceManualRoad(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                        }
+                    }
+
+                    if (firstEdit)
+                    {
+                        firstEdit = false;
+                        ConfirmBtn.Visible = true;
+                    }
+
+                    wasPlacing = true;
+                    wasRemoving = false;
+
+                    LastChangedX = Xcoordinate;
+                    LastChangedY = Ycoordinate;
+                    UpdateToolTip(Xcoordinate, Ycoordinate);
                 }
-                else if (selectedButton == CliffBtn)
+                else if (e.Button == MouseButtons.Right)
                 {
-                    if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
+                    if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasRemoving)
                         return;
 
-                    ushort elevation = (ushort)ElevationBar.Value;
-                    PlaceCliff(Xcoordinate + anchorX, Ycoordinate + anchorY, elevation);
+                    if (selectedManualMode == ManualCliffPanel)
+                    {
+                        DeleteManualCliff(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                    }
+                    else if (selectedManualMode == ManualRiverPanel)
+                    {
+                        if (CurrentUnit.isRiver())
+                            DeleteManualRiver(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                    }
+                    else if (selectedManualMode == ManualRoadPanel)
+                    {
+                        DeleteManualRoad(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                    }
+
+                    if (firstEdit)
+                    {
+                        firstEdit = false;
+                        ConfirmBtn.Visible = true;
+                    }
+
+                    wasPlacing = false;
+                    wasRemoving = true;
+
+                    LastChangedX = Xcoordinate;
+                    LastChangedY = Ycoordinate;
+
+                    UpdateToolTip(Xcoordinate, Ycoordinate);
                 }
-                else if (selectedButton == RiverBtn)
-                {
-                    if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
-                        return;
-
-                    if (CurrentUnit.isFallOrRiver())
-                        return;
-
-                    PlaceRiverOrFall(Xcoordinate + anchorX, Ycoordinate + anchorY);
-                }
-                else
-                {
-                    if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
-                        return;
-
-                    if (CurrentUnit.isFallOrRiver())
-                        return;
-
-                    if (CurrentUnit.isRoundCornerTerrain())
-                        return;
-
-                    PlaceRoad(Xcoordinate + anchorX, Ycoordinate + anchorY);
-                }
-
-                wasPlacing = true;
-                wasRemoving = false;
-
-                LastChangedX = Xcoordinate;
-                LastChangedY = Ycoordinate;
-                UpdateToolTip(Xcoordinate, Ycoordinate);
             }
-            else if (e.Button == MouseButtons.Right)
+            else
             {
-                if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasRemoving)
+                if (selectedButton == null)
                     return;
 
-                if (selectedButton == CliffBtn)
+                if (e.Button == MouseButtons.Left)
                 {
-                    PlaceCliff(Xcoordinate + anchorX, Ycoordinate + anchorY, 0);
-                }
-                else if (selectedButton == RiverBtn)
-                {
-                    if (CurrentUnit.isFall())
-                        DeleteFall(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                    if (cornerMode)
+                    {
+                        if (CurrentUnit.canChangeCornerRoad())
+                            ChangeRoadCorner(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                        else if (CurrentUnit.canChangeCornerCliff())
+                            ChangeCliffCorner(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                        else if (CurrentUnit.canChangeCornerRiver())
+                            ChangeRiverCorner(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                        else
+                            return;
+                    }
+                    else if (selectedButton == CliffBtn)
+                    {
+                        if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
+                            return;
+
+                        ushort elevation = (ushort)ElevationBar.Value;
+                        PlaceCliff(Xcoordinate + anchorX, Ycoordinate + anchorY, elevation);
+                    }
+                    else if (selectedButton == RiverBtn)
+                    {
+                        if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
+                            return;
+
+                        if (CurrentUnit.isFallOrRiver())
+                            return;
+
+                        PlaceRiverOrFall(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                    }
                     else
-                        DeleteRiver(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                    {
+                        if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
+                            return;
+
+                        if (CurrentUnit.isFallOrRiver())
+                            return;
+
+                        if (CurrentUnit.isRoundCornerTerrain())
+                            return;
+
+                        PlaceRoad(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                    }
+
+                    if (firstEdit)
+                    {
+                        firstEdit = false;
+                        ConfirmBtn.Visible = true;
+                    }
+
+                    wasPlacing = true;
+                    wasRemoving = false;
+
+                    LastChangedX = Xcoordinate;
+                    LastChangedY = Ycoordinate;
+                    UpdateToolTip(Xcoordinate, Ycoordinate);
                 }
-                else
+                else if (e.Button == MouseButtons.Right)
                 {
-                    DeleteRoad(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                    if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasRemoving)
+                        return;
+
+                    if (selectedButton == CliffBtn)
+                    {
+                        PlaceCliff(Xcoordinate + anchorX, Ycoordinate + anchorY, 0);
+                    }
+                    else if (selectedButton == RiverBtn)
+                    {
+                        if (CurrentUnit.isFall())
+                            DeleteFall(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                        else if (CurrentUnit.isRiver())
+                            DeleteRiver(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                    }
+                    else
+                    {
+                        DeleteRoad(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                    }
+
+                    if (firstEdit)
+                    {
+                        firstEdit = false;
+                        ConfirmBtn.Visible = true;
+                    }
+
+                    wasPlacing = false;
+                    wasRemoving = true;
+
+                    LastChangedX = Xcoordinate;
+                    LastChangedY = Ycoordinate;
+
+                    UpdateToolTip(Xcoordinate, Ycoordinate);
                 }
-
-                wasPlacing = false;
-                wasRemoving = true;
-
-                LastChangedX = Xcoordinate;
-                LastChangedY = Ycoordinate;
-
-                UpdateToolTip(Xcoordinate, Ycoordinate);
             }
         }
 
@@ -1513,163 +1693,192 @@ namespace ACNHPokerCore
                 UpdateToolTip(Xcoordinate, Ycoordinate);
             }
 
-            if (selectedButton == null)
-                return;
-
             TerrainUnit CurrentUnit = terrainUnits[Xcoordinate + anchorX][Ycoordinate + anchorY];
 
-            if (e.Button == MouseButtons.Left)
+            if (manualModeActivated)
             {
-                if (cornerMode)
+                if (e.Button == MouseButtons.Left)
                 {
-                    if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
-                        return;
-
-                    if (CurrentUnit.canChangeCornerRoad())
-                        ChangeRoadCorner(Xcoordinate + anchorX, Ycoordinate + anchorY);
-                    else if (CurrentUnit.canChangeCornerCliff())
-                        ChangeCliffCorner(Xcoordinate + anchorX, Ycoordinate + anchorY);
-                    else if (CurrentUnit.canChangeCornerRiver())
-                        ChangeRiverCorner(Xcoordinate + anchorX, Ycoordinate + anchorY);
-                    else
-                        return;
-                }
-                else if (selectedButton == CliffBtn)
-                {
-                    if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
-                        return;
-
-                    ushort elevation = (ushort)ElevationBar.Value;
-                    PlaceCliff(Xcoordinate + anchorX, Ycoordinate + anchorY, elevation);
-                }
-                else if (selectedButton == RiverBtn)
-                {
-                    if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
-                        return;
-
-                    if (CurrentUnit.isFallOrRiver())
-                        return;
-
-                    PlaceRiverOrFall(Xcoordinate + anchorX, Ycoordinate + anchorY);
-                }
-                else
-                {
-                    if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
-                        return;
-
-                    if (CurrentUnit.isFallOrRiver())
-                        return;
-
-                    if (CurrentUnit.isRoundCornerTerrain())
-                        return;
-
-                    PlaceRoad(Xcoordinate + anchorX, Ycoordinate + anchorY);
-                }
-
-                wasPlacing = true;
-                wasRemoving = false;
-
-                LastChangedX = Xcoordinate;
-                LastChangedY = Ycoordinate;
-                UpdateToolTip(Xcoordinate, Ycoordinate);
-            }
-            else if (e.Button == MouseButtons.Right)
-            {
-                if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasRemoving)
-                    return;
-
-                if (selectedButton == CliffBtn)
-                {
-                    PlaceCliff(Xcoordinate + anchorX, Ycoordinate + anchorY, 0);
-                }
-                else if (selectedButton == RiverBtn)
-                {
-                    if (CurrentUnit.isFall())
-                        DeleteFall(Xcoordinate + anchorX, Ycoordinate + anchorY);
-                    else
-                        DeleteRiver(Xcoordinate + anchorX, Ycoordinate + anchorY);
-                }
-                else
-                {
-                    DeleteRoad(Xcoordinate + anchorX, Ycoordinate + anchorY);
-                }
-
-                wasPlacing = false;
-                wasRemoving = true;
-
-                LastChangedX = Xcoordinate;
-                LastChangedY = Ycoordinate;
-
-                UpdateToolTip(Xcoordinate, Ycoordinate);
-            }
-
-
-            /*
-
-            if (e.Button == MouseButtons.Left)
-            {
-                if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY)
-                    return;
-
-                if (selectedButton == CornerBtn)
-                {
-                    if (terrainUnits[Xcoordinate + anchorX][Ycoordinate + anchorY].canChangeCornerRoad())
+                    if (selectedManualMode == ManualCliffPanel)
                     {
-                        ChangeRoadCorner(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                        if (manualSelectedCliffModel == null)
+                            return;
+                        else
+                        {
+                            if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
+                                return;
+
+                            PlaceManualCliff(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                        }
+                    }
+                    else if (selectedManualMode == ManualRiverPanel)
+                    {
+                        if (manualSelectedRiverModel == null)
+                            return;
+                        else
+                        {
+                            if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
+                                return;
+
+                            PlaceManualRiver(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                        }
+                    }
+                    else if (selectedManualMode == ManualRoadPanel)
+                    {
+                        if (manualSelectedRoadModel == null)
+                            return;
+                        else
+                        {
+                            if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
+                                return;
+
+                            if (CurrentUnit.isFallOrRiver())
+                                return;
+
+                            if (CurrentUnit.isRoundCornerTerrain())
+                                return;
+
+                            PlaceManualRoad(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                        }
+                    }
+
+                    if (firstEdit)
+                    {
+                        firstEdit = false;
+                        ConfirmBtn.Visible = true;
+                    }
+
+                    wasPlacing = true;
+                    wasRemoving = false;
+
+                    LastChangedX = Xcoordinate;
+                    LastChangedY = Ycoordinate;
+                    UpdateToolTip(Xcoordinate, Ycoordinate);
+                }
+                else if (e.Button == MouseButtons.Right)
+                {
+                    if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasRemoving)
+                        return;
+
+                    if (selectedManualMode == ManualCliffPanel)
+                    {
+                        DeleteManualCliff(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                    }
+                    else if (selectedManualMode == ManualRiverPanel)
+                    {
+                        if (CurrentUnit.isRiver())
+                            DeleteManualRiver(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                    }
+                    else if (selectedManualMode == ManualRoadPanel)
+                    {
+                        DeleteManualRoad(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                    }
+
+                    if (firstEdit)
+                    {
+                        firstEdit = false;
+                        ConfirmBtn.Visible = true;
+                    }
+
+                    wasPlacing = false;
+                    wasRemoving = true;
+
+                    LastChangedX = Xcoordinate;
+                    LastChangedY = Ycoordinate;
+
+                    UpdateToolTip(Xcoordinate, Ycoordinate);
+                }
+            }
+            else
+            {
+                if (selectedButton == null)
+                    return;
+
+                if (e.Button == MouseButtons.Left)
+                {
+                    if (cornerMode)
+                    {
+                        if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
+                            return;
+
+                        if (CurrentUnit.canChangeCornerRoad())
+                            ChangeRoadCorner(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                        else if (CurrentUnit.canChangeCornerCliff())
+                            ChangeCliffCorner(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                        else if (CurrentUnit.canChangeCornerRiver())
+                            ChangeRiverCorner(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                        else
+                            return;
+                    }
+                    else if (selectedButton == CliffBtn)
+                    {
+                        if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
+                            return;
+
+                        ushort elevation = (ushort)ElevationBar.Value;
+                        PlaceCliff(Xcoordinate + anchorX, Ycoordinate + anchorY, elevation);
+                    }
+                    else if (selectedButton == RiverBtn)
+                    {
+                        if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
+                            return;
+
+                        if (CurrentUnit.isFallOrRiver())
+                            return;
+
+                        PlaceRiverOrFall(Xcoordinate + anchorX, Ycoordinate + anchorY);
                     }
                     else
-                        return;
+                    {
+                        if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
+                            return;
+
+                        if (CurrentUnit.isFallOrRiver())
+                            return;
+
+                        if (CurrentUnit.isRoundCornerTerrain())
+                            return;
+
+                        PlaceRoad(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                    }
+
+                    wasPlacing = true;
+                    wasRemoving = false;
+
+                    LastChangedX = Xcoordinate;
+                    LastChangedY = Ycoordinate;
+                    UpdateToolTip(Xcoordinate, Ycoordinate);
                 }
-                else if (selectedButton == CliffBtn)
+                else if (e.Button == MouseButtons.Right)
                 {
-                    if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
+                    if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasRemoving)
                         return;
-                    PlaceCliff(Xcoordinate + anchorX, Ycoordinate + anchorY);
+
+                    if (selectedButton == CliffBtn)
+                    {
+                        PlaceCliff(Xcoordinate + anchorX, Ycoordinate + anchorY, 0);
+                    }
+                    else if (selectedButton == RiverBtn)
+                    {
+                        if (CurrentUnit.isFall())
+                            DeleteFall(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                        else if (CurrentUnit.isRiver())
+                            DeleteRiver(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                    }
+                    else
+                    {
+                        DeleteRoad(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                    }
+
+                    wasPlacing = false;
+                    wasRemoving = true;
+
+                    LastChangedX = Xcoordinate;
+                    LastChangedY = Ycoordinate;
+
+                    UpdateToolTip(Xcoordinate, Ycoordinate);
                 }
-                else if (selectedButton == RiverBtn)
-                {
-                    if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
-                        return;
-                    PlaceRiverOrFall(Xcoordinate + anchorX, Ycoordinate + anchorY);
-                }
-                else
-                {
-                    if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
-                        return;
-
-                    if (terrainUnits[Xcoordinate + anchorX][Ycoordinate + anchorY].isRoundCornerTerrain())
-                        return;
-                    else if (terrainUnits[Xcoordinate + anchorX][Ycoordinate + anchorY].isFallOrRiver())
-                        return;
-
-                    PlaceRoad(Xcoordinate + anchorX, Ycoordinate + anchorY);
-                }
-
-                wasPlacing = true;
-                wasRemoving = false;
-
-                LastChangedX = Xcoordinate;
-                LastChangedY = Ycoordinate;
-
-                UpdateToolTip(Xcoordinate, Ycoordinate);
             }
-            else if (e.Button == MouseButtons.Right)
-            {
-                if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasRemoving)
-                    return;
-
-                DeleteRoad(Xcoordinate + anchorX, Ycoordinate + anchorY);
-
-                wasPlacing = false;
-                wasRemoving = true;
-
-                LastChangedX = Xcoordinate;
-                LastChangedY = Ycoordinate;
-
-                UpdateToolTip(Xcoordinate, Ycoordinate);
-            }
-
-            */
         }
 
         private void DisplayRoadToggle_CheckedChanged(object sender, EventArgs e)
@@ -1707,6 +1916,15 @@ namespace ACNHPokerCore
         {
             terrainSaving = true;
             ConfirmBtn.Visible = false;
+
+            SaveFileDialog file = new SaveFileDialog();
+
+            byte[] CurrentTerrainData = Terrain;
+
+            DateTime localDate = DateTime.Now;
+            var culture = new CultureInfo("en-US");
+            file.FileName = Directory.GetCurrentDirectory() + @"\save\" + localDate.ToString(culture).Replace(" ", "_").Replace(":", "-").Replace("/", "-").Replace("\\", "-").Replace("|", "-").Replace(".", "-") + ".nht";
+            File.WriteAllBytes(file.FileName, CurrentTerrainData);
 
             byte[] newTerrain = new byte[numOfRow * numOfColumn * TerrainSize];
 
@@ -1796,6 +2014,1060 @@ namespace ACNHPokerCore
         private void RoadRoller_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.closeForm();
+        }
+
+        private void AutoModeButton_Click(object sender, EventArgs e)
+        {
+            manualModeActivated = false;
+
+            AutoModeButton.BackColor = Color.FromArgb(80, 80, 255);
+            ManualModeButton.BackColor = Color.FromArgb(114, 137, 218);
+            AutoButtonPanel.Visible = true;
+            ManualButtonPanel.Visible = false;
+
+            LastChangedX = -1;
+            LastChangedY = -1;
+
+            wasPlacing = false;
+            wasRemoving = false;
+        }
+
+        private void ManualModeButton_Click(object sender, EventArgs e)
+        {
+            manualModeActivated = true;
+
+            ManualModeButton.BackColor = Color.FromArgb(80, 80, 255);
+            AutoModeButton.BackColor = Color.FromArgb(114, 137, 218);
+            AutoButtonPanel.Visible = false;
+            ManualButtonPanel.Visible = true;
+
+            LastChangedX = -1;
+            LastChangedY = -1;
+
+            wasPlacing = false;
+            wasRemoving = false;
+
+            selectedButton = null;
+            resetBtnColor(false);
+        }
+
+        private void drawRoadImages(int direction = 0, int road = 7, int size = 36)
+        {
+            Color RoadColor;
+            switch (road)
+            {
+                case 0:
+                    RoadColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadWood];
+                    break;
+                case 1:
+                    RoadColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadTile];
+                    break;
+                case 2:
+                    RoadColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadSand];
+                    break;
+                case 3:
+                    RoadColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadPattern];
+                    break;
+                case 4:
+                    RoadColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadDarkSoil];
+                    break;
+                case 5:
+                    RoadColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadBrick];
+                    break;
+                case 6:
+                    RoadColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadStone];
+                    break;
+                default:
+                    RoadColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.RoadSoil];
+                    break;
+            }
+
+            Bitmap Road0A = new Bitmap(size, size);
+            Bitmap Road0B = new Bitmap(size, size);
+            Bitmap Road1A = new Bitmap(size, size);
+            Bitmap Road1B = new Bitmap(size, size);
+            Bitmap Road1C = new Bitmap(size, size);
+            Bitmap Road2A = new Bitmap(size, size);
+            Bitmap Road2B = new Bitmap(size, size);
+            Bitmap Road2C = new Bitmap(size, size);
+            Bitmap Road3A = new Bitmap(size, size);
+            Bitmap Road3B = new Bitmap(size, size);
+            Bitmap Road3C = new Bitmap(size, size);
+            Bitmap Road4A = new Bitmap(size, size);
+            Bitmap Road4B = new Bitmap(size, size);
+            Bitmap Road4C = new Bitmap(size, size);
+            Bitmap Road5A = new Bitmap(size, size);
+            Bitmap Road5B = new Bitmap(size, size);
+            Bitmap Road6A = new Bitmap(size, size);
+            Bitmap Road6B = new Bitmap(size, size);
+            Bitmap Road7A = new Bitmap(size, size);
+            Bitmap Road8A = new Bitmap(size, size);
+
+            SolidBrush RoadBrush = new SolidBrush(RoadColor);
+
+            using (Graphics gr = Graphics.FromImage(Road0A))
+            {
+                gr.FillRectangle(RoadBrush, 8, 8, size - 16, size - 16);
+            }
+            using (Graphics gr = Graphics.FromImage(Road0B))
+            {
+                Rectangle pieRect = new Rectangle(8, 8, (size - 16) * 2, (size - 16) * 2);
+                gr.FillPie(RoadBrush, pieRect, -90, -90);
+            }
+            using (Graphics gr = Graphics.FromImage(Road1A))
+            {
+                gr.FillRectangle(RoadBrush, 8, 8, size - 16, size - 9);
+            }
+            using (Graphics gr = Graphics.FromImage(Road1B))
+            {
+                gr.FillRectangle(RoadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
+
+                Rectangle pieRect = new Rectangle(8, 8, (size - 16) * 2, (size - 16) * 2);
+                gr.FillPie(RoadBrush, pieRect, -90, -90);
+            }
+            using (Graphics gr = Graphics.FromImage(Road1C))
+            {
+                gr.FillRectangle(RoadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
+
+                Rectangle pieRect = new Rectangle(8 - (size - 16), 8, (size - 16) * 2, (size - 16) * 2);
+                gr.FillPie(RoadBrush, pieRect, 0, -90);
+            }
+            using (Graphics gr = Graphics.FromImage(Road2A))
+            {
+                gr.FillRectangle(RoadBrush, 8, 1, size - 16, 7); //Top
+                gr.FillRectangle(RoadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
+
+                gr.FillRectangle(RoadBrush, 8, 8, size - 16, size - 10);
+            }
+            using (Graphics gr = Graphics.FromImage(Road2B))
+            {
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
+                gr.FillRectangle(RoadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
+
+                Rectangle pieRect = new Rectangle(8, 8, (size - 16) * 2, (size - 16) * 2);
+                gr.FillPie(RoadBrush, pieRect, -90, -90);
+            }
+            using (Graphics gr = Graphics.FromImage(Road2C))
+            {
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
+                gr.FillRectangle(RoadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
+
+                gr.FillRectangle(RoadBrush, 8, 8, size - 16, size - 16);
+            }
+            using (Graphics gr = Graphics.FromImage(Road3A))
+            {
+                gr.FillRectangle(RoadBrush, 8, 1, size - 16, 7); //Top
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
+                gr.FillRectangle(RoadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
+
+                gr.FillRectangle(RoadBrush, 8, 8, size - 16, size - 10);
+            }
+            using (Graphics gr = Graphics.FromImage(Road3B))
+            {
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
+                gr.FillRectangle(RoadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 8 + (size - 16), 7, 7); //Bottom Right
+
+                Rectangle pieRect = new Rectangle(8, 8, (size - 16) * 2, (size - 16) * 2);
+                gr.FillPie(RoadBrush, pieRect, -90, -90);
+            }
+            using (Graphics gr = Graphics.FromImage(Road3C))
+            {
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
+                gr.FillRectangle(RoadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 8 + (size - 16), 7, 7); //Bottom Right
+
+                gr.FillRectangle(RoadBrush, 8, 8, size - 16, size - 16);
+            }
+            using (Graphics gr = Graphics.FromImage(Road4A))
+            {
+                gr.FillRectangle(RoadBrush, 8, 1, size - 16, 7); //Top
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
+                gr.FillRectangle(RoadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 8 + (size - 16), 7, 7); //Bottom Right
+
+                gr.FillRectangle(RoadBrush, 8, 8, size - 16, size - 10);
+            }
+            using (Graphics gr = Graphics.FromImage(Road4B))
+            {
+                gr.FillRectangle(RoadBrush, 8, 1, size - 16, 7); //Top
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
+                gr.FillRectangle(RoadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 1, 7, 7); //Top Right
+
+                gr.FillRectangle(RoadBrush, 8, 8, size - 16, size - 10);
+            }
+            using (Graphics gr = Graphics.FromImage(Road4C))
+            {
+                gr.FillRectangle(RoadBrush, 8, 1, size - 16, 7); //Top
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
+                gr.FillRectangle(RoadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
+                gr.FillRectangle(RoadBrush, 1, 8, 7, size - 16); //Left
+
+                gr.FillRectangle(RoadBrush, 8, 8, size - 16, size - 10);
+            }
+            using (Graphics gr = Graphics.FromImage(Road5A))
+            {
+                gr.FillRectangle(RoadBrush, 8, 1, size - 16, 7); //Top
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
+                gr.FillRectangle(RoadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
+                gr.FillRectangle(RoadBrush, 1, 8, 7, size - 16); //Left
+                gr.FillRectangle(RoadBrush, 1, 8 + (size - 16), 7, 7); //Bottom Left
+
+                gr.FillRectangle(RoadBrush, 8, 8, size - 16, size - 10);
+            }
+            using (Graphics gr = Graphics.FromImage(Road5B))
+            {
+                gr.FillRectangle(RoadBrush, 8, 1, size - 16, 7); //Top
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
+                gr.FillRectangle(RoadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
+
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 1, 7, 7); //Top Right
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 8 + (size - 16), 7, 7); //Bottom Right
+
+                gr.FillRectangle(RoadBrush, 8, 8, size - 16, size - 10);
+            }
+            using (Graphics gr = Graphics.FromImage(Road6A))
+            {
+                gr.FillRectangle(RoadBrush, 8, 1, size - 16, 7); //Top
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
+                gr.FillRectangle(RoadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
+                gr.FillRectangle(RoadBrush, 1, 8, 7, size - 16); //Left
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 1, 7, 7); //Top Right
+                gr.FillRectangle(RoadBrush, 1, 8 + (size - 16), 7, 7); //Bottom Left
+
+                gr.FillRectangle(RoadBrush, 8, 8, size - 16, size - 10);
+            }
+            using (Graphics gr = Graphics.FromImage(Road6B))
+            {
+                gr.FillRectangle(RoadBrush, 8, 1, size - 16, 7); //Top
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
+                gr.FillRectangle(RoadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
+                gr.FillRectangle(RoadBrush, 1, 8, 7, size - 16); //Left
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 1, 7, 7); //Top Right
+                gr.FillRectangle(RoadBrush, 1, 1, 7, 7); //Top Left
+
+                gr.FillRectangle(RoadBrush, 8, 8, size - 16, size - 10);
+            }
+            using (Graphics gr = Graphics.FromImage(Road7A))
+            {
+                gr.FillRectangle(RoadBrush, 8, 1, size - 16, 7); //Top
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
+                gr.FillRectangle(RoadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
+                gr.FillRectangle(RoadBrush, 1, 8, 7, size - 16); //Left
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 1, 7, 7); //Top Right
+                gr.FillRectangle(RoadBrush, 1, 1, 7, 7); //Top Left
+                gr.FillRectangle(RoadBrush, 8 + (size - 16), 8 + (size - 16), 7, 7); //Bottom Right
+
+                gr.FillRectangle(RoadBrush, 8, 8, size - 16, size - 10);
+            }
+            using (Graphics gr = Graphics.FromImage(Road8A))
+            {
+                gr.FillRectangle(RoadBrush, 1, 1, size - 2, size - 2);
+            }
+
+            if (direction == 1)
+            {
+                Road0B.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Road1A.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Road1B.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Road1C.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Road2A.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Road2B.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Road2C.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Road3A.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Road3B.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Road3C.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Road4A.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Road4B.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Road5A.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Road5B.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Road6A.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Road6B.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Road7A.RotateFlip(RotateFlipType.Rotate270FlipNone);
+            }
+            else if (direction == 2)
+            {
+                Road0B.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Road1A.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Road1B.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Road1C.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Road2A.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Road2B.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Road2C.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Road3A.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Road3B.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Road3C.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Road4A.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Road4B.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Road5A.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Road5B.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Road6A.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Road6B.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Road7A.RotateFlip(RotateFlipType.Rotate180FlipNone);
+            }
+            else if (direction == 3)
+            {
+                Road0B.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Road1A.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Road1B.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Road1C.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Road2A.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Road2B.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Road2C.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Road3A.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Road3B.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Road3C.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Road4A.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Road4B.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Road5A.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Road5B.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Road6A.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Road6B.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Road7A.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            }
+
+
+            RoadButton0A.BackgroundImage = Road0A;
+            RoadButton0B.BackgroundImage = Road0B;
+            RoadButton1A.BackgroundImage = Road1A;
+            RoadButton1B.BackgroundImage = Road1B;
+            RoadButton1C.BackgroundImage = Road1C;
+            RoadButton2A.BackgroundImage = Road2A;
+            RoadButton2B.BackgroundImage = Road2B;
+            RoadButton2C.BackgroundImage = Road2C;
+            RoadButton3A.BackgroundImage = Road3A;
+            RoadButton3B.BackgroundImage = Road3B;
+            RoadButton3C.BackgroundImage = Road3C;
+            RoadButton4A.BackgroundImage = Road4A;
+            RoadButton4B.BackgroundImage = Road4B;
+            RoadButton4C.BackgroundImage = Road4C;
+            RoadButton5A.BackgroundImage = Road5A;
+            RoadButton5B.BackgroundImage = Road5B;
+            RoadButton6A.BackgroundImage = Road6A;
+            RoadButton6B.BackgroundImage = Road6B;
+            RoadButton7A.BackgroundImage = Road7A;
+            RoadButton8A.BackgroundImage = Road8A;
+        }
+
+        private void drawCliffImages(int direction = 0, int elevation = 1, int size = 36)
+        {
+            Color CliffColor;
+
+            if (elevation == 1)
+            {
+                CliffColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation1];
+
+                foreach (Button btn in ManualCliffPanel.Controls.OfType<Button>())
+                {
+                    if (btn == RotateCliffButton)
+                        continue;
+                    btn.BackColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation0];
+                }
+            }
+            else if (elevation == 2)
+            {
+                CliffColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation2];
+
+                foreach (Button btn in ManualCliffPanel.Controls.OfType<Button>())
+                {
+                    if (btn == RotateCliffButton)
+                        continue;
+                    btn.BackColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation1];
+                }
+            }
+            else if (elevation >= 3)
+            {
+                CliffColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation3];
+
+                foreach (Button btn in ManualCliffPanel.Controls.OfType<Button>())
+                {
+                    if (btn == RotateCliffButton)
+                        continue;
+                    btn.BackColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation2];
+                }
+            }
+            else
+            {
+                CliffColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation1];
+
+                foreach (Button btn in ManualCliffPanel.Controls.OfType<Button>())
+                {
+                    if (btn == RotateCliffButton)
+                        continue;
+                    btn.BackColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation0];
+                }
+            }
+
+            Bitmap Cliff0A = new Bitmap(size, size);
+            Bitmap Cliff1A = new Bitmap(size, size);
+            Bitmap Cliff2A = new Bitmap(size, size);
+            Bitmap Cliff2B = new Bitmap(size, size);
+            Bitmap Cliff2C = new Bitmap(size, size);
+            Bitmap Cliff3A = new Bitmap(size, size);
+            Bitmap Cliff3B = new Bitmap(size, size);
+            Bitmap Cliff3C = new Bitmap(size, size);
+            Bitmap Cliff4A = new Bitmap(size, size);
+            Bitmap Cliff4B = new Bitmap(size, size);
+            Bitmap Cliff4C = new Bitmap(size, size);
+            Bitmap Cliff5A = new Bitmap(size, size);
+            Bitmap Cliff5B = new Bitmap(size, size);
+            Bitmap Cliff6A = new Bitmap(size, size);
+            Bitmap Cliff6B = new Bitmap(size, size);
+            Bitmap Cliff7A = new Bitmap(size, size);
+            Bitmap Cliff8 = new Bitmap(size, size);
+
+            SolidBrush CliffBrush = new SolidBrush(CliffColor);
+
+            using (Graphics gr = Graphics.FromImage(Cliff0A))
+            {
+                gr.FillRectangle(CliffBrush, 4, 4, size - 8, size - 8);
+            }
+            using (Graphics gr = Graphics.FromImage(Cliff1A))
+            {
+                gr.FillRectangle(CliffBrush, 4, 4, size - 8, size - 5);
+            }
+            using (Graphics gr = Graphics.FromImage(Cliff2A))
+            {
+                gr.FillRectangle(CliffBrush, 4, 1, size - 8, size - 2);
+            }
+            using (Graphics gr = Graphics.FromImage(Cliff2B))
+            {
+                Point[] Terrain2B = new Point[] { new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                gr.FillPolygon(CliffBrush, Terrain2B);
+            }
+            using (Graphics gr = Graphics.FromImage(Cliff2C))
+            {
+                Point[] Terrain2C = new Point[] { new Point(4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                gr.FillPolygon(CliffBrush, Terrain2C);
+            }
+            using (Graphics gr = Graphics.FromImage(Cliff3A))
+            {
+                Point[] Terrain3A = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                gr.FillPolygon(CliffBrush, Terrain3A);
+            }
+            using (Graphics gr = Graphics.FromImage(Cliff3B))
+            {
+                Point[] Terrain3B = new Point[] { new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(4, size - 1) };
+                gr.FillPolygon(CliffBrush, Terrain3B);
+            }
+            using (Graphics gr = Graphics.FromImage(Cliff3C))
+            {
+                gr.FillRectangle(CliffBrush, 4, 4, size - 5, size - 5);
+            }
+            using (Graphics gr = Graphics.FromImage(Cliff4A))
+            {
+                Point[] Terrain4A = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(4, size - 1) };
+                gr.FillPolygon(CliffBrush, Terrain4A);
+            }
+            using (Graphics gr = Graphics.FromImage(Cliff4B))
+            {
+                Point[] Terrain4B = new Point[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                gr.FillPolygon(CliffBrush, Terrain4B);
+            }
+            using (Graphics gr = Graphics.FromImage(Cliff4C))
+            {
+                Point[] Terrain4C = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4), new Point(1, 4), new Point(4, 4) };
+                gr.FillPolygon(CliffBrush, Terrain4C);
+            }
+            using (Graphics gr = Graphics.FromImage(Cliff5A))
+            {
+                Point[] Terrain5A = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4) };
+                gr.FillPolygon(CliffBrush, Terrain5A);
+            }
+            using (Graphics gr = Graphics.FromImage(Cliff5B))
+            {
+                gr.FillRectangle(CliffBrush, 4, 1, size - 5, size - 2);
+            }
+            using (Graphics gr = Graphics.FromImage(Cliff6A))
+            {
+                Point[] Terrain6A = new Point[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4) };
+                gr.FillPolygon(CliffBrush, Terrain6A);
+            }
+            using (Graphics gr = Graphics.FromImage(Cliff6B))
+            {
+                Point[] Terrain6B = new Point[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
+                gr.FillPolygon(CliffBrush, Terrain6B);
+            }
+            using (Graphics gr = Graphics.FromImage(Cliff7A))
+            {
+                Point[] Terrain7A = new Point[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
+                gr.FillPolygon(CliffBrush, Terrain7A);
+            }
+            using (Graphics gr = Graphics.FromImage(Cliff8))
+            {
+                gr.FillRectangle(CliffBrush, 1, 1, size - 2, size - 2);
+            }
+
+            if (direction == 1)
+            {
+                Cliff1A.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Cliff2A.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Cliff2B.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Cliff2C.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Cliff3A.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Cliff3B.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Cliff3C.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Cliff4A.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Cliff4B.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Cliff5A.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Cliff5B.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Cliff6A.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Cliff6B.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Cliff7A.RotateFlip(RotateFlipType.Rotate270FlipNone);
+            }
+            else if (direction == 2)
+            {
+                Cliff1A.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Cliff2A.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Cliff2B.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Cliff2C.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Cliff3A.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Cliff3B.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Cliff3C.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Cliff4A.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Cliff4B.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Cliff5A.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Cliff5B.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Cliff6A.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Cliff6B.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Cliff7A.RotateFlip(RotateFlipType.Rotate180FlipNone);
+            }
+            else if (direction == 3)
+            {
+                Cliff1A.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Cliff2A.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Cliff2B.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Cliff2C.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Cliff3A.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Cliff3B.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Cliff3C.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Cliff4A.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Cliff4B.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Cliff5A.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Cliff5B.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Cliff6A.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Cliff6B.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Cliff7A.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            }
+
+            CliffButton0A.BackgroundImage = Cliff0A;
+            CliffButton1A.BackgroundImage = Cliff1A;
+            CliffButton2A.BackgroundImage = Cliff2A;
+            CliffButton2B.BackgroundImage = Cliff2B;
+            CliffButton2C.BackgroundImage = Cliff2C;
+            CliffButton3A.BackgroundImage = Cliff3A;
+            CliffButton3B.BackgroundImage = Cliff3B;
+            CliffButton3C.BackgroundImage = Cliff3C;
+            CliffButton4A.BackgroundImage = Cliff4A;
+            CliffButton4B.BackgroundImage = Cliff4B;
+            CliffButton4C.BackgroundImage = Cliff4C;
+            CliffButton5A.BackgroundImage = Cliff5A;
+            CliffButton5B.BackgroundImage = Cliff5B;
+            CliffButton6A.BackgroundImage = Cliff6A;
+            CliffButton6B.BackgroundImage = Cliff6B;
+            CliffButton7A.BackgroundImage = Cliff7A;
+            CliffButton8.BackgroundImage = Cliff8;
+
+            if (manualSelectedCliffModel != null)
+                manualSelectedCliffModel.BackColor = Color.Violet;
+        }
+
+        private void drawRiverImages(int direction = 0, int elevation = 0, int size = 36)
+        {
+            Color RiverColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.River];
+
+            if (elevation == 0)
+            {
+                foreach (Button btn in ManualRiverPanel.Controls.OfType<Button>())
+                {
+                    if (btn == RotateRiverButton)
+                        continue;
+                    btn.BackColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation0];
+                }
+            }
+            else if (elevation == 1)
+            {
+                foreach (Button btn in ManualRiverPanel.Controls.OfType<Button>())
+                {
+                    if (btn == RotateRiverButton)
+                        continue;
+                    btn.BackColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation1];
+                }
+            }
+            else if (elevation == 2)
+            {
+                foreach (Button btn in ManualRiverPanel.Controls.OfType<Button>())
+                {
+                    if (btn == RotateRiverButton)
+                        continue;
+                    btn.BackColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation2];
+                }
+            }
+            else if (elevation >= 3)
+            {
+                foreach (Button btn in ManualRiverPanel.Controls.OfType<Button>())
+                {
+                    if (btn == RotateRiverButton)
+                        continue;
+                    btn.BackColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation3];
+                }
+            }
+            else
+            {
+                foreach (Button btn in ManualCliffPanel.Controls.OfType<Button>())
+                {
+                    if (btn == RotateCliffButton)
+                        continue;
+                    btn.BackColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation0];
+                }
+            }
+
+            Bitmap River0A = new Bitmap(size, size);
+            Bitmap River1A = new Bitmap(size, size);
+            Bitmap River2A = new Bitmap(size, size);
+            Bitmap River2B = new Bitmap(size, size);
+            Bitmap River2C = new Bitmap(size, size);
+            Bitmap River3A = new Bitmap(size, size);
+            Bitmap River3B = new Bitmap(size, size);
+            Bitmap River3C = new Bitmap(size, size);
+            Bitmap River4A = new Bitmap(size, size);
+            Bitmap River4B = new Bitmap(size, size);
+            Bitmap River4C = new Bitmap(size, size);
+            Bitmap River5A = new Bitmap(size, size);
+            Bitmap River5B = new Bitmap(size, size);
+            Bitmap River6A = new Bitmap(size, size);
+            Bitmap River6B = new Bitmap(size, size);
+            Bitmap River7A = new Bitmap(size, size);
+            Bitmap River8A = new Bitmap(size, size);
+
+            SolidBrush RiverBrush = new SolidBrush(RiverColor);
+
+            using (Graphics gr = Graphics.FromImage(River0A))
+            {
+                gr.FillRectangle(RiverBrush, 4, 4, size - 8, size - 8);
+            }
+            using (Graphics gr = Graphics.FromImage(River1A))
+            {
+                gr.FillRectangle(RiverBrush, 4, 4, size - 8, size - 5);
+            }
+            using (Graphics gr = Graphics.FromImage(River2A))
+            {
+                gr.FillRectangle(RiverBrush, 4, 1, size - 8, size - 2);
+            }
+            using (Graphics gr = Graphics.FromImage(River2B))
+            {
+                Point[] Terrain2B = new Point[] { new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                gr.FillPolygon(RiverBrush, Terrain2B);
+            }
+            using (Graphics gr = Graphics.FromImage(River2C))
+            {
+                Point[] Terrain2C = new Point[] { new Point(4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                gr.FillPolygon(RiverBrush, Terrain2C);
+            }
+            using (Graphics gr = Graphics.FromImage(River3A))
+            {
+                Point[] Terrain3A = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                gr.FillPolygon(RiverBrush, Terrain3A);
+            }
+            using (Graphics gr = Graphics.FromImage(River3B))
+            {
+                Point[] Terrain3B = new Point[] { new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(4, size - 1) };
+                gr.FillPolygon(RiverBrush, Terrain3B);
+            }
+            using (Graphics gr = Graphics.FromImage(River3C))
+            {
+                gr.FillRectangle(RiverBrush, 4, 4, size - 5, size - 5);
+            }
+            using (Graphics gr = Graphics.FromImage(River4A))
+            {
+                Point[] Terrain4A = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(4, size - 1) };
+                gr.FillPolygon(RiverBrush, Terrain4A);
+            }
+            using (Graphics gr = Graphics.FromImage(River4B))
+            {
+                Point[] Terrain4B = new Point[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                gr.FillPolygon(RiverBrush, Terrain4B);
+            }
+            using (Graphics gr = Graphics.FromImage(River4C))
+            {
+                Point[] Terrain4C = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4), new Point(1, 4), new Point(4, 4) };
+                gr.FillPolygon(RiverBrush, Terrain4C);
+            }
+            using (Graphics gr = Graphics.FromImage(River5A))
+            {
+                Point[] Terrain5A = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4) };
+                gr.FillPolygon(RiverBrush, Terrain5A);
+            }
+            using (Graphics gr = Graphics.FromImage(River5B))
+            {
+                gr.FillRectangle(RiverBrush, 4, 1, size - 5, size - 2);
+            }
+            using (Graphics gr = Graphics.FromImage(River6A))
+            {
+                Point[] Terrain6A = new Point[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4) };
+                gr.FillPolygon(RiverBrush, Terrain6A);
+            }
+            using (Graphics gr = Graphics.FromImage(River6B))
+            {
+                Point[] Terrain6B = new Point[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
+                gr.FillPolygon(RiverBrush, Terrain6B);
+            }
+            using (Graphics gr = Graphics.FromImage(River7A))
+            {
+                Point[] Terrain7A = new Point[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
+                gr.FillPolygon(RiverBrush, Terrain7A);
+            }
+            using (Graphics gr = Graphics.FromImage(River8A))
+            {
+                gr.FillRectangle(RiverBrush, 1, 1, size - 2, size - 2);
+            }
+
+            if (direction == 1)
+            {
+                River1A.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                River2A.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                River2B.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                River2C.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                River3A.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                River3B.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                River3C.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                River4A.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                River4B.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                River5A.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                River5B.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                River6A.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                River6B.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                River7A.RotateFlip(RotateFlipType.Rotate270FlipNone);
+            }
+            else if (direction == 2)
+            {
+                River1A.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                River2A.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                River2B.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                River2C.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                River3A.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                River3B.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                River3C.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                River4A.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                River4B.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                River5A.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                River5B.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                River6A.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                River6B.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                River7A.RotateFlip(RotateFlipType.Rotate180FlipNone);
+            }
+            else if (direction == 3)
+            {
+                River1A.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                River2A.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                River2B.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                River2C.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                River3A.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                River3B.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                River3C.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                River4A.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                River4B.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                River5A.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                River5B.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                River6A.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                River6B.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                River7A.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            }
+
+            RiverButton0A.BackgroundImage = River0A;
+            RiverButton1A.BackgroundImage = River1A;
+            RiverButton2A.BackgroundImage = River2A;
+            RiverButton2B.BackgroundImage = River2B;
+            RiverButton2C.BackgroundImage = River2C;
+            RiverButton3A.BackgroundImage = River3A;
+            RiverButton3B.BackgroundImage = River3B;
+            RiverButton3C.BackgroundImage = River3C;
+            RiverButton4A.BackgroundImage = River4A;
+            RiverButton4B.BackgroundImage = River4B;
+            RiverButton4C.BackgroundImage = River4C;
+            RiverButton5A.BackgroundImage = River5A;
+            RiverButton5B.BackgroundImage = River5B;
+            RiverButton6A.BackgroundImage = River6A;
+            RiverButton6B.BackgroundImage = River6B;
+            RiverButton7A.BackgroundImage = River7A;
+            RiverButton8A.BackgroundImage = River8A;
+
+            if (manualSelectedRiverModel != null)
+                manualSelectedRiverModel.BackColor = Color.Violet;
+        }
+        private void RotateRoadButton_Click(object sender, EventArgs e)
+        {
+            LastChangedX = -1;
+            LastChangedY = -1;
+
+            manualSelectedRoadDirection += 1;
+            if (manualSelectedRoadDirection > 3)
+                manualSelectedRoadDirection = 0;
+
+            drawRoadImages(manualSelectedRoadDirection, manualSelectedRoad);
+        }
+
+        private void RotateCliffButton_Click(object sender, EventArgs e)
+        {
+            LastChangedX = -1;
+            LastChangedY = -1;
+
+            manualSelectedCliffDirection += 1;
+            if (manualSelectedCliffDirection > 3)
+                manualSelectedCliffDirection = 0;
+
+            drawCliffImages(manualSelectedCliffDirection, manualSelectedCliffElevation);
+        }
+
+        private void RotateRiverButton_Click(object sender, EventArgs e)
+        {
+            LastChangedX = -1;
+            LastChangedY = -1;
+
+            manualSelectedRiverDirection += 1;
+            if (manualSelectedRiverDirection > 3)
+                manualSelectedRiverDirection = 0;
+
+            drawRiverImages(manualSelectedRiverDirection, manualSelectedRiverElevation);
+        }
+
+        private void RoadDropdownBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ManualRoadModeButton_Click(sender, null);
+            manualSelectedRoad = (ushort)RoadDropdownBox.SelectedIndex;
+
+            Bitmap MiniRoadImg;
+            switch (manualSelectedRoad)
+            {
+                case 0:
+                    MiniRoadImg = new Bitmap(Properties.Resources.wood, new Size(24, 24));
+                    break;
+                case 1:
+                    MiniRoadImg = new Bitmap(Properties.Resources.tile, new Size(24, 24));
+                    break;
+                case 2:
+                    MiniRoadImg = new Bitmap(Properties.Resources.sand, new Size(24, 24));
+                    break;
+                case 3:
+                    MiniRoadImg = new Bitmap(Properties.Resources.pattern, new Size(24, 24));
+                    break;
+                case 4:
+                    MiniRoadImg = new Bitmap(Properties.Resources.darksoil, new Size(24, 24));
+                    break;
+                case 5:
+                    MiniRoadImg = new Bitmap(Properties.Resources.brick, new Size(24, 24));
+                    break;
+                case 6:
+                    MiniRoadImg = new Bitmap(Properties.Resources.stone, new Size(24, 24));
+                    break;
+                case 7:
+                    MiniRoadImg = new Bitmap(Properties.Resources.dirt, new Size(24, 24));
+                    break;
+                default:
+                    MiniRoadImg = new Bitmap(24,24);
+                    break;
+            }
+            ManualRoadModeButton.Image = MiniRoadImg;
+
+            drawRoadImages(manualSelectedRoadDirection, manualSelectedRoad);
+        }
+
+        private void ManualRoadButton_Click(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            manualSelectedRoadModel = button;
+
+            LastChangedX = -1;
+            LastChangedY = -1;
+
+            resetRoadButton();
+        }
+
+        private void resetRoadButton()
+        {
+            foreach (Button btn in ManualRoadPanel.Controls.OfType<Button>())
+            {
+                if (btn == RotateRoadButton)
+                    continue;
+                if (btn == manualSelectedRoadModel)
+                    btn.BackColor = Color.Violet;
+                else
+                    btn.BackColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation0];
+            }
+        }
+
+        private void ManualCliffButton_Click(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            manualSelectedCliffModel = button;
+
+            LastChangedX = -1;
+            LastChangedY = -1;
+
+            resetCliffButton();
+        }
+
+        private void resetCliffButton()
+        {
+            foreach (Button btn in ManualCliffPanel.Controls.OfType<Button>())
+            {
+                if (btn == RotateCliffButton)
+                    continue;
+                if (btn == manualSelectedCliffModel)
+                    btn.BackColor = Color.Violet;
+                else
+                {
+                    if (manualSelectedCliffElevation == 1)
+                    {
+                        btn.BackColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation0];
+                    }
+                    else if (manualSelectedCliffElevation == 2)
+                    {
+                        btn.BackColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation1];
+                    }
+                    else if (manualSelectedCliffElevation >= 3)
+                    {
+                        btn.BackColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation2];
+                    }
+                    else
+                    {
+                        btn.BackColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation0];
+                    }
+                }
+            }
+        }
+
+        private void ManualRiverButton_Click(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            manualSelectedRiverModel = button;
+
+            LastChangedX = -1;
+            LastChangedY = -1;
+
+            resetRiverButton();
+        }
+
+        private void resetRiverButton()
+        {
+            foreach (Button btn in ManualRiverPanel.Controls.OfType<Button>())
+            {
+                if (btn == RotateRiverButton)
+                    continue;
+                if (btn == manualSelectedRiverModel)
+                    btn.BackColor = Color.Violet;
+                else
+                {
+                    if (manualSelectedRiverElevation == 0)
+                    {
+                        btn.BackColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation0];
+                    }
+                    else if (manualSelectedRiverElevation == 1)
+                    {
+                        btn.BackColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation1];
+                    }
+                    else if (manualSelectedRiverElevation == 2)
+                    {
+                        btn.BackColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation2];
+                    }
+                    else if (manualSelectedRiverElevation >= 3)
+                    {
+                        btn.BackColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation3];
+                    }
+                    else
+                    {
+                        btn.BackColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation0];
+                    }
+                }
+            }
+        }
+
+        private void ManualCliffElevationBar_ValueChanged(object sender, EventArgs e)
+        {
+            LastChangedX = -1;
+            LastChangedY = -1;
+
+            manualSelectedCliffElevation = (ushort)ManualCliffElevationBar.Value;
+
+            drawCliffImages(manualSelectedCliffDirection, manualSelectedCliffElevation);
+        }
+        private void ManualRiverElevationBar_ValueChanged(object sender, EventArgs e)
+        {
+            LastChangedX = -1;
+            LastChangedY = -1;
+
+            manualSelectedRiverElevation = (ushort)ManualRiverElevationBar.Value;
+
+            drawRiverImages(manualSelectedRiverDirection, manualSelectedRiverElevation);
+        }
+        private void ManualCliffModeButton_Click(object sender, EventArgs e)
+        {
+            LastChangedX = -1;
+            LastChangedY = -1;
+
+            ManualCliffModeButton.BackColor = Color.LightSeaGreen;
+            ManualRiverModeButton.BackColor = Color.FromArgb(114, 137, 218);
+            ManualRoadModeButton.BackColor = Color.FromArgb(114, 137, 218);
+
+            ManualCliffPanel.Visible = true;
+            ManualRiverPanel.Visible = false;
+            ManualRoadPanel.Visible = false;
+
+            selectedManualMode = ManualCliffPanel;
+
+            manualSelectedRoadModel = null;
+            resetRoadButton();
+            manualSelectedRiverModel = null;
+            resetRiverButton();
+        }
+        private void ManualRiverModeButton_Click(object sender, EventArgs e)
+        {
+            LastChangedX = -1;
+            LastChangedY = -1;
+
+            ManualCliffModeButton.BackColor = Color.FromArgb(114, 137, 218);
+            ManualRiverModeButton.BackColor = Color.LightSeaGreen;
+            ManualRoadModeButton.BackColor = Color.FromArgb(114, 137, 218);
+
+            ManualCliffPanel.Visible = false;
+            ManualRiverPanel.Visible = true;
+            ManualRoadPanel.Visible = false;
+
+            selectedManualMode = ManualRiverPanel;
+
+            manualSelectedRoadModel = null;
+            resetRoadButton();
+            manualSelectedCliffModel = null;
+            resetCliffButton();
+        }
+        private void ManualRoadModeButton_Click(object sender, EventArgs e)
+        {
+            LastChangedX = -1;
+            LastChangedY = -1;
+
+            ManualCliffModeButton.BackColor = Color.FromArgb(114, 137, 218);
+            ManualRiverModeButton.BackColor = Color.FromArgb(114, 137, 218);
+            ManualRoadModeButton.BackColor = Color.LightSeaGreen;
+
+            ManualCliffPanel.Visible = false;
+            ManualRiverPanel.Visible = false;
+            ManualRoadPanel.Visible = true;
+
+            selectedManualMode = ManualRoadPanel;
+
+            manualSelectedRiverModel = null;
+            resetRiverButton();
+            manualSelectedCliffModel = null;
+            resetCliffButton();
+        }
+
+        private string findModel(Button SelectedButton)
+        {
+            if (SelectedButton == null)
+                return "0A";
+
+            return SelectedButton.Tag.ToString();
         }
     }
 }

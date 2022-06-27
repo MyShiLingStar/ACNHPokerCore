@@ -57,6 +57,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Custom\RoadSelector.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="Inventory\inventorySlot.cs">
       <SubType>Component</SubType>
     </Compile>
