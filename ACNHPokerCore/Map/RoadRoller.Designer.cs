@@ -48,35 +48,30 @@
             this.ManualModeButton = new System.Windows.Forms.Button();
             this.AutoModeButton = new System.Windows.Forms.Button();
             this.miniMapBox = new System.Windows.Forms.PictureBox();
+            this.AutoButtonPanel = new System.Windows.Forms.Panel();
+            this.fixRiverMouthToggle = new JCS.ToggleSwitch();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ArchBtn = new System.Windows.Forms.Button();
+            this.Elevation0Label = new System.Windows.Forms.Label();
+            this.StoneBtn = new System.Windows.Forms.Button();
+            this.ElevationLabel = new System.Windows.Forms.Label();
+            this.Elevation2Label = new System.Windows.Forms.Label();
+            this.Elevation1Label = new System.Windows.Forms.Label();
+            this.ElevationBar = new System.Windows.Forms.TrackBar();
+            this.CliffBtn = new System.Windows.Forms.Button();
+            this.CornerBtn = new System.Windows.Forms.Button();
+            this.RiverBtn = new System.Windows.Forms.Button();
+            this.DirtBtn = new System.Windows.Forms.Button();
+            this.WoodBtn = new System.Windows.Forms.Button();
+            this.TileBtn = new System.Windows.Forms.Button();
+            this.BrickBtn = new System.Windows.Forms.Button();
+            this.SandBtn = new System.Windows.Forms.Button();
+            this.DarkDirtBtn = new System.Windows.Forms.Button();
             this.ManualButtonPanel = new System.Windows.Forms.Panel();
             this.RoadDropdownBox = new ACNHPokerCore.RoadSelector();
             this.ManualRoadModeButton = new System.Windows.Forms.Button();
             this.ManualRiverModeButton = new System.Windows.Forms.Button();
             this.ManualCliffModeButton = new System.Windows.Forms.Button();
-            this.ManualRiverPanel = new System.Windows.Forms.Panel();
-            this.ManualRiverElevation0Label = new System.Windows.Forms.Label();
-            this.ManualRiverElevationLabel = new System.Windows.Forms.Label();
-            this.ManualRiverElevation2Label = new System.Windows.Forms.Label();
-            this.ManualRiverElevation1Label = new System.Windows.Forms.Label();
-            this.ManualRiverElevationBar = new System.Windows.Forms.TrackBar();
-            this.RotateRiverButton = new System.Windows.Forms.Button();
-            this.RiverButton8A = new System.Windows.Forms.Button();
-            this.RiverButton0A = new System.Windows.Forms.Button();
-            this.RiverButton3B = new System.Windows.Forms.Button();
-            this.RiverButton7A = new System.Windows.Forms.Button();
-            this.RiverButton3A = new System.Windows.Forms.Button();
-            this.RiverButton3C = new System.Windows.Forms.Button();
-            this.RiverButton6B = new System.Windows.Forms.Button();
-            this.RiverButton2C = new System.Windows.Forms.Button();
-            this.RiverButton4A = new System.Windows.Forms.Button();
-            this.RiverButton6A = new System.Windows.Forms.Button();
-            this.RiverButton2B = new System.Windows.Forms.Button();
-            this.RiverButton1A = new System.Windows.Forms.Button();
-            this.RiverButton4B = new System.Windows.Forms.Button();
-            this.RiverButton5B = new System.Windows.Forms.Button();
-            this.RiverButton2A = new System.Windows.Forms.Button();
-            this.RiverButton4C = new System.Windows.Forms.Button();
-            this.RiverButton5A = new System.Windows.Forms.Button();
             this.ManualRoadPanel = new System.Windows.Forms.Panel();
             this.RotateRoadButton = new System.Windows.Forms.Button();
             this.RoadButton8A = new System.Windows.Forms.Button();
@@ -123,23 +118,31 @@
             this.CliffButton2A = new System.Windows.Forms.Button();
             this.CliffButton4C = new System.Windows.Forms.Button();
             this.CliffButton5A = new System.Windows.Forms.Button();
-            this.AutoButtonPanel = new System.Windows.Forms.Panel();
-            this.ArchBtn = new System.Windows.Forms.Button();
-            this.Elevation0Label = new System.Windows.Forms.Label();
-            this.StoneBtn = new System.Windows.Forms.Button();
-            this.ElevationLabel = new System.Windows.Forms.Label();
-            this.Elevation2Label = new System.Windows.Forms.Label();
-            this.Elevation1Label = new System.Windows.Forms.Label();
-            this.ElevationBar = new System.Windows.Forms.TrackBar();
-            this.CliffBtn = new System.Windows.Forms.Button();
-            this.CornerBtn = new System.Windows.Forms.Button();
-            this.RiverBtn = new System.Windows.Forms.Button();
-            this.DirtBtn = new System.Windows.Forms.Button();
-            this.WoodBtn = new System.Windows.Forms.Button();
-            this.TileBtn = new System.Windows.Forms.Button();
-            this.BrickBtn = new System.Windows.Forms.Button();
-            this.SandBtn = new System.Windows.Forms.Button();
-            this.DarkDirtBtn = new System.Windows.Forms.Button();
+            this.ManualRiverPanel = new System.Windows.Forms.Panel();
+            this.ManualRiverElevation3Label = new System.Windows.Forms.Label();
+            this.ManualRiverElevation2Label = new System.Windows.Forms.Label();
+            this.ManualRiverElevation1Label = new System.Windows.Forms.Label();
+            this.ManualRiverElevation0Label = new System.Windows.Forms.Label();
+            this.ManualRiverElevationLabel = new System.Windows.Forms.Label();
+            this.ManualRiverElevationBar = new System.Windows.Forms.TrackBar();
+            this.RotateRiverButton = new System.Windows.Forms.Button();
+            this.RiverButton8A = new System.Windows.Forms.Button();
+            this.RiverButton0A = new System.Windows.Forms.Button();
+            this.RiverButton3B = new System.Windows.Forms.Button();
+            this.RiverButton7A = new System.Windows.Forms.Button();
+            this.RiverButton3A = new System.Windows.Forms.Button();
+            this.RiverButton3C = new System.Windows.Forms.Button();
+            this.RiverButton6B = new System.Windows.Forms.Button();
+            this.RiverButton2C = new System.Windows.Forms.Button();
+            this.RiverButton4A = new System.Windows.Forms.Button();
+            this.RiverButton6A = new System.Windows.Forms.Button();
+            this.RiverButton2B = new System.Windows.Forms.Button();
+            this.RiverButton1A = new System.Windows.Forms.Button();
+            this.RiverButton4B = new System.Windows.Forms.Button();
+            this.RiverButton5B = new System.Windows.Forms.Button();
+            this.RiverButton2A = new System.Windows.Forms.Button();
+            this.RiverButton4C = new System.Windows.Forms.Button();
+            this.RiverButton5A = new System.Windows.Forms.Button();
             this.CornerPanel = new System.Windows.Forms.Panel();
             this.PleaseWaitPanel = new System.Windows.Forms.Panel();
             this.MapProgressBar = new System.Windows.Forms.ProgressBar();
@@ -148,7 +151,6 @@
             this.ProgressTimer = new System.Windows.Forms.Timer(this.components);
             this.MapToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.ButtonToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.ManualRiverElevation3Label = new System.Windows.Forms.Label();
             this.MainDivider.SuspendLayout();
             this.SubDivider.SuspendLayout();
             this.MiddlePanel.SuspendLayout();
@@ -156,14 +158,14 @@
             this.TopMenuPanel.SuspendLayout();
             this.LeftMenuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.miniMapBox)).BeginInit();
+            this.AutoButtonPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ElevationBar)).BeginInit();
             this.ManualButtonPanel.SuspendLayout();
-            this.ManualRiverPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ManualRiverElevationBar)).BeginInit();
             this.ManualRoadPanel.SuspendLayout();
             this.ManualCliffPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ManualCliffElevationBar)).BeginInit();
-            this.AutoButtonPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ElevationBar)).BeginInit();
+            this.ManualRiverPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ManualRiverElevationBar)).BeginInit();
             this.CornerPanel.SuspendLayout();
             this.PleaseWaitPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NowLoading)).BeginInit();
@@ -429,6 +431,302 @@
             this.miniMapBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.miniMapBox_MouseDown);
             this.miniMapBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.miniMapBox_MouseMove);
             // 
+            // AutoButtonPanel
+            // 
+            this.AutoButtonPanel.Controls.Add(this.fixRiverMouthToggle);
+            this.AutoButtonPanel.Controls.Add(this.label1);
+            this.AutoButtonPanel.Controls.Add(this.ArchBtn);
+            this.AutoButtonPanel.Controls.Add(this.Elevation0Label);
+            this.AutoButtonPanel.Controls.Add(this.StoneBtn);
+            this.AutoButtonPanel.Controls.Add(this.ElevationLabel);
+            this.AutoButtonPanel.Controls.Add(this.Elevation2Label);
+            this.AutoButtonPanel.Controls.Add(this.Elevation1Label);
+            this.AutoButtonPanel.Controls.Add(this.ElevationBar);
+            this.AutoButtonPanel.Controls.Add(this.CliffBtn);
+            this.AutoButtonPanel.Controls.Add(this.CornerBtn);
+            this.AutoButtonPanel.Controls.Add(this.RiverBtn);
+            this.AutoButtonPanel.Controls.Add(this.DirtBtn);
+            this.AutoButtonPanel.Controls.Add(this.WoodBtn);
+            this.AutoButtonPanel.Controls.Add(this.TileBtn);
+            this.AutoButtonPanel.Controls.Add(this.BrickBtn);
+            this.AutoButtonPanel.Controls.Add(this.SandBtn);
+            this.AutoButtonPanel.Controls.Add(this.DarkDirtBtn);
+            this.AutoButtonPanel.Location = new System.Drawing.Point(9, 231);
+            this.AutoButtonPanel.Name = "AutoButtonPanel";
+            this.AutoButtonPanel.Size = new System.Drawing.Size(225, 341);
+            this.AutoButtonPanel.TabIndex = 237;
+            // 
+            // fixRiverMouthToggle
+            // 
+            this.fixRiverMouthToggle.Location = new System.Drawing.Point(123, 84);
+            this.fixRiverMouthToggle.Name = "fixRiverMouthToggle";
+            this.fixRiverMouthToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.fixRiverMouthToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.fixRiverMouthToggle.Size = new System.Drawing.Size(38, 16);
+            this.fixRiverMouthToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            this.fixRiverMouthToggle.TabIndex = 243;
+            this.fixRiverMouthToggle.UseAnimation = false;
+            this.fixRiverMouthToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.fixRiverMouthToggle_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(69, 67);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(97, 14);
+            this.label1.TabIndex = 243;
+            this.label1.Text = "Fix River Mouth :";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ArchBtn
+            // 
+            this.ArchBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.ArchBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ArchBtn.FlatAppearance.BorderSize = 0;
+            this.ArchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ArchBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ArchBtn.ForeColor = System.Drawing.Color.White;
+            this.ArchBtn.Image = global::ACNHPokerCore.Properties.Resources.pattern;
+            this.ArchBtn.Location = new System.Drawing.Point(69, 275);
+            this.ArchBtn.Name = "ArchBtn";
+            this.ArchBtn.Size = new System.Drawing.Size(60, 60);
+            this.ArchBtn.TabIndex = 230;
+            this.ArchBtn.Tag = "Other";
+            this.ArchBtn.UseVisualStyleBackColor = false;
+            this.ArchBtn.Click += new System.EventHandler(this.ArchBtn_Click);
+            // 
+            // Elevation0Label
+            // 
+            this.Elevation0Label.AutoSize = true;
+            this.Elevation0Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Elevation0Label.ForeColor = System.Drawing.Color.White;
+            this.Elevation0Label.Location = new System.Drawing.Point(126, 47);
+            this.Elevation0Label.Name = "Elevation0Label";
+            this.Elevation0Label.Size = new System.Drawing.Size(13, 14);
+            this.Elevation0Label.TabIndex = 242;
+            this.Elevation0Label.Text = "0";
+            this.Elevation0Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // StoneBtn
+            // 
+            this.StoneBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.StoneBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.StoneBtn.FlatAppearance.BorderSize = 0;
+            this.StoneBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.StoneBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.StoneBtn.ForeColor = System.Drawing.Color.White;
+            this.StoneBtn.Image = global::ACNHPokerCore.Properties.Resources.stone;
+            this.StoneBtn.Location = new System.Drawing.Point(3, 275);
+            this.StoneBtn.Name = "StoneBtn";
+            this.StoneBtn.Size = new System.Drawing.Size(60, 60);
+            this.StoneBtn.TabIndex = 227;
+            this.StoneBtn.Tag = "Other";
+            this.StoneBtn.UseVisualStyleBackColor = false;
+            this.StoneBtn.Click += new System.EventHandler(this.StoneBtn_Click);
+            // 
+            // ElevationLabel
+            // 
+            this.ElevationLabel.AutoSize = true;
+            this.ElevationLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ElevationLabel.ForeColor = System.Drawing.Color.White;
+            this.ElevationLabel.Location = new System.Drawing.Point(67, 1);
+            this.ElevationLabel.Name = "ElevationLabel";
+            this.ElevationLabel.Size = new System.Drawing.Size(62, 14);
+            this.ElevationLabel.TabIndex = 239;
+            this.ElevationLabel.Text = "Elevation :";
+            this.ElevationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Elevation2Label
+            // 
+            this.Elevation2Label.AutoSize = true;
+            this.Elevation2Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Elevation2Label.ForeColor = System.Drawing.Color.White;
+            this.Elevation2Label.Location = new System.Drawing.Point(126, 17);
+            this.Elevation2Label.Name = "Elevation2Label";
+            this.Elevation2Label.Size = new System.Drawing.Size(13, 14);
+            this.Elevation2Label.TabIndex = 241;
+            this.Elevation2Label.Text = "2";
+            this.Elevation2Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Elevation1Label
+            // 
+            this.Elevation1Label.AutoSize = true;
+            this.Elevation1Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Elevation1Label.ForeColor = System.Drawing.Color.White;
+            this.Elevation1Label.Location = new System.Drawing.Point(126, 32);
+            this.Elevation1Label.Name = "Elevation1Label";
+            this.Elevation1Label.Size = new System.Drawing.Size(13, 14);
+            this.Elevation1Label.TabIndex = 240;
+            this.Elevation1Label.Text = "1";
+            this.Elevation1Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ElevationBar
+            // 
+            this.ElevationBar.LargeChange = 1;
+            this.ElevationBar.Location = new System.Drawing.Point(99, 10);
+            this.ElevationBar.Maximum = 2;
+            this.ElevationBar.Name = "ElevationBar";
+            this.ElevationBar.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.ElevationBar.Size = new System.Drawing.Size(45, 57);
+            this.ElevationBar.TabIndex = 1;
+            this.ElevationBar.Value = 1;
+            this.ElevationBar.ValueChanged += new System.EventHandler(this.ElevationBar_ValueChanged);
+            // 
+            // CliffBtn
+            // 
+            this.CliffBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.CliffBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.CliffBtn.FlatAppearance.BorderSize = 0;
+            this.CliffBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CliffBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CliffBtn.ForeColor = System.Drawing.Color.White;
+            this.CliffBtn.Image = global::ACNHPokerCore.Properties.Resources.cliff;
+            this.CliffBtn.Location = new System.Drawing.Point(3, 1);
+            this.CliffBtn.Name = "CliffBtn";
+            this.CliffBtn.Size = new System.Drawing.Size(60, 60);
+            this.CliffBtn.TabIndex = 224;
+            this.CliffBtn.Tag = "Other";
+            this.CliffBtn.UseVisualStyleBackColor = false;
+            this.CliffBtn.Click += new System.EventHandler(this.CliffBtn_Click);
+            // 
+            // CornerBtn
+            // 
+            this.CornerBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.CornerBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.CornerBtn.FlatAppearance.BorderSize = 0;
+            this.CornerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CornerBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CornerBtn.ForeColor = System.Drawing.Color.White;
+            this.CornerBtn.Image = global::ACNHPokerCore.Properties.Resources.corner;
+            this.CornerBtn.Location = new System.Drawing.Point(163, 1);
+            this.CornerBtn.Name = "CornerBtn";
+            this.CornerBtn.Size = new System.Drawing.Size(60, 60);
+            this.CornerBtn.TabIndex = 235;
+            this.CornerBtn.Tag = "Other";
+            this.CornerBtn.UseVisualStyleBackColor = false;
+            this.CornerBtn.Click += new System.EventHandler(this.CornerBtn_Click);
+            // 
+            // RiverBtn
+            // 
+            this.RiverBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.RiverBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverBtn.FlatAppearance.BorderSize = 0;
+            this.RiverBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RiverBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.RiverBtn.ForeColor = System.Drawing.Color.White;
+            this.RiverBtn.Image = global::ACNHPokerCore.Properties.Resources.river;
+            this.RiverBtn.Location = new System.Drawing.Point(3, 67);
+            this.RiverBtn.Name = "RiverBtn";
+            this.RiverBtn.Size = new System.Drawing.Size(60, 60);
+            this.RiverBtn.TabIndex = 225;
+            this.RiverBtn.Tag = "Other";
+            this.RiverBtn.UseVisualStyleBackColor = false;
+            this.RiverBtn.Click += new System.EventHandler(this.RiverBtn_Click);
+            // 
+            // DirtBtn
+            // 
+            this.DirtBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.DirtBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.DirtBtn.FlatAppearance.BorderSize = 0;
+            this.DirtBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DirtBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DirtBtn.ForeColor = System.Drawing.Color.White;
+            this.DirtBtn.Image = global::ACNHPokerCore.Properties.Resources.dirt;
+            this.DirtBtn.Location = new System.Drawing.Point(3, 143);
+            this.DirtBtn.Name = "DirtBtn";
+            this.DirtBtn.Size = new System.Drawing.Size(60, 60);
+            this.DirtBtn.TabIndex = 226;
+            this.DirtBtn.Tag = "Other";
+            this.DirtBtn.UseVisualStyleBackColor = false;
+            this.DirtBtn.Click += new System.EventHandler(this.DirtBtn_Click);
+            // 
+            // WoodBtn
+            // 
+            this.WoodBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.WoodBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.WoodBtn.FlatAppearance.BorderSize = 0;
+            this.WoodBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WoodBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.WoodBtn.ForeColor = System.Drawing.Color.White;
+            this.WoodBtn.Image = global::ACNHPokerCore.Properties.Resources.wood;
+            this.WoodBtn.Location = new System.Drawing.Point(69, 209);
+            this.WoodBtn.Name = "WoodBtn";
+            this.WoodBtn.Size = new System.Drawing.Size(60, 60);
+            this.WoodBtn.TabIndex = 233;
+            this.WoodBtn.Tag = "Other";
+            this.WoodBtn.UseVisualStyleBackColor = false;
+            this.WoodBtn.Click += new System.EventHandler(this.WoodBtn_Click);
+            // 
+            // TileBtn
+            // 
+            this.TileBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.TileBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.TileBtn.FlatAppearance.BorderSize = 0;
+            this.TileBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TileBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.TileBtn.ForeColor = System.Drawing.Color.White;
+            this.TileBtn.Image = global::ACNHPokerCore.Properties.Resources.tile;
+            this.TileBtn.Location = new System.Drawing.Point(3, 209);
+            this.TileBtn.Name = "TileBtn";
+            this.TileBtn.Size = new System.Drawing.Size(60, 60);
+            this.TileBtn.TabIndex = 232;
+            this.TileBtn.Tag = "Other";
+            this.TileBtn.UseVisualStyleBackColor = false;
+            this.TileBtn.Click += new System.EventHandler(this.TileBtn_Click);
+            // 
+            // BrickBtn
+            // 
+            this.BrickBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.BrickBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.BrickBtn.FlatAppearance.BorderSize = 0;
+            this.BrickBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BrickBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BrickBtn.ForeColor = System.Drawing.Color.White;
+            this.BrickBtn.Image = global::ACNHPokerCore.Properties.Resources.brick;
+            this.BrickBtn.Location = new System.Drawing.Point(135, 209);
+            this.BrickBtn.Name = "BrickBtn";
+            this.BrickBtn.Size = new System.Drawing.Size(60, 60);
+            this.BrickBtn.TabIndex = 228;
+            this.BrickBtn.Tag = "Other";
+            this.BrickBtn.UseVisualStyleBackColor = false;
+            this.BrickBtn.Click += new System.EventHandler(this.BrickBtn_Click);
+            // 
+            // SandBtn
+            // 
+            this.SandBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.SandBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.SandBtn.FlatAppearance.BorderSize = 0;
+            this.SandBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SandBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SandBtn.ForeColor = System.Drawing.Color.White;
+            this.SandBtn.Image = global::ACNHPokerCore.Properties.Resources.sand;
+            this.SandBtn.Location = new System.Drawing.Point(135, 143);
+            this.SandBtn.Name = "SandBtn";
+            this.SandBtn.Size = new System.Drawing.Size(60, 60);
+            this.SandBtn.TabIndex = 231;
+            this.SandBtn.Tag = "Other";
+            this.SandBtn.UseVisualStyleBackColor = false;
+            this.SandBtn.Click += new System.EventHandler(this.SandBtn_Click);
+            // 
+            // DarkDirtBtn
+            // 
+            this.DarkDirtBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.DarkDirtBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.DarkDirtBtn.FlatAppearance.BorderSize = 0;
+            this.DarkDirtBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DarkDirtBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DarkDirtBtn.ForeColor = System.Drawing.Color.White;
+            this.DarkDirtBtn.Image = global::ACNHPokerCore.Properties.Resources.darksoil;
+            this.DarkDirtBtn.Location = new System.Drawing.Point(69, 143);
+            this.DarkDirtBtn.Name = "DarkDirtBtn";
+            this.DarkDirtBtn.Size = new System.Drawing.Size(60, 60);
+            this.DarkDirtBtn.TabIndex = 229;
+            this.DarkDirtBtn.Tag = "Other";
+            this.DarkDirtBtn.UseVisualStyleBackColor = false;
+            this.DarkDirtBtn.Click += new System.EventHandler(this.DarkDirtBtn_Click);
+            // 
             // ManualButtonPanel
             // 
             this.ManualButtonPanel.Controls.Add(this.RoadDropdownBox);
@@ -517,402 +815,6 @@
             this.ManualCliffModeButton.Tag = "Other";
             this.ManualCliffModeButton.UseVisualStyleBackColor = false;
             this.ManualCliffModeButton.Click += new System.EventHandler(this.ManualCliffModeButton_Click);
-            // 
-            // ManualRiverPanel
-            // 
-            this.ManualRiverPanel.Controls.Add(this.ManualRiverElevation3Label);
-            this.ManualRiverPanel.Controls.Add(this.ManualRiverElevation2Label);
-            this.ManualRiverPanel.Controls.Add(this.ManualRiverElevation1Label);
-            this.ManualRiverPanel.Controls.Add(this.ManualRiverElevation0Label);
-            this.ManualRiverPanel.Controls.Add(this.ManualRiverElevationLabel);
-            this.ManualRiverPanel.Controls.Add(this.ManualRiverElevationBar);
-            this.ManualRiverPanel.Controls.Add(this.RotateRiverButton);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton8A);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton0A);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton3B);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton7A);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton3A);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton3C);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton6B);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton2C);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton4A);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton6A);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton2B);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton1A);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton4B);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton5B);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton2A);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton4C);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton5A);
-            this.ManualRiverPanel.Location = new System.Drawing.Point(0, 44);
-            this.ManualRiverPanel.Name = "ManualRiverPanel";
-            this.ManualRiverPanel.Size = new System.Drawing.Size(225, 297);
-            this.ManualRiverPanel.TabIndex = 2;
-            // 
-            // ManualRiverElevation0Label
-            // 
-            this.ManualRiverElevation0Label.AutoSize = true;
-            this.ManualRiverElevation0Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ManualRiverElevation0Label.ForeColor = System.Drawing.Color.White;
-            this.ManualRiverElevation0Label.Location = new System.Drawing.Point(185, 118);
-            this.ManualRiverElevation0Label.Name = "ManualRiverElevation0Label";
-            this.ManualRiverElevation0Label.Size = new System.Drawing.Size(13, 14);
-            this.ManualRiverElevation0Label.TabIndex = 295;
-            this.ManualRiverElevation0Label.Text = "0";
-            this.ManualRiverElevation0Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ManualRiverElevationLabel
-            // 
-            this.ManualRiverElevationLabel.AutoSize = true;
-            this.ManualRiverElevationLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ManualRiverElevationLabel.ForeColor = System.Drawing.Color.White;
-            this.ManualRiverElevationLabel.Location = new System.Drawing.Point(126, 55);
-            this.ManualRiverElevationLabel.Name = "ManualRiverElevationLabel";
-            this.ManualRiverElevationLabel.Size = new System.Drawing.Size(62, 14);
-            this.ManualRiverElevationLabel.TabIndex = 292;
-            this.ManualRiverElevationLabel.Text = "Elevation :";
-            this.ManualRiverElevationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ManualRiverElevation2Label
-            // 
-            this.ManualRiverElevation2Label.AutoSize = true;
-            this.ManualRiverElevation2Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ManualRiverElevation2Label.ForeColor = System.Drawing.Color.White;
-            this.ManualRiverElevation2Label.Location = new System.Drawing.Point(185, 86);
-            this.ManualRiverElevation2Label.Name = "ManualRiverElevation2Label";
-            this.ManualRiverElevation2Label.Size = new System.Drawing.Size(13, 14);
-            this.ManualRiverElevation2Label.TabIndex = 294;
-            this.ManualRiverElevation2Label.Text = "2";
-            this.ManualRiverElevation2Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ManualRiverElevation1Label
-            // 
-            this.ManualRiverElevation1Label.AutoSize = true;
-            this.ManualRiverElevation1Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ManualRiverElevation1Label.ForeColor = System.Drawing.Color.White;
-            this.ManualRiverElevation1Label.Location = new System.Drawing.Point(185, 102);
-            this.ManualRiverElevation1Label.Name = "ManualRiverElevation1Label";
-            this.ManualRiverElevation1Label.Size = new System.Drawing.Size(13, 14);
-            this.ManualRiverElevation1Label.TabIndex = 293;
-            this.ManualRiverElevation1Label.Text = "1";
-            this.ManualRiverElevation1Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ManualRiverElevationBar
-            // 
-            this.ManualRiverElevationBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.ManualRiverElevationBar.LargeChange = 1;
-            this.ManualRiverElevationBar.Location = new System.Drawing.Point(158, 64);
-            this.ManualRiverElevationBar.Maximum = 3;
-            this.ManualRiverElevationBar.Name = "ManualRiverElevationBar";
-            this.ManualRiverElevationBar.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.ManualRiverElevationBar.Size = new System.Drawing.Size(45, 75);
-            this.ManualRiverElevationBar.TabIndex = 291;
-            this.ManualRiverElevationBar.ValueChanged += new System.EventHandler(this.ManualRiverElevationBar_ValueChanged);
-            // 
-            // RotateRiverButton
-            // 
-            this.RotateRiverButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.RotateRiverButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RotateRiverButton.FlatAppearance.BorderSize = 0;
-            this.RotateRiverButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RotateRiverButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RotateRiverButton.ForeColor = System.Drawing.Color.White;
-            this.RotateRiverButton.Location = new System.Drawing.Point(167, 3);
-            this.RotateRiverButton.Name = "RotateRiverButton";
-            this.RotateRiverButton.Size = new System.Drawing.Size(36, 36);
-            this.RotateRiverButton.TabIndex = 290;
-            this.RotateRiverButton.Tag = "";
-            this.RotateRiverButton.UseVisualStyleBackColor = false;
-            this.RotateRiverButton.Click += new System.EventHandler(this.RotateRiverButton_Click);
-            // 
-            // RiverButton8A
-            // 
-            this.RiverButton8A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton8A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RiverButton8A.FlatAppearance.BorderSize = 0;
-            this.RiverButton8A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton8A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton8A.ForeColor = System.Drawing.Color.White;
-            this.RiverButton8A.Location = new System.Drawing.Point(44, 249);
-            this.RiverButton8A.Name = "RiverButton8A";
-            this.RiverButton8A.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton8A.TabIndex = 289;
-            this.RiverButton8A.Tag = "8A";
-            this.ButtonToolTip.SetToolTip(this.RiverButton8A, "8A");
-            this.RiverButton8A.UseVisualStyleBackColor = false;
-            this.RiverButton8A.Click += new System.EventHandler(this.ManualRiverButton_Click);
-            // 
-            // RiverButton0A
-            // 
-            this.RiverButton0A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton0A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RiverButton0A.FlatAppearance.BorderSize = 0;
-            this.RiverButton0A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton0A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton0A.ForeColor = System.Drawing.Color.White;
-            this.RiverButton0A.Location = new System.Drawing.Point(3, 3);
-            this.RiverButton0A.Name = "RiverButton0A";
-            this.RiverButton0A.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton0A.TabIndex = 273;
-            this.RiverButton0A.Tag = "0A";
-            this.ButtonToolTip.SetToolTip(this.RiverButton0A, "0A");
-            this.RiverButton0A.UseVisualStyleBackColor = false;
-            this.RiverButton0A.Click += new System.EventHandler(this.ManualRiverButton_Click);
-            // 
-            // RiverButton3B
-            // 
-            this.RiverButton3B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton3B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RiverButton3B.FlatAppearance.BorderSize = 0;
-            this.RiverButton3B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton3B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton3B.ForeColor = System.Drawing.Color.White;
-            this.RiverButton3B.Location = new System.Drawing.Point(44, 126);
-            this.RiverButton3B.Name = "RiverButton3B";
-            this.RiverButton3B.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton3B.TabIndex = 279;
-            this.RiverButton3B.Tag = "3B";
-            this.ButtonToolTip.SetToolTip(this.RiverButton3B, "3B");
-            this.RiverButton3B.UseVisualStyleBackColor = false;
-            this.RiverButton3B.Click += new System.EventHandler(this.ManualRiverButton_Click);
-            // 
-            // RiverButton7A
-            // 
-            this.RiverButton7A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton7A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RiverButton7A.FlatAppearance.BorderSize = 0;
-            this.RiverButton7A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton7A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton7A.ForeColor = System.Drawing.Color.White;
-            this.RiverButton7A.Location = new System.Drawing.Point(3, 249);
-            this.RiverButton7A.Name = "RiverButton7A";
-            this.RiverButton7A.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton7A.TabIndex = 288;
-            this.RiverButton7A.Tag = "7A";
-            this.ButtonToolTip.SetToolTip(this.RiverButton7A, "7A");
-            this.RiverButton7A.UseVisualStyleBackColor = false;
-            this.RiverButton7A.Click += new System.EventHandler(this.ManualRiverButton_Click);
-            // 
-            // RiverButton3A
-            // 
-            this.RiverButton3A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton3A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RiverButton3A.FlatAppearance.BorderSize = 0;
-            this.RiverButton3A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton3A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton3A.ForeColor = System.Drawing.Color.White;
-            this.RiverButton3A.Location = new System.Drawing.Point(3, 126);
-            this.RiverButton3A.Name = "RiverButton3A";
-            this.RiverButton3A.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton3A.TabIndex = 278;
-            this.RiverButton3A.Tag = "3A";
-            this.ButtonToolTip.SetToolTip(this.RiverButton3A, "3A");
-            this.RiverButton3A.UseVisualStyleBackColor = false;
-            this.RiverButton3A.Click += new System.EventHandler(this.ManualRiverButton_Click);
-            // 
-            // RiverButton3C
-            // 
-            this.RiverButton3C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton3C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RiverButton3C.FlatAppearance.BorderSize = 0;
-            this.RiverButton3C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton3C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton3C.ForeColor = System.Drawing.Color.White;
-            this.RiverButton3C.Location = new System.Drawing.Point(85, 126);
-            this.RiverButton3C.Name = "RiverButton3C";
-            this.RiverButton3C.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton3C.TabIndex = 280;
-            this.RiverButton3C.Tag = "3C";
-            this.ButtonToolTip.SetToolTip(this.RiverButton3C, "3C");
-            this.RiverButton3C.UseVisualStyleBackColor = false;
-            this.RiverButton3C.Click += new System.EventHandler(this.ManualRiverButton_Click);
-            // 
-            // RiverButton6B
-            // 
-            this.RiverButton6B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton6B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RiverButton6B.FlatAppearance.BorderSize = 0;
-            this.RiverButton6B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton6B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton6B.ForeColor = System.Drawing.Color.White;
-            this.RiverButton6B.Location = new System.Drawing.Point(126, 208);
-            this.RiverButton6B.Name = "RiverButton6B";
-            this.RiverButton6B.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton6B.TabIndex = 287;
-            this.RiverButton6B.Tag = "6B";
-            this.ButtonToolTip.SetToolTip(this.RiverButton6B, "6B");
-            this.RiverButton6B.UseVisualStyleBackColor = false;
-            this.RiverButton6B.Click += new System.EventHandler(this.ManualRiverButton_Click);
-            // 
-            // RiverButton2C
-            // 
-            this.RiverButton2C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton2C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RiverButton2C.FlatAppearance.BorderSize = 0;
-            this.RiverButton2C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton2C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton2C.ForeColor = System.Drawing.Color.White;
-            this.RiverButton2C.Location = new System.Drawing.Point(85, 85);
-            this.RiverButton2C.Name = "RiverButton2C";
-            this.RiverButton2C.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton2C.TabIndex = 277;
-            this.RiverButton2C.Tag = "2C";
-            this.ButtonToolTip.SetToolTip(this.RiverButton2C, "2C");
-            this.RiverButton2C.UseVisualStyleBackColor = false;
-            this.RiverButton2C.Click += new System.EventHandler(this.ManualRiverButton_Click);
-            // 
-            // RiverButton4A
-            // 
-            this.RiverButton4A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton4A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RiverButton4A.FlatAppearance.BorderSize = 0;
-            this.RiverButton4A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton4A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton4A.ForeColor = System.Drawing.Color.White;
-            this.RiverButton4A.Location = new System.Drawing.Point(3, 167);
-            this.RiverButton4A.Name = "RiverButton4A";
-            this.RiverButton4A.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton4A.TabIndex = 281;
-            this.RiverButton4A.Tag = "4A";
-            this.ButtonToolTip.SetToolTip(this.RiverButton4A, "4A");
-            this.RiverButton4A.UseVisualStyleBackColor = false;
-            this.RiverButton4A.Click += new System.EventHandler(this.ManualRiverButton_Click);
-            // 
-            // RiverButton6A
-            // 
-            this.RiverButton6A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton6A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RiverButton6A.FlatAppearance.BorderSize = 0;
-            this.RiverButton6A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton6A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton6A.ForeColor = System.Drawing.Color.White;
-            this.RiverButton6A.Location = new System.Drawing.Point(85, 208);
-            this.RiverButton6A.Name = "RiverButton6A";
-            this.RiverButton6A.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton6A.TabIndex = 286;
-            this.RiverButton6A.Tag = "6A";
-            this.ButtonToolTip.SetToolTip(this.RiverButton6A, "6A");
-            this.RiverButton6A.UseVisualStyleBackColor = false;
-            this.RiverButton6A.Click += new System.EventHandler(this.ManualRiverButton_Click);
-            // 
-            // RiverButton2B
-            // 
-            this.RiverButton2B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton2B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RiverButton2B.FlatAppearance.BorderSize = 0;
-            this.RiverButton2B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton2B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton2B.ForeColor = System.Drawing.Color.White;
-            this.RiverButton2B.Location = new System.Drawing.Point(44, 85);
-            this.RiverButton2B.Name = "RiverButton2B";
-            this.RiverButton2B.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton2B.TabIndex = 276;
-            this.RiverButton2B.Tag = "2B";
-            this.ButtonToolTip.SetToolTip(this.RiverButton2B, "2B");
-            this.RiverButton2B.UseVisualStyleBackColor = false;
-            this.RiverButton2B.Click += new System.EventHandler(this.ManualRiverButton_Click);
-            // 
-            // RiverButton1A
-            // 
-            this.RiverButton1A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton1A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RiverButton1A.FlatAppearance.BorderSize = 0;
-            this.RiverButton1A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton1A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton1A.ForeColor = System.Drawing.Color.White;
-            this.RiverButton1A.Location = new System.Drawing.Point(3, 44);
-            this.RiverButton1A.Name = "RiverButton1A";
-            this.RiverButton1A.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton1A.TabIndex = 274;
-            this.RiverButton1A.Tag = "1A";
-            this.ButtonToolTip.SetToolTip(this.RiverButton1A, "1A");
-            this.RiverButton1A.UseVisualStyleBackColor = false;
-            this.RiverButton1A.Click += new System.EventHandler(this.ManualRiverButton_Click);
-            // 
-            // RiverButton4B
-            // 
-            this.RiverButton4B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton4B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RiverButton4B.FlatAppearance.BorderSize = 0;
-            this.RiverButton4B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton4B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton4B.ForeColor = System.Drawing.Color.White;
-            this.RiverButton4B.Location = new System.Drawing.Point(44, 167);
-            this.RiverButton4B.Name = "RiverButton4B";
-            this.RiverButton4B.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton4B.TabIndex = 282;
-            this.RiverButton4B.Tag = "4B";
-            this.ButtonToolTip.SetToolTip(this.RiverButton4B, "4B");
-            this.RiverButton4B.UseVisualStyleBackColor = false;
-            this.RiverButton4B.Click += new System.EventHandler(this.ManualRiverButton_Click);
-            // 
-            // RiverButton5B
-            // 
-            this.RiverButton5B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton5B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RiverButton5B.FlatAppearance.BorderSize = 0;
-            this.RiverButton5B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton5B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton5B.ForeColor = System.Drawing.Color.White;
-            this.RiverButton5B.Location = new System.Drawing.Point(44, 208);
-            this.RiverButton5B.Name = "RiverButton5B";
-            this.RiverButton5B.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton5B.TabIndex = 285;
-            this.RiverButton5B.Tag = "5B";
-            this.ButtonToolTip.SetToolTip(this.RiverButton5B, "5B");
-            this.RiverButton5B.UseVisualStyleBackColor = false;
-            this.RiverButton5B.Click += new System.EventHandler(this.ManualRiverButton_Click);
-            // 
-            // RiverButton2A
-            // 
-            this.RiverButton2A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton2A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RiverButton2A.FlatAppearance.BorderSize = 0;
-            this.RiverButton2A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton2A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton2A.ForeColor = System.Drawing.Color.White;
-            this.RiverButton2A.Location = new System.Drawing.Point(3, 85);
-            this.RiverButton2A.Name = "RiverButton2A";
-            this.RiverButton2A.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton2A.TabIndex = 275;
-            this.RiverButton2A.Tag = "2A";
-            this.ButtonToolTip.SetToolTip(this.RiverButton2A, "2A");
-            this.RiverButton2A.UseVisualStyleBackColor = false;
-            this.RiverButton2A.Click += new System.EventHandler(this.ManualRiverButton_Click);
-            // 
-            // RiverButton4C
-            // 
-            this.RiverButton4C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton4C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RiverButton4C.FlatAppearance.BorderSize = 0;
-            this.RiverButton4C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton4C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton4C.ForeColor = System.Drawing.Color.White;
-            this.RiverButton4C.Location = new System.Drawing.Point(85, 167);
-            this.RiverButton4C.Name = "RiverButton4C";
-            this.RiverButton4C.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton4C.TabIndex = 283;
-            this.RiverButton4C.Tag = "4C";
-            this.ButtonToolTip.SetToolTip(this.RiverButton4C, "4C");
-            this.RiverButton4C.UseVisualStyleBackColor = false;
-            this.RiverButton4C.Click += new System.EventHandler(this.ManualRiverButton_Click);
-            // 
-            // RiverButton5A
-            // 
-            this.RiverButton5A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton5A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RiverButton5A.FlatAppearance.BorderSize = 0;
-            this.RiverButton5A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton5A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton5A.ForeColor = System.Drawing.Color.White;
-            this.RiverButton5A.Location = new System.Drawing.Point(3, 208);
-            this.RiverButton5A.Name = "RiverButton5A";
-            this.RiverButton5A.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton5A.TabIndex = 284;
-            this.RiverButton5A.Tag = "5A";
-            this.ButtonToolTip.SetToolTip(this.RiverButton5A, "5A");
-            this.RiverButton5A.UseVisualStyleBackColor = false;
-            this.RiverButton5A.Click += new System.EventHandler(this.ManualRiverButton_Click);
             // 
             // ManualRoadPanel
             // 
@@ -1695,275 +1597,413 @@
             this.CliffButton5A.UseVisualStyleBackColor = false;
             this.CliffButton5A.Click += new System.EventHandler(this.ManualCliffButton_Click);
             // 
-            // AutoButtonPanel
+            // ManualRiverPanel
             // 
-            this.AutoButtonPanel.Controls.Add(this.ArchBtn);
-            this.AutoButtonPanel.Controls.Add(this.Elevation0Label);
-            this.AutoButtonPanel.Controls.Add(this.StoneBtn);
-            this.AutoButtonPanel.Controls.Add(this.ElevationLabel);
-            this.AutoButtonPanel.Controls.Add(this.Elevation2Label);
-            this.AutoButtonPanel.Controls.Add(this.Elevation1Label);
-            this.AutoButtonPanel.Controls.Add(this.ElevationBar);
-            this.AutoButtonPanel.Controls.Add(this.CliffBtn);
-            this.AutoButtonPanel.Controls.Add(this.CornerBtn);
-            this.AutoButtonPanel.Controls.Add(this.RiverBtn);
-            this.AutoButtonPanel.Controls.Add(this.DirtBtn);
-            this.AutoButtonPanel.Controls.Add(this.WoodBtn);
-            this.AutoButtonPanel.Controls.Add(this.TileBtn);
-            this.AutoButtonPanel.Controls.Add(this.BrickBtn);
-            this.AutoButtonPanel.Controls.Add(this.SandBtn);
-            this.AutoButtonPanel.Controls.Add(this.DarkDirtBtn);
-            this.AutoButtonPanel.Location = new System.Drawing.Point(9, 231);
-            this.AutoButtonPanel.Name = "AutoButtonPanel";
-            this.AutoButtonPanel.Size = new System.Drawing.Size(225, 341);
-            this.AutoButtonPanel.TabIndex = 237;
+            this.ManualRiverPanel.Controls.Add(this.ManualRiverElevation3Label);
+            this.ManualRiverPanel.Controls.Add(this.ManualRiverElevation2Label);
+            this.ManualRiverPanel.Controls.Add(this.ManualRiverElevation1Label);
+            this.ManualRiverPanel.Controls.Add(this.ManualRiverElevation0Label);
+            this.ManualRiverPanel.Controls.Add(this.ManualRiverElevationLabel);
+            this.ManualRiverPanel.Controls.Add(this.ManualRiverElevationBar);
+            this.ManualRiverPanel.Controls.Add(this.RotateRiverButton);
+            this.ManualRiverPanel.Controls.Add(this.RiverButton8A);
+            this.ManualRiverPanel.Controls.Add(this.RiverButton0A);
+            this.ManualRiverPanel.Controls.Add(this.RiverButton3B);
+            this.ManualRiverPanel.Controls.Add(this.RiverButton7A);
+            this.ManualRiverPanel.Controls.Add(this.RiverButton3A);
+            this.ManualRiverPanel.Controls.Add(this.RiverButton3C);
+            this.ManualRiverPanel.Controls.Add(this.RiverButton6B);
+            this.ManualRiverPanel.Controls.Add(this.RiverButton2C);
+            this.ManualRiverPanel.Controls.Add(this.RiverButton4A);
+            this.ManualRiverPanel.Controls.Add(this.RiverButton6A);
+            this.ManualRiverPanel.Controls.Add(this.RiverButton2B);
+            this.ManualRiverPanel.Controls.Add(this.RiverButton1A);
+            this.ManualRiverPanel.Controls.Add(this.RiverButton4B);
+            this.ManualRiverPanel.Controls.Add(this.RiverButton5B);
+            this.ManualRiverPanel.Controls.Add(this.RiverButton2A);
+            this.ManualRiverPanel.Controls.Add(this.RiverButton4C);
+            this.ManualRiverPanel.Controls.Add(this.RiverButton5A);
+            this.ManualRiverPanel.Location = new System.Drawing.Point(0, 44);
+            this.ManualRiverPanel.Name = "ManualRiverPanel";
+            this.ManualRiverPanel.Size = new System.Drawing.Size(225, 297);
+            this.ManualRiverPanel.TabIndex = 2;
             // 
-            // ArchBtn
+            // ManualRiverElevation3Label
             // 
-            this.ArchBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.ArchBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ArchBtn.FlatAppearance.BorderSize = 0;
-            this.ArchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ArchBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ArchBtn.ForeColor = System.Drawing.Color.White;
-            this.ArchBtn.Image = global::ACNHPokerCore.Properties.Resources.pattern;
-            this.ArchBtn.Location = new System.Drawing.Point(69, 275);
-            this.ArchBtn.Name = "ArchBtn";
-            this.ArchBtn.Size = new System.Drawing.Size(60, 60);
-            this.ArchBtn.TabIndex = 230;
-            this.ArchBtn.Tag = "Other";
-            this.ArchBtn.UseVisualStyleBackColor = false;
-            this.ArchBtn.Click += new System.EventHandler(this.ArchBtn_Click);
+            this.ManualRiverElevation3Label.AutoSize = true;
+            this.ManualRiverElevation3Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ManualRiverElevation3Label.ForeColor = System.Drawing.Color.White;
+            this.ManualRiverElevation3Label.Location = new System.Drawing.Point(185, 70);
+            this.ManualRiverElevation3Label.Name = "ManualRiverElevation3Label";
+            this.ManualRiverElevation3Label.Size = new System.Drawing.Size(13, 14);
+            this.ManualRiverElevation3Label.TabIndex = 296;
+            this.ManualRiverElevation3Label.Text = "3";
+            this.ManualRiverElevation3Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Elevation0Label
+            // ManualRiverElevation2Label
             // 
-            this.Elevation0Label.AutoSize = true;
-            this.Elevation0Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Elevation0Label.ForeColor = System.Drawing.Color.White;
-            this.Elevation0Label.Location = new System.Drawing.Point(126, 47);
-            this.Elevation0Label.Name = "Elevation0Label";
-            this.Elevation0Label.Size = new System.Drawing.Size(13, 14);
-            this.Elevation0Label.TabIndex = 242;
-            this.Elevation0Label.Text = "0";
-            this.Elevation0Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ManualRiverElevation2Label.AutoSize = true;
+            this.ManualRiverElevation2Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ManualRiverElevation2Label.ForeColor = System.Drawing.Color.White;
+            this.ManualRiverElevation2Label.Location = new System.Drawing.Point(185, 86);
+            this.ManualRiverElevation2Label.Name = "ManualRiverElevation2Label";
+            this.ManualRiverElevation2Label.Size = new System.Drawing.Size(13, 14);
+            this.ManualRiverElevation2Label.TabIndex = 294;
+            this.ManualRiverElevation2Label.Text = "2";
+            this.ManualRiverElevation2Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // StoneBtn
+            // ManualRiverElevation1Label
             // 
-            this.StoneBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.StoneBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.StoneBtn.FlatAppearance.BorderSize = 0;
-            this.StoneBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.StoneBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.StoneBtn.ForeColor = System.Drawing.Color.White;
-            this.StoneBtn.Image = global::ACNHPokerCore.Properties.Resources.stone;
-            this.StoneBtn.Location = new System.Drawing.Point(3, 275);
-            this.StoneBtn.Name = "StoneBtn";
-            this.StoneBtn.Size = new System.Drawing.Size(60, 60);
-            this.StoneBtn.TabIndex = 227;
-            this.StoneBtn.Tag = "Other";
-            this.StoneBtn.UseVisualStyleBackColor = false;
-            this.StoneBtn.Click += new System.EventHandler(this.StoneBtn_Click);
+            this.ManualRiverElevation1Label.AutoSize = true;
+            this.ManualRiverElevation1Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ManualRiverElevation1Label.ForeColor = System.Drawing.Color.White;
+            this.ManualRiverElevation1Label.Location = new System.Drawing.Point(185, 102);
+            this.ManualRiverElevation1Label.Name = "ManualRiverElevation1Label";
+            this.ManualRiverElevation1Label.Size = new System.Drawing.Size(13, 14);
+            this.ManualRiverElevation1Label.TabIndex = 293;
+            this.ManualRiverElevation1Label.Text = "1";
+            this.ManualRiverElevation1Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // ElevationLabel
+            // ManualRiverElevation0Label
             // 
-            this.ElevationLabel.AutoSize = true;
-            this.ElevationLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ElevationLabel.ForeColor = System.Drawing.Color.White;
-            this.ElevationLabel.Location = new System.Drawing.Point(67, 1);
-            this.ElevationLabel.Name = "ElevationLabel";
-            this.ElevationLabel.Size = new System.Drawing.Size(62, 14);
-            this.ElevationLabel.TabIndex = 239;
-            this.ElevationLabel.Text = "Elevation :";
-            this.ElevationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ManualRiverElevation0Label.AutoSize = true;
+            this.ManualRiverElevation0Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ManualRiverElevation0Label.ForeColor = System.Drawing.Color.White;
+            this.ManualRiverElevation0Label.Location = new System.Drawing.Point(185, 118);
+            this.ManualRiverElevation0Label.Name = "ManualRiverElevation0Label";
+            this.ManualRiverElevation0Label.Size = new System.Drawing.Size(13, 14);
+            this.ManualRiverElevation0Label.TabIndex = 295;
+            this.ManualRiverElevation0Label.Text = "0";
+            this.ManualRiverElevation0Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Elevation2Label
+            // ManualRiverElevationLabel
             // 
-            this.Elevation2Label.AutoSize = true;
-            this.Elevation2Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Elevation2Label.ForeColor = System.Drawing.Color.White;
-            this.Elevation2Label.Location = new System.Drawing.Point(126, 17);
-            this.Elevation2Label.Name = "Elevation2Label";
-            this.Elevation2Label.Size = new System.Drawing.Size(13, 14);
-            this.Elevation2Label.TabIndex = 241;
-            this.Elevation2Label.Text = "2";
-            this.Elevation2Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ManualRiverElevationLabel.AutoSize = true;
+            this.ManualRiverElevationLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ManualRiverElevationLabel.ForeColor = System.Drawing.Color.White;
+            this.ManualRiverElevationLabel.Location = new System.Drawing.Point(126, 55);
+            this.ManualRiverElevationLabel.Name = "ManualRiverElevationLabel";
+            this.ManualRiverElevationLabel.Size = new System.Drawing.Size(62, 14);
+            this.ManualRiverElevationLabel.TabIndex = 292;
+            this.ManualRiverElevationLabel.Text = "Elevation :";
+            this.ManualRiverElevationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Elevation1Label
+            // ManualRiverElevationBar
             // 
-            this.Elevation1Label.AutoSize = true;
-            this.Elevation1Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Elevation1Label.ForeColor = System.Drawing.Color.White;
-            this.Elevation1Label.Location = new System.Drawing.Point(126, 32);
-            this.Elevation1Label.Name = "Elevation1Label";
-            this.Elevation1Label.Size = new System.Drawing.Size(13, 14);
-            this.Elevation1Label.TabIndex = 240;
-            this.Elevation1Label.Text = "1";
-            this.Elevation1Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ManualRiverElevationBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            this.ManualRiverElevationBar.LargeChange = 1;
+            this.ManualRiverElevationBar.Location = new System.Drawing.Point(158, 64);
+            this.ManualRiverElevationBar.Maximum = 3;
+            this.ManualRiverElevationBar.Name = "ManualRiverElevationBar";
+            this.ManualRiverElevationBar.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.ManualRiverElevationBar.Size = new System.Drawing.Size(45, 75);
+            this.ManualRiverElevationBar.TabIndex = 291;
+            this.ManualRiverElevationBar.ValueChanged += new System.EventHandler(this.ManualRiverElevationBar_ValueChanged);
             // 
-            // ElevationBar
+            // RotateRiverButton
             // 
-            this.ElevationBar.LargeChange = 1;
-            this.ElevationBar.Location = new System.Drawing.Point(99, 10);
-            this.ElevationBar.Maximum = 2;
-            this.ElevationBar.Name = "ElevationBar";
-            this.ElevationBar.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.ElevationBar.Size = new System.Drawing.Size(45, 57);
-            this.ElevationBar.TabIndex = 1;
-            this.ElevationBar.Value = 1;
-            this.ElevationBar.ValueChanged += new System.EventHandler(this.ElevationBar_ValueChanged);
+            this.RotateRiverButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.RotateRiverButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RotateRiverButton.FlatAppearance.BorderSize = 0;
+            this.RotateRiverButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RotateRiverButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.RotateRiverButton.ForeColor = System.Drawing.Color.White;
+            this.RotateRiverButton.Location = new System.Drawing.Point(167, 3);
+            this.RotateRiverButton.Name = "RotateRiverButton";
+            this.RotateRiverButton.Size = new System.Drawing.Size(36, 36);
+            this.RotateRiverButton.TabIndex = 290;
+            this.RotateRiverButton.Tag = "";
+            this.RotateRiverButton.UseVisualStyleBackColor = false;
+            this.RotateRiverButton.Click += new System.EventHandler(this.RotateRiverButton_Click);
             // 
-            // CliffBtn
+            // RiverButton8A
             // 
-            this.CliffBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.CliffBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.CliffBtn.FlatAppearance.BorderSize = 0;
-            this.CliffBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CliffBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CliffBtn.ForeColor = System.Drawing.Color.White;
-            this.CliffBtn.Image = global::ACNHPokerCore.Properties.Resources.cliff;
-            this.CliffBtn.Location = new System.Drawing.Point(3, 1);
-            this.CliffBtn.Name = "CliffBtn";
-            this.CliffBtn.Size = new System.Drawing.Size(60, 60);
-            this.CliffBtn.TabIndex = 224;
-            this.CliffBtn.Tag = "Other";
-            this.CliffBtn.UseVisualStyleBackColor = false;
-            this.CliffBtn.Click += new System.EventHandler(this.CliffBtn_Click);
+            this.RiverButton8A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
+            this.RiverButton8A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton8A.FlatAppearance.BorderSize = 0;
+            this.RiverButton8A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RiverButton8A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.RiverButton8A.ForeColor = System.Drawing.Color.White;
+            this.RiverButton8A.Location = new System.Drawing.Point(44, 249);
+            this.RiverButton8A.Name = "RiverButton8A";
+            this.RiverButton8A.Size = new System.Drawing.Size(36, 36);
+            this.RiverButton8A.TabIndex = 289;
+            this.RiverButton8A.Tag = "8A";
+            this.ButtonToolTip.SetToolTip(this.RiverButton8A, "8A");
+            this.RiverButton8A.UseVisualStyleBackColor = false;
+            this.RiverButton8A.Click += new System.EventHandler(this.ManualRiverButton_Click);
             // 
-            // CornerBtn
+            // RiverButton0A
             // 
-            this.CornerBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.CornerBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.CornerBtn.FlatAppearance.BorderSize = 0;
-            this.CornerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CornerBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CornerBtn.ForeColor = System.Drawing.Color.White;
-            this.CornerBtn.Image = global::ACNHPokerCore.Properties.Resources.corner;
-            this.CornerBtn.Location = new System.Drawing.Point(163, 1);
-            this.CornerBtn.Name = "CornerBtn";
-            this.CornerBtn.Size = new System.Drawing.Size(60, 60);
-            this.CornerBtn.TabIndex = 235;
-            this.CornerBtn.Tag = "Other";
-            this.CornerBtn.UseVisualStyleBackColor = false;
-            this.CornerBtn.Click += new System.EventHandler(this.CornerBtn_Click);
+            this.RiverButton0A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
+            this.RiverButton0A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton0A.FlatAppearance.BorderSize = 0;
+            this.RiverButton0A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RiverButton0A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.RiverButton0A.ForeColor = System.Drawing.Color.White;
+            this.RiverButton0A.Location = new System.Drawing.Point(3, 3);
+            this.RiverButton0A.Name = "RiverButton0A";
+            this.RiverButton0A.Size = new System.Drawing.Size(36, 36);
+            this.RiverButton0A.TabIndex = 273;
+            this.RiverButton0A.Tag = "0A";
+            this.ButtonToolTip.SetToolTip(this.RiverButton0A, "0A");
+            this.RiverButton0A.UseVisualStyleBackColor = false;
+            this.RiverButton0A.Click += new System.EventHandler(this.ManualRiverButton_Click);
             // 
-            // RiverBtn
+            // RiverButton3B
             // 
-            this.RiverBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.RiverBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RiverBtn.FlatAppearance.BorderSize = 0;
-            this.RiverBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverBtn.ForeColor = System.Drawing.Color.White;
-            this.RiverBtn.Image = global::ACNHPokerCore.Properties.Resources.river;
-            this.RiverBtn.Location = new System.Drawing.Point(3, 67);
-            this.RiverBtn.Name = "RiverBtn";
-            this.RiverBtn.Size = new System.Drawing.Size(60, 60);
-            this.RiverBtn.TabIndex = 225;
-            this.RiverBtn.Tag = "Other";
-            this.RiverBtn.UseVisualStyleBackColor = false;
-            this.RiverBtn.Click += new System.EventHandler(this.RiverBtn_Click);
+            this.RiverButton3B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
+            this.RiverButton3B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton3B.FlatAppearance.BorderSize = 0;
+            this.RiverButton3B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RiverButton3B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.RiverButton3B.ForeColor = System.Drawing.Color.White;
+            this.RiverButton3B.Location = new System.Drawing.Point(44, 126);
+            this.RiverButton3B.Name = "RiverButton3B";
+            this.RiverButton3B.Size = new System.Drawing.Size(36, 36);
+            this.RiverButton3B.TabIndex = 279;
+            this.RiverButton3B.Tag = "3B";
+            this.ButtonToolTip.SetToolTip(this.RiverButton3B, "3B");
+            this.RiverButton3B.UseVisualStyleBackColor = false;
+            this.RiverButton3B.Click += new System.EventHandler(this.ManualRiverButton_Click);
             // 
-            // DirtBtn
+            // RiverButton7A
             // 
-            this.DirtBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.DirtBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.DirtBtn.FlatAppearance.BorderSize = 0;
-            this.DirtBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DirtBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DirtBtn.ForeColor = System.Drawing.Color.White;
-            this.DirtBtn.Image = global::ACNHPokerCore.Properties.Resources.dirt;
-            this.DirtBtn.Location = new System.Drawing.Point(3, 143);
-            this.DirtBtn.Name = "DirtBtn";
-            this.DirtBtn.Size = new System.Drawing.Size(60, 60);
-            this.DirtBtn.TabIndex = 226;
-            this.DirtBtn.Tag = "Other";
-            this.DirtBtn.UseVisualStyleBackColor = false;
-            this.DirtBtn.Click += new System.EventHandler(this.DirtBtn_Click);
+            this.RiverButton7A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
+            this.RiverButton7A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton7A.FlatAppearance.BorderSize = 0;
+            this.RiverButton7A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RiverButton7A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.RiverButton7A.ForeColor = System.Drawing.Color.White;
+            this.RiverButton7A.Location = new System.Drawing.Point(3, 249);
+            this.RiverButton7A.Name = "RiverButton7A";
+            this.RiverButton7A.Size = new System.Drawing.Size(36, 36);
+            this.RiverButton7A.TabIndex = 288;
+            this.RiverButton7A.Tag = "7A";
+            this.ButtonToolTip.SetToolTip(this.RiverButton7A, "7A");
+            this.RiverButton7A.UseVisualStyleBackColor = false;
+            this.RiverButton7A.Click += new System.EventHandler(this.ManualRiverButton_Click);
             // 
-            // WoodBtn
+            // RiverButton3A
             // 
-            this.WoodBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.WoodBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.WoodBtn.FlatAppearance.BorderSize = 0;
-            this.WoodBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.WoodBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.WoodBtn.ForeColor = System.Drawing.Color.White;
-            this.WoodBtn.Image = global::ACNHPokerCore.Properties.Resources.wood;
-            this.WoodBtn.Location = new System.Drawing.Point(69, 209);
-            this.WoodBtn.Name = "WoodBtn";
-            this.WoodBtn.Size = new System.Drawing.Size(60, 60);
-            this.WoodBtn.TabIndex = 233;
-            this.WoodBtn.Tag = "Other";
-            this.WoodBtn.UseVisualStyleBackColor = false;
-            this.WoodBtn.Click += new System.EventHandler(this.WoodBtn_Click);
+            this.RiverButton3A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
+            this.RiverButton3A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton3A.FlatAppearance.BorderSize = 0;
+            this.RiverButton3A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RiverButton3A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.RiverButton3A.ForeColor = System.Drawing.Color.White;
+            this.RiverButton3A.Location = new System.Drawing.Point(3, 126);
+            this.RiverButton3A.Name = "RiverButton3A";
+            this.RiverButton3A.Size = new System.Drawing.Size(36, 36);
+            this.RiverButton3A.TabIndex = 278;
+            this.RiverButton3A.Tag = "3A";
+            this.ButtonToolTip.SetToolTip(this.RiverButton3A, "3A");
+            this.RiverButton3A.UseVisualStyleBackColor = false;
+            this.RiverButton3A.Click += new System.EventHandler(this.ManualRiverButton_Click);
             // 
-            // TileBtn
+            // RiverButton3C
             // 
-            this.TileBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.TileBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.TileBtn.FlatAppearance.BorderSize = 0;
-            this.TileBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.TileBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.TileBtn.ForeColor = System.Drawing.Color.White;
-            this.TileBtn.Image = global::ACNHPokerCore.Properties.Resources.tile;
-            this.TileBtn.Location = new System.Drawing.Point(3, 209);
-            this.TileBtn.Name = "TileBtn";
-            this.TileBtn.Size = new System.Drawing.Size(60, 60);
-            this.TileBtn.TabIndex = 232;
-            this.TileBtn.Tag = "Other";
-            this.TileBtn.UseVisualStyleBackColor = false;
-            this.TileBtn.Click += new System.EventHandler(this.TileBtn_Click);
+            this.RiverButton3C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
+            this.RiverButton3C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton3C.FlatAppearance.BorderSize = 0;
+            this.RiverButton3C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RiverButton3C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.RiverButton3C.ForeColor = System.Drawing.Color.White;
+            this.RiverButton3C.Location = new System.Drawing.Point(85, 126);
+            this.RiverButton3C.Name = "RiverButton3C";
+            this.RiverButton3C.Size = new System.Drawing.Size(36, 36);
+            this.RiverButton3C.TabIndex = 280;
+            this.RiverButton3C.Tag = "3C";
+            this.ButtonToolTip.SetToolTip(this.RiverButton3C, "3C");
+            this.RiverButton3C.UseVisualStyleBackColor = false;
+            this.RiverButton3C.Click += new System.EventHandler(this.ManualRiverButton_Click);
             // 
-            // BrickBtn
+            // RiverButton6B
             // 
-            this.BrickBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.BrickBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.BrickBtn.FlatAppearance.BorderSize = 0;
-            this.BrickBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BrickBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.BrickBtn.ForeColor = System.Drawing.Color.White;
-            this.BrickBtn.Image = global::ACNHPokerCore.Properties.Resources.brick;
-            this.BrickBtn.Location = new System.Drawing.Point(135, 209);
-            this.BrickBtn.Name = "BrickBtn";
-            this.BrickBtn.Size = new System.Drawing.Size(60, 60);
-            this.BrickBtn.TabIndex = 228;
-            this.BrickBtn.Tag = "Other";
-            this.BrickBtn.UseVisualStyleBackColor = false;
-            this.BrickBtn.Click += new System.EventHandler(this.BrickBtn_Click);
+            this.RiverButton6B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
+            this.RiverButton6B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton6B.FlatAppearance.BorderSize = 0;
+            this.RiverButton6B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RiverButton6B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.RiverButton6B.ForeColor = System.Drawing.Color.White;
+            this.RiverButton6B.Location = new System.Drawing.Point(126, 208);
+            this.RiverButton6B.Name = "RiverButton6B";
+            this.RiverButton6B.Size = new System.Drawing.Size(36, 36);
+            this.RiverButton6B.TabIndex = 287;
+            this.RiverButton6B.Tag = "6B";
+            this.ButtonToolTip.SetToolTip(this.RiverButton6B, "6B");
+            this.RiverButton6B.UseVisualStyleBackColor = false;
+            this.RiverButton6B.Click += new System.EventHandler(this.ManualRiverButton_Click);
             // 
-            // SandBtn
+            // RiverButton2C
             // 
-            this.SandBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.SandBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.SandBtn.FlatAppearance.BorderSize = 0;
-            this.SandBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SandBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SandBtn.ForeColor = System.Drawing.Color.White;
-            this.SandBtn.Image = global::ACNHPokerCore.Properties.Resources.sand;
-            this.SandBtn.Location = new System.Drawing.Point(135, 143);
-            this.SandBtn.Name = "SandBtn";
-            this.SandBtn.Size = new System.Drawing.Size(60, 60);
-            this.SandBtn.TabIndex = 231;
-            this.SandBtn.Tag = "Other";
-            this.SandBtn.UseVisualStyleBackColor = false;
-            this.SandBtn.Click += new System.EventHandler(this.SandBtn_Click);
+            this.RiverButton2C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
+            this.RiverButton2C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton2C.FlatAppearance.BorderSize = 0;
+            this.RiverButton2C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RiverButton2C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.RiverButton2C.ForeColor = System.Drawing.Color.White;
+            this.RiverButton2C.Location = new System.Drawing.Point(85, 85);
+            this.RiverButton2C.Name = "RiverButton2C";
+            this.RiverButton2C.Size = new System.Drawing.Size(36, 36);
+            this.RiverButton2C.TabIndex = 277;
+            this.RiverButton2C.Tag = "2C";
+            this.ButtonToolTip.SetToolTip(this.RiverButton2C, "2C");
+            this.RiverButton2C.UseVisualStyleBackColor = false;
+            this.RiverButton2C.Click += new System.EventHandler(this.ManualRiverButton_Click);
             // 
-            // DarkDirtBtn
+            // RiverButton4A
             // 
-            this.DarkDirtBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.DarkDirtBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.DarkDirtBtn.FlatAppearance.BorderSize = 0;
-            this.DarkDirtBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DarkDirtBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DarkDirtBtn.ForeColor = System.Drawing.Color.White;
-            this.DarkDirtBtn.Image = global::ACNHPokerCore.Properties.Resources.darksoil;
-            this.DarkDirtBtn.Location = new System.Drawing.Point(69, 143);
-            this.DarkDirtBtn.Name = "DarkDirtBtn";
-            this.DarkDirtBtn.Size = new System.Drawing.Size(60, 60);
-            this.DarkDirtBtn.TabIndex = 229;
-            this.DarkDirtBtn.Tag = "Other";
-            this.DarkDirtBtn.UseVisualStyleBackColor = false;
-            this.DarkDirtBtn.Click += new System.EventHandler(this.DarkDirtBtn_Click);
+            this.RiverButton4A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
+            this.RiverButton4A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton4A.FlatAppearance.BorderSize = 0;
+            this.RiverButton4A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RiverButton4A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.RiverButton4A.ForeColor = System.Drawing.Color.White;
+            this.RiverButton4A.Location = new System.Drawing.Point(3, 167);
+            this.RiverButton4A.Name = "RiverButton4A";
+            this.RiverButton4A.Size = new System.Drawing.Size(36, 36);
+            this.RiverButton4A.TabIndex = 281;
+            this.RiverButton4A.Tag = "4A";
+            this.ButtonToolTip.SetToolTip(this.RiverButton4A, "4A");
+            this.RiverButton4A.UseVisualStyleBackColor = false;
+            this.RiverButton4A.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            // 
+            // RiverButton6A
+            // 
+            this.RiverButton6A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
+            this.RiverButton6A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton6A.FlatAppearance.BorderSize = 0;
+            this.RiverButton6A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RiverButton6A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.RiverButton6A.ForeColor = System.Drawing.Color.White;
+            this.RiverButton6A.Location = new System.Drawing.Point(85, 208);
+            this.RiverButton6A.Name = "RiverButton6A";
+            this.RiverButton6A.Size = new System.Drawing.Size(36, 36);
+            this.RiverButton6A.TabIndex = 286;
+            this.RiverButton6A.Tag = "6A";
+            this.ButtonToolTip.SetToolTip(this.RiverButton6A, "6A");
+            this.RiverButton6A.UseVisualStyleBackColor = false;
+            this.RiverButton6A.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            // 
+            // RiverButton2B
+            // 
+            this.RiverButton2B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
+            this.RiverButton2B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton2B.FlatAppearance.BorderSize = 0;
+            this.RiverButton2B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RiverButton2B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.RiverButton2B.ForeColor = System.Drawing.Color.White;
+            this.RiverButton2B.Location = new System.Drawing.Point(44, 85);
+            this.RiverButton2B.Name = "RiverButton2B";
+            this.RiverButton2B.Size = new System.Drawing.Size(36, 36);
+            this.RiverButton2B.TabIndex = 276;
+            this.RiverButton2B.Tag = "2B";
+            this.ButtonToolTip.SetToolTip(this.RiverButton2B, "2B");
+            this.RiverButton2B.UseVisualStyleBackColor = false;
+            this.RiverButton2B.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            // 
+            // RiverButton1A
+            // 
+            this.RiverButton1A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
+            this.RiverButton1A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton1A.FlatAppearance.BorderSize = 0;
+            this.RiverButton1A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RiverButton1A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.RiverButton1A.ForeColor = System.Drawing.Color.White;
+            this.RiverButton1A.Location = new System.Drawing.Point(3, 44);
+            this.RiverButton1A.Name = "RiverButton1A";
+            this.RiverButton1A.Size = new System.Drawing.Size(36, 36);
+            this.RiverButton1A.TabIndex = 274;
+            this.RiverButton1A.Tag = "1A";
+            this.ButtonToolTip.SetToolTip(this.RiverButton1A, "1A");
+            this.RiverButton1A.UseVisualStyleBackColor = false;
+            this.RiverButton1A.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            // 
+            // RiverButton4B
+            // 
+            this.RiverButton4B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
+            this.RiverButton4B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton4B.FlatAppearance.BorderSize = 0;
+            this.RiverButton4B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RiverButton4B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.RiverButton4B.ForeColor = System.Drawing.Color.White;
+            this.RiverButton4B.Location = new System.Drawing.Point(44, 167);
+            this.RiverButton4B.Name = "RiverButton4B";
+            this.RiverButton4B.Size = new System.Drawing.Size(36, 36);
+            this.RiverButton4B.TabIndex = 282;
+            this.RiverButton4B.Tag = "4B";
+            this.ButtonToolTip.SetToolTip(this.RiverButton4B, "4B");
+            this.RiverButton4B.UseVisualStyleBackColor = false;
+            this.RiverButton4B.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            // 
+            // RiverButton5B
+            // 
+            this.RiverButton5B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
+            this.RiverButton5B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton5B.FlatAppearance.BorderSize = 0;
+            this.RiverButton5B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RiverButton5B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.RiverButton5B.ForeColor = System.Drawing.Color.White;
+            this.RiverButton5B.Location = new System.Drawing.Point(44, 208);
+            this.RiverButton5B.Name = "RiverButton5B";
+            this.RiverButton5B.Size = new System.Drawing.Size(36, 36);
+            this.RiverButton5B.TabIndex = 285;
+            this.RiverButton5B.Tag = "5B";
+            this.ButtonToolTip.SetToolTip(this.RiverButton5B, "5B");
+            this.RiverButton5B.UseVisualStyleBackColor = false;
+            this.RiverButton5B.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            // 
+            // RiverButton2A
+            // 
+            this.RiverButton2A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
+            this.RiverButton2A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton2A.FlatAppearance.BorderSize = 0;
+            this.RiverButton2A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RiverButton2A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.RiverButton2A.ForeColor = System.Drawing.Color.White;
+            this.RiverButton2A.Location = new System.Drawing.Point(3, 85);
+            this.RiverButton2A.Name = "RiverButton2A";
+            this.RiverButton2A.Size = new System.Drawing.Size(36, 36);
+            this.RiverButton2A.TabIndex = 275;
+            this.RiverButton2A.Tag = "2A";
+            this.ButtonToolTip.SetToolTip(this.RiverButton2A, "2A");
+            this.RiverButton2A.UseVisualStyleBackColor = false;
+            this.RiverButton2A.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            // 
+            // RiverButton4C
+            // 
+            this.RiverButton4C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
+            this.RiverButton4C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton4C.FlatAppearance.BorderSize = 0;
+            this.RiverButton4C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RiverButton4C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.RiverButton4C.ForeColor = System.Drawing.Color.White;
+            this.RiverButton4C.Location = new System.Drawing.Point(85, 167);
+            this.RiverButton4C.Name = "RiverButton4C";
+            this.RiverButton4C.Size = new System.Drawing.Size(36, 36);
+            this.RiverButton4C.TabIndex = 283;
+            this.RiverButton4C.Tag = "4C";
+            this.ButtonToolTip.SetToolTip(this.RiverButton4C, "4C");
+            this.RiverButton4C.UseVisualStyleBackColor = false;
+            this.RiverButton4C.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            // 
+            // RiverButton5A
+            // 
+            this.RiverButton5A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
+            this.RiverButton5A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton5A.FlatAppearance.BorderSize = 0;
+            this.RiverButton5A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RiverButton5A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.RiverButton5A.ForeColor = System.Drawing.Color.White;
+            this.RiverButton5A.Location = new System.Drawing.Point(3, 208);
+            this.RiverButton5A.Name = "RiverButton5A";
+            this.RiverButton5A.Size = new System.Drawing.Size(36, 36);
+            this.RiverButton5A.TabIndex = 284;
+            this.RiverButton5A.Tag = "5A";
+            this.ButtonToolTip.SetToolTip(this.RiverButton5A, "5A");
+            this.RiverButton5A.UseVisualStyleBackColor = false;
+            this.RiverButton5A.Click += new System.EventHandler(this.ManualRiverButton_Click);
             // 
             // CornerPanel
             // 
@@ -2030,18 +2070,6 @@
             // 
             this.ButtonToolTip.AutomaticDelay = 1000;
             // 
-            // ManualRiverElevation3Label
-            // 
-            this.ManualRiverElevation3Label.AutoSize = true;
-            this.ManualRiverElevation3Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ManualRiverElevation3Label.ForeColor = System.Drawing.Color.White;
-            this.ManualRiverElevation3Label.Location = new System.Drawing.Point(185, 70);
-            this.ManualRiverElevation3Label.Name = "ManualRiverElevation3Label";
-            this.ManualRiverElevation3Label.Size = new System.Drawing.Size(13, 14);
-            this.ManualRiverElevation3Label.TabIndex = 296;
-            this.ManualRiverElevation3Label.Text = "3";
-            this.ManualRiverElevation3Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // RoadRoller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -2065,17 +2093,17 @@
             this.TopMenuPanel.PerformLayout();
             this.LeftMenuPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.miniMapBox)).EndInit();
+            this.AutoButtonPanel.ResumeLayout(false);
+            this.AutoButtonPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ElevationBar)).EndInit();
             this.ManualButtonPanel.ResumeLayout(false);
-            this.ManualRiverPanel.ResumeLayout(false);
-            this.ManualRiverPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ManualRiverElevationBar)).EndInit();
             this.ManualRoadPanel.ResumeLayout(false);
             this.ManualCliffPanel.ResumeLayout(false);
             this.ManualCliffPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ManualCliffElevationBar)).EndInit();
-            this.AutoButtonPanel.ResumeLayout(false);
-            this.AutoButtonPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ElevationBar)).EndInit();
+            this.ManualRiverPanel.ResumeLayout(false);
+            this.ManualRiverPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ManualRiverElevationBar)).EndInit();
             this.CornerPanel.ResumeLayout(false);
             this.PleaseWaitPanel.ResumeLayout(false);
             this.PleaseWaitPanel.PerformLayout();
@@ -2205,5 +2233,7 @@
         private System.Windows.Forms.ToolTip ButtonToolTip;
         private System.Windows.Forms.Label ManualTerrainElevation3Label;
         private System.Windows.Forms.Label ManualRiverElevation3Label;
+        private JCS.ToggleSwitch fixRiverMouthToggle;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -24,6 +24,7 @@ namespace ACNHPokerCore
         public Chat(Socket Socket)
         {
             socket = Socket;
+
             InitializeComponent();
             Random rad = new Random();
             int num = rad.Next(1, 20);
@@ -163,6 +164,19 @@ namespace ACNHPokerCore
                 chatBox.MaxLength = 64;
                 SafetyCheck.ForeColor = Color.Red;
             }
+        }
+
+        private void ConnectButton_Click(object sender, EventArgs e)
+        {
+            controller.detachController();
+            controller.clickA();
+            controller.clickZR();
+            Thread.Sleep(1000);
+            controller.clickB();
+            controller.clickB();
+            controller.clickB();
+            chatButton.Enabled = true;
+            ConnectButton.BackColor = Color.Orange;
         }
     }
 }

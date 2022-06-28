@@ -1478,6 +1478,8 @@ namespace ACNHPokerCore
         {
             if (floorBackgroundColorLess == null)
                 return Color.White;
+            else if (x < 0 || y < 0)
+                return Color.White;
             else if (Layer1)
                 return floorBackgroundColorLess[y][x];
             else
@@ -1742,7 +1744,7 @@ namespace ACNHPokerCore
             buildTerrainUnits();
         }
 
-        private static readonly Dictionary<byte, Color> Pixel = new Dictionary<byte, Color>
+        public static readonly Dictionary<byte, Color> Pixel = new Dictionary<byte, Color>
         {
                 {0x00, Color.FromArgb(70, 116, 71)}, // Grass
 

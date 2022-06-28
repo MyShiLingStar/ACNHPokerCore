@@ -250,6 +250,8 @@ namespace ACNHPokerCore
 
             myBitmap = new Bitmap(GridSize * 16, GridSize * 16);
 
+            bool highlightMouth = fixRiverMouthToggle.Checked;
+
             using (Graphics graphics = Graphics.FromImage(myBitmap))
             {
                 var cm = new ColorMatrix();
@@ -260,11 +262,23 @@ namespace ACNHPokerCore
 
                 int ImageNum = 0;
 
+                bool[,] mouthMarker = new bool[16,16];
+                if (highlightMouth)
+                    mouthMarker = buildMouthMarker();
+
                 for (int i = 0; i < 16; i++)
                 {
                     for (int j = 0; j < 16; j++)
                     {
-                        Bitmap tile = new Bitmap(terrainUnits[x + i][y + j].getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner));
+                        Bitmap tile;
+                            if (highlightMouth && mouthMarker[i, j])
+                            {
+                                tile = new Bitmap(terrainUnits[x + i][y + j].getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner, true));
+                            }
+                            else
+                            {
+                                tile = new Bitmap(terrainUnits[x + i][y + j].getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner));
+                            }
                         graphics.DrawImage(tile, new Rectangle(i * GridSize, j * GridSize, GridSize, GridSize), 0, 0, GridSize, GridSize, GraphicsUnit.Pixel, ia);
                         ImageNum++;
                     }
@@ -308,6 +322,8 @@ namespace ACNHPokerCore
 
             myBitmap = new Bitmap(GridSize * 16, GridSize * 16);
 
+            bool highlightMouth = fixRiverMouthToggle.Checked;
+
             await Task.Run(() =>
             {
                 lock (lockObject)
@@ -326,7 +342,21 @@ namespace ACNHPokerCore
                         {
                             for (int j = 0; j < 16; j++)
                             {
-                                Bitmap tile = new Bitmap(terrainUnits[x + i][y + j].getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner));
+                                Bitmap tile;
+
+                                bool[,] mouthMarker = new bool[16, 16];
+                                if (highlightMouth)
+                                    mouthMarker = buildMouthMarker();
+
+                                    if (highlightMouth && mouthMarker[i, j])
+                                    {
+                                        tile = new Bitmap(terrainUnits[x + i][y + j].getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner, true));
+                                    }
+                                    else
+                                    {
+                                        tile = new Bitmap(terrainUnits[x + i][y + j].getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner));
+                                    }
+
                                 graphics.DrawImage(tile, new Rectangle(i * GridSize, j * GridSize, GridSize, GridSize), 0, 0, GridSize, GridSize, GraphicsUnit.Pixel, ia);
                                 ImageNum++;
                             }
@@ -416,6 +446,8 @@ namespace ACNHPokerCore
 
             Bitmap myBitmap = new Bitmap(CurrentMainMap);
 
+            bool highlightMouth = fixRiverMouthToggle.Checked;
+
             await Task.Run(() =>
             {
                 lock (lockObject)
@@ -434,7 +466,15 @@ namespace ACNHPokerCore
                             {
                                 if (x + i >= 0 && x + i < numOfColumn && y + j >= 0 && y + j < numOfRow)
                                 {
-                                    Bitmap tile = new Bitmap(terrainUnits[x + i][y + j].getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner));
+                                    Bitmap tile;
+                                    if (highlightMouth && isRiverMouth(x + i, y + j))
+                                    {
+                                        tile = new Bitmap(terrainUnits[x + i][y + j].getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner, true));
+                                    }
+                                    else
+                                    {
+                                        tile = new Bitmap(terrainUnits[x + i][y + j].getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner));
+                                    }
                                     graphics.DrawImage(tile, new Rectangle((x + i - anchorX) * GridSize, (y + j - anchorY) * GridSize, GridSize, GridSize), 0, 0, GridSize, GridSize, GraphicsUnit.Pixel, ia);
                                 }
                             }
@@ -595,11 +635,33 @@ namespace ACNHPokerCore
             else if (!CurrentUnit.isFall()) // Place River
             {
                 ushort elevation = CurrentUnit.getElevation();
-                bool[,] neighbour = FindSameNeighbourRiver(elevation, x, y);
-                CurrentUnit.updateRiver(neighbour, elevation);
 
-                bool[,] TerrainNeighbour = FindTerrainNeighbourForFix(x, y);
-                fixNeighbourTerrain(x, y, TerrainNeighbour);
+                bool highlightMouth = fixRiverMouthToggle.Checked;
+
+                if (highlightMouth)
+                {
+                    bool[,] mouthMarker = buildMouthMarker();
+
+                    if (mouthMarker[x - anchorX,y - anchorY])
+                    {
+                        bool[,] neighbour = FindSameNeighbourRiver(elevation, x, y, true);
+                        CurrentUnit.updateRiver(neighbour, elevation);
+                        bool[,] TerrainNeighbour = FindTerrainNeighbourForFix(x, y, true);
+                        fixNeighbourTerrain(x, y, TerrainNeighbour, true);
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    bool[,] neighbour = FindSameNeighbourRiver(elevation, x, y, true);
+                    CurrentUnit.updateRiver(neighbour, elevation);
+                    bool[,] TerrainNeighbour = FindTerrainNeighbourForFix(x, y, true);
+                    fixNeighbourTerrain(x, y, TerrainNeighbour, true);
+                }
+
                 _ = UpdateMainMapAsync(x, y);
                 AddMiniMapPixel(x, y, TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.River]);
             }
@@ -725,8 +787,8 @@ namespace ACNHPokerCore
             }
 
             CurrentUnit.updateCliff(neighbour, elevation);
-            bool[,] TerrainNeighbour = FindTerrainNeighbourForFix(x, y);
-            fixNeighbourTerrain(x, y, TerrainNeighbour);
+            bool[,] TerrainNeighbour = FindTerrainNeighbourForFix(x, y, true);
+            fixNeighbourTerrain(x, y, TerrainNeighbour, true);
 
             if (MainUpdateNeeded)
                 _ = UpdateMainMapAsync(x, y);
@@ -895,7 +957,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void fixNeighbourTerrain(int x, int y, bool[,] CurrentNeighbour)
+        private void fixNeighbourTerrain(int x, int y, bool[,] CurrentNeighbour, bool mouth = false)
         {
             for (int i = -1; i < 2; i++)
             {
@@ -909,7 +971,7 @@ namespace ACNHPokerCore
 
                             if (terrainUnits[x + i][y + j].isRiver())
                             {
-                                bool[,] NeighbourNeighbour = FindSameNeighbourRiver(NeighbourElevation, x + i, y + j);
+                                bool[,] NeighbourNeighbour = FindSameNeighbourRiver(NeighbourElevation, x + i, y + j, mouth);
                                 terrainUnits[x + i][y + j].updateRiver(NeighbourNeighbour, NeighbourElevation, terrainUnits[x + i][y + j].isRoundCornerTerrain());
                             }
                             else if (terrainUnits[x + i][y + j].isFall())
@@ -938,7 +1000,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private bool[,] FindTerrainNeighbourForFix(int x, int y)
+        private bool[,] FindTerrainNeighbourForFix(int x, int y, bool mouth = false)
         {
             bool[,] TerrainNeighbour = new bool[3, 3];
             for (int i = -1; i < 2; i++)
@@ -954,7 +1016,19 @@ namespace ACNHPokerCore
                     else if (j == 1 && y >= numOfRow - 1)
                         TerrainNeighbour[i + 1, j + 1] = false;
                     else
-                        TerrainNeighbour[i + 1, j + 1] = terrainUnits[x + i][y + j].HasTerrain();
+                    {
+                        if (mouth)
+                        {
+                            if (terrainUnits[x + i][y + j].HasTerrain())
+                                TerrainNeighbour[i + 1, j + 1] = true;
+                            else if (miniMap.GetBackgroundColorLess(x + i,y + j) == miniMap.Pixel[0x0C])
+                                TerrainNeighbour[i + 1, j + 1] = true;
+                            else
+                                TerrainNeighbour[i + 1, j + 1] = false;
+                        }
+                        else
+                            TerrainNeighbour[i + 1, j + 1] = terrainUnits[x + i][y + j].HasTerrain();
+                    }
                 }
             }
 
@@ -1068,7 +1142,7 @@ namespace ACNHPokerCore
             return sameNeighbour;
         }
 
-        private bool[,] FindSameNeighbourRiver(ushort elevation, int x, int y)
+        private bool[,] FindSameNeighbourRiver(ushort elevation, int x, int y, bool mouth = false)
         {
             bool[,] sameNeighbour = new bool[3, 3];
             for (int i = -1; i < 2; i++)
@@ -1084,7 +1158,19 @@ namespace ACNHPokerCore
                     else if (j == 1 && y >= numOfRow - 1)
                         sameNeighbour[i + 1, j + 1] = false;
                     else
-                        sameNeighbour[i + 1, j + 1] = terrainUnits[x + i][y + j].isSameOrHigherElevationRiverOrFall(elevation);
+                    {
+                        if (mouth)
+                        {
+                            if (terrainUnits[x + i][y + j].isSameOrHigherElevationRiverOrFall(elevation))
+                                sameNeighbour[i + 1, j + 1] = true;
+                            else if (miniMap.GetBackgroundColorLess(x + i, y + j) == miniMap.Pixel[0x0C])
+                                sameNeighbour[i + 1, j + 1] = true;
+                            else
+                                sameNeighbour[i + 1, j + 1] = false;
+                        }
+                        else
+                            sameNeighbour[i + 1, j + 1] = terrainUnits[x + i][y + j].isSameOrHigherElevationRiverOrFall(elevation);
+                    }
                 }
             }
 
@@ -1212,6 +1298,7 @@ namespace ACNHPokerCore
 
                 miniMapBox.Image = MiniMap.drawSelectSquare16(x, y);
                 DrawMainMap(anchorX, anchorY);
+                fixRiverMouthToggle.Checked = false;
             }
         }
 
@@ -1249,6 +1336,7 @@ namespace ACNHPokerCore
 
                 miniMapBox.Image = MiniMap.drawSelectSquare16(x, y);
                 _ = DrawMainMapAsync(anchorX, anchorY);
+                fixRiverMouthToggle.Checked = false;
             }
         }
 
@@ -3068,6 +3156,55 @@ namespace ACNHPokerCore
                 return "0A";
 
             return SelectedButton.Tag.ToString();
+        }
+
+        private void fixRiverMouthToggle_CheckedChanged(object sender, EventArgs e)
+        {
+            _ = DrawMainMapAsync(anchorX, anchorY, false);
+        }
+
+        private bool[,] buildMouthMarker()
+        {
+            bool[,] mouthMaker = new bool[16, 16];
+
+            for (int i = 0; i < 16; i++)
+            {
+                for (int j = 0; j < 16; j++)
+                {
+                    Color c = miniMap.GetBackgroundColorLess(anchorX + i, anchorY + j);
+                    if (c == miniMap.Pixel[0x0])
+                    {
+                        if (miniMap.GetBackgroundColorLess(anchorX + i, anchorY + j - 1) == miniMap.Pixel[0xC])
+                        {
+                            if (j > 0)
+                                mouthMaker[i, j - 1] = true;
+                        }
+                        if (miniMap.GetBackgroundColorLess(anchorX + i, anchorY + j + 1) == miniMap.Pixel[0xC])
+                        {
+                            if (j < 14)
+                                mouthMaker[i, j + 1] = true;
+                        }
+                        if (miniMap.GetBackgroundColorLess(anchorX + i - 1, anchorY + j) == miniMap.Pixel[0xC])
+                        {
+                            if (i > 0)
+                                mouthMaker[i - 1, j] = true;
+                        }
+                        if (miniMap.GetBackgroundColorLess(anchorX + i + 1, anchorY + j) == miniMap.Pixel[0xC])
+                        {
+                            if (i < 14)
+                                mouthMaker[i + 1, j] = true;
+                        }
+                    }
+                }
+            }
+
+            return mouthMaker;
+        }
+
+        private bool isRiverMouth(int x, int y)
+        {
+            bool[,] mouthMaker = buildMouthMarker();
+            return mouthMaker[x - anchorX, y - anchorY];
         }
     }
 }
