@@ -800,7 +800,7 @@ namespace ACNHPokerCore
                 return false;
         }
 
-        public Bitmap getImage(int size, int x, int y, bool showRoad, bool showBuilding, bool highlightRoadCorner, bool highlightCliffCorner, bool highlightRiverCorner)
+        public Bitmap getImage(int size, int x, int y, bool showRoad, bool showBuilding, bool highlightRoadCorner, bool highlightCliffCorner, bool highlightRiverCorner, bool highlightMouth = false)
         {
             Color borderColor;
             Color backgroundColor = Color.Tomato;
@@ -876,7 +876,10 @@ namespace ACNHPokerCore
                 /*if (HasRoad())
                     backgroundColor = TerrainColor[(int)TerrainType.Elevation0];
                 else*/
-                backgroundColor = miniMap.GetBackgroundColorLess(x, y);
+                if (highlightMouth)
+                    backgroundColor = Color.Red;
+                else
+                    backgroundColor = miniMap.GetBackgroundColorLess(x, y);
                 drawBackground = true;
             }
 

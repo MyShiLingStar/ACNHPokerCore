@@ -78,6 +78,7 @@ namespace ACNHPokerCore
 
         private bool overrideSetting = false;
         private bool validation = true;
+        private bool connecting = false;
         public bool sound = true;
         private string languageSetting = "eng";
 
@@ -1147,6 +1148,9 @@ namespace ACNHPokerCore
         {
             if (StartConnectionButton.Tag.ToString() == "connect")
             {
+                if (connecting)
+                    return;
+
                 string ipPattern = @"\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b";
 
                 if (!Regex.IsMatch(IPAddressInputBox.Text, ipPattern))
@@ -1163,8 +1167,9 @@ namespace ACNHPokerCore
                 {
                     new Thread(() =>
                     {
-                        Thread.CurrentThread.IsBackground = true;
+                        connecting = true;
 
+                        Thread.CurrentThread.IsBackground = true;
 
                         IAsyncResult result = socket.BeginConnect(ep, null, null);
                         bool conSuceded = result.AsyncWaitHandle.WaitOne(3000, true);
@@ -1205,6 +1210,7 @@ namespace ACNHPokerCore
 
                                                 , "Where are you, my socket 6000?", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
+                                connecting = false;
                                 return;
                             }
 
@@ -1258,6 +1264,7 @@ namespace ACNHPokerCore
 
                                                     , "Sys-botbase validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     socket.Close();
+                                    connecting = false;
                                     return;
                                 }
 
@@ -1319,6 +1326,7 @@ namespace ACNHPokerCore
                         else
                         {
                             socket.Close();
+                            connecting = false;
                             this.IPAddressInputBackground.Invoke((MethodInvoker)delegate
                             {
                                 this.IPAddressInputBackground.BackColor = System.Drawing.Color.Red;
@@ -1334,6 +1342,7 @@ namespace ACNHPokerCore
             else
             {
                 socket.Close();
+                connecting = false;
                 foreach (inventorySlot btn in this.InventoryPanel.Controls.OfType<inventorySlot>())
                 {
                     btn.reset();
@@ -1368,6 +1377,7 @@ namespace ACNHPokerCore
 
                 this.StartConnectionButton.Tag = "connect";
                 this.StartConnectionButton.Text = "Connect";
+                this.USBConnectionButton.Visible = true;
 
                 this.Text = version;
             }
