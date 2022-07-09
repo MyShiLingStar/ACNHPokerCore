@@ -107,6 +107,8 @@ namespace ACNHPokerCore
         private static Object villagerLock = new Object();
 
         private WaveOut waveOut;
+
+        private string getlastfile = "items.nhi";
         #endregion
 
 
@@ -1276,6 +1278,9 @@ namespace ACNHPokerCore
                                 this.InventoryAutoRefreshToggle.Visible = true;
                                 this.AutoRefreshLabel.Visible = true;
 
+                                this.AutoRefill.Visible = true;
+                                this.AutoRefillLabel.Visible = true;
+
                                 this.OtherTabButton.Visible = true;
                                 this.CritterTabButton.Visible = true;
                                 this.VillagerTabButton.Visible = true;
@@ -1353,6 +1358,9 @@ namespace ACNHPokerCore
 
                 this.InventoryAutoRefreshToggle.Visible = false;
                 this.AutoRefreshLabel.Visible = false;
+
+                this.AutoRefill.Visible = false;
+                this.AutoRefillLabel.Visible = false;
 
                 //this.USBConnectionButton.Visible = true;
                 InventoryTabButton_Click(sender, e);
@@ -1517,6 +1525,60 @@ namespace ACNHPokerCore
         #endregion
 
         #region Auto Refresh
+        private void AutoRefill_CheckedChanged(object sender, EventArgs e)
+        {
+
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
+            Debug.Print("getlastfile: "+getlastfile);
+
+            if (this.AutoRefill.Checked)
+            {
+                AutoRefillTimer.Start();
+                config.AppSettings.Settings["AutoRefill"].Value = "true";
+            }
+            else
+            {
+                AutoRefillTimer.Stop();
+                config.AppSettings.Settings["AutoRefill"].Value = "false";
+            }
+
+            config.Save(ConfigurationSaveMode.Minimal);
+
+            if (sound)
+                System.Media.SystemSounds.Asterisk.Play();
+
+
+
+        }
+
+
+        private void AutoRefillTimer_Tick(object sender, EventArgs e)
+        {
+
+             
+
+            try
+            {
+                if (socket != null && socket.Connected == true && AutoRefill.Checked && AllowInventoryUpdate)
+                    Invoke((MethodInvoker)delegate
+                    {
+
+                        byte[] data = File.ReadAllBytes(getlastfile);
+                        Thread LoadThread = new Thread(delegate () { loadInventory(data); });
+                        LoadThread.Start();
+
+                    });
+            }
+            catch (Exception ex)
+            {
+                MyLog.logEvent("MainForm", "AutoRefillTimer: " + ex.Message.ToString());
+                Invoke((MethodInvoker)delegate { this.AutoRefill.Checked = false; });
+                AutoRefillTimer.Stop();
+                MyMessageBox.Show("Lost connection to the switch...\nDid the switch go to sleep?", "Disconnected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+
 
         private void InventoryRefreshTimer_Tick(object sender, EventArgs e)
         {
@@ -2903,6 +2965,12 @@ namespace ACNHPokerCore
                     path = path + temp[i] + "\\";
 
                 config.AppSettings.Settings["LastLoad"].Value = path;
+                
+                //save nhi filename....
+                getlastfile = file.FileName;
+                Debug.Print("Loaded file.FileName: " + file.FileName);
+                Debug.Print("Loaded LastFile: "+getlastfile);
+
                 config.Save(ConfigurationSaveMode.Minimal);
 
                 byte[] data = File.ReadAllBytes(file.FileName);
@@ -2943,7 +3011,25 @@ namespace ACNHPokerCore
 
                 if (emptyspace < item.Length)
                 {
-                    DialogResult dialogResult = MyMessageBox.Show("Empty Spaces in your inventory : " + emptyspace + "\n" +
+
+                    //check if AutoRefill is turned on.. dont send out popups//  
+                    if (this.AutoRefill.Checked)
+                    {
+
+                        for (int i = 0; i < b1.Length; i++)
+                        {
+                            b1[i] = data[i];
+                            b2[i] = data[i + 160];
+                        }
+
+                        Utilities.OverwriteAll(socket, usb, b1, b2, ref counter);
+                    }
+                    else
+                    {
+
+
+
+                        DialogResult dialogResult = MyMessageBox.Show("Empty Spaces in your inventory : " + emptyspace + "\n" +
                                                                 "Number of items to Spawn : " + item.Length + "\n" +
                                                                 "\n" +
                                                                 "Press  [Yes]  to clear your inventory and spawn the items " + "\n" +
@@ -2959,14 +3045,15 @@ namespace ACNHPokerCore
                         }
 
                         Utilities.OverwriteAll(socket, usb, b1, b2, ref counter);
-                    }
-                    else
-                    {
-                        hideWait();
-                        if (sound)
-                            System.Media.SystemSounds.Asterisk.Play();
-                        return;
-                    }
+                        }
+                        else
+                        {
+                            hideWait();
+                            if (sound)
+                                System.Media.SystemSounds.Asterisk.Play();
+                            return;
+                        }
+                    } //AutoRefill check//
                 }
                 else
                 {

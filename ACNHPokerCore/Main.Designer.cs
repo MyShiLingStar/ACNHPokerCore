@@ -107,6 +107,8 @@ namespace ACNHPokerCore
             this.OtherTabButton = new System.Windows.Forms.Button();
             this.InventoryTabButton = new System.Windows.Forms.Button();
             this.InventoryLargePanel = new System.Windows.Forms.Panel();
+            this.AutoRefillLabel = new System.Windows.Forms.Label();
+            this.AutoRefill = new JCS.ToggleSwitch();
             this.chatButton = new System.Windows.Forms.Button();
             this.RoadRollerButton = new System.Windows.Forms.Button();
             this.UnhideButton = new System.Windows.Forms.Button();
@@ -211,6 +213,7 @@ namespace ACNHPokerCore
             this.RecipeIDLabel = new System.Windows.Forms.Label();
             this.AlwaysOnTab = new System.Windows.Forms.Panel();
             this.InventoryRefreshTimer = new System.Windows.Forms.Timer(this.components);
+            this.AutoRefillTimer = new System.Windows.Forms.Timer(this.components);
             this.ButtonToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.OtherLargePanel = new System.Windows.Forms.Panel();
             this.TimeAndWeatherPanel = new System.Windows.Forms.Panel();
@@ -1766,7 +1769,7 @@ namespace ACNHPokerCore
             "Player 7 House",
             "Player 8 House",
             "Recycling Bin"});
-            this.PlayerInventorySelector.Location = new System.Drawing.Point(578, 12);
+            this.PlayerInventorySelector.Location = new System.Drawing.Point(579, 4);
             this.PlayerInventorySelector.Name = "PlayerInventorySelector";
             this.PlayerInventorySelector.Size = new System.Drawing.Size(147, 24);
             this.PlayerInventorySelector.TabIndex = 9;
@@ -1996,6 +1999,8 @@ namespace ACNHPokerCore
             // 
             // InventoryLargePanel
             // 
+            this.InventoryLargePanel.Controls.Add(this.AutoRefillLabel);
+            this.InventoryLargePanel.Controls.Add(this.AutoRefill);
             this.InventoryLargePanel.Controls.Add(this.chatButton);
             this.InventoryLargePanel.Controls.Add(this.RoadRollerButton);
             this.InventoryLargePanel.Controls.Add(this.UnhideButton);
@@ -2041,6 +2046,31 @@ namespace ACNHPokerCore
             this.InventoryLargePanel.Name = "InventoryLargePanel";
             this.InventoryLargePanel.Size = new System.Drawing.Size(1225, 550);
             this.InventoryLargePanel.TabIndex = 18;
+            // 
+            // AutoRefillLabel
+            // 
+            this.AutoRefillLabel.AutoSize = true;
+            this.AutoRefillLabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.AutoRefillLabel.ForeColor = System.Drawing.Color.White;
+            this.AutoRefillLabel.Location = new System.Drawing.Point(602, 33);
+            this.AutoRefillLabel.Name = "AutoRefillLabel";
+            this.AutoRefillLabel.Size = new System.Drawing.Size(65, 15);
+            this.AutoRefillLabel.TabIndex = 43;
+            this.AutoRefillLabel.Text = "Auto-Refill";
+            this.AutoRefillLabel.Visible = false;
+            // 
+            // AutoRefill
+            // 
+            this.AutoRefill.Location = new System.Drawing.Point(668, 32);
+            this.AutoRefill.Name = "AutoRefill";
+            this.AutoRefill.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.AutoRefill.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.AutoRefill.Size = new System.Drawing.Size(35, 16);
+            this.AutoRefill.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            this.AutoRefill.TabIndex = 42;
+            this.AutoRefill.UseAnimation = false;
+            this.AutoRefill.Visible = false;
+            this.AutoRefill.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.AutoRefill_CheckedChanged);
             // 
             // chatButton
             // 
@@ -3855,6 +3885,11 @@ namespace ACNHPokerCore
             // 
             this.InventoryRefreshTimer.Interval = 3000;
             this.InventoryRefreshTimer.Tick += new System.EventHandler(this.InventoryRefreshTimer_Tick);
+            // 
+            // AutoRefillTimer
+            // 
+            this.AutoRefillTimer.Interval = 1300;
+            this.AutoRefillTimer.Tick += new System.EventHandler(this.AutoRefillTimer_Tick);
             // 
             // ButtonToolTip
             // 
@@ -7713,6 +7748,7 @@ namespace ACNHPokerCore
         private System.Windows.Forms.DataGridView FavGridView;
         private System.Windows.Forms.DataGridView FlowerGridView;
         private System.Windows.Forms.Timer InventoryRefreshTimer;
+        private System.Windows.Forms.Timer AutoRefillTimer;		
         private System.Windows.Forms.ContextMenuStrip FavGridRightClick;
         private System.Windows.Forms.ToolStripMenuItem deletedSelectedToolStripMenuItem;
         private System.Windows.Forms.Label RetainNameLabel;
@@ -7928,5 +7964,7 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button RoadRollerButton;
         private System.Windows.Forms.Button chatButton;
+        private System.Windows.Forms.Label AutoRefillLabel;
+        private JCS.ToggleSwitch AutoRefill;
     }
 }
