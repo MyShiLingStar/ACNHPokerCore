@@ -202,7 +202,7 @@ namespace ACNHPokerCore
                     }
                     else
                     {
-                        buildingGridView.Rows.Add(buildingList[i][0x0], "", "???", buildingList[i][0x2], buildingList[i][0x4], buildingList[i][0x6], buildingList[i][0x8]);
+                        buildingGridView.Rows.Add(buildingList[i][0x0], "", key.ToString("X"), buildingList[i][0x2], buildingList[i][0x4], buildingList[i][0x6], buildingList[i][0x8]);
                         style.BackColor = Color.Black;
                     }
 
@@ -1126,7 +1126,10 @@ namespace ACNHPokerCore
                 byte type = (byte)index;
 
                 buildingGridView.Rows[buildingGridView.CurrentCell.RowIndex].Cells["ID"].Value = type;
-                buildingGridView.Rows[buildingGridView.CurrentCell.RowIndex].Cells["Name"].Value = BuildingName[type];
+                if (BuildingName.ContainsKey(type))
+                    buildingGridView.Rows[buildingGridView.CurrentCell.RowIndex].Cells["Name"].Value = BuildingName[type];
+                else
+                    buildingGridView.Rows[buildingGridView.CurrentCell.RowIndex].Cells["Name"].Value = type.ToString("X");
 
 
                 DataGridViewCellStyle style = new DataGridViewCellStyle();
@@ -1290,7 +1293,7 @@ namespace ACNHPokerCore
                     else
                     {
                         buildingGridView.Rows[i + 1].Cells["ID"].Value = buildingList[i][0x0];
-                        buildingGridView.Rows[i + 1].Cells["Name"].Value = "???";
+                        buildingGridView.Rows[i + 1].Cells["Name"].Value = key.ToString("X");
                         buildingGridView.Rows[i + 1].Cells["X-Coordinate"].Value = buildingList[i][0x2];
                         buildingGridView.Rows[i + 1].Cells["Y-Coordinate"].Value = buildingList[i][0x4];
                         style.BackColor = Color.Black;

@@ -35,6 +35,8 @@
             this.MiddlePanel = new System.Windows.Forms.Panel();
             this.MainMap = new System.Windows.Forms.PictureBox();
             this.TopMenuPanel = new System.Windows.Forms.Panel();
+            this.DisplayCustomDesignToggle = new JCS.ToggleSwitch();
+            this.DisplayCustomDesignLabel = new System.Windows.Forms.Label();
             this.DisplayBuildingLabel = new System.Windows.Forms.Label();
             this.DisplayBuildingToggle = new JCS.ToggleSwitch();
             this.HighlightCornerLabel = new System.Windows.Forms.Label();
@@ -44,6 +46,7 @@
             this.DisplayRoadLabel = new System.Windows.Forms.Label();
             this.DisplayRoadToggle = new JCS.ToggleSwitch();
             this.LeftMenuPanel = new System.Windows.Forms.Panel();
+            this.CustomModeButton = new System.Windows.Forms.Button();
             this.ConfirmBtn = new System.Windows.Forms.Button();
             this.ManualModeButton = new System.Windows.Forms.Button();
             this.AutoModeButton = new System.Windows.Forms.Button();
@@ -143,6 +146,7 @@
             this.RiverButton2A = new System.Windows.Forms.Button();
             this.RiverButton4C = new System.Windows.Forms.Button();
             this.RiverButton5A = new System.Windows.Forms.Button();
+            this.CustomDesignList = new System.Windows.Forms.ListView();
             this.CornerPanel = new System.Windows.Forms.Panel();
             this.PleaseWaitPanel = new System.Windows.Forms.Panel();
             this.MapProgressBar = new System.Windows.Forms.ProgressBar();
@@ -236,6 +240,8 @@
             // TopMenuPanel
             // 
             this.TopMenuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            this.TopMenuPanel.Controls.Add(this.DisplayCustomDesignToggle);
+            this.TopMenuPanel.Controls.Add(this.DisplayCustomDesignLabel);
             this.TopMenuPanel.Controls.Add(this.DisplayBuildingLabel);
             this.TopMenuPanel.Controls.Add(this.DisplayBuildingToggle);
             this.TopMenuPanel.Controls.Add(this.HighlightCornerLabel);
@@ -249,6 +255,30 @@
             this.TopMenuPanel.Name = "TopMenuPanel";
             this.TopMenuPanel.Size = new System.Drawing.Size(728, 44);
             this.TopMenuPanel.TabIndex = 1;
+            // 
+            // DisplayCustomDesignToggle
+            // 
+            this.DisplayCustomDesignToggle.Location = new System.Drawing.Point(403, 3);
+            this.DisplayCustomDesignToggle.Name = "DisplayCustomDesignToggle";
+            this.DisplayCustomDesignToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.DisplayCustomDesignToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.DisplayCustomDesignToggle.Size = new System.Drawing.Size(35, 16);
+            this.DisplayCustomDesignToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            this.DisplayCustomDesignToggle.TabIndex = 244;
+            this.DisplayCustomDesignToggle.UseAnimation = false;
+            this.DisplayCustomDesignToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.DisplayCustomDesignToggle_CheckedChanged);
+            // 
+            // DisplayCustomDesignLabel
+            // 
+            this.DisplayCustomDesignLabel.AutoSize = true;
+            this.DisplayCustomDesignLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DisplayCustomDesignLabel.ForeColor = System.Drawing.Color.White;
+            this.DisplayCustomDesignLabel.Location = new System.Drawing.Point(222, 3);
+            this.DisplayCustomDesignLabel.Name = "DisplayCustomDesignLabel";
+            this.DisplayCustomDesignLabel.Size = new System.Drawing.Size(179, 16);
+            this.DisplayCustomDesignLabel.TabIndex = 243;
+            this.DisplayCustomDesignLabel.Text = "Display Custom Design : ";
+            this.DisplayCustomDesignLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DisplayBuildingLabel
             // 
@@ -279,7 +309,7 @@
             this.HighlightCornerLabel.AutoSize = true;
             this.HighlightCornerLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.HighlightCornerLabel.ForeColor = System.Drawing.Color.White;
-            this.HighlightCornerLabel.Location = new System.Drawing.Point(225, 3);
+            this.HighlightCornerLabel.Location = new System.Drawing.Point(464, 3);
             this.HighlightCornerLabel.Name = "HighlightCornerLabel";
             this.HighlightCornerLabel.Size = new System.Drawing.Size(131, 16);
             this.HighlightCornerLabel.TabIndex = 240;
@@ -288,7 +318,7 @@
             // 
             // HighlightCornerToggle
             // 
-            this.HighlightCornerToggle.Location = new System.Drawing.Point(362, 3);
+            this.HighlightCornerToggle.Location = new System.Drawing.Point(601, 3);
             this.HighlightCornerToggle.Name = "HighlightCornerToggle";
             this.HighlightCornerToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.HighlightCornerToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -301,7 +331,7 @@
             // DisplayInfoToggle
             // 
             this.DisplayInfoToggle.Checked = true;
-            this.DisplayInfoToggle.Location = new System.Drawing.Point(362, 22);
+            this.DisplayInfoToggle.Location = new System.Drawing.Point(403, 22);
             this.DisplayInfoToggle.Name = "DisplayInfoToggle";
             this.DisplayInfoToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.DisplayInfoToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -315,7 +345,7 @@
             this.DisplayInfoLabel.AutoSize = true;
             this.DisplayInfoLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.DisplayInfoLabel.ForeColor = System.Drawing.Color.White;
-            this.DisplayInfoLabel.Location = new System.Drawing.Point(260, 22);
+            this.DisplayInfoLabel.Location = new System.Drawing.Point(301, 22);
             this.DisplayInfoLabel.Name = "DisplayInfoLabel";
             this.DisplayInfoLabel.Size = new System.Drawing.Size(100, 16);
             this.DisplayInfoLabel.TabIndex = 217;
@@ -350,21 +380,39 @@
             // LeftMenuPanel
             // 
             this.LeftMenuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            this.LeftMenuPanel.Controls.Add(this.CustomModeButton);
             this.LeftMenuPanel.Controls.Add(this.ConfirmBtn);
             this.LeftMenuPanel.Controls.Add(this.ManualModeButton);
             this.LeftMenuPanel.Controls.Add(this.AutoModeButton);
             this.LeftMenuPanel.Controls.Add(this.miniMapBox);
             this.LeftMenuPanel.Controls.Add(this.AutoButtonPanel);
             this.LeftMenuPanel.Controls.Add(this.ManualButtonPanel);
+            this.LeftMenuPanel.Controls.Add(this.CustomDesignList);
             this.LeftMenuPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LeftMenuPanel.Location = new System.Drawing.Point(3, 53);
             this.LeftMenuPanel.Name = "LeftMenuPanel";
             this.LeftMenuPanel.Size = new System.Drawing.Size(244, 605);
             this.LeftMenuPanel.TabIndex = 2;
             // 
+            // CustomModeButton
+            // 
+            this.CustomModeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.CustomModeButton.FlatAppearance.BorderSize = 0;
+            this.CustomModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CustomModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CustomModeButton.ForeColor = System.Drawing.Color.White;
+            this.CustomModeButton.Location = new System.Drawing.Point(163, 200);
+            this.CustomModeButton.Name = "CustomModeButton";
+            this.CustomModeButton.Size = new System.Drawing.Size(70, 23);
+            this.CustomModeButton.TabIndex = 245;
+            this.CustomModeButton.Tag = "";
+            this.CustomModeButton.Text = "Custom";
+            this.CustomModeButton.UseVisualStyleBackColor = false;
+            this.CustomModeButton.Click += new System.EventHandler(this.CustomModeButton_Click);
+            // 
             // ConfirmBtn
             // 
-            this.ConfirmBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ConfirmBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ConfirmBtn.BackColor = System.Drawing.Color.Orange;
             this.ConfirmBtn.FlatAppearance.BorderSize = 0;
@@ -374,7 +422,7 @@
             this.ConfirmBtn.Location = new System.Drawing.Point(12, 575);
             this.ConfirmBtn.Margin = new System.Windows.Forms.Padding(4);
             this.ConfirmBtn.Name = "ConfirmBtn";
-            this.ConfirmBtn.Size = new System.Drawing.Size(217, 30);
+            this.ConfirmBtn.Size = new System.Drawing.Size(221, 30);
             this.ConfirmBtn.TabIndex = 243;
             this.ConfirmBtn.Text = "Confirm";
             this.ConfirmBtn.UseVisualStyleBackColor = false;
@@ -388,9 +436,9 @@
             this.ManualModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ManualModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ManualModeButton.ForeColor = System.Drawing.Color.White;
-            this.ManualModeButton.Location = new System.Drawing.Point(132, 200);
+            this.ManualModeButton.Location = new System.Drawing.Point(87, 200);
             this.ManualModeButton.Name = "ManualModeButton";
-            this.ManualModeButton.Size = new System.Drawing.Size(100, 23);
+            this.ManualModeButton.Size = new System.Drawing.Size(70, 23);
             this.ManualModeButton.TabIndex = 239;
             this.ManualModeButton.Tag = "";
             this.ManualModeButton.Text = "Manual";
@@ -404,9 +452,9 @@
             this.AutoModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AutoModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.AutoModeButton.ForeColor = System.Drawing.Color.White;
-            this.AutoModeButton.Location = new System.Drawing.Point(12, 200);
+            this.AutoModeButton.Location = new System.Drawing.Point(11, 200);
             this.AutoModeButton.Name = "AutoModeButton";
-            this.AutoModeButton.Size = new System.Drawing.Size(100, 23);
+            this.AutoModeButton.Size = new System.Drawing.Size(70, 23);
             this.AutoModeButton.TabIndex = 238;
             this.AutoModeButton.Tag = "";
             this.AutoModeButton.Text = "Auto";
@@ -453,7 +501,7 @@
             this.AutoButtonPanel.Controls.Add(this.DarkDirtBtn);
             this.AutoButtonPanel.Location = new System.Drawing.Point(9, 231);
             this.AutoButtonPanel.Name = "AutoButtonPanel";
-            this.AutoButtonPanel.Size = new System.Drawing.Size(225, 341);
+            this.AutoButtonPanel.Size = new System.Drawing.Size(225, 340);
             this.AutoButtonPanel.TabIndex = 237;
             // 
             // fixRiverMouthToggle
@@ -738,7 +786,7 @@
             this.ManualButtonPanel.Controls.Add(this.ManualRiverPanel);
             this.ManualButtonPanel.Location = new System.Drawing.Point(9, 231);
             this.ManualButtonPanel.Name = "ManualButtonPanel";
-            this.ManualButtonPanel.Size = new System.Drawing.Size(225, 341);
+            this.ManualButtonPanel.Size = new System.Drawing.Size(225, 340);
             this.ManualButtonPanel.TabIndex = 244;
             // 
             // RoadDropdownBox
@@ -2005,6 +2053,28 @@
             this.RiverButton5A.UseVisualStyleBackColor = false;
             this.RiverButton5A.Click += new System.EventHandler(this.ManualRiverButton_Click);
             // 
+            // CustomDesignList
+            // 
+            this.CustomDesignList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            this.CustomDesignList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CustomDesignList.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CustomDesignList.ForeColor = System.Drawing.Color.White;
+            this.CustomDesignList.GridLines = true;
+            this.CustomDesignList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.CustomDesignList.HideSelection = false;
+            this.CustomDesignList.LabelWrap = false;
+            this.CustomDesignList.Location = new System.Drawing.Point(9, 231);
+            this.CustomDesignList.MultiSelect = false;
+            this.CustomDesignList.Name = "CustomDesignList";
+            this.CustomDesignList.ShowItemToolTips = true;
+            this.CustomDesignList.Size = new System.Drawing.Size(225, 340);
+            this.CustomDesignList.TabIndex = 232;
+            this.CustomDesignList.TileSize = new System.Drawing.Size(1, 1);
+            this.CustomDesignList.UseCompatibleStateImageBehavior = false;
+            this.CustomDesignList.View = System.Windows.Forms.View.Tile;
+            this.CustomDesignList.Visible = false;
+            this.CustomDesignList.Click += new System.EventHandler(this.CustomDesignList_Click);
+            // 
             // CornerPanel
             // 
             this.CornerPanel.Controls.Add(this.PleaseWaitPanel);
@@ -2235,5 +2305,9 @@
         private System.Windows.Forms.Label ManualRiverElevation3Label;
         private JCS.ToggleSwitch fixRiverMouthToggle;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListView CustomDesignList;
+        private System.Windows.Forms.Button CustomModeButton;
+        private JCS.ToggleSwitch DisplayCustomDesignToggle;
+        private System.Windows.Forms.Label DisplayCustomDesignLabel;
     }
 }

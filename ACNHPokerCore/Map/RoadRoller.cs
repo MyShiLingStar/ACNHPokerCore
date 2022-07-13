@@ -1,5 +1,4 @@
-﻿using AutocompleteMenuNS;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -24,6 +23,11 @@ namespace ACNHPokerCore
         private byte[] Acre = null;
         private byte[] Building = null;
         private byte[] Terrain = null;
+        private byte[] MapCustomDesgin = null;
+        private byte[] MyDesign = null;
+
+        private DesignPattern[] designPatterns;
+        private int MyDesignIconSize = 36;
 
         private const int numOfColumn = 0x70;
         private const int numOfRow = 0x60;
@@ -52,11 +56,13 @@ namespace ACNHPokerCore
         private bool highlightRoadCorner = false;
         private bool highlightCliffCorner = false;
         private bool highlightRiverCorner = false;
+        private bool displayCustomDesign = false;
         private bool cornerMode = false;
         private bool displayBuilding = false;
         private bool displayRoad = true;
         private bool firstEdit = true;
         private bool terrainSaving = false;
+        private bool haveCustomEdit = false;
 
         private ushort selectedRoad = 99;
         private Button selectedButton = null;
@@ -65,6 +71,7 @@ namespace ACNHPokerCore
         private Bitmap CurrentMiniMap;
 
         private bool manualModeActivated = false;
+        private bool customModeActivated = false;
         private Panel selectedManualMode;
         private ushort manualSelectedRoad = 7;
         private ushort manualSelectedRoadDirection = 0;
@@ -141,6 +148,9 @@ namespace ACNHPokerCore
             {
                 setSubDivider();
                 DrawMainMap(anchorX, anchorY);
+
+                int DiffHeight = LeftMenuPanel.Height - 605;
+                CustomDesignList.Height = 340 + DiffHeight;
             }
         }
 
@@ -175,49 +185,98 @@ namespace ACNHPokerCore
         {
             try
             {
-                Layer1 = Utilities.getMapLayer(socket, usb, Utilities.mapZero, ref counter);
-                Acre = Utilities.getAcre(socket, usb);
-                Building = Utilities.getBuilding(socket, usb);
-                Terrain = Utilities.getTerrain(socket, usb);
-
-                if (Acre != null)
+                if (socket != null || usb != null)
                 {
-                    if (MiniMap == null)
-                        MiniMap = new miniMap(Layer1, Acre, Building, Terrain, 2);
-                }
-                else
-                    throw new NullReferenceException("Layer1/Layer2/Acre");
+                    Layer1 = Utilities.getMapLayer(socket, usb, Utilities.mapZero, ref counter);
+                    Acre = Utilities.getAcre(socket, usb);
+                    Building = Utilities.getBuilding(socket, usb);
+                    Terrain = Utilities.getTerrain(socket, usb);
+                    MyDesign = Utilities.getMyDesign(socket, usb, ref counter);
+                    MapCustomDesgin = Utilities.getCustomDesignMap(socket, usb, ref counter);
 
-                if (Terrain != null)
-                {
-                    int iterator = 0;
-
-                    terrainUnits = new TerrainUnit[numOfColumn][];
-                    for (int i = 0; i < numOfColumn; i++)
+                    if (Acre != null)
                     {
-                        terrainUnits[i] = new TerrainUnit[numOfRow];
-                        for (int j = 0; j < numOfRow; j++)
-                        {
-                            byte[] currentTile = new byte[TerrainSize];
-                            Buffer.BlockCopy(Terrain, iterator * TerrainSize, currentTile, 0, TerrainSize);
-                            terrainUnits[i][j] = new TerrainUnit(currentTile);
-                            iterator++;
-                        }
+                        if (MiniMap == null)
+                            MiniMap = new miniMap(Layer1, Acre, Building, Terrain, 2);
                     }
+                    else
+                        throw new NullReferenceException("Layer1/Layer2/Acre");
 
-                    this.Invoke((MethodInvoker)delegate
+                    if (MyDesign != null || MapCustomDesgin != null)
                     {
-                        CurrentMiniMap = MiniMap.drawBackground();
-                        miniMapBox.BackgroundImage = CurrentMiniMap;
-                        miniMapBox.Image = MiniMap.drawSelectSquare16(8, 8);
-                        DrawMainMap(anchorX, anchorY);
-                        this.MaximizeBox = true;
-                    });
-                }
-                else
-                    throw new NullReferenceException("Terrain");
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            var imageList = new ImageList();
+                            imageList.ImageSize = new Size(MyDesignIconSize, MyDesignIconSize);
+                            CustomDesignList.LargeImageList = imageList;
+                            CustomDesignList.LargeImageList.ColorDepth = ColorDepth.Depth32Bit;
 
-                mapDrawReady = true;
+                            CustomDesignList.TileSize = new Size(50, 50);
+                            CustomDesignList.View = View.Tile;
+                            CustomDesignList.OwnerDraw = true;
+                            CustomDesignList.DrawItem += designList_DrawItem;
+
+                            designPatterns = new DesignPattern[Utilities.PatternCount];
+                            for (int i = 0; i < Utilities.PatternCount; i++)
+                            {
+                                byte[] currentDesign = new byte[DesignPattern.SIZE];
+                                Buffer.BlockCopy(MyDesign, i * DesignPattern.SIZE, currentDesign, 0, DesignPattern.SIZE);
+                                designPatterns[i] = new DesignPattern(currentDesign);
+                                Image currentDesignImage = designPatterns[i].GetBitmap();
+                                imageList.Images.Add(i.ToString(), currentDesignImage);
+                                CustomDesignList.Items.Add(i.ToString(), i.ToString());
+                                CustomDesignList.Items[i].ToolTipText = designPatterns[i].DesignName + "\n" + designPatterns[i].TownName + "\n" + designPatterns[i].PlayerName;
+                            }
+                        });
+
+                        //ListViewItem_SetSpacing(designList, (short)(MyDesignIconSize + 5), (short)(MyDesignIconSize + 5));
+
+                    }
+                    else
+                        throw new NullReferenceException("Custom Design");
+
+
+                    if (Terrain != null)
+                    {
+                        int iterator = 0;
+
+                        terrainUnits = new TerrainUnit[numOfColumn][];
+                        for (int i = 0; i < numOfColumn; i++)
+                        {
+                            terrainUnits[i] = new TerrainUnit[numOfRow];
+                            for (int j = 0; j < numOfRow; j++)
+                            {
+                                byte[] currentTile = new byte[TerrainSize];
+                                Buffer.BlockCopy(Terrain, iterator * TerrainSize, currentTile, 0, TerrainSize);
+                                terrainUnits[i][j] = new TerrainUnit(currentTile);
+
+                                if (MapCustomDesgin != null)
+                                {
+                                    byte[] currentDesign = new byte[2];
+                                    Buffer.BlockCopy(MapCustomDesgin, (i * numOfRow + j) * 2, currentDesign, 0, 2);
+                                    terrainUnits[i][j].setCustomDesign(currentDesign);
+                                }
+
+                                iterator++;
+                            }
+                        }
+
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            CurrentMiniMap = MiniMap.drawBackground();
+                            miniMapBox.BackgroundImage = CurrentMiniMap;
+                            miniMapBox.Image = MiniMap.drawSelectSquare16(8, 8);
+                            DrawMainMap(anchorX, anchorY);
+                            this.MaximizeBox = true;
+                        });
+                    }
+                    else
+                        throw new NullReferenceException("Terrain");
+
+                    mapDrawReady = true;
+
+                }
+
                 hideMapWait();
             }
             catch (Exception ex)
@@ -227,6 +286,23 @@ namespace ACNHPokerCore
             }
         }
 
+        private void designList_DrawItem(object sender, DrawListViewItemEventArgs e)
+        {
+            using (Graphics g = e.Graphics)
+            {
+                if (e.Item.Selected)
+                {
+                    if ((e.State & ListViewItemStates.Selected) != 0)
+                    {
+                        SolidBrush Select = new SolidBrush(Color.Orange);
+                        g.FillRectangle(Select, e.Bounds);
+                        e.DrawFocusRectangle();
+                    }
+                }
+
+                g.DrawImage(e.Item.ImageList.Images[e.ItemIndex], new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 4, e.Bounds.Width - 8, e.Bounds.Height - 8));
+            }
+        }
         private void DrawMainMap(int x, int y)
         {
             if (mapDrawing)
@@ -260,9 +336,7 @@ namespace ACNHPokerCore
                 var ia = new ImageAttributes();
                 ia.SetColorMatrix(cm);
 
-                int ImageNum = 0;
-
-                bool[,] mouthMarker = new bool[16,16];
+                bool[,] mouthMarker = new bool[16, 16];
                 if (highlightMouth)
                     mouthMarker = buildMouthMarker();
 
@@ -271,16 +345,25 @@ namespace ACNHPokerCore
                     for (int j = 0; j < 16; j++)
                     {
                         Bitmap tile;
+
+                        TerrainUnit CurrentUnit = terrainUnits[x + i][y + j];
+
+                        if (displayCustomDesign && CurrentUnit.haveCustomDesign())
+                        {
+                            tile = drawTileWithCustomDesign(CurrentUnit, GridSize);
+                        }
+                        else
+                        {
                             if (highlightMouth && mouthMarker[i, j])
                             {
-                                tile = new Bitmap(terrainUnits[x + i][y + j].getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner, true));
+                                tile = new Bitmap(CurrentUnit.getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner, true));
                             }
                             else
                             {
-                                tile = new Bitmap(terrainUnits[x + i][y + j].getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner));
+                                tile = new Bitmap(CurrentUnit.getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner));
                             }
+                        }
                         graphics.DrawImage(tile, new Rectangle(i * GridSize, j * GridSize, GridSize, GridSize), 0, 0, GridSize, GridSize, GraphicsUnit.Pixel, ia);
-                        ImageNum++;
                     }
                 }
             }
@@ -291,6 +374,37 @@ namespace ACNHPokerCore
             CurrentMainMap = myBitmap;
 
             mapDrawing = false;
+        }
+
+        private Bitmap drawTileWithCustomDesign(TerrainUnit currentUnit, int size)
+        {
+            Color borderColor = Color.Orange;
+            Bitmap Bottom;
+            Bottom = new Bitmap(size, size);
+            using (Graphics gr = Graphics.FromImage(Bottom))
+            {
+                gr.SmoothingMode = SmoothingMode.None;
+                gr.Clear(borderColor);
+            }
+
+            Bitmap Top;
+            int DesignID = BitConverter.ToInt16(currentUnit.getCustomDesign(), 0);
+            Top = designPatterns[DesignID].GetBitmap(size - 2);
+
+            Bitmap Final = Bottom;
+
+            using (Graphics graphics = Graphics.FromImage(Final))
+            {
+                var cm = new ColorMatrix();
+                cm.Matrix33 = 1;
+
+                var ia = new ImageAttributes();
+                ia.SetColorMatrix(cm);
+
+                graphics.DrawImage(Top, new Rectangle(1, 1, Top.Width, Top.Height), 0, 0, Top.Width, Top.Height, GraphicsUnit.Pixel, ia);
+            }
+
+            return Final;
         }
 
         private async Task DrawMainMapAsync(int x, int y, bool force = false)
@@ -336,29 +450,35 @@ namespace ACNHPokerCore
                         var ia = new ImageAttributes();
                         ia.SetColorMatrix(cm);
 
-                        int ImageNum = 0;
-
                         for (int i = 0; i < 16; i++)
                         {
                             for (int j = 0; j < 16; j++)
                             {
                                 Bitmap tile;
 
-                                bool[,] mouthMarker = new bool[16, 16];
-                                if (highlightMouth)
-                                    mouthMarker = buildMouthMarker();
+                                TerrainUnit CurrentUnit = terrainUnits[x + i][y + j];
+
+                                if (displayCustomDesign && CurrentUnit.haveCustomDesign())
+                                {
+                                    tile = drawTileWithCustomDesign(CurrentUnit, GridSize);
+                                }
+                                else
+                                {
+                                    bool[,] mouthMarker = new bool[16, 16];
+                                    if (highlightMouth)
+                                        mouthMarker = buildMouthMarker();
 
                                     if (highlightMouth && mouthMarker[i, j])
                                     {
-                                        tile = new Bitmap(terrainUnits[x + i][y + j].getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner, true));
+                                        tile = new Bitmap(CurrentUnit.getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner, true));
                                     }
                                     else
                                     {
-                                        tile = new Bitmap(terrainUnits[x + i][y + j].getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner));
+                                        tile = new Bitmap(CurrentUnit.getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner));
                                     }
+                                }
 
                                 graphics.DrawImage(tile, new Rectangle(i * GridSize, j * GridSize, GridSize, GridSize), 0, 0, GridSize, GridSize, GraphicsUnit.Pixel, ia);
-                                ImageNum++;
                             }
                         }
                     }
@@ -410,7 +530,19 @@ namespace ACNHPokerCore
                         {
                             if (x + i >= 0 && x + i < numOfColumn && y + j >= 0 && y + j < numOfRow)
                             {
-                                Bitmap tile = new Bitmap(terrainUnits[x + i][y + j].getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner));
+                                Bitmap tile;
+
+                                TerrainUnit CurrentUnit = terrainUnits[x + i][y + j];
+
+                                if (displayCustomDesign && CurrentUnit.haveCustomDesign())
+                                {
+                                    tile = drawTileWithCustomDesign(CurrentUnit, GridSize);
+                                }
+                                else
+                                {
+                                    tile = new Bitmap(CurrentUnit.getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner));
+                                }
+
                                 graphics.DrawImage(tile, new Rectangle((x + i - anchorX) * GridSize, (y + j - anchorY) * GridSize, GridSize, GridSize), 0, 0, GridSize, GridSize, GraphicsUnit.Pixel, ia);
                             }
                         }
@@ -467,13 +599,20 @@ namespace ACNHPokerCore
                                 if (x + i >= 0 && x + i < numOfColumn && y + j >= 0 && y + j < numOfRow)
                                 {
                                     Bitmap tile;
-                                    if (highlightMouth && isRiverMouth(x + i, y + j))
+
+                                    TerrainUnit CurrentUnit = terrainUnits[x + i][y + j];
+
+                                    if (displayCustomDesign && CurrentUnit.haveCustomDesign())
                                     {
-                                        tile = new Bitmap(terrainUnits[x + i][y + j].getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner, true));
+                                        tile = drawTileWithCustomDesign(CurrentUnit, GridSize);
+                                    }
+                                    else if (highlightMouth && isRiverMouth(x + i, y + j))
+                                    {
+                                        tile = new Bitmap(CurrentUnit.getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner, true));
                                     }
                                     else
                                     {
-                                        tile = new Bitmap(terrainUnits[x + i][y + j].getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner));
+                                        tile = new Bitmap(CurrentUnit.getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner));
                                     }
                                     graphics.DrawImage(tile, new Rectangle((x + i - anchorX) * GridSize, (y + j - anchorY) * GridSize, GridSize, GridSize), 0, 0, GridSize, GridSize, GraphicsUnit.Pixel, ia);
                                 }
@@ -506,6 +645,18 @@ namespace ACNHPokerCore
                 PleaseWaitPanel.Visible = false;
                 ProgressTimer.Stop();
             });
+        }
+
+        private void PlaceDesign(byte[] value, int x, int y)
+        {
+            terrainUnits[x][y].setCustomDesign(value);
+            _ = UpdateMainMapAsync(x, y);
+        }
+
+        private void RemoveDesign(int x, int y)
+        {
+            terrainUnits[x][y].removeCustomDesign();
+            _ = UpdateMainMapAsync(x, y);
         }
 
         private void PlaceRoad(int x, int y)
@@ -642,7 +793,7 @@ namespace ACNHPokerCore
                 {
                     bool[,] mouthMarker = buildMouthMarker();
 
-                    if (mouthMarker[x - anchorX,y - anchorY])
+                    if (mouthMarker[x - anchorX, y - anchorY])
                     {
                         bool[,] neighbour = FindSameNeighbourRiver(elevation, x, y, true);
                         CurrentUnit.updateRiver(neighbour, elevation);
@@ -1021,7 +1172,7 @@ namespace ACNHPokerCore
                         {
                             if (terrainUnits[x + i][y + j].HasTerrain())
                                 TerrainNeighbour[i + 1, j + 1] = true;
-                            else if (miniMap.GetBackgroundColorLess(x + i,y + j) == miniMap.Pixel[0x0C])
+                            else if (miniMap.GetBackgroundColorLess(x + i, y + j) == miniMap.Pixel[0x0C])
                                 TerrainNeighbour[i + 1, j + 1] = true;
                             else
                                 TerrainNeighbour[i + 1, j + 1] = false;
@@ -1559,7 +1710,58 @@ namespace ACNHPokerCore
 
             TerrainUnit CurrentUnit = terrainUnits[Xcoordinate + anchorX][Ycoordinate + anchorY];
 
-            if (manualModeActivated)
+            if (customModeActivated)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    if (CustomDesignList.FocusedItem == null)
+                        return;
+                    if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
+                        return;
+
+                    byte[] CustomDesignBytes = BitConverter.GetBytes(CustomDesignList.FocusedItem.Index);
+                    byte[] Half = new byte[] { CustomDesignBytes[0], CustomDesignBytes[1] };
+
+                    PlaceDesign(Half, Xcoordinate + anchorX, Ycoordinate + anchorY);
+
+                    if (firstEdit)
+                    {
+                        firstEdit = false;
+                        haveCustomEdit = true;
+                        ConfirmBtn.Visible = true;
+                    }
+
+                    wasPlacing = true;
+                    wasRemoving = false;
+
+                    LastChangedX = Xcoordinate;
+                    LastChangedY = Ycoordinate;
+                    UpdateToolTip(Xcoordinate, Ycoordinate);
+                }
+                else if (e.Button == MouseButtons.Right)
+                {
+                    if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasRemoving)
+                        return;
+
+                    RemoveDesign(Xcoordinate + anchorX, Ycoordinate + anchorY);
+
+                    if (firstEdit)
+                    {
+                        firstEdit = false;
+                        haveCustomEdit = true;
+                        ConfirmBtn.Visible = true;
+                    }
+
+                    wasPlacing = false;
+                    wasRemoving = true;
+
+                    LastChangedX = Xcoordinate;
+                    LastChangedY = Ycoordinate;
+
+                    UpdateToolTip(Xcoordinate, Ycoordinate);
+                }
+            }
+            else if (manualModeActivated)
             {
                 if (e.Button == MouseButtons.Left)
                 {
@@ -1782,8 +1984,58 @@ namespace ACNHPokerCore
             }
 
             TerrainUnit CurrentUnit = terrainUnits[Xcoordinate + anchorX][Ycoordinate + anchorY];
+            if (customModeActivated)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    if (CustomDesignList.FocusedItem == null)
+                        return;
+                    if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
+                        return;
+                    byte[] CustomDesignBytes = BitConverter.GetBytes(CustomDesignList.FocusedItem.Index);
+                    byte[] Half = new byte[] { CustomDesignBytes[0], CustomDesignBytes[1] };
 
-            if (manualModeActivated)
+                    PlaceDesign(Half, Xcoordinate + anchorX, Ycoordinate + anchorY);
+
+                    if (firstEdit)
+                    {
+                        firstEdit = false;
+                        haveCustomEdit = true;
+                        ConfirmBtn.Visible = true;
+                    }
+
+                    wasPlacing = true;
+                    wasRemoving = false;
+
+                    LastChangedX = Xcoordinate;
+                    LastChangedY = Ycoordinate;
+                    UpdateToolTip(Xcoordinate, Ycoordinate);
+
+                }
+                else if (e.Button == MouseButtons.Right)
+                {
+                    if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasRemoving)
+                        return;
+
+                    RemoveDesign(Xcoordinate + anchorX, Ycoordinate + anchorY);
+
+                    if (firstEdit)
+                    {
+                        firstEdit = false;
+                        haveCustomEdit = true;
+                        ConfirmBtn.Visible = true;
+                    }
+
+                    wasPlacing = false;
+                    wasRemoving = true;
+
+                    LastChangedX = Xcoordinate;
+                    LastChangedY = Ycoordinate;
+
+                    UpdateToolTip(Xcoordinate, Ycoordinate);
+                }
+            }
+            else if (manualModeActivated)
             {
                 if (e.Button == MouseButtons.Left)
                 {
@@ -2025,13 +2277,29 @@ namespace ACNHPokerCore
                 }
             }
 
+            byte[] newCustomMap = null;
+
+            if (haveCustomEdit)
+            {
+                newCustomMap = new byte[numOfRow * numOfColumn * 2];
+
+                for (int i = 0; i < numOfColumn; i++)
+                {
+                    for (int j = 0; j < numOfRow; j++)
+                    {
+                        byte[] CustomDesignData = terrainUnits[i][j].getCustomDesign();
+                        Buffer.BlockCopy(CustomDesignData, 0, newCustomMap, (i * numOfRow * 2) + (j * 2), 2);
+                    }
+                }
+            }
+
             showMapWait(40);
 
-            Thread SendTerrainThread = new Thread(delegate () { SendTerrain(newTerrain); });
+            Thread SendTerrainThread = new Thread(delegate () { SendTerrain(newTerrain, newCustomMap); });
             SendTerrainThread.Start();
         }
 
-        private void SendTerrain(byte[] newTerrain)
+        private void SendTerrain(byte[] newTerrain, byte[] newCustomMap)
         {
             int wait = 0;
             while (isAboutToSave(10))
@@ -2044,6 +2312,11 @@ namespace ACNHPokerCore
 
             Utilities.sendTerrain(socket, null, newTerrain, ref counter);
 
+            if (newCustomMap != null)
+            {
+                Utilities.sendCustomMap(socket, null, newCustomMap, ref counter);
+            }
+
             this.Invoke((MethodInvoker)delegate
             {
                 MiniMap.updateTerrain(newTerrain);
@@ -2051,6 +2324,7 @@ namespace ACNHPokerCore
                 miniMapBox.BackgroundImage = CurrentMiniMap;
                 terrainSaving = false;
                 firstEdit = true;
+                haveCustomEdit = false;
                 hideMapWait();
             });
 
@@ -2107,11 +2381,16 @@ namespace ACNHPokerCore
         private void AutoModeButton_Click(object sender, EventArgs e)
         {
             manualModeActivated = false;
+            customModeActivated = false;
+            DisplayCustomDesignToggle.Checked = false;
 
             AutoModeButton.BackColor = Color.FromArgb(80, 80, 255);
             ManualModeButton.BackColor = Color.FromArgb(114, 137, 218);
+            CustomModeButton.BackColor = Color.FromArgb(114, 137, 218);
+
             AutoButtonPanel.Visible = true;
             ManualButtonPanel.Visible = false;
+            CustomDesignList.Visible = false;
 
             LastChangedX = -1;
             LastChangedY = -1;
@@ -2123,11 +2402,40 @@ namespace ACNHPokerCore
         private void ManualModeButton_Click(object sender, EventArgs e)
         {
             manualModeActivated = true;
+            customModeActivated = false;
+            DisplayCustomDesignToggle.Checked = false;
 
             ManualModeButton.BackColor = Color.FromArgb(80, 80, 255);
             AutoModeButton.BackColor = Color.FromArgb(114, 137, 218);
+            CustomModeButton.BackColor = Color.FromArgb(114, 137, 218);
+
             AutoButtonPanel.Visible = false;
             ManualButtonPanel.Visible = true;
+            CustomDesignList.Visible = false;
+
+            LastChangedX = -1;
+            LastChangedY = -1;
+
+            wasPlacing = false;
+            wasRemoving = false;
+
+            selectedButton = null;
+            resetBtnColor(false);
+        }
+
+        private void CustomModeButton_Click(object sender, EventArgs e)
+        {
+            manualModeActivated = false;
+            customModeActivated = true;
+            DisplayCustomDesignToggle.Checked = true;
+
+            ManualModeButton.BackColor = Color.FromArgb(114, 137, 218);
+            AutoModeButton.BackColor = Color.FromArgb(114, 137, 218);
+            CustomModeButton.BackColor = Color.FromArgb(80, 80, 255);
+
+            AutoButtonPanel.Visible = false;
+            ManualButtonPanel.Visible = false;
+            CustomDesignList.Visible = true;
 
             LastChangedX = -1;
             LastChangedY = -1;
@@ -2953,7 +3261,7 @@ namespace ACNHPokerCore
                     MiniRoadImg = new Bitmap(Properties.Resources.dirt, new Size(24, 24));
                     break;
                 default:
-                    MiniRoadImg = new Bitmap(24,24);
+                    MiniRoadImg = new Bitmap(24, 24);
                     break;
             }
             ManualRoadModeButton.Image = MiniRoadImg;
@@ -3205,6 +3513,19 @@ namespace ACNHPokerCore
         {
             bool[,] mouthMaker = buildMouthMarker();
             return mouthMaker[x - anchorX, y - anchorY];
+        }
+
+        private void DisplayCustomDesignToggle_CheckedChanged(object sender, EventArgs e)
+        {
+            displayCustomDesign = DisplayCustomDesignToggle.Checked;
+            if (mapDrawReady)
+                DrawMainMap(anchorX, anchorY);
+        }
+
+        private void CustomDesignList_Click(object sender, EventArgs e)
+        {
+            LastChangedX = -1;
+            LastChangedY = -1;
         }
     }
 }

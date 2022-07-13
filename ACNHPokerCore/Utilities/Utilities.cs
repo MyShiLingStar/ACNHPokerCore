@@ -72,6 +72,11 @@ namespace ACNHPokerCore
 
         public static UInt32 mapActivateSize = 0x1500;
 
+        public static UInt32 mapCustomDesign = mapZero + 0xCFA34;
+
+        public static int PatternCount = 100;
+        public static UInt32 MyDesignZero = 0xAE7996F0;
+
         //=================================================================
 
         public static UInt32 VisitorNameAddress = 0xB750ED78; //0xB710ED78;
@@ -2486,6 +2491,34 @@ namespace ACNHPokerCore
             }
         }
 
+        public static void sendCustomMap(Socket socket, USBBot usb, byte[] CustomMap, ref int counter)
+        {
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        Debug.Print("[Sys] Poke : CustomMap " + TerrainOffset.ToString("X"));
+
+                        SendByteArray8(socket, mapCustomDesign, CustomMap, CustomMap.Length, ref counter);
+                        SendByteArray8(socket, mapCustomDesign + mapOffset, CustomMap, CustomMap.Length, ref counter);
+                    }
+                    else
+                    {
+                        Debug.Print("[Usb] Poke : CustomMap " + TerrainOffset.ToString("X"));
+
+                        WriteLargeBytes(usb, mapCustomDesign, CustomMap, CustomMap.Length, ref counter);
+                        WriteLargeBytes(usb, mapCustomDesign + mapOffset, CustomMap, CustomMap.Length, ref counter);
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                }
+            }
+        }
+
         public static byte[] getTerrain(Socket socket, USBBot usb)
         {
             lock (botLock)
@@ -2552,6 +2585,85 @@ namespace ACNHPokerCore
                         if (b == null)
                         {
                             MessageBox.Show("Wait something is wrong here!? \n\n Activate");
+                        }
+                        return b;
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    return null;
+                }
+            }
+        }
+
+        public static byte[] getCustomDesignMap(Socket socket, USBBot usb, ref int counter)
+        {
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        Debug.Print("[Sys] Peek : CustomDesignMap " + mapCustomDesign.ToString("X"));
+
+                        byte[] b = ReadByteArray8(socket, mapCustomDesign, MapTileCount16x16 * 2, ref counter);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n CustomDesignMap");
+                        }
+                        return b;
+                    }
+                    else
+                    {
+                        Debug.Print("[Usb] Peek : CustomDesignMap " + mapCustomDesign.ToString("X"));
+
+                        byte[] b = ReadLargeBytes(usb, mapCustomDesign, MapTileCount16x16 * 2, ref counter);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n CustomDesignMap");
+                        }
+                        return b;
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    return null;
+                }
+            }
+        }
+
+
+        public static byte[] getMyDesign(Socket socket, USBBot usb, ref int counter)
+        {
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        Debug.Print("[Sys] Peek : MyDesign " + MyDesignZero.ToString("X"));
+
+                        byte[] b = ReadByteArray8(socket, MyDesignZero, DesignPattern.SIZE * PatternCount, ref counter);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n MyDesign");
+                        }
+                        return b;
+                    }
+                    else
+                    {
+                        Debug.Print("[Usb] Peek : MyDesign " + MyDesignZero.ToString("X"));
+
+                        byte[] b = ReadLargeBytes(usb, MyDesignZero, DesignPattern.SIZE * PatternCount, ref counter);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n MyDesign");
                         }
                         return b;
                     }

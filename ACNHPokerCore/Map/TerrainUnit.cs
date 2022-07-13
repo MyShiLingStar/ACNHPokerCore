@@ -10,6 +10,7 @@ namespace ACNHPokerCore
     public class TerrainUnit
     {
         private byte[] TerrainData;
+        private byte[] CustomDesign = null;
 
         public TerrainUnit(byte[] terrainData)
         {
@@ -19,6 +20,29 @@ namespace ACNHPokerCore
         public byte[] getTerrainData()
         {
             return TerrainData;
+        }
+
+        public void setCustomDesign(byte[] customDesignData)
+        {
+            CustomDesign = customDesignData;
+        }
+
+        public void removeCustomDesign()
+        {
+            CustomDesign = new byte[] { 0x00, 0xF8 };
+        }
+
+        public byte[] getCustomDesign()
+        {
+            return CustomDesign;
+        }
+
+        public bool haveCustomDesign()
+        {
+            if (CustomDesign == null || CustomDesign[1] == 0xF8)
+                return false;
+            else
+                return true;
         }
 
         public string DisplayData()
@@ -38,6 +62,12 @@ namespace ACNHPokerCore
             byte[] elevation = new byte[2];
             Buffer.BlockCopy(TerrainData, 12, elevation, 0, 2);
 
+            string CustomDesignInfo = "";
+            if (CustomDesign != null)
+            {
+                CustomDesignInfo = "\n" + "CustomDesign: " + Utilities.flip(Utilities.ByteToHexString(CustomDesign));
+            }
+
             return Utilities.flip(Utilities.ByteToHexString(terrainModel)) + " " +
                    Utilities.flip(Utilities.ByteToHexString(terrainVariation)) + " " +
                    Utilities.flip(Utilities.ByteToHexString(terrainAngle)) + " " +
@@ -47,7 +77,7 @@ namespace ACNHPokerCore
                    Utilities.flip(Utilities.ByteToHexString(elevation)) + " " + "\n" +
                    "terrainModel: " + TerrainName[Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(terrainModel)), 16)] + " " + "\n" +
                    "roadModel: " + TerrainName[Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(roadModel)), 16)] + " " + "\n" +
-                   "elevation: " + Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(elevation)), 16).ToString();
+                   "elevation: " + Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(elevation)), 16).ToString() + CustomDesignInfo;
         }
         public ushort getTerrainModel()
         {

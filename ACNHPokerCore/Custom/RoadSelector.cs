@@ -1,6 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.IO;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace ACNHPokerCore
@@ -22,7 +20,7 @@ namespace ACNHPokerCore
                 Image img;
                 switch (e.Index)
                 {
-                    case 0: 
+                    case 0:
                         img = new Bitmap(Properties.Resources.wood, new Size(24, 24));
                         break;
                     case 1:

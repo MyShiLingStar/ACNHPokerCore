@@ -342,6 +342,8 @@ namespace ACNHPokerCore
             this.PeekButton = new System.Windows.Forms.Button();
             this.PokeButton = new System.Windows.Forms.Button();
             this.FillButton = new System.Windows.Forms.Button();
+            this.debugImage = new System.Windows.Forms.PictureBox();
+            this.LoadDesign = new System.Windows.Forms.Button();
             VillagerAutoCompleteMenu = new AutocompleteMenuNS.AutocompleteMenu();
             this.AlwaysOnControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IPAddressInputBackground)).BeginInit();
@@ -380,6 +382,7 @@ namespace ACNHPokerCore
             this.VillagerNowLoadingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VillagerNowLoadingImage)).BeginInit();
             this.VillagerControlPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.debugImage)).BeginInit();
             this.SuspendLayout();
             // 
             // VillagerAutoCompleteMenu
@@ -7523,11 +7526,37 @@ namespace ACNHPokerCore
             this.FillButton.UseVisualStyleBackColor = false;
             this.FillButton.Click += new System.EventHandler(this.FillButton_Click);
             // 
+            // debugImage
+            // 
+            this.debugImage.Location = new System.Drawing.Point(1059, 678);
+            this.debugImage.Name = "debugImage";
+            this.debugImage.Size = new System.Drawing.Size(70, 70);
+            this.debugImage.TabIndex = 51;
+            this.debugImage.TabStop = false;
+            // 
+            // LoadDesign
+            // 
+            this.LoadDesign.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.LoadDesign.FlatAppearance.BorderSize = 0;
+            this.LoadDesign.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LoadDesign.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.LoadDesign.ForeColor = System.Drawing.Color.White;
+            this.LoadDesign.Location = new System.Drawing.Point(1059, 617);
+            this.LoadDesign.Name = "LoadDesign";
+            this.LoadDesign.Size = new System.Drawing.Size(79, 55);
+            this.LoadDesign.TabIndex = 52;
+            this.LoadDesign.Tag = "";
+            this.LoadDesign.Text = "Load";
+            this.LoadDesign.UseVisualStyleBackColor = false;
+            this.LoadDesign.Click += new System.EventHandler(this.LoadDesign_Click);
+            // 
             // Main
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.ClientSize = new System.Drawing.Size(1204, 516);
+            this.Controls.Add(this.LoadDesign);
+            this.Controls.Add(this.debugImage);
             this.Controls.Add(this.FillButton);
             this.Controls.Add(this.FullPeekResult5);
             this.Controls.Add(this.FullPeekResult4);
@@ -7611,6 +7640,7 @@ namespace ACNHPokerCore
             this.VillagerNowLoadingPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VillagerNowLoadingImage)).EndInit();
             this.VillagerControlPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.debugImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -7928,5 +7958,7 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button RoadRollerButton;
         private System.Windows.Forms.Button chatButton;
+        private System.Windows.Forms.PictureBox debugImage;
+        private System.Windows.Forms.Button LoadDesign;
     }
 }
