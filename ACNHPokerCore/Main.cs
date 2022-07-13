@@ -1527,7 +1527,6 @@ namespace ACNHPokerCore
         #region Auto Refresh
         private void AutoRefill_CheckedChanged(object sender, EventArgs e)
         {
-
             Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
             Debug.Print("getlastfile: "+getlastfile);
 
@@ -1546,17 +1545,11 @@ namespace ACNHPokerCore
 
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
-
-
-
         }
 
 
         private void AutoRefillTimer_Tick(object sender, EventArgs e)
         {
-
-             
-
             try
             {
                 if (socket != null && socket.Connected == true && AutoRefill.Checked && AllowInventoryUpdate)

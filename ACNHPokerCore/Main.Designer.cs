@@ -1769,7 +1769,7 @@ namespace ACNHPokerCore
             "Player 7 House",
             "Player 8 House",
             "Recycling Bin"});
-            this.PlayerInventorySelector.Location = new System.Drawing.Point(579, 4);
+            this.PlayerInventorySelector.Location = new System.Drawing.Point(579, 1);
             this.PlayerInventorySelector.Name = "PlayerInventorySelector";
             this.PlayerInventorySelector.Size = new System.Drawing.Size(147, 24);
             this.PlayerInventorySelector.TabIndex = 9;
@@ -2052,7 +2052,7 @@ namespace ACNHPokerCore
             this.AutoRefillLabel.AutoSize = true;
             this.AutoRefillLabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.AutoRefillLabel.ForeColor = System.Drawing.Color.White;
-            this.AutoRefillLabel.Location = new System.Drawing.Point(602, 33);
+            this.AutoRefillLabel.Location = new System.Drawing.Point(603, 30);
             this.AutoRefillLabel.Name = "AutoRefillLabel";
             this.AutoRefillLabel.Size = new System.Drawing.Size(65, 15);
             this.AutoRefillLabel.TabIndex = 43;
@@ -2061,7 +2061,7 @@ namespace ACNHPokerCore
             // 
             // AutoRefill
             // 
-            this.AutoRefill.Location = new System.Drawing.Point(668, 32);
+            this.AutoRefill.Location = new System.Drawing.Point(669, 30);
             this.AutoRefill.Name = "AutoRefill";
             this.AutoRefill.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.AutoRefill.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);

@@ -151,6 +151,19 @@ namespace ACNHPokerCore
 
                 int DiffHeight = LeftMenuPanel.Height - 605;
                 CustomDesignList.Height = 340 + DiffHeight;
+                int DiffWidth = LeftMenuPanel.Width - 225;
+                CustomDesignList.Width = 205 + DiffWidth;
+
+                int size = CustomDesignList.Width / 5 - 5;
+                if (size > 90)
+                    size = 90;
+
+                if (CustomDesignList.Width <= 300)
+                    CustomDesignList.TileSize = new Size(50, 50);
+                else
+                    CustomDesignList.TileSize = new Size(size, size);
+
+                CustomDesignList.Width += 1; // Force a refresh
             }
         }
 
@@ -229,7 +242,6 @@ namespace ACNHPokerCore
                             }
                         });
 
-                        //ListViewItem_SetSpacing(designList, (short)(MyDesignIconSize + 5), (short)(MyDesignIconSize + 5));
 
                     }
                     else

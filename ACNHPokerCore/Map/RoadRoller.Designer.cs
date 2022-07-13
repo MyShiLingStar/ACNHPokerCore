@@ -178,8 +178,8 @@
             // MainDivider
             // 
             this.MainDivider.ColumnCount = 2;
-            this.MainDivider.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
-            this.MainDivider.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.MainDivider.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.MainDivider.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
             this.MainDivider.Controls.Add(this.SubDivider, 1, 1);
             this.MainDivider.Controls.Add(this.TopMenuPanel, 1, 0);
             this.MainDivider.Controls.Add(this.LeftMenuPanel, 0, 1);
@@ -201,13 +201,13 @@
             this.SubDivider.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 0F));
             this.SubDivider.Controls.Add(this.MiddlePanel, 1, 1);
             this.SubDivider.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SubDivider.Location = new System.Drawing.Point(253, 53);
+            this.SubDivider.Location = new System.Drawing.Point(249, 53);
             this.SubDivider.Name = "SubDivider";
             this.SubDivider.RowCount = 3;
             this.SubDivider.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 0F));
             this.SubDivider.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.SubDivider.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 0F));
-            this.SubDivider.Size = new System.Drawing.Size(728, 605);
+            this.SubDivider.Size = new System.Drawing.Size(732, 605);
             this.SubDivider.TabIndex = 0;
             // 
             // MiddlePanel
@@ -217,7 +217,7 @@
             this.MiddlePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MiddlePanel.Location = new System.Drawing.Point(3, 3);
             this.MiddlePanel.Name = "MiddlePanel";
-            this.MiddlePanel.Size = new System.Drawing.Size(722, 599);
+            this.MiddlePanel.Size = new System.Drawing.Size(726, 599);
             this.MiddlePanel.TabIndex = 0;
             // 
             // MainMap
@@ -229,7 +229,7 @@
             this.MainMap.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.MainMap.Location = new System.Drawing.Point(0, 0);
             this.MainMap.Name = "MainMap";
-            this.MainMap.Size = new System.Drawing.Size(50, 50);
+            this.MainMap.Size = new System.Drawing.Size(54, 50);
             this.MainMap.TabIndex = 0;
             this.MainMap.TabStop = false;
             this.MainMap.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainMap_MouseDown);
@@ -251,9 +251,9 @@
             this.TopMenuPanel.Controls.Add(this.DisplayRoadLabel);
             this.TopMenuPanel.Controls.Add(this.DisplayRoadToggle);
             this.TopMenuPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TopMenuPanel.Location = new System.Drawing.Point(253, 3);
+            this.TopMenuPanel.Location = new System.Drawing.Point(249, 3);
             this.TopMenuPanel.Name = "TopMenuPanel";
-            this.TopMenuPanel.Size = new System.Drawing.Size(728, 44);
+            this.TopMenuPanel.Size = new System.Drawing.Size(732, 44);
             this.TopMenuPanel.TabIndex = 1;
             // 
             // DisplayCustomDesignToggle
@@ -391,7 +391,7 @@
             this.LeftMenuPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LeftMenuPanel.Location = new System.Drawing.Point(3, 53);
             this.LeftMenuPanel.Name = "LeftMenuPanel";
-            this.LeftMenuPanel.Size = new System.Drawing.Size(244, 605);
+            this.LeftMenuPanel.Size = new System.Drawing.Size(240, 605);
             this.LeftMenuPanel.TabIndex = 2;
             // 
             // CustomModeButton
@@ -401,7 +401,7 @@
             this.CustomModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CustomModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.CustomModeButton.ForeColor = System.Drawing.Color.White;
-            this.CustomModeButton.Location = new System.Drawing.Point(163, 200);
+            this.CustomModeButton.Location = new System.Drawing.Point(161, 200);
             this.CustomModeButton.Name = "CustomModeButton";
             this.CustomModeButton.Size = new System.Drawing.Size(70, 23);
             this.CustomModeButton.TabIndex = 245;
@@ -419,10 +419,10 @@
             this.ConfirmBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ConfirmBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ConfirmBtn.ForeColor = System.Drawing.Color.White;
-            this.ConfirmBtn.Location = new System.Drawing.Point(12, 575);
+            this.ConfirmBtn.Location = new System.Drawing.Point(9, 575);
             this.ConfirmBtn.Margin = new System.Windows.Forms.Padding(4);
             this.ConfirmBtn.Name = "ConfirmBtn";
-            this.ConfirmBtn.Size = new System.Drawing.Size(221, 30);
+            this.ConfirmBtn.Size = new System.Drawing.Size(217, 30);
             this.ConfirmBtn.TabIndex = 243;
             this.ConfirmBtn.Text = "Confirm";
             this.ConfirmBtn.UseVisualStyleBackColor = false;
@@ -436,7 +436,7 @@
             this.ManualModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ManualModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ManualModeButton.ForeColor = System.Drawing.Color.White;
-            this.ManualModeButton.Location = new System.Drawing.Point(87, 200);
+            this.ManualModeButton.Location = new System.Drawing.Point(82, 200);
             this.ManualModeButton.Name = "ManualModeButton";
             this.ManualModeButton.Size = new System.Drawing.Size(70, 23);
             this.ManualModeButton.TabIndex = 239;
@@ -452,7 +452,7 @@
             this.AutoModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AutoModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.AutoModeButton.ForeColor = System.Drawing.Color.White;
-            this.AutoModeButton.Location = new System.Drawing.Point(11, 200);
+            this.AutoModeButton.Location = new System.Drawing.Point(6, 200);
             this.AutoModeButton.Name = "AutoModeButton";
             this.AutoModeButton.Size = new System.Drawing.Size(70, 23);
             this.AutoModeButton.TabIndex = 238;
@@ -467,7 +467,7 @@
             this.miniMapBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.miniMapBox.ErrorImage = null;
             this.miniMapBox.InitialImage = null;
-            this.miniMapBox.Location = new System.Drawing.Point(9, 3);
+            this.miniMapBox.Location = new System.Drawing.Point(6, 3);
             this.miniMapBox.Margin = new System.Windows.Forms.Padding(0);
             this.miniMapBox.MaximumSize = new System.Drawing.Size(224, 192);
             this.miniMapBox.MinimumSize = new System.Drawing.Size(224, 192);
@@ -499,7 +499,7 @@
             this.AutoButtonPanel.Controls.Add(this.BrickBtn);
             this.AutoButtonPanel.Controls.Add(this.SandBtn);
             this.AutoButtonPanel.Controls.Add(this.DarkDirtBtn);
-            this.AutoButtonPanel.Location = new System.Drawing.Point(9, 231);
+            this.AutoButtonPanel.Location = new System.Drawing.Point(6, 231);
             this.AutoButtonPanel.Name = "AutoButtonPanel";
             this.AutoButtonPanel.Size = new System.Drawing.Size(225, 340);
             this.AutoButtonPanel.TabIndex = 237;
@@ -784,7 +784,7 @@
             this.ManualButtonPanel.Controls.Add(this.ManualRoadPanel);
             this.ManualButtonPanel.Controls.Add(this.ManualCliffPanel);
             this.ManualButtonPanel.Controls.Add(this.ManualRiverPanel);
-            this.ManualButtonPanel.Location = new System.Drawing.Point(9, 231);
+            this.ManualButtonPanel.Location = new System.Drawing.Point(6, 231);
             this.ManualButtonPanel.Name = "ManualButtonPanel";
             this.ManualButtonPanel.Size = new System.Drawing.Size(225, 340);
             this.ManualButtonPanel.TabIndex = 244;
@@ -2063,7 +2063,7 @@
             this.CustomDesignList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.CustomDesignList.HideSelection = false;
             this.CustomDesignList.LabelWrap = false;
-            this.CustomDesignList.Location = new System.Drawing.Point(9, 231);
+            this.CustomDesignList.Location = new System.Drawing.Point(6, 231);
             this.CustomDesignList.MultiSelect = false;
             this.CustomDesignList.Name = "CustomDesignList";
             this.CustomDesignList.ShowItemToolTips = true;
@@ -2081,7 +2081,7 @@
             this.CornerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CornerPanel.Location = new System.Drawing.Point(3, 3);
             this.CornerPanel.Name = "CornerPanel";
-            this.CornerPanel.Size = new System.Drawing.Size(244, 44);
+            this.CornerPanel.Size = new System.Drawing.Size(240, 44);
             this.CornerPanel.TabIndex = 3;
             // 
             // PleaseWaitPanel
@@ -2092,7 +2092,7 @@
             this.PleaseWaitPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PleaseWaitPanel.Location = new System.Drawing.Point(0, 0);
             this.PleaseWaitPanel.Name = "PleaseWaitPanel";
-            this.PleaseWaitPanel.Size = new System.Drawing.Size(244, 44);
+            this.PleaseWaitPanel.Size = new System.Drawing.Size(240, 44);
             this.PleaseWaitPanel.TabIndex = 220;
             this.PleaseWaitPanel.Visible = false;
             // 
