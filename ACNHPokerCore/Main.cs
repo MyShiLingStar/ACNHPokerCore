@@ -8526,11 +8526,5 @@ namespace ACNHPokerCore
         {
             Ch = null;
         }
-
-        private void LoadDesign_Click(object sender, EventArgs e)
-        {
-            DesignPattern d = new DesignPattern(Utilities.ReadByteArray(socket, Utilities.MyDesignZero + DesignPattern.SIZE, DesignPattern.SIZE));
-            debugImage.Image = d.GetBitmap();
-        }
     }
 }
