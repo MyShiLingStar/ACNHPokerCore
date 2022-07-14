@@ -53,7 +53,7 @@
             this.miniMapBox = new System.Windows.Forms.PictureBox();
             this.AutoButtonPanel = new System.Windows.Forms.Panel();
             this.fixRiverMouthToggle = new JCS.ToggleSwitch();
-            this.label1 = new System.Windows.Forms.Label();
+            this.FixRiverMouthLabel = new System.Windows.Forms.Label();
             this.ArchBtn = new System.Windows.Forms.Button();
             this.Elevation0Label = new System.Windows.Forms.Label();
             this.StoneBtn = new System.Windows.Forms.Button();
@@ -482,7 +482,7 @@
             // AutoButtonPanel
             // 
             this.AutoButtonPanel.Controls.Add(this.fixRiverMouthToggle);
-            this.AutoButtonPanel.Controls.Add(this.label1);
+            this.AutoButtonPanel.Controls.Add(this.FixRiverMouthLabel);
             this.AutoButtonPanel.Controls.Add(this.ArchBtn);
             this.AutoButtonPanel.Controls.Add(this.Elevation0Label);
             this.AutoButtonPanel.Controls.Add(this.StoneBtn);
@@ -516,17 +516,17 @@
             this.fixRiverMouthToggle.UseAnimation = false;
             this.fixRiverMouthToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.fixRiverMouthToggle_CheckedChanged);
             // 
-            // label1
+            // FixRiverMouthLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(69, 67);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 14);
-            this.label1.TabIndex = 243;
-            this.label1.Text = "Fix River Mouth :";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.FixRiverMouthLabel.AutoSize = true;
+            this.FixRiverMouthLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.FixRiverMouthLabel.ForeColor = System.Drawing.Color.White;
+            this.FixRiverMouthLabel.Location = new System.Drawing.Point(69, 67);
+            this.FixRiverMouthLabel.Name = "FixRiverMouthLabel";
+            this.FixRiverMouthLabel.Size = new System.Drawing.Size(97, 14);
+            this.FixRiverMouthLabel.TabIndex = 243;
+            this.FixRiverMouthLabel.Text = "Fix River Mouth :";
+            this.FixRiverMouthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ArchBtn
             // 
@@ -788,6 +788,7 @@
             this.ManualButtonPanel.Name = "ManualButtonPanel";
             this.ManualButtonPanel.Size = new System.Drawing.Size(225, 340);
             this.ManualButtonPanel.TabIndex = 244;
+            this.ManualButtonPanel.Visible = false;
             // 
             // RoadDropdownBox
             // 
@@ -911,7 +912,7 @@
             // RoadButton8A
             // 
             this.RoadButton8A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton8A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RoadButton8A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RoadButton8A.FlatAppearance.BorderSize = 0;
             this.RoadButton8A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RoadButton8A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -928,7 +929,7 @@
             // RoadButton0A
             // 
             this.RoadButton0A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton0A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RoadButton0A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RoadButton0A.FlatAppearance.BorderSize = 0;
             this.RoadButton0A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RoadButton0A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -945,7 +946,7 @@
             // RoadButton3B
             // 
             this.RoadButton3B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton3B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RoadButton3B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RoadButton3B.FlatAppearance.BorderSize = 0;
             this.RoadButton3B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RoadButton3B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -962,7 +963,7 @@
             // RoadButton7A
             // 
             this.RoadButton7A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton7A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RoadButton7A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RoadButton7A.FlatAppearance.BorderSize = 0;
             this.RoadButton7A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RoadButton7A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -979,7 +980,7 @@
             // RoadButton3A
             // 
             this.RoadButton3A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton3A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RoadButton3A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RoadButton3A.FlatAppearance.BorderSize = 0;
             this.RoadButton3A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RoadButton3A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -996,7 +997,7 @@
             // RoadButton3C
             // 
             this.RoadButton3C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton3C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RoadButton3C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RoadButton3C.FlatAppearance.BorderSize = 0;
             this.RoadButton3C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RoadButton3C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1013,7 +1014,7 @@
             // RoadButton6B
             // 
             this.RoadButton6B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton6B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RoadButton6B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RoadButton6B.FlatAppearance.BorderSize = 0;
             this.RoadButton6B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RoadButton6B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1030,7 +1031,7 @@
             // RoadButton2C
             // 
             this.RoadButton2C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton2C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RoadButton2C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RoadButton2C.FlatAppearance.BorderSize = 0;
             this.RoadButton2C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RoadButton2C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1047,7 +1048,7 @@
             // RoadButton0B
             // 
             this.RoadButton0B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton0B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RoadButton0B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RoadButton0B.FlatAppearance.BorderSize = 0;
             this.RoadButton0B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RoadButton0B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1064,7 +1065,7 @@
             // RoadButton4A
             // 
             this.RoadButton4A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton4A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RoadButton4A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RoadButton4A.FlatAppearance.BorderSize = 0;
             this.RoadButton4A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RoadButton4A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1081,7 +1082,7 @@
             // RoadButton6A
             // 
             this.RoadButton6A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton6A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RoadButton6A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RoadButton6A.FlatAppearance.BorderSize = 0;
             this.RoadButton6A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RoadButton6A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1098,7 +1099,7 @@
             // RoadButton2B
             // 
             this.RoadButton2B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton2B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RoadButton2B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RoadButton2B.FlatAppearance.BorderSize = 0;
             this.RoadButton2B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RoadButton2B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1115,7 +1116,7 @@
             // RoadButton1A
             // 
             this.RoadButton1A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton1A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RoadButton1A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RoadButton1A.FlatAppearance.BorderSize = 0;
             this.RoadButton1A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RoadButton1A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1132,7 +1133,7 @@
             // RoadButton4B
             // 
             this.RoadButton4B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton4B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RoadButton4B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RoadButton4B.FlatAppearance.BorderSize = 0;
             this.RoadButton4B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RoadButton4B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1149,7 +1150,7 @@
             // RoadButton5B
             // 
             this.RoadButton5B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton5B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RoadButton5B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RoadButton5B.FlatAppearance.BorderSize = 0;
             this.RoadButton5B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RoadButton5B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1166,7 +1167,7 @@
             // RoadButton2A
             // 
             this.RoadButton2A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton2A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RoadButton2A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RoadButton2A.FlatAppearance.BorderSize = 0;
             this.RoadButton2A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RoadButton2A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1183,7 +1184,7 @@
             // RoadButton1B
             // 
             this.RoadButton1B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton1B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RoadButton1B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RoadButton1B.FlatAppearance.BorderSize = 0;
             this.RoadButton1B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RoadButton1B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1200,7 +1201,7 @@
             // RoadButton4C
             // 
             this.RoadButton4C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton4C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RoadButton4C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RoadButton4C.FlatAppearance.BorderSize = 0;
             this.RoadButton4C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RoadButton4C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1217,7 +1218,7 @@
             // RoadButton5A
             // 
             this.RoadButton5A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton5A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RoadButton5A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RoadButton5A.FlatAppearance.BorderSize = 0;
             this.RoadButton5A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RoadButton5A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1234,7 +1235,7 @@
             // RoadButton1C
             // 
             this.RoadButton1C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton1C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RoadButton1C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RoadButton1C.FlatAppearance.BorderSize = 0;
             this.RoadButton1C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RoadButton1C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1283,7 +1284,7 @@
             this.ManualTerrainElevation3Label.AutoSize = true;
             this.ManualTerrainElevation3Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ManualTerrainElevation3Label.ForeColor = System.Drawing.Color.White;
-            this.ManualTerrainElevation3Label.Location = new System.Drawing.Point(185, 71);
+            this.ManualTerrainElevation3Label.Location = new System.Drawing.Point(185, 70);
             this.ManualTerrainElevation3Label.Name = "ManualTerrainElevation3Label";
             this.ManualTerrainElevation3Label.Size = new System.Drawing.Size(13, 14);
             this.ManualTerrainElevation3Label.TabIndex = 273;
@@ -1359,7 +1360,7 @@
             // CliffButton8
             // 
             this.CliffButton8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.CliffButton8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.CliffButton8.FlatAppearance.BorderSize = 0;
             this.CliffButton8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CliffButton8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1376,7 +1377,7 @@
             // CliffButton0A
             // 
             this.CliffButton0A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton0A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.CliffButton0A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.CliffButton0A.FlatAppearance.BorderSize = 0;
             this.CliffButton0A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CliffButton0A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1393,7 +1394,7 @@
             // CliffButton3B
             // 
             this.CliffButton3B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton3B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.CliffButton3B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.CliffButton3B.FlatAppearance.BorderSize = 0;
             this.CliffButton3B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CliffButton3B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1410,7 +1411,7 @@
             // CliffButton7A
             // 
             this.CliffButton7A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton7A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.CliffButton7A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.CliffButton7A.FlatAppearance.BorderSize = 0;
             this.CliffButton7A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CliffButton7A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1427,7 +1428,7 @@
             // CliffButton3A
             // 
             this.CliffButton3A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton3A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.CliffButton3A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.CliffButton3A.FlatAppearance.BorderSize = 0;
             this.CliffButton3A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CliffButton3A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1444,7 +1445,7 @@
             // CliffButton3C
             // 
             this.CliffButton3C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton3C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.CliffButton3C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.CliffButton3C.FlatAppearance.BorderSize = 0;
             this.CliffButton3C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CliffButton3C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1461,7 +1462,7 @@
             // CliffButton6B
             // 
             this.CliffButton6B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton6B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.CliffButton6B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.CliffButton6B.FlatAppearance.BorderSize = 0;
             this.CliffButton6B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CliffButton6B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1478,7 +1479,7 @@
             // CliffButton2C
             // 
             this.CliffButton2C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton2C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.CliffButton2C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.CliffButton2C.FlatAppearance.BorderSize = 0;
             this.CliffButton2C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CliffButton2C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1495,7 +1496,7 @@
             // CliffButton4A
             // 
             this.CliffButton4A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton4A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.CliffButton4A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.CliffButton4A.FlatAppearance.BorderSize = 0;
             this.CliffButton4A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CliffButton4A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1512,7 +1513,7 @@
             // CliffButton6A
             // 
             this.CliffButton6A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton6A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.CliffButton6A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.CliffButton6A.FlatAppearance.BorderSize = 0;
             this.CliffButton6A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CliffButton6A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1529,7 +1530,7 @@
             // CliffButton2B
             // 
             this.CliffButton2B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton2B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.CliffButton2B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.CliffButton2B.FlatAppearance.BorderSize = 0;
             this.CliffButton2B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CliffButton2B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1546,7 +1547,7 @@
             // CliffButton1A
             // 
             this.CliffButton1A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton1A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.CliffButton1A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.CliffButton1A.FlatAppearance.BorderSize = 0;
             this.CliffButton1A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CliffButton1A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1563,7 +1564,7 @@
             // CliffButton4B
             // 
             this.CliffButton4B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton4B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.CliffButton4B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.CliffButton4B.FlatAppearance.BorderSize = 0;
             this.CliffButton4B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CliffButton4B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1580,7 +1581,7 @@
             // CliffButton5B
             // 
             this.CliffButton5B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton5B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.CliffButton5B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.CliffButton5B.FlatAppearance.BorderSize = 0;
             this.CliffButton5B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CliffButton5B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1597,7 +1598,7 @@
             // CliffButton2A
             // 
             this.CliffButton2A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton2A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.CliffButton2A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.CliffButton2A.FlatAppearance.BorderSize = 0;
             this.CliffButton2A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CliffButton2A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1614,7 +1615,7 @@
             // CliffButton4C
             // 
             this.CliffButton4C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton4C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.CliffButton4C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.CliffButton4C.FlatAppearance.BorderSize = 0;
             this.CliffButton4C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CliffButton4C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1631,7 +1632,7 @@
             // CliffButton5A
             // 
             this.CliffButton5A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton5A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.CliffButton5A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.CliffButton5A.FlatAppearance.BorderSize = 0;
             this.CliffButton5A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CliffButton5A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1767,7 +1768,7 @@
             // RiverButton8A
             // 
             this.RiverButton8A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton8A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton8A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RiverButton8A.FlatAppearance.BorderSize = 0;
             this.RiverButton8A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RiverButton8A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1784,7 +1785,7 @@
             // RiverButton0A
             // 
             this.RiverButton0A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton0A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton0A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RiverButton0A.FlatAppearance.BorderSize = 0;
             this.RiverButton0A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RiverButton0A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1801,7 +1802,7 @@
             // RiverButton3B
             // 
             this.RiverButton3B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton3B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton3B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RiverButton3B.FlatAppearance.BorderSize = 0;
             this.RiverButton3B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RiverButton3B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1818,7 +1819,7 @@
             // RiverButton7A
             // 
             this.RiverButton7A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton7A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton7A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RiverButton7A.FlatAppearance.BorderSize = 0;
             this.RiverButton7A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RiverButton7A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1835,7 +1836,7 @@
             // RiverButton3A
             // 
             this.RiverButton3A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton3A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton3A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RiverButton3A.FlatAppearance.BorderSize = 0;
             this.RiverButton3A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RiverButton3A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1852,7 +1853,7 @@
             // RiverButton3C
             // 
             this.RiverButton3C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton3C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton3C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RiverButton3C.FlatAppearance.BorderSize = 0;
             this.RiverButton3C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RiverButton3C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1869,7 +1870,7 @@
             // RiverButton6B
             // 
             this.RiverButton6B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton6B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton6B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RiverButton6B.FlatAppearance.BorderSize = 0;
             this.RiverButton6B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RiverButton6B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1886,7 +1887,7 @@
             // RiverButton2C
             // 
             this.RiverButton2C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton2C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton2C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RiverButton2C.FlatAppearance.BorderSize = 0;
             this.RiverButton2C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RiverButton2C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1903,7 +1904,7 @@
             // RiverButton4A
             // 
             this.RiverButton4A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton4A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton4A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RiverButton4A.FlatAppearance.BorderSize = 0;
             this.RiverButton4A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RiverButton4A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1920,7 +1921,7 @@
             // RiverButton6A
             // 
             this.RiverButton6A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton6A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton6A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RiverButton6A.FlatAppearance.BorderSize = 0;
             this.RiverButton6A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RiverButton6A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1937,7 +1938,7 @@
             // RiverButton2B
             // 
             this.RiverButton2B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton2B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton2B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RiverButton2B.FlatAppearance.BorderSize = 0;
             this.RiverButton2B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RiverButton2B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1954,7 +1955,7 @@
             // RiverButton1A
             // 
             this.RiverButton1A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton1A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton1A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RiverButton1A.FlatAppearance.BorderSize = 0;
             this.RiverButton1A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RiverButton1A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1971,7 +1972,7 @@
             // RiverButton4B
             // 
             this.RiverButton4B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton4B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton4B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RiverButton4B.FlatAppearance.BorderSize = 0;
             this.RiverButton4B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RiverButton4B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -1988,7 +1989,7 @@
             // RiverButton5B
             // 
             this.RiverButton5B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton5B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton5B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RiverButton5B.FlatAppearance.BorderSize = 0;
             this.RiverButton5B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RiverButton5B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -2005,7 +2006,7 @@
             // RiverButton2A
             // 
             this.RiverButton2A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton2A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton2A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RiverButton2A.FlatAppearance.BorderSize = 0;
             this.RiverButton2A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RiverButton2A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -2022,7 +2023,7 @@
             // RiverButton4C
             // 
             this.RiverButton4C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton4C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton4C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RiverButton4C.FlatAppearance.BorderSize = 0;
             this.RiverButton4C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RiverButton4C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -2039,7 +2040,7 @@
             // RiverButton5A
             // 
             this.RiverButton5A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton5A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.RiverButton5A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.RiverButton5A.FlatAppearance.BorderSize = 0;
             this.RiverButton5A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RiverButton5A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -2304,7 +2305,7 @@
         private System.Windows.Forms.Label ManualTerrainElevation3Label;
         private System.Windows.Forms.Label ManualRiverElevation3Label;
         private JCS.ToggleSwitch fixRiverMouthToggle;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label FixRiverMouthLabel;
         private System.Windows.Forms.ListView CustomDesignList;
         private System.Windows.Forms.Button CustomModeButton;
         private JCS.ToggleSwitch DisplayCustomDesignToggle;

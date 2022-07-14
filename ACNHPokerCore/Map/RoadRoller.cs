@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -85,6 +86,10 @@ namespace ACNHPokerCore
         private ushort manualSelectedRiverElevation = 0;
         private Button manualSelectedRiverModel = null;
 
+        private bool isBigControl = false;
+        private Dictionary<string, Size> ControlSize = new Dictionary<string, Size>();
+        private Dictionary<string, Point> ControlLocation = new Dictionary<string, Point>();
+
         public event CloseHandler closeForm;
 
         private static object lockObject = new object();
@@ -118,9 +123,9 @@ namespace ACNHPokerCore
             Bitmap DirtImg = new Bitmap(Properties.Resources.dirt, new Size(50, 50));
             DirtBtn.Image = DirtImg;
 
-            Bitmap MiniCliffImg = new Bitmap(Properties.Resources.cliff, new Size(40, 40));
+            Bitmap MiniCliffImg = new Bitmap(Properties.Resources.cliff, new Size(36, 36));
             ManualCliffModeButton.BackgroundImage = MiniCliffImg;
-            Bitmap MiniRiverImg = new Bitmap(Properties.Resources.river, new Size(40, 40));
+            Bitmap MiniRiverImg = new Bitmap(Properties.Resources.river, new Size(36, 36));
             ManualRiverModeButton.BackgroundImage = MiniRiverImg;
             Bitmap RotateImg = new Bitmap(Properties.Resources.rotate, new Size(36, 36));
             RotateRoadButton.BackgroundImage = RotateImg;
@@ -133,13 +138,40 @@ namespace ACNHPokerCore
             drawRoadImages();
             drawCliffImages();
             drawRiverImages();
+            createDict();
 
             selectedManualMode = ManualRoadPanel;
 
             showMapWait(42);
 
+
+
             Thread LoadThread = new Thread(delegate () { fetchMap(); });
             LoadThread.Start();
+        }
+
+        private void createDict()
+        {
+            foreach (Control ctrl in ManualButtonPanel.Controls)
+            {
+                ControlSize.Add(ctrl.Name, ctrl.Size);
+                ControlLocation.Add(ctrl.Name, ctrl.Location);
+            }
+            foreach (Control ctrl in ManualRoadPanel.Controls)
+            {
+                ControlSize.Add(ctrl.Name, ctrl.Size);
+                ControlLocation.Add(ctrl.Name, ctrl.Location);
+            }
+            foreach (Control ctrl in ManualCliffPanel.Controls)
+            {
+                ControlSize.Add(ctrl.Name, ctrl.Size);
+                ControlLocation.Add(ctrl.Name, ctrl.Location);
+            }
+            foreach (Control ctrl in ManualRiverPanel.Controls)
+            {
+                ControlSize.Add(ctrl.Name, ctrl.Size);
+                ControlLocation.Add(ctrl.Name, ctrl.Location);
+            }
         }
 
         private void RoadRoller_Resize(object sender, EventArgs e)
@@ -164,7 +196,237 @@ namespace ACNHPokerCore
                     CustomDesignList.TileSize = new Size(size, size);
 
                 CustomDesignList.Width += 1; // Force a refresh
+
+                if (LeftMenuPanel.Width > 355 && LeftMenuPanel.Height > 790)
+                {
+                    if (!isBigControl)
+                    {
+                        isBigControl = true;
+                        TurnBig();
+                    }
+                }
+                else
+                {
+                    if(isBigControl)
+                    {
+                        isBigControl = false;
+                        TurnSmall();
+                    }
+                }
             }
+        }
+
+        private void TurnBig()
+        {
+            ManualButtonPanel.Width = 350;
+            ManualButtonPanel.Height = 550;
+
+            ManualCliffModeButton.Width = 60;
+            ManualCliffModeButton.Height = 60;
+
+            ManualRiverModeButton.Width = 60;
+            ManualRiverModeButton.Height = 60;
+            ManualRiverModeButton.Location = new Point(69, 3);
+
+            ManualRoadModeButton.Width = 60;
+            ManualRoadModeButton.Height = 60;
+            ManualRoadModeButton.Location = new Point(135, 3);
+
+            RoadDropdownBox.Width = 146;
+            RoadDropdownBox.Location = new Point(201, 14);
+
+            //--
+            ManualRoadPanel.Size = new Size(350, 486);
+            ManualRoadPanel.Location = new Point(0, 65);
+
+            RoadButton0A.Size = new Size(60, 60);
+
+            RoadButton0B.Size = new Size(60, 60);
+            RoadButton0B.Location = new Point(69, 3);
+            RoadButton1A.Size = new Size(60, 60);
+            RoadButton1A.Location = new Point(3, 69);
+            RoadButton1B.Size = new Size(60, 60);
+            RoadButton1B.Location = new Point(69, 69);
+            RoadButton1C.Size = new Size(60, 60);
+            RoadButton1C.Location = new Point(135, 69);
+            RoadButton2A.Size = new Size(60, 60);
+            RoadButton2A.Location = new Point(3, 135);
+            RoadButton2B.Size = new Size(60, 60);
+            RoadButton2B.Location = new Point(69, 135);
+            RoadButton2C.Size = new Size(60, 60);
+            RoadButton2C.Location = new Point(135, 135);
+            RoadButton3A.Size = new Size(60, 60);
+            RoadButton3A.Location = new Point(3, 201);
+            RoadButton3B.Size = new Size(60, 60);
+            RoadButton3B.Location = new Point(69, 201);
+            RoadButton3C.Size = new Size(60, 60);
+            RoadButton3C.Location = new Point(135, 201);
+            RoadButton4A.Size = new Size(60, 60);
+            RoadButton4A.Location = new Point(3, 267);
+            RoadButton4B.Size = new Size(60, 60);
+            RoadButton4B.Location = new Point(69, 267);
+            RoadButton4C.Size = new Size(60, 60);
+            RoadButton4C.Location = new Point(135, 267);
+            RoadButton5A.Size = new Size(60, 60);
+            RoadButton5A.Location = new Point(3, 333);
+            RoadButton5B.Size = new Size(60, 60);
+            RoadButton5B.Location = new Point(69, 333);
+            RoadButton6A.Size = new Size(60, 60);
+            RoadButton6A.Location = new Point(135, 333);
+            RoadButton6B.Size = new Size(60, 60);
+            RoadButton6B.Location = new Point(201, 333);
+            RoadButton7A.Size = new Size(60, 60);
+            RoadButton7A.Location = new Point(3, 399);
+            RoadButton8A.Size = new Size(60, 60);
+            RoadButton8A.Location = new Point(69, 399);
+
+            RotateRoadButton.Size = new Size(60, 60);
+            RotateRoadButton.Location = new Point(267, 3);
+
+
+            //--
+            ManualCliffPanel.Size = new Size(350, 486);
+            ManualCliffPanel.Location = new Point(0, 65);
+
+            CliffButton0A.Size = new Size(60, 60);
+
+            CliffButton1A.Size = new Size(60, 60);
+            CliffButton1A.Location = new Point(3, 69);
+            CliffButton2A.Size = new Size(60, 60);
+            CliffButton2A.Location = new Point(3, 135);
+            CliffButton2B.Size = new Size(60, 60);
+            CliffButton2B.Location = new Point(69, 135);
+            CliffButton2C.Size = new Size(60, 60);
+            CliffButton2C.Location = new Point(135, 135);
+            CliffButton3A.Size = new Size(60, 60);
+            CliffButton3A.Location = new Point(3, 201);
+            CliffButton3B.Size = new Size(60, 60);
+            CliffButton3B.Location = new Point(69, 201);
+            CliffButton3C.Size = new Size(60, 60);
+            CliffButton3C.Location = new Point(135, 201);
+            CliffButton4A.Size = new Size(60, 60);
+            CliffButton4A.Location = new Point(3, 267);
+            CliffButton4B.Size = new Size(60, 60);
+            CliffButton4B.Location = new Point(69, 267);
+            CliffButton4C.Size = new Size(60, 60);
+            CliffButton4C.Location = new Point(135, 267);
+            CliffButton5A.Size = new Size(60, 60);
+            CliffButton5A.Location = new Point(3, 333);
+            CliffButton5B.Size = new Size(60, 60);
+            CliffButton5B.Location = new Point(69, 333);
+            CliffButton6A.Size = new Size(60, 60);
+            CliffButton6A.Location = new Point(135, 333);
+            CliffButton6B.Size = new Size(60, 60);
+            CliffButton6B.Location = new Point(201, 333);
+            CliffButton7A.Size = new Size(60, 60);
+            CliffButton7A.Location = new Point(3, 399);
+            CliffButton8.Size = new Size(60, 60);
+            CliffButton8.Location = new Point(69, 399);
+            RotateCliffButton.Size = new Size(60, 60);
+            RotateCliffButton.Location = new Point(267, 3);
+
+            ManualTerrainElevationLabel.Location = new Point(255, 85);
+            ManualCliffElevationBar.Location = new Point(287, 94);
+            ManualTerrainElevation3Label.Location = new Point(314, 100);
+            ManualTerrainElevation2Label.Location = new Point(314, 124);
+            ManualTerrainElevation1Label.Location = new Point(314, 148);
+
+            //--
+            ManualRiverPanel.Size = new Size(350, 486);
+            ManualRiverPanel.Location = new Point(0, 65);
+
+            RiverButton0A.Size = new Size(60, 60);
+
+            RiverButton1A.Size = new Size(60, 60);
+            RiverButton1A.Location = new Point(3, 69);
+            RiverButton2A.Size = new Size(60, 60);
+            RiverButton2A.Location = new Point(3, 135);
+            RiverButton2B.Size = new Size(60, 60);
+            RiverButton2B.Location = new Point(69, 135);
+            RiverButton2C.Size = new Size(60, 60);
+            RiverButton2C.Location = new Point(135, 135);
+            RiverButton3A.Size = new Size(60, 60);
+            RiverButton3A.Location = new Point(3, 201);
+            RiverButton3B.Size = new Size(60, 60);
+            RiverButton3B.Location = new Point(69, 201);
+            RiverButton3C.Size = new Size(60, 60);
+            RiverButton3C.Location = new Point(135, 201);
+            RiverButton4A.Size = new Size(60, 60);
+            RiverButton4A.Location = new Point(3, 267);
+            RiverButton4B.Size = new Size(60, 60);
+            RiverButton4B.Location = new Point(69, 267);
+            RiverButton4C.Size = new Size(60, 60);
+            RiverButton4C.Location = new Point(135, 267);
+            RiverButton5A.Size = new Size(60, 60);
+            RiverButton5A.Location = new Point(3, 333);
+            RiverButton5B.Size = new Size(60, 60);
+            RiverButton5B.Location = new Point(69, 333);
+            RiverButton6A.Size = new Size(60, 60);
+            RiverButton6A.Location = new Point(135, 333);
+            RiverButton6B.Size = new Size(60, 60);
+            RiverButton6B.Location = new Point(201, 333);
+            RiverButton7A.Size = new Size(60, 60);
+            RiverButton7A.Location = new Point(3, 399);
+            RiverButton8A.Size = new Size(60, 60);
+            RiverButton8A.Location = new Point(69, 399);
+            RotateRiverButton.Size = new Size(60, 60);
+            RotateRiverButton.Location = new Point(267, 3);
+
+            ManualRiverElevationLabel.Location = new Point(255, 85);
+            ManualRiverElevationBar.Location = new Point(287, 94);
+            ManualRiverElevation3Label.Location = new Point(314, 100);
+            ManualRiverElevation2Label.Location = new Point(314, 116);
+            ManualRiverElevation1Label.Location = new Point(314, 132);
+            ManualRiverElevation0Label.Location = new Point(314, 148);
+
+            Bitmap MiniCliffImg = new Bitmap(Properties.Resources.cliff, new Size(60, 60));
+            ManualCliffModeButton.BackgroundImage = MiniCliffImg;
+            Bitmap MiniRiverImg = new Bitmap(Properties.Resources.river, new Size(60, 60));
+            ManualRiverModeButton.BackgroundImage = MiniRiverImg;
+            Bitmap RotateImg = new Bitmap(Properties.Resources.rotate, new Size(60, 60));
+            RotateRoadButton.BackgroundImage = RotateImg;
+            RotateCliffButton.BackgroundImage = RotateImg;
+            RotateRiverButton.BackgroundImage = RotateImg;
+
+            updateSelectedRoad();
+        }
+
+        private void TurnSmall()
+        {
+            ManualButtonPanel.Width = 225;
+            ManualButtonPanel.Height = 340;
+
+            foreach (Control ctrl in ManualButtonPanel.Controls)
+            {
+                ctrl.Size = ControlSize[ctrl.Name];
+                ctrl.Location = ControlLocation[ctrl.Name];
+            }
+            foreach (Control ctrl in ManualRoadPanel.Controls)
+            {
+                ctrl.Size = ControlSize[ctrl.Name];
+                ctrl.Location = ControlLocation[ctrl.Name];
+            }
+            foreach (Control ctrl in ManualCliffPanel.Controls)
+            {
+                ctrl.Size = ControlSize[ctrl.Name];
+                ctrl.Location = ControlLocation[ctrl.Name];
+            }
+            foreach (Control ctrl in ManualRiverPanel.Controls)
+            {
+                ctrl.Size = ControlSize[ctrl.Name];
+                ctrl.Location = ControlLocation[ctrl.Name];
+            }
+
+            Bitmap MiniCliffImg = new Bitmap(Properties.Resources.cliff, new Size(36, 36));
+            ManualCliffModeButton.BackgroundImage = MiniCliffImg;
+            Bitmap MiniRiverImg = new Bitmap(Properties.Resources.river, new Size(36, 36));
+            ManualRiverModeButton.BackgroundImage = MiniRiverImg;
+            Bitmap RotateImg = new Bitmap(Properties.Resources.rotate, new Size(36, 36));
+            RotateRoadButton.BackgroundImage = RotateImg;
+            RotateCliffButton.BackgroundImage = RotateImg;
+            RotateRiverButton.BackgroundImage = RotateImg;
+
+            updateSelectedRoad();
         }
 
         private void setSubDivider()
@@ -2735,7 +2997,6 @@ namespace ACNHPokerCore
                 Road7A.RotateFlip(RotateFlipType.Rotate90FlipNone);
             }
 
-
             RoadButton0A.BackgroundImage = Road0A;
             RoadButton0B.BackgroundImage = Road0B;
             RoadButton1A.BackgroundImage = Road1A;
@@ -3243,37 +3504,48 @@ namespace ACNHPokerCore
         private void RoadDropdownBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ManualRoadModeButton_Click(sender, null);
+
+            updateSelectedRoad();
+        }
+
+        private void updateSelectedRoad()
+        {
             manualSelectedRoad = (ushort)RoadDropdownBox.SelectedIndex;
+
+            int size = 24;
+            if (isBigControl)
+                size = 48;
+
 
             Bitmap MiniRoadImg;
             switch (manualSelectedRoad)
             {
                 case 0:
-                    MiniRoadImg = new Bitmap(Properties.Resources.wood, new Size(24, 24));
+                    MiniRoadImg = new Bitmap(Properties.Resources.wood, new Size(size, size));
                     break;
                 case 1:
-                    MiniRoadImg = new Bitmap(Properties.Resources.tile, new Size(24, 24));
+                    MiniRoadImg = new Bitmap(Properties.Resources.tile, new Size(size, size));
                     break;
                 case 2:
-                    MiniRoadImg = new Bitmap(Properties.Resources.sand, new Size(24, 24));
+                    MiniRoadImg = new Bitmap(Properties.Resources.sand, new Size(size, size));
                     break;
                 case 3:
-                    MiniRoadImg = new Bitmap(Properties.Resources.pattern, new Size(24, 24));
+                    MiniRoadImg = new Bitmap(Properties.Resources.pattern, new Size(size, size));
                     break;
                 case 4:
-                    MiniRoadImg = new Bitmap(Properties.Resources.darksoil, new Size(24, 24));
+                    MiniRoadImg = new Bitmap(Properties.Resources.darksoil, new Size(size, size));
                     break;
                 case 5:
-                    MiniRoadImg = new Bitmap(Properties.Resources.brick, new Size(24, 24));
+                    MiniRoadImg = new Bitmap(Properties.Resources.brick, new Size(size, size));
                     break;
                 case 6:
-                    MiniRoadImg = new Bitmap(Properties.Resources.stone, new Size(24, 24));
+                    MiniRoadImg = new Bitmap(Properties.Resources.stone, new Size(size, size));
                     break;
                 case 7:
-                    MiniRoadImg = new Bitmap(Properties.Resources.dirt, new Size(24, 24));
+                    MiniRoadImg = new Bitmap(Properties.Resources.dirt, new Size(size, size));
                     break;
                 default:
-                    MiniRoadImg = new Bitmap(24, 24);
+                    MiniRoadImg = new Bitmap(size, size);
                     break;
             }
             ManualRoadModeButton.Image = MiniRoadImg;
