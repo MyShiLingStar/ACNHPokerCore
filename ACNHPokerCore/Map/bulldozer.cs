@@ -487,6 +487,11 @@ namespace ACNHPokerCore
             {
                 if (e.RowIndex > -1)
                 {
+                    if (e.RowIndex == 0)
+                        RemoveBuildingBtn.Visible = false;
+                    else
+                        RemoveBuildingBtn.Visible = true;
+
                     BuildingControl.Visible = true;
 
                     MapOrGridViewChange = true;
@@ -1152,6 +1157,17 @@ namespace ACNHPokerCore
             }
 
             buildingConfirmBtn.BackColor = Color.Orange;
+        }
+
+        private void RemoveBuildingBtn_Click(object sender, EventArgs e)
+        {
+            BuildingType.SelectedIndex = 0;
+            XUpDown.Value = 0;
+            YUpDown.Value = 0;
+            TUpDown.Value = 0;
+            AUpDown.Value = 0;
+
+            updateBtn_Click(null, null);
         }
 
         private void buildingConfirmBtn_Click(object sender, EventArgs e)

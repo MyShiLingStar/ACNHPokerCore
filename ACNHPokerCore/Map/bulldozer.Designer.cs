@@ -29,7 +29,7 @@ namespace ACNHPokerCore
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Bulldozer));
             this.miniMapBox = new System.Windows.Forms.PictureBox();
             this.realYLabel = new System.Windows.Forms.Label();
@@ -55,6 +55,7 @@ namespace ACNHPokerCore
             this.buildingPanel = new System.Windows.Forms.Panel();
             this.buildingGridView = new System.Windows.Forms.DataGridView();
             this.BuildingControl = new System.Windows.Forms.Panel();
+            this.RemoveBuildingBtn = new System.Windows.Forms.Button();
             this.bridgePanel = new System.Windows.Forms.Panel();
             this.BridgeDiagonalToggle = new JCS.ToggleSwitch();
             this.BridgeLengthUpDown = new System.Windows.Forms.NumericUpDown();
@@ -440,14 +441,14 @@ namespace ACNHPokerCore
             this.buildingGridView.AllowUserToResizeRows = false;
             this.buildingGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(54)))));
             this.buildingGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft JhengHei", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.buildingGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft JhengHei", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.buildingGridView.DefaultCellStyle = dataGridViewCellStyle1;
             this.buildingGridView.Location = new System.Drawing.Point(0, 0);
             this.buildingGridView.MultiSelect = false;
             this.buildingGridView.Name = "buildingGridView";
@@ -460,6 +461,7 @@ namespace ACNHPokerCore
             // 
             // BuildingControl
             // 
+            this.BuildingControl.Controls.Add(this.RemoveBuildingBtn);
             this.BuildingControl.Controls.Add(this.bridgePanel);
             this.BuildingControl.Controls.Add(this.inclinePanel);
             this.BuildingControl.Controls.Add(this.saveBuildingBtn);
@@ -481,6 +483,21 @@ namespace ACNHPokerCore
             this.BuildingControl.Size = new System.Drawing.Size(513, 137);
             this.BuildingControl.TabIndex = 95;
             this.BuildingControl.Visible = false;
+            // 
+            // RemoveBuildingBtn
+            // 
+            this.RemoveBuildingBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.RemoveBuildingBtn.FlatAppearance.BorderSize = 0;
+            this.RemoveBuildingBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RemoveBuildingBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.RemoveBuildingBtn.ForeColor = System.Drawing.Color.White;
+            this.RemoveBuildingBtn.Location = new System.Drawing.Point(147, 5);
+            this.RemoveBuildingBtn.Name = "RemoveBuildingBtn";
+            this.RemoveBuildingBtn.Size = new System.Drawing.Size(67, 23);
+            this.RemoveBuildingBtn.TabIndex = 243;
+            this.RemoveBuildingBtn.Text = "Remove";
+            this.RemoveBuildingBtn.UseVisualStyleBackColor = false;
+            this.RemoveBuildingBtn.Click += new System.EventHandler(this.RemoveBuildingBtn_Click);
             // 
             // bridgePanel
             // 
@@ -1138,8 +1155,8 @@ namespace ACNHPokerCore
             this.Controls.Add(this.RealXCoordinate);
             this.Controls.Add(this.miniMapBox);
             this.Controls.Add(this.acrePanel);
-            this.Controls.Add(this.terrainPanel);
             this.Controls.Add(this.buildingPanel);
+            this.Controls.Add(this.terrainPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1110, 550);
@@ -1242,5 +1259,6 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Panel PleaseWaitPanel;
         private System.Windows.Forms.Label PleaseWaitLabel;
         private System.Windows.Forms.PictureBox PleaseWaitImage;
+        private System.Windows.Forms.Button RemoveBuildingBtn;
     }
 }

@@ -207,7 +207,7 @@ namespace ACNHPokerCore
                 }
                 else
                 {
-                    if(isBigControl)
+                    if (isBigControl)
                     {
                         isBigControl = false;
                         TurnSmall();

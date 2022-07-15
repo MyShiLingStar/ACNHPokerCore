@@ -1528,7 +1528,7 @@ namespace ACNHPokerCore
         private void AutoRefill_CheckedChanged(object sender, EventArgs e)
         {
             Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
-            Debug.Print("getlastfile: "+getlastfile);
+            Debug.Print("getlastfile: " + getlastfile);
 
             if (this.AutoRefill.Checked)
             {
@@ -2958,11 +2958,11 @@ namespace ACNHPokerCore
                     path = path + temp[i] + "\\";
 
                 config.AppSettings.Settings["LastLoad"].Value = path;
-                
+
                 //save nhi filename....
                 getlastfile = file.FileName;
                 Debug.Print("Loaded file.FileName: " + file.FileName);
-                Debug.Print("Loaded LastFile: "+getlastfile);
+                Debug.Print("Loaded LastFile: " + getlastfile);
 
                 config.Save(ConfigurationSaveMode.Minimal);
 
@@ -3029,15 +3029,15 @@ namespace ACNHPokerCore
                                                                 "or  [No]  to cancel the spawn." + "\n" + "\n" +
                                                                 "[Warning] You will lose your items in your inventory!"
                                                                 , "Not enough inventory spaces!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        for (int i = 0; i < b1.Length; i++)
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            b1[i] = data[i];
-                            b2[i] = data[i + 160];
-                        }
+                            for (int i = 0; i < b1.Length; i++)
+                            {
+                                b1[i] = data[i];
+                                b2[i] = data[i + 160];
+                            }
 
-                        Utilities.OverwriteAll(socket, usb, b1, b2, ref counter);
+                            Utilities.OverwriteAll(socket, usb, b1, b2, ref counter);
                         }
                         else
                         {

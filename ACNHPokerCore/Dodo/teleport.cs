@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ACNHPokerCore
 {
-    public partial class teleport : Form
+    public class teleport
     {
         private static Socket s;
 
@@ -65,8 +65,6 @@ namespace ACNHPokerCore
                 MyMessageBox.Show("It seems you are using a smaller \"Anchors.bin\"... \nOr your \"Anchors.bin\" is totally corrupted.", "Bigger is not always better", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 FixAnchorByte();
             }
-
-            InitializeComponent();
         }
 
         public static ulong GetCoordinateAddress(string strInput)

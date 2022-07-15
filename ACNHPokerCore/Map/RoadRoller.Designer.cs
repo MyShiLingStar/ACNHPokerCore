@@ -401,7 +401,7 @@
             this.CustomModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CustomModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.CustomModeButton.ForeColor = System.Drawing.Color.White;
-            this.CustomModeButton.Location = new System.Drawing.Point(161, 200);
+            this.CustomModeButton.Location = new System.Drawing.Point(159, 200);
             this.CustomModeButton.Name = "CustomModeButton";
             this.CustomModeButton.Size = new System.Drawing.Size(70, 23);
             this.CustomModeButton.TabIndex = 245;
@@ -436,7 +436,7 @@
             this.ManualModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ManualModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ManualModeButton.ForeColor = System.Drawing.Color.White;
-            this.ManualModeButton.Location = new System.Drawing.Point(82, 200);
+            this.ManualModeButton.Location = new System.Drawing.Point(83, 200);
             this.ManualModeButton.Name = "ManualModeButton";
             this.ManualModeButton.Size = new System.Drawing.Size(70, 23);
             this.ManualModeButton.TabIndex = 239;
@@ -452,7 +452,7 @@
             this.AutoModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AutoModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.AutoModeButton.ForeColor = System.Drawing.Color.White;
-            this.AutoModeButton.Location = new System.Drawing.Point(6, 200);
+            this.AutoModeButton.Location = new System.Drawing.Point(7, 200);
             this.AutoModeButton.Name = "AutoModeButton";
             this.AutoModeButton.Size = new System.Drawing.Size(70, 23);
             this.AutoModeButton.TabIndex = 238;
