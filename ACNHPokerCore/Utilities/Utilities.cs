@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.Diagnostics.Metrics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -499,7 +500,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "SpawnRecipe");
                 }
 
                 return false;
@@ -533,7 +534,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "SpawnFlower");
                 }
 
                 return false;
@@ -856,7 +857,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "peekAddress");
                     return null;
                 }
             }
@@ -881,7 +882,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "pokeAddress");
                 }
             }
         }
@@ -906,7 +907,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "pokeMainAddress");
                 }
             }
         }
@@ -1038,7 +1039,7 @@ namespace ACNHPokerCore
             }
             catch
             {
-                MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "ReadByteArray");
                 return null;
             }
         }
@@ -1139,7 +1140,7 @@ namespace ACNHPokerCore
             }
             catch
             {
-                MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "ReadUInt64Array");
             }
         }
 
@@ -1341,7 +1342,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "getReaction");
                     return null;
                 }
             }
@@ -1372,7 +1373,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "setReaction");
                 }
             }
         }
@@ -1886,7 +1887,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "SetCatchphrase");
                 }
             }
         }
@@ -2018,7 +2019,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "SetMoveout");
                 }
             }
         }
@@ -2049,7 +2050,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "SetFriendship");
                 }
             }
         }
@@ -2229,7 +2230,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "dropItem");
                 }
             }
         }
@@ -2257,7 +2258,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "deleteFloorItem");
                 }
             }
         }
@@ -2295,7 +2296,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "getMapLayer");
                     return null;
                 }
             }
@@ -2334,7 +2335,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "getAcre");
                     return null;
                 }
             }
@@ -2363,7 +2364,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "sendAcre");
                 }
             }
         }
@@ -2391,7 +2392,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "sendPlaza");
                 }
             }
         }
@@ -2419,7 +2420,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "sendBuilding");
                 }
             }
         }
@@ -2457,7 +2458,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "getBuilding");
                     return null;
                 }
             }
@@ -2486,7 +2487,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "sendTerrain");
                 }
             }
         }
@@ -2514,7 +2515,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "sendCustomMap");
                 }
             }
         }
@@ -2552,7 +2553,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "getTerrain");
                     return null;
                 }
             }
@@ -2591,7 +2592,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "getActivate");
                     return null;
                 }
             }
@@ -2630,7 +2631,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "getCustomDesignMap");
                     return null;
                 }
             }
@@ -2670,7 +2671,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "getMyDesign");
                     return null;
                 }
             }
@@ -2769,10 +2770,6 @@ namespace ACNHPokerCore
                     SendByteArray8(socket, address1 + mapOffset, buffer1, buffer1.Length);
                     SendByteArray8(socket, address2, buffer2, buffer2.Length);
                     SendByteArray8(socket, address2 + mapOffset, buffer2, buffer2.Length);
-                }
-                else
-                {
-
                 }
             }
         }
@@ -3009,7 +3006,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "SetTextSpeed");
                 }
             }
         }
@@ -3216,7 +3213,7 @@ namespace ACNHPokerCore
                 else
                 {
                     byte[] b = usb.GetVersion();
-                    Debug.Print("[USB] Sys-BotBase Version");
+                    Debug.Print("[USB] USB-BotBase Version");
                     return TrimFromZero(Encoding.UTF8.GetString(b).Replace("\n", String.Empty));
                 }
             }
@@ -4181,7 +4178,7 @@ namespace ACNHPokerCore
             {"Kind_Flower", 10},
             {"Kind_Fruit", 10},
             {"Kind_Mushroom", 10},
-            {"Kind_Turnip", 10},
+            {"Kind_Turnip", 1},
             {"Kind_TurnipExpired", 1},
             {"Kind_FishBait", 10},
             {"Kind_PitFallSeed", 10},
@@ -4246,7 +4243,7 @@ namespace ACNHPokerCore
             {"Kind_LoveCrystal", 30},
             {"Kind_Candy", 30},
             {"Kind_HarvestDish", 1},
-            {"Kind_Feather", 00003},
+            {"Kind_Feather", 3},
             {"Kind_RainbowFeather", 1},
             {"Kind_Vine", 30},
             {"Kind_SettingLadder", 1},

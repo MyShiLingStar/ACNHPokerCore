@@ -1,3 +1,5 @@
+## You can find the latest version : [🢧 Here 🢦](https://berichan.github.io/GetNHSE/?org=MyShiLingStar&proj=ACNHPokerCore&projurl=https://github.com/MyShiLingStar/ACNHPokerCore)
+
 # ACNHPokerCore
 	
 ![Release Image](https://i.ibb.co/txCNG22/131313.png)

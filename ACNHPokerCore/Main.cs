@@ -1208,7 +1208,7 @@ namespace ACNHPokerCore
                                                 "You can get the latest version at \n        https://github.com/olliz0r/sys-botbase/releases \n" +
                                                 "You should double check your installation and make sure that the \n \"430000000000000B\" folder is inside the \"atmosphere\\contents\" folder.\n" +
                                                 "Also when your Switch is starting up,\n" +
-                                                "please also check that the LED of the \"Home button\" on your attached Joy-Con is lighting up. "
+                                                "please also check that the LED of the \"Home button\" on your Joy-Con is lighting up. "
 
                                                 , "Where are you, my socket 6000?", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
@@ -1251,7 +1251,7 @@ namespace ACNHPokerCore
                                                     "First, \n" +
                                                     "check that you have the correct matching version.\n" +
                                                     "You are using \"" + version + "\" right now.\n" +
-                                                    "You can find the latest version at : \n   https://github.com/MyShiLingStar/ACNHPoker/releases \n" +
+                                                    "You can find the latest version at : \n   https://github.com/MyShiLingStar/ACNHPokerCore \n" +
                                                     "Your sys-botbase version is :  " + sysbotbaseVersion + "\n" +
                                                     "You can find the latest version at : \n   https://github.com/olliz0r/sys-botbase/releases \n\n" +
                                                     "Second, \n" +
