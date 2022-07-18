@@ -107,8 +107,6 @@ namespace ACNHPokerCore
         private static Object villagerLock = new Object();
 
         private WaveOut waveOut;
-
-        private string getlastfile = "items.nhi";
         #endregion
 
 
@@ -1528,50 +1526,42 @@ namespace ACNHPokerCore
         private void AutoRefill_CheckedChanged(object sender, EventArgs e)
         {
             Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
-            Debug.Print("getlastfile: " + getlastfile);
 
             if (this.AutoRefill.Checked)
             {
-                AutoRefillTimer.Start();
+
+
+                byte[] Bank01to20 = Utilities.GetInventoryBank(socket, null, 1);
+                byte[] Bank21to40 = Utilities.GetInventoryBank(socket, null, 21);
+
+                Utilities.SendString(socket, Utilities.Freeze(Utilities.ItemSlotBase, Bank01to20));
+                Utilities.SendString(socket, Utilities.Freeze(Utilities.ItemSlot21Base, Bank21to40));
+
+                int freezeCount = Utilities.GetFreezeCount(socket);
+
+                if (sound)
+                    System.Media.SystemSounds.Asterisk.Play();
+
                 config.AppSettings.Settings["AutoRefill"].Value = "true";
             }
             else
             {
-                AutoRefillTimer.Stop();
+
+                Utilities.SendString(socket, Utilities.UnFreeze(Utilities.ItemSlotBase));
+                Utilities.SendString(socket, Utilities.UnFreeze(Utilities.ItemSlot21Base));
+
+                int freezeCount = Utilities.GetFreezeCount(socket);
+
+
+                if (sound)
+                    System.Media.SystemSounds.Asterisk.Play();
+
                 config.AppSettings.Settings["AutoRefill"].Value = "false";
             }
 
             config.Save(ConfigurationSaveMode.Minimal);
 
-            if (sound)
-                System.Media.SystemSounds.Asterisk.Play();
         }
-
-
-        private void AutoRefillTimer_Tick(object sender, EventArgs e)
-        {
-            try
-            {
-                if (socket != null && socket.Connected == true && AutoRefill.Checked && AllowInventoryUpdate)
-                    Invoke((MethodInvoker)delegate
-                    {
-
-                        byte[] data = File.ReadAllBytes(getlastfile);
-                        Thread LoadThread = new Thread(delegate () { loadInventory(data); });
-                        LoadThread.Start();
-
-                    });
-            }
-            catch (Exception ex)
-            {
-                MyLog.logEvent("MainForm", "AutoRefillTimer: " + ex.Message.ToString());
-                Invoke((MethodInvoker)delegate { this.AutoRefill.Checked = false; });
-                AutoRefillTimer.Stop();
-                MyMessageBox.Show("Lost connection to the switch...\nDid the switch go to sleep?", "Disconnected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-
 
         private void InventoryRefreshTimer_Tick(object sender, EventArgs e)
         {
@@ -2958,12 +2948,6 @@ namespace ACNHPokerCore
                     path = path + temp[i] + "\\";
 
                 config.AppSettings.Settings["LastLoad"].Value = path;
-
-                //save nhi filename....
-                getlastfile = file.FileName;
-                Debug.Print("Loaded file.FileName: " + file.FileName);
-                Debug.Print("Loaded LastFile: " + getlastfile);
-
                 config.Save(ConfigurationSaveMode.Minimal);
 
                 byte[] data = File.ReadAllBytes(file.FileName);
@@ -3004,11 +2988,15 @@ namespace ACNHPokerCore
 
                 if (emptyspace < item.Length)
                 {
-
-                    //check if AutoRefill is turned on.. dont send out popups//  
-                    if (this.AutoRefill.Checked)
+                    DialogResult dialogResult = MyMessageBox.Show("Empty Spaces in your inventory : " + emptyspace + "\n" +
+                                                                "Number of items to Spawn : " + item.Length + "\n" +
+                                                                "\n" +
+                                                                "Press  [Yes]  to clear your inventory and spawn the items " + "\n" +
+                                                                "or  [No]  to cancel the spawn." + "\n" + "\n" +
+                                                                "[Warning] You will lose your items in your inventory!"
+                                                                , "Not enough inventory spaces!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (dialogResult == DialogResult.Yes)
                     {
-
                         for (int i = 0; i < b1.Length; i++)
                         {
                             b1[i] = data[i];
@@ -3019,34 +3007,11 @@ namespace ACNHPokerCore
                     }
                     else
                     {
-
-
-
-                        DialogResult dialogResult = MyMessageBox.Show("Empty Spaces in your inventory : " + emptyspace + "\n" +
-                                                                "Number of items to Spawn : " + item.Length + "\n" +
-                                                                "\n" +
-                                                                "Press  [Yes]  to clear your inventory and spawn the items " + "\n" +
-                                                                "or  [No]  to cancel the spawn." + "\n" + "\n" +
-                                                                "[Warning] You will lose your items in your inventory!"
-                                                                , "Not enough inventory spaces!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                        if (dialogResult == DialogResult.Yes)
-                        {
-                            for (int i = 0; i < b1.Length; i++)
-                            {
-                                b1[i] = data[i];
-                                b2[i] = data[i + 160];
-                            }
-
-                            Utilities.OverwriteAll(socket, usb, b1, b2, ref counter);
-                        }
-                        else
-                        {
-                            hideWait();
-                            if (sound)
-                                System.Media.SystemSounds.Asterisk.Play();
-                            return;
-                        }
-                    } //AutoRefill check//
+                        hideWait();
+                        if (sound)
+                            System.Media.SystemSounds.Asterisk.Play();
+                        return;
+                    }
                 }
                 else
                 {

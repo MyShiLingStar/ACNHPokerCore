@@ -4223,7 +4223,7 @@ namespace ACNHPokerCore
             {"Kind_HousingKit", 1},
             {"Kind_HousingKitRcoQuest", 1},
             {"Kind_HousingKitBirdge", 1},
-            {"Kind_Money", 10},
+            {"Kind_Money", 1},
             {"Kind_FireworkM", 1},
             {"Kind_BdayCupcake", 10},
             {"Kind_YutaroWisp", 5},
