@@ -1,4 +1,4 @@
-## You can find the latest version : [🢧 Here 🢦](https://berichan.github.io/GetNHSE/?org=MyShiLingStar&proj=ACNHPokerCore&projurl=https://github.com/MyShiLingStar/ACNHPokerCore)
+## You can find the latest version : [🢧 Here 🢦](https://myshilingstar.github.io/GetAzure/)
 
 # ACNHPokerCore
 	
