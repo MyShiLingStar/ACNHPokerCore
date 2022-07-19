@@ -29,6 +29,7 @@ namespace ACNHPokerCore
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Bulldozer));
             this.miniMapBox = new System.Windows.Forms.PictureBox();
@@ -96,6 +97,7 @@ namespace ACNHPokerCore
             this.PleaseWaitPanel = new System.Windows.Forms.Panel();
             this.PleaseWaitLabel = new System.Windows.Forms.Label();
             this.PleaseWaitImage = new System.Windows.Forms.PictureBox();
+            this.MapToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.miniMapBox)).BeginInit();
             this.acrePanel.SuspendLayout();
             this.buildingPanel.SuspendLayout();
@@ -134,6 +136,7 @@ namespace ACNHPokerCore
             this.miniMapBox.TabStop = false;
             this.miniMapBox.Visible = false;
             this.miniMapBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.miniMapBox_MouseDown);
+            this.miniMapBox.MouseLeave += new System.EventHandler(this.miniMapBox_MouseLeave);
             this.miniMapBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.miniMapBox_MouseMove);
             // 
             // realYLabel
@@ -251,6 +254,7 @@ namespace ACNHPokerCore
             this.acreList.Location = new System.Drawing.Point(0, 0);
             this.acreList.MultiSelect = false;
             this.acreList.Name = "acreList";
+            this.acreList.ShowItemToolTips = true;
             this.acreList.Size = new System.Drawing.Size(505, 393);
             this.acreList.TabIndex = 231;
             this.acreList.TileSize = new System.Drawing.Size(1, 1);
@@ -1131,6 +1135,10 @@ namespace ACNHPokerCore
             this.PleaseWaitImage.TabIndex = 217;
             this.PleaseWaitImage.TabStop = false;
             // 
+            // MapToolTip
+            // 
+            this.MapToolTip.AutomaticDelay = 1000;
+            // 
             // Bulldozer
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1260,5 +1268,6 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Label PleaseWaitLabel;
         private System.Windows.Forms.PictureBox PleaseWaitImage;
         private System.Windows.Forms.Button RemoveBuildingBtn;
+        private System.Windows.Forms.ToolTip MapToolTip;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NAudio.Wave;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
@@ -39,6 +40,7 @@ namespace ACNHPokerCore
         private bool MapOrGridViewChange = false;
         private bool plazaEdited = false;
         private bool valueUpdated = false;
+        private Point lastDisplayTooltip = new Point(-1, -1);
 
         public event CloseHandler closeForm;
 
@@ -61,10 +63,16 @@ namespace ACNHPokerCore
             var imageList = new ImageList();
             imageList.ImageSize = new Size(64, 64);
             acreList.LargeImageList = imageList;
-            for (int i = 0; i < 0xF5; i++)
+            for (ushort i = 0; i < 0x13E; i++)
             {
-                imageList.Images.Add(i.ToString(), miniMap.getAcreImage(i, 4));
-                acreList.Items.Add(i.ToString(), i.ToString());
+                if (Enum.IsDefined(typeof(Utilities.Acre), i))
+                {
+                    var AcreName = (Utilities.Acre)i;
+
+                    imageList.Images.Add(i.ToString(), miniMap.getAcreImage(i, 4));
+                    acreList.Items.Add(i.ToString(), i.ToString());
+                    acreList.Items[acreList.Items.Count - 1].ToolTipText = AcreName.ToString();
+                }
             }
             ListViewItem_SetSpacing(acreList, 64 + 15, 80 + 15);
 
@@ -119,11 +127,11 @@ namespace ACNHPokerCore
                 BuildingName.Name = "Name";
                 BuildingName.SortMode = DataGridViewColumnSortMode.NotSortable;
                 BuildingName.Width = 200;
-                BuildingX.HeaderText = "X-Coordinate";
+                BuildingX.HeaderText = "X";
                 BuildingX.Name = "X-Coordinate";
                 BuildingX.SortMode = DataGridViewColumnSortMode.NotSortable;
                 BuildingX.Width = 60;
-                BuildingY.HeaderText = "Y-Coordinate";
+                BuildingY.HeaderText = "Y";
                 BuildingY.Name = "Y-Coordinate";
                 BuildingY.SortMode = DataGridViewColumnSortMode.NotSortable;
                 BuildingY.Width = 60;
@@ -311,26 +319,65 @@ namespace ACNHPokerCore
 
         private void miniMapBox_MouseMove(object sender, MouseEventArgs e)
         {
+            int Realx;
+            int Realy;
+
+            if (e.X < 0)
+                Realx = 0;
+            else if (e.X >= 16 * 9 * 4)
+                Realx = 287;
+            else
+                Realx = e.X / 2;
+
+            if (e.Y < 0)
+                Realy = 0;
+            else if (e.Y >= 16 * 8 * 4)
+                Realy = 255;
+            else
+                Realy = e.Y / 2;
+
+            int AcreX = Realx / 32;
+            int AcreY = Realy / 32;
+
+            if (selectedPanel == acrePanel)
+            {
+                if (AcreX != lastDisplayTooltip.X || AcreY != lastDisplayTooltip.Y)
+                {
+                    string CoordinateText = "( " + AcreX + " , " + AcreY + " )";
+
+                    int HoverAcre = 0;
+                    if (AcreY <= 0)
+                        HoverAcre = AcreX;
+                    else if (AcreY == 1)
+                        HoverAcre = AcreX + 9;
+                    else if (AcreY == 2)
+                        HoverAcre = AcreX + 18;
+                    else if (AcreY == 3)
+                        HoverAcre = AcreX + 27;
+                    else if (AcreY == 4)
+                        HoverAcre = AcreX + 36;
+                    else if (AcreY == 5)
+                        HoverAcre = AcreX + 45;
+                    else if (AcreY == 6)
+                        HoverAcre = AcreX + 54;
+                    else if (AcreY >= 7)
+                        HoverAcre = AcreX + 63;
+
+                    byte[] AcreBytes = new byte[2];
+                    AcreBytes[0] = Acre[HoverAcre * 2];
+                    AcreBytes[1] = Acre[HoverAcre * 2 + 1];
+                    int AcreNumber = BitConverter.ToInt16(AcreBytes, 0);
+                    var AcreName = (Utilities.Acre)AcreNumber;
+                    MapToolTip.Show(CoordinateText + "\n" + AcreName + "\n" + AcreNumber.ToString(), miniMapBox, AcreX * 64 + 64, AcreY * 64 + 64);
+                    lastDisplayTooltip = new Point(AcreX, AcreY);
+                }
+            }
+
+
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                int Realx;
-                int Realy;
                 int x = (e.X / 2 - 32) / 2;
                 int y = (e.Y / 2 - 32) / 2;
-
-                if (e.X < 0)
-                    Realx = 0;
-                else if (e.X >= 16 * 9 * 4)
-                    Realx = 287;
-                else
-                    Realx = e.X / 2;
-
-                if (e.Y < 0)
-                    Realy = 0;
-                else if (e.Y >= 16 * 8 * 4)
-                    Realy = 255;
-                else
-                    Realy = e.Y / 2;
 
                 if (x < 0)
                     x = 0;
@@ -396,7 +443,9 @@ namespace ACNHPokerCore
                 return;
             if (acreList.FocusedItem == null)
                 return;
-            Acre[selectedAcre * 2] = (byte)Int32.Parse(acreList.Items[acreList.FocusedItem.Index].Text);
+            byte[] value = BitConverter.GetBytes(Int32.Parse(acreList.Items[acreList.FocusedItem.Index].Text));
+            Acre[selectedAcre * 2] = value[0];
+            Acre[selectedAcre * 2 + 1] = value[1];
             miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawFullBackground(), MiniMap.drawEdge());
             sendBtn.BackColor = Color.Orange;
         }
@@ -1909,6 +1958,12 @@ namespace ACNHPokerCore
                     return false;
                 }
             }
+        }
+
+        private void miniMapBox_MouseLeave(object sender, EventArgs e)
+        {
+            MapToolTip.Hide(miniMapBox);
+            lastDisplayTooltip = new Point(-1, -1);
         }
     }
 }
