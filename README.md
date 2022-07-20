@@ -1,4 +1,5 @@
-## You can find the latest version : [🢧 Here 🢦](https://berichan.github.io/GetNHSE/?org=MyShiLingStar&proj=ACNHPokerCore&projurl=https://github.com/MyShiLingStar/ACNHPokerCore)
+## You can find the latest version of ACNHPokerCore : [🢧 Here 🢦](https://myshilingstar.github.io/GetAzure/)
+## You can find the latest x64 .NET 5.0 Desktop Runtime [🢧 Here 🢦](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-5.0.17-windows-x64-installer/)
 
 # ACNHPokerCore
 	

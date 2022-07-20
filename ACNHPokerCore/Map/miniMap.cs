@@ -79,18 +79,26 @@ namespace ACNHPokerCore
 
         public Bitmap drawBackground()
         {
-            byte[] AllAcre = new byte[AcreMax];
+            int[] AllAcre = new int[AcreMax];
 
             for (int i = 0; i < AcreMax; i++)
             {
-                AllAcre[i] = AcreMapByte[i * 2];
+                byte[] AcreBytes = new byte[2];
+                AcreBytes[0] = AcreMapByte[i * 2];
+                AcreBytes[1] = AcreMapByte[i * 2 + 1];
+                AllAcre[i] = BitConverter.ToInt16(AcreBytes, 0);
             }
 
-            byte[] AcreWOOutside = new byte[7 * 6];
+            int[] AcreWOOutside = new int[7 * 6];
+            int counter = 0;
 
             for (int i = 1; i <= 6; i++)
             {
-                Buffer.BlockCopy(AllAcre, i * 9 + 1, AcreWOOutside, (i - 1) * 7, 7);
+                for (int j = 1; j <= 7; j++)
+                {
+                    AcreWOOutside[counter] = AllAcre[i * 9 + j];
+                    counter++;
+                }
             }
 
             Bitmap terrainMap = drawTerrainMap();
@@ -115,11 +123,14 @@ namespace ACNHPokerCore
 
         public Bitmap drawFullBackground()
         {
-            byte[] AllAcre = new byte[AcreMax];
+            int[] AllAcre = new int[AcreMax];
 
             for (int i = 0; i < AcreMax; i++)
             {
-                AllAcre[i] = AcreMapByte[i * 2];
+                byte[] AcreBytes = new byte[2];
+                AcreBytes[0] = AcreMapByte[i * 2];
+                AcreBytes[1] = AcreMapByte[i * 2 + 1];
+                AllAcre[i] = BitConverter.ToInt16(AcreBytes, 0);
             }
 
             Bitmap[] AllAcreImage = new Bitmap[9 * 8];
@@ -388,10 +399,11 @@ namespace ACNHPokerCore
             return myBitmap;
         }
 
-        private static byte[] GetAcreData(byte Acre)
+        private static byte[] GetAcreData(int AcreNumber)
         {
             byte[] data = new byte[0x100];
-            Buffer.BlockCopy(AcreData, Acre * 0x100, data, 0, 0x100);
+            if (AcreNumber * 0x100 < AcreData.Length)
+                Buffer.BlockCopy(AcreData, AcreNumber * 0x100, data, 0, 0x100);
             return data;
         }
 
@@ -1026,7 +1038,7 @@ namespace ACNHPokerCore
             */
         }
 
-        private void buildBackgroundColor(byte[] AcreWOOutside)
+        private void buildBackgroundColor(int[] AcreWOOutside)
         {
             floorBackgroundColor = new Color[numOfRow][];
 
@@ -1280,7 +1292,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void buildBackgroundColorLess(byte[] AcreWOOutside)
+        private void buildBackgroundColorLess(int[] AcreWOOutside)
         {
             floorBackgroundColorLess = new Color[numOfRow][];
 
@@ -1529,7 +1541,7 @@ namespace ACNHPokerCore
         {
             Bitmap AcreImage;
             AcreImage = new Bitmap(16 * size, 16 * size);
-            byte[] AcreData = GetAcreData((byte)id);
+            byte[] AcreData = GetAcreData(id);
 
 
             using (Graphics gr = Graphics.FromImage(AcreImage))
@@ -1766,6 +1778,12 @@ namespace ACNHPokerCore
                 {0x2C, Color.FromArgb(144, 115, 104)}, // Beach - Grass Edge
                 {0x2D, Color.FromArgb(187, 121, 109)}, // Pier
                 {0x2E, Color.FromArgb(169, 255, 255)}, // Sea - Beach Edge
+
+                {0x33, Color.FromArgb(70, 116, 71)}, // Tiny Grass - Brach Corner
+                {0x46, Color.FromArgb(109, 113, 124)}, // Stacked Rock in kappn‘s Island?
+
+                {0xF9, Color.FromArgb(179, 207, 252)}, // Walkable Ice
+                {0xFA, Color.FromArgb(61, 119, 212)}, // High Ice
         };
         private enum BuildingType : byte
         {

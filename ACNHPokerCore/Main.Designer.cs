@@ -3886,11 +3886,6 @@ namespace ACNHPokerCore
             this.InventoryRefreshTimer.Interval = 3000;
             this.InventoryRefreshTimer.Tick += new System.EventHandler(this.InventoryRefreshTimer_Tick);
             // 
-            // AutoRefillTimer
-            // 
-            this.AutoRefillTimer.Interval = 1300;
-            this.AutoRefillTimer.Tick += new System.EventHandler(this.AutoRefillTimer_Tick);
-            // 
             // ButtonToolTip
             // 
             this.ButtonToolTip.AutomaticDelay = 0;
