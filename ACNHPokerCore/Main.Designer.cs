@@ -107,6 +107,7 @@ namespace ACNHPokerCore
             this.OtherTabButton = new System.Windows.Forms.Button();
             this.InventoryTabButton = new System.Windows.Forms.Button();
             this.InventoryLargePanel = new System.Windows.Forms.Panel();
+            this.StarFragmentToggle = new JCS.ToggleSwitch();
             this.AutoRefillLabel = new System.Windows.Forms.Label();
             this.AutoRefill = new JCS.ToggleSwitch();
             this.chatButton = new System.Windows.Forms.Button();
@@ -1999,6 +2000,7 @@ namespace ACNHPokerCore
             // 
             // InventoryLargePanel
             // 
+            this.InventoryLargePanel.Controls.Add(this.StarFragmentToggle);
             this.InventoryLargePanel.Controls.Add(this.AutoRefillLabel);
             this.InventoryLargePanel.Controls.Add(this.AutoRefill);
             this.InventoryLargePanel.Controls.Add(this.chatButton);
@@ -2047,6 +2049,18 @@ namespace ACNHPokerCore
             this.InventoryLargePanel.Size = new System.Drawing.Size(1225, 550);
             this.InventoryLargePanel.TabIndex = 18;
             // 
+            // StarFragmentToggle
+            // 
+            this.StarFragmentToggle.Location = new System.Drawing.Point(1168, 531);
+            this.StarFragmentToggle.Name = "StarFragmentToggle";
+            this.StarFragmentToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.StarFragmentToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.StarFragmentToggle.Size = new System.Drawing.Size(35, 16);
+            this.StarFragmentToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            this.StarFragmentToggle.TabIndex = 51;
+            this.StarFragmentToggle.UseAnimation = false;
+            this.StarFragmentToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.StarFragmentToggle_CheckedChanged);
+            // 
             // AutoRefillLabel
             // 
             this.AutoRefillLabel.AutoSize = true;
@@ -2088,7 +2102,7 @@ namespace ACNHPokerCore
             this.chatButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.chatButton.UseVisualStyleBackColor = false;
             this.chatButton.Visible = false;
-            this.chatButton.Click += new System.EventHandler(this.chatButton_Click);
+            this.chatButton.Click += new System.EventHandler(this.ChatButton_Click);
             // 
             // RoadRollerButton
             // 
@@ -2684,7 +2698,7 @@ namespace ACNHPokerCore
             this.copyItemToolStripMenuItem.Name = "copyItemToolStripMenuItem";
             this.copyItemToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.copyItemToolStripMenuItem.Text = "Copy Item";
-            this.copyItemToolStripMenuItem.Click += new System.EventHandler(this.copyItemToolStripMenuItem_Click);
+            this.copyItemToolStripMenuItem.Click += new System.EventHandler(this.CopyItemToolStripMenuItem_Click);
             // 
             // deleteItemToolStripMenuItem
             // 
@@ -2693,7 +2707,7 @@ namespace ACNHPokerCore
             this.deleteItemToolStripMenuItem.Name = "deleteItemToolStripMenuItem";
             this.deleteItemToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.deleteItemToolStripMenuItem.Text = "Delete Item";
-            this.deleteItemToolStripMenuItem.Click += new System.EventHandler(this.deleteItemToolStripMenuItem_Click);
+            this.deleteItemToolStripMenuItem.Click += new System.EventHandler(this.DeleteItemToolStripMenuItem_Click);
             // 
             // wrapItemToolStripMenuItem
             // 
@@ -2702,7 +2716,7 @@ namespace ACNHPokerCore
             this.wrapItemToolStripMenuItem.Name = "wrapItemToolStripMenuItem";
             this.wrapItemToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.wrapItemToolStripMenuItem.Text = "Wrap Item [ ! ]";
-            this.wrapItemToolStripMenuItem.Click += new System.EventHandler(this.wrapItemToolStripMenuItem_Click);
+            this.wrapItemToolStripMenuItem.Click += new System.EventHandler(this.WrapItemToolStripMenuItem_Click);
             // 
             // wrapAllItemsToolStripMenuItem
             // 
@@ -2711,7 +2725,7 @@ namespace ACNHPokerCore
             this.wrapAllItemsToolStripMenuItem.Name = "wrapAllItemsToolStripMenuItem";
             this.wrapAllItemsToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.wrapAllItemsToolStripMenuItem.Text = "Wrap All Items [ ! ]";
-            this.wrapAllItemsToolStripMenuItem.Click += new System.EventHandler(this.wrapAllItemsToolStripMenuItem_Click);
+            this.wrapAllItemsToolStripMenuItem.Click += new System.EventHandler(this.WrapAllItemsToolStripMenuItem_Click);
             // 
             // addToFavoriteToolStripMenuItem
             // 
@@ -2720,7 +2734,7 @@ namespace ACNHPokerCore
             this.addToFavoriteToolStripMenuItem.Name = "addToFavoriteToolStripMenuItem";
             this.addToFavoriteToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.addToFavoriteToolStripMenuItem.Text = "Add To Favorite";
-            this.addToFavoriteToolStripMenuItem.Click += new System.EventHandler(this.addToFavoriteToolStripMenuItem_Click);
+            this.addToFavoriteToolStripMenuItem.Click += new System.EventHandler(this.AddToFavoriteToolStripMenuItem_Click);
             // 
             // unwrapAllItemsToolStripMenuItem
             // 
@@ -2729,7 +2743,7 @@ namespace ACNHPokerCore
             this.unwrapAllItemsToolStripMenuItem.Name = "unwrapAllItemsToolStripMenuItem";
             this.unwrapAllItemsToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.unwrapAllItemsToolStripMenuItem.Text = "Unwrap All Items";
-            this.unwrapAllItemsToolStripMenuItem.Click += new System.EventHandler(this.unwrapAllItemsToolStripMenuItem_Click);
+            this.unwrapAllItemsToolStripMenuItem.Click += new System.EventHandler(this.UnwrapAllItemsToolStripMenuItem_Click);
             // 
             // inventorySlot39
             // 
@@ -3607,7 +3621,7 @@ namespace ACNHPokerCore
             this.deletedSelectedToolStripMenuItem.Name = "deletedSelectedToolStripMenuItem";
             this.deletedSelectedToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.deletedSelectedToolStripMenuItem.Text = "Deleted Selected";
-            this.deletedSelectedToolStripMenuItem.Click += new System.EventHandler(this.deletedSelectedToolStripMenuItem_Click);
+            this.deletedSelectedToolStripMenuItem.Click += new System.EventHandler(this.DeletedSelectedToolStripMenuItem_Click);
             // 
             // RecipeGridView
             // 
@@ -4179,7 +4193,7 @@ namespace ACNHPokerCore
             this.animationSpeedx1.Tag = "";
             this.animationSpeedx1.Text = "x1";
             this.animationSpeedx1.UseVisualStyleBackColor = false;
-            this.animationSpeedx1.Click += new System.EventHandler(this.animationSpeedx1_Click);
+            this.animationSpeedx1.Click += new System.EventHandler(this.AnimationSpeedx1_Click);
             // 
             // animationSpeedx0_1
             // 
@@ -4195,7 +4209,7 @@ namespace ACNHPokerCore
             this.animationSpeedx0_1.Tag = "";
             this.animationSpeedx0_1.Text = "x0.1";
             this.animationSpeedx0_1.UseVisualStyleBackColor = false;
-            this.animationSpeedx0_1.Click += new System.EventHandler(this.animationSpeedx0_1_Click);
+            this.animationSpeedx0_1.Click += new System.EventHandler(this.AnimationSpeedx0_1_Click);
             // 
             // animationSpeedx2
             // 
@@ -4211,7 +4225,7 @@ namespace ACNHPokerCore
             this.animationSpeedx2.Tag = "";
             this.animationSpeedx2.Text = "x2";
             this.animationSpeedx2.UseVisualStyleBackColor = false;
-            this.animationSpeedx2.Click += new System.EventHandler(this.animationSpeedx2_Click);
+            this.animationSpeedx2.Click += new System.EventHandler(this.AnimationSpeedx2_Click);
             // 
             // animationSpeedx5
             // 
@@ -4227,7 +4241,7 @@ namespace ACNHPokerCore
             this.animationSpeedx5.Tag = "";
             this.animationSpeedx5.Text = "x5";
             this.animationSpeedx5.UseVisualStyleBackColor = false;
-            this.animationSpeedx5.Click += new System.EventHandler(this.animationSpeedx5_Click);
+            this.animationSpeedx5.Click += new System.EventHandler(this.AnimationSpeedx5_Click);
             // 
             // animationSpeedx50
             // 
@@ -4243,7 +4257,7 @@ namespace ACNHPokerCore
             this.animationSpeedx50.Tag = "";
             this.animationSpeedx50.Text = "x50";
             this.animationSpeedx50.UseVisualStyleBackColor = false;
-            this.animationSpeedx50.Click += new System.EventHandler(this.animationSpeedx50_Click);
+            this.animationSpeedx50.Click += new System.EventHandler(this.AnimationSpeedx50_Click);
             // 
             // maxSpeedX1Btn
             // 
@@ -4259,7 +4273,7 @@ namespace ACNHPokerCore
             this.maxSpeedX1Btn.Tag = "";
             this.maxSpeedX1Btn.Text = "x1";
             this.maxSpeedX1Btn.UseVisualStyleBackColor = false;
-            this.maxSpeedX1Btn.Click += new System.EventHandler(this.maxSpeedX1Btn_Click);
+            this.maxSpeedX1Btn.Click += new System.EventHandler(this.MaxSpeedX1Btn_Click);
             // 
             // maxSpeedX2Btn
             // 
@@ -4275,7 +4289,7 @@ namespace ACNHPokerCore
             this.maxSpeedX2Btn.Tag = "";
             this.maxSpeedX2Btn.Text = "x2";
             this.maxSpeedX2Btn.UseVisualStyleBackColor = false;
-            this.maxSpeedX2Btn.Click += new System.EventHandler(this.maxSpeedX2Btn_Click);
+            this.maxSpeedX2Btn.Click += new System.EventHandler(this.MaxSpeedX2Btn_Click);
             // 
             // maxSpeedX3Btn
             // 
@@ -4291,7 +4305,7 @@ namespace ACNHPokerCore
             this.maxSpeedX3Btn.Tag = "";
             this.maxSpeedX3Btn.Text = "x3";
             this.maxSpeedX3Btn.UseVisualStyleBackColor = false;
-            this.maxSpeedX3Btn.Click += new System.EventHandler(this.maxSpeedX3Btn_Click);
+            this.maxSpeedX3Btn.Click += new System.EventHandler(this.MaxSpeedX3Btn_Click);
             // 
             // maxSpeedX5Btn
             // 
@@ -4307,7 +4321,7 @@ namespace ACNHPokerCore
             this.maxSpeedX5Btn.Tag = "";
             this.maxSpeedX5Btn.Text = "x5";
             this.maxSpeedX5Btn.UseVisualStyleBackColor = false;
-            this.maxSpeedX5Btn.Click += new System.EventHandler(this.maxSpeedX5Btn_Click);
+            this.maxSpeedX5Btn.Click += new System.EventHandler(this.MaxSpeedX5Btn_Click);
             // 
             // maxSpeedX100Btn
             // 
@@ -4323,7 +4337,7 @@ namespace ACNHPokerCore
             this.maxSpeedX100Btn.Tag = "";
             this.maxSpeedX100Btn.Text = "x100";
             this.maxSpeedX100Btn.UseVisualStyleBackColor = false;
-            this.maxSpeedX100Btn.Click += new System.EventHandler(this.maxSpeedX100Btn_Click);
+            this.maxSpeedX100Btn.Click += new System.EventHandler(this.MaxSpeedX100Btn_Click);
             // 
             // PoopButton
             // 
@@ -7961,5 +7975,6 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Button chatButton;
         private System.Windows.Forms.Label AutoRefillLabel;
         private JCS.ToggleSwitch AutoRefill;
+        private JCS.ToggleSwitch StarFragmentToggle;
     }
 }

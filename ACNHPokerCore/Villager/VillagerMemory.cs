@@ -4,7 +4,7 @@ namespace ACNHPokerCore
 {
     public class VillagerMemory
     {
-        private byte[] Data;
+        private readonly byte[] Data;
 
         public VillagerMemory(byte[] data) => Data = data;
         public uint TownID

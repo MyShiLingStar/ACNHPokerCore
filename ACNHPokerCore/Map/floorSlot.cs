@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace ACNHPokerCore
 {
-    class floorSlot : Button
+    class FloorSlot : Button
     {
         public string itemName { get; set; }
         public string flag1 { get; set; }
@@ -31,7 +31,7 @@ namespace ACNHPokerCore
         public int mapX { get; set; }
         public int mapY { get; set; }
 
-        private Image recipe;
+        private readonly Image recipe;
 
         private string containItemPath = "";
 
@@ -39,8 +39,8 @@ namespace ACNHPokerCore
         public Boolean corner = false;
 
         private Boolean refreshing = false;
-        private static object syncRoot = new();
-        private static object lockObject = new();
+        private static readonly object syncRoot = new();
+        private static readonly object lockObject = new();
 
         public UInt16 itemDurability
         {
@@ -75,7 +75,7 @@ namespace ACNHPokerCore
                 itemData = (itemData & 0xFFFFFF00) + value;
             }
         }
-        public floorSlot()
+        public FloorSlot()
         {
             if (File.Exists(Utilities.RecipeOverlayPath))
                 recipe = Image.FromFile(Utilities.RecipeOverlayPath);
@@ -339,12 +339,12 @@ namespace ACNHPokerCore
             if (Layer1)
             {
                 //this.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-                this.BackColor = miniMap.GetBackgroundColor(mapX, mapY);
+                this.BackColor = MiniMap.GetBackgroundColor(mapX, mapY);
             }
             else
             {
                 //this.BackColor = Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
-                this.BackColor = miniMap.GetBackgroundColor(mapX, mapY, false);
+                this.BackColor = MiniMap.GetBackgroundColor(mapX, mapY, false);
             }
 
 
@@ -644,131 +644,6 @@ namespace ACNHPokerCore
             }
         }
 
-        public async Task<Image> displayItemImageAsync(Boolean large, Boolean separate)
-        {
-            if (separate)
-            {
-                Size size;
-
-                if (large)
-                {
-                    size = new Size(128, 128);
-                }
-                else
-                {
-                    size = new Size(64, 64);
-                }
-
-                if (large)
-                {
-                    return null;
-                }
-                else
-                {
-                    Image background = new Bitmap(75, 75);
-                    Image topleft = null;
-                    Image topright = null;
-                    Image bottomleft = null;
-                    Image bottomright = null;
-
-                    if (image1Path != "")
-                    {
-                        topleft = (new Bitmap(Image.FromFile(image1Path), new Size((this.Width) / 2, (this.Height) / 2)));
-                    }
-                    else if (itemID != 0xFFFE)
-                    {
-                        topleft = (new Bitmap(Properties.Resources.Leaf, new Size((this.Width) / 2, (this.Height) / 2)));
-                    }
-                    if (image2Path != "")
-                    {
-                        bottomleft = (new Bitmap(Image.FromFile(image2Path), new Size((this.Width) / 2, (this.Height) / 2)));
-                    }
-                    else if (part2 != 0x0000FFFE)
-                    {
-                        bottomleft = (new Bitmap(Properties.Resources.Leaf, new Size((this.Width) / 2, (this.Height) / 2)));
-                    }
-                    if (image3Path != "")
-                    {
-                        topright = (new Bitmap(Image.FromFile(image3Path), new Size((this.Width) / 2, (this.Height) / 2)));
-                    }
-                    else if (part3 != 0x0000FFFE)
-                    {
-                        topright = (new Bitmap(Properties.Resources.Leaf, new Size((this.Width) / 2, (this.Height) / 2)));
-                    }
-                    if (image4Path != "")
-                    {
-                        bottomright = (new Bitmap(Image.FromFile(image4Path), new Size((this.Width) / 2, (this.Height) / 2)));
-                    }
-                    else if (part4 != 0x0000FFFE)
-                    {
-                        bottomright = (new Bitmap(Properties.Resources.Leaf, new Size((this.Width) / 2, (this.Height) / 2)));
-                    }
-
-                    Image img = await PlaceImagesAsync(background, topleft, topright, bottomleft, bottomright, 1);
-                    return (Image)(new Bitmap(img, size));
-                }
-            }
-            else
-            {
-                Size size;
-                Double recipeMultiplier;
-                Double wallMultiplier;
-
-                if (large)
-                {
-                    size = new Size(128, 128);
-                    recipeMultiplier = 0.3;
-                    wallMultiplier = 0.45;
-                }
-                else
-                {
-                    size = new Size(64, 64);
-                    recipeMultiplier = 0.5;
-                    wallMultiplier = 0.6;
-                }
-
-                if (image1Path == "" & itemID != 0xFFFE)
-                {
-                    return (Image)(new Bitmap(Properties.Resources.Leaf, size));
-                }
-                else if (itemID == 0x16A2) // recipe
-                {
-                    Image background = Image.FromFile(image1Path);
-                    int imageSize = (int)(background.Width * recipeMultiplier);
-                    Image icon = (new Bitmap(recipe, new Size(imageSize, imageSize)));
-
-                    Image img = PlaceImageOverImage(background, icon, background.Width - (imageSize - 5), background.Width - (imageSize - 5), 1);
-                    return (Image)(new Bitmap(img, size));
-                }
-                else if (itemID == 0x315A || itemID == 0x1618 || itemID == 0x342F) // Wall-Mount
-                {
-                    if (File.Exists(containItemPath))
-                    {
-                        Image background = Image.FromFile(image1Path);
-                        int imageSize = (int)(background.Width * wallMultiplier);
-                        Image icon = (new Bitmap(Image.FromFile(containItemPath), new Size(imageSize, imageSize)));
-
-                        Image img = PlaceImageOverImage(background, icon, background.Width - (imageSize - 5), background.Width - (imageSize - 5), 1);
-                        return (Image)(new Bitmap(img, size));
-                    }
-                    else
-                    {
-                        Image img = Image.FromFile(image1Path);
-                        return (Image)(new Bitmap(img, size));
-                    }
-                }
-                else if (image1Path != "")
-                {
-                    Image img = Image.FromFile(image1Path);
-                    return (Image)(new Bitmap(img, size));
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
-
         public Boolean isEmpty()
         {
             if (itemID == 0xFFFE && part2 == 0xFFFE && part3 == 0xFFFE && part4 == 0xFFFE)
@@ -777,12 +652,13 @@ namespace ACNHPokerCore
             }
             return false;
         }
-        public string HexToBinary(string hex)
+        public static string HexToBinary(string hex)
         {
             return hexCharacterToBinary[hex.ToLower()];
         }
 
-        private static readonly Dictionary<string, string> hexCharacterToBinary = new Dictionary<string, string> {
+        private static readonly Dictionary<string, string> hexCharacterToBinary = new()
+        {
             { "0", "0-0" },
             { "1", "1-0" },
             { "2", "X-0" },//
@@ -806,8 +682,10 @@ namespace ACNHPokerCore
             Image output = bottom;
             using (Graphics graphics = Graphics.FromImage(output))
             {
-                var cm = new ColorMatrix();
-                cm.Matrix33 = alpha;
+                var cm = new ColorMatrix
+                {
+                    Matrix33 = alpha
+                };
 
                 var ia = new ImageAttributes();
                 ia.SetColorMatrix(cm);
@@ -823,8 +701,10 @@ namespace ACNHPokerCore
             Image output = bottom;
             using (Graphics graphics = Graphics.FromImage(output))
             {
-                var cm = new ColorMatrix();
-                cm.Matrix33 = alpha;
+                var cm = new ColorMatrix
+                {
+                    Matrix33 = alpha
+                };
 
                 var ia = new ImageAttributes();
                 ia.SetColorMatrix(cm);
@@ -848,25 +728,25 @@ namespace ACNHPokerCore
 
             await Task.Run(() =>
             {
-                using (Graphics graphics = Graphics.FromImage(output))
+                using Graphics graphics = Graphics.FromImage(output);
+                lock (syncRoot)
                 {
-                    lock (syncRoot)
+                    var cm = new ColorMatrix
                     {
-                        var cm = new ColorMatrix();
-                        cm.Matrix33 = alpha;
+                        Matrix33 = alpha
+                    };
 
-                        var ia = new ImageAttributes();
-                        ia.SetColorMatrix(cm);
+                    var ia = new ImageAttributes();
+                    ia.SetColorMatrix(cm);
 
-                        if (topleft != null)
-                            graphics.DrawImage(topleft, new Rectangle(0, 0, topleft.Width, topleft.Height), 0, 0, topleft.Width, topleft.Height, GraphicsUnit.Pixel, ia);
-                        if (topright != null)
-                            graphics.DrawImage(topright, new Rectangle(38, 0, topright.Width, topright.Height), 0, 0, topright.Width, topright.Height, GraphicsUnit.Pixel, ia);
-                        if (bottomleft != null)
-                            graphics.DrawImage(bottomleft, new Rectangle(0, 38, bottomleft.Width, bottomleft.Height), 0, 0, bottomleft.Width, bottomleft.Height, GraphicsUnit.Pixel, ia);
-                        if (bottomright != null)
-                            graphics.DrawImage(bottomright, new Rectangle(38, 38, bottomright.Width, bottomright.Height), 0, 0, bottomright.Width, bottomright.Height, GraphicsUnit.Pixel, ia);
-                    }
+                    if (topleft != null)
+                        graphics.DrawImage(topleft, new Rectangle(0, 0, topleft.Width, topleft.Height), 0, 0, topleft.Width, topleft.Height, GraphicsUnit.Pixel, ia);
+                    if (topright != null)
+                        graphics.DrawImage(topright, new Rectangle(38, 0, topright.Width, topright.Height), 0, 0, topright.Width, topright.Height, GraphicsUnit.Pixel, ia);
+                    if (bottomleft != null)
+                        graphics.DrawImage(bottomleft, new Rectangle(0, 38, bottomleft.Width, bottomleft.Height), 0, 0, bottomleft.Width, bottomleft.Height, GraphicsUnit.Pixel, ia);
+                    if (bottomright != null)
+                        graphics.DrawImage(bottomright, new Rectangle(38, 38, bottomright.Width, bottomright.Height), 0, 0, bottomright.Width, bottomright.Height, GraphicsUnit.Pixel, ia);
                 }
             });
 

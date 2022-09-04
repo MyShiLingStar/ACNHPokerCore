@@ -6,7 +6,7 @@ namespace ACNHPokerCore
 {
     public partial class MyStopWatch : Form, IDisposable
     {
-        CountDownTimer timer;
+        readonly CountDownTimer timer;
 
         public int minutes = 10;
         public int seconds = 0;
@@ -24,38 +24,38 @@ namespace ACNHPokerCore
             timer.TimeChanged += () => timeLabel.Text = timer.TimeLeftStr;
 
             // show messageBox on timer = 00:00.000
-            timer.CountDownFinished += () => toRed();
+            timer.CountDownFinished += () => ToRed();
 
             timer.StepMs = 77;
         }
 
-        private void toRed()
+        private void ToRed()
         {
             timeLabel.ForeColor = Color.Red;
             done = true;
         }
 
-        private void toOrange()
+        private void ToOrange()
         {
             timeLabel.ForeColor = Color.FromArgb(243, 152, 8);
             done = false;
         }
 
-        public bool isDone()
+        public bool IsDone()
         {
             return done;
         }
 
-        public void set(int min, int sec)
+        public void Set(int min, int sec)
         {
             minutes = min;
             seconds = sec;
             timer.SetTime(minutes, seconds);
-            updateLabel();
+            UpdateLabel();
             done = false;
         }
 
-        public void addMin(int min)
+        public void AddMin(int min)
         {
             if (minutes + min >= 59)
                 minutes = 59;
@@ -63,10 +63,10 @@ namespace ACNHPokerCore
                 minutes += min;
 
             timer.SetTime(minutes, seconds);
-            updateLabel();
+            UpdateLabel();
         }
 
-        public void minusMin(int min)
+        public void MinusMin(int min)
         {
             if (minutes - min <= 0)
                 minutes = 0;
@@ -74,10 +74,10 @@ namespace ACNHPokerCore
                 minutes -= min;
 
             timer.SetTime(minutes, seconds);
-            updateLabel();
+            UpdateLabel();
         }
 
-        public void addSec(int sec)
+        public void AddSec(int sec)
         {
             if (seconds + sec >= 59)
                 seconds = 59;
@@ -85,10 +85,10 @@ namespace ACNHPokerCore
                 seconds += sec;
 
             timer.SetTime(minutes, seconds);
-            updateLabel();
+            UpdateLabel();
         }
 
-        public void minusSec(int sec)
+        public void MinusSec(int sec)
         {
             if (seconds - sec <= 0)
                 seconds = 0;
@@ -96,60 +96,60 @@ namespace ACNHPokerCore
                 seconds -= sec;
 
             timer.SetTime(minutes, seconds);
-            updateLabel();
+            UpdateLabel();
         }
 
-        private void updateLabel()
+        private void UpdateLabel()
         {
             timeLabel.Text = timer.TimeLeftStr;
         }
 
-        public void start()
+        public void Start()
         {
             timer.Start();
         }
 
-        public void pause()
+        public void Pause()
         {
             timer.Pause();
         }
 
-        public void restart()
+        public void Restart()
         {
-            toOrange();
+            ToOrange();
             timer.Restart();
         }
 
-        public void reset()
+        public void Reset()
         {
-            toOrange();
+            ToOrange();
             timer.Reset();
-            updateLabel();
+            UpdateLabel();
         }
 
-        public void stop()
+        public void Stop()
         {
             timer.Stop();
         }
 
         private void StartBtn_Click(object sender, EventArgs e)
         {
-            start();
+            Start();
         }
 
-        private void pauseBtn_Click(object sender, EventArgs e)
+        private void PauseBtn_Click(object sender, EventArgs e)
         {
-            pause();
+            Pause();
         }
 
-        private void restartBtn_Click(object sender, EventArgs e)
+        private void RestartBtn_Click(object sender, EventArgs e)
         {
-            restart();
+            Restart();
         }
 
-        private void resetBtn_Click(object sender, EventArgs e)
+        private void ResetBtn_Click(object sender, EventArgs e)
         {
-            reset();
+            Reset();
         }
 
         private void MyStopWatch_FormClosed(object sender, FormClosedEventArgs e)

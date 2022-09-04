@@ -9,7 +9,7 @@ namespace ACNHPokerCore
 {
     public class TerrainUnit
     {
-        private byte[] TerrainData;
+        private readonly byte[] TerrainData;
         private byte[] CustomDesign = null;
 
         public TerrainUnit(byte[] terrainData)
@@ -17,27 +17,27 @@ namespace ACNHPokerCore
             TerrainData = terrainData;
         }
 
-        public byte[] getTerrainData()
+        public byte[] GetTerrainData()
         {
             return TerrainData;
         }
 
-        public void setCustomDesign(byte[] customDesignData)
+        public void SetCustomDesign(byte[] customDesignData)
         {
             CustomDesign = customDesignData;
         }
 
-        public void removeCustomDesign()
+        public void RemoveCustomDesign()
         {
             CustomDesign = new byte[] { 0x00, 0xF8 };
         }
 
-        public byte[] getCustomDesign()
+        public byte[] GetCustomDesign()
         {
             return CustomDesign;
         }
 
-        public bool haveCustomDesign()
+        public bool HaveCustomDesign()
         {
             if (CustomDesign == null || CustomDesign[1] == 0xF8)
                 return false;
@@ -79,52 +79,52 @@ namespace ACNHPokerCore
                    "roadModel: " + TerrainName[Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(roadModel)), 16)] + " " + "\n" +
                    "elevation: " + Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(elevation)), 16).ToString() + CustomDesignInfo;
         }
-        public ushort getTerrainModel()
+        public ushort GetTerrainModel()
         {
             byte[] terrainModel = new byte[2];
             Buffer.BlockCopy(TerrainData, 0, terrainModel, 0, 2);
             return Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(terrainModel)), 16);
         }
-        public ushort getTerrainVariation()
+        public ushort GetTerrainVariation()
         {
             byte[] terrainVariation = new byte[2];
             Buffer.BlockCopy(TerrainData, 2, terrainVariation, 0, 2);
             return Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(terrainVariation)), 16);
         }
-        public ushort getTerrainAngle()
+        public ushort GetTerrainAngle()
         {
             byte[] terrainAngle = new byte[2];
             Buffer.BlockCopy(TerrainData, 4, terrainAngle, 0, 2);
             return Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(terrainAngle)), 16);
         }
-        public ushort getRoadModel()
+        public ushort GetRoadModel()
         {
             byte[] roadModel = new byte[2];
             Buffer.BlockCopy(TerrainData, 6, roadModel, 0, 2);
             return Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(roadModel)), 16);
         }
-        public ushort getRoadVariation()
+        public ushort GetRoadVariation()
         {
             byte[] roadVariation = new byte[2];
             Buffer.BlockCopy(TerrainData, 8, roadVariation, 0, 2);
             return Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(roadVariation)), 16);
         }
-        public ushort getRoadAngle()
+        public ushort GetRoadAngle()
         {
             byte[] roadAngle = new byte[2];
             Buffer.BlockCopy(TerrainData, 10, roadAngle, 0, 2);
             return Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(roadAngle)), 16);
         }
-        public ushort getElevation()
+        public ushort GetElevation()
         {
             byte[] elevation = new byte[2];
             Buffer.BlockCopy(TerrainData, 12, elevation, 0, 2);
             return Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(elevation)), 16);
         }
 
-        public bool isSameRoadAndElevation(ushort road, ushort elevation)
+        public bool IsSameRoadAndElevation(ushort road, ushort elevation)
         {
-            if (elevation != getElevation())
+            if (elevation != GetElevation())
                 return false;
 
             if (road == (ushort)TerrainType.RoadWood)
@@ -146,7 +146,7 @@ namespace ACNHPokerCore
             else return false;
         }
 
-        public ushort getRoadType()
+        public ushort GetRoadType()
         {
             if (HasRoadWood())
                 return 0;
@@ -168,32 +168,32 @@ namespace ACNHPokerCore
                 return 99;
         }
 
-        public bool isSameElevationCliff(ushort elevation)
+        public bool IsSameElevationCliff(ushort elevation)
         {
-            if (!isFall() && !isRiver() && elevation == getElevation())
+            if (!IsFall() && !IsRiver() && elevation == GetElevation())
                 return true;
             else
                 return false;
         }
 
-        public bool isSameOrHigherElevationTerrain(ushort elevation)
+        public bool IsSameOrHigherElevationTerrain(ushort elevation)
         {
-            if ((isFall() || isRiver() || isCliff() || isFlat()) && getElevation() >= elevation)
+            if ((IsFall() || IsRiver() || IsCliff() || IsFlat()) && GetElevation() >= elevation)
                 return true;
             else
                 return false;
         }
-        public bool isSameOrHigherElevationRiverOrFall(ushort elevation)
+        public bool IsSameOrHigherElevationRiverOrFall(ushort elevation)
         {
-            if ((isFall() || isRiver()) && getElevation() >= elevation)
+            if ((IsFall() || IsRiver()) && GetElevation() >= elevation)
                 return true;
             else
                 return false;
         }
 
-        public bool isFallOrRiver()
+        public bool IsFallOrRiver()
         {
-            if (isFall() || isRiver())
+            if (IsFall() || IsRiver())
                 return true;
             else
                 return false;
@@ -201,7 +201,7 @@ namespace ACNHPokerCore
 
         public bool HasRoad()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road >= (ushort)TerrainUnitModel.RoadBrick0A || (road >= (ushort)TerrainUnitModel.RoadSoil0A && road <= (ushort)TerrainUnitModel.RoadStone8A))
                 return true;
             else
@@ -209,13 +209,13 @@ namespace ACNHPokerCore
         }
         public bool HasTerrain()
         {
-            if (isFall() || isCliff() || isRiver() || (isFlat() && getElevation() > 0))
+            if (IsFall() || IsCliff() || IsRiver() || (IsFlat() && GetElevation() > 0))
                 return true;
             else
                 return false;
         }
 
-        public bool HasTerrainVariation(ushort terrain)
+        public static bool HasTerrainVariation(ushort terrain)
         {
             if (terrain == (ushort)TerrainUnitModel.Cliff1A ||
                 terrain == (ushort)TerrainUnitModel.Cliff2B ||
@@ -243,7 +243,7 @@ namespace ACNHPokerCore
 
         public bool HasRoadWood()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road >= (ushort)TerrainUnitModel.RoadWood0A && road <= (ushort)TerrainUnitModel.RoadWood8A)
                 return true;
             else
@@ -251,7 +251,7 @@ namespace ACNHPokerCore
         }
         public bool HasRoadTile()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road >= (ushort)TerrainUnitModel.RoadTile0A && road <= (ushort)TerrainUnitModel.RoadTile8A)
                 return true;
             else
@@ -259,7 +259,7 @@ namespace ACNHPokerCore
         }
         public bool HasRoadSand()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road >= (ushort)TerrainUnitModel.RoadSand0A && road <= (ushort)TerrainUnitModel.RoadSand8A)
                 return true;
             else
@@ -267,7 +267,7 @@ namespace ACNHPokerCore
         }
         public bool HasRoadPattern()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road >= (ushort)TerrainUnitModel.RoadFanPattern0A && road <= (ushort)TerrainUnitModel.RoadFanPattern8A)
                 return true;
             else
@@ -275,7 +275,7 @@ namespace ACNHPokerCore
         }
         public bool HasRoadDarkSoil()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road >= (ushort)TerrainUnitModel.RoadDarkSoil0A && road <= (ushort)TerrainUnitModel.RoadDarkSoil8A)
                 return true;
             else
@@ -283,7 +283,7 @@ namespace ACNHPokerCore
         }
         public bool HasRoadBrick()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road >= (ushort)TerrainUnitModel.RoadBrick0A && road <= (ushort)TerrainUnitModel.RoadBrick8A)
                 return true;
             else
@@ -291,7 +291,7 @@ namespace ACNHPokerCore
         }
         public bool HasRoadStone()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road >= (ushort)TerrainUnitModel.RoadStone0A && road <= (ushort)TerrainUnitModel.RoadStone8A)
                 return true;
             else
@@ -299,58 +299,58 @@ namespace ACNHPokerCore
         }
         public bool HasRoadSoil()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road >= (ushort)TerrainUnitModel.RoadSoil0A && road <= (ushort)TerrainUnitModel.RoadSoil8A)
                 return true;
             else
                 return false;
         }
-        public bool isFall()
+        public bool IsFall()
         {
-            ushort terrain = getTerrainModel();
+            ushort terrain = GetTerrainModel();
             if ((terrain >= (ushort)TerrainUnitModel.Fall101 && terrain <= (ushort)TerrainUnitModel.Fall404) || (terrain >= (ushort)TerrainUnitModel.Fall103 && terrain <= (ushort)TerrainUnitModel.Fall424))
                 return true;
             else
                 return false;
         }
-        public bool isCliff()
+        public bool IsCliff()
         {
-            ushort terrain = getTerrainModel();
+            ushort terrain = GetTerrainModel();
             if ((terrain >= (ushort)TerrainUnitModel.Cliff0A && terrain <= (ushort)TerrainUnitModel.Cliff8) || (terrain == (ushort)TerrainUnitModel.Cliff2B))
                 return true;
             else
                 return false;
         }
 
-        public bool isFallCliff()
+        public bool IsFallCliff()
         {
-            ushort terrain = getTerrainModel();
+            ushort terrain = GetTerrainModel();
             if (terrain == (ushort)TerrainUnitModel.Cliff5B)
                 return true;
             else
                 return false;
         }
-        public bool isRiver()
+        public bool IsRiver()
         {
-            ushort terrain = getTerrainModel();
+            ushort terrain = GetTerrainModel();
             if (terrain >= (ushort)TerrainUnitModel.River0A && terrain <= (ushort)TerrainUnitModel.River8A)
                 return true;
             else
                 return false;
         }
 
-        public bool isFlat()
+        public bool IsFlat()
         {
-            ushort terrain = getTerrainModel();
+            ushort terrain = GetTerrainModel();
             if (terrain == (ushort)TerrainUnitModel.Base)
                 return true;
             else
                 return false;
         }
 
-        public bool isRoad0A()
+        public bool IsRoad0A()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road == (ushort)TerrainUnitModel.RoadSoil0A ||
                 road == (ushort)TerrainUnitModel.RoadStone0A ||
                 road == (ushort)TerrainUnitModel.RoadBrick0A ||
@@ -363,9 +363,9 @@ namespace ACNHPokerCore
             else
                 return false;
         }
-        public bool isRoad1A()
+        public bool IsRoad1A()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road == (ushort)TerrainUnitModel.RoadSoil1A ||
                 road == (ushort)TerrainUnitModel.RoadStone1A ||
                 road == (ushort)TerrainUnitModel.RoadBrick1A ||
@@ -378,9 +378,9 @@ namespace ACNHPokerCore
             else
                 return false;
         }
-        public bool isRoad0B()
+        public bool IsRoad0B()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road == (ushort)TerrainUnitModel.RoadSoil0B ||
                 road == (ushort)TerrainUnitModel.RoadStone0B ||
                 road == (ushort)TerrainUnitModel.RoadBrick0B ||
@@ -393,9 +393,9 @@ namespace ACNHPokerCore
             else
                 return false;
         }
-        public bool isRoad1B()
+        public bool IsRoad1B()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road == (ushort)TerrainUnitModel.RoadSoil1B ||
                 road == (ushort)TerrainUnitModel.RoadStone1B ||
                 road == (ushort)TerrainUnitModel.RoadBrick1B ||
@@ -408,9 +408,9 @@ namespace ACNHPokerCore
             else
                 return false;
         }
-        public bool isRoad1C()
+        public bool IsRoad1C()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road == (ushort)TerrainUnitModel.RoadSoil1C ||
                 road == (ushort)TerrainUnitModel.RoadStone1C ||
                 road == (ushort)TerrainUnitModel.RoadBrick1C ||
@@ -423,9 +423,9 @@ namespace ACNHPokerCore
             else
                 return false;
         }
-        public bool isRoad2A()
+        public bool IsRoad2A()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road == (ushort)TerrainUnitModel.RoadSoil2A ||
                 road == (ushort)TerrainUnitModel.RoadStone2A ||
                 road == (ushort)TerrainUnitModel.RoadBrick2A ||
@@ -438,9 +438,9 @@ namespace ACNHPokerCore
             else
                 return false;
         }
-        public bool isRoad2B()
+        public bool IsRoad2B()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road == (ushort)TerrainUnitModel.RoadSoil2B ||
                 road == (ushort)TerrainUnitModel.RoadStone2B ||
                 road == (ushort)TerrainUnitModel.RoadBrick2B ||
@@ -453,9 +453,9 @@ namespace ACNHPokerCore
             else
                 return false;
         }
-        public bool isRoad2C()
+        public bool IsRoad2C()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road == (ushort)TerrainUnitModel.RoadSoil2C ||
                 road == (ushort)TerrainUnitModel.RoadStone2C ||
                 road == (ushort)TerrainUnitModel.RoadBrick2C ||
@@ -468,9 +468,9 @@ namespace ACNHPokerCore
             else
                 return false;
         }
-        public bool isRoad3A()
+        public bool IsRoad3A()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road == (ushort)TerrainUnitModel.RoadSoil3A ||
                 road == (ushort)TerrainUnitModel.RoadStone3A ||
                 road == (ushort)TerrainUnitModel.RoadBrick3A ||
@@ -483,9 +483,9 @@ namespace ACNHPokerCore
             else
                 return false;
         }
-        public bool isRoad3B()
+        public bool IsRoad3B()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road == (ushort)TerrainUnitModel.RoadSoil3B ||
                 road == (ushort)TerrainUnitModel.RoadStone3B ||
                 road == (ushort)TerrainUnitModel.RoadBrick3B ||
@@ -498,9 +498,9 @@ namespace ACNHPokerCore
             else
                 return false;
         }
-        public bool isRoad3C()
+        public bool IsRoad3C()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road == (ushort)TerrainUnitModel.RoadSoil3C ||
                 road == (ushort)TerrainUnitModel.RoadStone3C ||
                 road == (ushort)TerrainUnitModel.RoadBrick3C ||
@@ -513,9 +513,9 @@ namespace ACNHPokerCore
             else
                 return false;
         }
-        public bool isRoad4A()
+        public bool IsRoad4A()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road == (ushort)TerrainUnitModel.RoadSoil4A ||
                 road == (ushort)TerrainUnitModel.RoadStone4A ||
                 road == (ushort)TerrainUnitModel.RoadBrick4A ||
@@ -528,24 +528,28 @@ namespace ACNHPokerCore
             else
                 return false;
         }
-        public bool isRoad4B()
+        public bool IsRoad4B
         {
-            ushort road = getRoadModel();
-            if (road == (ushort)TerrainUnitModel.RoadSoil4B ||
-                road == (ushort)TerrainUnitModel.RoadStone4B ||
-                road == (ushort)TerrainUnitModel.RoadBrick4B ||
-                road == (ushort)TerrainUnitModel.RoadDarkSoil4B ||
-                road == (ushort)TerrainUnitModel.RoadFanPattern4B ||
-                road == (ushort)TerrainUnitModel.RoadSand4B ||
-                road == (ushort)TerrainUnitModel.RoadTile4B ||
-                road == (ushort)TerrainUnitModel.RoadWood4B)
-                return true;
-            else
-                return false;
+            get
+            {
+                ushort road = GetRoadModel();
+                if (road == (ushort)TerrainUnitModel.RoadSoil4B ||
+                    road == (ushort)TerrainUnitModel.RoadStone4B ||
+                    road == (ushort)TerrainUnitModel.RoadBrick4B ||
+                    road == (ushort)TerrainUnitModel.RoadDarkSoil4B ||
+                    road == (ushort)TerrainUnitModel.RoadFanPattern4B ||
+                    road == (ushort)TerrainUnitModel.RoadSand4B ||
+                    road == (ushort)TerrainUnitModel.RoadTile4B ||
+                    road == (ushort)TerrainUnitModel.RoadWood4B)
+                    return true;
+                else
+                    return false;
+            }
         }
-        public bool isRoad4C()
+
+        public bool IsRoad4C()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road == (ushort)TerrainUnitModel.RoadSoil4C ||
                 road == (ushort)TerrainUnitModel.RoadStone4C ||
                 road == (ushort)TerrainUnitModel.RoadBrick4C ||
@@ -558,9 +562,9 @@ namespace ACNHPokerCore
             else
                 return false;
         }
-        public bool isRoad5A()
+        public bool IsRoad5A()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road == (ushort)TerrainUnitModel.RoadSoil5A ||
                 road == (ushort)TerrainUnitModel.RoadStone5A ||
                 road == (ushort)TerrainUnitModel.RoadBrick5A ||
@@ -573,9 +577,9 @@ namespace ACNHPokerCore
             else
                 return false;
         }
-        public bool isRoad5B()
+        public bool IsRoad5B()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road == (ushort)TerrainUnitModel.RoadSoil5B ||
                 road == (ushort)TerrainUnitModel.RoadStone5B ||
                 road == (ushort)TerrainUnitModel.RoadBrick5B ||
@@ -588,9 +592,9 @@ namespace ACNHPokerCore
             else
                 return false;
         }
-        public bool isRoad6A()
+        public bool IsRoad6A()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road == (ushort)TerrainUnitModel.RoadSoil6A ||
                 road == (ushort)TerrainUnitModel.RoadStone6A ||
                 road == (ushort)TerrainUnitModel.RoadBrick6A ||
@@ -603,9 +607,9 @@ namespace ACNHPokerCore
             else
                 return false;
         }
-        public bool isRoad6B()
+        public bool IsRoad6B()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road == (ushort)TerrainUnitModel.RoadSoil6B ||
                 road == (ushort)TerrainUnitModel.RoadStone6B ||
                 road == (ushort)TerrainUnitModel.RoadBrick6B ||
@@ -618,9 +622,9 @@ namespace ACNHPokerCore
             else
                 return false;
         }
-        public bool isRoad7A()
+        public bool IsRoad7A()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road == (ushort)TerrainUnitModel.RoadSoil7A ||
                 road == (ushort)TerrainUnitModel.RoadStone7A ||
                 road == (ushort)TerrainUnitModel.RoadBrick7A ||
@@ -633,9 +637,9 @@ namespace ACNHPokerCore
             else
                 return false;
         }
-        public bool isRoad8A()
+        public bool IsRoad8A()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road == (ushort)TerrainUnitModel.RoadSoil8A ||
                 road == (ushort)TerrainUnitModel.RoadStone8A ||
                 road == (ushort)TerrainUnitModel.RoadBrick8A ||
@@ -648,9 +652,9 @@ namespace ACNHPokerCore
             else
                 return false;
         }
-        public bool isRoundCornerRoad()
+        public bool IsRoundCornerRoad()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road == (ushort)TerrainUnitModel.RoadSoil0B ||
                 road == (ushort)TerrainUnitModel.RoadStone0B ||
                 road == (ushort)TerrainUnitModel.RoadBrick0B ||
@@ -700,9 +704,9 @@ namespace ACNHPokerCore
             else
                 return false;
         }
-        public bool canChangeCornerRoad()
+        public bool CanChangeCornerRoad()
         {
-            ushort road = getRoadModel();
+            ushort road = GetRoadModel();
             if (road == (ushort)TerrainUnitModel.RoadSoil0A ||
                 road == (ushort)TerrainUnitModel.RoadStone0A ||
                 road == (ushort)TerrainUnitModel.RoadBrick0A ||
@@ -790,9 +794,9 @@ namespace ACNHPokerCore
                 return false;
         }
 
-        public bool isRoundCornerTerrain()
+        public bool IsRoundCornerTerrain()
         {
-            ushort terrain = getTerrainModel();
+            ushort terrain = GetTerrainModel();
             if (terrain == (ushort)TerrainUnitModel.Cliff2B ||
                 terrain == (ushort)TerrainUnitModel.River2B ||
 
@@ -804,9 +808,9 @@ namespace ACNHPokerCore
                 return false;
         }
 
-        public bool canChangeCornerCliff()
+        public bool CanChangeCornerCliff()
         {
-            ushort terrain = getTerrainModel();
+            ushort terrain = GetTerrainModel();
             if (terrain == (ushort)TerrainUnitModel.Cliff2B ||
                 terrain == (ushort)TerrainUnitModel.Cliff3B ||
                 terrain == (ushort)TerrainUnitModel.Cliff2C ||
@@ -817,9 +821,9 @@ namespace ACNHPokerCore
                 return false;
         }
 
-        public bool canChangeCornerRiver()
+        public bool CanChangeCornerRiver()
         {
-            ushort terrain = getTerrainModel();
+            ushort terrain = GetTerrainModel();
             if (terrain == (ushort)TerrainUnitModel.River2B ||
                 terrain == (ushort)TerrainUnitModel.River3B ||
                 terrain == (ushort)TerrainUnitModel.River2C ||
@@ -830,7 +834,7 @@ namespace ACNHPokerCore
                 return false;
         }
 
-        public Bitmap getImage(int size, int x, int y, bool showRoad, bool showBuilding, bool highlightRoadCorner, bool highlightCliffCorner, bool highlightRiverCorner, bool highlightMouth = false)
+        public Bitmap GetImage(int size, int x, int y, bool showRoad, bool showBuilding, bool highlightRoadCorner, bool highlightCliffCorner, bool highlightRiverCorner, bool highlightMouth = false)
         {
             Color borderColor;
             Color backgroundColor = Color.Tomato;
@@ -838,13 +842,13 @@ namespace ACNHPokerCore
             Color terrainColor = Color.Pink;
             Color roadColor = Color.Purple;
 
-            bool drawBorder = false;
-            bool drawBackground = false;
+            bool drawBorder;
+            bool drawBackground;
             bool drawBuilding = false;
             bool drawTerrain = false;
             bool drawRoad = false;
 
-            ushort elevation = getElevation();
+            ushort elevation = GetElevation();
             /*if (highlightCorner && canChangeCorner())
                 borderColor = Color.Crimson;
             else*/
@@ -852,15 +856,15 @@ namespace ACNHPokerCore
 
             drawBorder = true;
 
-            if (showRoad && highlightRoadCorner && canChangeCornerRoad())
+            if (showRoad && highlightRoadCorner && CanChangeCornerRoad())
             {
                 backgroundColor = Color.Violet;
                 drawBackground = true;
             }
-            else if (isCliff())
+            else if (IsCliff())
             {
                 drawBackground = true;
-                if (highlightCliffCorner && canChangeCornerCliff())
+                if (highlightCliffCorner && CanChangeCornerCliff())
                 {
                     backgroundColor = Color.Violet;
                 }
@@ -877,10 +881,10 @@ namespace ACNHPokerCore
                     backgroundColor = TerrainColor[(int)TerrainType.Elevation2];
                 }
             }
-            else if (isFall() || isRiver())
+            else if (IsFall() || IsRiver())
             {
                 drawBackground = true;
-                if (highlightRiverCorner && canChangeCornerRiver())
+                if (highlightRiverCorner && CanChangeCornerRiver())
                 {
                     backgroundColor = Color.Violet;
                 }
@@ -909,13 +913,13 @@ namespace ACNHPokerCore
                 if (highlightMouth)
                     backgroundColor = Color.Red;
                 else
-                    backgroundColor = miniMap.GetBackgroundColorLess(x, y);
+                    backgroundColor = MiniMap.GetBackgroundColorLess(x, y);
                 drawBackground = true;
             }
 
             if (showBuilding)
             {
-                buildingColor = miniMap.GetBuildingColor(x, y);
+                buildingColor = MiniMap.GetBuildingColor(x, y);
 
                 if (buildingColor != Color.Transparent)
                 {
@@ -923,9 +927,9 @@ namespace ACNHPokerCore
                 }
             }
 
-            if (isCliff())
+            if (IsCliff())
             {
-                if (highlightRoadCorner && canChangeCornerRoad())
+                if (highlightRoadCorner && CanChangeCornerRoad())
                 {
                     drawTerrain = false;
                 }
@@ -946,19 +950,19 @@ namespace ACNHPokerCore
                     }
                 }
             }
-            else if (isFall())
+            else if (IsFall())
             {
                 terrainColor = TerrainColor[(int)TerrainType.Fall];
                 drawTerrain = true;
             }
-            else if (isRiver())
+            else if (IsRiver())
             {
                 terrainColor = TerrainColor[(int)TerrainType.River];
                 drawTerrain = true;
             }
-            else if (isFlat())
+            else if (IsFlat())
             {
-                if (highlightRoadCorner && canChangeCornerRoad())
+                if (highlightRoadCorner && CanChangeCornerRoad())
                 {
                     drawTerrain = false;
                 }
@@ -1023,10 +1027,10 @@ namespace ACNHPokerCore
                 }
             }
 
-            return drawImage(size, borderColor, backgroundColor, buildingColor, terrainColor, roadColor, drawBorder, drawBackground, drawBuilding, drawTerrain, drawRoad);
+            return DrawImage(size, borderColor, backgroundColor, buildingColor, terrainColor, roadColor, drawBorder, drawBackground, drawBuilding, drawTerrain, drawRoad);
         }
 
-        public void updateRoad(ushort road, bool[,] neighbour, bool roundCorner = false)
+        public void UpdateRoad(ushort road, bool[,] neighbour, bool roundCorner = false)
         {
             bool up = neighbour[1, 0];
             bool down = neighbour[1, 2];
@@ -1041,202 +1045,202 @@ namespace ACNHPokerCore
                 topleft && topright && bottomleft && bottomright)
             {
                 //Debug.Print("8A");
-                setRoad(road, "8A", 0);
+                SetRoad(road, "8A", 0);
             }
             //========================================================
             else if (up && down && left && right &&
                 topleft && topright && !bottomleft && bottomright)
             {
                 //Debug.Print("7A 0");
-                setRoad(road, "7A", 0);
+                SetRoad(road, "7A", 0);
             }
             else if (up && down && left && right &&
                 !topleft && topright && bottomleft && bottomright)
             {
                 //Debug.Print("7A 3");
-                setRoad(road, "7A", 3);
+                SetRoad(road, "7A", 3);
             }
             else if (up && down && left && right &&
                 topleft && !topright && bottomleft && bottomright)
             {
                 //Debug.Print("7A 2");
-                setRoad(road, "7A", 2);
+                SetRoad(road, "7A", 2);
             }
             else if (up && down && left && right &&
                 topleft && topright && bottomleft && !bottomright)
             {
                 //Debug.Print("7A 1");
-                setRoad(road, "7A", 1);
+                SetRoad(road, "7A", 1);
             }
             //========================================================
             else if (up && down && left && right &&
                 !topleft && topright && bottomleft && !bottomright)
             {
                 //Debug.Print("6A 0");
-                setRoad(road, "6A", 0);
+                SetRoad(road, "6A", 0);
             }
             else if (up && down && left && right &&
                 topleft && !topright && !bottomleft && bottomright)
             {
                 //Debug.Print("6A 1");
-                setRoad(road, "6A", 1);
+                SetRoad(road, "6A", 1);
             }
             //========================================================
             else if (up && down && left && right &&
                 topleft && topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("6B 0");
-                setRoad(road, "6B", 0);
+                SetRoad(road, "6B", 0);
             }
             else if (up && down && left && right &&
                 !topleft && topright && !bottomleft && bottomright)
             {
                 //Debug.Print("6B 3");
-                setRoad(road, "6B", 3);
+                SetRoad(road, "6B", 3);
             }
             else if (up && down && left && right &&
                 !topleft && !topright && bottomleft && bottomright)
             {
                 //Debug.Print("6B 2");
-                setRoad(road, "6B", 2);
+                SetRoad(road, "6B", 2);
             }
             else if (up && down && left && right &&
                 topleft && !topright && bottomleft && !bottomright)
             {
                 //Debug.Print("6B 1");
-                setRoad(road, "6B", 1);
+                SetRoad(road, "6B", 1);
             }
             //========================================================
             else if (up && down && left && right &&
                 !topleft && !topright && bottomleft && !bottomright)
             {
                 //Debug.Print("5A 0");
-                setRoad(road, "5A", 0);
+                SetRoad(road, "5A", 0);
             }
             else if (up && down && left && right &&
                 topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("5A 3");
-                setRoad(road, "5A", 3);
+                SetRoad(road, "5A", 3);
             }
             else if (up && down && left && right &&
                 !topleft && topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("5A 2");
-                setRoad(road, "5A", 2);
+                SetRoad(road, "5A", 2);
             }
             else if (up && down && left && right &&
                 !topleft && !topright && !bottomleft && bottomright)
             {
                 //Debug.Print("5A 1");
-                setRoad(road, "5A", 1);
+                SetRoad(road, "5A", 1);
             }
             //========================================================
             else if (up && down && !left && right &&
                 !topleft && topright && !bottomleft && bottomright)
             {
                 //Debug.Print("5B 0");
-                setRoad(road, "5B", 0);
+                SetRoad(road, "5B", 0);
             }
             else if (!up && down && left && right &&
                 !topleft && !topright && bottomleft && bottomright)
             {
                 //Debug.Print("5B 3");
-                setRoad(road, "5B", 3);
+                SetRoad(road, "5B", 3);
             }
             else if (up && down && left && !right &&
                 topleft && !topright && bottomleft && !bottomright)
             {
                 //Debug.Print("5B 2");
-                setRoad(road, "5B", 2);
+                SetRoad(road, "5B", 2);
             }
             else if (up && !down && left && right &&
                 topleft && topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("5B 1");
-                setRoad(road, "5B", 1);
+                SetRoad(road, "5B", 1);
             }
             //========================================================
             else if (up && down && !left && right &&
                 !topleft && !topright && !bottomleft && bottomright)
             {
                 //Debug.Print("4A 0");
-                setRoad(road, "4A", 0);
+                SetRoad(road, "4A", 0);
             }
             else if (!up && down && left && right &&
                 !topleft && !topright && bottomleft && !bottomright)
             {
                 //Debug.Print("4A 3");
-                setRoad(road, "4A", 3);
+                SetRoad(road, "4A", 3);
             }
             else if (up && down && left && !right &&
                 topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("4A 2");
-                setRoad(road, "4A", 2);
+                SetRoad(road, "4A", 2);
             }
             else if (up && !down && left && right &&
                 !topleft && topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("4A 1");
-                setRoad(road, "4A", 1);
+                SetRoad(road, "4A", 1);
             }
             //========================================================
             else if (up && down && !left && right &&
                 !topleft && topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("4B 0");
-                setRoad(road, "4B", 0);
+                SetRoad(road, "4B", 0);
             }
             else if (!up && down && left && right &&
                 !topleft && !topright && !bottomleft && bottomright)
             {
                 //Debug.Print("4B 3");
-                setRoad(road, "4B", 3);
+                SetRoad(road, "4B", 3);
             }
             else if (up && down && left && !right &&
                 !topleft && !topright && bottomleft && !bottomright)
             {
                 //Debug.Print("4B 2");
-                setRoad(road, "4B", 2);
+                SetRoad(road, "4B", 2);
             }
             else if (up && !down && left && right &&
                 topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("4B 1");
-                setRoad(road, "4B", 1);
+                SetRoad(road, "4B", 1);
             }
             //========================================================
             else if (up && down && left && right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("4C");
-                setRoad(road, "4C", 0);
+                SetRoad(road, "4C", 0);
             }
             //========================================================
             else if (up && down && !left && right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("3A 0");
-                setRoad(road, "3A", 0);
+                SetRoad(road, "3A", 0);
             }
             else if (!up && down && left && right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("3A 3");
-                setRoad(road, "3A", 3);
+                SetRoad(road, "3A", 3);
             }
             else if (up && down && left && !right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("3A 2");
-                setRoad(road, "3A", 2);
+                SetRoad(road, "3A", 2);
             }
             else if (up && !down && left && right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("3A 1");
-                setRoad(road, "3A", 1);
+                SetRoad(road, "3A", 1);
             }
             //========================================================
             else if (!up && down && !left && right &&
@@ -1244,49 +1248,49 @@ namespace ACNHPokerCore
             {
                 //Debug.Print("3B/C 0");
                 if (roundCorner)
-                    setRoad(road, "3B", 0);
+                    SetRoad(road, "3B", 0);
                 else
-                    setRoad(road, "3C", 0);
+                    SetRoad(road, "3C", 0);
             }
             else if (!up && down && left && !right &&
                     !topleft && !topright && bottomleft && !bottomright)
             {
                 //Debug.Print("3B/C 3");
                 if (roundCorner)
-                    setRoad(road, "3B", 3);
+                    SetRoad(road, "3B", 3);
                 else
-                    setRoad(road, "3C", 3);
+                    SetRoad(road, "3C", 3);
             }
             else if (up && !down && left && !right &&
                 topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("3B/C 2");
                 if (roundCorner)
-                    setRoad(road, "3B", 2);
+                    SetRoad(road, "3B", 2);
                 else
-                    setRoad(road, "3C", 2);
+                    SetRoad(road, "3C", 2);
             }
             else if (up && !down && !left && right &&
                     !topleft && topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("3B/C 1");
                 if (roundCorner)
-                    setRoad(road, "3B", 1);
+                    SetRoad(road, "3B", 1);
                 else
-                    setRoad(road, "3C", 1);
+                    SetRoad(road, "3C", 1);
             }
             //========================================================
             else if (up && down && !left && !right &&
                     !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("2A 0");
-                setRoad(road, "2A", 0);
+                SetRoad(road, "2A", 0);
             }
             else if (!up && !down && left && right &&
                     !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("2A 1");
-                setRoad(road, "2A", 1);
+                SetRoad(road, "2A", 1);
             }
             //========================================================
             else if (!up && down && !left && right &&
@@ -1294,36 +1298,36 @@ namespace ACNHPokerCore
             {
                 //Debug.Print("2B/C 0");
                 if (roundCorner)
-                    setRoad(road, "2B", 0);
+                    SetRoad(road, "2B", 0);
                 else
-                    setRoad(road, "2C", 0);
+                    SetRoad(road, "2C", 0);
             }
             else if (!up && down && left && !right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("2B/C 3");
                 if (roundCorner)
-                    setRoad(road, "2B", 3);
+                    SetRoad(road, "2B", 3);
                 else
-                    setRoad(road, "2C", 3);
+                    SetRoad(road, "2C", 3);
             }
             else if (up && !down && left && !right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("2B/C 2");
                 if (roundCorner)
-                    setRoad(road, "2B", 2);
+                    SetRoad(road, "2B", 2);
                 else
-                    setRoad(road, "2C", 2);
+                    SetRoad(road, "2C", 2);
             }
             else if (up && !down && !left && right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("2B/C 1");
                 if (roundCorner)
-                    setRoad(road, "2B", 1);
+                    SetRoad(road, "2B", 1);
                 else
-                    setRoad(road, "2C", 1);
+                    SetRoad(road, "2C", 1);
             }
             //========================================================
             else if (!up && down && !left && !right &&
@@ -1332,38 +1336,38 @@ namespace ACNHPokerCore
                 //Debug.Print("1A/B/C 0");
                 if (roundCorner)
                 {
-                    if (isRoad0B())
+                    if (IsRoad0B())
                     {
-                        if (getRoadAngle() == 0)
-                            setRoad(road, "1B", 0);
-                        else if (getRoadAngle() == 1)
-                            setRoad(road, "1A", 0);
-                        else if (getRoadAngle() == 2)
-                            setRoad(road, "1A", 0);
-                        else if (getRoadAngle() == 3)
-                            setRoad(road, "1C", 0);
+                        if (GetRoadAngle() == 0)
+                            SetRoad(road, "1B", 0);
+                        else if (GetRoadAngle() == 1)
+                            SetRoad(road, "1A", 0);
+                        else if (GetRoadAngle() == 2)
+                            SetRoad(road, "1A", 0);
+                        else if (GetRoadAngle() == 3)
+                            SetRoad(road, "1C", 0);
                         else
-                            setRoad(road, "1A", 0);
+                            SetRoad(road, "1A", 0);
                     }
-                    if (isRoad1B())
-                        setRoad(road, "1B", 0);
-                    else if (isRoad1C())
-                        setRoad(road, "1C", 0);
-                    else if (isRoad2B() || isRoad3B())
+                    if (IsRoad1B())
+                        SetRoad(road, "1B", 0);
+                    else if (IsRoad1C())
+                        SetRoad(road, "1C", 0);
+                    else if (IsRoad2B() || IsRoad3B())
                     {
-                        var currentAngle = getRoadAngle();
+                        var currentAngle = GetRoadAngle();
                         if (currentAngle == 0)
-                            setRoad(road, "1B", 0);
+                            SetRoad(road, "1B", 0);
                         else if (currentAngle == 3)
-                            setRoad(road, "1C", 0);
+                            SetRoad(road, "1C", 0);
                         else
-                            setRoad(road, "1A", 0);
+                            SetRoad(road, "1A", 0);
                     }
                     else
-                        setRoad(road, "1A", 0);
+                        SetRoad(road, "1A", 0);
                 }
                 else
-                    setRoad(road, "1A", 0);
+                    SetRoad(road, "1A", 0);
             }
             else if (!up && !down && left && !right &&
                 !topleft && !topright && !bottomleft && !bottomright)
@@ -1371,38 +1375,38 @@ namespace ACNHPokerCore
                 //Debug.Print("1A/B/C 3");
                 if (roundCorner)
                 {
-                    if (isRoad0B())
+                    if (IsRoad0B())
                     {
-                        if (getRoadAngle() == 0)
-                            setRoad(road, "1A", 3);
-                        else if (getRoadAngle() == 1)
-                            setRoad(road, "1A", 3);
-                        else if (getRoadAngle() == 2)
-                            setRoad(road, "1C", 3);
-                        else if (getRoadAngle() == 3)
-                            setRoad(road, "1B", 3);
+                        if (GetRoadAngle() == 0)
+                            SetRoad(road, "1A", 3);
+                        else if (GetRoadAngle() == 1)
+                            SetRoad(road, "1A", 3);
+                        else if (GetRoadAngle() == 2)
+                            SetRoad(road, "1C", 3);
+                        else if (GetRoadAngle() == 3)
+                            SetRoad(road, "1B", 3);
                         else
-                            setRoad(road, "1A", 3);
+                            SetRoad(road, "1A", 3);
                     }
-                    else if (isRoad1B())
-                        setRoad(road, "1B", 3);
-                    else if (isRoad1C())
-                        setRoad(road, "1C", 3);
-                    else if (isRoad2B() || isRoad3B())
+                    else if (IsRoad1B())
+                        SetRoad(road, "1B", 3);
+                    else if (IsRoad1C())
+                        SetRoad(road, "1C", 3);
+                    else if (IsRoad2B() || IsRoad3B())
                     {
-                        var currentAngle = getRoadAngle();
+                        var currentAngle = GetRoadAngle();
                         if (currentAngle == 3)
-                            setRoad(road, "1B", 3);
+                            SetRoad(road, "1B", 3);
                         else if (currentAngle == 2)
-                            setRoad(road, "1C", 3);
+                            SetRoad(road, "1C", 3);
                         else
-                            setRoad(road, "1A", 3);
+                            SetRoad(road, "1A", 3);
                     }
                     else
-                        setRoad(road, "1A", 3);
+                        SetRoad(road, "1A", 3);
                 }
                 else
-                    setRoad(road, "1A", 3);
+                    SetRoad(road, "1A", 3);
             }
             else if (up && !down && !left && !right &&
                 !topleft && !topright && !bottomleft && !bottomright)
@@ -1410,38 +1414,38 @@ namespace ACNHPokerCore
                 //Debug.Print("1A/B/C 2");
                 if (roundCorner)
                 {
-                    if (isRoad0B())
+                    if (IsRoad0B())
                     {
-                        if (getRoadAngle() == 0)
-                            setRoad(road, "1A", 2);
-                        else if (getRoadAngle() == 1)
-                            setRoad(road, "1C", 2);
-                        else if (getRoadAngle() == 2)
-                            setRoad(road, "1B", 2);
-                        else if (getRoadAngle() == 3)
-                            setRoad(road, "1A", 2);
+                        if (GetRoadAngle() == 0)
+                            SetRoad(road, "1A", 2);
+                        else if (GetRoadAngle() == 1)
+                            SetRoad(road, "1C", 2);
+                        else if (GetRoadAngle() == 2)
+                            SetRoad(road, "1B", 2);
+                        else if (GetRoadAngle() == 3)
+                            SetRoad(road, "1A", 2);
                         else
-                            setRoad(road, "1A", 2);
+                            SetRoad(road, "1A", 2);
                     }
-                    else if (isRoad1B())
-                        setRoad(road, "1B", 2);
-                    else if (isRoad1C())
-                        setRoad(road, "1C", 2);
-                    else if (isRoad2B() || isRoad3B())
+                    else if (IsRoad1B())
+                        SetRoad(road, "1B", 2);
+                    else if (IsRoad1C())
+                        SetRoad(road, "1C", 2);
+                    else if (IsRoad2B() || IsRoad3B())
                     {
-                        var currentAngle = getRoadAngle();
+                        var currentAngle = GetRoadAngle();
                         if (currentAngle == 1)
-                            setRoad(road, "1C", 2);
+                            SetRoad(road, "1C", 2);
                         else if (currentAngle == 2)
-                            setRoad(road, "1B", 2);
+                            SetRoad(road, "1B", 2);
                         else
-                            setRoad(road, "1A", 0);
+                            SetRoad(road, "1A", 0);
                     }
                     else
-                        setRoad(road, "1A", 2);
+                        SetRoad(road, "1A", 2);
                 }
                 else
-                    setRoad(road, "1A", 2);
+                    SetRoad(road, "1A", 2);
             }
             else if (!up && !down && !left && right &&
                 !topleft && !topright && !bottomleft && !bottomright)
@@ -1449,38 +1453,38 @@ namespace ACNHPokerCore
                 //Debug.Print("1A/B/C 1");
                 if (roundCorner)
                 {
-                    if (isRoad0B())
+                    if (IsRoad0B())
                     {
-                        if (getRoadAngle() == 0)
-                            setRoad(road, "1C", 1);
-                        else if (getRoadAngle() == 1)
-                            setRoad(road, "1B", 1);
-                        else if (getRoadAngle() == 2)
-                            setRoad(road, "1A", 1);
-                        else if (getRoadAngle() == 3)
-                            setRoad(road, "1A", 1);
+                        if (GetRoadAngle() == 0)
+                            SetRoad(road, "1C", 1);
+                        else if (GetRoadAngle() == 1)
+                            SetRoad(road, "1B", 1);
+                        else if (GetRoadAngle() == 2)
+                            SetRoad(road, "1A", 1);
+                        else if (GetRoadAngle() == 3)
+                            SetRoad(road, "1A", 1);
                         else
-                            setRoad(road, "1A", 1);
+                            SetRoad(road, "1A", 1);
                     }
-                    else if (isRoad1B())
-                        setRoad(road, "1B", 1);
-                    else if (isRoad1C())
-                        setRoad(road, "1C", 1);
-                    else if (isRoad2B() || isRoad3B())
+                    else if (IsRoad1B())
+                        SetRoad(road, "1B", 1);
+                    else if (IsRoad1C())
+                        SetRoad(road, "1C", 1);
+                    else if (IsRoad2B() || IsRoad3B())
                     {
-                        var currentAngle = getRoadAngle();
+                        var currentAngle = GetRoadAngle();
                         if (currentAngle == 0)
-                            setRoad(road, "1C", 1);
+                            SetRoad(road, "1C", 1);
                         else if (currentAngle == 1)
-                            setRoad(road, "1B", 1);
+                            SetRoad(road, "1B", 1);
                         else
-                            setRoad(road, "1A", 0);
+                            SetRoad(road, "1A", 0);
                     }
                     else
-                        setRoad(road, "1A", 1);
+                        SetRoad(road, "1A", 1);
                 }
                 else
-                    setRoad(road, "1A", 1);
+                    SetRoad(road, "1A", 1);
             }
             //========================================================
             else if (!up && !down && !left && !right &&
@@ -1489,27 +1493,27 @@ namespace ACNHPokerCore
                 //Debug.Print("0A/B");
                 if (roundCorner)
                 {
-                    if (isRoad1B())
-                        setRoad(road, "0B", getRoadAngle());
-                    else if (isRoad1C())
+                    if (IsRoad1B())
+                        SetRoad(road, "0B", GetRoadAngle());
+                    else if (IsRoad1C())
                     {
-                        var correctAngle = getRoadAngle() - 1;
+                        var correctAngle = GetRoadAngle() - 1;
                         if (correctAngle < 0)
                             correctAngle = 3;
-                        setRoad(road, "0B", (ushort)correctAngle);
+                        SetRoad(road, "0B", (ushort)correctAngle);
                     }
                     else
-                        setRoad(road, "0B", getRoadAngle());
+                        SetRoad(road, "0B", GetRoadAngle());
                 }
                 else
-                    setRoad(road, "0A", 0);
+                    SetRoad(road, "0A", 0);
             }
             else
             {
                 MyMessageBox.Show("No Solution!", "Wait? WTF?", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public void setRoad(ushort road, string type, ushort direction)
+        public void SetRoad(ushort road, string type, ushort direction)
         {
             ushort writeValue = 0;
 
@@ -2046,11 +2050,11 @@ namespace ACNHPokerCore
                 writeValue = (ushort)TerrainUnitModel.Base;
             }
 
-            setRoadModel(writeValue);
-            setRoadAngle(direction);
+            SetRoadModel(writeValue);
+            SetRoadAngle(direction);
         }
 
-        public void updateCliff(bool[,] neighbour, ushort elevation, bool roundCorner = false)
+        public void UpdateCliff(bool[,] neighbour, ushort elevation, bool roundCorner = false)
         {
             bool up = neighbour[1, 0];
             bool down = neighbour[1, 2];
@@ -2065,202 +2069,202 @@ namespace ACNHPokerCore
                 topleft && topright && bottomleft && bottomright)
             {
                 //Debug.Print("8A");
-                setCliff("8", elevation, 0);
+                SetCliff("8", elevation, 0);
             }
             //========================================================
             else if (up && down && left && right &&
                 topleft && topright && !bottomleft && bottomright)
             {
                 //Debug.Print("7A 0");
-                setCliff("7A", elevation, 0);
+                SetCliff("7A", elevation, 0);
             }
             else if (up && down && left && right &&
                 !topleft && topright && bottomleft && bottomright)
             {
                 //Debug.Print("7A 3");
-                setCliff("7A", elevation, 3);
+                SetCliff("7A", elevation, 3);
             }
             else if (up && down && left && right &&
                 topleft && !topright && bottomleft && bottomright)
             {
                 //Debug.Print("7A 2");
-                setCliff("7A", elevation, 2);
+                SetCliff("7A", elevation, 2);
             }
             else if (up && down && left && right &&
                 topleft && topright && bottomleft && !bottomright)
             {
                 //Debug.Print("7A 1");
-                setCliff("7A", elevation, 1);
+                SetCliff("7A", elevation, 1);
             }
             //========================================================
             else if (up && down && left && right &&
                 !topleft && topright && bottomleft && !bottomright)
             {
                 //Debug.Print("6A 0");
-                setCliff("6A", elevation, 0);
+                SetCliff("6A", elevation, 0);
             }
             else if (up && down && left && right &&
                 topleft && !topright && !bottomleft && bottomright)
             {
                 //Debug.Print("6A 1");
-                setCliff("6A", elevation, 1);
+                SetCliff("6A", elevation, 1);
             }
             //========================================================
             else if (up && down && left && right &&
                 topleft && topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("6B 0");
-                setCliff("6B", elevation, 0);
+                SetCliff("6B", elevation, 0);
             }
             else if (up && down && left && right &&
                 !topleft && topright && !bottomleft && bottomright)
             {
                 //Debug.Print("6B 3");
-                setCliff("6B", elevation, 3);
+                SetCliff("6B", elevation, 3);
             }
             else if (up && down && left && right &&
                 !topleft && !topright && bottomleft && bottomright)
             {
                 //Debug.Print("6B 2");
-                setCliff("6B", elevation, 2);
+                SetCliff("6B", elevation, 2);
             }
             else if (up && down && left && right &&
                 topleft && !topright && bottomleft && !bottomright)
             {
                 //Debug.Print("6B 1");
-                setCliff("6B", elevation, 1);
+                SetCliff("6B", elevation, 1);
             }
             //========================================================
             else if (up && down && left && right &&
                 !topleft && !topright && bottomleft && !bottomright)
             {
                 //Debug.Print("5A 0");
-                setCliff("5A", elevation, 0);
+                SetCliff("5A", elevation, 0);
             }
             else if (up && down && left && right &&
                 topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("5A 3");
-                setCliff("5A", elevation, 3);
+                SetCliff("5A", elevation, 3);
             }
             else if (up && down && left && right &&
                 !topleft && topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("5A 2");
-                setCliff("5A", elevation, 2);
+                SetCliff("5A", elevation, 2);
             }
             else if (up && down && left && right &&
                 !topleft && !topright && !bottomleft && bottomright)
             {
                 //Debug.Print("5A 1");
-                setCliff("5A", elevation, 1);
+                SetCliff("5A", elevation, 1);
             }
             //========================================================
             else if (up && down && !left && right &&
                 !topleft && topright && !bottomleft && bottomright)
             {
                 //Debug.Print("5B 0");
-                setCliff("5B", elevation, 0);
+                SetCliff("5B", elevation, 0);
             }
             else if (!up && down && left && right &&
                 !topleft && !topright && bottomleft && bottomright)
             {
                 //Debug.Print("5B 3");
-                setCliff("5B", elevation, 3);
+                SetCliff("5B", elevation, 3);
             }
             else if (up && down && left && !right &&
                 topleft && !topright && bottomleft && !bottomright)
             {
                 //Debug.Print("5B 2");
-                setCliff("5B", elevation, 2);
+                SetCliff("5B", elevation, 2);
             }
             else if (up && !down && left && right &&
                 topleft && topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("5B 1");
-                setCliff("5B", elevation, 1);
+                SetCliff("5B", elevation, 1);
             }
             //========================================================
             else if (up && down && !left && right &&
                 !topleft && !topright && !bottomleft && bottomright)
             {
                 //Debug.Print("4A 0");
-                setCliff("4A", elevation, 0);
+                SetCliff("4A", elevation, 0);
             }
             else if (!up && down && left && right &&
                 !topleft && !topright && bottomleft && !bottomright)
             {
                 //Debug.Print("4A 3");
-                setCliff("4A", elevation, 3);
+                SetCliff("4A", elevation, 3);
             }
             else if (up && down && left && !right &&
                 topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("4A 2");
-                setCliff("4A", elevation, 2);
+                SetCliff("4A", elevation, 2);
             }
             else if (up && !down && left && right &&
                 !topleft && topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("4A 1");
-                setCliff("4A", elevation, 1);
+                SetCliff("4A", elevation, 1);
             }
             //========================================================
             else if (up && down && !left && right &&
                 !topleft && topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("4B 0");
-                setCliff("4B", elevation, 0);
+                SetCliff("4B", elevation, 0);
             }
             else if (!up && down && left && right &&
                 !topleft && !topright && !bottomleft && bottomright)
             {
                 //Debug.Print("4B 3");
-                setCliff("4B", elevation, 3);
+                SetCliff("4B", elevation, 3);
             }
             else if (up && down && left && !right &&
                 !topleft && !topright && bottomleft && !bottomright)
             {
                 //Debug.Print("4B 2");
-                setCliff("4B", elevation, 2);
+                SetCliff("4B", elevation, 2);
             }
             else if (up && !down && left && right &&
                 topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("4B 1");
-                setCliff("4B", elevation, 1);
+                SetCliff("4B", elevation, 1);
             }
             //========================================================
             else if (up && down && left && right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("4C");
-                setCliff("4C", elevation, 0);
+                SetCliff("4C", elevation, 0);
             }
             //========================================================
             else if (up && down && !left && right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("3A 0");
-                setCliff("3A", elevation, 0);
+                SetCliff("3A", elevation, 0);
             }
             else if (!up && down && left && right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("3A 3");
-                setCliff("3A", elevation, 3);
+                SetCliff("3A", elevation, 3);
             }
             else if (up && down && left && !right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("3A 2");
-                setCliff("3A", elevation, 2);
+                SetCliff("3A", elevation, 2);
             }
             else if (up && !down && left && right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("3A 1");
-                setCliff("3A", elevation, 1);
+                SetCliff("3A", elevation, 1);
             }
             //========================================================
             else if (!up && down && !left && right &&
@@ -2268,49 +2272,49 @@ namespace ACNHPokerCore
             {
                 //Debug.Print("3B/C 0");
                 if (roundCorner)
-                    setCliff("3B", elevation, 0);
+                    SetCliff("3B", elevation, 0);
                 else
-                    setCliff("3C", elevation, 0);
+                    SetCliff("3C", elevation, 0);
             }
             else if (!up && down && left && !right &&
                     !topleft && !topright && bottomleft && !bottomright)
             {
                 //Debug.Print("3B/C 3");
                 if (roundCorner)
-                    setCliff("3B", elevation, 3);
+                    SetCliff("3B", elevation, 3);
                 else
-                    setCliff("3C", elevation, 3);
+                    SetCliff("3C", elevation, 3);
             }
             else if (up && !down && left && !right &&
                 topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("3B/C 2");
                 if (roundCorner)
-                    setCliff("3B", elevation, 2);
+                    SetCliff("3B", elevation, 2);
                 else
-                    setCliff("3C", elevation, 2);
+                    SetCliff("3C", elevation, 2);
             }
             else if (up && !down && !left && right &&
                     !topleft && topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("3B/C 1");
                 if (roundCorner)
-                    setCliff("3B", elevation, 1);
+                    SetCliff("3B", elevation, 1);
                 else
-                    setCliff("3C", elevation, 1);
+                    SetCliff("3C", elevation, 1);
             }
             //========================================================
             else if (up && down && !left && !right &&
                     !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("2A 0");
-                setCliff("2A", elevation, 0);
+                SetCliff("2A", elevation, 0);
             }
             else if (!up && !down && left && right &&
                     !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("2A 1");
-                setCliff("2A", elevation, 1);
+                SetCliff("2A", elevation, 1);
             }
             //========================================================
             else if (!up && down && !left && right &&
@@ -2318,74 +2322,74 @@ namespace ACNHPokerCore
             {
                 //Debug.Print("2B/C 0");
                 if (roundCorner)
-                    setCliff("2B", elevation, 0);
+                    SetCliff("2B", elevation, 0);
                 else
-                    setCliff("2C", elevation, 0);
+                    SetCliff("2C", elevation, 0);
             }
             else if (!up && down && left && !right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("2B/C 3");
                 if (roundCorner)
-                    setCliff("2B", elevation, 3);
+                    SetCliff("2B", elevation, 3);
                 else
-                    setCliff("2C", elevation, 3);
+                    SetCliff("2C", elevation, 3);
             }
             else if (up && !down && left && !right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("2B/C 2");
                 if (roundCorner)
-                    setCliff("2B", elevation, 2);
+                    SetCliff("2B", elevation, 2);
                 else
-                    setCliff("2C", elevation, 2);
+                    SetCliff("2C", elevation, 2);
             }
             else if (up && !down && !left && right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("2B/C 1");
                 if (roundCorner)
-                    setCliff("2B", elevation, 1);
+                    SetCliff("2B", elevation, 1);
                 else
-                    setCliff("2C", elevation, 1);
+                    SetCliff("2C", elevation, 1);
             }
             //========================================================
             else if (!up && down && !left && !right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("1A 0");
-                setCliff("1A", elevation, 0);
+                SetCliff("1A", elevation, 0);
             }
             else if (!up && !down && left && !right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("1A 3");
-                setCliff("1A", elevation, 3);
+                SetCliff("1A", elevation, 3);
             }
             else if (up && !down && !left && !right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("1A 2");
-                setCliff("1A", elevation, 2);
+                SetCliff("1A", elevation, 2);
             }
             else if (!up && !down && !left && right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("1A 1");
-                setCliff("1A", elevation, 1);
+                SetCliff("1A", elevation, 1);
             }
             //========================================================
             else if (!up && !down && !left && !right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
-                setCliff("0A", elevation, 0);
+                SetCliff("0A", elevation, 0);
             }
             else
             {
                 MyMessageBox.Show("No Solution!", "Wait? WTF?", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public void setCliff(string type, ushort elevation, ushort direction)
+        public void SetCliff(string type, ushort elevation, ushort direction)
         {
             ushort writeValue = 0;
 
@@ -2442,25 +2446,28 @@ namespace ACNHPokerCore
                 case "8":
                     writeValue = (ushort)TerrainUnitModel.Base;
                     break;
+                case "8A":
+                    writeValue = (ushort)TerrainUnitModel.Cliff8;
+                    break;
             }
 
-            setTerrainModel(writeValue);
-            setTerrainAngle(direction);
-            setTerrainElevation(elevation);
+            SetTerrainModel(writeValue);
+            SetTerrainAngle(direction);
+            SetTerrainElevation(elevation);
 
             if (HasTerrainVariation(writeValue))
             {
-                Random rnd = new Random();
+                Random rnd = new();
                 ushort newVariation = (ushort)rnd.Next(0, 3);
-                setTerrainVariation(newVariation);
+                SetTerrainVariation(newVariation);
             }
             else
             {
-                setTerrainVariation(0);
+                SetTerrainVariation(0);
             }
         }
 
-        public void updateRiver(bool[,] neighbour, ushort elevation, bool roundCorner = false)
+        public void UpdateRiver(bool[,] neighbour, ushort elevation, bool roundCorner = false)
         {
             bool up = neighbour[1, 0];
             bool down = neighbour[1, 2];
@@ -2475,202 +2482,202 @@ namespace ACNHPokerCore
                 topleft && topright && bottomleft && bottomright)
             {
                 //Debug.Print("8A");
-                setRiver("8A", elevation, 0);
+                SetRiver("8A", elevation, 0);
             }
             //========================================================
             else if (up && down && left && right &&
                 topleft && topright && !bottomleft && bottomright)
             {
                 //Debug.Print("7A 0");
-                setRiver("7A", elevation, 0);
+                SetRiver("7A", elevation, 0);
             }
             else if (up && down && left && right &&
                 !topleft && topright && bottomleft && bottomright)
             {
                 //Debug.Print("7A 3");
-                setRiver("7A", elevation, 3);
+                SetRiver("7A", elevation, 3);
             }
             else if (up && down && left && right &&
                 topleft && !topright && bottomleft && bottomright)
             {
                 //Debug.Print("7A 2");
-                setRiver("7A", elevation, 2);
+                SetRiver("7A", elevation, 2);
             }
             else if (up && down && left && right &&
                 topleft && topright && bottomleft && !bottomright)
             {
                 //Debug.Print("7A 1");
-                setRiver("7A", elevation, 1);
+                SetRiver("7A", elevation, 1);
             }
             //========================================================
             else if (up && down && left && right &&
                 !topleft && topright && bottomleft && !bottomright)
             {
                 //Debug.Print("6A 0");
-                setRiver("6A", elevation, 0);
+                SetRiver("6A", elevation, 0);
             }
             else if (up && down && left && right &&
                 topleft && !topright && !bottomleft && bottomright)
             {
                 //Debug.Print("6A 1");
-                setRiver("6A", elevation, 1);
+                SetRiver("6A", elevation, 1);
             }
             //========================================================
             else if (up && down && left && right &&
                 topleft && topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("6B 0");
-                setRiver("6B", elevation, 0);
+                SetRiver("6B", elevation, 0);
             }
             else if (up && down && left && right &&
                 !topleft && topright && !bottomleft && bottomright)
             {
                 //Debug.Print("6B 3");
-                setRiver("6B", elevation, 3);
+                SetRiver("6B", elevation, 3);
             }
             else if (up && down && left && right &&
                 !topleft && !topright && bottomleft && bottomright)
             {
                 //Debug.Print("6B 2");
-                setRiver("6B", elevation, 2);
+                SetRiver("6B", elevation, 2);
             }
             else if (up && down && left && right &&
                 topleft && !topright && bottomleft && !bottomright)
             {
                 //Debug.Print("6B 1");
-                setRiver("6B", elevation, 1);
+                SetRiver("6B", elevation, 1);
             }
             //========================================================
             else if (up && down && left && right &&
                 !topleft && !topright && bottomleft && !bottomright)
             {
                 //Debug.Print("5A 0");
-                setRiver("5A", elevation, 0);
+                SetRiver("5A", elevation, 0);
             }
             else if (up && down && left && right &&
                 topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("5A 3");
-                setRiver("5A", elevation, 3);
+                SetRiver("5A", elevation, 3);
             }
             else if (up && down && left && right &&
                 !topleft && topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("5A 2");
-                setRiver("5A", elevation, 2);
+                SetRiver("5A", elevation, 2);
             }
             else if (up && down && left && right &&
                 !topleft && !topright && !bottomleft && bottomright)
             {
                 //Debug.Print("5A 1");
-                setRiver("5A", elevation, 1);
+                SetRiver("5A", elevation, 1);
             }
             //========================================================
             else if (up && down && !left && right &&
                 !topleft && topright && !bottomleft && bottomright)
             {
                 //Debug.Print("5B 0");
-                setRiver("5B", elevation, 0);
+                SetRiver("5B", elevation, 0);
             }
             else if (!up && down && left && right &&
                 !topleft && !topright && bottomleft && bottomright)
             {
                 //Debug.Print("5B 3");
-                setRiver("5B", elevation, 3);
+                SetRiver("5B", elevation, 3);
             }
             else if (up && down && left && !right &&
                 topleft && !topright && bottomleft && !bottomright)
             {
                 //Debug.Print("5B 2");
-                setRiver("5B", elevation, 2);
+                SetRiver("5B", elevation, 2);
             }
             else if (up && !down && left && right &&
                 topleft && topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("5B 1");
-                setRiver("5B", elevation, 1);
+                SetRiver("5B", elevation, 1);
             }
             //========================================================
             else if (up && down && !left && right &&
                 !topleft && !topright && !bottomleft && bottomright)
             {
                 //Debug.Print("4A 0");
-                setRiver("4A", elevation, 0);
+                SetRiver("4A", elevation, 0);
             }
             else if (!up && down && left && right &&
                 !topleft && !topright && bottomleft && !bottomright)
             {
                 //Debug.Print("4A 3");
-                setRiver("4A", elevation, 3);
+                SetRiver("4A", elevation, 3);
             }
             else if (up && down && left && !right &&
                 topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("4A 2");
-                setRiver("4A", elevation, 2);
+                SetRiver("4A", elevation, 2);
             }
             else if (up && !down && left && right &&
                 !topleft && topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("4A 1");
-                setRiver("4A", elevation, 1);
+                SetRiver("4A", elevation, 1);
             }
             //========================================================
             else if (up && down && !left && right &&
                 !topleft && topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("4B 0");
-                setRiver("4B", elevation, 0);
+                SetRiver("4B", elevation, 0);
             }
             else if (!up && down && left && right &&
                 !topleft && !topright && !bottomleft && bottomright)
             {
                 //Debug.Print("4B 3");
-                setRiver("4B", elevation, 3);
+                SetRiver("4B", elevation, 3);
             }
             else if (up && down && left && !right &&
                 !topleft && !topright && bottomleft && !bottomright)
             {
                 //Debug.Print("4B 2");
-                setRiver("4B", elevation, 2);
+                SetRiver("4B", elevation, 2);
             }
             else if (up && !down && left && right &&
                 topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("4B 1");
-                setRiver("4B", elevation, 1);
+                SetRiver("4B", elevation, 1);
             }
             //========================================================
             else if (up && down && left && right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("4C");
-                setRiver("4C", elevation, 0);
+                SetRiver("4C", elevation, 0);
             }
             //========================================================
             else if (up && down && !left && right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("3A 0");
-                setRiver("3A", elevation, 0);
+                SetRiver("3A", elevation, 0);
             }
             else if (!up && down && left && right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("3A 3");
-                setRiver("3A", elevation, 3);
+                SetRiver("3A", elevation, 3);
             }
             else if (up && down && left && !right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("3A 2");
-                setRiver("3A", elevation, 2);
+                SetRiver("3A", elevation, 2);
             }
             else if (up && !down && left && right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("3A 1");
-                setRiver("3A", elevation, 1);
+                SetRiver("3A", elevation, 1);
             }
             //========================================================
             else if (!up && down && !left && right &&
@@ -2678,49 +2685,49 @@ namespace ACNHPokerCore
             {
                 //Debug.Print("3B/C 0");
                 if (roundCorner)
-                    setRiver("3B", elevation, 0);
+                    SetRiver("3B", elevation, 0);
                 else
-                    setRiver("3C", elevation, 0);
+                    SetRiver("3C", elevation, 0);
             }
             else if (!up && down && left && !right &&
                     !topleft && !topright && bottomleft && !bottomright)
             {
                 //Debug.Print("3B/C 3");
                 if (roundCorner)
-                    setRiver("3B", elevation, 3);
+                    SetRiver("3B", elevation, 3);
                 else
-                    setRiver("3C", elevation, 3);
+                    SetRiver("3C", elevation, 3);
             }
             else if (up && !down && left && !right &&
                 topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("3B/C 2");
                 if (roundCorner)
-                    setRiver("3B", elevation, 2);
+                    SetRiver("3B", elevation, 2);
                 else
-                    setRiver("3C", elevation, 2);
+                    SetRiver("3C", elevation, 2);
             }
             else if (up && !down && !left && right &&
                     !topleft && topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("3B/C 1");
                 if (roundCorner)
-                    setRiver("3B", elevation, 1);
+                    SetRiver("3B", elevation, 1);
                 else
-                    setRiver("3C", elevation, 1);
+                    SetRiver("3C", elevation, 1);
             }
             //========================================================
             else if (up && down && !left && !right &&
                     !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("2A 0");
-                setRiver("2A", elevation, 0);
+                SetRiver("2A", elevation, 0);
             }
             else if (!up && !down && left && right &&
                     !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("2A 1");
-                setRiver("2A", elevation, 1);
+                SetRiver("2A", elevation, 1);
             }
             //========================================================
             else if (!up && down && !left && right &&
@@ -2728,74 +2735,74 @@ namespace ACNHPokerCore
             {
                 //Debug.Print("2B/C 0");
                 if (roundCorner)
-                    setRiver("2B", elevation, 0);
+                    SetRiver("2B", elevation, 0);
                 else
-                    setRiver("2C", elevation, 0);
+                    SetRiver("2C", elevation, 0);
             }
             else if (!up && down && left && !right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("2B/C 3");
                 if (roundCorner)
-                    setRiver("2B", elevation, 3);
+                    SetRiver("2B", elevation, 3);
                 else
-                    setRiver("2C", elevation, 3);
+                    SetRiver("2C", elevation, 3);
             }
             else if (up && !down && left && !right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("2B/C 2");
                 if (roundCorner)
-                    setRiver("2B", elevation, 2);
+                    SetRiver("2B", elevation, 2);
                 else
-                    setRiver("2C", elevation, 2);
+                    SetRiver("2C", elevation, 2);
             }
             else if (up && !down && !left && right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("2B/C 1");
                 if (roundCorner)
-                    setRiver("2B", elevation, 1);
+                    SetRiver("2B", elevation, 1);
                 else
-                    setRiver("2C", elevation, 1);
+                    SetRiver("2C", elevation, 1);
             }
             //========================================================
             else if (!up && down && !left && !right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("1A 0");
-                setRiver("1A", elevation, 0);
+                SetRiver("1A", elevation, 0);
             }
             else if (!up && !down && left && !right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("1A 3");
-                setRiver("1A", elevation, 3);
+                SetRiver("1A", elevation, 3);
             }
             else if (up && !down && !left && !right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("1A 2");
-                setRiver("1A", elevation, 2);
+                SetRiver("1A", elevation, 2);
             }
             else if (!up && !down && !left && right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
                 //Debug.Print("1A 1");
-                setRiver("1A", elevation, 1);
+                SetRiver("1A", elevation, 1);
             }
             //========================================================
             else if (!up && !down && !left && !right &&
                 !topleft && !topright && !bottomleft && !bottomright)
             {
-                setRiver("0A", elevation, 0);
+                SetRiver("0A", elevation, 0);
             }
             else
             {
                 MyMessageBox.Show("No Solution!", "Wait? WTF?", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public void setRiver(string type, ushort elevation, ushort direction)
+        public void SetRiver(string type, ushort elevation, ushort direction)
         {
             ushort writeValue = 0;
 
@@ -2854,23 +2861,23 @@ namespace ACNHPokerCore
                     break;
             }
 
-            setTerrainModel(writeValue);
-            setTerrainAngle(direction);
-            setTerrainElevation(elevation);
+            SetTerrainModel(writeValue);
+            SetTerrainAngle(direction);
+            SetTerrainElevation(elevation);
 
             if (HasTerrainVariation(writeValue))
             {
-                Random rnd = new Random();
+                Random rnd = new();
                 ushort newVariation = (ushort)rnd.Next(0, 3);
-                setTerrainVariation(newVariation);
+                SetTerrainVariation(newVariation);
             }
             else
             {
-                setTerrainVariation(0);
+                SetTerrainVariation(0);
             }
         }
 
-        public void updateFall(bool[,] ConnectNeighbour, ushort CliffDirection, ushort elevation)
+        public void UpdateFall(bool[,] ConnectNeighbour, ushort CliffDirection)
         {
             bool[,] CorrectConnectNeighbour;
             ushort CorrectDirection;
@@ -2909,22 +2916,22 @@ namespace ACNHPokerCore
                 if (up && down)
                 {
                     //Debug.Print("100");
-                    setFall("100", CorrectDirection);
+                    SetFall("100", CorrectDirection);
                 }
                 else if (up && !down)
                 {
                     //Debug.Print("101");
-                    setFall("101", CorrectDirection);
+                    SetFall("101", CorrectDirection);
                 }
                 else if (!up && down)
                 {
                     //Debug.Print("102");
-                    setFall("102", CorrectDirection);
+                    SetFall("102", CorrectDirection);
                 }
                 else if (!up && !down)
                 {
                     //Debug.Print("103");
-                    setFall("103", CorrectDirection);
+                    SetFall("103", CorrectDirection);
                 }
                 else
                 {
@@ -2937,55 +2944,55 @@ namespace ACNHPokerCore
                     bottomleft && down)
                 {
                     //Debug.Print("200");
-                    setFall("200", CorrectDirection);
+                    SetFall("200", CorrectDirection);
                 }
                 else if (topleft && up &&
                          !bottomleft && down)
                 {
                     //Debug.Print("201");
-                    setFall("201", CorrectDirection);
+                    SetFall("201", CorrectDirection);
                 }
                 else if (topleft && up &&
                          !bottomleft && !down)
                 {
                     //Debug.Print("202");
-                    setFall("202", CorrectDirection);
+                    SetFall("202", CorrectDirection);
                 }
                 else if (!topleft && up &&
                          bottomleft && down)
                 {
                     //Debug.Print("203");
-                    setFall("203", CorrectDirection);
+                    SetFall("203", CorrectDirection);
                 }
                 else if (!topleft && !up &&
                          bottomleft && down)
                 {
                     //Debug.Print("204");
-                    setFall("204", CorrectDirection);
+                    SetFall("204", CorrectDirection);
                 }
                 else if (!topleft && up &&
                         !bottomleft && down)
                 {
                     //Debug.Print("205");
-                    setFall("205", CorrectDirection);
+                    SetFall("205", CorrectDirection);
                 }
                 else if (!topleft && !up &&
                          !bottomleft && down)
                 {
                     //Debug.Print("206");
-                    setFall("206", CorrectDirection);
+                    SetFall("206", CorrectDirection);
                 }
                 else if (!topleft && up &&
                          !bottomleft && !down)
                 {
                     //Debug.Print("207");
-                    setFall("207", CorrectDirection);
+                    SetFall("207", CorrectDirection);
                 }
                 else if (!topleft && !up &&
                          !bottomleft && !down)
                 {
                     //Debug.Print("208");
-                    setFall("208", CorrectDirection);
+                    SetFall("208", CorrectDirection);
                 }
                 else
                 {
@@ -2998,55 +3005,55 @@ namespace ACNHPokerCore
                     down && bottomright)
                 {
                     //Debug.Print("300");
-                    setFall("300", CorrectDirection);
+                    SetFall("300", CorrectDirection);
                 }
                 else if (up && topright &&
                         down && !bottomright)
                 {
                     //Debug.Print("301");
-                    setFall("301", CorrectDirection);
+                    SetFall("301", CorrectDirection);
                 }
                 else if (up && topright &&
                         !down && !bottomright)
                 {
                     //Debug.Print("302");
-                    setFall("302", CorrectDirection);
+                    SetFall("302", CorrectDirection);
                 }
                 else if (up && !topright &&
                         down && bottomright)
                 {
                     //Debug.Print("303");
-                    setFall("303", CorrectDirection);
+                    SetFall("303", CorrectDirection);
                 }
                 else if (!up && !topright &&
                         down && bottomright)
                 {
                     //Debug.Print("304");
-                    setFall("304", CorrectDirection);
+                    SetFall("304", CorrectDirection);
                 }
                 else if (up && !topright &&
                         down && !bottomright)
                 {
                     //Debug.Print("305");
-                    setFall("305", CorrectDirection);
+                    SetFall("305", CorrectDirection);
                 }
                 else if (!up && !topright &&
                         down && !bottomright)
                 {
                     //Debug.Print("306");
-                    setFall("306", CorrectDirection);
+                    SetFall("306", CorrectDirection);
                 }
                 else if (up && !topright &&
                         !down && !bottomright)
                 {
                     //Debug.Print("307");
-                    setFall("307", CorrectDirection);
+                    SetFall("307", CorrectDirection);
                 }
                 else if (!up && !topright &&
                         !down && !bottomright)
                 {
                     //Debug.Print("308");
-                    setFall("308", CorrectDirection);
+                    SetFall("308", CorrectDirection);
                 }
                 else
                 {
@@ -3059,151 +3066,151 @@ namespace ACNHPokerCore
                     bottomleft && down && bottomright)
                 {
                     //Debug.Print("400");
-                    setFall("400", CorrectDirection);
+                    SetFall("400", CorrectDirection);
                 }
                 else if (topleft && up && topright &&
                     bottomleft && down && !bottomright)
                 {
                     //Debug.Print("401");
-                    setFall("401", CorrectDirection);
+                    SetFall("401", CorrectDirection);
                 }
                 else if (topleft && up && topright &&
                     !bottomleft && down && bottomright)
                 {
                     //Debug.Print("402");
-                    setFall("402", CorrectDirection);
+                    SetFall("402", CorrectDirection);
                 }
                 else if (topleft && up && topright &&
                     !bottomleft && !down && !bottomright)
                 {
                     //Debug.Print("403");
-                    setFall("403", CorrectDirection);
+                    SetFall("403", CorrectDirection);
                 }
                 else if (topleft && up && topright &&
                     !bottomleft && down && !bottomright)
                 {
                     //Debug.Print("404");
-                    setFall("404", CorrectDirection);
+                    SetFall("404", CorrectDirection);
                 }
                 else if (topleft && up && !topright &&
                     bottomleft && down && bottomright)
                 {
                     //Debug.Print("405");
-                    setFall("405", CorrectDirection);
+                    SetFall("405", CorrectDirection);
                 }
                 else if (!topleft && up && topright &&
                     bottomleft && down && bottomright)
                 {
                     //Debug.Print("406");
-                    setFall("406", CorrectDirection);
+                    SetFall("406", CorrectDirection);
                 }
                 else if (!topleft && up && !topright &&
                     bottomleft && down && bottomright)
                 {
                     //Debug.Print("407");
-                    setFall("407", CorrectDirection);
+                    SetFall("407", CorrectDirection);
                 }
                 else if (!topleft && !up && !topright &&
                     bottomleft && down && bottomright)
                 {
                     //Debug.Print("408");
-                    setFall("408", CorrectDirection);
+                    SetFall("408", CorrectDirection);
                 }
                 else if (!topleft && up && topright &&
                     !bottomleft && down && bottomright)
                 {
                     //Debug.Print("409");
-                    setFall("409", CorrectDirection);
+                    SetFall("409", CorrectDirection);
                 }
                 else if (topleft && up && !topright &&
                     !bottomleft && down && bottomright)
                 {
                     //Debug.Print("410");
-                    setFall("410", CorrectDirection);
+                    SetFall("410", CorrectDirection);
                 }
                 else if (!topleft && up && !topright &&
                     !bottomleft && down && bottomright)
                 {
                     //Debug.Print("411");
-                    setFall("411", CorrectDirection);
+                    SetFall("411", CorrectDirection);
                 }
                 else if (!topleft && !up && !topright &&
                     !bottomleft && down && bottomright)
                 {
                     //Debug.Print("412");
-                    setFall("412", CorrectDirection);
+                    SetFall("412", CorrectDirection);
                 }
                 else if (!topleft && up && topright &&
                     bottomleft && down && !bottomright)
                 {
                     //Debug.Print("413");
-                    setFall("413", CorrectDirection);
+                    SetFall("413", CorrectDirection);
                 }
                 else if (topleft && up && !topright &&
                     bottomleft && down && !bottomright)
                 {
                     //Debug.Print("414");
-                    setFall("414", CorrectDirection);
+                    SetFall("414", CorrectDirection);
                 }
                 else if (!topleft && up && !topright &&
                     bottomleft && down && !bottomright)
                 {
                     //Debug.Print("415");
-                    setFall("415", CorrectDirection);
+                    SetFall("415", CorrectDirection);
                 }
                 else if (!topleft && !up && !topright &&
                     bottomleft && down && !bottomright)
                 {
                     //Debug.Print("416");
-                    setFall("416", CorrectDirection);
+                    SetFall("416", CorrectDirection);
                 }
                 else if (!topleft && up && topright &&
                     !bottomleft && down && !bottomright)
                 {
                     //Debug.Print("417");
-                    setFall("417", CorrectDirection);
+                    SetFall("417", CorrectDirection);
                 }
                 else if (topleft && up && !topright &&
                     !bottomleft && down && !bottomright)
                 {
                     //Debug.Print("418");
-                    setFall("418", CorrectDirection);
+                    SetFall("418", CorrectDirection);
                 }
                 else if (!topleft && up && !topright &&
                     !bottomleft && down && !bottomright)
                 {
                     //Debug.Print("419");
-                    setFall("419", CorrectDirection);
+                    SetFall("419", CorrectDirection);
                 }
                 else if (!topleft && !up && !topright &&
                     !bottomleft && down && !bottomright)
                 {
                     //Debug.Print("420");
-                    setFall("420", CorrectDirection);
+                    SetFall("420", CorrectDirection);
                 }
                 else if (!topleft && up && topright &&
                     !bottomleft && !down && !bottomright)
                 {
                     //Debug.Print("421");
-                    setFall("421", CorrectDirection);
+                    SetFall("421", CorrectDirection);
                 }
                 else if (topleft && up && !topright &&
                     !bottomleft && !down && !bottomright)
                 {
                     //Debug.Print("422");
-                    setFall("422", CorrectDirection);
+                    SetFall("422", CorrectDirection);
                 }
                 else if (!topleft && up && !topright &&
                     !bottomleft && !down && !bottomright)
                 {
                     //Debug.Print("423");
-                    setFall("423", CorrectDirection);
+                    SetFall("423", CorrectDirection);
                 }
                 else if (!topleft && !up && !topright &&
                     !bottomleft && !down && !bottomright)
                 {
                     //Debug.Print("424");
-                    setFall("424", CorrectDirection);
+                    SetFall("424", CorrectDirection);
                 }
                 else
                 {
@@ -3216,164 +3223,67 @@ namespace ACNHPokerCore
             }
         }
 
-        private void setFall(string type, ushort direction)
+        private void SetFall(string type, ushort direction)
         {
-            ushort writeValue = 0;
+            ushort writeValue;
 
-            switch (type)
+            writeValue = type switch
             {
-                case "100":
-                    writeValue = (ushort)TerrainUnitModel.Fall100;
-                    break;
-                case "101":
-                    writeValue = (ushort)TerrainUnitModel.Fall101;
-                    break;
-                case "102":
-                    writeValue = (ushort)TerrainUnitModel.Fall102;
-                    break;
-                case "103":
-                    writeValue = (ushort)TerrainUnitModel.Fall103;
-                    break;
-                case "200":
-                    writeValue = (ushort)TerrainUnitModel.Fall200;
-                    break;
-                case "201":
-                    writeValue = (ushort)TerrainUnitModel.Fall201;
-                    break;
-                case "202":
-                    writeValue = (ushort)TerrainUnitModel.Fall202;
-                    break;
-                case "203":
-                    writeValue = (ushort)TerrainUnitModel.Fall203;
-                    break;
-                case "204":
-                    writeValue = (ushort)TerrainUnitModel.Fall204;
-                    break;
-                case "205":
-                    writeValue = (ushort)TerrainUnitModel.Fall205;
-                    break;
-                case "206":
-                    writeValue = (ushort)TerrainUnitModel.Fall206;
-                    break;
-                case "207":
-                    writeValue = (ushort)TerrainUnitModel.Fall207;
-                    break;
-                case "208":
-                    writeValue = (ushort)TerrainUnitModel.Fall208;
-                    break;
-                case "300":
-                    writeValue = (ushort)TerrainUnitModel.Fall300;
-                    break;
-                case "301":
-                    writeValue = (ushort)TerrainUnitModel.Fall301;
-                    break;
-                case "302":
-                    writeValue = (ushort)TerrainUnitModel.Fall302;
-                    break;
-                case "303":
-                    writeValue = (ushort)TerrainUnitModel.Fall303;
-                    break;
-                case "304":
-                    writeValue = (ushort)TerrainUnitModel.Fall304;
-                    break;
-                case "305":
-                    writeValue = (ushort)TerrainUnitModel.Fall305;
-                    break;
-                case "306":
-                    writeValue = (ushort)TerrainUnitModel.Fall306;
-                    break;
-                case "307":
-                    writeValue = (ushort)TerrainUnitModel.Fall307;
-                    break;
-                case "308":
-                    writeValue = (ushort)TerrainUnitModel.Fall308;
-                    break;
-                case "400":
-                    writeValue = (ushort)TerrainUnitModel.Fall400;
-                    break;
-                case "401":
-                    writeValue = (ushort)TerrainUnitModel.Fall401;
-                    break;
-                case "402":
-                    writeValue = (ushort)TerrainUnitModel.Fall402;
-                    break;
-                case "403":
-                    writeValue = (ushort)TerrainUnitModel.Fall403;
-                    break;
-                case "404":
-                    writeValue = (ushort)TerrainUnitModel.Fall404;
-                    break;
-                case "405":
-                    writeValue = (ushort)TerrainUnitModel.Fall405;
-                    break;
-                case "406":
-                    writeValue = (ushort)TerrainUnitModel.Fall406;
-                    break;
-                case "407":
-                    writeValue = (ushort)TerrainUnitModel.Fall407;
-                    break;
-                case "408":
-                    writeValue = (ushort)TerrainUnitModel.Fall408;
-                    break;
-                case "409":
-                    writeValue = (ushort)TerrainUnitModel.Fall409;
-                    break;
-                case "410":
-                    writeValue = (ushort)TerrainUnitModel.Fall410;
-                    break;
-                case "411":
-                    writeValue = (ushort)TerrainUnitModel.Fall411;
-                    break;
-                case "412":
-                    writeValue = (ushort)TerrainUnitModel.Fall412;
-                    break;
-                case "413":
-                    writeValue = (ushort)TerrainUnitModel.Fall413;
-                    break;
-                case "414":
-                    writeValue = (ushort)TerrainUnitModel.Fall414;
-                    break;
-                case "415":
-                    writeValue = (ushort)TerrainUnitModel.Fall415;
-                    break;
-                case "416":
-                    writeValue = (ushort)TerrainUnitModel.Fall416;
-                    break;
-                case "417":
-                    writeValue = (ushort)TerrainUnitModel.Fall417;
-                    break;
-                case "418":
-                    writeValue = (ushort)TerrainUnitModel.Fall418;
-                    break;
-                case "419":
-                    writeValue = (ushort)TerrainUnitModel.Fall419;
-                    break;
-                case "420":
-                    writeValue = (ushort)TerrainUnitModel.Fall420;
-                    break;
-                case "421":
-                    writeValue = (ushort)TerrainUnitModel.Fall421;
-                    break;
-                case "422":
-                    writeValue = (ushort)TerrainUnitModel.Fall422;
-                    break;
-                case "423":
-                    writeValue = (ushort)TerrainUnitModel.Fall423;
-                    break;
-                case "424":
-                    writeValue = (ushort)TerrainUnitModel.Fall424;
-                    break;
-                default:
-                    writeValue = (ushort)TerrainUnitModel.Base;
-                    break;
-            }
-
-            setTerrainModel(writeValue);
-            setTerrainAngle(direction);
-            setTerrainVariation(0);
+                "100" => (ushort)TerrainUnitModel.Fall100,
+                "101" => (ushort)TerrainUnitModel.Fall101,
+                "102" => (ushort)TerrainUnitModel.Fall102,
+                "103" => (ushort)TerrainUnitModel.Fall103,
+                "200" => (ushort)TerrainUnitModel.Fall200,
+                "201" => (ushort)TerrainUnitModel.Fall201,
+                "202" => (ushort)TerrainUnitModel.Fall202,
+                "203" => (ushort)TerrainUnitModel.Fall203,
+                "204" => (ushort)TerrainUnitModel.Fall204,
+                "205" => (ushort)TerrainUnitModel.Fall205,
+                "206" => (ushort)TerrainUnitModel.Fall206,
+                "207" => (ushort)TerrainUnitModel.Fall207,
+                "208" => (ushort)TerrainUnitModel.Fall208,
+                "300" => (ushort)TerrainUnitModel.Fall300,
+                "301" => (ushort)TerrainUnitModel.Fall301,
+                "302" => (ushort)TerrainUnitModel.Fall302,
+                "303" => (ushort)TerrainUnitModel.Fall303,
+                "304" => (ushort)TerrainUnitModel.Fall304,
+                "305" => (ushort)TerrainUnitModel.Fall305,
+                "306" => (ushort)TerrainUnitModel.Fall306,
+                "307" => (ushort)TerrainUnitModel.Fall307,
+                "308" => (ushort)TerrainUnitModel.Fall308,
+                "400" => (ushort)TerrainUnitModel.Fall400,
+                "401" => (ushort)TerrainUnitModel.Fall401,
+                "402" => (ushort)TerrainUnitModel.Fall402,
+                "403" => (ushort)TerrainUnitModel.Fall403,
+                "404" => (ushort)TerrainUnitModel.Fall404,
+                "405" => (ushort)TerrainUnitModel.Fall405,
+                "406" => (ushort)TerrainUnitModel.Fall406,
+                "407" => (ushort)TerrainUnitModel.Fall407,
+                "408" => (ushort)TerrainUnitModel.Fall408,
+                "409" => (ushort)TerrainUnitModel.Fall409,
+                "410" => (ushort)TerrainUnitModel.Fall410,
+                "411" => (ushort)TerrainUnitModel.Fall411,
+                "412" => (ushort)TerrainUnitModel.Fall412,
+                "413" => (ushort)TerrainUnitModel.Fall413,
+                "414" => (ushort)TerrainUnitModel.Fall414,
+                "415" => (ushort)TerrainUnitModel.Fall415,
+                "416" => (ushort)TerrainUnitModel.Fall416,
+                "417" => (ushort)TerrainUnitModel.Fall417,
+                "418" => (ushort)TerrainUnitModel.Fall418,
+                "419" => (ushort)TerrainUnitModel.Fall419,
+                "420" => (ushort)TerrainUnitModel.Fall420,
+                "421" => (ushort)TerrainUnitModel.Fall421,
+                "422" => (ushort)TerrainUnitModel.Fall422,
+                "423" => (ushort)TerrainUnitModel.Fall423,
+                "424" => (ushort)TerrainUnitModel.Fall424,
+                _ => (ushort)TerrainUnitModel.Base,
+            };
+            SetTerrainModel(writeValue);
+            SetTerrainAngle(direction);
+            SetTerrainVariation(0);
         }
 
-        private bool[,] RotateMatrix(bool[,] input)
+        private static bool[,] RotateMatrix(bool[,] input)
         {
             bool[,] NewMatrix = new bool[3, 3];
 
@@ -3400,135 +3310,135 @@ namespace ACNHPokerCore
 
             return NewMatrix;
         }
-        public void changeRoadCorner()
+        public void ChangeRoadCorner()
         {
-            ushort road = getRoadType();
-            ushort CurrentDirection = getRoadAngle();
+            ushort road = GetRoadType();
+            ushort CurrentDirection = GetRoadAngle();
 
-            if (isRoad0A())
+            if (IsRoad0A())
             {
-                setRoad(road, "0B", CurrentDirection);
+                SetRoad(road, "0B", CurrentDirection);
             }
-            else if (isRoad0B())
+            else if (IsRoad0B())
             {
                 if (CurrentDirection == 0)
-                    setRoad(road, "0B", 1);
+                    SetRoad(road, "0B", 1);
                 else if (CurrentDirection == 1)
-                    setRoad(road, "0B", 2);
+                    SetRoad(road, "0B", 2);
                 else if (CurrentDirection == 2)
-                    setRoad(road, "0B", 3);
+                    SetRoad(road, "0B", 3);
                 else
-                    setRoad(road, "0A", 0);
+                    SetRoad(road, "0A", 0);
             }
-            else if (isRoad1A())
+            else if (IsRoad1A())
             {
-                setRoad(road, "1B", CurrentDirection);
+                SetRoad(road, "1B", CurrentDirection);
             }
-            else if (isRoad1B())
+            else if (IsRoad1B())
             {
-                setRoad(road, "1C", CurrentDirection);
+                SetRoad(road, "1C", CurrentDirection);
             }
-            else if (isRoad1C())
+            else if (IsRoad1C())
             {
-                setRoad(road, "1A", CurrentDirection);
+                SetRoad(road, "1A", CurrentDirection);
             }
-            else if (isRoad2B())
+            else if (IsRoad2B())
             {
-                setRoad(road, "2C", CurrentDirection);
+                SetRoad(road, "2C", CurrentDirection);
             }
-            else if (isRoad2C())
+            else if (IsRoad2C())
             {
-                setRoad(road, "2B", CurrentDirection);
+                SetRoad(road, "2B", CurrentDirection);
             }
-            else if (isRoad3B())
+            else if (IsRoad3B())
             {
-                setRoad(road, "3C", CurrentDirection);
+                SetRoad(road, "3C", CurrentDirection);
             }
-            else if (isRoad3C())
+            else if (IsRoad3C())
             {
-                setRoad(road, "3B", CurrentDirection);
+                SetRoad(road, "3B", CurrentDirection);
             }
         }
 
-        public void changeCliffCorner()
+        public void ChangeCliffCorner()
         {
-            ushort terrain = getTerrainModel();
-            ushort CurrentDirection = getTerrainAngle();
-            ushort CurrentElevation = getElevation();
+            ushort terrain = GetTerrainModel();
+            ushort CurrentDirection = GetTerrainAngle();
+            ushort CurrentElevation = GetElevation();
 
             if (terrain == (ushort)TerrainUnitModel.Cliff2B)
             {
-                setCliff("2C", CurrentElevation, CurrentDirection);
+                SetCliff("2C", CurrentElevation, CurrentDirection);
             }
             else if (terrain == (ushort)TerrainUnitModel.Cliff2C)
             {
-                setCliff("2B", CurrentElevation, CurrentDirection);
+                SetCliff("2B", CurrentElevation, CurrentDirection);
             }
             else if (terrain == (ushort)TerrainUnitModel.Cliff3B)
             {
-                setCliff("3C", CurrentElevation, CurrentDirection);
+                SetCliff("3C", CurrentElevation, CurrentDirection);
             }
             else if (terrain == (ushort)TerrainUnitModel.Cliff3C)
             {
-                setCliff("3B", CurrentElevation, CurrentDirection);
+                SetCliff("3B", CurrentElevation, CurrentDirection);
             }
         }
 
-        public void changeRiverCorner()
+        public void ChangeRiverCorner()
         {
-            ushort terrain = getTerrainModel();
-            ushort CurrentDirection = getTerrainAngle();
-            ushort CurrentElevation = getElevation();
+            ushort terrain = GetTerrainModel();
+            ushort CurrentDirection = GetTerrainAngle();
+            ushort CurrentElevation = GetElevation();
 
             if (terrain == (ushort)TerrainUnitModel.River2B)
             {
-                setRiver("2C", CurrentElevation, CurrentDirection);
+                SetRiver("2C", CurrentElevation, CurrentDirection);
             }
             else if (terrain == (ushort)TerrainUnitModel.River2C)
             {
-                setRiver("2B", CurrentElevation, CurrentDirection);
+                SetRiver("2B", CurrentElevation, CurrentDirection);
             }
             else if (terrain == (ushort)TerrainUnitModel.River3B)
             {
-                setRiver("3C", CurrentElevation, CurrentDirection);
+                SetRiver("3C", CurrentElevation, CurrentDirection);
             }
             else if (terrain == (ushort)TerrainUnitModel.River3C)
             {
-                setRiver("3B", CurrentElevation, CurrentDirection);
+                SetRiver("3B", CurrentElevation, CurrentDirection);
             }
         }
-        public void setRoadModel(ushort value)
+        public void SetRoadModel(ushort value)
         {
             var bytes = BitConverter.GetBytes(value);
             Buffer.BlockCopy(bytes, 0, TerrainData, 6, 2);
         }
-        public void setRoadAngle(ushort angle)
+        public void SetRoadAngle(ushort angle)
         {
             var bytes = BitConverter.GetBytes(angle);
             Buffer.BlockCopy(bytes, 0, TerrainData, 10, 2);
         }
-        private void setTerrainModel(ushort value)
+        private void SetTerrainModel(ushort value)
         {
             var bytes = BitConverter.GetBytes(value);
             Buffer.BlockCopy(bytes, 0, TerrainData, 0, 2);
         }
-        public void setTerrainAngle(ushort angle)
+        public void SetTerrainAngle(ushort angle)
         {
             var bytes = BitConverter.GetBytes(angle);
             Buffer.BlockCopy(bytes, 0, TerrainData, 4, 2);
         }
-        public void setTerrainVariation(ushort num)
+        public void SetTerrainVariation(ushort num)
         {
             var bytes = BitConverter.GetBytes(num);
             Buffer.BlockCopy(bytes, 0, TerrainData, 2, 2);
         }
-        public void setTerrainElevation(ushort value)
+        public void SetTerrainElevation(ushort value)
         {
             var bytes = BitConverter.GetBytes(value);
             Buffer.BlockCopy(bytes, 0, TerrainData, 12, 2);
         }
 
-        private Bitmap drawImage(int size, Color border, Color background, Color building, Color terrain, Color road, bool drawBorder, bool drawBackground, bool drawBuilding, bool drawTerrain, bool drawRoad)
+        private Bitmap DrawImage(int size, Color border, Color background, Color building, Color terrain, Color road, bool drawBorder, bool drawBackground, bool drawBuilding, bool drawTerrain, bool drawRoad)
         {
             Bitmap Bottom;
             Bottom = new Bitmap(size, size);
@@ -3542,18 +3452,18 @@ namespace ACNHPokerCore
 
                 if (drawBackground)
                 {
-                    SolidBrush backgroundBrush = new SolidBrush(background);
+                    SolidBrush backgroundBrush = new(background);
                     gr.FillRectangle(backgroundBrush, 1, 1, size - 2, size - 2);
                 }
 
                 if (drawTerrain)
                 {
-                    ushort CurrentTerrain = getTerrainModel();
-                    ushort CurrentElevation = getElevation();
+                    ushort CurrentTerrain = GetTerrainModel();
+                    ushort CurrentElevation = GetElevation();
 
-                    if (isCliff() || isRiver() || isFlat())
+                    if (IsCliff() || IsRiver() || IsFlat())
                     {
-                        SolidBrush terrainBrush = new SolidBrush(terrain);
+                        SolidBrush terrainBrush = new(terrain);
 
                         switch (CurrentTerrain)
                         {
@@ -3654,8 +3564,8 @@ namespace ACNHPokerCore
                     }
                     else
                     {
-                        SolidBrush terrainBrush = new SolidBrush(terrain);
-                        LinearGradientBrush linGrBrush = new LinearGradientBrush(
+                        SolidBrush terrainBrush = new(terrain);
+                        LinearGradientBrush linGrBrush = new(
                            new Point(10, 0),
                            new Point(10, size),
                            TerrainColor[(int)TerrainType.Fall],
@@ -3844,16 +3754,16 @@ namespace ACNHPokerCore
 
                 if (drawBuilding)
                 {
-                    SolidBrush buildingBrush = new SolidBrush(building);
+                    SolidBrush buildingBrush = new(building);
                     gr.FillRectangle(buildingBrush, 5, 5, size - 10, size - 10);
                 }
             }
 
-            if (getTerrainAngle() == 1)
+            if (GetTerrainAngle() == 1)
                 Bottom.RotateFlip(RotateFlipType.Rotate270FlipNone);
-            else if (getTerrainAngle() == 2)
+            else if (GetTerrainAngle() == 2)
                 Bottom.RotateFlip(RotateFlipType.Rotate180FlipNone);
-            else if (getTerrainAngle() == 3)
+            else if (GetTerrainAngle() == 3)
                 Bottom.RotateFlip(RotateFlipType.Rotate90FlipNone);
 
 
@@ -3865,59 +3775,59 @@ namespace ACNHPokerCore
             {
                 if (drawRoad)
                 {
-                    SolidBrush roadBrush = new SolidBrush(road);
-                    if (isRoad0A())
+                    SolidBrush roadBrush = new(road);
+                    if (IsRoad0A())
                     {
                         gr.FillRectangle(roadBrush, 8, 8, size - 16, size - 16);
                     }
-                    else if (isRoad0B())
+                    else if (IsRoad0B())
                     {
-                        Rectangle pieRect = new Rectangle(8, 8, (size - 16) * 2, (size - 16) * 2);
+                        Rectangle pieRect = new(8, 8, (size - 16) * 2, (size - 16) * 2);
                         gr.FillPie(roadBrush, pieRect, -90, -90);
                     }
-                    else if (isRoad1A())
+                    else if (IsRoad1A())
                     {
                         gr.FillRectangle(roadBrush, 8, 8, size - 16, size - 9);
                     }
-                    else if (isRoad1B())
+                    else if (IsRoad1B())
                     {
                         gr.FillRectangle(roadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
 
-                        Rectangle pieRect = new Rectangle(8, 8, (size - 16) * 2, (size - 16) * 2);
+                        Rectangle pieRect = new(8, 8, (size - 16) * 2, (size - 16) * 2);
                         gr.FillPie(roadBrush, pieRect, -90, -90);
 
                     }
-                    else if (isRoad1C())
+                    else if (IsRoad1C())
                     {
                         gr.FillRectangle(roadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
 
-                        Rectangle pieRect = new Rectangle(8 - (size - 16), 8, (size - 16) * 2, (size - 16) * 2);
+                        Rectangle pieRect = new(8 - (size - 16), 8, (size - 16) * 2, (size - 16) * 2);
                         gr.FillPie(roadBrush, pieRect, 0, -90);
                     }
-                    else if (isRoad2A())
+                    else if (IsRoad2A())
                     {
                         gr.FillRectangle(roadBrush, 8, 1, size - 16, 7); //Top
                         gr.FillRectangle(roadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
 
                         gr.FillRectangle(roadBrush, 8, 8, size - 16, size - 10);
                     }
-                    else if (isRoad2B())
+                    else if (IsRoad2B())
                     {
                         gr.FillRectangle(roadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
                         gr.FillRectangle(roadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
 
-                        Rectangle pieRect = new Rectangle(8, 8, (size - 16) * 2, (size - 16) * 2);
+                        Rectangle pieRect = new(8, 8, (size - 16) * 2, (size - 16) * 2);
                         gr.FillPie(roadBrush, pieRect, -90, -90);
 
                     }
-                    else if (isRoad2C())
+                    else if (IsRoad2C())
                     {
                         gr.FillRectangle(roadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
                         gr.FillRectangle(roadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
 
                         gr.FillRectangle(roadBrush, 8, 8, size - 16, size - 16);
                     }
-                    else if (isRoad3A())
+                    else if (IsRoad3A())
                     {
                         gr.FillRectangle(roadBrush, 8, 1, size - 16, 7); //Top
                         gr.FillRectangle(roadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
@@ -3925,16 +3835,16 @@ namespace ACNHPokerCore
 
                         gr.FillRectangle(roadBrush, 8, 8, size - 16, size - 10);
                     }
-                    else if (isRoad3B())
+                    else if (IsRoad3B())
                     {
                         gr.FillRectangle(roadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
                         gr.FillRectangle(roadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
                         gr.FillRectangle(roadBrush, 8 + (size - 16), 8 + (size - 16), 7, 7); //Bottom Right
 
-                        Rectangle pieRect = new Rectangle(8, 8, (size - 16) * 2, (size - 16) * 2);
+                        Rectangle pieRect = new(8, 8, (size - 16) * 2, (size - 16) * 2);
                         gr.FillPie(roadBrush, pieRect, -90, -90);
                     }
-                    else if (isRoad3C())
+                    else if (IsRoad3C())
                     {
                         gr.FillRectangle(roadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
                         gr.FillRectangle(roadBrush, 8, 8 + (size - 16), size - 16, 7); //Bottom
@@ -3942,7 +3852,7 @@ namespace ACNHPokerCore
 
                         gr.FillRectangle(roadBrush, 8, 8, size - 16, size - 16);
                     }
-                    else if (isRoad4A())
+                    else if (IsRoad4A())
                     {
                         gr.FillRectangle(roadBrush, 8, 1, size - 16, 7); //Top
                         gr.FillRectangle(roadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
@@ -3951,7 +3861,7 @@ namespace ACNHPokerCore
 
                         gr.FillRectangle(roadBrush, 8, 8, size - 16, size - 10);
                     }
-                    else if (isRoad4B())
+                    else if (IsRoad4B)
                     {
                         gr.FillRectangle(roadBrush, 8, 1, size - 16, 7); //Top
                         gr.FillRectangle(roadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
@@ -3960,7 +3870,7 @@ namespace ACNHPokerCore
 
                         gr.FillRectangle(roadBrush, 8, 8, size - 16, size - 10);
                     }
-                    else if (isRoad4C())
+                    else if (IsRoad4C())
                     {
                         gr.FillRectangle(roadBrush, 8, 1, size - 16, 7); //Top
                         gr.FillRectangle(roadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
@@ -3969,7 +3879,7 @@ namespace ACNHPokerCore
 
                         gr.FillRectangle(roadBrush, 8, 8, size - 16, size - 10);
                     }
-                    else if (isRoad5A())
+                    else if (IsRoad5A())
                     {
                         gr.FillRectangle(roadBrush, 8, 1, size - 16, 7); //Top
                         gr.FillRectangle(roadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
@@ -3979,7 +3889,7 @@ namespace ACNHPokerCore
 
                         gr.FillRectangle(roadBrush, 8, 8, size - 16, size - 10);
                     }
-                    else if (isRoad5B())
+                    else if (IsRoad5B())
                     {
                         gr.FillRectangle(roadBrush, 8, 1, size - 16, 7); //Top
                         gr.FillRectangle(roadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
@@ -3990,7 +3900,7 @@ namespace ACNHPokerCore
 
                         gr.FillRectangle(roadBrush, 8, 8, size - 16, size - 10);
                     }
-                    else if (isRoad6A())
+                    else if (IsRoad6A())
                     {
                         gr.FillRectangle(roadBrush, 8, 1, size - 16, 7); //Top
                         gr.FillRectangle(roadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
@@ -4001,7 +3911,7 @@ namespace ACNHPokerCore
 
                         gr.FillRectangle(roadBrush, 8, 8, size - 16, size - 10);
                     }
-                    else if (isRoad6B())
+                    else if (IsRoad6B())
                     {
                         gr.FillRectangle(roadBrush, 8, 1, size - 16, 7); //Top
                         gr.FillRectangle(roadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
@@ -4012,7 +3922,7 @@ namespace ACNHPokerCore
 
                         gr.FillRectangle(roadBrush, 8, 8, size - 16, size - 10);
                     }
-                    else if (isRoad7A())
+                    else if (IsRoad7A())
                     {
                         gr.FillRectangle(roadBrush, 8, 1, size - 16, 7); //Top
                         gr.FillRectangle(roadBrush, 8 + (size - 16), 8, 7, size - 16); //Right
@@ -4024,7 +3934,7 @@ namespace ACNHPokerCore
 
                         gr.FillRectangle(roadBrush, 8, 8, size - 16, size - 10);
                     }
-                    else if (isRoad8A())
+                    else if (IsRoad8A())
                     {
                         gr.FillRectangle(roadBrush, 1, 1, size - 2, size - 2);
                     }
@@ -4035,19 +3945,21 @@ namespace ACNHPokerCore
                 }
             }
 
-            if (getRoadAngle() == 1)
+            if (GetRoadAngle() == 1)
                 Top.RotateFlip(RotateFlipType.Rotate270FlipNone);
-            else if (getRoadAngle() == 2)
+            else if (GetRoadAngle() == 2)
                 Top.RotateFlip(RotateFlipType.Rotate180FlipNone);
-            else if (getRoadAngle() == 3)
+            else if (GetRoadAngle() == 3)
                 Top.RotateFlip(RotateFlipType.Rotate90FlipNone);
 
             Bitmap Final = Bottom;
 
             using (Graphics graphics = Graphics.FromImage(Final))
             {
-                var cm = new ColorMatrix();
-                cm.Matrix33 = 1;
+                var cm = new ColorMatrix
+                {
+                    Matrix33 = 1
+                };
 
                 var ia = new ImageAttributes();
                 ia.SetColorMatrix(cm);
@@ -4081,7 +3993,7 @@ namespace ACNHPokerCore
             Elevation7 = 26,
             Elevation8 = 27,
         }
-        public static readonly Dictionary<int, Color> TerrainColor = new Dictionary<int, Color>
+        public static readonly Dictionary<int, Color> TerrainColor = new()
         {
             {0, Color.FromArgb(170, 105, 89)},
             {1, Color.FromArgb(232, 178, 128)},
@@ -4353,7 +4265,7 @@ namespace ACNHPokerCore
             RoadWood7A = 0x110,
             RoadWood8A = 0x111,
         }
-        public static Dictionary<ushort, string> TerrainName = new Dictionary<ushort, string>
+        public readonly static Dictionary<ushort, string> TerrainName = new()
         {
             {0x00,"Base"},
             {0x01,"River0A"},

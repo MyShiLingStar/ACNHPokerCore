@@ -13,7 +13,7 @@ using Twitch;
 
 namespace ACNHPokerCore
 {
-    public partial class dodo : Form
+    public partial class Dodo : Form
     {
         private static Socket s;
         public Boolean dodoSetupDone = false;
@@ -58,8 +58,8 @@ namespace ACNHPokerCore
 
         private CancellationTokenSource cts;
 
-        public event CloseHandler closeForm;
-        public event ThreadAbortHandler abortAll;
+        public event CloseHandler CloseForm;
+        public event ThreadAbortHandler AbortAll;
 
         public enum MovingDirection
         {
@@ -74,14 +74,14 @@ namespace ACNHPokerCore
             Null
         }
 
-        public dodo(Socket S, bool standaloneMode = false)
+        public Dodo(Socket S, bool standaloneMode = false)
         {
             InitializeComponent();
             s = S;
 
-            if (teleport.allAnchorValid())
+            if (Teleport.AllAnchorValid())
             {
-                Point Done = new Point(-4200, 0);
+                Point Done = new(-4200, 0);
                 FullPanel.Location = Done;
                 dodoSetupDone = true;
             }
@@ -106,52 +106,52 @@ namespace ACNHPokerCore
 
         private void StartNextBtn_Click(object sender, EventArgs e)
         {
-            resetBtn();
-            Point page1 = new Point(-600, 0);
+            ResetBtn();
+            Point page1 = new(-600, 0);
             FullPanel.Location = page1;
         }
 
         private void Anchor0NextBtn_Click(object sender, EventArgs e)
         {
-            resetBtn();
-            Point page2 = new Point(-1200, 0);
+            ResetBtn();
+            Point page2 = new(-1200, 0);
             FullPanel.Location = page2;
         }
 
         private void Anchor1NextBtn_Click(object sender, EventArgs e)
         {
-            resetBtn();
-            Point page3 = new Point(-1800, 0);
+            ResetBtn();
+            Point page3 = new(-1800, 0);
             FullPanel.Location = page3;
         }
 
         private void Anchor2NextBtn_Click(object sender, EventArgs e)
         {
-            resetBtn();
-            Point page4 = new Point(-2400, 0);
+            ResetBtn();
+            Point page4 = new(-2400, 0);
             FullPanel.Location = page4;
         }
 
         private void Anchor3NextBtn_Click(object sender, EventArgs e)
         {
-            resetBtn();
-            Point page5 = new Point(-3000, 0);
+            ResetBtn();
+            Point page5 = new(-3000, 0);
             FullPanel.Location = page5;
         }
 
         private void Anchor4NextBtn_Click(object sender, EventArgs e)
         {
-            resetBtn();
-            Point page6 = new Point(-3600, 0);
+            ResetBtn();
+            Point page6 = new(-3600, 0);
             FullPanel.Location = page6;
         }
 
         private void DoneBtn_Click(object sender, EventArgs e)
         {
-            if (teleport.allAnchorValid())
+            if (Teleport.AllAnchorValid())
             {
-                resetBtn();
-                Point Done = new Point(-4200, 0);
+                ResetBtn();
+                Point Done = new(-4200, 0);
                 FullPanel.Location = Done;
                 dodoSetupDone = true;
             }
@@ -163,49 +163,49 @@ namespace ACNHPokerCore
 
         private void Anchor0PreviousBtn_Click(object sender, EventArgs e)
         {
-            resetBtn();
-            Point Start = new Point(0, 0);
+            ResetBtn();
+            Point Start = new(0, 0);
             FullPanel.Location = Start;
         }
 
         private void Anchor1PreviousBtn_Click(object sender, EventArgs e)
         {
-            resetBtn();
-            Point page1 = new Point(-600, 0);
+            ResetBtn();
+            Point page1 = new(-600, 0);
             FullPanel.Location = page1;
         }
 
         private void Anchor2PreviousBtn_Click(object sender, EventArgs e)
         {
-            resetBtn();
-            Point page2 = new Point(-1200, 0);
+            ResetBtn();
+            Point page2 = new(-1200, 0);
             FullPanel.Location = page2;
         }
 
         private void Anchor3PreviousBtn_Click(object sender, EventArgs e)
         {
-            resetBtn();
-            Point page3 = new Point(-1800, 0);
+            ResetBtn();
+            Point page3 = new(-1800, 0);
             FullPanel.Location = page3;
         }
 
         private void Anchor4PreviousBtn_Click(object sender, EventArgs e)
         {
-            resetBtn();
-            Point page4 = new Point(-2400, 0);
+            ResetBtn();
+            Point page4 = new(-2400, 0);
             FullPanel.Location = page4;
         }
 
         private void DonePreviousBtn_Click(object sender, EventArgs e)
         {
-            resetBtn();
-            Point page5 = new Point(-3000, 0);
+            ResetBtn();
+            Point page5 = new(-3000, 0);
             FullPanel.Location = page5;
         }
 
         private void Anchor0SetBtn_Click(object sender, EventArgs e)
         {
-            teleport.SetAnchor(0);
+            Teleport.SetAnchor(0);
             Anchor0SetBtn.ForeColor = Color.Green;
             Anchor0Line3.Visible = true;
             Anchor0TestBtn.Visible = true;
@@ -219,13 +219,13 @@ namespace ACNHPokerCore
             var btn = (Button)sender;
             btn.Enabled = false;
 
-            Thread TeleportThread = new Thread(delegate () { TestTeleport(0, btn); });
+            Thread TeleportThread = new(delegate () { TestTeleport(0, btn); });
             TeleportThread.Start();
         }
 
         private void Anchor1SetBtn_Click(object sender, EventArgs e)
         {
-            teleport.SetAnchor(1);
+            Teleport.SetAnchor(1);
             Anchor1SetBtn.ForeColor = Color.Green;
             Anchor1Line3.Visible = true;
             Anchor1TestBtn.Visible = true;
@@ -239,13 +239,13 @@ namespace ACNHPokerCore
             var btn = (Button)sender;
             btn.Enabled = false;
 
-            Thread TeleportThread = new Thread(delegate () { TestTeleport(1, btn); });
+            Thread TeleportThread = new(delegate () { TestTeleport(1, btn); });
             TeleportThread.Start();
         }
 
         private void Anchor2SetBtn_Click(object sender, EventArgs e)
         {
-            teleport.SetAnchor(2);
+            Teleport.SetAnchor(2);
             Anchor2SetBtn.ForeColor = Color.Green;
             Anchor2Line3.Visible = true;
             Anchor2TestBtn.Visible = true;
@@ -259,13 +259,13 @@ namespace ACNHPokerCore
             var btn = (Button)sender;
             btn.Enabled = false;
 
-            Thread TeleportThread = new Thread(delegate () { TestTeleport(2, btn); });
+            Thread TeleportThread = new(delegate () { TestTeleport(2, btn); });
             TeleportThread.Start();
         }
 
         private void Anchor3SetBtn_Click(object sender, EventArgs e)
         {
-            teleport.SetAnchor(3);
+            Teleport.SetAnchor(3);
             Anchor3SetBtn.ForeColor = Color.Green;
             Anchor3Line3.Visible = true;
             Anchor3TestBtn.Visible = true;
@@ -279,13 +279,13 @@ namespace ACNHPokerCore
             var btn = (Button)sender;
             btn.Enabled = false;
 
-            Thread TeleportThread = new Thread(delegate () { TestTeleport(3, btn); });
+            Thread TeleportThread = new(delegate () { TestTeleport(3, btn); });
             TeleportThread.Start();
         }
 
         private void Anchor4SetBtn_Click(object sender, EventArgs e)
         {
-            teleport.SetAnchor(4);
+            Teleport.SetAnchor(4);
             Anchor4SetBtn.ForeColor = Color.Green;
             Anchor4Line3.Visible = true;
             Anchor4TestBtn.Visible = true;
@@ -299,7 +299,7 @@ namespace ACNHPokerCore
             var btn = (Button)sender;
             btn.Enabled = false;
 
-            Thread TeleportThread = new Thread(delegate () { TestTeleport(4, btn); });
+            Thread TeleportThread = new(delegate () { TestTeleport(4, btn); });
             TeleportThread.Start();
         }
 
@@ -308,7 +308,7 @@ namespace ACNHPokerCore
             var btn = (Button)sender;
             btn.Enabled = false;
 
-            Thread TeleportThread = new Thread(delegate () { TestTeleport(0, btn); });
+            Thread TeleportThread = new(delegate () { TestTeleport(0, btn); });
             TeleportThread.Start();
         }
 
@@ -317,7 +317,7 @@ namespace ACNHPokerCore
             var btn = (Button)sender;
             btn.Enabled = false;
 
-            Thread TeleportThread = new Thread(delegate () { TestTeleport(1, btn); });
+            Thread TeleportThread = new(delegate () { TestTeleport(1, btn); });
             TeleportThread.Start();
         }
 
@@ -326,7 +326,7 @@ namespace ACNHPokerCore
             var btn = (Button)sender;
             btn.Enabled = false;
 
-            Thread TeleportThread = new Thread(delegate () { TestTeleport(2, btn); });
+            Thread TeleportThread = new(delegate () { TestTeleport(2, btn); });
             TeleportThread.Start();
         }
 
@@ -335,7 +335,7 @@ namespace ACNHPokerCore
             var btn = (Button)sender;
             btn.Enabled = false;
 
-            Thread TeleportThread = new Thread(delegate () { TestTeleport(3, btn); });
+            Thread TeleportThread = new(delegate () { TestTeleport(3, btn); });
             TeleportThread.Start();
         }
 
@@ -344,13 +344,13 @@ namespace ACNHPokerCore
             var btn = (Button)sender;
             btn.Enabled = false;
 
-            Thread TeleportThread = new Thread(delegate () { TestTeleport(4, btn); });
+            Thread TeleportThread = new(delegate () { TestTeleport(4, btn); });
             TeleportThread.Start();
         }
 
-        private void TestTeleport(int num, Button btn)
+        private static void TestTeleport(int num, Button btn)
         {
-            if (teleport.TeleportToAnchor(num))
+            if (Teleport.TeleportToAnchor(num))
             {
                 btn.Invoke((MethodInvoker)delegate
                 {
@@ -370,7 +370,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void resetBtn()
+        private void ResetBtn()
         {
             Anchor0SetBtn.ForeColor = Color.White;
             Anchor0TestBtn.Enabled = true;
@@ -415,16 +415,16 @@ namespace ACNHPokerCore
 
             cts = new CancellationTokenSource();
             CancellationToken token = cts.Token;
-            Thread TeleportThread = new Thread(delegate () { TestNormalRestore(token); });
+            Thread TeleportThread = new(delegate () { TestNormalRestore(token); });
             TeleportThread.Start();
         }
 
         private void TestNormalRestore(CancellationToken token)
         {
-            controller.clickDown(); // Hide Weapon
+            Controller.ClickDown(); // Hide Weapon
             Thread.Sleep(1000);
 
-            teleport.TeleportToAnchor(2);
+            Teleport.TeleportToAnchor(2);
 
             Debug.Print("Teleport to Airport");
 
@@ -432,39 +432,39 @@ namespace ACNHPokerCore
             {
                 //Debug.Print(teleport.GetOverworldState().ToString());
                 Debug.Print("Try Enter Airport");
-                controller.EnterAirport();
+                Controller.EnterAirport();
                 Thread.Sleep(2000);
             }
-            while (teleport.GetOverworldState() != teleport.OverworldState.OverworldOrInAirport);
+            while (Teleport.GetOverworldState() != Teleport.OverworldState.OverworldOrInAirport);
 
             Debug.Print("Inside Airport");
             Thread.Sleep(2000);
 
-            teleport.TeleportToAnchor(3);
+            Teleport.TeleportToAnchor(3);
 
             Debug.Print("Get Dodo");
-            controller.talkAndGetDodoCode(token);
+            Controller.TalkAndGetDodoCode(token);
             Debug.Print("Finish getting Dodo");
 
-            teleport.TeleportToAnchor(4);
+            Teleport.TeleportToAnchor(4);
 
             do
             {
                 //Debug.Print(teleport.GetOverworldState().ToString());
                 Debug.Print("Try Exit Airport");
-                controller.ExitAirport();
+                Controller.ExitAirport();
                 Thread.Sleep(2000);
             }
-            while (teleport.GetOverworldState() != teleport.OverworldState.OverworldOrInAirport);
+            while (Teleport.GetOverworldState() != Teleport.OverworldState.OverworldOrInAirport);
 
             Debug.Print("Back to Overworld");
             Thread.Sleep(2000);
 
-            teleport.TeleportToAnchor(1);
+            Teleport.TeleportToAnchor(1);
 
-            controller.emote(0);
+            Controller.Emote(0);
 
-            controller.detachController();
+            Controller.DetachController();
 
             this.Invoke((MethodInvoker)delegate
             {
@@ -481,7 +481,7 @@ namespace ACNHPokerCore
 
         #endregion
 
-        private void dodo_FormClosed(object sender, FormClosedEventArgs e)
+        private void Dodo_FormClosed(object sender, FormClosedEventArgs e)
         {
             controllerTimer.Stop();
 
@@ -506,19 +506,19 @@ namespace ACNHPokerCore
                 stopWatch = null;
             }
 
-            this.closeForm();
+            this.CloseForm();
         }
 
         private void BackToSetupBtn_Click(object sender, EventArgs e)
         {
-            resetBtn();
-            Point Start = new Point(0, 0);
+            ResetBtn();
+            Point Start = new(0, 0);
             FullPanel.Location = Start;
         }
 
         public bool CheckOnlineStatus()
         {
-            if (teleport.checkOnlineStatus() == 0x1)
+            if (Teleport.CheckOnlineStatus() == 0x1)
             {
                 onlineLabel.Invoke((MethodInvoker)delegate
                 {
@@ -527,7 +527,7 @@ namespace ACNHPokerCore
                 });
                 return true;
             }
-            else if (teleport.checkOnlineStatus(true) == 0x1) //Check again for Chinese
+            else if (Teleport.CheckOnlineStatus(true) == 0x1) //Check again for Chinese
             {
                 onlineLabel.Invoke((MethodInvoker)delegate
                 {
@@ -587,7 +587,7 @@ namespace ACNHPokerCore
             });
         }
 
-        private void unLockControl()
+        private void UnLockControl()
         {
             this.Invoke((MethodInvoker)delegate
             {
@@ -597,9 +597,9 @@ namespace ACNHPokerCore
             });
         }
 
-        public teleport.OverworldState DodoMonitor(CancellationToken token)
+        public Teleport.OverworldState DodoMonitor(CancellationToken token)
         {
-            teleport.OverworldState state = teleport.GetOverworldState();
+            Teleport.OverworldState state = Teleport.GetOverworldState();
             //WriteLog(state.ToString() + " " + idleNum, true);
 
             if (token.IsCancellationRequested)
@@ -607,7 +607,7 @@ namespace ACNHPokerCore
 
             if (CheckOnlineStatus() == true)
             {
-                if (state == teleport.OverworldState.Loading || state == teleport.OverworldState.UserArriveLeavingOrTitleScreen)
+                if (state == Teleport.OverworldState.Loading || state == Teleport.OverworldState.UserArriveLeavingOrTitleScreen)
                 {
                     idleNum = 0;
                     wasLoading = true;
@@ -632,12 +632,12 @@ namespace ACNHPokerCore
                             HardRestore(token);
                             break;
                         }
-                        if (teleport.GetLocationState() == teleport.LocationState.Announcement)
+                        if (Teleport.GetLocationState() == Teleport.LocationState.Announcement)
                         {
                             WriteLog("In Announcement", true);
                             if (!HoldingL)
                             {
-                                controller.pressL();
+                                Controller.PressL();
                                 HoldingL = true;
                             }
                             retry = 0;
@@ -646,29 +646,29 @@ namespace ACNHPokerCore
                         {
                             WriteLog("Waiting for Overworld", true);
                         }
-                        controller.clickA();
+                        Controller.ClickA();
                         Thread.Sleep(3000);
                         retry++;
                     }
-                    while (teleport.GetOverworldState() != teleport.OverworldState.OverworldOrInAirport);
+                    while (Teleport.GetOverworldState() != Teleport.OverworldState.OverworldOrInAirport);
 
                     //Thread.Sleep(2000);
-                    controller.releaseL();
+                    Controller.ReleaseL();
                     HoldingL = false;
                     WriteLog("[Warning] Start Normal Restore", true);
                     WriteLog("Please wait for the bot to finish the sequence.", true);
                     NormalRestore(token);
-                    unLockControl();
+                    UnLockControl();
                     WriteLog("Restore sequence finished.", true);
                     idleNum = 0;
-                    state = teleport.OverworldState.OverworldOrInAirport;
+                    state = Teleport.OverworldState.OverworldOrInAirport;
                 }
             }
 
             if (token.IsCancellationRequested)
                 return state;
 
-            if (state != teleport.OverworldState.Loading && state != teleport.OverworldState.UserArriveLeavingOrTitleScreen)
+            if (state != Teleport.OverworldState.Loading && state != Teleport.OverworldState.UserArriveLeavingOrTitleScreen)
             {
                 if (MyPubSub != null)
                 {
@@ -681,9 +681,9 @@ namespace ACNHPokerCore
                                 if (Utilities.hasItemInFirstSlot(s))
                                 {
                                     if (lastOrderIsRecipe)
-                                        controller.dropRecipe();
+                                        Controller.DropRecipe();
                                     else
-                                        controller.dropItem();
+                                        Controller.DropItem();
                                 }
 
                                 wasLoading = false;
@@ -697,12 +697,12 @@ namespace ACNHPokerCore
                             {
                                 _ = DropItem(PubSub.DropOrderList.ElementAt(0));
                                 if (PubSub.DropOrderList.Count > 0)
-                                    state = teleport.OverworldState.ItemDropping;
+                                    state = Teleport.OverworldState.ItemDropping;
                             }
                         }
 
                         if (PubSub.DropOrderList.Count > 0)
-                            state = teleport.OverworldState.ItemDropping;
+                            state = Teleport.OverworldState.ItemDropping;
                     }
 
                     if (injectVillager)
@@ -711,20 +711,20 @@ namespace ACNHPokerCore
                         {
                             Debug.Print("No Villager Order");
                         }
-                        else if (state != teleport.OverworldState.ItemDropping && idleNum >= 2)
+                        else if (state != Teleport.OverworldState.ItemDropping && idleNum >= 2)
                         {
                             _ = InjectVillager(PubSub.VillagerOrderList.ElementAt(0));
                         }
                     }
                 }
 
-                if (idleEmote && state == teleport.OverworldState.OverworldOrInAirport)
+                if (idleEmote && state == Teleport.OverworldState.OverworldOrInAirport)
                 {
                     if (idleNum >= 10 && idleNum % 10 == 0)
                     {
-                        Random random = new Random();
+                        Random random = new();
                         int v = random.Next(0, 8);
-                        controller.emote(v);
+                        Controller.Emote(v);
                     }
                 }
             }
@@ -739,12 +739,12 @@ namespace ACNHPokerCore
             {
                 if (token.IsCancellationRequested)
                     return;
-                if (teleport.GetLocationState() == teleport.LocationState.Announcement)
+                if (Teleport.GetLocationState() == Teleport.LocationState.Announcement)
                 {
                     WriteLog("In Announcement", true);
                     if (!HoldingL)
                     {
-                        controller.pressL();
+                        Controller.PressL();
                         HoldingL = true;
                     }
                 }
@@ -752,29 +752,29 @@ namespace ACNHPokerCore
                 {
                     WriteLog("Confirming Overworld", true);
                 }
-                controller.clickA();
+                Controller.ClickA();
                 Thread.Sleep(3000);
             }
-            while (teleport.GetOverworldState() != teleport.OverworldState.OverworldOrInAirport);
+            while (Teleport.GetOverworldState() != Teleport.OverworldState.OverworldOrInAirport);
 
-            controller.releaseL();
+            Controller.ReleaseL();
             HoldingL = false;
             Thread.Sleep(2000);
-            controller.clickDown(); // Hide Weapon
+            Controller.ClickDown(); // Hide Weapon
             Thread.Sleep(1000);
             if (token.IsCancellationRequested)
                 return;
 
-            string locationState = teleport.GetLocationState().ToString();
+            //string locationState = Teleport.GetLocationState().ToString();
             //Debug.Print(">>>>>>>>>>>>>>>>>>>>>>>>>>" + locationState);
 
-            if (teleport.GetLocationState() == teleport.LocationState.Indoor)
+            if (Teleport.GetLocationState() == Teleport.LocationState.Indoor)
             {
                 WriteLog("Indoor Detected", true);
             }
             else
             {
-                teleport.TeleportToAnchor(2);
+                Teleport.TeleportToAnchor(2);
                 WriteLog("Teleport to Airport", true);
 
                 do
@@ -782,23 +782,23 @@ namespace ACNHPokerCore
                     if (token.IsCancellationRequested)
                         return;
                     WriteLog("Try Entering Airport", true);
-                    controller.EnterAirport();
+                    Controller.EnterAirport();
                     Thread.Sleep(2000);
                 }
-                while (teleport.GetOverworldState() != teleport.OverworldState.OverworldOrInAirport);
+                while (Teleport.GetOverworldState() != Teleport.OverworldState.OverworldOrInAirport);
 
                 WriteLog("Inside Airport", true);
                 Thread.Sleep(2000);
             }
 
-            teleport.TeleportToAnchor(3);
+            Teleport.TeleportToAnchor(3);
 
             WriteLog("Try Getting Dodo", true);
             string NewDodo;
             if (skipDialogCheckBox.Checked)
-                NewDodo = controller.talkAndGetDodoCode(token);
+                NewDodo = Controller.TalkAndGetDodoCode(token);
             else
-                NewDodo = controller.talkAndGetDodoCodeLegacy(token);
+                NewDodo = Controller.TalkAndGetDodoCodeLegacy(token);
 
             if (token.IsCancellationRequested)
                 return;
@@ -812,7 +812,7 @@ namespace ACNHPokerCore
 
             CheckOnlineStatus();
 
-            teleport.TeleportToAnchor(4);
+            Teleport.TeleportToAnchor(4);
 
             do
             {
@@ -820,19 +820,19 @@ namespace ACNHPokerCore
                     return;
                 //Debug.Print(teleport.GetOverworldState().ToString());
                 WriteLog("Try Exiting Airport", true);
-                controller.ExitAirport();
+                Controller.ExitAirport();
                 Thread.Sleep(2000);
             }
-            while (teleport.GetOverworldState() != teleport.OverworldState.OverworldOrInAirport);
+            while (Teleport.GetOverworldState() != Teleport.OverworldState.OverworldOrInAirport);
 
             WriteLog("Back to Overworld", true);
             Thread.Sleep(2000);
 
             if (token.IsCancellationRequested)
                 return;
-            teleport.TeleportToAnchor(1);
+            Teleport.TeleportToAnchor(1);
 
-            controller.emote(0);
+            Controller.Emote(0);
 
             //controller.detachController();
         }
@@ -842,29 +842,29 @@ namespace ACNHPokerCore
             if (token.IsCancellationRequested)
                 return;
             WriteLog("Capturing the Crash", true);
-            controller.clickCAPTURE();
+            Controller.ClickCAPTURE();
             Thread.Sleep(2000);
             if (token.IsCancellationRequested)
                 return;
             WriteLog("Open Home Menu", true);
-            controller.clickHOME();
+            Controller.ClickHOME();
             Thread.Sleep(5000);
             if (token.IsCancellationRequested)
                 return;
-            controller.clickX();
+            Controller.ClickX();
             Thread.Sleep(1000);
             if (token.IsCancellationRequested)
                 return;
-            controller.clickA(); //Close Game
+            Controller.ClickA(); //Close Game
             WriteLog("Try Closing the Game", true);
             Thread.Sleep(15000);
             if (token.IsCancellationRequested)
                 return;
-            controller.clickA(); //Select Game
+            Controller.ClickA(); //Select Game
             Thread.Sleep(2000);
             if (token.IsCancellationRequested)
                 return;
-            controller.clickA(); //Select first user
+            Controller.ClickA(); //Select first user
             WriteLog("Game & User Selected", true);
             Thread.Sleep(10000);
             if (token.IsCancellationRequested)
@@ -877,22 +877,22 @@ namespace ACNHPokerCore
                     return;
                 //Debug.Print(teleport.GetOverworldState().ToString());
                 //Debug.Print("Waiting for Overworld");
-                if (teleport.GetLocationState() == teleport.LocationState.Announcement)
+                if (Teleport.GetLocationState() == Teleport.LocationState.Announcement)
                 {
                     WriteLog("In Announcement", true);
                     if (!HoldingL)
                     {
-                        controller.pressL();
+                        Controller.PressL();
                         HoldingL = true;
                     }
                 }
-                controller.clickA();
+                Controller.ClickA();
                 Thread.Sleep(2000);
                 retry++;
             }
-            while (teleport.GetOverworldState() != teleport.OverworldState.OverworldOrInAirport);
+            while (Teleport.GetOverworldState() != Teleport.OverworldState.OverworldOrInAirport);
 
-            controller.releaseL();
+            Controller.ReleaseL();
             HoldingL = false;
             WriteLog("Exiting House", true);
             Thread.Sleep(2000);
@@ -902,10 +902,10 @@ namespace ACNHPokerCore
 
         private void CloseGate()
         {
-            controller.clickDown(); // Hide Weapon
+            Controller.ClickDown(); // Hide Weapon
             Thread.Sleep(1000);
 
-            teleport.TeleportToAnchor(2);
+            Teleport.TeleportToAnchor(2);
 
             Debug.Print("Teleport to Airport");
 
@@ -913,61 +913,61 @@ namespace ACNHPokerCore
             {
                 //Debug.Print(teleport.GetOverworldState().ToString());
                 Debug.Print("Try Enter Airport");
-                controller.EnterAirport();
+                Controller.EnterAirport();
                 Thread.Sleep(2000);
             }
-            while (teleport.GetOverworldState() != teleport.OverworldState.OverworldOrInAirport);
+            while (Teleport.GetOverworldState() != Teleport.OverworldState.OverworldOrInAirport);
 
             Debug.Print("Inside Airport");
             Thread.Sleep(2000);
 
-            teleport.TeleportToAnchor(3);
+            Teleport.TeleportToAnchor(3);
 
             Debug.Print("Close Gate");
-            controller.talkAndCloseGate();
+            Controller.TalkAndCloseGate();
             Debug.Print("Finish Close Gate");
             CheckOnlineStatus();
 
-            teleport.TeleportToAnchor(4);
+            Teleport.TeleportToAnchor(4);
 
             do
             {
                 //Debug.Print(teleport.GetOverworldState().ToString());
                 Debug.Print("Try Exit Airport");
-                controller.ExitAirport();
+                Controller.ExitAirport();
                 Thread.Sleep(2000);
             }
-            while (teleport.GetOverworldState() != teleport.OverworldState.OverworldOrInAirport);
+            while (Teleport.GetOverworldState() != Teleport.OverworldState.OverworldOrInAirport);
 
             Debug.Print("Back to Overworld");
             Thread.Sleep(2000);
 
         }
 
-        public void EndSession(CancellationToken token)
+        public static void EndSession(CancellationToken token)
         {
             if (token.IsCancellationRequested)
                 return;
-            controller.clickDown(); // Hide Weapon
+            Controller.ClickDown(); // Hide Weapon
             Thread.Sleep(1000);
             if (token.IsCancellationRequested)
                 return;
-            controller.clickMINUS(); // Open menu
+            Controller.ClickMINUS(); // Open menu
             Thread.Sleep(2000);
             if (token.IsCancellationRequested)
                 return;
-            controller.clickA(); // Open Selection
+            Controller.ClickA(); // Open Selection
             Thread.Sleep(1000);
             if (token.IsCancellationRequested)
                 return;
-            controller.clickA(); // Select End Session.
+            Controller.ClickA(); // Select End Session.
             Thread.Sleep(10000);
         }
 
         private async Task DropItem(ItemOrder CurrentOrder)
         {
             string flag1;
-            if (CurrentOrder.id == "16A2" || CurrentOrder.name.Contains("wrapping paper") || CurrentOrder.id == "3107" || CurrentOrder.id == "3106") // Vine Glowing Moss
+            if (CurrentOrder.Id == "16A2" || CurrentOrder.Name.Contains("wrapping paper") || CurrentOrder.Id == "3107" || CurrentOrder.Id == "3106") // Vine Glowing Moss
                 flag1 = "00";
             else
                 flag1 = "7F";
@@ -976,30 +976,30 @@ namespace ACNHPokerCore
 
             if (itemDisplay != null)
             {
-                string path = Main.GetImagePathFromID(CurrentOrder.id, Convert.ToUInt32("0x" + Utilities.precedingZeros(CurrentOrder.count, 8), 16));
+                string path = Main.GetImagePathFromID(CurrentOrder.Id, Convert.ToUInt32("0x" + Utilities.precedingZeros(CurrentOrder.Count, 8), 16));
                 if (File.Exists(path))
                 {
                     Image image = Image.FromFile(path);
-                    itemDisplay.setItemdisplay(image);
+                    itemDisplay.SetItemdisplay(image);
                 }
             }
 
-            Utilities.SpawnItem(s, null, 0, flag1 + flag2 + CurrentOrder.id, Utilities.precedingZeros(CurrentOrder.count, 8));
+            Utilities.SpawnItem(s, null, 0, flag1 + flag2 + CurrentOrder.Id, Utilities.precedingZeros(CurrentOrder.Count, 8));
             //Thread.Sleep(500);
-            if (CurrentOrder.id == "16A2" || CurrentOrder.id == "3107" || CurrentOrder.id == "3106")
+            if (CurrentOrder.Id == "16A2" || CurrentOrder.Id == "3107" || CurrentOrder.Id == "3106")
             {
-                controller.dropRecipe();
+                Controller.DropRecipe();
                 lastOrderIsRecipe = true;
             }
             else
             {
-                controller.dropItem();
+                Controller.DropItem();
                 lastOrderIsRecipe = false;
             }
-            if (!CurrentOrder.color.Equals(string.Empty))
-                await MyTwitchBot.SendMessage($"{CurrentOrder.owner}, your order of \"{CurrentOrder.name}\" ({CurrentOrder.color}) have been dropped.");
+            if (!CurrentOrder.Color.Equals(string.Empty))
+                await MyTwitchBot.SendMessage($"{CurrentOrder.Owner}, your order of \"{CurrentOrder.Name}\" ({CurrentOrder.Color}) have been dropped.");
             else
-                await MyTwitchBot.SendMessage($"{CurrentOrder.owner}, your order of \"{CurrentOrder.name}\" have been dropped.");
+                await MyTwitchBot.SendMessage($"{CurrentOrder.Owner}, your order of \"{CurrentOrder.Name}\" have been dropped.");
 
             //await MyTwitchBot.SendMessage($"If you can't find your order, people flying in/out might have canceled it. We are very sorry. Feel free to place your order again.");
 
@@ -1016,7 +1016,7 @@ namespace ACNHPokerCore
 
                 Utilities.SetMoveout(s, null, i, "2", "0");
 
-                await MyTwitchBot.SendMessage($"{CurrentOrder.owner}, \"{CurrentOrder.RealName}\" is already waiting for you on the island.");
+                await MyTwitchBot.SendMessage($"{CurrentOrder.Owner}, \"{CurrentOrder.RealName}\" is already waiting for you on the island.");
 
                 PubSub.VillagerOrderList.RemoveAt(0);
 
@@ -1060,7 +1060,7 @@ namespace ACNHPokerCore
                 WriteLog($"Loading villager... \"{CurrentOrder.RealName}\"", true);
 
                 byte[] modifiedVillager = villagerData;
-                Buffer.BlockCopy(Main.getHeader(), 0x0, modifiedVillager, 0x4, 52);
+                Buffer.BlockCopy(Main.GetHeader(), 0x0, modifiedVillager, 0x4, 52);
 
                 byte[] modifiedHouse = houseData;
 
@@ -1070,7 +1070,7 @@ namespace ACNHPokerCore
                 await Utilities.loadBoth(s, villagerIndex, villagerData, houseIndex, houseData);
                 await Utilities.SetMoveout(s, villagerIndex, "2", "0");
 
-                await MyTwitchBot.SendMessage($"{CurrentOrder.owner}, \"{CurrentOrder.RealName}\" is now waiting for you on the island.");
+                await MyTwitchBot.SendMessage($"{CurrentOrder.Owner}, \"{CurrentOrder.RealName}\" is now waiting for you on the island.");
 
                 PubSub.VillagerOrderList.RemoveAt(0);
 
@@ -1080,7 +1080,7 @@ namespace ACNHPokerCore
 
         }
 
-        private void dodoLog_TextChanged(object sender, EventArgs e)
+        private void DodoLog_TextChanged(object sender, EventArgs e)
         {
             dodoLog.SelectionStart = dodoLog.Text.Length;
             dodoLog.ScrollToCaret();
@@ -1118,182 +1118,182 @@ namespace ACNHPokerCore
 
         private void XBtn_Click(object sender, EventArgs e)
         {
-            controller.clickX();
+            Controller.ClickX();
         }
 
         private void ABtn_Click(object sender, EventArgs e)
         {
-            controller.clickA();
+            Controller.ClickA();
         }
 
         private void BBtn_Click(object sender, EventArgs e)
         {
-            controller.clickB();
+            Controller.ClickB();
         }
 
         private void YBtn_Click(object sender, EventArgs e)
         {
-            controller.clickY();
+            Controller.ClickY();
         }
 
-        private void emoteUPBtn_Click(object sender, EventArgs e)
+        private void EmoteUPBtn_Click(object sender, EventArgs e)
         {
-            controller.emote(0);
+            Controller.Emote(0);
         }
 
-        private void emoteRIGHTBtn_Click(object sender, EventArgs e)
+        private void EmoteRIGHTBtn_Click(object sender, EventArgs e)
         {
-            controller.emote(2);
+            Controller.Emote(2);
         }
 
-        private void emoteDOWNBtn_Click(object sender, EventArgs e)
+        private void EmoteDOWNBtn_Click(object sender, EventArgs e)
         {
-            controller.emote(4);
+            Controller.Emote(4);
         }
 
-        private void emoteLEFTBtn_Click(object sender, EventArgs e)
+        private void EmoteLEFTBtn_Click(object sender, EventArgs e)
         {
-            controller.emote(6);
+            Controller.Emote(6);
         }
 
-        private void emoteTopRightBtn_Click(object sender, EventArgs e)
+        private void EmoteTopRightBtn_Click(object sender, EventArgs e)
         {
-            controller.emote(1);
+            Controller.Emote(1);
         }
 
-        private void emoteBottomRightBtn_Click(object sender, EventArgs e)
+        private void EmoteBottomRightBtn_Click(object sender, EventArgs e)
         {
-            controller.emote(3);
+            Controller.Emote(3);
         }
 
-        private void emoteTopLeftBtn_Click(object sender, EventArgs e)
+        private void EmoteTopLeftBtn_Click(object sender, EventArgs e)
         {
-            controller.emote(7);
+            Controller.Emote(7);
         }
 
-        private void emoteBottomLeftBtn_Click(object sender, EventArgs e)
+        private void EmoteBottomLeftBtn_Click(object sender, EventArgs e)
         {
-            controller.emote(5);
+            Controller.Emote(5);
         }
 
         private void LeftStickBtn_Click(object sender, EventArgs e)
         {
-            controller.clickLeftStick();
+            Controller.ClickLeftStick();
         }
 
         private void RightStickBtn_Click(object sender, EventArgs e)
         {
-            controller.clickRightStick();
+            Controller.ClickRightStick();
         }
 
         private void DupBtn_Click(object sender, EventArgs e)
         {
-            controller.clickUp();
+            Controller.ClickUp();
         }
 
         private void DrightBtn_Click(object sender, EventArgs e)
         {
-            controller.clickRight();
+            Controller.ClickRight();
         }
 
         private void DdownBtn_Click(object sender, EventArgs e)
         {
-            controller.clickDown();
+            Controller.ClickDown();
         }
 
         private void DleftBtn_Click(object sender, EventArgs e)
         {
-            controller.clickLeft();
+            Controller.ClickLeft();
         }
 
         private void LBtn_Click(object sender, EventArgs e)
         {
-            controller.clickL();
+            Controller.ClickL();
         }
 
         private void RBtn_Click(object sender, EventArgs e)
         {
-            controller.clickR();
+            Controller.ClickR();
         }
 
         private void ZLBtn_Click(object sender, EventArgs e)
         {
-            controller.clickZL();
+            Controller.ClickZL();
         }
 
         private void ZRBtn_Click(object sender, EventArgs e)
         {
-            controller.clickZR();
+            Controller.ClickZR();
         }
 
-        private void minusBtn_Click(object sender, EventArgs e)
+        private void MinusBtn_Click(object sender, EventArgs e)
         {
-            controller.clickMINUS();
+            Controller.ClickMINUS();
         }
 
-        private void plusBtn_Click(object sender, EventArgs e)
+        private void PlusBtn_Click(object sender, EventArgs e)
         {
-            controller.clickPLUS();
+            Controller.ClickPLUS();
         }
 
-        private void caputureBtn_Click(object sender, EventArgs e)
+        private void CaputureBtn_Click(object sender, EventArgs e)
         {
-            controller.clickCAPTURE();
+            Controller.ClickCAPTURE();
         }
 
         private void HomeBtn_Click(object sender, EventArgs e)
         {
-            controller.clickHOME();
+            Controller.ClickHOME();
         }
 
         private void RstickMouseUp(object sender, MouseEventArgs e)
         {
-            controller.resetRightStick();
+            Controller.ResetRightStick();
         }
 
         private void RstickUPBtn_MouseDown(object sender, MouseEventArgs e)
         {
-            controller.RstickUp();
+            Controller.RstickUp();
         }
 
         private void RstickRIGHTBtn_MouseDown(object sender, MouseEventArgs e)
         {
-            controller.RstickRight();
+            Controller.RstickRight();
         }
 
         private void RstickDOWNBtn_MouseDown(object sender, MouseEventArgs e)
         {
-            controller.RstickDown();
+            Controller.RstickDown();
         }
 
         private void RstickLEFTBtn_MouseDown(object sender, MouseEventArgs e)
         {
-            controller.RstickLeft();
+            Controller.RstickLeft();
         }
 
         private void DetachBtn_Click(object sender, EventArgs e)
         {
-            controller.detachController();
+            Controller.DetachController();
         }
 
         private void DoneAnchor0Btn_Click(object sender, EventArgs e)
         {
-            teleport.TeleportToAnchor(0);
+            Teleport.TeleportToAnchor(0);
         }
 
         private void DoneAnchor1Btn_Click(object sender, EventArgs e)
         {
-            teleport.TeleportToAnchor(1);
+            Teleport.TeleportToAnchor(1);
         }
 
         private void DoneAnchor2Btn_Click(object sender, EventArgs e)
         {
-            teleport.TeleportToAnchor(2);
+            Teleport.TeleportToAnchor(2);
         }
 
         #endregion
 
-        private void idleEmoteCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void IdleEmoteCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (idleEmoteCheckBox.Checked)
                 idleEmote = true;
@@ -1301,7 +1301,7 @@ namespace ACNHPokerCore
                 idleEmote = false;
         }
 
-        private void dropItemBox_CheckedChanged(object sender, EventArgs e)
+        private void DropItemBox_CheckedChanged(object sender, EventArgs e)
         {
             if (dropItemBox.Checked)
                 dropItem = true;
@@ -1309,7 +1309,7 @@ namespace ACNHPokerCore
                 dropItem = false;
         }
 
-        private void injectVillagerBox_CheckedChanged(object sender, EventArgs e)
+        private void InjectVillagerBox_CheckedChanged(object sender, EventArgs e)
         {
             if (injectVillagerBox.Checked)
                 injectVillager = true;
@@ -1317,7 +1317,7 @@ namespace ACNHPokerCore
                 injectVillager = false;
         }
 
-        private void restoreDodobox_CheckedChanged(object sender, EventArgs e)
+        private void RestoreDodobox_CheckedChanged(object sender, EventArgs e)
         {
             if (restoreDodobox.Checked)
                 restoreDodo = true;
@@ -1337,10 +1337,10 @@ namespace ACNHPokerCore
                 standaloneThread = null;
             }
 
-            this.abortAll();
+            this.AbortAll();
 
             WriteLog(">> Restore Sequence Aborted! <<");
-            unLockControl();
+            UnLockControl();
             dodoCode.Text = "";
             onlineLabel.Text = "";
             idleNum = 0;
@@ -1383,7 +1383,7 @@ namespace ACNHPokerCore
             WriteLog($"Create/Edit a \"Custom Rewards\" on Twitch to get the ID!", true);
         }
 
-        private void itemDisplayBtn_Click(object sender, EventArgs e)
+        private void ItemDisplayBtn_Click(object sender, EventArgs e)
         {
             if (itemDisplay == null)
             {
@@ -1398,7 +1398,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void standaloneStart_Click(object sender, EventArgs e)
+        private void StandaloneStart_Click(object sender, EventArgs e)
         {
             if (standaloneStart.Tag.ToString().Equals("Start"))
             {
@@ -1409,7 +1409,7 @@ namespace ACNHPokerCore
                 cts = new CancellationTokenSource();
                 CancellationToken token = cts.Token;
 
-                standaloneThread = new Thread(delegate () { standaloneLoop(token); });
+                standaloneThread = new Thread(delegate () { StandaloneLoop(token); });
                 standaloneThread.Start();
             }
             else
@@ -1421,7 +1421,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private int GetVisitorNumber()
+        private static int GetVisitorNumber()
         {
             string[] namelist = new string[8];
             int num = 0;
@@ -1436,7 +1436,7 @@ namespace ACNHPokerCore
             return num;
         }
 
-        private void standaloneLoop(CancellationToken token)
+        private void StandaloneLoop(CancellationToken token)
         {
             bool init = true;
             idleNum = 0;
@@ -1449,37 +1449,37 @@ namespace ACNHPokerCore
                     return;
                 }
 
-                teleport.OverworldState state = teleport.GetOverworldState();
+                Teleport.OverworldState state = Teleport.GetOverworldState();
                 WriteLog(state.ToString() + " " + idleNum, true);
 
                 if (CheckOnlineStatus() == true)
                 {
                     if (init)
                     {
-                        DisplayDodo(controller.setupDodo());
+                        DisplayDodo(Controller.SetupDodo());
                         init = false;
                     }
 
-                    if (state == teleport.OverworldState.Loading || state == teleport.OverworldState.UserArriveLeavingOrTitleScreen)
+                    if (state == Teleport.OverworldState.Loading || state == Teleport.OverworldState.UserArriveLeavingOrTitleScreen)
                     {
                         idleNum = 0;
                         wasLoading = true;
 
-                        newVisitor = getVisitorName();
+                        newVisitor = GetVisitorName();
 
                         if (!newVisitor.Equals(string.Empty))
                         {
                             CreateLog(newVisitor);
                             Thread.Sleep(70000);
                             Utilities.sendBlankName(s);
-                            state = teleport.GetOverworldState();
+                            state = Teleport.GetOverworldState();
                         }
                     }
 
                     if (stopWatch != null)
                     {
                         int visitorNum = GetVisitorNumber();
-                        if (resetSession && stopWatch.isDone())
+                        if (resetSession && stopWatch.IsDone())
                         {
                             if (visitorNum >= 1)
                             {
@@ -1520,12 +1520,12 @@ namespace ACNHPokerCore
                                 HardRestore(token);
                                 break;
                             }
-                            if (teleport.GetLocationState() == teleport.LocationState.Announcement)
+                            if (Teleport.GetLocationState() == Teleport.LocationState.Announcement)
                             {
                                 WriteLog("In Announcement", true);
                                 if (!HoldingL)
                                 {
-                                    controller.pressL();
+                                    Controller.PressL();
                                     HoldingL = true;
                                 }
                                 retry = 0;
@@ -1534,27 +1534,27 @@ namespace ACNHPokerCore
                             {
                                 WriteLog("Waiting for Overworld", true);
                             }
-                            controller.clickA();
+                            Controller.ClickA();
                             Thread.Sleep(3000);
                             retry++;
                         }
-                        while (teleport.GetOverworldState() != teleport.OverworldState.OverworldOrInAirport);
+                        while (Teleport.GetOverworldState() != Teleport.OverworldState.OverworldOrInAirport);
 
                         //Thread.Sleep(2000);
-                        controller.releaseL();
+                        Controller.ReleaseL();
                         HoldingL = false;
                         WriteLog("[Warning] Start Normal Restore", true);
                         WriteLog("Please wait for the bot to finish the sequence.", true);
                         NormalRestore(token);
 
-                        unLockControl();
+                        UnLockControl();
 
                         if (stopWatch != null && resetSession)
                         {
                             this.Invoke((MethodInvoker)delegate
                             {
-                                stopWatch.reset();
-                                stopWatch.start();
+                                stopWatch.Reset();
+                                stopWatch.Start();
                             });
                         }
 
@@ -1567,7 +1567,7 @@ namespace ACNHPokerCore
                     return;
                 }
 
-                if (state != teleport.OverworldState.Loading && state != teleport.OverworldState.UserArriveLeavingOrTitleScreen)
+                if (state != Teleport.OverworldState.Loading && state != Teleport.OverworldState.UserArriveLeavingOrTitleScreen)
                 {
                     if (MyPubSub != null)
                     {
@@ -1580,9 +1580,9 @@ namespace ACNHPokerCore
                                     if (Utilities.hasItemInFirstSlot(s))
                                     {
                                         if (lastOrderIsRecipe)
-                                            controller.dropRecipe();
+                                            Controller.DropRecipe();
                                         else
-                                            controller.dropItem();
+                                            Controller.DropItem();
                                     }
                                     wasLoading = false;
                                 }
@@ -1593,32 +1593,32 @@ namespace ACNHPokerCore
                                 {
                                     _ = DropItem(PubSub.DropOrderList.ElementAt(0));
                                     if (PubSub.DropOrderList.Count > 0)
-                                        state = teleport.OverworldState.ItemDropping;
+                                        state = Teleport.OverworldState.ItemDropping;
                                 }
                             }
 
                             if (PubSub.DropOrderList.Count > 0)
-                                state = teleport.OverworldState.ItemDropping;
+                                state = Teleport.OverworldState.ItemDropping;
                         }
 
                         if (injectVillager)
                         {
                             if (PubSub.VillagerOrderList.Count <= 0)
                                 Debug.Print("No Villager Order");
-                            else if (state != teleport.OverworldState.ItemDropping && idleNum >= 2)
+                            else if (state != Teleport.OverworldState.ItemDropping && idleNum >= 2)
                             {
                                 _ = InjectVillager(PubSub.VillagerOrderList.ElementAt(0));
                             }
                         }
                     }
 
-                    if (idleEmote && state == teleport.OverworldState.OverworldOrInAirport)
+                    if (idleEmote && state == Teleport.OverworldState.OverworldOrInAirport)
                     {
                         if (idleNum >= 10 && idleNum % 10 == 0)
                         {
-                            Random random = new Random();
+                            Random random = new();
                             int v = random.Next(0, 8);
-                            controller.emote(v);
+                            Controller.Emote(v);
                         }
                     }
                 }
@@ -1639,7 +1639,7 @@ namespace ACNHPokerCore
             } while (standaloneRunning);
         }
 
-        private string getVisitorName()
+        private static string GetVisitorName()
         {
             byte[] b = Utilities.getVisitorName(s);
             if (b == null)
@@ -1651,44 +1651,40 @@ namespace ACNHPokerCore
             return tempName.Replace("\0", string.Empty);
         }
 
-        private void GetVisitorList()
+        private static void GetVisitorList()
         {
             string[] namelist = new string[8];
             int num = 0;
-            using (StreamWriter sw = File.CreateText(Utilities.CurrentVisitorPath))
+            using StreamWriter sw = File.CreateText(Utilities.CurrentVisitorPath);
+            for (int i = 0; i < 8; i++)
             {
-                for (int i = 0; i < 8; i++)
+                if (i == 0)
+                    continue;
+                namelist[i] = Utilities.GetVisitorName(s, null, i);
+                if (namelist[i].Equals(String.Empty))
+                    sw.WriteLine("[Empty]");
+                else
                 {
-                    if (i == 0)
-                        continue;
-                    namelist[i] = Utilities.GetVisitorName(s, null, i);
-                    if (namelist[i].Equals(String.Empty))
-                        sw.WriteLine("[Empty]");
-                    else
-                    {
-                        sw.WriteLine(namelist[i]);
-                        num++;
-                    }
+                    sw.WriteLine(namelist[i]);
+                    num++;
                 }
-                sw.WriteLine("Num of Visitor : " + num);
-                /*if (num >= 7)
-                {
-                    sw.WriteLine(" [Island Full] ");
-                }*/
             }
+            sw.WriteLine("Num of Visitor : " + num);
+            /*if (num >= 7)
+            {
+                sw.WriteLine(" [Island Full] ");
+            }*/
             //Debug.Print("Visitor Update");
         }
 
-        private void CreateLog(string newVisitor)
+        private static void CreateLog(string newVisitor)
         {
             if (!File.Exists(Utilities.VisitorLogPath))
             {
                 string logheader = "Timestamp" + "," + "Name";
 
-                using (StreamWriter sw = File.CreateText(Utilities.VisitorLogPath))
-                {
-                    sw.WriteLine(logheader);
-                }
+                using StreamWriter sw = File.CreateText(Utilities.VisitorLogPath);
+                sw.WriteLine(logheader);
             }
 
             DateTime localDate = DateTime.Now;
@@ -1726,7 +1722,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void dodo_Move(object sender, EventArgs e)
+        private void Dodo_Move(object sender, EventArgs e)
         {
             if (stopWatch != null)
             {
@@ -1742,164 +1738,164 @@ namespace ACNHPokerCore
         }
 
         #region Timer Control
-        private void min1Btn_Click(object sender, EventArgs e)
+        private void Min1Btn_Click(object sender, EventArgs e)
         {
             if (stopWatch != null)
             {
-                stopWatch.set(1, stopWatch.seconds);
+                stopWatch.Set(1, stopWatch.seconds);
             }
         }
 
-        private void min3Btn_Click(object sender, EventArgs e)
+        private void Min3Btn_Click(object sender, EventArgs e)
         {
             if (stopWatch != null)
             {
-                stopWatch.set(3, stopWatch.seconds);
+                stopWatch.Set(3, stopWatch.seconds);
             }
         }
 
-        private void min5Btn_Click(object sender, EventArgs e)
+        private void Min5Btn_Click(object sender, EventArgs e)
         {
             if (stopWatch != null)
             {
-                stopWatch.set(5, stopWatch.seconds);
+                stopWatch.Set(5, stopWatch.seconds);
             }
         }
 
-        private void min10Btn_Click(object sender, EventArgs e)
+        private void Min10Btn_Click(object sender, EventArgs e)
         {
             if (stopWatch != null)
             {
-                stopWatch.set(10, stopWatch.seconds);
+                stopWatch.Set(10, stopWatch.seconds);
             }
         }
 
-        private void min15Btn_Click(object sender, EventArgs e)
+        private void Min15Btn_Click(object sender, EventArgs e)
         {
             if (stopWatch != null)
             {
-                stopWatch.set(15, stopWatch.seconds);
+                stopWatch.Set(15, stopWatch.seconds);
             }
         }
 
-        private void sce0Btn_Click(object sender, EventArgs e)
+        private void Sce0Btn_Click(object sender, EventArgs e)
         {
             if (stopWatch != null)
             {
-                stopWatch.set(stopWatch.minutes, 0);
+                stopWatch.Set(stopWatch.minutes, 0);
             }
         }
 
-        private void sce30Btn_Click(object sender, EventArgs e)
+        private void Sce30Btn_Click(object sender, EventArgs e)
         {
             if (stopWatch != null)
             {
-                stopWatch.set(stopWatch.minutes, 30);
+                stopWatch.Set(stopWatch.minutes, 30);
             }
         }
 
-        private void minMinus1Btn_Click(object sender, EventArgs e)
+        private void MinMinus1Btn_Click(object sender, EventArgs e)
         {
             if (stopWatch != null)
             {
-                stopWatch.minusMin(1);
+                stopWatch.MinusMin(1);
             }
         }
 
-        private void minPlus1Btn_Click(object sender, EventArgs e)
+        private void MinPlus1Btn_Click(object sender, EventArgs e)
         {
             if (stopWatch != null)
             {
-                stopWatch.addMin(1);
+                stopWatch.AddMin(1);
             }
         }
 
-        private void minMinus5Btn_Click(object sender, EventArgs e)
+        private void MinMinus5Btn_Click(object sender, EventArgs e)
         {
             if (stopWatch != null)
             {
-                stopWatch.minusMin(5);
+                stopWatch.MinusMin(5);
             }
         }
 
-        private void minPlus5Btn_Click(object sender, EventArgs e)
+        private void MinPlus5Btn_Click(object sender, EventArgs e)
         {
             if (stopWatch != null)
             {
-                stopWatch.addMin(5);
+                stopWatch.AddMin(5);
             }
         }
 
-        private void secMinus1Btn_Click(object sender, EventArgs e)
+        private void SecMinus1Btn_Click(object sender, EventArgs e)
         {
             if (stopWatch != null)
             {
-                stopWatch.minusSec(1);
+                stopWatch.MinusSec(1);
             }
         }
 
-        private void secPlus1Btn_Click(object sender, EventArgs e)
+        private void SecPlus1Btn_Click(object sender, EventArgs e)
         {
             if (stopWatch != null)
             {
-                stopWatch.addSec(1);
+                stopWatch.AddSec(1);
             }
         }
 
-        private void secMinus5Btn_Click(object sender, EventArgs e)
+        private void SecMinus5Btn_Click(object sender, EventArgs e)
         {
             if (stopWatch != null)
             {
-                stopWatch.minusSec(5);
+                stopWatch.MinusSec(5);
             }
         }
 
-        private void secPlus5Btn_Click(object sender, EventArgs e)
+        private void SecPlus5Btn_Click(object sender, EventArgs e)
         {
             if (stopWatch != null)
             {
-                stopWatch.addSec(5);
+                stopWatch.AddSec(5);
             }
         }
 
-        private void timerStartBtn_Click(object sender, EventArgs e)
+        private void TimerStartBtn_Click(object sender, EventArgs e)
         {
             if (stopWatch != null)
             {
                 timerSettingPanel.Enabled = false;
-                stopWatch.start();
+                stopWatch.Start();
             }
         }
 
-        private void timerPauseBtn_Click(object sender, EventArgs e)
+        private void TimerPauseBtn_Click(object sender, EventArgs e)
         {
             if (stopWatch != null)
             {
-                stopWatch.pause();
+                stopWatch.Pause();
             }
         }
 
-        private void timerResetBtn_Click(object sender, EventArgs e)
+        private void TimerResetBtn_Click(object sender, EventArgs e)
         {
             if (stopWatch != null)
             {
                 timerSettingPanel.Enabled = true;
-                stopWatch.reset();
+                stopWatch.Reset();
             }
         }
         #endregion
 
         #region Keyboard Controller
-        private void dodo_KeyDown(object sender, KeyEventArgs e)
+        private void Dodo_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.R)
-                controller.clickMINUS();
+                Controller.ClickMINUS();
             else if (e.KeyCode == Keys.Y)
-                controller.clickPLUS();
+                Controller.ClickPLUS();
             else if (e.KeyCode == Keys.Q)
-                controller.clickZL();
+                Controller.ClickZL();
             else if (e.KeyCode == Keys.O)
-                controller.clickZR();
+                Controller.ClickZR();
 
             if (e.KeyCode == Keys.I)
                 I = true;
@@ -1919,7 +1915,7 @@ namespace ACNHPokerCore
                 D = true;
         }
 
-        private void dodo_KeyUp(object sender, KeyEventArgs e)
+        private void Dodo_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.I)
                 I = false;
@@ -1939,7 +1935,7 @@ namespace ACNHPokerCore
                 D = false;
         }
 
-        private void controllerTimer_Tick(object sender, EventArgs e)
+        private void ControllerTimer_Tick(object sender, EventArgs e)
         {
             if (!W && !A && !S && !D)
             {
@@ -1948,7 +1944,7 @@ namespace ACNHPokerCore
                     currentDirection = MovingDirection.Null;
                     resetted = true;
                     //Debug.Print("Reset Stick");
-                    controller.resetLeftStick();
+                    Controller.ResetLeftStick();
                 }
             }
             else if (W && D)
@@ -1958,7 +1954,7 @@ namespace ACNHPokerCore
                     currentDirection = MovingDirection.UpRight;
                     resetted = false;
                     //Debug.Print("TopRight");
-                    controller.LstickTopRight();
+                    Controller.LstickTopRight();
                 }
             }
             else if (W && A)
@@ -1968,7 +1964,7 @@ namespace ACNHPokerCore
                     currentDirection = MovingDirection.UpLeft;
                     resetted = false;
                     //Debug.Print("TopLeft");
-                    controller.LstickTopLeft();
+                    Controller.LstickTopLeft();
                 }
             }
             else if (W)
@@ -1978,7 +1974,7 @@ namespace ACNHPokerCore
                     currentDirection = MovingDirection.Up;
                     resetted = false;
                     //Debug.Print("Up");
-                    controller.LstickUp();
+                    Controller.LstickUp();
                 }
             }
             else if (S && D)
@@ -1988,7 +1984,7 @@ namespace ACNHPokerCore
                     currentDirection = MovingDirection.DownRight;
                     resetted = false;
                     //Debug.Print("BottomRight");
-                    controller.LstickBottomRight();
+                    Controller.LstickBottomRight();
                 }
             }
             else if (S && A)
@@ -1998,7 +1994,7 @@ namespace ACNHPokerCore
                     currentDirection = MovingDirection.DownLeft;
                     resetted = false;
                     //Debug.Print("BottomLeft");
-                    controller.LstickBottomLeft();
+                    Controller.LstickBottomLeft();
                 }
             }
             else if (S)
@@ -2008,7 +2004,7 @@ namespace ACNHPokerCore
                     currentDirection = MovingDirection.Down;
                     resetted = false;
                     //Debug.Print("Down");
-                    controller.LstickDown();
+                    Controller.LstickDown();
                 }
             }
             else if (A)
@@ -2018,7 +2014,7 @@ namespace ACNHPokerCore
                     currentDirection = MovingDirection.Left;
                     resetted = false;
                     //Debug.Print("Left");
-                    controller.LstickLeft();
+                    Controller.LstickLeft();
                 }
             }
             else if (D)
@@ -2028,7 +2024,7 @@ namespace ACNHPokerCore
                     currentDirection = MovingDirection.Right;
                     resetted = false;
                     //Debug.Print("Right");
-                    controller.LstickRight();
+                    Controller.LstickRight();
                 }
             }
 
@@ -2038,7 +2034,7 @@ namespace ACNHPokerCore
                 {
                     holdingI = true;
                     //Debug.Print("Press X");
-                    controller.pressX();
+                    Controller.PressX();
                 }
             }
             else if (!I)
@@ -2047,7 +2043,7 @@ namespace ACNHPokerCore
                 {
                     holdingI = false;
                     //Debug.Print("Release X");
-                    controller.releaseX();
+                    Controller.ReleaseX();
                 }
             }
 
@@ -2057,7 +2053,7 @@ namespace ACNHPokerCore
                 {
                     holdingJ = true;
                     //Debug.Print("Press Y");
-                    controller.pressY();
+                    Controller.PressY();
                 }
             }
             else if (!J)
@@ -2066,7 +2062,7 @@ namespace ACNHPokerCore
                 {
                     holdingJ = false;
                     //Debug.Print("Release Y");
-                    controller.releaseY();
+                    Controller.ReleaseY();
                 }
             }
 
@@ -2076,7 +2072,7 @@ namespace ACNHPokerCore
                 {
                     holdingK = true;
                     //Debug.Print("Press B");
-                    controller.pressB();
+                    Controller.PressB();
                 }
             }
             else if (!K)
@@ -2085,7 +2081,7 @@ namespace ACNHPokerCore
                 {
                     holdingK = false;
                     //Debug.Print("Release B");
-                    controller.releaseB();
+                    Controller.ReleaseB();
                 }
             }
 
@@ -2095,7 +2091,7 @@ namespace ACNHPokerCore
                 {
                     holdingL = true;
                     //Debug.Print("Press A");
-                    controller.pressA();
+                    Controller.PressA();
                 }
             }
             else if (!L)
@@ -2104,20 +2100,20 @@ namespace ACNHPokerCore
                 {
                     holdingL = false;
                     //Debug.Print("Release A");
-                    controller.releaseA();
+                    Controller.ReleaseA();
                 }
             }
         }
         #endregion
 
-        private void clearInvBtn_Click(object sender, EventArgs e)
+        private void ClearInvBtn_Click(object sender, EventArgs e)
         {
             Utilities.DeleteSlot(s, null, 0);
             WriteLog("First inventory slot cleared!", true);
             WriteLog("Please remember to reset your cursor to the first inventory slot for the drop bot to function properly!", true);
         }
 
-        private void sessionBox_CheckedChanged(object sender, EventArgs e)
+        private void SessionBox_CheckedChanged(object sender, EventArgs e)
         {
             resetSession = sessionBox.Checked;
         }

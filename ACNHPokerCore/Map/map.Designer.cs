@@ -1,7 +1,7 @@
 ﻿
 namespace ACNHPokerCore
 {
-    partial class map
+    partial class Map
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace ACNHPokerCore
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(map));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Map));
             this.xCoordinate = new System.Windows.Forms.RichTextBox();
             this.yCoordinate = new System.Windows.Forms.RichTextBox();
             this.moveRightBtn = new System.Windows.Forms.Button();
@@ -53,7 +53,7 @@ namespace ACNHPokerCore
             this.flowerModeBtn = new System.Windows.Forms.Button();
             this.itemSearchBox = new System.Windows.Forms.RichTextBox();
             this.BtnPanel = new System.Windows.Forms.Panel();
-            this.floor1 = new ACNHPokerCore.floorSlot();
+            this.floor1 = new ACNHPokerCore.FloorSlot();
             this.floorRightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,54 +61,54 @@ namespace ACNHPokerCore
             this.flag20ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flag00ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flag00To04ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.floor2 = new ACNHPokerCore.floorSlot();
-            this.floor3 = new ACNHPokerCore.floorSlot();
-            this.floor8 = new ACNHPokerCore.floorSlot();
-            this.floor9 = new ACNHPokerCore.floorSlot();
-            this.floor10 = new ACNHPokerCore.floorSlot();
-            this.floor15 = new ACNHPokerCore.floorSlot();
-            this.floor16 = new ACNHPokerCore.floorSlot();
-            this.floor17 = new ACNHPokerCore.floorSlot();
-            this.floor22 = new ACNHPokerCore.floorSlot();
-            this.floor23 = new ACNHPokerCore.floorSlot();
-            this.floor24 = new ACNHPokerCore.floorSlot();
-            this.floor29 = new ACNHPokerCore.floorSlot();
-            this.floor30 = new ACNHPokerCore.floorSlot();
-            this.floor31 = new ACNHPokerCore.floorSlot();
-            this.floor36 = new ACNHPokerCore.floorSlot();
-            this.floor37 = new ACNHPokerCore.floorSlot();
-            this.floor38 = new ACNHPokerCore.floorSlot();
-            this.floor4 = new ACNHPokerCore.floorSlot();
-            this.floor5 = new ACNHPokerCore.floorSlot();
-            this.floor49 = new ACNHPokerCore.floorSlot();
-            this.floor6 = new ACNHPokerCore.floorSlot();
-            this.floor48 = new ACNHPokerCore.floorSlot();
-            this.floor11 = new ACNHPokerCore.floorSlot();
-            this.floor47 = new ACNHPokerCore.floorSlot();
-            this.floor12 = new ACNHPokerCore.floorSlot();
-            this.floor46 = new ACNHPokerCore.floorSlot();
-            this.floor13 = new ACNHPokerCore.floorSlot();
-            this.floor45 = new ACNHPokerCore.floorSlot();
-            this.floor18 = new ACNHPokerCore.floorSlot();
-            this.floor44 = new ACNHPokerCore.floorSlot();
-            this.floor19 = new ACNHPokerCore.floorSlot();
-            this.floor43 = new ACNHPokerCore.floorSlot();
-            this.floor20 = new ACNHPokerCore.floorSlot();
-            this.floor42 = new ACNHPokerCore.floorSlot();
-            this.floor25 = new ACNHPokerCore.floorSlot();
-            this.floor35 = new ACNHPokerCore.floorSlot();
-            this.floor26 = new ACNHPokerCore.floorSlot();
-            this.floor28 = new ACNHPokerCore.floorSlot();
-            this.floor27 = new ACNHPokerCore.floorSlot();
-            this.floor21 = new ACNHPokerCore.floorSlot();
-            this.floor32 = new ACNHPokerCore.floorSlot();
-            this.floor14 = new ACNHPokerCore.floorSlot();
-            this.floor33 = new ACNHPokerCore.floorSlot();
-            this.floor7 = new ACNHPokerCore.floorSlot();
-            this.floor34 = new ACNHPokerCore.floorSlot();
-            this.floor41 = new ACNHPokerCore.floorSlot();
-            this.floor39 = new ACNHPokerCore.floorSlot();
-            this.floor40 = new ACNHPokerCore.floorSlot();
+            this.floor2 = new ACNHPokerCore.FloorSlot();
+            this.floor3 = new ACNHPokerCore.FloorSlot();
+            this.floor8 = new ACNHPokerCore.FloorSlot();
+            this.floor9 = new ACNHPokerCore.FloorSlot();
+            this.floor10 = new ACNHPokerCore.FloorSlot();
+            this.floor15 = new ACNHPokerCore.FloorSlot();
+            this.floor16 = new ACNHPokerCore.FloorSlot();
+            this.floor17 = new ACNHPokerCore.FloorSlot();
+            this.floor22 = new ACNHPokerCore.FloorSlot();
+            this.floor23 = new ACNHPokerCore.FloorSlot();
+            this.floor24 = new ACNHPokerCore.FloorSlot();
+            this.floor29 = new ACNHPokerCore.FloorSlot();
+            this.floor30 = new ACNHPokerCore.FloorSlot();
+            this.floor31 = new ACNHPokerCore.FloorSlot();
+            this.floor36 = new ACNHPokerCore.FloorSlot();
+            this.floor37 = new ACNHPokerCore.FloorSlot();
+            this.floor38 = new ACNHPokerCore.FloorSlot();
+            this.floor4 = new ACNHPokerCore.FloorSlot();
+            this.floor5 = new ACNHPokerCore.FloorSlot();
+            this.floor49 = new ACNHPokerCore.FloorSlot();
+            this.floor6 = new ACNHPokerCore.FloorSlot();
+            this.floor48 = new ACNHPokerCore.FloorSlot();
+            this.floor11 = new ACNHPokerCore.FloorSlot();
+            this.floor47 = new ACNHPokerCore.FloorSlot();
+            this.floor12 = new ACNHPokerCore.FloorSlot();
+            this.floor46 = new ACNHPokerCore.FloorSlot();
+            this.floor13 = new ACNHPokerCore.FloorSlot();
+            this.floor45 = new ACNHPokerCore.FloorSlot();
+            this.floor18 = new ACNHPokerCore.FloorSlot();
+            this.floor44 = new ACNHPokerCore.FloorSlot();
+            this.floor19 = new ACNHPokerCore.FloorSlot();
+            this.floor43 = new ACNHPokerCore.FloorSlot();
+            this.floor20 = new ACNHPokerCore.FloorSlot();
+            this.floor42 = new ACNHPokerCore.FloorSlot();
+            this.floor25 = new ACNHPokerCore.FloorSlot();
+            this.floor35 = new ACNHPokerCore.FloorSlot();
+            this.floor26 = new ACNHPokerCore.FloorSlot();
+            this.floor28 = new ACNHPokerCore.FloorSlot();
+            this.floor27 = new ACNHPokerCore.FloorSlot();
+            this.floor21 = new ACNHPokerCore.FloorSlot();
+            this.floor32 = new ACNHPokerCore.FloorSlot();
+            this.floor14 = new ACNHPokerCore.FloorSlot();
+            this.floor33 = new ACNHPokerCore.FloorSlot();
+            this.floor7 = new ACNHPokerCore.FloorSlot();
+            this.floor34 = new ACNHPokerCore.FloorSlot();
+            this.floor41 = new ACNHPokerCore.FloorSlot();
+            this.floor39 = new ACNHPokerCore.FloorSlot();
+            this.floor40 = new ACNHPokerCore.FloorSlot();
             this.saveMap = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.saveTopngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fillRemainBtn = new System.Windows.Forms.Button();
@@ -126,7 +126,6 @@ namespace ACNHPokerCore
             this.bulkSpawnBtn = new System.Windows.Forms.Button();
             this.fetchMapBtn = new System.Windows.Forms.Button();
             this.reAnchorBtn = new System.Windows.Forms.Button();
-            this.saveDebug = new System.Windows.Forms.Button();
             this.clearGridBtn = new System.Windows.Forms.Button();
             this.ClearCopiedAreaBtn = new System.Windows.Forms.Button();
             this.FlagTextbox = new ACNHPokerCore.HexUpDown();
@@ -168,6 +167,7 @@ namespace ACNHPokerCore
             this.HexTextbox = new ACNHPokerCore.HexUpDown();
             this.selectedItem = new ACNHPokerCore.inventorySlot();
             this.SizeBox = new System.Windows.Forms.RichTextBox();
+            this.ext = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fieldGridView)).BeginInit();
             this.BtnPanel.SuspendLayout();
             this.floorRightClick.SuspendLayout();
@@ -228,7 +228,7 @@ namespace ACNHPokerCore
             this.moveRightBtn.TabIndex = 139;
             this.moveRightBtn.Text = "🠊";
             this.moveRightBtn.UseVisualStyleBackColor = false;
-            this.moveRightBtn.Click += new System.EventHandler(this.moveRightBtn_Click);
+            this.moveRightBtn.Click += new System.EventHandler(this.MoveRightBtn_Click);
             // 
             // moveLeftBtn
             // 
@@ -245,7 +245,7 @@ namespace ACNHPokerCore
             this.moveLeftBtn.TabIndex = 140;
             this.moveLeftBtn.Text = "🠈";
             this.moveLeftBtn.UseVisualStyleBackColor = false;
-            this.moveLeftBtn.Click += new System.EventHandler(this.moveLeftBtn_Click);
+            this.moveLeftBtn.Click += new System.EventHandler(this.MoveLeftBtn_Click);
             // 
             // moveUpBtn
             // 
@@ -263,7 +263,7 @@ namespace ACNHPokerCore
             this.moveUpBtn.Text = "🠉";
             this.moveUpBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.moveUpBtn.UseVisualStyleBackColor = false;
-            this.moveUpBtn.Click += new System.EventHandler(this.moveUpBtn_Click);
+            this.moveUpBtn.Click += new System.EventHandler(this.MoveUpBtn_Click);
             // 
             // moveDownBtn
             // 
@@ -281,7 +281,7 @@ namespace ACNHPokerCore
             this.moveDownBtn.Text = "🠋";
             this.moveDownBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.moveDownBtn.UseVisualStyleBackColor = false;
-            this.moveDownBtn.Click += new System.EventHandler(this.moveDownBtn_Click);
+            this.moveDownBtn.Click += new System.EventHandler(this.MoveDownBtn_Click);
             // 
             // moveUpRightBtn
             // 
@@ -298,7 +298,7 @@ namespace ACNHPokerCore
             this.moveUpRightBtn.TabIndex = 143;
             this.moveUpRightBtn.Text = "🡵";
             this.moveUpRightBtn.UseVisualStyleBackColor = false;
-            this.moveUpRightBtn.Click += new System.EventHandler(this.moveUpRightBtn_Click);
+            this.moveUpRightBtn.Click += new System.EventHandler(this.MoveUpRightBtn_Click);
             // 
             // moveUpLeftBtn
             // 
@@ -315,7 +315,7 @@ namespace ACNHPokerCore
             this.moveUpLeftBtn.TabIndex = 144;
             this.moveUpLeftBtn.Text = "🡴";
             this.moveUpLeftBtn.UseVisualStyleBackColor = false;
-            this.moveUpLeftBtn.Click += new System.EventHandler(this.moveUpLeftBtn_Click);
+            this.moveUpLeftBtn.Click += new System.EventHandler(this.MoveUpLeftBtn_Click);
             // 
             // moveDownRightBtn
             // 
@@ -332,7 +332,7 @@ namespace ACNHPokerCore
             this.moveDownRightBtn.TabIndex = 145;
             this.moveDownRightBtn.Text = "🡶";
             this.moveDownRightBtn.UseVisualStyleBackColor = false;
-            this.moveDownRightBtn.Click += new System.EventHandler(this.moveDownRightBtn_Click);
+            this.moveDownRightBtn.Click += new System.EventHandler(this.MoveDownRightBtn_Click);
             // 
             // moveDownLeftBtn
             // 
@@ -349,7 +349,7 @@ namespace ACNHPokerCore
             this.moveDownLeftBtn.TabIndex = 146;
             this.moveDownLeftBtn.Text = "🡷";
             this.moveDownLeftBtn.UseVisualStyleBackColor = false;
-            this.moveDownLeftBtn.Click += new System.EventHandler(this.moveDownLeftBtn_Click);
+            this.moveDownLeftBtn.Click += new System.EventHandler(this.MoveDownLeftBtn_Click);
             // 
             // btnToolTip
             // 
@@ -377,8 +377,8 @@ namespace ACNHPokerCore
             this.fieldGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.fieldGridView.Size = new System.Drawing.Size(345, 455);
             this.fieldGridView.TabIndex = 147;
-            this.fieldGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.fieldGridView_CellFormatting);
-            this.fieldGridView.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.fieldGridView_CellMouseUp);
+            this.fieldGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.FieldGridView_CellFormatting);
+            this.fieldGridView.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.FieldGridView_CellMouseUp);
             // 
             // IdTextbox
             // 
@@ -442,7 +442,7 @@ namespace ACNHPokerCore
             this.favModeBtn.TabIndex = 171;
             this.favModeBtn.Text = "Favorite";
             this.favModeBtn.UseVisualStyleBackColor = false;
-            this.favModeBtn.Click += new System.EventHandler(this.favModeBtn_Click);
+            this.favModeBtn.Click += new System.EventHandler(this.FavModeBtn_Click);
             // 
             // itemModeBtn
             // 
@@ -457,7 +457,7 @@ namespace ACNHPokerCore
             this.itemModeBtn.TabIndex = 168;
             this.itemModeBtn.Text = "Item";
             this.itemModeBtn.UseVisualStyleBackColor = false;
-            this.itemModeBtn.Click += new System.EventHandler(this.itemModeBtn_Click);
+            this.itemModeBtn.Click += new System.EventHandler(this.ItemModeBtn_Click);
             // 
             // recipeModeBtn
             // 
@@ -472,7 +472,7 @@ namespace ACNHPokerCore
             this.recipeModeBtn.TabIndex = 169;
             this.recipeModeBtn.Text = "Recipe";
             this.recipeModeBtn.UseVisualStyleBackColor = false;
-            this.recipeModeBtn.Click += new System.EventHandler(this.recipeModeBtn_Click);
+            this.recipeModeBtn.Click += new System.EventHandler(this.RecipeModeBtn_Click);
             // 
             // flowerModeBtn
             // 
@@ -487,22 +487,22 @@ namespace ACNHPokerCore
             this.flowerModeBtn.TabIndex = 170;
             this.flowerModeBtn.Text = "Flower";
             this.flowerModeBtn.UseVisualStyleBackColor = false;
-            this.flowerModeBtn.Click += new System.EventHandler(this.flowerModeBtn_Click);
+            this.flowerModeBtn.Click += new System.EventHandler(this.FlowerModeBtn_Click);
             // 
             // itemSearchBox
             // 
             this.itemSearchBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
             this.itemSearchBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.itemSearchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.itemSearchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.itemSearchBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(118)))), ((int)(((byte)(125)))));
             this.itemSearchBox.Location = new System.Drawing.Point(856, 28);
             this.itemSearchBox.Multiline = false;
             this.itemSearchBox.Name = "itemSearchBox";
-            this.itemSearchBox.Size = new System.Drawing.Size(220, 21);
+            this.itemSearchBox.Size = new System.Drawing.Size(220, 23);
             this.itemSearchBox.TabIndex = 172;
-            this.itemSearchBox.Text = "Search";
-            this.itemSearchBox.Click += new System.EventHandler(this.itemSearchBox_Click);
-            this.itemSearchBox.TextChanged += new System.EventHandler(this.itemSearchBox_TextChanged);
+            this.itemSearchBox.Text = "Search...";
+            this.itemSearchBox.Click += new System.EventHandler(this.ItemSearchBox_Click);
+            this.itemSearchBox.TextChanged += new System.EventHandler(this.ItemSearchBox_TextChanged);
             // 
             // BtnPanel
             // 
@@ -593,8 +593,8 @@ namespace ACNHPokerCore
             this.floor1.Tag = "0";
             this.floor1.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor1.UseVisualStyleBackColor = false;
-            this.floor1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor1.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor1.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floorRightClick
             // 
@@ -611,7 +611,7 @@ namespace ACNHPokerCore
             this.floorRightClick.Name = "floorRightClick";
             this.floorRightClick.ShowImageMargin = false;
             this.floorRightClick.Size = new System.Drawing.Size(134, 136);
-            this.floorRightClick.Opening += new System.ComponentModel.CancelEventHandler(this.floorRightClick_Opening);
+            this.floorRightClick.Opening += new System.ComponentModel.CancelEventHandler(this.FloorRightClick_Opening);
             // 
             // copyItemToolStripMenuItem
             // 
@@ -619,7 +619,7 @@ namespace ACNHPokerCore
             this.copyItemToolStripMenuItem.Name = "copyItemToolStripMenuItem";
             this.copyItemToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.copyItemToolStripMenuItem.Text = "Copy Item";
-            this.copyItemToolStripMenuItem.Click += new System.EventHandler(this.copyItemToolStripMenuItem_Click);
+            this.copyItemToolStripMenuItem.Click += new System.EventHandler(this.CopyItemToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
@@ -627,7 +627,7 @@ namespace ACNHPokerCore
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.deleteToolStripMenuItem.Text = "Delete Item";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
             // replaceItemToolStripMenuItem
             // 
@@ -635,7 +635,7 @@ namespace ACNHPokerCore
             this.replaceItemToolStripMenuItem.Name = "replaceItemToolStripMenuItem";
             this.replaceItemToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.replaceItemToolStripMenuItem.Text = "Replace Item";
-            this.replaceItemToolStripMenuItem.Click += new System.EventHandler(this.replaceItemToolStripMenuItem_Click);
+            this.replaceItemToolStripMenuItem.Click += new System.EventHandler(this.ReplaceItemToolStripMenuItem_Click);
             // 
             // flag20ToolStripMenuItem
             // 
@@ -643,7 +643,7 @@ namespace ACNHPokerCore
             this.flag20ToolStripMenuItem.Name = "flag20ToolStripMenuItem";
             this.flag20ToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.flag20ToolStripMenuItem.Text = "Flag to 20";
-            this.flag20ToolStripMenuItem.Click += new System.EventHandler(this.flag20ToolStripMenuItem_Click);
+            this.flag20ToolStripMenuItem.Click += new System.EventHandler(this.Flag20ToolStripMenuItem_Click);
             // 
             // flag00ToolStripMenuItem
             // 
@@ -651,7 +651,7 @@ namespace ACNHPokerCore
             this.flag00ToolStripMenuItem.Name = "flag00ToolStripMenuItem";
             this.flag00ToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.flag00ToolStripMenuItem.Text = "Flag to 00";
-            this.flag00ToolStripMenuItem.Click += new System.EventHandler(this.flag00ToolStripMenuItem_Click);
+            this.flag00ToolStripMenuItem.Click += new System.EventHandler(this.Flag00ToolStripMenuItem_Click);
             // 
             // flag00To04ToolStripMenuItem
             // 
@@ -659,7 +659,7 @@ namespace ACNHPokerCore
             this.flag00To04ToolStripMenuItem.Name = "flag00To04ToolStripMenuItem";
             this.flag00To04ToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.flag00To04ToolStripMenuItem.Text = "Flag 00 to 04";
-            this.flag00To04ToolStripMenuItem.Click += new System.EventHandler(this.flag00To04ToolStripMenuItem_Click);
+            this.flag00To04ToolStripMenuItem.Click += new System.EventHandler(this.Flag00To04ToolStripMenuItem_Click);
             // 
             // floor2
             // 
@@ -693,8 +693,8 @@ namespace ACNHPokerCore
             this.floor2.Tag = "1";
             this.floor2.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor2.UseVisualStyleBackColor = false;
-            this.floor2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor2.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor2.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor3
             // 
@@ -728,8 +728,8 @@ namespace ACNHPokerCore
             this.floor3.Tag = "2";
             this.floor3.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor3.UseVisualStyleBackColor = false;
-            this.floor3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor3.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor3.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor8
             // 
@@ -763,8 +763,8 @@ namespace ACNHPokerCore
             this.floor8.Tag = "7";
             this.floor8.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor8.UseVisualStyleBackColor = false;
-            this.floor8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor8.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor8.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor9
             // 
@@ -798,8 +798,8 @@ namespace ACNHPokerCore
             this.floor9.Tag = "8";
             this.floor9.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor9.UseVisualStyleBackColor = false;
-            this.floor9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor9.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor9.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor10
             // 
@@ -833,8 +833,8 @@ namespace ACNHPokerCore
             this.floor10.Tag = "9";
             this.floor10.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor10.UseVisualStyleBackColor = false;
-            this.floor10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor10.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor10.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor15
             // 
@@ -868,8 +868,8 @@ namespace ACNHPokerCore
             this.floor15.Tag = "14";
             this.floor15.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor15.UseVisualStyleBackColor = false;
-            this.floor15.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor15.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor15.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor15.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor16
             // 
@@ -903,8 +903,8 @@ namespace ACNHPokerCore
             this.floor16.Tag = "15";
             this.floor16.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor16.UseVisualStyleBackColor = false;
-            this.floor16.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor16.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor16.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor16.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor17
             // 
@@ -938,8 +938,8 @@ namespace ACNHPokerCore
             this.floor17.Tag = "16";
             this.floor17.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor17.UseVisualStyleBackColor = false;
-            this.floor17.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor17.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor17.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor17.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor22
             // 
@@ -973,8 +973,8 @@ namespace ACNHPokerCore
             this.floor22.Tag = "21";
             this.floor22.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor22.UseVisualStyleBackColor = false;
-            this.floor22.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor22.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor22.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor22.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor23
             // 
@@ -1008,8 +1008,8 @@ namespace ACNHPokerCore
             this.floor23.Tag = "22";
             this.floor23.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor23.UseVisualStyleBackColor = false;
-            this.floor23.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor23.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor23.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor23.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor24
             // 
@@ -1043,8 +1043,8 @@ namespace ACNHPokerCore
             this.floor24.Tag = "23";
             this.floor24.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor24.UseVisualStyleBackColor = false;
-            this.floor24.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor24.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor24.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor24.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor29
             // 
@@ -1078,8 +1078,8 @@ namespace ACNHPokerCore
             this.floor29.Tag = "28";
             this.floor29.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor29.UseVisualStyleBackColor = false;
-            this.floor29.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor29.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor29.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor29.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor30
             // 
@@ -1113,8 +1113,8 @@ namespace ACNHPokerCore
             this.floor30.Tag = "29";
             this.floor30.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor30.UseVisualStyleBackColor = false;
-            this.floor30.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor30.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor30.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor30.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor31
             // 
@@ -1148,8 +1148,8 @@ namespace ACNHPokerCore
             this.floor31.Tag = "30";
             this.floor31.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor31.UseVisualStyleBackColor = false;
-            this.floor31.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor31.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor31.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor31.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor36
             // 
@@ -1183,8 +1183,8 @@ namespace ACNHPokerCore
             this.floor36.Tag = "35";
             this.floor36.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor36.UseVisualStyleBackColor = false;
-            this.floor36.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor36.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor36.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor36.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor37
             // 
@@ -1218,8 +1218,8 @@ namespace ACNHPokerCore
             this.floor37.Tag = "36";
             this.floor37.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor37.UseVisualStyleBackColor = false;
-            this.floor37.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor37.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor37.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor37.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor38
             // 
@@ -1253,8 +1253,8 @@ namespace ACNHPokerCore
             this.floor38.Tag = "37";
             this.floor38.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor38.UseVisualStyleBackColor = false;
-            this.floor38.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor38.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor38.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor38.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor4
             // 
@@ -1288,8 +1288,8 @@ namespace ACNHPokerCore
             this.floor4.Tag = "3";
             this.floor4.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor4.UseVisualStyleBackColor = false;
-            this.floor4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor4.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor4.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor5
             // 
@@ -1323,8 +1323,8 @@ namespace ACNHPokerCore
             this.floor5.Tag = "4";
             this.floor5.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor5.UseVisualStyleBackColor = false;
-            this.floor5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor5.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor5.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor49
             // 
@@ -1358,8 +1358,8 @@ namespace ACNHPokerCore
             this.floor49.Tag = "48";
             this.floor49.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor49.UseVisualStyleBackColor = false;
-            this.floor49.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor49.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor49.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor49.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor6
             // 
@@ -1393,8 +1393,8 @@ namespace ACNHPokerCore
             this.floor6.Tag = "5";
             this.floor6.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor6.UseVisualStyleBackColor = false;
-            this.floor6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor6.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor6.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor48
             // 
@@ -1428,8 +1428,8 @@ namespace ACNHPokerCore
             this.floor48.Tag = "47";
             this.floor48.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor48.UseVisualStyleBackColor = false;
-            this.floor48.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor48.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor48.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor48.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor11
             // 
@@ -1463,8 +1463,8 @@ namespace ACNHPokerCore
             this.floor11.Tag = "10";
             this.floor11.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor11.UseVisualStyleBackColor = false;
-            this.floor11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor11.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor11.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor47
             // 
@@ -1498,8 +1498,8 @@ namespace ACNHPokerCore
             this.floor47.Tag = "46";
             this.floor47.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor47.UseVisualStyleBackColor = false;
-            this.floor47.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor47.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor47.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor47.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor12
             // 
@@ -1533,8 +1533,8 @@ namespace ACNHPokerCore
             this.floor12.Tag = "11";
             this.floor12.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor12.UseVisualStyleBackColor = false;
-            this.floor12.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor12.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor12.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor12.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor46
             // 
@@ -1568,8 +1568,8 @@ namespace ACNHPokerCore
             this.floor46.Tag = "45";
             this.floor46.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor46.UseVisualStyleBackColor = false;
-            this.floor46.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor46.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor46.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor46.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor13
             // 
@@ -1603,8 +1603,8 @@ namespace ACNHPokerCore
             this.floor13.Tag = "12";
             this.floor13.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor13.UseVisualStyleBackColor = false;
-            this.floor13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor13.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor13.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor45
             // 
@@ -1638,8 +1638,8 @@ namespace ACNHPokerCore
             this.floor45.Tag = "44";
             this.floor45.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor45.UseVisualStyleBackColor = false;
-            this.floor45.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor45.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor45.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor45.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor18
             // 
@@ -1673,8 +1673,8 @@ namespace ACNHPokerCore
             this.floor18.Tag = "17";
             this.floor18.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor18.UseVisualStyleBackColor = false;
-            this.floor18.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor18.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor18.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor18.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor44
             // 
@@ -1708,8 +1708,8 @@ namespace ACNHPokerCore
             this.floor44.Tag = "43";
             this.floor44.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor44.UseVisualStyleBackColor = false;
-            this.floor44.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor44.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor44.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor44.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor19
             // 
@@ -1743,8 +1743,8 @@ namespace ACNHPokerCore
             this.floor19.Tag = "18";
             this.floor19.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor19.UseVisualStyleBackColor = false;
-            this.floor19.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor19.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor19.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor19.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor43
             // 
@@ -1778,8 +1778,8 @@ namespace ACNHPokerCore
             this.floor43.Tag = "42";
             this.floor43.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor43.UseVisualStyleBackColor = false;
-            this.floor43.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor43.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor43.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor43.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor20
             // 
@@ -1813,8 +1813,8 @@ namespace ACNHPokerCore
             this.floor20.Tag = "19";
             this.floor20.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor20.UseVisualStyleBackColor = false;
-            this.floor20.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor20.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor20.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor20.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor42
             // 
@@ -1848,8 +1848,8 @@ namespace ACNHPokerCore
             this.floor42.Tag = "41";
             this.floor42.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor42.UseVisualStyleBackColor = false;
-            this.floor42.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor42.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor42.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor42.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor25
             // 
@@ -1883,8 +1883,8 @@ namespace ACNHPokerCore
             this.floor25.Tag = "24";
             this.floor25.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor25.UseVisualStyleBackColor = false;
-            this.floor25.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor25.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor25.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor25.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor35
             // 
@@ -1918,8 +1918,8 @@ namespace ACNHPokerCore
             this.floor35.Tag = "34";
             this.floor35.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor35.UseVisualStyleBackColor = false;
-            this.floor35.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor35.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor35.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor35.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor26
             // 
@@ -1953,8 +1953,8 @@ namespace ACNHPokerCore
             this.floor26.Tag = "25";
             this.floor26.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor26.UseVisualStyleBackColor = false;
-            this.floor26.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor26.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor26.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor26.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor28
             // 
@@ -1988,8 +1988,8 @@ namespace ACNHPokerCore
             this.floor28.Tag = "27";
             this.floor28.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor28.UseVisualStyleBackColor = false;
-            this.floor28.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor28.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor28.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor28.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor27
             // 
@@ -2023,8 +2023,8 @@ namespace ACNHPokerCore
             this.floor27.Tag = "26";
             this.floor27.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor27.UseVisualStyleBackColor = false;
-            this.floor27.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor27.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor27.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor27.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor21
             // 
@@ -2058,8 +2058,8 @@ namespace ACNHPokerCore
             this.floor21.Tag = "20";
             this.floor21.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor21.UseVisualStyleBackColor = false;
-            this.floor21.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor21.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor21.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor21.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor32
             // 
@@ -2093,8 +2093,8 @@ namespace ACNHPokerCore
             this.floor32.Tag = "31";
             this.floor32.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor32.UseVisualStyleBackColor = false;
-            this.floor32.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor32.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor32.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor32.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor14
             // 
@@ -2128,8 +2128,8 @@ namespace ACNHPokerCore
             this.floor14.Tag = "13";
             this.floor14.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor14.UseVisualStyleBackColor = false;
-            this.floor14.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor14.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor14.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor14.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor33
             // 
@@ -2163,8 +2163,8 @@ namespace ACNHPokerCore
             this.floor33.Tag = "32";
             this.floor33.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor33.UseVisualStyleBackColor = false;
-            this.floor33.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor33.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor33.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor33.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor7
             // 
@@ -2198,8 +2198,8 @@ namespace ACNHPokerCore
             this.floor7.Tag = "6";
             this.floor7.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor7.UseVisualStyleBackColor = false;
-            this.floor7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor7.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor7.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor34
             // 
@@ -2233,8 +2233,8 @@ namespace ACNHPokerCore
             this.floor34.Tag = "33";
             this.floor34.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor34.UseVisualStyleBackColor = false;
-            this.floor34.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor34.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor34.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor34.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor41
             // 
@@ -2268,8 +2268,8 @@ namespace ACNHPokerCore
             this.floor41.Tag = "40";
             this.floor41.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor41.UseVisualStyleBackColor = false;
-            this.floor41.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor41.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor41.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor41.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor39
             // 
@@ -2303,8 +2303,8 @@ namespace ACNHPokerCore
             this.floor39.Tag = "38";
             this.floor39.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor39.UseVisualStyleBackColor = false;
-            this.floor39.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor39.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor39.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor39.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // floor40
             // 
@@ -2338,8 +2338,8 @@ namespace ACNHPokerCore
             this.floor40.Tag = "39";
             this.floor40.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.floor40.UseVisualStyleBackColor = false;
-            this.floor40.MouseDown += new System.Windows.Forms.MouseEventHandler(this.floor_MouseDown);
-            this.floor40.MouseHover += new System.EventHandler(this.floor_MouseHover);
+            this.floor40.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Floor_MouseDown);
+            this.floor40.MouseHover += new System.EventHandler(this.Floor_MouseHover);
             // 
             // saveMap
             // 
@@ -2358,7 +2358,7 @@ namespace ACNHPokerCore
             this.saveTopngToolStripMenuItem.Name = "saveTopngToolStripMenuItem";
             this.saveTopngToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.saveTopngToolStripMenuItem.Text = "Save to .png";
-            this.saveTopngToolStripMenuItem.Click += new System.EventHandler(this.saveTopngToolStripMenuItem_Click);
+            this.saveTopngToolStripMenuItem.Click += new System.EventHandler(this.SaveTopngToolStripMenuItem_Click);
             // 
             // fillRemainBtn
             // 
@@ -2376,7 +2376,7 @@ namespace ACNHPokerCore
             this.formToolTip.SetToolTip(this.fillRemainBtn, "Fill the remaining empty spot with the selected item.\r\n\r\n[WARNING]\r\nThe current i" +
         "mplementation is slow... \r\nPlease wait for a while after you use it.");
             this.fillRemainBtn.UseVisualStyleBackColor = false;
-            this.fillRemainBtn.Click += new System.EventHandler(this.fillRemainBtn_Click);
+            this.fillRemainBtn.Click += new System.EventHandler(this.FillRemainBtn_Click);
             // 
             // refreshBtn
             // 
@@ -2393,7 +2393,7 @@ namespace ACNHPokerCore
             this.refreshBtn.Text = "Refresh";
             this.formToolTip.SetToolTip(this.refreshBtn, "Refetch the map data. (Both Layer 1 & 2)");
             this.refreshBtn.UseVisualStyleBackColor = false;
-            this.refreshBtn.Click += new System.EventHandler(this.refreshBtn_Click);
+            this.refreshBtn.Click += new System.EventHandler(this.RefreshBtn_Click);
             // 
             // saveBtn
             // 
@@ -2410,7 +2410,7 @@ namespace ACNHPokerCore
             this.saveBtn.Text = "Save";
             this.formToolTip.SetToolTip(this.saveBtn, "Save the displaying 7×7 grid to a .nhg file.");
             this.saveBtn.UseVisualStyleBackColor = false;
-            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            this.saveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
             // 
             // loadBtn
             // 
@@ -2428,7 +2428,7 @@ namespace ACNHPokerCore
             this.formToolTip.SetToolTip(this.loadBtn, "Load a .nhg/.nhi file to the displaying 7×7 grid.\r\n[WARNING] For .nhg file, this " +
         "will overwrite everything currently on the floor.");
             this.loadBtn.UseVisualStyleBackColor = false;
-            this.loadBtn.Click += new System.EventHandler(this.loadNHGNHIBtn_Click);
+            this.loadBtn.Click += new System.EventHandler(this.LoadNHGNHIBtn_Click);
             // 
             // fieldModeBtn
             // 
@@ -2443,7 +2443,7 @@ namespace ACNHPokerCore
             this.fieldModeBtn.TabIndex = 181;
             this.fieldModeBtn.Text = "Field";
             this.fieldModeBtn.UseVisualStyleBackColor = false;
-            this.fieldModeBtn.Click += new System.EventHandler(this.fieldModeBtn_Click);
+            this.fieldModeBtn.Click += new System.EventHandler(this.FieldModeBtn_Click);
             // 
             // moveRight7Btn
             // 
@@ -2460,7 +2460,7 @@ namespace ACNHPokerCore
             this.moveRight7Btn.TabIndex = 182;
             this.moveRight7Btn.Text = "🠊 ×7";
             this.moveRight7Btn.UseVisualStyleBackColor = false;
-            this.moveRight7Btn.Click += new System.EventHandler(this.moveRight7Btn_Click);
+            this.moveRight7Btn.Click += new System.EventHandler(this.MoveRight7Btn_Click);
             // 
             // moveLeft7Btn
             // 
@@ -2477,7 +2477,7 @@ namespace ACNHPokerCore
             this.moveLeft7Btn.TabIndex = 183;
             this.moveLeft7Btn.Text = "×7 🠈";
             this.moveLeft7Btn.UseVisualStyleBackColor = false;
-            this.moveLeft7Btn.Click += new System.EventHandler(this.moveLeft7Btn_Click);
+            this.moveLeft7Btn.Click += new System.EventHandler(this.MoveLeft7Btn_Click);
             // 
             // moveDown7Btn
             // 
@@ -2495,7 +2495,7 @@ namespace ACNHPokerCore
             this.moveDown7Btn.Text = "🠋 ×7";
             this.moveDown7Btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.moveDown7Btn.UseVisualStyleBackColor = false;
-            this.moveDown7Btn.Click += new System.EventHandler(this.moveDown7Btn_Click);
+            this.moveDown7Btn.Click += new System.EventHandler(this.MoveDown7Btn_Click);
             // 
             // moveUp7Btn
             // 
@@ -2513,7 +2513,7 @@ namespace ACNHPokerCore
             this.moveUp7Btn.Text = "×7 🠉";
             this.moveUp7Btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.moveUp7Btn.UseVisualStyleBackColor = false;
-            this.moveUp7Btn.Click += new System.EventHandler(this.moveUp7Btn_Click);
+            this.moveUp7Btn.Click += new System.EventHandler(this.MoveUp7Btn_Click);
             // 
             // formToolTip
             // 
@@ -2541,7 +2541,7 @@ namespace ACNHPokerCore
             this.layer1Btn.Text = "Layer 1";
             this.formToolTip.SetToolTip(this.layer1Btn, "Change to the bottom layer. (Usually the floor... or seabed/stream bed)");
             this.layer1Btn.UseVisualStyleBackColor = false;
-            this.layer1Btn.Click += new System.EventHandler(this.layer1Btn_Click);
+            this.layer1Btn.Click += new System.EventHandler(this.Layer1Btn_Click);
             // 
             // layer2Btn
             // 
@@ -2556,7 +2556,7 @@ namespace ACNHPokerCore
             this.layer2Btn.Text = "Layer 2";
             this.formToolTip.SetToolTip(this.layer2Btn, "Change to the top layer. (On top of furnitures. Like tables)");
             this.layer2Btn.UseVisualStyleBackColor = false;
-            this.layer2Btn.Click += new System.EventHandler(this.layer2Btn_Click);
+            this.layer2Btn.Click += new System.EventHandler(this.Layer2Btn_Click);
             // 
             // bulkSpawnBtn
             // 
@@ -2574,7 +2574,7 @@ namespace ACNHPokerCore
             this.formToolTip.SetToolTip(this.bulkSpawnBtn, "This is the BULK SPAWN button too.\r\nYes, you bulk spawn by selecting \"Remove Item" +
         "s...\"");
             this.bulkSpawnBtn.UseVisualStyleBackColor = false;
-            this.bulkSpawnBtn.Click += new System.EventHandler(this.bulkSpawnBtn_Click);
+            this.bulkSpawnBtn.Click += new System.EventHandler(this.BulkSpawnBtn_Click);
             // 
             // fetchMapBtn
             // 
@@ -2591,7 +2591,7 @@ namespace ACNHPokerCore
             this.fetchMapBtn.Text = "Fetch Map";
             this.formToolTip.SetToolTip(this.fetchMapBtn, "Fetch the map data. (Both Layer 1 & 2)");
             this.fetchMapBtn.UseVisualStyleBackColor = false;
-            this.fetchMapBtn.Click += new System.EventHandler(this.fetchMapBtn_Click);
+            this.fetchMapBtn.Click += new System.EventHandler(this.FetchMapBtn_Click);
             // 
             // reAnchorBtn
             // 
@@ -2608,25 +2608,7 @@ namespace ACNHPokerCore
             this.reAnchorBtn.Text = "Re-Anchor";
             this.formToolTip.SetToolTip(this.reAnchorBtn, "Move the anchor to your current in-game position.");
             this.reAnchorBtn.UseVisualStyleBackColor = false;
-            this.reAnchorBtn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.reAnchorBtn_MouseClick);
-            // 
-            // saveDebug
-            // 
-            this.saveDebug.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.saveDebug.FlatAppearance.BorderSize = 0;
-            this.saveDebug.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.saveDebug.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.saveDebug.ForeColor = System.Drawing.Color.White;
-            this.saveDebug.Location = new System.Drawing.Point(657, 719);
-            this.saveDebug.Margin = new System.Windows.Forms.Padding(4);
-            this.saveDebug.Name = "saveDebug";
-            this.saveDebug.Size = new System.Drawing.Size(138, 28);
-            this.saveDebug.TabIndex = 182;
-            this.saveDebug.Text = "saveDebug";
-            this.formToolTip.SetToolTip(this.saveDebug, "Fill the remaining empty spot with the selected item.\r\n\r\n[WARNING]\r\nThe current i" +
-        "mplementation is slow... \r\nPlease wait for a while after you use it.");
-            this.saveDebug.UseVisualStyleBackColor = false;
-            this.saveDebug.Click += new System.EventHandler(this.saveDebug_Click);
+            this.reAnchorBtn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ReAnchorBtn_MouseClick);
             // 
             // clearGridBtn
             // 
@@ -2644,7 +2626,7 @@ namespace ACNHPokerCore
             this.formToolTip.SetToolTip(this.clearGridBtn, "Remove all items in the displaying 7×7 grid.\r\n\r\n[WARNING]\r\nYou will lose your ite" +
         "m obviously... \r\nWhat do you expect? An easter egg to popup?");
             this.clearGridBtn.UseVisualStyleBackColor = false;
-            this.clearGridBtn.Click += new System.EventHandler(this.clearGridBtn_Click);
+            this.clearGridBtn.Click += new System.EventHandler(this.ClearGridBtn_Click);
             // 
             // ClearCopiedAreaBtn
             // 
@@ -2730,7 +2712,7 @@ namespace ACNHPokerCore
             this.placeVariationBtn.TabIndex = 225;
             this.placeVariationBtn.Text = "Place Variation";
             this.placeVariationBtn.UseVisualStyleBackColor = false;
-            this.placeVariationBtn.Click += new System.EventHandler(this.placeVariationBtn_Click);
+            this.placeVariationBtn.Click += new System.EventHandler(this.PlaceVariationBtn_Click);
             // 
             // variationBtn
             // 
@@ -2745,7 +2727,7 @@ namespace ACNHPokerCore
             this.variationBtn.TabIndex = 188;
             this.variationBtn.Text = "Variation";
             this.variationBtn.UseVisualStyleBackColor = false;
-            this.variationBtn.Click += new System.EventHandler(this.variationButton_Click);
+            this.variationBtn.Click += new System.EventHandler(this.VariationButton_Click);
             // 
             // PleaseWaitPanel
             // 
@@ -2858,7 +2840,7 @@ namespace ACNHPokerCore
             this.weedsToolStripMenuItem.Name = "weedsToolStripMenuItem";
             this.weedsToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.weedsToolStripMenuItem.Text = "Weeds";
-            this.weedsToolStripMenuItem.Click += new System.EventHandler(this.weedsToolStripMenuItem_Click);
+            this.weedsToolStripMenuItem.Click += new System.EventHandler(this.WeedsToolStripMenuItem_Click);
             // 
             // flowersToolStripMenuItem
             // 
@@ -2866,7 +2848,7 @@ namespace ACNHPokerCore
             this.flowersToolStripMenuItem.Name = "flowersToolStripMenuItem";
             this.flowersToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.flowersToolStripMenuItem.Text = "Flowers";
-            this.flowersToolStripMenuItem.Click += new System.EventHandler(this.flowersToolStripMenuItem_Click);
+            this.flowersToolStripMenuItem.Click += new System.EventHandler(this.FlowersToolStripMenuItem_Click);
             // 
             // treesToolStripMenuItem
             // 
@@ -2874,7 +2856,7 @@ namespace ACNHPokerCore
             this.treesToolStripMenuItem.Name = "treesToolStripMenuItem";
             this.treesToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.treesToolStripMenuItem.Text = "Trees";
-            this.treesToolStripMenuItem.Click += new System.EventHandler(this.treesToolStripMenuItem_Click);
+            this.treesToolStripMenuItem.Click += new System.EventHandler(this.TreesToolStripMenuItem_Click);
             // 
             // bushesToolStripMenuItem
             // 
@@ -2882,7 +2864,7 @@ namespace ACNHPokerCore
             this.bushesToolStripMenuItem.Name = "bushesToolStripMenuItem";
             this.bushesToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.bushesToolStripMenuItem.Text = "Bushes";
-            this.bushesToolStripMenuItem.Click += new System.EventHandler(this.bushesToolStripMenuItem_Click);
+            this.bushesToolStripMenuItem.Click += new System.EventHandler(this.BushesToolStripMenuItem_Click);
             // 
             // fencesToolStripMenuItem
             // 
@@ -2890,7 +2872,7 @@ namespace ACNHPokerCore
             this.fencesToolStripMenuItem.Name = "fencesToolStripMenuItem";
             this.fencesToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.fencesToolStripMenuItem.Text = "Fences";
-            this.fencesToolStripMenuItem.Click += new System.EventHandler(this.fencesToolStripMenuItem_Click);
+            this.fencesToolStripMenuItem.Click += new System.EventHandler(this.FencesToolStripMenuItem_Click);
             // 
             // shellsToolStripMenuItem
             // 
@@ -2898,7 +2880,7 @@ namespace ACNHPokerCore
             this.shellsToolStripMenuItem.Name = "shellsToolStripMenuItem";
             this.shellsToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.shellsToolStripMenuItem.Text = "Shells";
-            this.shellsToolStripMenuItem.Click += new System.EventHandler(this.shellsToolStripMenuItem_Click);
+            this.shellsToolStripMenuItem.Click += new System.EventHandler(this.ShellsToolStripMenuItem_Click);
             // 
             // diysToolStripMenuItem
             // 
@@ -2906,7 +2888,7 @@ namespace ACNHPokerCore
             this.diysToolStripMenuItem.Name = "diysToolStripMenuItem";
             this.diysToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.diysToolStripMenuItem.Text = "DIYs";
-            this.diysToolStripMenuItem.Click += new System.EventHandler(this.diysToolStripMenuItem_Click);
+            this.diysToolStripMenuItem.Click += new System.EventHandler(this.DiysToolStripMenuItem_Click);
             // 
             // rocksToolStripMenuItem
             // 
@@ -2914,7 +2896,7 @@ namespace ACNHPokerCore
             this.rocksToolStripMenuItem.Name = "rocksToolStripMenuItem";
             this.rocksToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.rocksToolStripMenuItem.Text = "Rocks";
-            this.rocksToolStripMenuItem.Click += new System.EventHandler(this.rocksToolStripMenuItem_Click);
+            this.rocksToolStripMenuItem.Click += new System.EventHandler(this.RocksToolStripMenuItem_Click);
             // 
             // everythingToolStripMenuItem
             // 
@@ -2922,7 +2904,7 @@ namespace ACNHPokerCore
             this.everythingToolStripMenuItem.Name = "everythingToolStripMenuItem";
             this.everythingToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.everythingToolStripMenuItem.Text = "All";
-            this.everythingToolStripMenuItem.Click += new System.EventHandler(this.everythingToolStripMenuItem_Click);
+            this.everythingToolStripMenuItem.Click += new System.EventHandler(this.EverythingToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -2935,7 +2917,7 @@ namespace ACNHPokerCore
             this.bulkSpawnToolStripMenuItem.Name = "bulkSpawnToolStripMenuItem";
             this.bulkSpawnToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.bulkSpawnToolStripMenuItem.Text = "Bulk Spawn";
-            this.bulkSpawnToolStripMenuItem.Click += new System.EventHandler(this.bulkSpawnToolStripMenuItem_Click);
+            this.bulkSpawnToolStripMenuItem.Click += new System.EventHandler(this.BulkSpawnToolStripMenuItem_Click);
             // 
             // nextAutoSaveSecond
             // 
@@ -2951,7 +2933,7 @@ namespace ACNHPokerCore
             this.nextAutoSaveSecond.Size = new System.Drawing.Size(40, 18);
             this.nextAutoSaveSecond.TabIndex = 224;
             this.nextAutoSaveSecond.Text = "";
-            this.nextAutoSaveSecond.DoubleClick += new System.EventHandler(this.nextAutoSaveSecond_DoubleClick);
+            this.nextAutoSaveSecond.DoubleClick += new System.EventHandler(this.NextAutoSaveSecond_DoubleClick);
             // 
             // EstimateNextSaveLabel
             // 
@@ -2963,7 +2945,7 @@ namespace ACNHPokerCore
             this.EstimateNextSaveLabel.Size = new System.Drawing.Size(116, 16);
             this.EstimateNextSaveLabel.TabIndex = 225;
             this.EstimateNextSaveLabel.Text = "Est. Next Save :";
-            this.EstimateNextSaveLabel.DoubleClick += new System.EventHandler(this.nextAutoSaveSecond_DoubleClick);
+            this.EstimateNextSaveLabel.DoubleClick += new System.EventHandler(this.NextAutoSaveSecond_DoubleClick);
             // 
             // NextSaveTimer
             // 
@@ -3058,8 +3040,8 @@ namespace ACNHPokerCore
             this.miniMapBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.miniMapBox.TabIndex = 189;
             this.miniMapBox.TabStop = false;
-            this.miniMapBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.miniMapBox_MouseDown);
-            this.miniMapBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.miniMapBox_MouseMove);
+            this.miniMapBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MiniMapBox_MouseDown);
+            this.miniMapBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MiniMapBox_MouseMove);
             // 
             // Language
             // 
@@ -3132,7 +3114,7 @@ namespace ACNHPokerCore
             this.selectedItem.Tag = "";
             this.selectedItem.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.selectedItem.UseVisualStyleBackColor = false;
-            this.selectedItem.Click += new System.EventHandler(this.selectedItem_Click);
+            this.selectedItem.Click += new System.EventHandler(this.SelectedItem_Click);
             // 
             // SizeBox
             // 
@@ -3149,11 +3131,27 @@ namespace ACNHPokerCore
             this.SizeBox.TabIndex = 236;
             this.SizeBox.Text = "";
             // 
-            // map
+            // ext
+            // 
+            this.ext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.ext.FlatAppearance.BorderSize = 0;
+            this.ext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ext.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ext.ForeColor = System.Drawing.Color.White;
+            this.ext.Location = new System.Drawing.Point(1127, 640);
+            this.ext.Name = "ext";
+            this.ext.Size = new System.Drawing.Size(73, 21);
+            this.ext.TabIndex = 237;
+            this.ext.Text = "ext";
+            this.ext.UseVisualStyleBackColor = false;
+            this.ext.Click += new System.EventHandler(this.Ext_Click);
+            // 
+            // Map
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.ClientSize = new System.Drawing.Size(1204, 631);
+            this.Controls.Add(this.ext);
             this.Controls.Add(this.SizeBox);
             this.Controls.Add(this.HexTextbox);
             this.Controls.Add(this.Language);
@@ -3166,7 +3164,6 @@ namespace ACNHPokerCore
             this.Controls.Add(this.Corner1XBox);
             this.Controls.Add(this.nextAutoSaveSecond);
             this.Controls.Add(this.EstimateNextSaveLabel);
-            this.Controls.Add(this.saveDebug);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.fetchMapBtn);
@@ -3205,12 +3202,12 @@ namespace ACNHPokerCore
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1220, 1000);
             this.MinimumSize = new System.Drawing.Size(1220, 670);
-            this.Name = "map";
+            this.Name = "Map";
             this.Opacity = 0.97D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Map Dropper";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.map_FormClosed);
-            this.LocationChanged += new System.EventHandler(this.map_LocationChanged);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Map_FormClosed);
+            this.LocationChanged += new System.EventHandler(this.Map_LocationChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyboardKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.fieldGridView)).EndInit();
             this.BtnPanel.ResumeLayout(false);
@@ -3235,55 +3232,55 @@ namespace ACNHPokerCore
         #endregion
         private System.Windows.Forms.RichTextBox xCoordinate;
         private System.Windows.Forms.RichTextBox yCoordinate;
-        private floorSlot floor1;
-        private floorSlot floor2;
-        private floorSlot floor3;
-        private floorSlot floor10;
-        private floorSlot floor9;
-        private floorSlot floor8;
-        private floorSlot floor17;
-        private floorSlot floor16;
-        private floorSlot floor15;
-        private floorSlot floor38;
-        private floorSlot floor37;
-        private floorSlot floor36;
-        private floorSlot floor31;
-        private floorSlot floor30;
-        private floorSlot floor29;
-        private floorSlot floor24;
-        private floorSlot floor23;
-        private floorSlot floor22;
-        private floorSlot floor20;
-        private floorSlot floor19;
-        private floorSlot floor18;
-        private floorSlot floor13;
-        private floorSlot floor12;
-        private floorSlot floor11;
-        private floorSlot floor6;
-        private floorSlot floor5;
-        private floorSlot floor4;
-        private floorSlot floor41;
-        private floorSlot floor40;
-        private floorSlot floor39;
-        private floorSlot floor34;
-        private floorSlot floor33;
-        private floorSlot floor32;
-        private floorSlot floor27;
-        private floorSlot floor26;
-        private floorSlot floor25;
-        private floorSlot floor42;
-        private floorSlot floor35;
-        private floorSlot floor28;
-        private floorSlot floor21;
-        private floorSlot floor14;
-        private floorSlot floor7;
-        private floorSlot floor49;
-        private floorSlot floor48;
-        private floorSlot floor47;
-        private floorSlot floor46;
-        private floorSlot floor45;
-        private floorSlot floor44;
-        private floorSlot floor43;
+        private FloorSlot floor1;
+        private FloorSlot floor2;
+        private FloorSlot floor3;
+        private FloorSlot floor10;
+        private FloorSlot floor9;
+        private FloorSlot floor8;
+        private FloorSlot floor17;
+        private FloorSlot floor16;
+        private FloorSlot floor15;
+        private FloorSlot floor38;
+        private FloorSlot floor37;
+        private FloorSlot floor36;
+        private FloorSlot floor31;
+        private FloorSlot floor30;
+        private FloorSlot floor29;
+        private FloorSlot floor24;
+        private FloorSlot floor23;
+        private FloorSlot floor22;
+        private FloorSlot floor20;
+        private FloorSlot floor19;
+        private FloorSlot floor18;
+        private FloorSlot floor13;
+        private FloorSlot floor12;
+        private FloorSlot floor11;
+        private FloorSlot floor6;
+        private FloorSlot floor5;
+        private FloorSlot floor4;
+        private FloorSlot floor41;
+        private FloorSlot floor40;
+        private FloorSlot floor39;
+        private FloorSlot floor34;
+        private FloorSlot floor33;
+        private FloorSlot floor32;
+        private FloorSlot floor27;
+        private FloorSlot floor26;
+        private FloorSlot floor25;
+        private FloorSlot floor42;
+        private FloorSlot floor35;
+        private FloorSlot floor28;
+        private FloorSlot floor21;
+        private FloorSlot floor14;
+        private FloorSlot floor7;
+        private FloorSlot floor49;
+        private FloorSlot floor48;
+        private FloorSlot floor47;
+        private FloorSlot floor46;
+        private FloorSlot floor45;
+        private FloorSlot floor44;
+        private FloorSlot floor43;
         private System.Windows.Forms.Button moveRightBtn;
         private System.Windows.Forms.Button moveLeftBtn;
         private System.Windows.Forms.Button moveUpBtn;
@@ -3348,7 +3345,6 @@ namespace ACNHPokerCore
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem treesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bushesToolStripMenuItem;
-        private System.Windows.Forms.Button saveDebug;
         private System.Windows.Forms.RichTextBox nextAutoSaveSecond;
         private System.Windows.Forms.Label EstimateNextSaveLabel;
         private System.Windows.Forms.Timer NextSaveTimer;
@@ -3370,5 +3366,6 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Timer FlashTimer;
         private HexUpDown HexTextbox;
         private System.Windows.Forms.RichTextBox SizeBox;
+        private System.Windows.Forms.Button ext;
     }
 }

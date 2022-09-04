@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ACNHPokerCore
 {
-    class controller
+    public static class Controller
     {
         private static Socket s;
 
@@ -52,7 +52,7 @@ namespace ACNHPokerCore
 
         private static byte[] pL() => Encode("press L");
         private static byte[] rL() => Encode("release L");
-        private static byte[] detach() => Encode("detachController");
+        private static byte[] Detach() => Encode("detachController");
 
         private static byte[] LstickTR() => Encode("setStick LEFT 0x7FFF 0x7FFF");
         private static byte[] LstickTL() => Encode("setStick LEFT -0x8000 0x7FFF");
@@ -62,147 +62,147 @@ namespace ACNHPokerCore
         private static byte[] LstickL() => Encode("setStick LEFT -0x8000 0x0");
         private static byte[] LstickD() => Encode("setStick LEFT 0x0 -0x8000");
         private static byte[] LstickR() => Encode("setStick LEFT 0x7FFF 0x0");
-        private static byte[] resetLeft() => Encode("setStick LEFT 0 0");
+        private static byte[] ResetLeft() => Encode("setStick LEFT 0 0");
         private static byte[] RstickU() => Encode("setStick RIGHT 0x0 0x7FFF");
         private static byte[] RstickL() => Encode("setStick RIGHT -0x8000 0x0");
         private static byte[] RstickD() => Encode("setStick RIGHT 0x0 -0x8000");
         private static byte[] RstickR() => Encode("setStick RIGHT 0x7FFF 0x0");
-        private static byte[] resetRight() => Encode("setStick RIGHT 0 0");
+        private static byte[] ResetRight() => Encode("setStick RIGHT 0 0");
 
         private static string IslandName = "";
 
-        public controller(Socket S, string islandName)
+        public static void Init(Socket S, string islandName)
         {
             s = S;
             IslandName = islandName;
         }
 
-        public static void clickA()
+        public static void ClickA()
         {
             Utilities.SendString(s, A());
         }
 
-        public static void pressA()
+        public static void PressA()
         {
             Utilities.SendString(s, pA());
         }
 
-        public static void releaseA()
+        public static void ReleaseA()
         {
             Utilities.SendString(s, rA());
         }
 
-        public static void clickB()
+        public static void ClickB()
         {
             Utilities.SendString(s, B());
         }
 
-        public static void pressB()
+        public static void PressB()
         {
             Utilities.SendString(s, pB());
         }
 
-        public static void releaseB()
+        public static void ReleaseB()
         {
             Utilities.SendString(s, rB());
         }
 
-        public static void clickX()
+        public static void ClickX()
         {
             Utilities.SendString(s, X());
         }
 
-        public static void pressX()
+        public static void PressX()
         {
             Utilities.SendString(s, pX());
         }
 
-        public static void releaseX()
+        public static void ReleaseX()
         {
             Utilities.SendString(s, rX());
         }
 
-        public static void clickY()
+        public static void ClickY()
         {
             Utilities.SendString(s, Y());
         }
 
-        public static void pressY()
+        public static void PressY()
         {
             Utilities.SendString(s, pY());
         }
 
-        public static void releaseY()
+        public static void ReleaseY()
         {
             Utilities.SendString(s, rY());
         }
 
-        public static void clickL()
+        public static void ClickL()
         {
             Utilities.SendString(s, L());
         }
-        public static void clickR()
+        public static void ClickR()
         {
             Utilities.SendString(s, R());
         }
-        public static void clickZL()
+        public static void ClickZL()
         {
             Utilities.SendString(s, ZL());
         }
-        public static void clickZR()
+        public static void ClickZR()
         {
             Utilities.SendString(s, ZR());
         }
 
-        public static void clickPLUS()
+        public static void ClickPLUS()
         {
             Utilities.SendString(s, PLUS());
         }
-        public static void clickMINUS()
+        public static void ClickMINUS()
         {
             Utilities.SendString(s, MINUS());
         }
 
-        public static void clickHOME()
+        public static void ClickHOME()
         {
             Utilities.SendString(s, Home());
         }
-        public static void clickCAPTURE()
+        public static void ClickCAPTURE()
         {
             Utilities.SendString(s, Capture());
         }
 
-        public static void clickUp()
+        public static void ClickUp()
         {
             Utilities.SendString(s, Up());
         }
-        public static void clickLeft()
+        public static void ClickLeft()
         {
             Utilities.SendString(s, Left());
         }
-        public static void clickDown()
+        public static void ClickDown()
         {
             Utilities.SendString(s, Down());
         }
-        public static void clickRight()
+        public static void ClickRight()
         {
             Utilities.SendString(s, Right());
         }
 
-        public static void clickRightStick()
+        public static void ClickRightStick()
         {
             Utilities.SendString(s, RSTICK());
         }
-        public static void clickLeftStick()
+        public static void ClickLeftStick()
         {
             Utilities.SendString(s, LSTICK());
         }
 
-        public static void pressL()
+        public static void PressL()
         {
             Utilities.SendString(s, pL());
         }
-        public static void releaseL()
+        public static void ReleaseL()
         {
             Utilities.SendString(s, rL());
         }
@@ -240,9 +240,9 @@ namespace ACNHPokerCore
         {
             Utilities.SendString(s, LstickR());
         }
-        public static void resetLeftStick()
+        public static void ResetLeftStick()
         {
-            Utilities.SendString(s, resetLeft());
+            Utilities.SendString(s, ResetLeft());
         }
 
         public static void RstickUp()
@@ -261,21 +261,21 @@ namespace ACNHPokerCore
         {
             Utilities.SendString(s, RstickR());
         }
-        public static void resetRightStick()
+        public static void ResetRightStick()
         {
-            Utilities.SendString(s, resetRight());
+            Utilities.SendString(s, ResetRight());
         }
 
-        public static void detachController()
+        public static void DetachController()
         {
-            Utilities.SendString(s, detach());
+            Utilities.SendString(s, Detach());
         }
 
         public static void EnterAirport()
         {
             LstickTopRight();
             Thread.Sleep(1500);
-            resetLeftStick();
+            ResetLeftStick();
             Thread.Sleep(500);
         }
 
@@ -283,13 +283,13 @@ namespace ACNHPokerCore
         {
             LstickDown();
             Thread.Sleep(1000);
-            resetLeftStick();
+            ResetLeftStick();
             Thread.Sleep(500);
         }
 
-        public static void emote(int num)
+        public static void Emote(int num)
         {
-            clickZR();
+            ClickZR();
             Thread.Sleep(1000);
             switch (num)
             {
@@ -319,261 +319,261 @@ namespace ACNHPokerCore
                     break;
             }
             Thread.Sleep(500);
-            resetLeftStick();
+            ResetLeftStick();
             Thread.Sleep(1000);
-            clickA();
-            clickA();
-            clickB();
-            clickB();
-            clickB();
+            ClickA();
+            ClickA();
+            ClickB();
+            ClickB();
+            ClickB();
         }
 
-        public static void skip(int before = 900, int after = 500)
+        public static void Skip(int before = 900, int after = 500)
         {
             Thread.Sleep(before);
             Utilities.SetTextSpeed(s, null, Utilities.isChinese(s));
             Thread.Sleep(after);
         }
 
-        public static string talkAndGetDodoCode(CancellationToken token)
+        public static string TalkAndGetDodoCode(CancellationToken token)
         {
             if (token.IsCancellationRequested)
                 return "";
-            clickA(); // Talk
+            ClickA(); // Talk
             Thread.Sleep(1800); // He might need to put away the stupid book
-            skip();
+            Skip();
             if (token.IsCancellationRequested)
                 return "";
-            clickA(); // End Line "Hey Hey Hey"
+            ClickA(); // End Line "Hey Hey Hey"
             Thread.Sleep(1000);
             //clickA(); // End Line "How can"
             //Thread.Sleep(1000);
 
             if (token.IsCancellationRequested)
                 return "";
-            clickDown(); // move to "I want visitors"
+            ClickDown(); // move to "I want visitors"
             Thread.Sleep(500);
 
-            clickA(); // Click "I want visitors"
+            ClickA(); // Click "I want visitors"
 
             if (token.IsCancellationRequested)
                 return "";
-            skip(); // Thread.Sleep(3000);
-            clickA(); // End Line "You wanna"
+            Skip(); // Thread.Sleep(3000);
+            ClickA(); // End Line "You wanna"
             Thread.Sleep(1000);
 
-            clickDown(); // move to "Online"
+            ClickDown(); // move to "Online"
             Thread.Sleep(500);
-            clickA(); // Via online play
+            ClickA(); // Via online play
 
-            skip();
+            Skip();
 
             if (token.IsCancellationRequested)
                 return "";
-            clickA(); // End Line "Gotcha"
+            ClickA(); // End Line "Gotcha"
             Thread.Sleep(1000);
 
             if (token.IsCancellationRequested)
                 return "";
-            clickA(); // Roger!
+            ClickA(); // Roger!
             Thread.Sleep(30000); // Saving
 
             if (token.IsCancellationRequested)
                 return "";
-            clickA(); // End Line "So who"
+            ClickA(); // End Line "So who"
             Thread.Sleep(1000);
 
 
             if (token.IsCancellationRequested)
                 return "";
-            clickUp(); // move to "Actually, I'm good."
+            ClickUp(); // move to "Actually, I'm good."
             Thread.Sleep(500);
-            clickUp(); // move to "Invite via Dodo Code"
+            ClickUp(); // move to "Invite via Dodo Code"
             Thread.Sleep(500);
-            clickA(); // Click "Invite via Dodo Code"
+            ClickA(); // Click "Invite via Dodo Code"
 
-            skip();
+            Skip();
 
-            clickA(); // End Line "Dodo Code TM"
+            ClickA(); // End Line "Dodo Code TM"
             Thread.Sleep(1000);
 
-            clickUp(); // move to "The more the merrier"
+            ClickUp(); // move to "The more the merrier"
             Thread.Sleep(500);
-            clickA(); // Click "The more the merrier"
+            ClickA(); // Click "The more the merrier"
 
-            skip();
+            Skip();
 
             if (token.IsCancellationRequested)
                 return "";
-            clickA(); // End Line "Just so you know"
+            ClickA(); // End Line "Just so you know"
             //Thread.Sleep(1000);
             //clickA(); // End Line "You good"
             Thread.Sleep(1000);
 
             if (token.IsCancellationRequested)
                 return "";
-            clickA(); // Click "Yeah, invite anyone"
+            ClickA(); // Click "Yeah, invite anyone"
 
             Thread.Sleep(6000); // fucking gate open animation
 
-            clickA(); // End Line "Alright"
+            ClickA(); // End Line "Alright"
 
-            skip();
+            Skip();
 
-            clickA(); // End Line "Dodo"
-            string dodo = setupDodo();
+            ClickA(); // End Line "Dodo"
+            string dodo = SetupDodo();
 
-            skip();
+            Skip();
 
             if (token.IsCancellationRequested)
                 return dodo;
-            clickA(); // End Line "Just tell"
+            ClickA(); // End Line "Just tell"
             Thread.Sleep(2000);
             //releaseL();
 
             return dodo;
         }
 
-        public static string talkAndGetDodoCodeLegacy(CancellationToken token)
+        public static string TalkAndGetDodoCodeLegacy(CancellationToken token)
         {
             if (token.IsCancellationRequested)
                 return "";
-            releaseL();
+            ReleaseL();
             Thread.Sleep(500);
-            pressL(); // Speed Up
+            PressL(); // Speed Up
             Thread.Sleep(500);
 
             if (token.IsCancellationRequested)
                 return "";
-            clickA(); // Talk
+            ClickA(); // Talk
             Thread.Sleep(4000);
-            clickA(); // End Line "Hey Hey Hey"
+            ClickA(); // End Line "Hey Hey Hey"
             Thread.Sleep(1000);
-            clickA(); // End Line "How can"
+            ClickA(); // End Line "How can"
             Thread.Sleep(1000);
-            clickDown(); // move to "I want visitors"
+            ClickDown(); // move to "I want visitors"
             Thread.Sleep(500);
 
             if (token.IsCancellationRequested)
                 return "";
-            clickA(); // Click "I want visitors"
+            ClickA(); // Click "I want visitors"
             Thread.Sleep(3000);
-            clickA(); // End Line "You wanna"
+            ClickA(); // End Line "You wanna"
             Thread.Sleep(1000);
 
             if (token.IsCancellationRequested)
                 return "";
-            clickDown(); // move to "Online"
+            ClickDown(); // move to "Online"
             Thread.Sleep(500);
-            clickA(); // Via online play
+            ClickA(); // Via online play
             Thread.Sleep(3000);
-            clickA(); // End Line "Gotcha"
+            ClickA(); // End Line "Gotcha"
             Thread.Sleep(1000);
 
             if (token.IsCancellationRequested)
                 return "";
-            clickA(); // Roger!
+            ClickA(); // Roger!
             Thread.Sleep(30000); // Saving
 
-            clickA(); // End Line "So who"
+            ClickA(); // End Line "So who"
             Thread.Sleep(1000);
 
             if (token.IsCancellationRequested)
                 return "";
-            clickUp(); // move to "Actually, I'm good."
+            ClickUp(); // move to "Actually, I'm good."
             Thread.Sleep(500);
-            clickUp(); // move to "Invite via Dodo Code"
+            ClickUp(); // move to "Invite via Dodo Code"
             Thread.Sleep(500);
-            clickA(); // Click "Invite via Dodo Code"
+            ClickA(); // Click "Invite via Dodo Code"
             Thread.Sleep(2000);
 
-            clickA(); // End Line "Dodo Code TM"
+            ClickA(); // End Line "Dodo Code TM"
             Thread.Sleep(1000);
 
             if (token.IsCancellationRequested)
                 return "";
-            clickUp(); // move to "The more the merrier"
+            ClickUp(); // move to "The more the merrier"
             Thread.Sleep(500);
-            clickA(); // Click "The more the merrier"
+            ClickA(); // Click "The more the merrier"
             Thread.Sleep(3000);
 
             if (token.IsCancellationRequested)
                 return "";
-            clickA(); // End Line "Just so you know"
+            ClickA(); // End Line "Just so you know"
             Thread.Sleep(1000);
-            clickA(); // End Line "You good"
+            ClickA(); // End Line "You good"
             Thread.Sleep(1000);
 
             if (token.IsCancellationRequested)
                 return "";
-            clickA(); // Click "Yeah, invite anyone"
+            ClickA(); // Click "Yeah, invite anyone"
             Thread.Sleep(5000);
 
             if (token.IsCancellationRequested)
                 return "";
-            clickA(); // End Line "Alright"
+            ClickA(); // End Line "Alright"
             Thread.Sleep(5000);
-            clickA(); // End Line "Dodo"
-            string dodo = setupDodo();
+            ClickA(); // End Line "Dodo"
+            string dodo = SetupDodo();
             Thread.Sleep(5000);
-            clickA(); // End Line "Just tell"
+            ClickA(); // End Line "Just tell"
             Thread.Sleep(3000);
-            releaseL();
+            ReleaseL();
 
             return dodo;
         }
 
-        public static void dropItem()
+        public static void DropItem()
         {
-            clickX();
+            ClickX();
             Thread.Sleep(1000);
-            clickA();
+            ClickA();
             Thread.Sleep(500);
-            clickA();
+            ClickA();
             Thread.Sleep(1500);
-            clickB();
+            ClickB();
             Thread.Sleep(1000);
-            clickB();
+            ClickB();
             Thread.Sleep(1000);
         }
 
-        public static void dropRecipe()
+        public static void DropRecipe()
         {
-            clickX();
+            ClickX();
             Thread.Sleep(1000);
-            clickA();
+            ClickA();
             Thread.Sleep(500);
-            clickDown();
+            ClickDown();
             Thread.Sleep(500);
-            clickA();
+            ClickA();
             Thread.Sleep(1500);
-            clickB();
+            ClickB();
             Thread.Sleep(1000);
-            clickB();
+            ClickB();
             Thread.Sleep(1000);
         }
 
-        public static void talkAndCloseGate()
+        public static void TalkAndCloseGate()
         {
-            releaseL();
-            pressL(); // Speed Up
+            ReleaseL();
+            PressL(); // Speed Up
 
-            clickA(); // Talk "Hey there"
+            ClickA(); // Talk "Hey there"
             Thread.Sleep(4000);
-            clickA(); // End Line "Hey there"
+            ClickA(); // End Line "Hey there"
             Thread.Sleep(1000);
 
-            clickA(); // Click "Please close the gate"
+            ClickA(); // Click "Please close the gate"
             Thread.Sleep(3000);
-            clickA(); // End Line "So you want"
+            ClickA(); // End Line "So you want"
             Thread.Sleep(6000); //Close gate
 
-            clickA(); // End Line "Hope you"
+            ClickA(); // End Line "Hope you"
             Thread.Sleep(3000);
-            releaseL();
+            ReleaseL();
         }
 
-        public static string setupDodo()
+        public static string SetupDodo()
         {
             try
             {
@@ -606,7 +606,7 @@ namespace ACNHPokerCore
                     string color;
                     Color SideColor;
                     string imageURL;
-                    using (StreamReader sr = new StreamReader(Utilities.webhookPath))
+                    using (StreamReader sr = new(Utilities.webhookPath))
                     {
                         url = sr.ReadLine();
                         content = sr.ReadLine();
@@ -631,21 +631,27 @@ namespace ACNHPokerCore
                         imageURL = "";
                     }
 
-                    DiscordWebhook hook = new DiscordWebhook();
-                    hook.Url = url;
+                    DiscordWebhook hook = new()
+                    {
+                        Url = url
+                    };
 
-                    DiscordMessage message = new DiscordMessage();
-                    message.Content = content;
+                    DiscordMessage message = new()
+                    {
+                        Content = content
+                    };
                     //message.TTS = true; //read message to everyone on the channel
 
                     //embeds
-                    DiscordEmbed embed = new DiscordEmbed();
-                    embed.Title = "New Dodo Code for " + IslandName + " :";
-                    embed.Description = dodo;
-                    embed.Timestamp = DateTime.Now;
-                    embed.Color = SideColor; //alpha will be ignored, you can use any RGB color
-                    embed.Thumbnail = new EmbedMedia() { Url = imageURL };
-                    embed.Footer = new EmbedFooter() { Text = "Sent From ACNHPoker" };
+                    DiscordEmbed embed = new()
+                    {
+                        Title = "New Dodo Code for " + IslandName + " :",
+                        Description = dodo,
+                        Timestamp = DateTime.Now,
+                        Color = SideColor, //alpha will be ignored, you can use any RGB color
+                        Thumbnail = new EmbedMedia() { Url = imageURL },
+                        Footer = new EmbedFooter() { Text = "Sent From ACNHPoker" }
+                    };
 
                     message.Embeds = new[] { embed };
                     try
@@ -662,23 +668,21 @@ namespace ACNHPokerCore
             }
             catch (Exception ex)
             {
-                MyLog.logEvent("Controller", "Dodo: " + ex.Message.ToString());
+                MyLog.LogEvent("Controller", "Dodo: " + ex.Message.ToString());
                 return "";
             }
         }
 
-        public static void clearDodo()
+        public static void ClearDodo()
         {
             string msg = "[Closed]";
-            using (StreamWriter sw = File.CreateText(Utilities.dodoPath))
-            {
-                sw.WriteLine(msg);
-            }
+            using StreamWriter sw = File.CreateText(Utilities.dodoPath);
+            sw.WriteLine(msg);
         }
 
-        public static string changeDodoPath()
+        public static string ChangeDodoPath()
         {
-            OpenFileDialog file = new OpenFileDialog()
+            OpenFileDialog file = new()
             {
                 Filter = "Normal text file (*.txt)|*.txt",
             };
@@ -712,7 +716,7 @@ namespace ACNHPokerCore
             config.AppSettings.Settings["LastLoad"].Value = path;
             config.Save(ConfigurationSaveMode.Minimal);
 
-            string[] s = file.FileName.Split('\\');
+            //string[] s = file.FileName.Split('\\');
 
             //logName.Text = s[s.Length - 1];
 

@@ -19,7 +19,7 @@ namespace ACNHPokerCore
         private int mapX = -1;
         private int mapY = -1;
 
-        private Image recipe;
+        private readonly Image recipe;
 
         private string containItemPath = "";
         public UInt16 itemDurability
@@ -257,7 +257,8 @@ namespace ACNHPokerCore
             return containItemPath;
         }
 
-        private static readonly Dictionary<string, string> hexCharacterToBinary = new Dictionary<string, string> {
+        private static readonly Dictionary<string, string> hexCharacterToBinary = new()
+        {
             { "0", "0-0" },
             { "1", "1-0" },
             { "2", "X-0" },//
@@ -294,7 +295,7 @@ namespace ACNHPokerCore
             */
         };
 
-        public string HexToBinary(string hex)
+        public static string HexToBinary(string hex)
         {
             return hexCharacterToBinary[hex.ToLower()];
         }
@@ -498,8 +499,10 @@ namespace ACNHPokerCore
             Image output = bottom;
             using (Graphics graphics = Graphics.FromImage(output))
             {
-                var cm = new ColorMatrix();
-                cm.Matrix33 = alpha;
+                var cm = new ColorMatrix
+                {
+                    Matrix33 = alpha
+                };
 
                 var ia = new ImageAttributes();
                 ia.SetColorMatrix(cm);

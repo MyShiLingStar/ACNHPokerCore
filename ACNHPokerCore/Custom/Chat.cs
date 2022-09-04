@@ -9,24 +9,24 @@ namespace ACNHPokerCore
 {
     public partial class Chat : Form
     {
-        private Socket socket;
+        private readonly Socket socket;
 
-        private static string chat = "[main+4AA9CD8]+40";
+        private static readonly string chat = "[main+4AA9CD8]+40";
 
-        private static int GameCap = 24;
-        private static int SoftCap = 32;
-        private static int MidCap = 57;
-        private static int HardCap = 64;
+        private static readonly int GameCap = 24;
+        private static readonly int SoftCap = 32;
+        private static readonly int MidCap = 57;
+        private static readonly int HardCap = 64;
 
         private static bool sendLock = false;
 
-        public event CloseHandler closeForm;
+        public event CloseHandler CloseForm;
         public Chat(Socket Socket)
         {
             socket = Socket;
 
             InitializeComponent();
-            Random rad = new Random();
+            Random rad = new();
             int num = rad.Next(1, 20);
             switch (num)
             {
@@ -68,10 +68,10 @@ namespace ACNHPokerCore
 
         private void Chat_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.closeForm();
+            this.CloseForm();
         }
 
-        private void chatButton_Click(object sender, EventArgs e)
+        private void ChatButton_Click(object sender, EventArgs e)
         {
             string cleanStr = chatBox.Text.Trim().Replace("\n", " ");
 
@@ -86,37 +86,37 @@ namespace ACNHPokerCore
                 chatBox.Clear();
             sendLock = true;
 
-            Thread sendThread = new Thread(delegate () { sendChat(cleanStr); });
+            Thread sendThread = new(delegate () { SendChat(cleanStr); });
             sendThread.Start();
         }
 
-        private void sendChat(string message)
+        private void SendChat(string message)
         {
-            ulong ChatAddress = teleport.GetCoordinateAddress(chat);
+            ulong ChatAddress = Teleport.GetCoordinateAddress(chat);
 
-            controller.clickR();
+            Controller.ClickR();
             Thread.Sleep(800);
-            controller.clickY();
+            Controller.ClickY();
 
             byte[] StrBytes = Encoding.Unicode.GetBytes(message);
             byte[] sendBytes = new byte[StrBytes.Length * 2];
             Buffer.BlockCopy(StrBytes, 0, sendBytes, 0, StrBytes.Length);
             Utilities.pokeAbsoluteAddress(socket, ChatAddress.ToString("X"), Utilities.ByteToHexString(sendBytes));
 
-            controller.clickPLUS();
+            Controller.ClickPLUS();
             Thread.Sleep(400);
 
-            controller.clickB();
+            Controller.ClickB();
             Thread.Sleep(200);
-            controller.clickB();
+            Controller.ClickB();
             Thread.Sleep(200);
-            controller.clickB();
+            Controller.ClickB();
             Thread.Sleep(200);
 
             sendLock = false;
         }
 
-        private void chatBox_TextChanged(object sender, EventArgs e)
+        private void ChatBox_TextChanged(object sender, EventArgs e)
         {
             string cleanStr = chatBox.Text.Trim().Replace("\n", " ");
 
@@ -132,7 +132,7 @@ namespace ACNHPokerCore
                 chatBox.ForeColor = Color.Red;
         }
 
-        private void chatBox_KeyDown(object sender, KeyEventArgs e)
+        private void ChatBox_KeyDown(object sender, KeyEventArgs e)
         {
             if ((e.KeyCode == Keys.V) && e.Control && !e.Alt && !e.Shift)
             {
@@ -147,7 +147,7 @@ namespace ACNHPokerCore
 
             if ((e.KeyCode == Keys.Enter) && !e.Control && !e.Shift)
             {
-                chatButton_Click(null, null);
+                ChatButton_Click(null, null);
                 e.Handled = true;
             }
         }
@@ -168,13 +168,13 @@ namespace ACNHPokerCore
 
         private void ConnectButton_Click(object sender, EventArgs e)
         {
-            controller.detachController();
-            controller.clickA();
-            controller.clickZR();
+            Controller.DetachController();
+            Controller.ClickA();
+            Controller.ClickZR();
             Thread.Sleep(1000);
-            controller.clickB();
-            controller.clickB();
-            controller.clickB();
+            Controller.ClickB();
+            Controller.ClickB();
+            Controller.ClickB();
             chatButton.Enabled = true;
             ConnectButton.BackColor = Color.Orange;
         }

@@ -7,19 +7,19 @@ namespace ACNHPokerCore
 {
     public partial class OrderDisplay : Form
     {
-        LinkedList<Image> imageLinkedList = new LinkedList<Image>();
+        readonly LinkedList<Image> imageLinkedList = new();
         public OrderDisplay()
         {
             InitializeComponent();
         }
 
-        public void setItemdisplay(Image image)
+        public void SetItemdisplay(Image image)
         {
             imageLinkedList.AddFirst(image);
-            displayImage();
+            DisplayImage();
         }
 
-        private void displayImage()
+        private void DisplayImage()
         {
             if (imageLinkedList.Count > 3)
                 imageLinkedList.RemoveLast();

@@ -19,7 +19,7 @@ namespace ACNHPokerCore
         /// 
         /// Default is: 70% of the working area width.
         /// </summary>
-        public static double MAX_WIDTH_FACTOR = 0.7;
+        public readonly static double MAX_WIDTH_FACTOR = 0.7;
 
         /// <summary>
         /// Defines the maximum height for all FlexibleMessageBox instances in percent of the working area.
@@ -30,14 +30,14 @@ namespace ACNHPokerCore
         /// 
         /// Default is: 90% of the working area height.
         /// </summary>
-        public static double MAX_HEIGHT_FACTOR = 0.9;
+        public readonly static double MAX_HEIGHT_FACTOR = 0.9;
 
         /// <summary>
         /// Defines the font for all FlexibleMessageBox instances.
         /// 
         /// Default is: SystemFonts.MessageBoxFont
         /// </summary>
-        public static Font FONT = SystemFonts.MessageBoxFont;
+        public readonly static Font FONT = SystemFonts.MessageBoxFont;
 
         #endregion
 
@@ -250,7 +250,7 @@ namespace ACNHPokerCore
                 this.richTextBoxMessage.TabIndex = 0;
                 this.richTextBoxMessage.TabStop = false;
                 this.richTextBoxMessage.Text = "<Message>";
-                this.richTextBoxMessage.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBoxMessage_LinkClicked);
+                this.richTextBoxMessage.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.RichTextBoxMessage_LinkClicked);
                 // 
                 // panel1
                 // 
@@ -399,7 +399,7 @@ namespace ACNHPokerCore
             /// </summary>
             /// <param name="buttonID">The ID of the button.</param>
             /// <returns>The button text</returns>
-            private string GetButtonText(ButtonID buttonID)
+            private static string GetButtonText(ButtonID buttonID)
             {
                 var buttonTextArrayIndex = Convert.ToInt32(buttonID);
                 return ENGLISH[buttonTextArrayIndex];
@@ -524,15 +524,15 @@ namespace ACNHPokerCore
                         flexibleMessageBoxForm.visibleButtonsCount = 3;
 
                         flexibleMessageBoxForm.button1.Visible = true;
-                        flexibleMessageBoxForm.button1.Text = flexibleMessageBoxForm.GetButtonText(ButtonID.ABORT);
+                        flexibleMessageBoxForm.button1.Text = GetButtonText(ButtonID.ABORT);
                         flexibleMessageBoxForm.button1.DialogResult = DialogResult.Abort;
 
                         flexibleMessageBoxForm.button2.Visible = true;
-                        flexibleMessageBoxForm.button2.Text = flexibleMessageBoxForm.GetButtonText(ButtonID.RETRY);
+                        flexibleMessageBoxForm.button2.Text = GetButtonText(ButtonID.RETRY);
                         flexibleMessageBoxForm.button2.DialogResult = DialogResult.Retry;
 
                         flexibleMessageBoxForm.button3.Visible = true;
-                        flexibleMessageBoxForm.button3.Text = flexibleMessageBoxForm.GetButtonText(ButtonID.IGNORE);
+                        flexibleMessageBoxForm.button3.Text = GetButtonText(ButtonID.IGNORE);
                         flexibleMessageBoxForm.button3.DialogResult = DialogResult.Ignore;
 
                         flexibleMessageBoxForm.ControlBox = false;
@@ -542,11 +542,11 @@ namespace ACNHPokerCore
                         flexibleMessageBoxForm.visibleButtonsCount = 2;
 
                         flexibleMessageBoxForm.button2.Visible = true;
-                        flexibleMessageBoxForm.button2.Text = flexibleMessageBoxForm.GetButtonText(ButtonID.OK);
+                        flexibleMessageBoxForm.button2.Text = GetButtonText(ButtonID.OK);
                         flexibleMessageBoxForm.button2.DialogResult = DialogResult.OK;
 
                         flexibleMessageBoxForm.button3.Visible = true;
-                        flexibleMessageBoxForm.button3.Text = flexibleMessageBoxForm.GetButtonText(ButtonID.CANCEL);
+                        flexibleMessageBoxForm.button3.Text = GetButtonText(ButtonID.CANCEL);
                         flexibleMessageBoxForm.button3.DialogResult = DialogResult.Cancel;
 
                         flexibleMessageBoxForm.CancelButton = flexibleMessageBoxForm.button3;
@@ -556,11 +556,11 @@ namespace ACNHPokerCore
                         flexibleMessageBoxForm.visibleButtonsCount = 2;
 
                         flexibleMessageBoxForm.button2.Visible = true;
-                        flexibleMessageBoxForm.button2.Text = flexibleMessageBoxForm.GetButtonText(ButtonID.RETRY);
+                        flexibleMessageBoxForm.button2.Text = GetButtonText(ButtonID.RETRY);
                         flexibleMessageBoxForm.button2.DialogResult = DialogResult.Retry;
 
                         flexibleMessageBoxForm.button3.Visible = true;
-                        flexibleMessageBoxForm.button3.Text = flexibleMessageBoxForm.GetButtonText(ButtonID.CANCEL);
+                        flexibleMessageBoxForm.button3.Text = GetButtonText(ButtonID.CANCEL);
                         flexibleMessageBoxForm.button3.DialogResult = DialogResult.Cancel;
 
                         flexibleMessageBoxForm.CancelButton = flexibleMessageBoxForm.button3;
@@ -570,11 +570,11 @@ namespace ACNHPokerCore
                         flexibleMessageBoxForm.visibleButtonsCount = 2;
 
                         flexibleMessageBoxForm.button2.Visible = true;
-                        flexibleMessageBoxForm.button2.Text = flexibleMessageBoxForm.GetButtonText(ButtonID.YES);
+                        flexibleMessageBoxForm.button2.Text = GetButtonText(ButtonID.YES);
                         flexibleMessageBoxForm.button2.DialogResult = DialogResult.Yes;
 
                         flexibleMessageBoxForm.button3.Visible = true;
-                        flexibleMessageBoxForm.button3.Text = flexibleMessageBoxForm.GetButtonText(ButtonID.NO);
+                        flexibleMessageBoxForm.button3.Text = GetButtonText(ButtonID.NO);
                         flexibleMessageBoxForm.button3.DialogResult = DialogResult.No;
 
                         flexibleMessageBoxForm.ControlBox = false;
@@ -584,15 +584,15 @@ namespace ACNHPokerCore
                         flexibleMessageBoxForm.visibleButtonsCount = 3;
 
                         flexibleMessageBoxForm.button1.Visible = true;
-                        flexibleMessageBoxForm.button1.Text = flexibleMessageBoxForm.GetButtonText(ButtonID.YES);
+                        flexibleMessageBoxForm.button1.Text = GetButtonText(ButtonID.YES);
                         flexibleMessageBoxForm.button1.DialogResult = DialogResult.Yes;
 
                         flexibleMessageBoxForm.button2.Visible = true;
-                        flexibleMessageBoxForm.button2.Text = flexibleMessageBoxForm.GetButtonText(ButtonID.NO);
+                        flexibleMessageBoxForm.button2.Text = GetButtonText(ButtonID.NO);
                         flexibleMessageBoxForm.button2.DialogResult = DialogResult.No;
 
                         flexibleMessageBoxForm.button3.Visible = true;
-                        flexibleMessageBoxForm.button3.Text = flexibleMessageBoxForm.GetButtonText(ButtonID.CANCEL);
+                        flexibleMessageBoxForm.button3.Text = GetButtonText(ButtonID.CANCEL);
                         flexibleMessageBoxForm.button3.DialogResult = DialogResult.Cancel;
 
                         flexibleMessageBoxForm.CancelButton = flexibleMessageBoxForm.button3;
@@ -602,7 +602,7 @@ namespace ACNHPokerCore
                     default:
                         flexibleMessageBoxForm.visibleButtonsCount = 1;
                         flexibleMessageBoxForm.button3.Visible = true;
-                        flexibleMessageBoxForm.button3.Text = flexibleMessageBoxForm.GetButtonText(ButtonID.OK);
+                        flexibleMessageBoxForm.button3.Text = GetButtonText(ButtonID.OK);
                         flexibleMessageBoxForm.button3.DialogResult = DialogResult.OK;
 
                         flexibleMessageBoxForm.CancelButton = flexibleMessageBoxForm.button3;
@@ -624,24 +624,16 @@ namespace ACNHPokerCore
             /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
             private void FlexibleMessageBoxForm_Shown(object sender, EventArgs e)
             {
-                int buttonIndexToFocus = 1;
+                int buttonIndexToFocus;
                 Button buttonToFocus;
 
                 //Set the default button...
-                switch (this.defaultButton)
+                buttonIndexToFocus = this.defaultButton switch
                 {
-                    case MessageBoxDefaultButton.Button1:
-                    default:
-                        buttonIndexToFocus = 1;
-                        break;
-                    case MessageBoxDefaultButton.Button2:
-                        buttonIndexToFocus = 2;
-                        break;
-                    case MessageBoxDefaultButton.Button3:
-                        buttonIndexToFocus = 3;
-                        break;
-                }
-
+                    MessageBoxDefaultButton.Button2 => 2,
+                    MessageBoxDefaultButton.Button3 => 3,
+                    _ => 1,
+                };
                 if (buttonIndexToFocus > this.visibleButtonsCount) buttonIndexToFocus = this.visibleButtonsCount;
 
                 if (buttonIndexToFocus == 3)
@@ -665,7 +657,7 @@ namespace ACNHPokerCore
             /// </summary>
             /// <param name="sender">The source of the event.</param>
             /// <param name="e">The <see cref="System.Windows.Forms.LinkClickedEventArgs"/> instance containing the event data.</param>
-            private void richTextBoxMessage_LinkClicked(object sender, LinkClickedEventArgs e)
+            private void RichTextBoxMessage_LinkClicked(object sender, LinkClickedEventArgs e)
             {
                 try
                 {

@@ -98,6 +98,7 @@
             this.RoadButton5A = new System.Windows.Forms.Button();
             this.RoadButton1C = new System.Windows.Forms.Button();
             this.ManualCliffPanel = new System.Windows.Forms.Panel();
+            this.CliffButton8A = new System.Windows.Forms.Button();
             this.ManualTerrainElevation3Label = new System.Windows.Forms.Label();
             this.ManualTerrainElevationLabel = new System.Windows.Forms.Label();
             this.ManualTerrainElevation2Label = new System.Windows.Forms.Label();
@@ -258,6 +259,7 @@
             // 
             // DisplayCustomDesignToggle
             // 
+            this.DisplayCustomDesignToggle.Checked = true;
             this.DisplayCustomDesignToggle.Location = new System.Drawing.Point(403, 3);
             this.DisplayCustomDesignToggle.Name = "DisplayCustomDesignToggle";
             this.DisplayCustomDesignToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -294,6 +296,7 @@
             // 
             // DisplayBuildingToggle
             // 
+            this.DisplayBuildingToggle.Checked = true;
             this.DisplayBuildingToggle.Location = new System.Drawing.Point(165, 22);
             this.DisplayBuildingToggle.Name = "DisplayBuildingToggle";
             this.DisplayBuildingToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -330,7 +333,6 @@
             // 
             // DisplayInfoToggle
             // 
-            this.DisplayInfoToggle.Checked = true;
             this.DisplayInfoToggle.Location = new System.Drawing.Point(403, 22);
             this.DisplayInfoToggle.Name = "DisplayInfoToggle";
             this.DisplayInfoToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -476,8 +478,8 @@
             this.miniMapBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.miniMapBox.TabIndex = 236;
             this.miniMapBox.TabStop = false;
-            this.miniMapBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.miniMapBox_MouseDown);
-            this.miniMapBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.miniMapBox_MouseMove);
+            this.miniMapBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MiniMapBox_MouseDown);
+            this.miniMapBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MiniMapBox_MouseMove);
             // 
             // AutoButtonPanel
             // 
@@ -514,7 +516,7 @@
             this.fixRiverMouthToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
             this.fixRiverMouthToggle.TabIndex = 243;
             this.fixRiverMouthToggle.UseAnimation = false;
-            this.fixRiverMouthToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.fixRiverMouthToggle_CheckedChanged);
+            this.fixRiverMouthToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.FixRiverMouthToggle_CheckedChanged);
             // 
             // FixRiverMouthLabel
             // 
@@ -1251,6 +1253,7 @@
             // 
             // ManualCliffPanel
             // 
+            this.ManualCliffPanel.Controls.Add(this.CliffButton8A);
             this.ManualCliffPanel.Controls.Add(this.ManualTerrainElevation3Label);
             this.ManualCliffPanel.Controls.Add(this.ManualTerrainElevationLabel);
             this.ManualCliffPanel.Controls.Add(this.ManualTerrainElevation2Label);
@@ -1278,6 +1281,23 @@
             this.ManualCliffPanel.Name = "ManualCliffPanel";
             this.ManualCliffPanel.Size = new System.Drawing.Size(225, 297);
             this.ManualCliffPanel.TabIndex = 1;
+            // 
+            // CliffButton8A
+            // 
+            this.CliffButton8A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
+            this.CliffButton8A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.CliffButton8A.FlatAppearance.BorderSize = 0;
+            this.CliffButton8A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CliffButton8A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CliffButton8A.ForeColor = System.Drawing.Color.White;
+            this.CliffButton8A.Location = new System.Drawing.Point(167, 249);
+            this.CliffButton8A.Name = "CliffButton8A";
+            this.CliffButton8A.Size = new System.Drawing.Size(36, 36);
+            this.CliffButton8A.TabIndex = 274;
+            this.CliffButton8A.Tag = "8A";
+            this.ButtonToolTip.SetToolTip(this.CliffButton8A, "Invisible Support");
+            this.CliffButton8A.UseVisualStyleBackColor = false;
+            this.CliffButton8A.Click += new System.EventHandler(this.ManualCliffButton_Click);
             // 
             // ManualTerrainElevation3Label
             // 
@@ -2310,5 +2330,6 @@
         private System.Windows.Forms.Button CustomModeButton;
         private JCS.ToggleSwitch DisplayCustomDesignToggle;
         private System.Windows.Forms.Label DisplayCustomDesignLabel;
+        private System.Windows.Forms.Button CliffButton8A;
     }
 }

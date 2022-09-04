@@ -32,7 +32,7 @@ namespace Discord
         internal static JObject StructToJson(object @struct)
         {
             Type type = @struct.GetType();
-            JObject json = new JObject();
+            JObject json = new();
 
             FieldInfo[] fields = type.GetFields();
             foreach (FieldInfo field in fields)
@@ -54,7 +54,7 @@ namespace Discord
                     json.Add(name, ((DateTime)value).ToString("yyyy-MM-ddTHH\\:mm\\:ss.fffffffzzz"));
                 else if (value is Array)
                 {
-                    JArray array = new JArray();
+                    JArray array = new();
                     foreach (object obj in value as Array)
                         array.Add(StructToJson(obj));
                     json.Add(name, array);
@@ -64,13 +64,13 @@ namespace Discord
             return json;
         }
 
-        static string[] ignore = { "InLine" };
+        static readonly string[] ignore = { "InLine" };
         internal static string FieldNameToJsonName(string name)
         {
             if (ignore.ToList().Contains(name))
                 return name.ToLower();
 
-            List<char> result = new List<char>();
+            List<char> result = new();
 
             if (IsFullUpper(name))
                 result.AddRange(name.ToLower().ToCharArray());

@@ -15,7 +15,7 @@ namespace ACNHPokerCore
             InitializeComponent();
         }
 
-        private void noBtn_Click(object sender, EventArgs e)
+        private void NoBtn_Click(object sender, EventArgs e)
         {
             Configuration Config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
             Config.AppSettings.Settings["RestartRequired"].Value = "false";
@@ -23,7 +23,7 @@ namespace ACNHPokerCore
             this.Close();
         }
 
-        private void yesBtn_Click(object sender, EventArgs e)
+        private void YesBtn_Click(object sender, EventArgs e)
         {
             yesBtn.Visible = false;
             noBtn.Visible = false;
@@ -36,7 +36,7 @@ namespace ACNHPokerCore
                 File.Delete(@"img.zip");
             }
 
-            WebClient webClient = new WebClient
+            WebClient webClient = new()
             {
                 Proxy = null
             };
@@ -51,7 +51,7 @@ namespace ACNHPokerCore
                 waitmsg.Visible = true;
                 progressBar.Visible = false;
 
-                Thread unzipThread = new Thread(delegate () { extractHere(); });
+                Thread unzipThread = new(delegate () { ExtractHere(); });
                 unzipThread.Start();
             };
 
@@ -59,7 +59,7 @@ namespace ACNHPokerCore
 
         }
 
-        private void extractHere()
+        private void ExtractHere()
         {
             Configuration Config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
             Config.AppSettings.Settings["RestartRequired"].Value = "true";
@@ -67,10 +67,8 @@ namespace ACNHPokerCore
 
             try
             {
-                using (ZipFile archive = new ZipFile(@"" + System.Environment.CurrentDirectory + "\\img.zip"))
-                {
-                    archive.ExtractAll(@"" + System.Environment.CurrentDirectory, ExtractExistingFileAction.OverwriteSilently);
-                }
+                using ZipFile archive = new(@"" + System.Environment.CurrentDirectory + "\\img.zip");
+                archive.ExtractAll(@"" + System.Environment.CurrentDirectory, ExtractExistingFileAction.OverwriteSilently);
             }
             catch
             {

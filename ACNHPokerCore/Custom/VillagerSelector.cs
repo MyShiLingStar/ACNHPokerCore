@@ -29,7 +29,7 @@ namespace ACNHPokerCore
                 else
                     img = new Bitmap(Properties.Resources.Leaf, new Size(60, 60));
                 // Draw the colored 16 x 16 square
-                Bitmap resize = new Bitmap(img, new Size(60, 60));
+                Bitmap resize = new(img, new Size(60, 60));
                 e.Graphics.DrawImage((Image)resize, e.Bounds.Left, e.Bounds.Top);
                 // Draw the value (in this case, the color name)
                 //e.Graphics.DrawString(this.Items[e.Index].ToString(), e.Font, myBrush, e.Bounds, StringFormat.GenericDefault);

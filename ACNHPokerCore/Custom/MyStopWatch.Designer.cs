@@ -90,7 +90,7 @@ namespace ACNHPokerCore
             this.pauseBtn.TabIndex = 174;
             this.pauseBtn.Text = "pause";
             this.pauseBtn.UseVisualStyleBackColor = false;
-            this.pauseBtn.Click += new System.EventHandler(this.pauseBtn_Click);
+            this.pauseBtn.Click += new System.EventHandler(this.PauseBtn_Click);
             // 
             // restartBtn
             // 
@@ -105,7 +105,7 @@ namespace ACNHPokerCore
             this.restartBtn.TabIndex = 175;
             this.restartBtn.Text = "restart";
             this.restartBtn.UseVisualStyleBackColor = false;
-            this.restartBtn.Click += new System.EventHandler(this.restartBtn_Click);
+            this.restartBtn.Click += new System.EventHandler(this.RestartBtn_Click);
             // 
             // resetBtn
             // 
@@ -120,7 +120,7 @@ namespace ACNHPokerCore
             this.resetBtn.TabIndex = 176;
             this.resetBtn.Text = "reset";
             this.resetBtn.UseVisualStyleBackColor = false;
-            this.resetBtn.Click += new System.EventHandler(this.resetBtn_Click);
+            this.resetBtn.Click += new System.EventHandler(this.ResetBtn_Click);
             // 
             // panel1
             // 

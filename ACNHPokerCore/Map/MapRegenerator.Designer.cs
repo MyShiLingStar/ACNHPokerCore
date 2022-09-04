@@ -167,7 +167,7 @@ namespace ACNHPokerCore
             this.formToolTip.SetToolTip(this.loadMapBtn, "Load a .nhf file and overwrite the whole map. (Layer 1 only)\r\n[WARNING] You will " +
         "lost every item on your map.");
             this.loadMapBtn.UseVisualStyleBackColor = false;
-            this.loadMapBtn.Click += new System.EventHandler(this.loadMapBtn_Click);
+            this.loadMapBtn.Click += new System.EventHandler(this.LoadMapBtn_Click);
             // 
             // saveMapBtn
             // 
@@ -184,7 +184,7 @@ namespace ACNHPokerCore
             this.saveMapBtn.Text = "Create Map Template";
             this.formToolTip.SetToolTip(this.saveMapBtn, "Create a Map template and save it to a .nhf file. (Layer 1 only)");
             this.saveMapBtn.UseVisualStyleBackColor = false;
-            this.saveMapBtn.Click += new System.EventHandler(this.saveMapBtn_Click);
+            this.saveMapBtn.Click += new System.EventHandler(this.SaveMapBtn_Click);
             // 
             // ProgressTimer
             // 
@@ -196,7 +196,7 @@ namespace ACNHPokerCore
             this.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("trayIcon.Icon")));
             this.trayIcon.Text = "ACNHPoker : Map Regenerator";
             this.trayIcon.Visible = true;
-            this.trayIcon.DoubleClick += new System.EventHandler(this.trayIcon_DoubleClick);
+            this.trayIcon.DoubleClick += new System.EventHandler(this.TrayIcon_DoubleClick);
             // 
             // startRegen
             // 
@@ -215,7 +215,7 @@ namespace ACNHPokerCore
             this.formToolTip.SetToolTip(this.startRegen, "Keep refreshing the map with a saved map template (.nhf). (Layer 1 only)\r\n[WARNIN" +
         "G] This option will delete every item dropped/placed on empty space.\r\n");
             this.startRegen.UseVisualStyleBackColor = false;
-            this.startRegen.Click += new System.EventHandler(this.startRegen_Click);
+            this.startRegen.Click += new System.EventHandler(this.StartRegen_Click);
             // 
             // hideBtn
             // 
@@ -232,7 +232,7 @@ namespace ACNHPokerCore
             this.hideBtn.Text = "Hide";
             this.formToolTip.SetToolTip(this.hideBtn, "Hide this window to tray.");
             this.hideBtn.UseVisualStyleBackColor = false;
-            this.hideBtn.Click += new System.EventHandler(this.hideBtn_Click);
+            this.hideBtn.Click += new System.EventHandler(this.HideBtn_Click);
             // 
             // backBtn
             // 
@@ -248,7 +248,7 @@ namespace ACNHPokerCore
             this.backBtn.TabIndex = 221;
             this.backBtn.Text = "Back";
             this.backBtn.UseVisualStyleBackColor = false;
-            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
+            this.backBtn.Click += new System.EventHandler(this.BackBtn_Click);
             // 
             // timeLabel
             // 
@@ -278,7 +278,7 @@ namespace ACNHPokerCore
             this.formToolTip.SetToolTip(this.startRegen2, "Keep refreshing the map with a saved map template (.nhf). (Layer 1 only)\r\n[WARNIN" +
         "G] This option will ignore empty space to preserve dropped item.\r\n");
             this.startRegen2.UseVisualStyleBackColor = false;
-            this.startRegen2.Click += new System.EventHandler(this.startRegen2_Click);
+            this.startRegen2.Click += new System.EventHandler(this.StartRegen2_Click);
             // 
             // FinMsg
             // 
@@ -308,7 +308,7 @@ namespace ACNHPokerCore
             this.delay.Size = new System.Drawing.Size(72, 20);
             this.delay.TabIndex = 224;
             this.delay.Text = "50";
-            this.delay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.delay_KeyPress);
+            this.delay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Delay_KeyPress);
             // 
             // ms
             // 
@@ -386,7 +386,7 @@ namespace ACNHPokerCore
             this.logBtn.Text = "Log";
             this.formToolTip.SetToolTip(this.logBtn, "Show/Hide the visitor log.");
             this.logBtn.UseVisualStyleBackColor = false;
-            this.logBtn.Click += new System.EventHandler(this.logBtn_Click);
+            this.logBtn.Click += new System.EventHandler(this.LogBtn_Click);
             // 
             // newLogBtn
             // 
@@ -403,7 +403,7 @@ namespace ACNHPokerCore
             this.newLogBtn.Text = "New";
             this.formToolTip.SetToolTip(this.newLogBtn, "Create a new visitor log file.");
             this.newLogBtn.UseVisualStyleBackColor = false;
-            this.newLogBtn.Click += new System.EventHandler(this.newLogBtn_Click);
+            this.newLogBtn.Click += new System.EventHandler(this.NewLogBtn_Click);
             // 
             // selectLogBtn
             // 
@@ -420,7 +420,7 @@ namespace ACNHPokerCore
             this.selectLogBtn.Text = "Select...";
             this.formToolTip.SetToolTip(this.selectLogBtn, "Select another visitor log file.");
             this.selectLogBtn.UseVisualStyleBackColor = false;
-            this.selectLogBtn.Click += new System.EventHandler(this.selectLogBtn_Click);
+            this.selectLogBtn.Click += new System.EventHandler(this.SelectLogBtn_Click);
             // 
             // startBtn
             // 
@@ -439,7 +439,7 @@ namespace ACNHPokerCore
             this.formToolTip.SetToolTip(this.startBtn, "Start the regen with only the area selected being ignored.\r\n[WARNING] Item droppe" +
         "d/placed on the empty space outside the area will be deleted.");
             this.startBtn.UseVisualStyleBackColor = false;
-            this.startBtn.Click += new System.EventHandler(this.startBtn_Click);
+            this.startBtn.Click += new System.EventHandler(this.StartBtn_Click);
             // 
             // keepVillagerBox
             // 
@@ -474,7 +474,7 @@ namespace ACNHPokerCore
             this.dodoSetupBtn.Text = "Enable Dodo Helper";
             this.formToolTip.SetToolTip(this.dodoSetupBtn, resources.GetString("dodoSetupBtn.ToolTip"));
             this.dodoSetupBtn.UseVisualStyleBackColor = false;
-            this.dodoSetupBtn.Click += new System.EventHandler(this.dodoHelperBtn_Click);
+            this.dodoSetupBtn.Click += new System.EventHandler(this.DodoHelperBtn_Click);
             // 
             // changeDodoBtn
             // 
@@ -492,7 +492,7 @@ namespace ACNHPokerCore
             this.changeDodoBtn.Text = "Change Dodo Path";
             this.formToolTip.SetToolTip(this.changeDodoBtn, "Change the path where the dodo code is stored.");
             this.changeDodoBtn.UseVisualStyleBackColor = false;
-            this.changeDodoBtn.Click += new System.EventHandler(this.changeDodoBtn_Click);
+            this.changeDodoBtn.Click += new System.EventHandler(this.ChangeDodoBtn_Click);
             // 
             // PauseTimer
             // 
@@ -623,8 +623,8 @@ namespace ACNHPokerCore
             this.miniMapBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.miniMapBox.TabIndex = 190;
             this.miniMapBox.TabStop = false;
-            this.miniMapBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.miniMapBox_MouseDown);
-            this.miniMapBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.miniMapBox_MouseMove);
+            this.miniMapBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MiniMapBox_MouseDown);
+            this.miniMapBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MiniMapBox_MouseMove);
             // 
             // xCoordinate
             // 

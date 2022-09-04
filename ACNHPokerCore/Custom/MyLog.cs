@@ -10,7 +10,7 @@ namespace ACNHPokerCore
         {
         }
 
-        public static void logEvent(string Location, string Message)
+        public static void LogEvent(string Location, string Message)
         {
             if (!File.Exists(Utilities.logPath))
             {
@@ -23,10 +23,8 @@ namespace ACNHPokerCore
                     Directory.CreateDirectory(directoryPath);
                 }
 
-                using (StreamWriter sw = File.CreateText(Utilities.logPath))
-                {
-                    sw.WriteLine(logheader);
-                }
+                using StreamWriter sw = File.CreateText(Utilities.logPath);
+                sw.WriteLine(logheader);
             }
 
             DateTime localDate = DateTime.Now;
@@ -35,10 +33,8 @@ namespace ACNHPokerCore
 
             if (File.Exists(Utilities.logPath))
             {
-                using (StreamWriter sw = File.AppendText(Utilities.logPath))
-                {
-                    sw.WriteLine(newLog);
-                }
+                using StreamWriter sw = File.AppendText(Utilities.logPath);
+                sw.WriteLine(newLog);
             }
         }
     }

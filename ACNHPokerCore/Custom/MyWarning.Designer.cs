@@ -113,7 +113,7 @@
             this.answerBox.Size = new System.Drawing.Size(678, 41);
             this.answerBox.TabIndex = 4;
             this.answerBox.Text = "";
-            this.answerBox.TextChanged += new System.EventHandler(this.answerBox_TextChanged);
+            this.answerBox.TextChanged += new System.EventHandler(this.AnswerBox_TextChanged);
             // 
             // confirmBtn
             // 
@@ -129,7 +129,7 @@
             this.confirmBtn.Text = "I understand, flatten all terrain.";
             this.confirmBtn.UseVisualStyleBackColor = false;
             this.confirmBtn.Visible = false;
-            this.confirmBtn.Click += new System.EventHandler(this.confirmBtn_Click);
+            this.confirmBtn.Click += new System.EventHandler(this.ConfirmBtn_Click);
             // 
             // warningImg1
             // 

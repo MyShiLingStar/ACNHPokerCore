@@ -973,7 +973,7 @@ namespace Twitch
 
         public static void AddItem(string Owner, string Id, string Count, string Name, string Color, Image Image = null)
         {
-            DropOrderList.Add(new ItemOrder() { owner = Owner, id = Id, count = Count, name = Name, color = Color, image = Image });
+            DropOrderList.Add(new ItemOrder() { Owner = Owner, Id = Id, Count = Count, Name = Name, Color = Color, Image = Image });
 
             /*
             if (itemDisplay != null && Image != null)
@@ -985,7 +985,7 @@ namespace Twitch
 
         public static void AddVillager(string Owner, string Iname, string Rname, Image Image = null)
         {
-            VillagerOrderList.Add(new VillagerOrder() { owner = Owner, InternalName = Iname, RealName = Rname, image = Image });
+            VillagerOrderList.Add(new VillagerOrder() { Owner = Owner, InternalName = Iname, RealName = Rname, Image = Image });
 
             Debug.Print($"{Owner} - Villager Added : {Rname} [{Iname}] ");
         }

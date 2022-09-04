@@ -135,9 +135,9 @@ namespace ACNHPokerCore
             this.miniMapBox.TabIndex = 190;
             this.miniMapBox.TabStop = false;
             this.miniMapBox.Visible = false;
-            this.miniMapBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.miniMapBox_MouseDown);
-            this.miniMapBox.MouseLeave += new System.EventHandler(this.miniMapBox_MouseLeave);
-            this.miniMapBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.miniMapBox_MouseMove);
+            this.miniMapBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MiniMapBox_MouseDown);
+            this.miniMapBox.MouseLeave += new System.EventHandler(this.MiniMapBox_MouseLeave);
+            this.miniMapBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MiniMapBox_MouseMove);
             // 
             // realYLabel
             // 
@@ -259,7 +259,7 @@ namespace ACNHPokerCore
             this.acreList.TabIndex = 231;
             this.acreList.TileSize = new System.Drawing.Size(1, 1);
             this.acreList.UseCompatibleStateImageBehavior = false;
-            this.acreList.SelectedIndexChanged += new System.EventHandler(this.acreList_SelectedIndexChanged);
+            this.acreList.SelectedIndexChanged += new System.EventHandler(this.AcreList_SelectedIndexChanged);
             // 
             // sendBtn
             // 
@@ -274,7 +274,7 @@ namespace ACNHPokerCore
             this.sendBtn.TabIndex = 232;
             this.sendBtn.Text = "Confirm";
             this.sendBtn.UseVisualStyleBackColor = false;
-            this.sendBtn.Click += new System.EventHandler(this.sendBtn_Click);
+            this.sendBtn.Click += new System.EventHandler(this.SendBtn_Click);
             // 
             // selectedAcreBox
             // 
@@ -319,7 +319,7 @@ namespace ACNHPokerCore
             this.replaceBtn.TabIndex = 235;
             this.replaceBtn.Text = "◀ Replace";
             this.replaceBtn.UseVisualStyleBackColor = false;
-            this.replaceBtn.Click += new System.EventHandler(this.replaceBtn_Click);
+            this.replaceBtn.Click += new System.EventHandler(this.ReplaceBtn_Click);
             // 
             // AcreBtn
             // 
@@ -380,7 +380,7 @@ namespace ACNHPokerCore
             this.saveAcreBtn.TabIndex = 238;
             this.saveAcreBtn.Text = "Save";
             this.saveAcreBtn.UseVisualStyleBackColor = false;
-            this.saveAcreBtn.Click += new System.EventHandler(this.saveAcreBtn_Click);
+            this.saveAcreBtn.Click += new System.EventHandler(this.SaveAcreBtn_Click);
             // 
             // loadAcreBtn
             // 
@@ -395,7 +395,7 @@ namespace ACNHPokerCore
             this.loadAcreBtn.TabIndex = 237;
             this.loadAcreBtn.Text = "Load";
             this.loadAcreBtn.UseVisualStyleBackColor = false;
-            this.loadAcreBtn.Click += new System.EventHandler(this.loadAcreBtn_Click);
+            this.loadAcreBtn.Click += new System.EventHandler(this.LoadAcreBtn_Click);
             // 
             // allFlatBtn
             // 
@@ -410,7 +410,7 @@ namespace ACNHPokerCore
             this.allFlatBtn.TabIndex = 236;
             this.allFlatBtn.Text = "◀ All Flat Acres";
             this.allFlatBtn.UseVisualStyleBackColor = false;
-            this.allFlatBtn.Click += new System.EventHandler(this.allFlatBtn_Click);
+            this.allFlatBtn.Click += new System.EventHandler(this.AllFlatBtn_Click);
             // 
             // TerrainBtn
             // 
@@ -461,7 +461,7 @@ namespace ACNHPokerCore
             this.buildingGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.buildingGridView.Size = new System.Drawing.Size(513, 332);
             this.buildingGridView.TabIndex = 30;
-            this.buildingGridView.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.buildingGridView_CellMouseUp);
+            this.buildingGridView.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.BuildingGridView_CellMouseUp);
             // 
             // BuildingControl
             // 
@@ -695,7 +695,7 @@ namespace ACNHPokerCore
             this.inclineTypeSelect.Name = "inclineTypeSelect";
             this.inclineTypeSelect.Size = new System.Drawing.Size(135, 24);
             this.inclineTypeSelect.TabIndex = 244;
-            this.inclineTypeSelect.SelectedIndexChanged += new System.EventHandler(this.inclineTypeSelect_SelectedIndexChanged);
+            this.inclineTypeSelect.SelectedIndexChanged += new System.EventHandler(this.InclineTypeSelect_SelectedIndexChanged);
             // 
             // inclineAngleSelect
             // 
@@ -718,7 +718,7 @@ namespace ACNHPokerCore
             this.inclineAngleSelect.Name = "inclineAngleSelect";
             this.inclineAngleSelect.Size = new System.Drawing.Size(143, 24);
             this.inclineAngleSelect.TabIndex = 243;
-            this.inclineAngleSelect.SelectedIndexChanged += new System.EventHandler(this.inclineAngleSelect_SelectedIndexChanged);
+            this.inclineAngleSelect.SelectedIndexChanged += new System.EventHandler(this.InclineAngleSelect_SelectedIndexChanged);
             // 
             // InclineTypeLabel
             // 
@@ -755,7 +755,7 @@ namespace ACNHPokerCore
             this.saveBuildingBtn.TabIndex = 241;
             this.saveBuildingBtn.Text = "Save";
             this.saveBuildingBtn.UseVisualStyleBackColor = false;
-            this.saveBuildingBtn.Click += new System.EventHandler(this.saveBuildingBtn_Click);
+            this.saveBuildingBtn.Click += new System.EventHandler(this.SaveBuildingBtn_Click);
             // 
             // loadBuildingBtn
             // 
@@ -770,7 +770,7 @@ namespace ACNHPokerCore
             this.loadBuildingBtn.TabIndex = 240;
             this.loadBuildingBtn.Text = "Load";
             this.loadBuildingBtn.UseVisualStyleBackColor = false;
-            this.loadBuildingBtn.Click += new System.EventHandler(this.loadBuildingBtn_Click);
+            this.loadBuildingBtn.Click += new System.EventHandler(this.LoadBuildingBtn_Click);
             // 
             // BuildingTypeLabel
             // 
@@ -796,7 +796,7 @@ namespace ACNHPokerCore
             this.updateBtn.TabIndex = 238;
             this.updateBtn.Text = "◀ Update";
             this.updateBtn.UseVisualStyleBackColor = false;
-            this.updateBtn.Click += new System.EventHandler(this.updateBtn_Click);
+            this.updateBtn.Click += new System.EventHandler(this.UpdateBtn_Click);
             // 
             // buildingConfirmBtn
             // 
@@ -811,7 +811,7 @@ namespace ACNHPokerCore
             this.buildingConfirmBtn.TabIndex = 237;
             this.buildingConfirmBtn.Text = "Confirm";
             this.buildingConfirmBtn.UseVisualStyleBackColor = false;
-            this.buildingConfirmBtn.Click += new System.EventHandler(this.buildingConfirmBtn_Click);
+            this.buildingConfirmBtn.Click += new System.EventHandler(this.BuildingConfirmBtn_Click);
             // 
             // BuildingType
             // 
@@ -1073,7 +1073,7 @@ namespace ACNHPokerCore
             this.flattenAllBtn.TabIndex = 243;
             this.flattenAllBtn.Text = "Flatten All Terrrain";
             this.flattenAllBtn.UseVisualStyleBackColor = false;
-            this.flattenAllBtn.Click += new System.EventHandler(this.flattenAllBtn_Click);
+            this.flattenAllBtn.Click += new System.EventHandler(this.FlattenAllBtn_Click);
             // 
             // saveTerrianBtn
             // 
@@ -1088,7 +1088,7 @@ namespace ACNHPokerCore
             this.saveTerrianBtn.TabIndex = 238;
             this.saveTerrianBtn.Text = "Save";
             this.saveTerrianBtn.UseVisualStyleBackColor = false;
-            this.saveTerrianBtn.Click += new System.EventHandler(this.saveTerrianBtn_Click);
+            this.saveTerrianBtn.Click += new System.EventHandler(this.SaveTerrianBtn_Click);
             // 
             // loadTerrianBtn
             // 
@@ -1103,7 +1103,7 @@ namespace ACNHPokerCore
             this.loadTerrianBtn.TabIndex = 237;
             this.loadTerrianBtn.Text = "Load";
             this.loadTerrianBtn.UseVisualStyleBackColor = false;
-            this.loadTerrianBtn.Click += new System.EventHandler(this.loadTerrianBtn_Click);
+            this.loadTerrianBtn.Click += new System.EventHandler(this.LoadTerrianBtn_Click);
             // 
             // PleaseWaitPanel
             // 

@@ -4,6 +4,7 @@
 # ACNHPokerCore
 	
 ![Release Image](https://i.ibb.co/txCNG22/131313.png)
+[![Video](https://img.youtube.com/vi/6RGZbiKzACg/maxresdefault.jpg)](https://youtu.be/6RGZbiKzACg)
 
    1. Spawns items for you on  Animal Crossing™: New Horizons using [sys-botbase](https://github.com/olliz0r/sys-botbase)
    2. Manipulate in-game critter spawn rate.
@@ -47,6 +48,16 @@
     * Added extra spacing options for variation spawn.
     * Added item activate/deactivate in Map Dropper.
     * Minor bug fixes every where.
+* R22
+    * Added "RoadRoller" for terrain editing.
+    * Added "Chat Sender" for sending custom chat.
+    * Added the "Manual Mode" in RoadRoller.
+    * Added the "Custom Design Mode" in RoadRoller.
+    * Added the "River Mouth fix" in RoadRoller.
+    * Added the "Invisible support" for hanging bridges in RoadRoller.
+    * Added remove building to Bulldozer.
+    * Added HHP acres to Bulldozer.	
+    * Code cleanup and bug fixes
 	
 ## Ely's Changes:   
 
@@ -61,6 +72,18 @@ If you are considering donation please keep in mind that the donation doesn't ge
 
 Please also consider supporting the original author of ACNHPoker @kinglycosa
 * https://ko-fi.com/chad0001
+
+## Acknowledgements
+
+* Reverse engineering: https://github.com/Treeki/CylindricalEarth
+* Item list parsing: https://github.com/phecdaDia/ACNH
+* Sys-botbase: https://github.com/olliz0r/sys-botbase
+* USB-botbase: https://github.com/fishguy6564/USB-Botbase / https://github.com/Koi-3088/USB-Botbase
+* ACNH Save Editor: https://github.com/kwsch/NHSE
+* ACNHMobileSpawner: https://github.com/berichan/ACNHMobileSpawner
+* EventFlow file handling: https://github.com/zeldamods/evfl
+* On-console debugger: https://github.com/mdbell/Noexes
+* Bridge information: https://www.youtube.com/watch?v=jeFJqxoj51I
 
 ## Meta
 

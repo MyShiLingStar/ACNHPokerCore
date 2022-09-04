@@ -6,7 +6,7 @@ namespace ACNHPokerCore
 {
     public class CountDownTimer : IDisposable
     {
-        public Stopwatch _stpWatch = new Stopwatch();
+        public Stopwatch _stpWatch = new();
 
         public Action TimeChanged;
         public Action CountDownFinished;
@@ -19,13 +19,13 @@ namespace ACNHPokerCore
             set => timer.Interval = value;
         }
 
-        private Timer timer = new Timer();
+        private readonly Timer timer = new();
 
         private TimeSpan _max = TimeSpan.FromMilliseconds(30000);
 
         public TimeSpan TimeLeft => (_max.TotalMilliseconds - _stpWatch.ElapsedMilliseconds) > 0 ? TimeSpan.FromMilliseconds(_max.TotalMilliseconds - _stpWatch.ElapsedMilliseconds) : TimeSpan.FromMilliseconds(0);
 
-        private bool _mustStop => (_max.TotalMilliseconds - _stpWatch.ElapsedMilliseconds) < 0;
+        private bool MustStop => (_max.TotalMilliseconds - _stpWatch.ElapsedMilliseconds) < 0;
 
         public string TimeLeftStr => TimeLeft.ToString(@"mm\:ss");
 
@@ -38,7 +38,7 @@ namespace ACNHPokerCore
         {
             TimeChanged?.Invoke();
 
-            if (_mustStop)
+            if (MustStop)
             {
                 CountDownFinished?.Invoke();
                 _stpWatch.Stop();
@@ -107,6 +107,10 @@ namespace ACNHPokerCore
             _stpWatch.Start();
         }
 
-        public void Dispose() => timer.Dispose();
+        public void Dispose()
+        {
+            timer.Dispose();
+            GC.SuppressFinalize(this);
+        }
     }
 }

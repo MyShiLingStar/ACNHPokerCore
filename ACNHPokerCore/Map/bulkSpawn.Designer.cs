@@ -1,7 +1,7 @@
 ﻿
 namespace ACNHPokerCore
 {
-    partial class bulkSpawn
+    partial class BulkSpawn
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace ACNHPokerCore
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(bulkSpawn));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BulkSpawn));
             this.heightNumber = new System.Windows.Forms.RichTextBox();
             this.yCoordinate = new System.Windows.Forms.RichTextBox();
             this.xCoordinate = new System.Windows.Forms.RichTextBox();
@@ -84,7 +84,7 @@ namespace ACNHPokerCore
             this.heightNumber.Size = new System.Drawing.Size(61, 18);
             this.heightNumber.TabIndex = 73;
             this.heightNumber.Text = "32";
-            this.heightNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.heightNumber_KeyPress);
+            this.heightNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HeightNumber_KeyPress);
             // 
             // yCoordinate
             // 
@@ -155,7 +155,7 @@ namespace ACNHPokerCore
             this.miniMapBox.Size = new System.Drawing.Size(448, 384);
             this.miniMapBox.TabIndex = 78;
             this.miniMapBox.TabStop = false;
-            this.miniMapBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.miniMapBox_MouseDown);
+            this.miniMapBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MiniMapBox_MouseDown);
             // 
             // selectBtn
             // 
@@ -171,7 +171,7 @@ namespace ACNHPokerCore
             this.selectBtn.TabIndex = 0;
             this.selectBtn.Text = "Select File";
             this.selectBtn.UseVisualStyleBackColor = false;
-            this.selectBtn.Click += new System.EventHandler(this.selectBtn_Click);
+            this.selectBtn.Click += new System.EventHandler(this.SelectBtn_Click);
             // 
             // spawnBtn
             // 
@@ -188,7 +188,7 @@ namespace ACNHPokerCore
             this.spawnBtn.Text = "Spawn";
             this.spawnBtn.UseVisualStyleBackColor = false;
             this.spawnBtn.Visible = false;
-            this.spawnBtn.Click += new System.EventHandler(this.spawnBtn_Click);
+            this.spawnBtn.Click += new System.EventHandler(this.SpawnBtn_Click);
             // 
             // previewBtn
             // 
@@ -204,7 +204,7 @@ namespace ACNHPokerCore
             this.previewBtn.TabIndex = 224;
             this.previewBtn.Text = "Preview";
             this.previewBtn.UseVisualStyleBackColor = false;
-            this.previewBtn.Click += new System.EventHandler(this.previewBtn_Click);
+            this.previewBtn.Click += new System.EventHandler(this.PreviewBtn_Click);
             // 
             // numOfItemBox
             // 
@@ -514,7 +514,7 @@ namespace ACNHPokerCore
             this.Opacity = 0.95D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bulk Spawn";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.bulkSpawn_FormClosed);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BulkSpawn_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.miniMapBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HeightImageBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DirectionImageBox)).EndInit();

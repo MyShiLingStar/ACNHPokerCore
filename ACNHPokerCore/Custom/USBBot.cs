@@ -14,8 +14,10 @@ namespace ACNHPokerCore
         private static bool debug = false;
         private const byte READPOINT = 129;
         private const byte WRITEPOINT = 1;
+        private static bool CorrectIDFound = false;
+        private static bool NormalIDFound = false;
 
-        public int MaximumTransferSize { get { return 468; } }
+        public static int MaximumTransferSize { get { return 468; } }
 
         private static readonly Encoding Encoder = Encoding.UTF8;
         private static byte[] Encode(string command, bool addrn = true) => Encoder.GetBytes(addrn ? command + "\r\n" : command);
@@ -28,7 +30,7 @@ namespace ACNHPokerCore
 
         public bool Connected { get; private set; }
 
-        private readonly object _sync = new object();
+        private readonly object _sync = new();
 
         private MonoUsbSessionHandle context;
 
@@ -50,27 +52,39 @@ namespace ACNHPokerCore
 
                 var sessionHandle = new MonoUsbSessionHandle();
                 var profileList = new MonoUsbProfileList();
+                MonoUsbDeviceHandle deviceHandle = null;
                 profileList.Refresh(sessionHandle);
+
+                List<MonoUsbProfile> usbList = profileList.GetList();
+                string deviceList = "";
+                foreach (MonoUsbProfile profile in usbList)
+                {
+                    deviceHandle = profile.OpenDeviceHandle();
+                    string VendorID = profile.DeviceDescriptor.VendorID.ToString();
+                    string ProductID = profile.DeviceDescriptor.ProductID.ToString();
+                    if (VendorID.Equals("1406") && ProductID.Equals("12288"))
+                    {
+                        deviceList += "SWITCH FOUND - " + "VendorID : " + VendorID + " " + " ProductID : " + ProductID + "\n";
+                        CorrectIDFound = true;
+                    }
+                    else if (VendorID.Equals("1406") && ProductID.Equals("8192"))
+                    {
+                        deviceList += "SWITCH FOUND - " + "VendorID : " + VendorID + " " + " ProductID : " + ProductID + "\n";
+                        NormalIDFound = true;
+                    }
+                    else
+                    {
+                        deviceList += "VendorID : " + VendorID + " " + " ProductID : " + ProductID + "\n";
+                    }
+                }
+
+                profileList.Close();
+                sessionHandle.Close();
+                if (deviceHandle != null)
+                    deviceHandle.Close();
 
                 if (debug)
                 {
-                    List<MonoUsbProfile> usbList = profileList.GetList();
-                    string deviceList = "";
-                    foreach (MonoUsbProfile profile in usbList)
-                    {
-                        var deviceHandle = profile.OpenDeviceHandle();
-                        string VendorID = profile.DeviceDescriptor.VendorID.ToString();
-                        string ProductID = profile.DeviceDescriptor.ProductID.ToString();
-                        if (VendorID.Equals("1406") && ProductID.Equals("12288"))
-                        {
-                            deviceList += "SWITCH FOUND - " + "VendorID : " + VendorID + " " + " ProductID : " + ProductID + "\n";
-                        }
-                        else
-                        {
-                            deviceList += "VendorID : " + VendorID + " " + " ProductID : " + ProductID + "\n";
-                        }
-                    }
-
                     if (deviceList.Equals(""))
                     {
                         MyMessageBox.Show("NO USB DEVICES FOUND!", "List of USB devices", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
@@ -79,22 +93,36 @@ namespace ACNHPokerCore
                         MyMessageBox.Show(deviceList, "List of USB devices", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
                 }
 
-                context = new MonoUsbSessionHandle();
-                var usbHandle = MonoUsbApi.OpenDeviceWithVidPid(context, 1406, 12288);
-                if (usbHandle != null)
+                if (!CorrectIDFound && NormalIDFound)
                 {
-                    if (MonoUsbApi.ClaimInterface(usbHandle, 0) == 0)
+                    MyMessageBox.Show("Please double check your USB-botbase and libusbK driver installation!", "USB-botbase Error!", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                    Connected = false;
+                    return false;
+                }
+
+                if (CorrectIDFound)
+                {
+                    context = new MonoUsbSessionHandle();
+                    var usbHandle = MonoUsbApi.OpenDeviceWithVidPid(context, 1406, 12288);
+                    if (usbHandle != null)
                     {
-                        MonoUsbApi.ReleaseInterface(usbHandle, 0);
+                        if (MonoUsbApi.ClaimInterface(usbHandle, 0) == 0)
+                        {
+                            _ = MonoUsbApi.ReleaseInterface(usbHandle, 0);
+                            usbHandle.Close();
+                            Connected = true;
+                            return true;
+                        }
                         usbHandle.Close();
-                        Connected = true;
-                        return true;
                     }
-                    usbHandle.Close();
+                    else
+                    {
+                        MyMessageBox.Show("Device Not Found!\nPlease try restarting your Switch if problem persists!", "USB insertion always require at least 3 flips!", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MyMessageBox.Show("Device Not Found!\nPlease also try restarting your Switch if problem persists!", "USB insertion always require at least 3 flips!", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                    MyMessageBox.Show("Device Not Found!\nPlease try restarting your Switch if problem persists!", "USB insertion always require at least 3 flips!", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
                 }
 
                 Connected = false;
@@ -102,7 +130,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private MonoUsbDeviceHandle getUsableAndOpenUsbHandle()
+        private MonoUsbDeviceHandle GetUsableAndOpenUsbHandle()
         {
             lock (_sync)
             {
@@ -131,7 +159,7 @@ namespace ACNHPokerCore
 
         private void CleanUpHandle(MonoUsbDeviceHandle handle)
         {
-            MonoUsbApi.ReleaseInterface(handle, 0);
+            _ = MonoUsbApi.ReleaseInterface(handle, 0);
             handle.Close();
             Disconnect(false);
         }
@@ -152,7 +180,7 @@ namespace ACNHPokerCore
 
         private int ReadInternal(byte[] buffer)
         {
-            var handle = getUsableAndOpenUsbHandle();
+            var handle = GetUsableAndOpenUsbHandle();
             if (handle == null)
                 throw new Exception("USB writer is null, you may have disconnected the device during previous function");
 
@@ -168,7 +196,7 @@ namespace ACNHPokerCore
 
         private int SendInternal(byte[] buffer)
         {
-            var handle = getUsableAndOpenUsbHandle();
+            var handle = GetUsableAndOpenUsbHandle();
             if (handle == null)
                 throw new Exception("USB writer is null, you may have disconnected the device during previous function");
 
@@ -280,7 +308,7 @@ namespace ACNHPokerCore
 
         private byte[] ReadBytesLarge(uint offset, int length)
         {
-            List<byte> read = new List<byte>();
+            List<byte> read = new();
             for (int i = 0; i < length; i += MaximumTransferSize)
                 read.AddRange(ReadBytes(offset + (uint)i, Math.Min(MaximumTransferSize, length - i)));
             return read.ToArray();
