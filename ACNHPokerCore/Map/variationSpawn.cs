@@ -6,41 +6,39 @@ namespace ACNHPokerCore
 {
     public partial class variationSpawn : Form
     {
-        inventorySlot[,] mainSlot = new inventorySlot[1, 3];
-        inventorySlot[,] subSlot = new inventorySlot[1, 3];
-        inventorySlot[,] allSlot = new inventorySlot[2, 3];
+        readonly inventorySlot[,] mainSlot = new inventorySlot[1, 3];
+        readonly inventorySlot[,] subSlot = new inventorySlot[1, 3];
+        readonly inventorySlot[,] allSlot = new inventorySlot[2, 3];
+        readonly inventorySlot[,] mainHSlot = new inventorySlot[3, 1];
+        readonly inventorySlot[,] subHSlot = new inventorySlot[3, 1];
+        readonly inventorySlot[,] allHSlot = new inventorySlot[2, 3];
 
-        inventorySlot[,] mainHSlot = new inventorySlot[3, 1];
-        inventorySlot[,] subHSlot = new inventorySlot[3, 1];
-        inventorySlot[,] allHSlot = new inventorySlot[2, 3];
-
-        private inventorySlot[,] VariationList;
-        private miniMap MiniMap = null;
-        private byte[] Layer1 = null;
-        private byte[] Acre = null;
-        private byte[] Building = null;
-        private byte[] Terrain = null;
-        private string Flag;
+        private readonly MiniMap MiniMap = null;
+        private readonly byte[] Layer1 = null;
+        private readonly byte[] Acre = null;
+        private readonly byte[] Building = null;
+        private readonly byte[] Terrain = null;
+        private readonly string Flag;
         private bool previewOn = false;
 
-        private int main;
-        private int sub;
-        private int X;
-        private int Y;
+        private readonly int main;
+        private readonly int sub;
+        private readonly int X;
+        private readonly int Y;
 
         private double width;
         private double height;
         private bool wallmount = false;
-        private bool rug = false;
+        //private bool rug = false;
         private bool ceiling = false;
 
-        private bool init = true;
+        private readonly bool init = true;
 
         public event ObeySizeHandler SendObeySizeEvent;
+        public event UpdateRowAndColumnHandler SendRowAndColumnEvent;
 
         public variationSpawn(inventorySlot[,] variationList, byte[] layer1, byte[] acre, byte[] building, byte[] terrain, int x, int y, string flag, string size)
         {
-            VariationList = variationList;
             Layer1 = layer1;
             Acre = acre;
             Building = building;
@@ -50,9 +48,8 @@ namespace ACNHPokerCore
             Y = y;
 
             InitializeComponent();
-            processSize(size);
-            map.numOfColumn = (int)columnBox.Value;
-            map.numOfRow = (int)rowBox.Value;
+            ProcessSize(size);
+            this.SendRowAndColumnEvent((int)rowBox.Value, (int)columnBox.Value);
 
             mainSlot[0, 0] = main00;
             mainSlot[0, 1] = main01;
@@ -171,71 +168,71 @@ namespace ACNHPokerCore
             if (Flag == "00" || Flag == "01" || Flag == "02" || Flag == "03" || Flag == "04")
                 ObeySizeToggle.Checked = true;
 
-            MiniMap = new miniMap(Layer1, Acre, Building, Terrain, 4);
-            miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawBackground(), MiniMap.drawItemMap());
+            MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, 4);
+            miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawBackground(), MiniMap.DrawItemMap());
             init = false;
 
-            updateSize();
+            UpdateSize();
         }
 
-        private void mainOnly_CheckedChanged(object sender, EventArgs e)
+        private void MainOnly_CheckedChanged(object sender, EventArgs e)
         {
             okBtn.DialogResult = DialogResult.OK; // 1
             columnPanel.Enabled = true;
-            updateSize();
+            UpdateSize();
         }
 
-        private void subOnly_CheckedChanged(object sender, EventArgs e)
+        private void SubOnly_CheckedChanged(object sender, EventArgs e)
         {
             okBtn.DialogResult = DialogResult.Yes; // 6
             columnPanel.Enabled = true;
-            updateSize();
+            UpdateSize();
         }
 
-        private void all_CheckedChanged(object sender, EventArgs e)
+        private void All_CheckedChanged(object sender, EventArgs e)
         {
             okBtn.DialogResult = DialogResult.Ignore; // 5
             columnPanel.Enabled = false;
-            updateSize();
+            UpdateSize();
         }
 
-        private void mainHOnly_CheckedChanged(object sender, EventArgs e)
+        private void MainHOnly_CheckedChanged(object sender, EventArgs e)
         {
             okHBtn.DialogResult = DialogResult.Abort; // 3
             rowPanel.Enabled = true;
-            updateSize();
+            UpdateSize();
         }
 
-        private void subHOnly_CheckedChanged(object sender, EventArgs e)
+        private void SubHOnly_CheckedChanged(object sender, EventArgs e)
         {
             okHBtn.DialogResult = DialogResult.No; // 7
             rowPanel.Enabled = true;
-            updateSize();
+            UpdateSize();
         }
 
-        private void allH_CheckedChanged(object sender, EventArgs e)
+        private void AllH_CheckedChanged(object sender, EventArgs e)
         {
             okHBtn.DialogResult = DialogResult.Retry; // 4
             rowPanel.Enabled = false;
-            updateSize();
+            UpdateSize();
         }
 
-        private void columnBox_ValueChanged(object sender, EventArgs e)
+        private void ColumnBox_ValueChanged(object sender, EventArgs e)
         {
-            map.numOfColumn = (int)columnBox.Value;
+            this.SendRowAndColumnEvent((int)rowBox.Value, (int)columnBox.Value);
             timesLabel1.Text = "× " + columnBox.Value;
             timesLabel2.Text = "× " + columnBox.Value;
-            updateSize();
+            UpdateSize();
         }
-        private void rowBox_ValueChanged(object sender, EventArgs e)
+        private void RowBox_ValueChanged(object sender, EventArgs e)
         {
-            map.numOfRow = (int)rowBox.Value;
+            this.SendRowAndColumnEvent((int)rowBox.Value, (int)columnBox.Value);
             timesHLabel1.Text = "× " + rowBox.Value;
             timesHLabel2.Text = "× " + rowBox.Value;
-            updateSize();
+            UpdateSize();
         }
 
-        private void updateSize()
+        private void UpdateSize()
         {
             if (init)
                 return;
@@ -258,7 +255,7 @@ namespace ACNHPokerCore
                 {
                     if (ObeySizeToggle.Checked)
                     {
-                        if (placeHorizontal())
+                        if (PlaceHorizontal())
                         {
                             totalHeight = main * ((int)Math.Ceiling(height) + extraRow);
                             totalWidth = column * ((int)Math.Ceiling(width) + extraColumn + wallMountExtra);
@@ -275,13 +272,13 @@ namespace ACNHPokerCore
                     size.Text = (main + extraHeight).ToString() + " × " + (column + extraWidth).ToString();
 
                     if (previewOn)
-                        miniMapBox.Image = MiniMap.drawPreview(main + extraHeight, column + extraWidth, X, Y, true);
+                        miniMapBox.Image = MiniMap.DrawPreview(main + extraHeight, column + extraWidth, X, Y, true);
                 }
                 else if (subOnly.Checked)
                 {
                     if (ObeySizeToggle.Checked)
                     {
-                        if (placeHorizontal())
+                        if (PlaceHorizontal())
                         {
                             totalHeight = sub * ((int)Math.Ceiling(height) + extraRow);
                             totalWidth = column * ((int)Math.Ceiling(width) + extraColumn + wallMountExtra);
@@ -298,13 +295,13 @@ namespace ACNHPokerCore
                     size.Text = (sub + extraHeight).ToString() + " × " + (column + extraWidth).ToString();
 
                     if (previewOn)
-                        miniMapBox.Image = MiniMap.drawPreview(sub + extraHeight, column + extraWidth, X, Y, true);
+                        miniMapBox.Image = MiniMap.DrawPreview(sub + extraHeight, column + extraWidth, X, Y, true);
                 }
                 else
                 {
                     if (ObeySizeToggle.Checked)
                     {
-                        if (placeHorizontal())
+                        if (PlaceHorizontal())
                         {
                             totalHeight = sub * ((int)Math.Ceiling(height) + extraRow);
                             totalWidth = main * ((int)Math.Ceiling(width) + extraColumn + wallMountExtra);
@@ -321,7 +318,7 @@ namespace ACNHPokerCore
                     size.Text = (sub + extraHeight).ToString() + " × " + (main + extraWidth).ToString();
 
                     if (previewOn)
-                        miniMapBox.Image = MiniMap.drawPreview(sub + extraHeight, main + extraWidth, X, Y, true);
+                        miniMapBox.Image = MiniMap.DrawPreview(sub + extraHeight, main + extraWidth, X, Y, true);
                 }
             }
             else
@@ -332,7 +329,7 @@ namespace ACNHPokerCore
                 {
                     if (ObeySizeToggle.Checked)
                     {
-                        if (placeHorizontal())
+                        if (PlaceHorizontal())
                         {
                             totalHeight = row * ((int)Math.Ceiling(height) + extraRow);
                             totalWidth = main * ((int)Math.Ceiling(width) + extraColumn + wallMountExtra);
@@ -349,13 +346,13 @@ namespace ACNHPokerCore
                     sizeH.Text = (row + extraHeight).ToString() + " × " + (main + extraWidth).ToString();
 
                     if (previewOn)
-                        miniMapBox.Image = MiniMap.drawPreview(row + extraHeight, main + extraWidth, X, Y, true);
+                        miniMapBox.Image = MiniMap.DrawPreview(row + extraHeight, main + extraWidth, X, Y, true);
                 }
                 else if (subHOnly.Checked)
                 {
                     if (ObeySizeToggle.Checked)
                     {
-                        if (placeHorizontal())
+                        if (PlaceHorizontal())
                         {
                             totalHeight = row * ((int)Math.Ceiling(height) + extraRow);
                             totalWidth = sub * ((int)Math.Ceiling(width) + extraColumn + wallMountExtra);
@@ -372,13 +369,13 @@ namespace ACNHPokerCore
                     sizeH.Text = (row + extraHeight).ToString() + " × " + (sub + extraWidth).ToString();
 
                     if (previewOn)
-                        miniMapBox.Image = MiniMap.drawPreview(row + extraHeight, sub + extraWidth, X, Y, true);
+                        miniMapBox.Image = MiniMap.DrawPreview(row + extraHeight, sub + extraWidth, X, Y, true);
                 }
                 else
                 {
                     if (ObeySizeToggle.Checked)
                     {
-                        if (placeHorizontal())
+                        if (PlaceHorizontal())
                         {
                             totalHeight = main * ((int)Math.Ceiling(height) + extraRow);
                             totalWidth = sub * ((int)Math.Ceiling(width) + extraColumn + wallMountExtra);
@@ -395,7 +392,7 @@ namespace ACNHPokerCore
                     sizeH.Text = (main + extraHeight).ToString() + " × " + (sub + extraWidth).ToString();
 
                     if (previewOn)
-                        miniMapBox.Image = MiniMap.drawPreview(main + extraHeight, sub + extraWidth, X, Y, true);
+                        miniMapBox.Image = MiniMap.DrawPreview(main + extraHeight, sub + extraWidth, X, Y, true);
                 }
             }
 
@@ -403,7 +400,7 @@ namespace ACNHPokerCore
             {
                 if (SendObeySizeEvent != null)
                 {
-                    if (placeHorizontal())
+                    if (PlaceHorizontal())
                     {
                         if (wallmount)
                             this.SendObeySizeEvent(true, ((int)Math.Ceiling(height) + extraRow), ((int)Math.Ceiling(width) + extraColumn + wallMountExtra), totalHeight, totalWidth, true, false);
@@ -430,7 +427,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void toggleBtn_Click(object sender, EventArgs e)
+        private void ToggleBtn_Click(object sender, EventArgs e)
         {
             if (toggleBtn.Tag.ToString().Equals("Vertical"))
             {
@@ -439,7 +436,7 @@ namespace ACNHPokerCore
                 toggleBtn.BackColor = Color.Orange;
                 horiPanel.Visible = true;
                 vertPanel.Visible = false;
-                updateSize();
+                UpdateSize();
             }
             else
             {
@@ -448,11 +445,11 @@ namespace ACNHPokerCore
                 toggleBtn.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
                 horiPanel.Visible = false;
                 vertPanel.Visible = true;
-                updateSize();
+                UpdateSize();
             }
         }
 
-        private void previewBtn_Click(object sender, EventArgs e)
+        private void PreviewBtn_Click(object sender, EventArgs e)
         {
             if (previewOn)
             {
@@ -463,11 +460,11 @@ namespace ACNHPokerCore
             {
                 this.Width = 1150;
                 previewOn = true;
-                updateSize();
+                UpdateSize();
             }
         }
 
-        private void previewHBtn_Click(object sender, EventArgs e)
+        private void PreviewHBtn_Click(object sender, EventArgs e)
         {
             if (previewOn)
             {
@@ -478,18 +475,18 @@ namespace ACNHPokerCore
             {
                 this.Width = 1150;
                 previewOn = true;
-                updateSize();
+                UpdateSize();
             }
         }
 
-        private void processSize(string size)
+        private void ProcessSize(string size)
         {
             if (size == null)
             {
                 height = 1;
                 width = 1;
                 wallmount = false;
-                rug = false;
+                //rug = false;
                 MyMessageBox.Show("Missing Size data", "Sadge", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
             else if (size == "")
@@ -497,32 +494,32 @@ namespace ACNHPokerCore
                 height = 1;
                 width = 1;
                 wallmount = false;
-                rug = false;
+                //rug = false;
                 MyMessageBox.Show("Missing Size data", "Sadge", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
 
             if (size.Contains("_Wall"))
             {
                 wallmount = true;
-                rug = false;
+                //rug = false;
                 ceiling = false;
             }
             else if (size.Contains("_Rug"))
             {
                 wallmount = false;
-                rug = true;
+                //rug = true;
                 ceiling = false;
             }
             else if (size.Contains("_Ceiling"))
             {
                 wallmount = false;
-                rug = false;
+                //rug = false;
                 ceiling = true;
             }
             else
             {
                 wallmount = false;
-                rug = false;
+                //rug = false;
                 ceiling = false;
             }
 
@@ -541,7 +538,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private bool placeHorizontal()
+        private bool PlaceHorizontal()
         {
             if (Flag == "00" || Flag == "02" || Flag == "04")
                 return true;
@@ -568,27 +565,27 @@ namespace ACNHPokerCore
             if (init)
                 return;
 
-            updateSize();
+            UpdateSize();
         }
 
-        private void okHBtn_Click(object sender, EventArgs e)
+        private void OkHBtn_Click(object sender, EventArgs e)
         {
-            updateSize();
+            UpdateSize();
         }
 
-        private void okBtn_Click(object sender, EventArgs e)
+        private void OkBtn_Click(object sender, EventArgs e)
         {
-            updateSize();
+            UpdateSize();
         }
 
         private void ExtraColumnBox_ValueChanged(object sender, EventArgs e)
         {
-            updateSize();
+            UpdateSize();
         }
 
         private void ExtraRowBox_ValueChanged(object sender, EventArgs e)
         {
-            updateSize();
+            UpdateSize();
         }
     }
 }

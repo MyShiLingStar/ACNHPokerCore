@@ -4,11 +4,11 @@ namespace Twitch
 {
     public class ItemOrder
     {
-        public string owner { get; set; }
-        public string id { get; set; }
-        public string count { get; set; }
-        public string name { get; set; }
-        public string color { get; set; }
-        public Image image { get; set; }
+        public string Owner { get; set; }
+        public string Id { get; set; }
+        public string Count { get; set; }
+        public string Name { get; set; }
+        public string Color { get; set; }
+        public Image Image { get; set; }
     }
 }

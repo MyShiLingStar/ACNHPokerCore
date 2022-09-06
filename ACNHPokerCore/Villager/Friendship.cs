@@ -7,12 +7,12 @@ namespace ACNHPokerCore
 {
     public partial class Friendship : Form
     {
-        int[] friendshipValue = new int[8];
-        Socket S;
-        USBBot USB;
-        int Index;
-        bool sound;
-        Villager V;
+        readonly int[] friendshipValue = new int[8];
+        readonly Socket S;
+        readonly USBBot USB;
+        readonly int Index;
+        readonly bool sound;
+        readonly Villager V;
         public Friendship(int i, Socket s, USBBot usb, Image img, Villager v, bool Sound)
         {
             InitializeComponent();

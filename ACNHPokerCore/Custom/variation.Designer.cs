@@ -53,8 +53,8 @@
             this.furnitureGridView.Size = new System.Drawing.Size(514, 133);
             this.furnitureGridView.TabIndex = 30;
             this.furnitureGridView.Visible = false;
-            this.furnitureGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.furnitureGridView_CellClick);
-            this.furnitureGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.furnitureGridView_CellFormatting);
+            this.furnitureGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.FurnitureGridView_CellClick);
+            this.furnitureGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.FurnitureGridView_CellFormatting);
             // 
             // selectedItem
             // 

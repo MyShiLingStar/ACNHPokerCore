@@ -612,7 +612,7 @@ namespace ACNHPokerCore
             this.mainOnly.TabStop = true;
             this.mainOnly.Text = "Main variation only :";
             this.mainOnly.UseVisualStyleBackColor = true;
-            this.mainOnly.CheckedChanged += new System.EventHandler(this.mainOnly_CheckedChanged);
+            this.mainOnly.CheckedChanged += new System.EventHandler(this.MainOnly_CheckedChanged);
             // 
             // subOnly
             // 
@@ -625,7 +625,7 @@ namespace ACNHPokerCore
             this.subOnly.TabIndex = 228;
             this.subOnly.Text = "Sub variation only :";
             this.subOnly.UseVisualStyleBackColor = true;
-            this.subOnly.CheckedChanged += new System.EventHandler(this.subOnly_CheckedChanged);
+            this.subOnly.CheckedChanged += new System.EventHandler(this.SubOnly_CheckedChanged);
             // 
             // all
             // 
@@ -638,7 +638,7 @@ namespace ACNHPokerCore
             this.all.TabIndex = 229;
             this.all.Text = "All variation :";
             this.all.UseVisualStyleBackColor = true;
-            this.all.CheckedChanged += new System.EventHandler(this.all_CheckedChanged);
+            this.all.CheckedChanged += new System.EventHandler(this.All_CheckedChanged);
             // 
             // okBtn
             // 
@@ -655,7 +655,7 @@ namespace ACNHPokerCore
             this.okBtn.TabIndex = 230;
             this.okBtn.Text = "OK";
             this.okBtn.UseVisualStyleBackColor = false;
-            this.okBtn.Click += new System.EventHandler(this.okBtn_Click);
+            this.okBtn.Click += new System.EventHandler(this.OkBtn_Click);
             // 
             // HowManyColumnLabel
             // 
@@ -693,7 +693,7 @@ namespace ACNHPokerCore
             0,
             0,
             0});
-            this.columnBox.ValueChanged += new System.EventHandler(this.columnBox_ValueChanged);
+            this.columnBox.ValueChanged += new System.EventHandler(this.ColumnBox_ValueChanged);
             // 
             // columnPanel
             // 
@@ -762,7 +762,7 @@ namespace ACNHPokerCore
             this.previewBtn.TabIndex = 238;
             this.previewBtn.Text = "Preview";
             this.previewBtn.UseVisualStyleBackColor = false;
-            this.previewBtn.Click += new System.EventHandler(this.previewBtn_Click);
+            this.previewBtn.Click += new System.EventHandler(this.PreviewBtn_Click);
             // 
             // horiPanel
             // 
@@ -797,7 +797,7 @@ namespace ACNHPokerCore
             this.previewHBtn.TabIndex = 239;
             this.previewHBtn.Text = "Preview";
             this.previewHBtn.UseVisualStyleBackColor = false;
-            this.previewHBtn.Click += new System.EventHandler(this.previewHBtn_Click);
+            this.previewHBtn.Click += new System.EventHandler(this.PreviewHBtn_Click);
             // 
             // mainHOnly
             // 
@@ -812,7 +812,7 @@ namespace ACNHPokerCore
             this.mainHOnly.TabStop = true;
             this.mainHOnly.Text = "Main variation only :";
             this.mainHOnly.UseVisualStyleBackColor = true;
-            this.mainHOnly.CheckedChanged += new System.EventHandler(this.mainHOnly_CheckedChanged);
+            this.mainHOnly.CheckedChanged += new System.EventHandler(this.MainHOnly_CheckedChanged);
             // 
             // sizeH
             // 
@@ -1125,7 +1125,7 @@ namespace ACNHPokerCore
             0,
             0,
             0});
-            this.rowBox.ValueChanged += new System.EventHandler(this.rowBox_ValueChanged);
+            this.rowBox.ValueChanged += new System.EventHandler(this.RowBox_ValueChanged);
             // 
             // allHPanel
             // 
@@ -1330,7 +1330,7 @@ namespace ACNHPokerCore
             this.okHBtn.TabIndex = 230;
             this.okHBtn.Text = "OK";
             this.okHBtn.UseVisualStyleBackColor = false;
-            this.okHBtn.Click += new System.EventHandler(this.okHBtn_Click);
+            this.okHBtn.Click += new System.EventHandler(this.OkHBtn_Click);
             // 
             // subHOnly
             // 
@@ -1343,7 +1343,7 @@ namespace ACNHPokerCore
             this.subHOnly.TabIndex = 228;
             this.subHOnly.Text = "Sub variation only :";
             this.subHOnly.UseVisualStyleBackColor = true;
-            this.subHOnly.CheckedChanged += new System.EventHandler(this.subHOnly_CheckedChanged);
+            this.subHOnly.CheckedChanged += new System.EventHandler(this.SubHOnly_CheckedChanged);
             // 
             // allH
             // 
@@ -1356,7 +1356,7 @@ namespace ACNHPokerCore
             this.allH.TabIndex = 229;
             this.allH.Text = "All variation :";
             this.allH.UseVisualStyleBackColor = true;
-            this.allH.CheckedChanged += new System.EventHandler(this.allH_CheckedChanged);
+            this.allH.CheckedChanged += new System.EventHandler(this.AllH_CheckedChanged);
             // 
             // toggleBtn
             // 
@@ -1372,7 +1372,7 @@ namespace ACNHPokerCore
             this.toggleBtn.Tag = "Vertical";
             this.toggleBtn.Text = "Vertical";
             this.toggleBtn.UseVisualStyleBackColor = false;
-            this.toggleBtn.Click += new System.EventHandler(this.toggleBtn_Click);
+            this.toggleBtn.Click += new System.EventHandler(this.ToggleBtn_Click);
             // 
             // miniMapBox
             // 

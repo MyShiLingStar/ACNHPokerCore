@@ -9,8 +9,8 @@
     <Authors>MyShiLingStar</Authors>
     <Company>MyShiLingStar</Company>
     <Copyright>Copyright © 2020-2022</Copyright>
-    <PackageProjectUrl>https://github.com/MyShiLingStar/ACNHPoker</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/MyShiLingStar/ACNHPoker</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/MyShiLingStar/ACNHPokerCore</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/MyShiLingStar/ACNHPokerCore</RepositoryUrl>
     <PackageIcon>Leaf.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
     <NeutralLanguage>en-US</NeutralLanguage>
@@ -18,19 +18,19 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <NoWarn>1701;1702;NU1701;CS0169</NoWarn>
+    <NoWarn>1701;1702;NU1701;CS0169;IDE0057;IDE0074;IDE0056</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <NoWarn>1701;1702;NU1701;CS0169</NoWarn>
+    <NoWarn>1701;1702;NU1701;CS0169;IDE0057;IDE0074;IDE0056</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <NoWarn>1701;1702;NU1701;CS0169</NoWarn>
+    <NoWarn>1701;1702;NU1701;CS0169;IDE0057;IDE0074;IDE0056</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
-    <NoWarn>1701;1702;NU1701;CS0169</NoWarn>
+    <NoWarn>1701;1702;NU1701;CS0169;IDE0057;IDE0074;IDE0056</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -52,7 +52,7 @@
     <PackageReference Include="NAudio" Version="2.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="TwitchLib.Communication" Version="1.0.4" />
-    <PackageReference Include="TwitchLib.PubSub" Version="3.2.3" />
+    <PackageReference Include="TwitchLib.PubSub" Version="3.2.5" />
     <PackageReference Include="WinFormsToggleSwitch" Version="1.1.0" />
   </ItemGroup>
 

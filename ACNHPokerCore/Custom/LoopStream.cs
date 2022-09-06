@@ -7,7 +7,7 @@ namespace ACNHPokerCore
     /// </summary>
     public class LoopStream : WaveStream
     {
-        WaveStream sourceStream;
+        readonly WaveStream sourceStream;
 
         /// <summary>
         /// Creates a new Loop stream

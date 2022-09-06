@@ -7,13 +7,13 @@ using System.Drawing.Imaging;
 
 namespace ACNHPokerCore
 {
-    public class miniMap
+    public class MiniMap
     {
         private byte[][] ItemMapData;
         private int[][] tilesType;
 
-        private byte[] AcreMapByte;
-        private byte[] BuildingByte;
+        private readonly byte[] AcreMapByte;
+        private readonly byte[] BuildingByte;
         private byte[][] buildingList = null;
         private byte[] TerrainByte;
         private TerrainUnit[][] terrainUnits;
@@ -21,7 +21,6 @@ namespace ACNHPokerCore
         private const int numOfColumn = 0x70;
         private const int numOfRow = 0x60;
         private const int columnSize = 0xC00;
-        private const int numOfTiles = 0x2A00;
 
         private const int fullNumOfColumn = 0x90;
         private const int fullNumOfRow = 0x80;
@@ -33,7 +32,7 @@ namespace ACNHPokerCore
         private static int plazaTopY = -1;
 
 
-        private static byte[] AcreData = Properties.Resources.acre;
+        private static readonly byte[] AcreData = Properties.Resources.acre;
         private static Color[][] floorBackgroundColor;
         private static Color[][] floorBackgroundColorLess;
         private static Color[][] floorBuildingColor;
@@ -46,19 +45,18 @@ namespace ACNHPokerCore
         private const int BuildingSize = 0x14;
         private const int TerrainSize = 0xE;
         private const int NumOfBuilding = 46;
-        private const int AllBuildingSize = NumOfBuilding * BuildingSize;
 
         public const int AcreWidth = 7 + (2 * 1);
         private const int AcreHeight = 6 + (2 * 1);
         private const int AcreMax = AcreWidth * AcreHeight;
         private const int AllAcreSize = AcreMax * 2;
-        public miniMap(byte[] ItemMapByte, byte[] acreMapByte, byte[] buildingByte, byte[] terrainByte, int size = 2)
+        public MiniMap(byte[] ItemMapByte, byte[] acreMapByte, byte[] buildingByte, byte[] terrainByte, int size = 2)
         {
             AcreMapByte = acreMapByte;
             BuildingByte = buildingByte;
             TerrainByte = terrainByte;
 
-            updatePlaza();
+            UpdatePlaza();
 
             if (ItemMapByte != null)
             {
@@ -71,13 +69,13 @@ namespace ACNHPokerCore
                     Buffer.BlockCopy(ItemMapByte, i * columnSize, ItemMapData[i], 0x0, columnSize);
                 }
 
-                transformItemMap();
+                TransformItemMap();
             }
 
-            buildTerrainUnits();
+            BuildTerrainUnits();
         }
 
-        public Bitmap drawBackground()
+        public Bitmap DrawBackground()
         {
             int[] AllAcre = new int[AcreMax];
 
@@ -101,13 +99,13 @@ namespace ACNHPokerCore
                 }
             }
 
-            Bitmap terrainMap = drawTerrainMap();
+            Bitmap terrainMap = DrawTerrainMap();
 
-            Bitmap buildingMap = drawBuildingMap();
+            Bitmap buildingMap = DrawBuildingMap();
 
-            buildBackgroundColor(AcreWOOutside);
-            buildBackgroundColorLess(AcreWOOutside);
-            buildBuildingColor();
+            BuildBackgroundColor(AcreWOOutside);
+            BuildBackgroundColorLess(AcreWOOutside);
+            BuildBuildingColor();
 
             Bitmap[] AcreImage = new Bitmap[7 * 6];
 
@@ -117,11 +115,11 @@ namespace ACNHPokerCore
                 //AcreImage[i].Save(i + ".bmp");
             }
 
-            return combineMap(combineMap(toFullMap(AcreImage, 7, 6), terrainMap), buildingMap);
+            return CombineMap(CombineMap(ToFullMap(AcreImage, 7, 6), terrainMap), buildingMap);
         }
 
 
-        public Bitmap drawFullBackground()
+        public Bitmap DrawFullBackground()
         {
             int[] AllAcre = new int[AcreMax];
 
@@ -141,16 +139,16 @@ namespace ACNHPokerCore
                 //AllAcreImage[i].Save(i + ".bmp");
             }
 
-            Bitmap fullmap = toFullMap(AllAcreImage, 9, 8);
+            Bitmap fullmap = ToFullMap(AllAcreImage, 9, 8);
 
-            Bitmap terrainMap = drawTerrainMap();
+            Bitmap terrainMap = DrawTerrainMap();
 
-            Bitmap buildingMap = drawFullBuildingMap();
+            Bitmap buildingMap = DrawFullBuildingMap();
 
-            return combineMap(combineMap(fullmap, terrainMap, 16 * mapSize, 16 * mapSize), buildingMap);
+            return CombineMap(CombineMap(fullmap, terrainMap, 16 * mapSize, 16 * mapSize), buildingMap);
         }
 
-        public Bitmap drawBuildingMap()
+        public Bitmap DrawBuildingMap()
         {
             if (BuildingByte != null)
             {
@@ -200,7 +198,7 @@ namespace ACNHPokerCore
 
                     if (CurrentBuilding != BuildingType.None)
                     {
-                        BuildingColor = drawBuildingSetup(buildingList[i][0], BuildingX, BuildingY, ref buildingTopX, ref buildingTopY, ref buildingBottomX, ref buildingBottomY, false);
+                        BuildingColor = DrawBuildingSetup(buildingList[i][0], BuildingX, BuildingY, ref buildingTopX, ref buildingTopY, ref buildingBottomX, ref buildingBottomY, false);
 
                         for (int j = buildingTopX; j <= buildingBottomX; j++)
                         {
@@ -222,7 +220,7 @@ namespace ACNHPokerCore
             return myBitmap;
         }
 
-        public Bitmap drawTerrainMap()
+        public Bitmap DrawTerrainMap()
         {
             Bitmap myBitmap;
 
@@ -276,34 +274,34 @@ namespace ACNHPokerCore
                         }
                         else
                         {
-                            if (terrainUnits[i][j].isCliff())
+                            if (terrainUnits[i][j].IsCliff())
                             {
                                 terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Cliff];
                                 PutPixel(gr, i * mapSize, j * mapSize, terrainColor);
                             }
-                            else if (terrainUnits[i][j].isFall())
+                            else if (terrainUnits[i][j].IsFall())
                             {
                                 terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Fall];
                                 PutPixel(gr, i * mapSize, j * mapSize, terrainColor);
                             }
-                            else if (terrainUnits[i][j].isRiver())
+                            else if (terrainUnits[i][j].IsRiver())
                             {
                                 terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.River];
                                 PutPixel(gr, i * mapSize, j * mapSize, terrainColor);
                             }
                             else
                             {
-                                if (terrainUnits[i][j].getElevation() == 1)
+                                if (terrainUnits[i][j].GetElevation() == 1)
                                 {
                                     terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation1];
                                     PutPixel(gr, i * mapSize, j * mapSize, terrainColor);
                                 }
-                                else if (terrainUnits[i][j].getElevation() == 2)
+                                else if (terrainUnits[i][j].GetElevation() == 2)
                                 {
                                     terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation2];
                                     PutPixel(gr, i * mapSize, j * mapSize, terrainColor);
                                 }
-                                else if (terrainUnits[i][j].getElevation() >= 3)
+                                else if (terrainUnits[i][j].GetElevation() >= 3)
                                 {
                                     terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation3];
                                     PutPixel(gr, i * mapSize, j * mapSize, terrainColor);
@@ -321,12 +319,12 @@ namespace ACNHPokerCore
             return myBitmap;
         }
 
-        public string getTerrainData(int x, int y)
+        public string GetTerrainData(int x, int y)
         {
             return terrainUnits[x][y].DisplayData();
         }
 
-        public Bitmap drawFullBuildingMap()
+        public Bitmap DrawFullBuildingMap()
         {
             if (BuildingByte != null)
             {
@@ -377,7 +375,7 @@ namespace ACNHPokerCore
 
                     if (CurrentBuilding != BuildingType.None)
                     {
-                        BuildingColor = drawBuildingSetup(buildingList[i][0], BuildingX, BuildingY, ref buildingTopX, ref buildingTopY, ref buildingBottomX, ref buildingBottomY, true);
+                        BuildingColor = DrawBuildingSetup(buildingList[i][0], BuildingX, BuildingY, ref buildingTopX, ref buildingTopY, ref buildingBottomX, ref buildingBottomY, true);
 
                         for (int j = buildingTopX; j <= buildingBottomX; j++)
                         {
@@ -407,7 +405,7 @@ namespace ACNHPokerCore
             return data;
         }
 
-        public Bitmap DrawAcre(byte[] OneAcre)
+        public static Bitmap DrawAcre(byte[] OneAcre)
         {
             Bitmap myBitmap;
             myBitmap = new Bitmap(16 * mapSize, 16 * mapSize);
@@ -426,15 +424,17 @@ namespace ACNHPokerCore
             return myBitmap;
         }
 
-        private Bitmap toFullMap(Bitmap[] AcreImage, int width, int height)
+        private static Bitmap ToFullMap(Bitmap[] AcreImage, int width, int height)
         {
             Bitmap myBitmap;
             myBitmap = new Bitmap(16 * width * mapSize, 16 * height * mapSize);
 
             using (Graphics graphics = Graphics.FromImage(myBitmap))
             {
-                var cm = new ColorMatrix();
-                cm.Matrix33 = 1;
+                var cm = new ColorMatrix
+                {
+                    Matrix33 = 1
+                };
 
                 var ia = new ImageAttributes();
                 ia.SetColorMatrix(cm);
@@ -454,33 +454,16 @@ namespace ACNHPokerCore
             return myBitmap;
         }
 
-        public Bitmap combineMap(Bitmap bottom, Bitmap top)
+        public static Bitmap CombineMap(Bitmap bottom, Bitmap top, int x = 0, int y = 0)
         {
             Bitmap myBitmap = bottom;
 
             using (Graphics graphics = Graphics.FromImage(myBitmap))
             {
-                var cm = new ColorMatrix();
-                cm.Matrix33 = 1;
-
-                var ia = new ImageAttributes();
-                ia.SetColorMatrix(cm);
-
-                graphics.DrawImage(top, new Rectangle(0, 0, top.Width, top.Height), 0, 0, top.Width, top.Height, GraphicsUnit.Pixel, ia);
-            }
-
-
-            return myBitmap;
-        }
-
-        public Bitmap combineMap(Bitmap bottom, Bitmap top, int x, int y)
-        {
-            Bitmap myBitmap = bottom;
-
-            using (Graphics graphics = Graphics.FromImage(myBitmap))
-            {
-                var cm = new ColorMatrix();
-                cm.Matrix33 = 1;
+                var cm = new ColorMatrix
+                {
+                    Matrix33 = 1
+                };
 
                 var ia = new ImageAttributes();
                 ia.SetColorMatrix(cm);
@@ -492,7 +475,7 @@ namespace ACNHPokerCore
             return myBitmap;
         }
 
-        public Image refreshItemMap(byte[] itemData)
+        public Image RefreshItemMap(byte[] itemData)
         {
             ItemMapData = null;
             tilesType = null;
@@ -504,15 +487,17 @@ namespace ACNHPokerCore
                 ItemMapData[i] = new byte[columnSize];
                 Buffer.BlockCopy(itemData, i * columnSize, ItemMapData[i], 0x0, columnSize);
             }
-            transformItemMap();
+            TransformItemMap();
 
-            Image itemMap = drawItemMap();
-            Image myBitmap = drawBackground();
+            Image itemMap = DrawItemMap();
+            Image myBitmap = DrawBackground();
 
             using (Graphics graphics = Graphics.FromImage(myBitmap))
             {
-                var cm = new ColorMatrix();
-                cm.Matrix33 = 1;
+                var cm = new ColorMatrix
+                {
+                    Matrix33 = 1
+                };
 
                 var ia = new ImageAttributes();
                 ia.SetColorMatrix(cm);
@@ -523,10 +508,10 @@ namespace ACNHPokerCore
             return myBitmap;
         }
 
-        public Bitmap drawSelectSquare(int x, int y)
+        public static Bitmap DrawSelectSquare(int x, int y)
         {
-            Bitmap square = new Bitmap(7 * mapSize + 2, 7 * mapSize + 2);
-            Pen p = new Pen(Color.Red, 2 * mapSize);
+            Bitmap square = new(7 * mapSize + 2, 7 * mapSize + 2);
+            Pen p = new(Color.Red, 2 * mapSize);
             using (Graphics g = Graphics.FromImage(square))
             {
                 g.Clear(Color.Transparent);
@@ -541,8 +526,10 @@ namespace ACNHPokerCore
             {
                 graphics.Clear(Color.Transparent);
 
-                var cm = new ColorMatrix();
-                cm.Matrix33 = 1;
+                var cm = new ColorMatrix
+                {
+                    Matrix33 = 1
+                };
 
                 var ia = new ImageAttributes();
                 ia.SetColorMatrix(cm);
@@ -552,10 +539,10 @@ namespace ACNHPokerCore
             return myBitmap;
         }
 
-        public Bitmap drawSelectSquare16(int x, int y)
+        public static Bitmap DrawSelectSquare16(int x, int y)
         {
-            Bitmap square = new Bitmap(16 * mapSize + 2, 16 * mapSize + 2);
-            Pen p = new Pen(Color.Red, 2 * mapSize);
+            Bitmap square = new(16 * mapSize + 2, 16 * mapSize + 2);
+            Pen p = new(Color.Red, 2 * mapSize);
             using (Graphics g = Graphics.FromImage(square))
             {
                 g.Clear(Color.Transparent);
@@ -570,8 +557,10 @@ namespace ACNHPokerCore
             {
                 graphics.Clear(Color.Transparent);
 
-                var cm = new ColorMatrix();
-                cm.Matrix33 = 1;
+                var cm = new ColorMatrix
+                {
+                    Matrix33 = 1
+                };
 
                 var ia = new ImageAttributes();
                 ia.SetColorMatrix(cm);
@@ -581,10 +570,10 @@ namespace ACNHPokerCore
             return myBitmap;
         }
 
-        public static Bitmap drawSelectAcre(int x, int y)
+        public static Bitmap DrawSelectAcre(int x, int y)
         {
-            Bitmap square = new Bitmap(16 * mapSize + 2, 16 * mapSize + 2);
-            Pen p = new Pen(Color.Red, 2 * mapSize);
+            Bitmap square = new(16 * mapSize + 2, 16 * mapSize + 2);
+            Pen p = new(Color.Red, 2 * mapSize);
             using (Graphics g = Graphics.FromImage(square))
             {
                 g.Clear(Color.Transparent);
@@ -599,8 +588,10 @@ namespace ACNHPokerCore
             {
                 graphics.Clear(Color.Transparent);
 
-                var cm = new ColorMatrix();
-                cm.Matrix33 = 1;
+                var cm = new ColorMatrix
+                {
+                    Matrix33 = 1
+                };
 
                 var ia = new ImageAttributes();
                 ia.SetColorMatrix(cm);
@@ -610,10 +601,10 @@ namespace ACNHPokerCore
             return myBitmap;
         }
 
-        public Bitmap drawEdge()
+        public static Bitmap DrawEdge()
         {
-            Bitmap Rectangle = new Bitmap(16 * 7 * mapSize + 2, 16 * 6 * mapSize + 2);
-            Pen p = new Pen(Color.Tomato, 4);
+            Bitmap Rectangle = new(16 * 7 * mapSize + 2, 16 * 6 * mapSize + 2);
+            Pen p = new(Color.Tomato, 4);
             using (Graphics g = Graphics.FromImage(Rectangle))
             {
                 g.Clear(Color.Transparent);
@@ -628,8 +619,10 @@ namespace ACNHPokerCore
             {
                 graphics.Clear(Color.Transparent);
 
-                var cm = new ColorMatrix();
-                cm.Matrix33 = 1;
+                var cm = new ColorMatrix
+                {
+                    Matrix33 = 1
+                };
 
                 var ia = new ImageAttributes();
                 ia.SetColorMatrix(cm);
@@ -639,9 +632,9 @@ namespace ACNHPokerCore
             return myBitmap;
         }
 
-        public Bitmap drawMarker(int x, int y)
+        public static Bitmap DrawMarker(int x, int y)
         {
-            Bitmap marker = new Bitmap(Properties.Resources.marker);
+            Bitmap marker = new(Properties.Resources.marker);
 
             Bitmap myBitmap;
             myBitmap = new Bitmap(16 * 7 * mapSize, 16 * 6 * mapSize);
@@ -650,8 +643,10 @@ namespace ACNHPokerCore
             {
                 graphics.Clear(Color.Transparent);
 
-                var cm = new ColorMatrix();
-                cm.Matrix33 = 1;
+                var cm = new ColorMatrix
+                {
+                    Matrix33 = 1
+                };
 
                 var ia = new ImageAttributes();
                 ia.SetColorMatrix(cm);
@@ -661,9 +656,9 @@ namespace ACNHPokerCore
             return myBitmap;
         }
 
-        public static Bitmap drawLargeMarker(int OrgX, int OrgY, int NewX, int NewY, byte buildingType = 0xFE)
+        public static Bitmap DrawLargeMarker(int OrgX, int OrgY, int NewX, int NewY, int lastbuilding = 0, byte buildingType = 0xFE)
         {
-            Bitmap marker = new Bitmap(Properties.Resources.marker);
+            Bitmap marker = new(Properties.Resources.marker);
 
             Bitmap myBitmap;
             myBitmap = new Bitmap(16 * 9 * mapSize, 16 * 8 * mapSize);
@@ -672,8 +667,10 @@ namespace ACNHPokerCore
             {
                 graphics.Clear(Color.Transparent);
 
-                var cm = new ColorMatrix();
-                cm.Matrix33 = 1;
+                var cm = new ColorMatrix
+                {
+                    Matrix33 = 1
+                };
 
                 var ia = new ImageAttributes();
                 ia.SetColorMatrix(cm);
@@ -684,11 +681,11 @@ namespace ACNHPokerCore
                     int buildingTopY = -1;
                     int buildingBottomX = -1;
                     int buildingBottomY = -1;
+                    int BuildingX;
+                    int BuildingY;
                     Color BuildingColor;
 
                     BuildingType CurrentBuilding = (BuildingType)buildingType;
-                    int BuildingX = OrgX;
-                    int BuildingY = OrgY;
 
                     if (OrgX != NewX || OrgY != NewY)
                     {
@@ -697,7 +694,7 @@ namespace ACNHPokerCore
                         //=============================================== New
                         if (CurrentBuilding != BuildingType.None)
                         {
-                            drawBuildingSetup(buildingType, BuildingX, BuildingY, ref buildingTopX, ref buildingTopY, ref buildingBottomX, ref buildingBottomY, true);
+                            DrawBuildingSetup(buildingType, BuildingX, BuildingY, ref buildingTopX, ref buildingTopY, ref buildingBottomX, ref buildingBottomY, true);
 
                             BuildingColor = Color.FromArgb(150, Color.DeepPink);
 
@@ -713,8 +710,11 @@ namespace ACNHPokerCore
                                 }
                             }
 
-                            Pen linePen = new Pen(Color.Red, 2);
-                            graphics.DrawLine(linePen, OrgX * (mapSize / 2), OrgY * (mapSize / 2), NewX * (mapSize / 2), NewY * (mapSize / 2));
+                            if (lastbuilding != 0)
+                            {
+                                Pen linePen = new(Color.Red, 2);
+                                graphics.DrawLine(linePen, OrgX * (mapSize / 2), OrgY * (mapSize / 2), NewX * (mapSize / 2), NewY * (mapSize / 2));
+                            }
                         }
                     }
                     else
@@ -725,7 +725,7 @@ namespace ACNHPokerCore
                         //=============================================== Org
                         if (CurrentBuilding != BuildingType.None)
                         {
-                            drawBuildingSetup(buildingType, BuildingX, BuildingY, ref buildingTopX, ref buildingTopY, ref buildingBottomX, ref buildingBottomY, true);
+                            DrawBuildingSetup(buildingType, BuildingX, BuildingY, ref buildingTopX, ref buildingTopY, ref buildingBottomX, ref buildingBottomY, true);
 
                             BuildingColor = Color.FromArgb(200, Color.LightPink);
 
@@ -751,9 +751,9 @@ namespace ACNHPokerCore
             return myBitmap;
         }
 
-        public Bitmap drawPreview(int row, int column, int x, int y, bool right, bool[] isSpace = null)
+        public static Bitmap DrawPreview(int row, int column, int x, int y, bool right, bool[] isSpace = null)
         {
-            int[][] previewtilesType = null;
+            int[][] previewtilesType;
             int Counter = 0;
 
             if (right)
@@ -853,7 +853,7 @@ namespace ACNHPokerCore
             return myBitmap;
         }
 
-        private void transformItemMap()
+        private void TransformItemMap()
         {
             tilesType = new int[numOfColumn][];
 
@@ -937,7 +937,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void buildTerrainUnits()
+        private void BuildTerrainUnits()
         {
             int counter = 0;
 
@@ -955,7 +955,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public Bitmap drawItemMap()
+        public Bitmap DrawItemMap()
         {
             Bitmap myBitmap;
 
@@ -1038,7 +1038,7 @@ namespace ACNHPokerCore
             */
         }
 
-        private void buildBackgroundColor(int[] AcreWOOutside)
+        private void BuildBackgroundColor(int[] AcreWOOutside)
         {
             floorBackgroundColor = new Color[numOfRow][];
 
@@ -1115,34 +1115,34 @@ namespace ACNHPokerCore
                     }
                     else
                     {
-                        if (terrainUnits[j][i].isCliff())
+                        if (terrainUnits[j][i].IsCliff())
                         {
                             terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Cliff];
                             floorBackgroundColor[i][j] = terrainColor;
                         }
-                        else if (terrainUnits[j][i].isFall())
+                        else if (terrainUnits[j][i].IsFall())
                         {
                             terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Fall];
                             floorBackgroundColor[i][j] = terrainColor;
                         }
-                        else if (terrainUnits[j][i].isRiver())
+                        else if (terrainUnits[j][i].IsRiver())
                         {
                             terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.River];
                             floorBackgroundColor[i][j] = terrainColor;
                         }
                         else
                         {
-                            if (terrainUnits[j][i].getElevation() == 1)
+                            if (terrainUnits[j][i].GetElevation() == 1)
                             {
                                 terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation1];
                                 floorBackgroundColor[i][j] = terrainColor;
                             }
-                            else if (terrainUnits[j][i].getElevation() == 2)
+                            else if (terrainUnits[j][i].GetElevation() == 2)
                             {
                                 terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation2];
                                 floorBackgroundColor[i][j] = terrainColor;
                             }
-                            else if (terrainUnits[j][i].getElevation() >= 3)
+                            else if (terrainUnits[j][i].GetElevation() >= 3)
                             {
                                 terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Elevation3];
                                 floorBackgroundColor[i][j] = terrainColor;
@@ -1292,7 +1292,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void buildBackgroundColorLess(int[] AcreWOOutside)
+        private static void BuildBackgroundColorLess(int[] AcreWOOutside)
         {
             floorBackgroundColorLess = new Color[numOfRow][];
 
@@ -1324,7 +1324,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public void buildBuildingColor()
+        public void BuildBuildingColor()
         {
             floorBuildingColor = new Color[numOfRow][];
 
@@ -1511,10 +1511,10 @@ namespace ACNHPokerCore
 
         private static void PutPixel(Graphics g, int x, int y, Color c)
         {
-            Bitmap Bmp = new Bitmap(mapSize, mapSize);
+            Bitmap Bmp = new(mapSize, mapSize);
 
             using (Graphics gfx = Graphics.FromImage(Bmp))
-            using (SolidBrush brush = new SolidBrush(c))
+            using (SolidBrush brush = new(c))
             {
                 gfx.SmoothingMode = SmoothingMode.None;
                 gfx.FillRectangle(brush, 0, 0, mapSize, mapSize);
@@ -1525,10 +1525,10 @@ namespace ACNHPokerCore
 
         private static void PutPixel(Graphics g, int x, int y, Color c, int size)
         {
-            Bitmap Bmp = new Bitmap(size, size);
+            Bitmap Bmp = new(size, size);
 
             using (Graphics gfx = Graphics.FromImage(Bmp))
-            using (SolidBrush brush = new SolidBrush(c))
+            using (SolidBrush brush = new(c))
             {
                 gfx.SmoothingMode = SmoothingMode.None;
                 gfx.FillRectangle(brush, 0, 0, size, size);
@@ -1537,7 +1537,7 @@ namespace ACNHPokerCore
             g.DrawImageUnscaled(Bmp, x, y);
         }
 
-        public static Bitmap getAcreImage(int id, int size)
+        public static Bitmap GetAcreImage(int id, int size)
         {
             Bitmap AcreImage;
             AcreImage = new Bitmap(16 * size, 16 * size);
@@ -1558,17 +1558,17 @@ namespace ACNHPokerCore
             return AcreImage;
         }
 
-        public void updatePlaza()
+        public void UpdatePlaza()
         {
             if (AcreMapByte != null)
             {
-                plazaX = AcreMapByte[AcreMax * 2 + 4];
-                plazaY = AcreMapByte[AcreMax * 2 + 8];
+                plazaX = AcreMapByte[AllAcreSize + 4];
+                plazaY = AcreMapByte[AllAcreSize + 8];
                 plazaTopX = (plazaX - 0x20) / 2;
                 plazaTopY = (plazaY - 0x20) / 2;
             }
         }
-        public static Color drawBuildingSetup(byte BuildingByte, int BuildingX, int BuildingY, ref int buildingTopX, ref int buildingTopY, ref int buildingBottomX, ref int buildingBottomY, bool TimesTwo = false)
+        public static Color DrawBuildingSetup(byte BuildingByte, int BuildingX, int BuildingY, ref int buildingTopX, ref int buildingTopY, ref int buildingBottomX, ref int buildingBottomY, bool TimesTwo = false)
         {
             Color BuildingColor;
 
@@ -1750,13 +1750,13 @@ namespace ACNHPokerCore
             return BuildingColor;
         }
 
-        public void updateTerrain(byte[] NewTerrain)
+        public void UpdateTerrain(byte[] NewTerrain)
         {
             TerrainByte = NewTerrain;
-            buildTerrainUnits();
+            BuildTerrainUnits();
         }
 
-        public static readonly Dictionary<byte, Color> Pixel = new Dictionary<byte, Color>
+        public static readonly Dictionary<byte, Color> Pixel = new()
         {
                 {0x00, Color.FromArgb(70, 116, 71)}, // Grass
 
@@ -1819,7 +1819,7 @@ namespace ACNHPokerCore
             Studio = 0x1D,
         }
 
-        public static readonly Dictionary<byte, Color> ByteToBuildingColor = new Dictionary<byte, Color>
+        public static readonly Dictionary<byte, Color> ByteToBuildingColor = new()
         {
             {0x0, Color.White},
             {0x1, Color.RoyalBlue},

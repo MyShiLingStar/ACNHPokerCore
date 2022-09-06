@@ -15,7 +15,7 @@ namespace ACNHPokerCore
         public int AbandonedHouseFlag { get; set; }
         public int ForceMoveOutFlag { get; set; }
         public int InvitedFlag { get; set; }
-        public byte[] catchphrase { get; set; }
+        public byte[] Catchphrase { get; set; }
 
         public byte[] Friendship;
 

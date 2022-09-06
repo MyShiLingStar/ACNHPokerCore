@@ -19,7 +19,7 @@ namespace Twitch
 
         private StreamReader streamReader;
         private StreamWriter streamWriter;
-        private TaskCompletionSource<int> connected = new TaskCompletionSource<int>();
+        private TaskCompletionSource<int> connected = new();
 
         public event TwitchChatEventHandler OnMessage = delegate { };
         public delegate void TwitchChatEventHandler(object sender, TwitchChatMessage e);
@@ -64,10 +64,10 @@ namespace Twitch
             password = TwitchBotOauth;
             channel = TwitchChannelName;
 
-            connect().SafeFireAndForget();
+            Connect().SafeFireAndForget();
         }
 
-        private async Task connect()
+        private async Task Connect()
         {
             Start().SafeFireAndForget();
             //We could .SafeFireAndForget() these two calls if we want to
@@ -200,6 +200,7 @@ namespace Twitch
         public void Dispose()
         {
             stop = true;
+            GC.SuppressFinalize(this);
             streamReader.Close();
             streamWriter.Close();
             tcpClient.Close();

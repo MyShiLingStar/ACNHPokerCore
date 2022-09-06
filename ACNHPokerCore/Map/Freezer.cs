@@ -11,9 +11,9 @@ namespace ACNHPokerCore
     public partial class Freezer : Form
     {
         private static Socket s;
-        private bool sound;
+        private readonly bool sound;
         private int counter = 0;
-        private miniMap MiniMap = null;
+        private MiniMap MiniMap = null;
         private int anchorX = -1;
         private int anchorY = -1;
         private byte[] tempData;
@@ -35,14 +35,14 @@ namespace ACNHPokerCore
 
             FinMsg.SelectionAlignment = HorizontalAlignment.Center;
 
-            MyLog.logEvent("Freeze", "Freeze Form Started Successfully");
+            MyLog.LogEvent("Freeze", "Freeze Form Started Successfully");
         }
 
         private void saveMapBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                SaveFileDialog file = new SaveFileDialog()
+                SaveFileDialog file = new()
                 {
                     Filter = "New Horizons Fasil 2 (*.nhf2)|*.nhf2",
                 };
@@ -78,13 +78,13 @@ namespace ACNHPokerCore
 
                 UInt32 address = Utilities.mapZero;
 
-                Thread LoadThread = new Thread(delegate () { saveMapFloor(address, file); });
+                Thread LoadThread = new(delegate () { saveMapFloor(address, file); });
                 LoadThread.Start();
 
             }
             catch (Exception ex)
             {
-                MyLog.logEvent("Regen", "Save: " + ex.Message.ToString());
+                MyLog.LogEvent("Regen", "Save: " + ex.Message.ToString());
                 return;
             }
         }
@@ -154,7 +154,7 @@ namespace ACNHPokerCore
 
         private void CloseCleaning()
         {
-            MyLog.logEvent("Freeze", "Form Closed");
+            MyLog.LogEvent("Freeze", "Form Closed");
             this.closeForm();
         }
 
@@ -281,7 +281,7 @@ namespace ACNHPokerCore
 
         private void FreezeMapBtn_Click(object sender, EventArgs e)
         {
-            OpenFileDialog file = new OpenFileDialog()
+            OpenFileDialog file = new()
             {
                 Filter = "New Horizons Fasil 2 (*.nhf2)|*.nhf2|All files (*.*)|*.*",
             };
@@ -327,9 +327,9 @@ namespace ACNHPokerCore
 
             string[] name = file.FileName.Split('\\');
 
-            MyLog.logEvent("Regen", "Regen3 Started: " + name[name.Length - 1]);
+            MyLog.LogEvent("Regen", "Regen3 Started: " + name[name.Length - 1]);
 
-            Thread FreezeThread = new Thread(delegate () { FreezeMapFloor(address, data); });
+            Thread FreezeThread = new(delegate () { FreezeMapFloor(address, data); });
             FreezeThread.Start();
         }
 
@@ -369,11 +369,11 @@ namespace ACNHPokerCore
 
         private void UnFreezeMapBtn_Click(object sender, EventArgs e)
         {
-            MyLog.logEvent("Regen", "Regen3 Stopped");
+            MyLog.LogEvent("Regen", "Regen3 Stopped");
 
             UInt32 address = Utilities.mapZero;
 
-            Thread UnFreezeThread = new Thread(delegate () { UnFreezeMapFloor(address); });
+            Thread UnFreezeThread = new(delegate () { UnFreezeMapFloor(address); });
             UnFreezeThread.Start();
         }
 
@@ -425,7 +425,7 @@ namespace ACNHPokerCore
 
         private void FreezeMap2Btn_Click(object sender, EventArgs e)
         {
-            OpenFileDialog file = new OpenFileDialog()
+            OpenFileDialog file = new()
             {
                 Filter = "New Horizons Fasil 2 (*.nhf2)|*.nhf2|All files (*.*)|*.*",
             };
@@ -481,9 +481,9 @@ namespace ACNHPokerCore
                 byte[] Terrain = Utilities.getTerrain(s, null);
 
                 if (MiniMap == null)
-                    MiniMap = new miniMap(data, Acre, Building, Terrain);
+                    MiniMap = new MiniMap(data, Acre, Building, Terrain);
 
-                miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawBackground(), MiniMap.drawItemMap());
+                miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawBackground(), MiniMap.DrawItemMap());
             }
             else
                 return;
@@ -503,11 +503,11 @@ namespace ACNHPokerCore
                 }
                 xCoordinate.Text = anchorX.ToString();
                 yCoordinate.Text = anchorY.ToString();
-                miniMapBox.Image = MiniMap.drawSelectSquare(anchorX, anchorY);
+                miniMapBox.Image = MiniMap.DrawSelectSquare(anchorX, anchorY);
             }
             catch (Exception ex)
             {
-                MyLog.logEvent("Regen", "getCoordinate: " + ex.Message.ToString());
+                MyLog.LogEvent("Regen", "getCoordinate: " + ex.Message.ToString());
                 MyMessageBox.Show("Something doesn't feel right at all. You should restart the program...\n\n" + ex.Message.ToString(), "!!! THIS SHIT DOESN'T WORK!! WHY? HAS I EVER?", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
@@ -548,7 +548,7 @@ namespace ACNHPokerCore
             xCoordinate.Text = x.ToString();
             yCoordinate.Text = y.ToString();
 
-            miniMapBox.Image = MiniMap.drawSelectSquare(anchorX, anchorY);
+            miniMapBox.Image = MiniMap.DrawSelectSquare(anchorX, anchorY);
         }
 
         private void miniMapBox_MouseMove(object sender, MouseEventArgs e)
@@ -578,7 +578,7 @@ namespace ACNHPokerCore
                 xCoordinate.Text = x.ToString();
                 yCoordinate.Text = y.ToString();
 
-                miniMapBox.Image = MiniMap.drawSelectSquare(anchorX, anchorY);
+                miniMapBox.Image = MiniMap.DrawSelectSquare(anchorX, anchorY);
             }
         }
 
@@ -592,7 +592,7 @@ namespace ACNHPokerCore
 
             UInt32 address = Utilities.mapZero;
 
-            Thread FreezeThread = new Thread(delegate () { FreezeMapFloor2(address, tempData, anchorX, anchorY); });
+            Thread FreezeThread = new(delegate () { FreezeMapFloor2(address, tempData, anchorX, anchorY); });
             FreezeThread.Start();
         }
 
@@ -815,13 +815,13 @@ namespace ACNHPokerCore
             {
                 villager[i] = Utilities.GetVillager(s, null, i, 0x3);
                 villagerFlag[i] = Utilities.GetMoveout(s, null, i, (int)0x33);
-                haveVillager[i] = MapRegenerator.checkHaveVillager(villager[i]);
+                haveVillager[i] = MapRegenerator.CheckHaveVillager(villager[i]);
                 if (haveVillager[i])
                 {
                     Utilities.SendString(s, Utilities.Freeze((uint)(Utilities.VillagerAddress + (i * Utilities.VillagerSize) + Utilities.VillagerMoveoutOffset), villagerFlag[i]));
                 }
             }
-            MapRegenerator.writeVillager(villager, haveVillager);
+            MapRegenerator.WriteVillager(villager, haveVillager);
 
             int freezeCount = Utilities.GetFreezeCount(s);
 
@@ -861,7 +861,7 @@ namespace ACNHPokerCore
 
         private void freezeAllVillagerBtn_Click(object sender, EventArgs e)
         {
-            Thread FreezeAllVillagerThread = new Thread(delegate () { FreezeAllVillager(); });
+            Thread FreezeAllVillagerThread = new(delegate () { FreezeAllVillager(); });
             FreezeAllVillagerThread.Start();
 
         }
@@ -897,7 +897,7 @@ namespace ACNHPokerCore
                 HouseList[i] = Convert.ToInt32(b);
             }
 
-            Villager V = new Villager(VillagerData, 0)
+            Villager V = new(VillagerData, 0)
             {
                 HouseIndex = Utilities.FindHouseIndex(0, HouseList)
             };

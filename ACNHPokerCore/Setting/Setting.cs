@@ -16,9 +16,9 @@ namespace ACNHPokerCore
         bool OverrideSetting;
         bool Validation;
 
-        public event OverrideHandler toggleOverride;
-        public event ValidationHandler toggleValidation;
-        public event SoundHandler toggleSound;
+        public event OverrideHandler ToggleOverride;
+        public event ValidationHandler ToggleValidation;
+        public event SoundHandler ToggleSound;
 
         public Setting(bool overrideSetting, bool validation, bool sound)
         {
@@ -49,7 +49,7 @@ namespace ACNHPokerCore
             this.MapZero.Text = Utilities.mapZero.ToString("X");
         }
 
-        public void updateToggle(bool OpenForm)
+        public void UpdateToggle(bool OpenForm)
         {
             if (OpenForm)
                 startup = true;
@@ -88,7 +88,7 @@ namespace ACNHPokerCore
             startup = false;
         }
 
-        public void overrideAddresses()
+        public void OverrideAddresses()
         {
             Configuration Config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
@@ -160,7 +160,7 @@ namespace ACNHPokerCore
             if (Utilities.mapZero != Convert.ToUInt32(MapZero.Text, 16))
                 MapZero.ForeColor = Color.Red;
 
-            Dictionary<string, UInt32> ConfigValue = new Dictionary<string, uint>
+            Dictionary<string, UInt32> ConfigValue = new()
             {
                 { "PlayerSlot", Convert.ToUInt32(PlayerSlot.Text, 16) },
                 { "PlayerOffset", Convert.ToUInt32(PlayerOffset.Text, 16) },
@@ -187,7 +187,7 @@ namespace ACNHPokerCore
             Utilities.overrideAddresses(ConfigValue);
         }
 
-        private void resetAddresses()
+        private static void ResetAddresses()
         {
             Application.Restart();
         }
@@ -232,7 +232,7 @@ namespace ACNHPokerCore
         {
             Configuration Config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
-            Dictionary<string, UInt32> ConfigValue = new Dictionary<string, uint>();
+            Dictionary<string, UInt32> ConfigValue = new();
 
             Config.AppSettings.Settings["PlayerSlot"].Value = this.PlayerSlot.Text;
             Config.AppSettings.Settings["PlayerOffset"].Value = this.PlayerOffset.Text;
@@ -310,7 +310,7 @@ namespace ACNHPokerCore
                     Config.AppSettings.Settings["override"].Value = "false";
                     Config.Save(ConfigurationSaveMode.Minimal);
                     this.addresses.Enabled = false;
-                    resetAddresses();
+                    ResetAddresses();
                 }
             }
             else
@@ -323,11 +323,11 @@ namespace ACNHPokerCore
                     Config.Save(ConfigurationSaveMode.Minimal);
                     AddressOverrideLabel.ForeColor = Color.Red;
                     this.addresses.Enabled = true;
-                    overrideAddresses();
+                    OverrideAddresses();
                 }
             }
 
-            this.toggleOverride();
+            this.ToggleOverride();
 
             if (Sound)
                 System.Media.SystemSounds.Asterisk.Play();
@@ -349,7 +349,7 @@ namespace ACNHPokerCore
                     Config.AppSettings.Settings["validation"].Value = "false";
                     Config.Save(ConfigurationSaveMode.Minimal);
                     ValidationLabel.ForeColor = Color.Red;
-                    this.toggleValidation();
+                    this.ToggleValidation();
                 }
             }
             else
@@ -358,7 +358,7 @@ namespace ACNHPokerCore
                 Config.AppSettings.Settings["validation"].Value = "true";
                 Config.Save(ConfigurationSaveMode.Minimal);
                 ValidationLabel.ForeColor = Color.White;
-                this.toggleValidation();
+                this.ToggleValidation();
             }
         }
 
@@ -375,7 +375,7 @@ namespace ACNHPokerCore
                 Config.AppSettings.Settings["sound"].Value = "false";
                 Config.Save(ConfigurationSaveMode.Minimal);
                 Sound = false;
-                this.toggleSound(false);
+                this.ToggleSound(false);
             }
             else
             {
@@ -383,7 +383,7 @@ namespace ACNHPokerCore
                 Config.AppSettings.Settings["sound"].Value = "true";
                 Config.Save(ConfigurationSaveMode.Minimal);
                 Sound = true;
-                this.toggleSound(false);
+                this.ToggleSound(false);
             }
             if (Sound)
                 System.Media.SystemSounds.Asterisk.Play();
@@ -391,7 +391,7 @@ namespace ACNHPokerCore
 
         private void Setting_Load(object sender, EventArgs e)
         {
-            updateToggle(true);
+            UpdateToggle(true);
         }
     }
 }

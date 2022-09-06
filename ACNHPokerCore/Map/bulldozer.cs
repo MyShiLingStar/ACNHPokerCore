@@ -1,5 +1,4 @@
-﻿using NAudio.Wave;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
@@ -16,12 +15,12 @@ namespace ACNHPokerCore
     public partial class Bulldozer : Form
     {
         [DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int msg, IntPtr wParam, IntPtr lParam);
+        private static extern int SendMessage(IntPtr hWnd, int msg, IntPtr wParam, IntPtr lParam);
 
         private static Socket s;
         private static USBBot usb;
-        private bool sound;
-        private miniMap MiniMap = null;
+        private readonly bool sound;
+        private MiniMap MiniMap = null;
 
         private byte[] Layer1;
         private byte[] Acre;
@@ -32,17 +31,17 @@ namespace ACNHPokerCore
         private const int BuildingSize = 0x14;
         private const int NumOfBuilding = 46;
 
-        private int counter;
         private int selectedAcre;
-        private int selectedAcreValue;
 
         private Panel selectedPanel;
         private bool MapOrGridViewChange = false;
         private bool plazaEdited = false;
         private bool valueUpdated = false;
-        private Point lastDisplayTooltip = new Point(-1, -1);
+        private Point lastDisplayTooltip = new(-1, -1);
 
-        public event CloseHandler closeForm;
+        private int lastBuilding = 0;
+
+        public event CloseHandler CloseForm;
 
         public Bulldozer(Socket S, USBBot USB, bool Sound)
         {
@@ -52,16 +51,18 @@ namespace ACNHPokerCore
 
             InitializeComponent();
 
-            Thread LoadThread = new Thread(delegate () { loadMap(); });
+            Thread LoadThread = new(delegate () { LoadMap(); });
             LoadThread.Start();
         }
 
-        private void loadMap()
+        private void LoadMap()
         {
             var layer1Address = Utilities.mapZero;
 
-            var imageList = new ImageList();
-            imageList.ImageSize = new Size(64, 64);
+            var imageList = new ImageList
+            {
+                ImageSize = new Size(64, 64)
+            };
             acreList.LargeImageList = imageList;
             for (ushort i = 0; i < 0x13E; i++)
             {
@@ -69,7 +70,7 @@ namespace ACNHPokerCore
                 {
                     var AcreName = (Utilities.Acre)i;
 
-                    imageList.Images.Add(i.ToString(), miniMap.getAcreImage(i, 4));
+                    imageList.Images.Add(i.ToString(), MiniMap.GetAcreImage(i, 4));
                     acreList.Items.Add(i.ToString(), i.ToString());
                     acreList.Items[acreList.Items.Count - 1].ToolTipText = AcreName.ToString();
                 }
@@ -88,14 +89,14 @@ namespace ACNHPokerCore
                 if (Acre != null && Building != null && Terrain != null)
                 {
                     if (MiniMap == null)
-                        MiniMap = new miniMap(Layer1, Acre, Building, Terrain, 4);
+                        MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, 4);
                 }
                 else
                     throw new NullReferenceException("Acre/Building/Terrain");
 
                 selectedPanel = acrePanel;
 
-                miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawFullBackground(), MiniMap.drawEdge());
+                miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
 
                 buildingGridView.SelectionMode = DataGridViewSelectionMode.CellSelect;
                 buildingGridView.DefaultCellStyle.BackColor = Color.FromArgb(255, 47, 49, 54);
@@ -168,13 +169,15 @@ namespace ACNHPokerCore
                 {
                     buildingGridView.Rows.Add(0x00FF, "", "Plaza", Acre[0x94], Acre[0x98], 0, 0);
 
-                    DataGridViewCellStyle style = new DataGridViewCellStyle();
-                    style.BackColor = Color.DarkSalmon;
+                    DataGridViewCellStyle style = new()
+                    {
+                        BackColor = Color.DarkSalmon
+                    };
                     buildingGridView.Rows[0].Cells["Color"].Style = style;
                 }
 
                 if (Building != null)
-                    fillBuilding();
+                    FillBuilding();
 
                 buildingGridView.CurrentCell = buildingGridView.Rows[0].Cells[2];
             }
@@ -190,7 +193,7 @@ namespace ACNHPokerCore
             });
         }
 
-        private void fillBuilding()
+        private void FillBuilding()
         {
             if (Building != null)
             {
@@ -200,13 +203,13 @@ namespace ACNHPokerCore
                     buildingList[i] = new byte[BuildingSize];
                     Buffer.BlockCopy(Building, i * BuildingSize, buildingList[i], 0x0, BuildingSize);
 
-                    DataGridViewCellStyle style = new DataGridViewCellStyle();
+                    DataGridViewCellStyle style = new();
 
                     byte key = buildingList[i][0];
                     if (BuildingName.ContainsKey(key))
                     {
                         buildingGridView.Rows.Add(buildingList[i][0x0], "", BuildingName[key], buildingList[i][0x2], buildingList[i][0x4], buildingList[i][0x6], buildingList[i][0x8]);
-                        style.BackColor = miniMap.ByteToBuildingColor[buildingList[i][0x0]];
+                        style.BackColor = MiniMap.ByteToBuildingColor[buildingList[i][0x0]];
                     }
                     else
                     {
@@ -219,7 +222,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void miniMapBox_MouseDown(object sender, MouseEventArgs e)
+        private void MiniMapBox_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
@@ -263,7 +266,7 @@ namespace ACNHPokerCore
 
                 if (selectedPanel == acrePanel)
                 {
-                    miniMapBox.Image = miniMap.drawSelectAcre(AcreX, AcreY);
+                    miniMapBox.Image = MiniMap.DrawSelectAcre(AcreX, AcreY);
                 }
                 else
                 {
@@ -285,10 +288,10 @@ namespace ACNHPokerCore
                             int OrgY = Int16.Parse(buildingGridView.Rows[buildingGridView.CurrentCell.RowIndex].Cells["Y-Coordinate"].Value.ToString());
                             int index = BuildingType.SelectedIndex;
                             byte type = (byte)index;
-                            miniMapBox.Image = miniMap.drawLargeMarker(OrgX, OrgY, Realx, Realy, type);
+                            miniMapBox.Image = MiniMap.DrawLargeMarker(OrgX, OrgY, Realx, Realy, lastBuilding, type);
                         }
                         else
-                            miniMapBox.Image = miniMap.drawLargeMarker(Realx, Realy, Realx, Realy);
+                            miniMapBox.Image = MiniMap.DrawLargeMarker(Realx, Realy, Realx, Realy);
 
                         MapOrGridViewChange = false;
                     }
@@ -312,12 +315,11 @@ namespace ACNHPokerCore
                     selectedAcre = AcreX + 63;
 
                 selectedAcreBox.Text = selectedAcre.ToString();
-                selectedAcreValue = Acre[selectedAcre * 2];
                 selectedAcreValueBox.Text = "0x" + Acre[selectedAcre * 2].ToString("X");
             }
         }
 
-        private void miniMapBox_MouseMove(object sender, MouseEventArgs e)
+        private void MiniMapBox_MouseMove(object sender, MouseEventArgs e)
         {
             int Realx;
             int Realy;
@@ -414,10 +416,10 @@ namespace ACNHPokerCore
                             int OrgY = Int16.Parse(buildingGridView.Rows[buildingGridView.CurrentCell.RowIndex].Cells["Y-Coordinate"].Value.ToString());
                             int index = BuildingType.SelectedIndex;
                             byte type = (byte)index;
-                            miniMapBox.Image = miniMap.drawLargeMarker(OrgX, OrgY, Realx, Realy, type);
+                            miniMapBox.Image = MiniMap.DrawLargeMarker(OrgX, OrgY, Realx, Realy, lastBuilding, type);
                         }
                         else
-                            miniMapBox.Image = miniMap.drawLargeMarker(Realx, Realy, Realx, Realy);
+                            miniMapBox.Image = MiniMap.DrawLargeMarker(Realx, Realy, Realx, Realy);
 
                         MapOrGridViewChange = false;
                     }
@@ -425,7 +427,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void sendBtn_Click(object sender, EventArgs e)
+        private void SendBtn_Click(object sender, EventArgs e)
         {
             byte[] AcreOnly = new byte[0x90];
             Buffer.BlockCopy(Acre, 0x0, AcreOnly, 0x0, 0x90);
@@ -437,7 +439,7 @@ namespace ACNHPokerCore
                 System.Media.SystemSounds.Asterisk.Play();
         }
 
-        private void replaceBtn_Click(object sender, EventArgs e)
+        private void ReplaceBtn_Click(object sender, EventArgs e)
         {
             if (selectedAcre < 0)
                 return;
@@ -446,19 +448,19 @@ namespace ACNHPokerCore
             byte[] value = BitConverter.GetBytes(Int32.Parse(acreList.Items[acreList.FocusedItem.Index].Text));
             Acre[selectedAcre * 2] = value[0];
             Acre[selectedAcre * 2 + 1] = value[1];
-            miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawFullBackground(), MiniMap.drawEdge());
+            miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
             sendBtn.BackColor = Color.Orange;
         }
 
-        private void allFlatBtn_Click(object sender, EventArgs e)
+        private void AllFlatBtn_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < Utilities.AllAcreSize; i++)
                 Acre[i] = 0x00;
-            miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawFullBackground(), MiniMap.drawEdge());
+            miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
             sendBtn.BackColor = Color.Orange;
         }
 
-        private int MakeLong(short lowPart, short highPart)
+        private static int MakeLong(short lowPart, short highPart)
         {
             return (int)(((ushort)lowPart) | (uint)(highPart << 16));
         }
@@ -469,22 +471,22 @@ namespace ACNHPokerCore
             {
                 const int LVM_FIRST = 0x1000;
                 const int LVM_SETICONSPACING = LVM_FIRST + 53;
-                SendMessage(listview.Handle, LVM_SETICONSPACING, IntPtr.Zero, (IntPtr)MakeLong(leftPadding, topPadding));
+                _ = SendMessage(listview.Handle, LVM_SETICONSPACING, IntPtr.Zero, (IntPtr)MakeLong(leftPadding, topPadding));
             });
         }
 
-        private void acreList_SelectedIndexChanged(object sender, EventArgs e)
+        private void AcreList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (acreList.FocusedItem == null)
-                System.Diagnostics.Debug.Print("NULL");
+                Debug.Print("NULL");
             else
-                System.Diagnostics.Debug.Print(acreList.Items[acreList.FocusedItem.Index].Text.ToString());
+                Debug.Print(acreList.Items[acreList.FocusedItem.Index].Text.ToString());
         }
 
         private void Bulldozer_FormClosed(object sender, FormClosedEventArgs e)
         {
-            MyLog.logEvent("Bulldozer", "Form Closed");
-            this.closeForm();
+            MyLog.LogEvent("Bulldozer", "Form Closed");
+            this.CloseForm();
         }
 
         private void BuildingBtn_Click(object sender, EventArgs e)
@@ -529,10 +531,9 @@ namespace ACNHPokerCore
             selectedAcre = -1;
         }
 
-        private void buildingGridView_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        private void BuildingGridView_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
-            MouseEventArgs me = (MouseEventArgs)e;
-            if (me.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 if (e.RowIndex > -1)
                 {
@@ -551,6 +552,8 @@ namespace ACNHPokerCore
                     TUpDown.Value = Int16.Parse(buildingGridView.Rows[e.RowIndex].Cells["Type"].Value.ToString());
 
                     int index = Int16.Parse(buildingGridView.Rows[e.RowIndex].Cells["ID"].Value.ToString());
+                    lastBuilding = index;
+
                     byte type = (byte)index;
                     if (index <= BuildingType.Items.Count)
                     {
@@ -566,7 +569,7 @@ namespace ACNHPokerCore
 
                     int OrgX = Int16.Parse(buildingGridView.Rows[e.RowIndex].Cells["X-Coordinate"].Value.ToString());
                     int OrgY = Int16.Parse(buildingGridView.Rows[e.RowIndex].Cells["Y-Coordinate"].Value.ToString());
-                    miniMapBox.Image = miniMap.drawLargeMarker(OrgX, OrgY, (int)XUpDown.Value, (int)YUpDown.Value, type);
+                    miniMapBox.Image = MiniMap.DrawLargeMarker(OrgX, OrgY, (int)XUpDown.Value, (int)YUpDown.Value, lastBuilding, type);
 
                     MapOrGridViewChange = false;
 
@@ -588,37 +591,18 @@ namespace ACNHPokerCore
                         else
                             inclineAngleSelect.SelectedIndex = 0;
 
-                        switch (TUpDown.Value)
+                        inclineTypeSelect.SelectedIndex = TUpDown.Value switch
                         {
-                            case 0:
-                                inclineTypeSelect.SelectedIndex = 0;
-                                break;
-                            case 1:
-                                inclineTypeSelect.SelectedIndex = 1;
-                                break;
-                            case 2:
-                                inclineTypeSelect.SelectedIndex = 2;
-                                break;
-                            case 3:
-                                inclineTypeSelect.SelectedIndex = 3;
-                                break;
-                            case 4:
-                                inclineTypeSelect.SelectedIndex = 4;
-                                break;
-                            case 29:
-                                inclineTypeSelect.SelectedIndex = 5;
-                                break;
-                            case 30:
-                                inclineTypeSelect.SelectedIndex = 6;
-                                break;
-                            case 31:
-                                inclineTypeSelect.SelectedIndex = 7;
-                                break;
-                            default:
-                                inclineTypeSelect.SelectedIndex = 0;
-                                break;
-                        }
-
+                            0 => 0,
+                            1 => 1,
+                            2 => 2,
+                            3 => 3,
+                            4 => 4,
+                            29 => 5,
+                            30 => 6,
+                            31 => 7,
+                            _ => 0,
+                        };
                         if (this.Width > 1110)
                             this.Width = 1110;
                     }
@@ -939,7 +923,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public static Dictionary<byte, string> BuildingName = new Dictionary<byte, string>
+        public readonly static Dictionary<byte, string> BuildingName = new()
         {
             {0x0, "Empty"},
             {0x1, "Player House 1"},
@@ -973,11 +957,11 @@ namespace ACNHPokerCore
             {0x1D, "Studio"},
         };
 
-        private void saveAcreBtn_Click(object sender, EventArgs e)
+        private void SaveAcreBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                SaveFileDialog file = new SaveFileDialog()
+                SaveFileDialog file = new()
                 {
                     Filter = "New Horizons Acres (*.nha)|*.nha",
                 };
@@ -1026,11 +1010,11 @@ namespace ACNHPokerCore
             }
         }
 
-        private void loadAcreBtn_Click(object sender, EventArgs e)
+        private void LoadAcreBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                OpenFileDialog file = new OpenFileDialog()
+                OpenFileDialog file = new()
                 {
                     Filter = "New Horizons Acres (*.nha)|*.nha| All files (*.*)|*.*",
                 };
@@ -1075,7 +1059,7 @@ namespace ACNHPokerCore
 
                 Buffer.BlockCopy(data, 0x0, Acre, 0, 0x90);
 
-                miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawFullBackground(), MiniMap.drawEdge());
+                miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
                 sendBtn.BackColor = Color.Orange;
             }
             catch
@@ -1096,7 +1080,7 @@ namespace ACNHPokerCore
                 int index = BuildingType.SelectedIndex;
                 byte type = (byte)index;
 
-                miniMapBox.Image = miniMap.drawLargeMarker(OrgX, OrgY, (int)XUpDown.Value, (int)YUpDown.Value, type);
+                miniMapBox.Image = MiniMap.DrawLargeMarker(OrgX, OrgY, (int)XUpDown.Value, (int)YUpDown.Value, lastBuilding, type);
             }
         }
 
@@ -1112,7 +1096,7 @@ namespace ACNHPokerCore
                 int index = BuildingType.SelectedIndex;
                 byte type = (byte)index;
 
-                miniMapBox.Image = miniMap.drawLargeMarker(OrgX, OrgY, (int)XUpDown.Value, (int)YUpDown.Value, type);
+                miniMapBox.Image = MiniMap.DrawLargeMarker(OrgX, OrgY, (int)XUpDown.Value, (int)YUpDown.Value, lastBuilding, type);
             }
         }
 
@@ -1128,7 +1112,7 @@ namespace ACNHPokerCore
                 int index = BuildingType.SelectedIndex;
                 byte type = (byte)index;
 
-                miniMapBox.Image = miniMap.drawLargeMarker(OrgX, OrgY, (int)XUpDown.Value, (int)YUpDown.Value, type);
+                miniMapBox.Image = MiniMap.DrawLargeMarker(OrgX, OrgY, (int)XUpDown.Value, (int)YUpDown.Value, lastBuilding, type);
             }
 
             if (BuildingType.SelectedIndex == 27) // incline
@@ -1155,7 +1139,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void updateBtn_Click(object sender, EventArgs e)
+        private void UpdateBtn_Click(object sender, EventArgs e)
         {
             if (buildingGridView.CurrentCell.RowIndex == 0) // Plaza
             {
@@ -1165,8 +1149,8 @@ namespace ACNHPokerCore
 
                 Acre[0x94] = (byte)XUpDown.Value;
                 Acre[0x98] = (byte)YUpDown.Value;
-                MiniMap.updatePlaza();
-                miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawFullBackground(), MiniMap.drawEdge());
+                MiniMap.UpdatePlaza();
+                miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
                 miniMapBox.Image = null;
             }
             else if (buildingGridView.CurrentCell.RowIndex != -1)
@@ -1186,10 +1170,10 @@ namespace ACNHPokerCore
                     buildingGridView.Rows[buildingGridView.CurrentCell.RowIndex].Cells["Name"].Value = type.ToString("X");
 
 
-                DataGridViewCellStyle style = new DataGridViewCellStyle();
+                DataGridViewCellStyle style = new();
 
                 if (BuildingName.ContainsKey(type))
-                    style.BackColor = miniMap.ByteToBuildingColor[type];
+                    style.BackColor = MiniMap.ByteToBuildingColor[type];
                 else
                     style.BackColor = Color.Black;
 
@@ -1201,7 +1185,7 @@ namespace ACNHPokerCore
                 Building[(buildingGridView.CurrentCell.RowIndex - 1) * 0x14 + 0x6] = (byte)AUpDown.Value;
                 Building[(buildingGridView.CurrentCell.RowIndex - 1) * 0x14 + 0x8] = (byte)TUpDown.Value;
 
-                miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawFullBackground(), MiniMap.drawEdge());
+                miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
                 miniMapBox.Image = null;
             }
 
@@ -1216,10 +1200,10 @@ namespace ACNHPokerCore
             TUpDown.Value = 0;
             AUpDown.Value = 0;
 
-            updateBtn_Click(null, null);
+            UpdateBtn_Click(null, null);
         }
 
-        private void buildingConfirmBtn_Click(object sender, EventArgs e)
+        private void BuildingConfirmBtn_Click(object sender, EventArgs e)
         {
             int counter = 0;
 
@@ -1232,18 +1216,18 @@ namespace ACNHPokerCore
 
             Utilities.sendBuilding(s, usb, Building, ref counter);
             buildingConfirmBtn.BackColor = Color.FromArgb(114, 137, 218);
-            miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawFullBackground(), MiniMap.drawEdge());
+            miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
             miniMapBox.Image = null;
 
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
         }
 
-        private void saveBuildingBtn_Click(object sender, EventArgs e)
+        private void SaveBuildingBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                SaveFileDialog file = new SaveFileDialog()
+                SaveFileDialog file = new()
                 {
                     Filter = "New Horizons Building List (*.nhb)|*.nhb",
                 };
@@ -1289,11 +1273,11 @@ namespace ACNHPokerCore
             }
         }
 
-        private void loadBuildingBtn_Click(object sender, EventArgs e)
+        private void LoadBuildingBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                OpenFileDialog file = new OpenFileDialog()
+                OpenFileDialog file = new()
                 {
                     Filter = "New Horizons Building List (*.nhb)|*.nhb| All files (*.*)|*.*",
                 };
@@ -1344,7 +1328,7 @@ namespace ACNHPokerCore
                     buildingList[i] = new byte[BuildingSize];
                     Buffer.BlockCopy(Building, i * BuildingSize, buildingList[i], 0x0, BuildingSize);
 
-                    DataGridViewCellStyle style = new DataGridViewCellStyle();
+                    DataGridViewCellStyle style = new();
 
                     byte key = buildingList[i][0];
                     if (BuildingName.ContainsKey(key))
@@ -1353,7 +1337,7 @@ namespace ACNHPokerCore
                         buildingGridView.Rows[i + 1].Cells["Name"].Value = BuildingName[key];
                         buildingGridView.Rows[i + 1].Cells["X-Coordinate"].Value = buildingList[i][0x2];
                         buildingGridView.Rows[i + 1].Cells["Y-Coordinate"].Value = buildingList[i][0x4];
-                        style.BackColor = miniMap.ByteToBuildingColor[buildingList[i][0x0]];
+                        style.BackColor = MiniMap.ByteToBuildingColor[buildingList[i][0x0]];
                     }
                     else
                     {
@@ -1384,7 +1368,7 @@ namespace ACNHPokerCore
                     BuildingType.SelectedIndex = -1;
                 }
 
-                miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawFullBackground(), MiniMap.drawEdge());
+                miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
                 miniMapBox.Image = null;
                 buildingConfirmBtn.BackColor = Color.Orange;
             }
@@ -1394,7 +1378,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void inclineAngleSelect_SelectedIndexChanged(object sender, EventArgs e)
+        private void InclineAngleSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (valueUpdated)
                 return;
@@ -1403,43 +1387,25 @@ namespace ACNHPokerCore
                 AUpDown.Value = comboBox.SelectedIndex;
         }
 
-        private void inclineTypeSelect_SelectedIndexChanged(object sender, EventArgs e)
+        private void InclineTypeSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (valueUpdated)
                 return;
             ComboBox comboBox = (ComboBox)sender;
             if (comboBox.SelectedIndex > -1)
             {
-                switch (comboBox.SelectedIndex)
+                TUpDown.Value = comboBox.SelectedIndex switch
                 {
-                    case 0:
-                        TUpDown.Value = 0;
-                        break;
-                    case 1:
-                        TUpDown.Value = 1;
-                        break;
-                    case 2:
-                        TUpDown.Value = 2;
-                        break;
-                    case 3:
-                        TUpDown.Value = 3;
-                        break;
-                    case 4:
-                        TUpDown.Value = 4;
-                        break;
-                    case 5:
-                        TUpDown.Value = 29;
-                        break;
-                    case 6:
-                        TUpDown.Value = 30;
-                        break;
-                    case 7:
-                        TUpDown.Value = 31;
-                        break;
-                    default:
-                        TUpDown.Value = 0;
-                        break;
-                }
+                    0 => 0,
+                    1 => 1,
+                    2 => 2,
+                    3 => 3,
+                    4 => 4,
+                    5 => 29,
+                    6 => 30,
+                    7 => 31,
+                    _ => (decimal)0,
+                };
             }
         }
 
@@ -1458,24 +1424,24 @@ namespace ACNHPokerCore
         {
             if (valueUpdated)
                 return;
-            bridgeSettingChanged();
+            BridgeSettingChanged();
         }
 
         private void BridgeLengthUpDown_ValueChanged(object sender, EventArgs e)
         {
             if (valueUpdated)
                 return;
-            bridgeSettingChanged();
+            BridgeSettingChanged();
         }
 
         private void BridgeDiagonalToggle_CheckedChanged(object sender, EventArgs e)
         {
             if (valueUpdated)
                 return;
-            bridgeSettingChanged();
+            BridgeSettingChanged();
         }
 
-        private void bridgeSettingChanged()
+        private void BridgeSettingChanged()
         {
             switch (BridgeTypeSelect.SelectedIndex)
             {
@@ -1748,19 +1714,19 @@ namespace ACNHPokerCore
             }
         }
 
-        private void flattenAllBtn_Click(object sender, EventArgs e)
+        private void FlattenAllBtn_Click(object sender, EventArgs e)
         {
-            MyWarning flattenWarning = new MyWarning(s, sound, MiniMap);
+            MyWarning flattenWarning = new(s, sound, MiniMap);
             flattenWarning.ShowDialog();
-            miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawFullBackground(), MiniMap.drawEdge());
+            miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
             miniMapBox.Image = null;
         }
 
-        private void saveTerrianBtn_Click(object sender, EventArgs e)
+        private void SaveTerrianBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                SaveFileDialog file = new SaveFileDialog()
+                SaveFileDialog file = new()
                 {
                     Filter = "New Horizons Terrain (*.nht)|*.nht",
                 };
@@ -1797,7 +1763,7 @@ namespace ACNHPokerCore
                 terrainPanel.Enabled = false;
                 PleaseWaitPanel.Visible = true;
 
-                Thread SaveThread = new Thread(delegate () { SaveTerrain(file); });
+                Thread SaveThread = new(delegate () { SaveTerrain(file); });
                 SaveThread.Start();
             }
             catch
@@ -1822,7 +1788,7 @@ namespace ACNHPokerCore
             }
             catch (Exception ex)
             {
-                MyLog.logEvent("Bulldozer", "SaveTerrain: " + ex.Message.ToString());
+                MyLog.LogEvent("Bulldozer", "SaveTerrain: " + ex.Message.ToString());
                 MyMessageBox.Show(ex.Message.ToString(), "drunk, fix later");
             }
 
@@ -1830,11 +1796,11 @@ namespace ACNHPokerCore
                 System.Media.SystemSounds.Asterisk.Play();
         }
 
-        private void loadTerrianBtn_Click(object sender, EventArgs e)
+        private void LoadTerrianBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                OpenFileDialog file = new OpenFileDialog()
+                OpenFileDialog file = new()
                 {
                     Filter = "New Horizons Terrain (*.nht)|*.nht| All files (*.*)|*.*",
                 };
@@ -1880,9 +1846,9 @@ namespace ACNHPokerCore
                 PleaseWaitPanel.Visible = true;
                 terrainPanel.Enabled = false;
 
-                MiniMap.updateTerrain(data);
+                MiniMap.UpdateTerrain(data);
 
-                Thread LoadThread = new Thread(delegate () { LoadTerrain(data); });
+                Thread LoadThread = new(delegate () { LoadTerrain(data); });
                 LoadThread.Start();
             }
             catch
@@ -1897,7 +1863,7 @@ namespace ACNHPokerCore
             {
                 int counter = 0;
 
-                while (isAboutToSave(10))
+                while (Utilities.IsAboutToSave(s, usb, 10))
                 {
                     if (counter > 15)
                         break;
@@ -1913,13 +1879,13 @@ namespace ACNHPokerCore
                 {
                     PleaseWaitPanel.Visible = false;
                     terrainPanel.Enabled = true;
-                    miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawFullBackground(), MiniMap.drawEdge());
+                    miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
                     miniMapBox.Image = null;
                 });
             }
             catch (Exception ex)
             {
-                MyLog.logEvent("Bulldozer", "LoadTerrain: " + ex.Message.ToString());
+                MyLog.LogEvent("Bulldozer", "LoadTerrain: " + ex.Message.ToString());
                 MyMessageBox.Show(ex.Message.ToString(), "drunk, fix later");
             }
 
@@ -1927,40 +1893,7 @@ namespace ACNHPokerCore
                 System.Media.SystemSounds.Asterisk.Play();
         }
 
-        private bool isAboutToSave(int second)
-        {
-            byte[] b = Utilities.getSaving(s, usb);
-
-            if (b == null)
-                return true;
-            if (b[0] == 1)
-                return true;
-            else
-            {
-                byte[] currentFrame = new byte[4];
-                byte[] lastFrame = new byte[4];
-                Buffer.BlockCopy(b, 12, currentFrame, 0, 4);
-                Buffer.BlockCopy(b, 16, lastFrame, 0, 4);
-
-                int currentFrameStr = Convert.ToInt32("0x" + Utilities.flip(Utilities.ByteToHexString(currentFrame)), 16);
-                int lastFrameStr = Convert.ToInt32("0x" + Utilities.flip(Utilities.ByteToHexString(lastFrame)), 16);
-                int FrameRemain = ((0x1518 - (currentFrameStr - lastFrameStr)));
-
-                if (FrameRemain < 30 * second) // Not enough
-                    return true;
-                else if (FrameRemain >= 30 * 300) // Have too too many for some reason?
-                    return false;
-                else if (FrameRemain >= 30 * 175) // Just finish save buffer
-                    return true;
-                else
-                {
-                    Debug.Print(((0x1518 - (currentFrameStr - lastFrameStr))).ToString());
-                    return false;
-                }
-            }
-        }
-
-        private void miniMapBox_MouseLeave(object sender, EventArgs e)
+        private void MiniMapBox_MouseLeave(object sender, EventArgs e)
         {
             MapToolTip.Hide(miniMapBox);
             lastDisplayTooltip = new Point(-1, -1);

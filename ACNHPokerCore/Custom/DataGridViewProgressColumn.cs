@@ -15,7 +15,7 @@ namespace ACNHPokerCore
     class DataGridViewProgressCell : DataGridViewImageCell
     {
         // Used to make custom cell consistent with a DataGridViewImageCell
-        static Image emptyImage;
+        static readonly Image emptyImage;
         public int setValue { get; set; } = 0;
         public string remark { get; set; } = "";
 

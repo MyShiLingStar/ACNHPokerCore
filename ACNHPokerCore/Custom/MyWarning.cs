@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Net.Sockets;
@@ -10,10 +9,10 @@ namespace ACNHPokerCore
 {
     public partial class MyWarning : Form
     {
-        Socket socket;
-        bool sound;
-        miniMap map;
-        public MyWarning(Socket S, Boolean Sound, miniMap Map)
+        readonly Socket socket;
+        readonly bool sound;
+        readonly MiniMap map;
+        public MyWarning(Socket S, Boolean Sound, MiniMap Map)
         {
             socket = S;
             sound = Sound;
@@ -22,7 +21,7 @@ namespace ACNHPokerCore
             this.KeyPreview = true;
         }
 
-        private void answerBox_TextChanged(object sender, EventArgs e)
+        private void AnswerBox_TextChanged(object sender, EventArgs e)
         {
             if (answerBox.Text.ToString().ToLower().Equals(sampleBox.Text.ToString().ToLower()))
                 confirmBtn.Visible = true;
@@ -30,19 +29,19 @@ namespace ACNHPokerCore
                 confirmBtn.Visible = false;
         }
 
-        private void confirmBtn_Click(object sender, EventArgs e)
+        private void ConfirmBtn_Click(object sender, EventArgs e)
         {
             confirmBtn.Visible = false;
             answerBox.Enabled = false;
             PleaseWaitPanel.Visible = true;
 
-            Thread FlattenThread = new Thread(delegate () { FlattenTerrain(); });
+            Thread FlattenThread = new(delegate () { FlattenTerrain(); });
             FlattenThread.Start();
         }
 
         private void FlattenTerrain()
         {
-            SaveFileDialog file = new SaveFileDialog();
+            SaveFileDialog file = new();
 
             byte[] CurrentTerrainData = Utilities.getTerrain(socket, null);
 
@@ -53,7 +52,7 @@ namespace ACNHPokerCore
 
             int counter = 0;
 
-            while (isAboutToSave(10))
+            while (Utilities.IsAboutToSave(socket, null, 10))
             {
                 if (counter > 15)
                     break;
@@ -70,7 +69,7 @@ namespace ACNHPokerCore
                 Buffer.BlockCopy(CurrentTerrainData, i * Utilities.TerrainTileSize + 6, EmptyTerrainData, i * Utilities.TerrainTileSize + 6, 6);
             }
 
-            map.updateTerrain(EmptyTerrainData);
+            map.UpdateTerrain(EmptyTerrainData);
 
             Utilities.sendTerrain(socket, null, EmptyTerrainData, ref counter);
 
@@ -94,39 +93,6 @@ namespace ACNHPokerCore
                 else if (e.KeyCode.ToString() == "F1")
                 {
                     answerBox.Text = sampleBox.Text;
-                }
-            }
-        }
-
-        private bool isAboutToSave(int second)
-        {
-            byte[] b = Utilities.getSaving(socket, null);
-
-            if (b == null)
-                return true;
-            if (b[0] == 1)
-                return true;
-            else
-            {
-                byte[] currentFrame = new byte[4];
-                byte[] lastFrame = new byte[4];
-                Buffer.BlockCopy(b, 12, currentFrame, 0, 4);
-                Buffer.BlockCopy(b, 16, lastFrame, 0, 4);
-
-                int currentFrameStr = Convert.ToInt32("0x" + Utilities.flip(Utilities.ByteToHexString(currentFrame)), 16);
-                int lastFrameStr = Convert.ToInt32("0x" + Utilities.flip(Utilities.ByteToHexString(lastFrame)), 16);
-                int FrameRemain = ((0x1518 - (currentFrameStr - lastFrameStr)));
-
-                if (FrameRemain < 30 * second) // Not enough
-                    return true;
-                else if (FrameRemain >= 30 * 300) // Have too too many for some reason?
-                    return false;
-                else if (FrameRemain >= 30 * 175) // Just finish save buffer
-                    return true;
-                else
-                {
-                    Debug.Print(((0x1518 - (currentFrameStr - lastFrameStr))).ToString());
-                    return false;
                 }
             }
         }

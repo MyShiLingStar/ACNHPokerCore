@@ -1,7 +1,7 @@
 ﻿
 namespace ACNHPokerCore
 {
-    partial class dodo
+    partial class Dodo
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace ACNHPokerCore
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dodo));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dodo));
             this.FullPanel = new System.Windows.Forms.Panel();
             this.AbortBtn = new System.Windows.Forms.Button();
             this.functionPanel = new System.Windows.Forms.Panel();
@@ -366,7 +366,7 @@ namespace ACNHPokerCore
             this.HoverToolTip.SetToolTip(this.restoreDodobox, "Control whether the bot will try to restore the Dodo code\r\nwhen the island is dis" +
         "connected.\r\n\r\nYou can toggle this on and off without stopping the process.");
             this.restoreDodobox.UseVisualStyleBackColor = false;
-            this.restoreDodobox.CheckedChanged += new System.EventHandler(this.restoreDodobox_CheckedChanged);
+            this.restoreDodobox.CheckedChanged += new System.EventHandler(this.RestoreDodobox_CheckedChanged);
             // 
             // injectVillagerBox
             // 
@@ -383,7 +383,7 @@ namespace ACNHPokerCore
         " have Twitch properly set up and connected.\r\n\r\nYou can toggle this on and off wi" +
         "thout stopping the process.");
             this.injectVillagerBox.UseVisualStyleBackColor = false;
-            this.injectVillagerBox.CheckedChanged += new System.EventHandler(this.injectVillagerBox_CheckedChanged);
+            this.injectVillagerBox.CheckedChanged += new System.EventHandler(this.InjectVillagerBox_CheckedChanged);
             // 
             // dropItemBox
             // 
@@ -400,7 +400,7 @@ namespace ACNHPokerCore
         "ve Twitch properly set up and connected.\r\n\r\nYou can toggle this on and off witho" +
         "ut stopping the process.");
             this.dropItemBox.UseVisualStyleBackColor = false;
-            this.dropItemBox.CheckedChanged += new System.EventHandler(this.dropItemBox_CheckedChanged);
+            this.dropItemBox.CheckedChanged += new System.EventHandler(this.DropItemBox_CheckedChanged);
             // 
             // standaloneStart
             // 
@@ -419,7 +419,7 @@ namespace ACNHPokerCore
             this.HoverToolTip.SetToolTip(this.standaloneStart, "Start standalone mode");
             this.standaloneStart.UseVisualStyleBackColor = false;
             this.standaloneStart.Visible = false;
-            this.standaloneStart.Click += new System.EventHandler(this.standaloneStart_Click);
+            this.standaloneStart.Click += new System.EventHandler(this.StandaloneStart_Click);
             // 
             // itemDisplayBtn
             // 
@@ -439,7 +439,7 @@ namespace ACNHPokerCore
         "ma-key if you want to display it on stream.");
             this.itemDisplayBtn.UseVisualStyleBackColor = false;
             this.itemDisplayBtn.Visible = false;
-            this.itemDisplayBtn.Click += new System.EventHandler(this.itemDisplayBtn_Click);
+            this.itemDisplayBtn.Click += new System.EventHandler(this.ItemDisplayBtn_Click);
             // 
             // TwitchBtn
             // 
@@ -491,7 +491,7 @@ namespace ACNHPokerCore
             this.emoteBottomLeftBtn.TabIndex = 332;
             this.emoteBottomLeftBtn.Text = "🡷";
             this.emoteBottomLeftBtn.UseVisualStyleBackColor = false;
-            this.emoteBottomLeftBtn.Click += new System.EventHandler(this.emoteBottomLeftBtn_Click);
+            this.emoteBottomLeftBtn.Click += new System.EventHandler(this.EmoteBottomLeftBtn_Click);
             // 
             // emoteTopLeftBtn
             // 
@@ -507,7 +507,7 @@ namespace ACNHPokerCore
             this.emoteTopLeftBtn.TabIndex = 331;
             this.emoteTopLeftBtn.Text = "🡴";
             this.emoteTopLeftBtn.UseVisualStyleBackColor = false;
-            this.emoteTopLeftBtn.Click += new System.EventHandler(this.emoteTopLeftBtn_Click);
+            this.emoteTopLeftBtn.Click += new System.EventHandler(this.EmoteTopLeftBtn_Click);
             // 
             // emoteBottomRightBtn
             // 
@@ -523,7 +523,7 @@ namespace ACNHPokerCore
             this.emoteBottomRightBtn.TabIndex = 330;
             this.emoteBottomRightBtn.Text = "🡶";
             this.emoteBottomRightBtn.UseVisualStyleBackColor = false;
-            this.emoteBottomRightBtn.Click += new System.EventHandler(this.emoteBottomRightBtn_Click);
+            this.emoteBottomRightBtn.Click += new System.EventHandler(this.EmoteBottomRightBtn_Click);
             // 
             // emoteTopRightBtn
             // 
@@ -539,7 +539,7 @@ namespace ACNHPokerCore
             this.emoteTopRightBtn.TabIndex = 329;
             this.emoteTopRightBtn.Text = "🡵";
             this.emoteTopRightBtn.UseVisualStyleBackColor = false;
-            this.emoteTopRightBtn.Click += new System.EventHandler(this.emoteTopRightBtn_Click);
+            this.emoteTopRightBtn.Click += new System.EventHandler(this.EmoteTopRightBtn_Click);
             // 
             // DodoEmoteLabel
             // 
@@ -567,7 +567,7 @@ namespace ACNHPokerCore
             this.emoteRIGHTBtn.TabIndex = 324;
             this.emoteRIGHTBtn.Text = "🠊";
             this.emoteRIGHTBtn.UseVisualStyleBackColor = false;
-            this.emoteRIGHTBtn.Click += new System.EventHandler(this.emoteRIGHTBtn_Click);
+            this.emoteRIGHTBtn.Click += new System.EventHandler(this.EmoteRIGHTBtn_Click);
             // 
             // emoteDOWNBtn
             // 
@@ -583,7 +583,7 @@ namespace ACNHPokerCore
             this.emoteDOWNBtn.TabIndex = 322;
             this.emoteDOWNBtn.Text = "🠋";
             this.emoteDOWNBtn.UseVisualStyleBackColor = false;
-            this.emoteDOWNBtn.Click += new System.EventHandler(this.emoteDOWNBtn_Click);
+            this.emoteDOWNBtn.Click += new System.EventHandler(this.EmoteDOWNBtn_Click);
             // 
             // emoteLEFTBtn
             // 
@@ -599,7 +599,7 @@ namespace ACNHPokerCore
             this.emoteLEFTBtn.TabIndex = 323;
             this.emoteLEFTBtn.Text = "🠈";
             this.emoteLEFTBtn.UseVisualStyleBackColor = false;
-            this.emoteLEFTBtn.Click += new System.EventHandler(this.emoteLEFTBtn_Click);
+            this.emoteLEFTBtn.Click += new System.EventHandler(this.EmoteLEFTBtn_Click);
             // 
             // emoteUPBtn
             // 
@@ -615,7 +615,7 @@ namespace ACNHPokerCore
             this.emoteUPBtn.TabIndex = 321;
             this.emoteUPBtn.Text = "🠉";
             this.emoteUPBtn.UseVisualStyleBackColor = false;
-            this.emoteUPBtn.Click += new System.EventHandler(this.emoteUPBtn_Click);
+            this.emoteUPBtn.Click += new System.EventHandler(this.EmoteUPBtn_Click);
             // 
             // idleEmoteCheckBox
             // 
@@ -630,7 +630,7 @@ namespace ACNHPokerCore
             this.HoverToolTip.SetToolTip(this.idleEmoteCheckBox, "Control whether the bot will do a random emote if\r\nit is idle for some time.\r\n\r\n*" +
         "Might interrupt other action like item dropping.");
             this.idleEmoteCheckBox.UseVisualStyleBackColor = false;
-            this.idleEmoteCheckBox.CheckedChanged += new System.EventHandler(this.idleEmoteCheckBox_CheckedChanged);
+            this.idleEmoteCheckBox.CheckedChanged += new System.EventHandler(this.IdleEmoteCheckBox_CheckedChanged);
             // 
             // controllerPanel
             // 
@@ -684,7 +684,7 @@ namespace ACNHPokerCore
             this.HoverToolTip.SetToolTip(this.clearSlotBtn, "Clear the first inventory slot.\r\nUseful if you have something in there which migh" +
         "t interrupt the drop bot.");
             this.clearSlotBtn.UseVisualStyleBackColor = false;
-            this.clearSlotBtn.Click += new System.EventHandler(this.clearInvBtn_Click);
+            this.clearSlotBtn.Click += new System.EventHandler(this.ClearInvBtn_Click);
             // 
             // TimerBtn
             // 
@@ -734,7 +734,7 @@ namespace ACNHPokerCore
             this.caputureBtn.TabIndex = 337;
             this.caputureBtn.Text = "⏺️";
             this.caputureBtn.UseVisualStyleBackColor = false;
-            this.caputureBtn.Click += new System.EventHandler(this.caputureBtn_Click);
+            this.caputureBtn.Click += new System.EventHandler(this.CaputureBtn_Click);
             // 
             // plusBtn
             // 
@@ -751,7 +751,7 @@ namespace ACNHPokerCore
             this.plusBtn.Text = "➕";
             this.HoverToolTip.SetToolTip(this.plusBtn, "Keyboard : Y");
             this.plusBtn.UseVisualStyleBackColor = false;
-            this.plusBtn.Click += new System.EventHandler(this.plusBtn_Click);
+            this.plusBtn.Click += new System.EventHandler(this.PlusBtn_Click);
             // 
             // minusBtn
             // 
@@ -768,7 +768,7 @@ namespace ACNHPokerCore
             this.minusBtn.Text = "➖";
             this.HoverToolTip.SetToolTip(this.minusBtn, "Keyboard : R");
             this.minusBtn.UseVisualStyleBackColor = false;
-            this.minusBtn.Click += new System.EventHandler(this.minusBtn_Click);
+            this.minusBtn.Click += new System.EventHandler(this.MinusBtn_Click);
             // 
             // RBtn
             // 
@@ -1225,7 +1225,7 @@ namespace ACNHPokerCore
             this.dodoLog.Size = new System.Drawing.Size(447, 179);
             this.dodoLog.TabIndex = 311;
             this.dodoLog.Text = "";
-            this.dodoLog.TextChanged += new System.EventHandler(this.dodoLog_TextChanged);
+            this.dodoLog.TextChanged += new System.EventHandler(this.DodoLog_TextChanged);
             // 
             // DoneFullTestBtn
             // 
@@ -2290,7 +2290,7 @@ namespace ACNHPokerCore
             this.sessionBox.Text = "End session when time\'s up";
             this.HoverToolTip.SetToolTip(this.sessionBox, "This will end the session and kick everyone off the island.");
             this.sessionBox.UseVisualStyleBackColor = false;
-            this.sessionBox.CheckedChanged += new System.EventHandler(this.sessionBox_CheckedChanged);
+            this.sessionBox.CheckedChanged += new System.EventHandler(this.SessionBox_CheckedChanged);
             // 
             // timerSettingPanel
             // 
@@ -2331,7 +2331,7 @@ namespace ACNHPokerCore
             this.secPlus5Btn.TabIndex = 357;
             this.secPlus5Btn.Text = "+5";
             this.secPlus5Btn.UseVisualStyleBackColor = false;
-            this.secPlus5Btn.Click += new System.EventHandler(this.secPlus5Btn_Click);
+            this.secPlus5Btn.Click += new System.EventHandler(this.SecPlus5Btn_Click);
             // 
             // secMinus5Btn
             // 
@@ -2347,7 +2347,7 @@ namespace ACNHPokerCore
             this.secMinus5Btn.TabIndex = 356;
             this.secMinus5Btn.Text = "-5";
             this.secMinus5Btn.UseVisualStyleBackColor = false;
-            this.secMinus5Btn.Click += new System.EventHandler(this.secMinus5Btn_Click);
+            this.secMinus5Btn.Click += new System.EventHandler(this.SecMinus5Btn_Click);
             // 
             // secPlus1Btn
             // 
@@ -2363,7 +2363,7 @@ namespace ACNHPokerCore
             this.secPlus1Btn.TabIndex = 355;
             this.secPlus1Btn.Text = "+1";
             this.secPlus1Btn.UseVisualStyleBackColor = false;
-            this.secPlus1Btn.Click += new System.EventHandler(this.secPlus1Btn_Click);
+            this.secPlus1Btn.Click += new System.EventHandler(this.SecPlus1Btn_Click);
             // 
             // secMinus1Btn
             // 
@@ -2379,7 +2379,7 @@ namespace ACNHPokerCore
             this.secMinus1Btn.TabIndex = 354;
             this.secMinus1Btn.Text = "-1";
             this.secMinus1Btn.UseVisualStyleBackColor = false;
-            this.secMinus1Btn.Click += new System.EventHandler(this.secMinus1Btn_Click);
+            this.secMinus1Btn.Click += new System.EventHandler(this.SecMinus1Btn_Click);
             // 
             // minPlus5Btn
             // 
@@ -2395,7 +2395,7 @@ namespace ACNHPokerCore
             this.minPlus5Btn.TabIndex = 353;
             this.minPlus5Btn.Text = "+5";
             this.minPlus5Btn.UseVisualStyleBackColor = false;
-            this.minPlus5Btn.Click += new System.EventHandler(this.minPlus5Btn_Click);
+            this.minPlus5Btn.Click += new System.EventHandler(this.MinPlus5Btn_Click);
             // 
             // minMinus5Btn
             // 
@@ -2411,7 +2411,7 @@ namespace ACNHPokerCore
             this.minMinus5Btn.TabIndex = 352;
             this.minMinus5Btn.Text = "-5";
             this.minMinus5Btn.UseVisualStyleBackColor = false;
-            this.minMinus5Btn.Click += new System.EventHandler(this.minMinus5Btn_Click);
+            this.minMinus5Btn.Click += new System.EventHandler(this.MinMinus5Btn_Click);
             // 
             // minPlus1Btn
             // 
@@ -2427,7 +2427,7 @@ namespace ACNHPokerCore
             this.minPlus1Btn.TabIndex = 351;
             this.minPlus1Btn.Text = "+1";
             this.minPlus1Btn.UseVisualStyleBackColor = false;
-            this.minPlus1Btn.Click += new System.EventHandler(this.minPlus1Btn_Click);
+            this.minPlus1Btn.Click += new System.EventHandler(this.MinPlus1Btn_Click);
             // 
             // minMinus1Btn
             // 
@@ -2443,7 +2443,7 @@ namespace ACNHPokerCore
             this.minMinus1Btn.TabIndex = 350;
             this.minMinus1Btn.Text = "-1";
             this.minMinus1Btn.UseVisualStyleBackColor = false;
-            this.minMinus1Btn.Click += new System.EventHandler(this.minMinus1Btn_Click);
+            this.minMinus1Btn.Click += new System.EventHandler(this.MinMinus1Btn_Click);
             // 
             // sce30Btn
             // 
@@ -2459,7 +2459,7 @@ namespace ACNHPokerCore
             this.sce30Btn.TabIndex = 349;
             this.sce30Btn.Text = "30";
             this.sce30Btn.UseVisualStyleBackColor = false;
-            this.sce30Btn.Click += new System.EventHandler(this.sce30Btn_Click);
+            this.sce30Btn.Click += new System.EventHandler(this.Sce30Btn_Click);
             // 
             // sce0Btn
             // 
@@ -2475,7 +2475,7 @@ namespace ACNHPokerCore
             this.sce0Btn.TabIndex = 348;
             this.sce0Btn.Text = "0";
             this.sce0Btn.UseVisualStyleBackColor = false;
-            this.sce0Btn.Click += new System.EventHandler(this.sce0Btn_Click);
+            this.sce0Btn.Click += new System.EventHandler(this.Sce0Btn_Click);
             // 
             // min15Btn
             // 
@@ -2491,7 +2491,7 @@ namespace ACNHPokerCore
             this.min15Btn.TabIndex = 347;
             this.min15Btn.Text = "15";
             this.min15Btn.UseVisualStyleBackColor = false;
-            this.min15Btn.Click += new System.EventHandler(this.min15Btn_Click);
+            this.min15Btn.Click += new System.EventHandler(this.Min15Btn_Click);
             // 
             // min10Btn
             // 
@@ -2507,7 +2507,7 @@ namespace ACNHPokerCore
             this.min10Btn.TabIndex = 346;
             this.min10Btn.Text = "10";
             this.min10Btn.UseVisualStyleBackColor = false;
-            this.min10Btn.Click += new System.EventHandler(this.min10Btn_Click);
+            this.min10Btn.Click += new System.EventHandler(this.Min10Btn_Click);
             // 
             // min5Btn
             // 
@@ -2523,7 +2523,7 @@ namespace ACNHPokerCore
             this.min5Btn.TabIndex = 345;
             this.min5Btn.Text = "5";
             this.min5Btn.UseVisualStyleBackColor = false;
-            this.min5Btn.Click += new System.EventHandler(this.min5Btn_Click);
+            this.min5Btn.Click += new System.EventHandler(this.Min5Btn_Click);
             // 
             // min3Btn
             // 
@@ -2539,7 +2539,7 @@ namespace ACNHPokerCore
             this.min3Btn.TabIndex = 344;
             this.min3Btn.Text = "3";
             this.min3Btn.UseVisualStyleBackColor = false;
-            this.min3Btn.Click += new System.EventHandler(this.min3Btn_Click);
+            this.min3Btn.Click += new System.EventHandler(this.Min3Btn_Click);
             // 
             // min1Btn
             // 
@@ -2555,7 +2555,7 @@ namespace ACNHPokerCore
             this.min1Btn.TabIndex = 343;
             this.min1Btn.Text = "1";
             this.min1Btn.UseVisualStyleBackColor = false;
-            this.min1Btn.Click += new System.EventHandler(this.min1Btn_Click);
+            this.min1Btn.Click += new System.EventHandler(this.Min1Btn_Click);
             // 
             // secondslabel
             // 
@@ -2595,7 +2595,7 @@ namespace ACNHPokerCore
             this.timerStartBtn.TabIndex = 358;
             this.timerStartBtn.Text = "Start";
             this.timerStartBtn.UseVisualStyleBackColor = false;
-            this.timerStartBtn.Click += new System.EventHandler(this.timerStartBtn_Click);
+            this.timerStartBtn.Click += new System.EventHandler(this.TimerStartBtn_Click);
             // 
             // timerPauseBtn
             // 
@@ -2611,7 +2611,7 @@ namespace ACNHPokerCore
             this.timerPauseBtn.TabIndex = 359;
             this.timerPauseBtn.Text = "Pause";
             this.timerPauseBtn.UseVisualStyleBackColor = false;
-            this.timerPauseBtn.Click += new System.EventHandler(this.timerPauseBtn_Click);
+            this.timerPauseBtn.Click += new System.EventHandler(this.TimerPauseBtn_Click);
             // 
             // timerResetBtn
             // 
@@ -2627,7 +2627,7 @@ namespace ACNHPokerCore
             this.timerResetBtn.TabIndex = 360;
             this.timerResetBtn.Text = "Reset";
             this.timerResetBtn.UseVisualStyleBackColor = false;
-            this.timerResetBtn.Click += new System.EventHandler(this.timerResetBtn_Click);
+            this.timerResetBtn.Click += new System.EventHandler(this.TimerResetBtn_Click);
             // 
             // panel2
             // 
@@ -2642,7 +2642,7 @@ namespace ACNHPokerCore
             // controllerTimer
             // 
             this.controllerTimer.Interval = 15;
-            this.controllerTimer.Tick += new System.EventHandler(this.controllerTimer_Tick);
+            this.controllerTimer.Tick += new System.EventHandler(this.ControllerTimer_Tick);
             // 
             // dodo
             // 
@@ -2664,10 +2664,10 @@ namespace ACNHPokerCore
             this.Opacity = 0.95D;
             this.ShowInTaskbar = false;
             this.Text = "Dutch Sailors            -> Click here to allow keyboard control <-";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.dodo_FormClosed);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dodo_KeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dodo_KeyUp);
-            this.Move += new System.EventHandler(this.dodo_Move);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Dodo_FormClosed);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Dodo_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Dodo_KeyUp);
+            this.Move += new System.EventHandler(this.Dodo_Move);
             this.FullPanel.ResumeLayout(false);
             this.FullPanel.PerformLayout();
             this.functionPanel.ResumeLayout(false);

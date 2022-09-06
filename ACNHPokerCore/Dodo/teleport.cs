@@ -10,20 +10,20 @@ using System.Windows.Forms;
 
 namespace ACNHPokerCore
 {
-    public class teleport
+    public static class Teleport
     {
         private static Socket s;
 
         private static byte[] teleportByte;
         private static byte[] anchorByte;
 
-        private static string offset = "[[[[main+4627088]+18]+178]+D0]+DA"; //"[[[[main+460ED68]+18]+178]+D0]+DA"; //"[[[[main+3A33980]+18]+178]+D0]+DA"; //"[[[[main+3A32980]+18]+178]+D0]+DA"; //"[[[[main+3A08B40]+18]+178]+D0]+DA"; //"[[[[main+39DC030]+18]+178]+D0]+DA";//"[[[[main+398C380]+18]+178]+D0]+DA";//"[[[[main+396F5A0]+18]+178]+D0]+DA";
+        private static readonly string offset = "[[[[main+4627088]+18]+178]+D0]+DA"; //"[[[[main+460ED68]+18]+178]+D0]+DA"; //"[[[[main+3A33980]+18]+178]+D0]+DA"; //"[[[[main+3A32980]+18]+178]+D0]+DA"; //"[[[[main+3A08B40]+18]+178]+D0]+DA"; //"[[[[main+39DC030]+18]+178]+D0]+DA";//"[[[[main+398C380]+18]+178]+D0]+DA";//"[[[[main+396F5A0]+18]+178]+D0]+DA";
 
-        private static int coordinateSize = 20;
-        private static int turningSize = 4;
-        private static int teleportSize = coordinateSize + turningSize;
+        private static readonly int coordinateSize = 20;
+        private static readonly int turningSize = 4;
+        private static readonly int teleportSize = coordinateSize + turningSize;
 
-        private static object lockObject = new object();
+        private static readonly object lockObject = new();
         public enum OverworldState
         {
             Null,
@@ -42,7 +42,7 @@ namespace ACNHPokerCore
             Unknown
         }
 
-        public teleport(Socket S)
+        public static void Init(Socket S)
         {
             if (!File.Exists(Utilities.teleportPath))
             {
@@ -73,7 +73,7 @@ namespace ACNHPokerCore
             {
                 // Regex pattern to get operators and offsets from pointer expression.	
                 string pattern = @"(\+|\-)([A-Fa-f0-9]+)";
-                Regex regex = new Regex(pattern);
+                Regex regex = new(pattern);
                 Match match = regex.Match(strInput);
 
                 // Get first offset from pointer expression and read address at that offset from main start.	
@@ -120,7 +120,7 @@ namespace ACNHPokerCore
             Buffer.BlockCopy(teleportByte, teleportSize * num, coordinate, 0, coordinateSize);
             Buffer.BlockCopy(teleportByte, teleportSize * num + coordinateSize, turning, 0, turningSize);
 
-            if (!isValidCoordinate(coordinate))
+            if (!IsValidCoordinate(coordinate))
             {
                 MyMessageBox.Show("Invalid Coordinates!", "3C3C1D119440927", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -141,7 +141,7 @@ namespace ACNHPokerCore
                 Thread.Sleep(500);
                 trials++;
             }
-            while (confirmSuccessTeleport(num, teleportByte));
+            while (ConfirmSuccessTeleport(num, teleportByte));
 
             return true;
         }
@@ -169,12 +169,12 @@ namespace ACNHPokerCore
                 Thread.Sleep(500);
                 trials++;
             }
-            while (confirmSuccessTeleport(num, anchorByte));
+            while (ConfirmSuccessTeleport(num, anchorByte));
 
             return true;
         }
 
-        private static bool confirmSuccessTeleport(int num, byte[] ByteUsing)
+        private static bool ConfirmSuccessTeleport(int num, byte[] ByteUsing)
         {
             byte[] coordinate = new byte[coordinateSize];
             byte[] turning = new byte[turningSize];
@@ -195,7 +195,7 @@ namespace ACNHPokerCore
                 return true;
         }
 
-        private static bool isValidCoordinate(byte[] coordinate)
+        private static bool IsValidCoordinate(byte[] coordinate)
         {
             for (int i = 0; i < coordinate.Length; i++)
             {
@@ -205,7 +205,7 @@ namespace ACNHPokerCore
             return false;
         }
 
-        public static bool allAnchorValid()
+        public static bool AllAnchorValid()
         {
             byte[] temp = new byte[teleportSize];
 
@@ -215,7 +215,7 @@ namespace ACNHPokerCore
             for (int i = 0; i < 5; i++)
             {
                 Buffer.BlockCopy(anchorByte, teleportSize * i, temp, 0, teleportSize);
-                if (!isValidCoordinate(temp))
+                if (!IsValidCoordinate(temp))
                     return false;
             }
             return true;
@@ -246,7 +246,7 @@ namespace ACNHPokerCore
 
             File.WriteAllBytes(Utilities.anchorPath, anchorByte);
         }
-        public static byte checkOnlineStatus(bool chi = false)
+        public static byte CheckOnlineStatus(bool chi = false)
         {
             byte[] b;
             if (chi)
@@ -280,20 +280,21 @@ namespace ACNHPokerCore
                 return OverworldState.Loading;
             else if ($"{value:X8}".EndsWith("BC10"))
                 return OverworldState.Loading;
-            switch (value)
+            return value switch
             {
-                case 0x00000000: return OverworldState.Null;
-                case 0xC0066666: return OverworldState.OverworldOrInAirport;
-                case 0xBE200000: return OverworldState.UserArriveLeavingOrTitleScreen;
-                default: return OverworldState.Unknown;
+                0x00000000 => OverworldState.Null,
+                0xC0066666 => OverworldState.OverworldOrInAirport,
+                0xBE200000 => OverworldState.UserArriveLeavingOrTitleScreen,
+                _ => OverworldState.Unknown,
             };
+            ;
         }
 
-        public static void dump()
+        public static void Dump()
         {
             ulong address = GetCoordinateAddress(offset);
 
-            SaveFileDialog file = new SaveFileDialog()
+            SaveFileDialog file = new()
             {
                 Filter = "binbin (*.bin)|*.bin",
             };
@@ -348,18 +349,14 @@ namespace ACNHPokerCore
             ulong address = GetCoordinateAddress(offset);
             uint value = BitConverter.ToUInt32(Utilities.peekAbsoluteAddress(s, (address + 0x6E).ToString("X"), 0x4), 0);
             Debug.Print("Location : " + value.ToString("X"));
-            switch (value)
+            return value switch
             {
-                case 0x3EB44F1A: return LocationState.Announcement;
-                case 0xB5CA1578:
-                case 0x43140000:
-                case 0x432A0CCD:
-                case 0x430C0CCD:
-                case 0x43200CCD: return LocationState.Indoor;
-                case 0x0:
-                case 0xFF: return LocationState.Loading;
-                default: return LocationState.Unknown;
+                0x3EB44F1A => LocationState.Announcement,
+                0xB5CA1578 or 0x43140000 or 0x432A0CCD or 0x430C0CCD or 0x43200CCD => LocationState.Indoor,
+                0x0 or 0xFF => LocationState.Loading,
+                _ => LocationState.Unknown,
             };
+            ;
         }
     }
 }

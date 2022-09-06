@@ -8,25 +8,24 @@ using System.Windows.Forms;
 
 namespace ACNHPokerCore
 {
-    public partial class bulkSpawn : Form
+    public partial class BulkSpawn : Form
     {
-        private Socket s;
-        private USBBot bot;
-        private miniMap MiniMap = null;
-        private map main;
+        private readonly Socket s;
+        private readonly USBBot bot;
+        private readonly MiniMap MiniMap = null;
+        private readonly Map main;
         private int counter = 0;
         private int anchorX = -1;
         private int anchorY = -1;
-        private bool ignore = false;
-        private bool sound;
-        private byte[] Layer1 = null;
-        private byte[] Layer2 = null;
-        private byte[] Acre = null;
-        private byte[] Building = null;
-        private byte[] Terrain = null;
+        private readonly bool ignore = false;
+        private readonly bool sound;
+        private readonly byte[] Layer1 = null;
+        private readonly byte[] Layer2 = null;
+        private readonly byte[] Acre = null;
+        private readonly byte[] Building = null;
+        private readonly byte[] Terrain = null;
 
-        private bool layer1Selected;
-        private long SpawnAddress;
+        private readonly long SpawnAddress;
 
         private byte[][] item = null;
         private byte[][] itemWithSpace = null;
@@ -36,7 +35,7 @@ namespace ACNHPokerCore
         private int rowNum;
         private byte[][] SpawnArea = null;
         private bool spawnlock = false;
-        public bulkSpawn(Socket S, USBBot Bot, byte[] layer1, byte[] layer2, byte[] acre, byte[] building, byte[] terrain, int x, int y, map Map, bool Ignore, bool Sound, bool Layer1Selected = true)
+        public BulkSpawn(Socket S, USBBot Bot, byte[] layer1, byte[] layer2, byte[] acre, byte[] building, byte[] terrain, int x, int y, Map Map, bool Ignore, bool Sound, bool Layer1Selected = true)
         {
             try
             {
@@ -52,35 +51,34 @@ namespace ACNHPokerCore
                 main = Map;
                 ignore = Ignore;
                 sound = Sound;
-                layer1Selected = Layer1Selected;
-                MiniMap = new miniMap(Layer1, Acre, Building, Terrain, 4);
+                MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, 4);
                 InitializeComponent();
                 xCoordinate.Text = x.ToString();
                 yCoordinate.Text = y.ToString();
-                miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawBackground(), MiniMap.drawItemMap());
+                miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawBackground(), MiniMap.DrawItemMap());
                 if (Layer1Selected)
                 {
                     SpawnAddress = Utilities.mapZero;
                 }
                 else
                 {
-                    miniMapBox.BackgroundImage = MiniMap.refreshItemMap(Layer2);
+                    miniMapBox.BackgroundImage = MiniMap.RefreshItemMap(Layer2);
                     SpawnAddress = Utilities.mapZero + Utilities.mapSize;
                 }
-                miniMapBox.Image = MiniMap.drawMarker(anchorX, anchorY);
+                miniMapBox.Image = MiniMap.DrawMarker(anchorX, anchorY);
                 warningMessage.SelectionAlignment = HorizontalAlignment.Center;
-                MyLog.logEvent("BulkSpawn", "BulkSpawnForm Started Successfully");
+                MyLog.LogEvent("BulkSpawn", "BulkSpawnForm Started Successfully");
             }
             catch (Exception ex)
             {
-                MyLog.logEvent("BulkSpawn", "Form Construct: " + ex.Message.ToString());
+                MyLog.LogEvent("BulkSpawn", "Form Construct: " + ex.Message.ToString());
             }
         }
-        private void selectBtn_Click(object sender, EventArgs e)
+        private void SelectBtn_Click(object sender, EventArgs e)
         {
             spawnBtn.Visible = false;
 
-            OpenFileDialog file = new OpenFileDialog()
+            OpenFileDialog file = new()
             {
                 Filter = "New Horizons Bulk Spawn (*.nhbs)|*.nhbs|New Horizons Inventory(*.nhi) | *.nhi",
             };
@@ -116,13 +114,13 @@ namespace ACNHPokerCore
 
             byte[] data = File.ReadAllBytes(file.FileName);
 
-            processNHBS(data);
+            ProcessNHBS(data);
             numOfItemBox.Text = numOfitem.ToString();
             numOfSpaceBox.Text = numOfSpace.ToString();
             settingPanel.Visible = true;
         }
 
-        private void processNHBS(byte[] data)
+        private void ProcessNHBS(byte[] data)
         {
             byte[] tempItem = new byte[8];
             bool[] isItem = new bool[data.Length / 8];
@@ -166,7 +164,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void previewBtn_Click(object sender, EventArgs e)
+        private void PreviewBtn_Click(object sender, EventArgs e)
         {
             miniMapBox.Image = null;
 
@@ -179,7 +177,7 @@ namespace ACNHPokerCore
                     return;
                 widthLabel.Visible = true;
                 widthNumber.Visible = true;
-                SpawnArea = buildSpawnArea(rowNum);
+                SpawnArea = BuildSpawnArea(rowNum);
                 widthNumber.Text = (SpawnArea.Length / 2).ToString();
 
                 bool right;
@@ -192,9 +190,9 @@ namespace ACNHPokerCore
                 yCoordinate.Text = anchorY.ToString();
 
                 if (IgnoreSpaceToggle.Checked)
-                    miniMapBox.Image = MiniMap.drawPreview(rowNum, SpawnArea.Length / 2, anchorX, anchorY, right);
+                    miniMapBox.Image = MiniMap.DrawPreview(rowNum, SpawnArea.Length / 2, anchorX, anchorY, right);
                 else
-                    miniMapBox.Image = MiniMap.drawPreview(rowNum, SpawnArea.Length / 2, anchorX, anchorY, right, isSpace);
+                    miniMapBox.Image = MiniMap.DrawPreview(rowNum, SpawnArea.Length / 2, anchorX, anchorY, right, isSpace);
 
                 if (anchorY + rowNum > 96)
                 {
@@ -219,7 +217,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private byte[][] buildSpawnArea(int t)
+        private byte[][] BuildSpawnArea(int t)
         {
             int itemNum = 0;
             byte[] emptyLeft = Utilities.stringToByte("FEFF000000000000FEFF000000000000");
@@ -256,7 +254,7 @@ namespace ACNHPokerCore
                 {
                     if (itemNum < processingArea.Length)
                     {
-                        transformToFloorItem(ref b[i * 2], ref b[i * 2 + 1], j, processingArea[itemNum]);
+                        TransformToFloorItem(ref b[i * 2], ref b[i * 2 + 1], j, processingArea[itemNum]);
                         itemNum++;
                     }
                     else
@@ -269,7 +267,7 @@ namespace ACNHPokerCore
             return b;
         }
 
-        private void transformToFloorItem(ref byte[] b1, ref byte[] b2, int slot, byte[] item)
+        private static void TransformToFloorItem(ref byte[] b1, ref byte[] b2, int slot, byte[] item)
         {
             byte[] slotBytes = new byte[2];
             byte[] flag1Bytes = new byte[1];
@@ -298,31 +296,31 @@ namespace ACNHPokerCore
 
         }
 
-        private void bulkSpawn_FormClosed(object sender, FormClosedEventArgs e)
+        private void BulkSpawn_FormClosed(object sender, FormClosedEventArgs e)
         {
-            MyLog.logEvent("BulkSpawn", "Form Closed");
+            MyLog.LogEvent("BulkSpawn", "Form Closed");
             main.bulk = null;
         }
 
-        private void spawnBtn_Click(object sender, EventArgs e)
+        private void SpawnBtn_Click(object sender, EventArgs e)
         {
             settingPanel.Visible = false;
             spawnlock = true;
 
             if (rightBtn.Checked)
             {
-                Thread SpawnThread = new Thread(delegate () { bulkSpawnConfirm(true); });
+                Thread SpawnThread = new(delegate () { BulkSpawnConfirm(true); });
                 SpawnThread.Start();
             }
             else
             {
-                Thread SpawnThread = new Thread(delegate () { bulkSpawnConfirm(false); });
+                Thread SpawnThread = new(delegate () { BulkSpawnConfirm(false); });
                 SpawnThread.Start();
             }
         }
-        private void bulkSpawnConfirm(bool right)
+        private void BulkSpawnConfirm(bool right)
         {
-            showMapWait(SpawnArea.Length, "Spawning items...");
+            ShowMapWait(SpawnArea.Length, "Spawning items...");
 
             try
             {
@@ -332,7 +330,7 @@ namespace ACNHPokerCore
 
                 int counter = 0;
 
-                while (isAboutToSave(time + 10))
+                while (Utilities.IsAboutToSave(s, bot, time + 10, 0, ignore))
                 {
                     if (counter > 5)
                     {
@@ -349,13 +347,13 @@ namespace ACNHPokerCore
                             if (sound)
                                 System.Media.SystemSounds.Asterisk.Play();
 
-                            hideMapWait();
+                            HideMapWait();
 
                             spawnlock = false;
 
                             this.Invoke((MethodInvoker)delegate
                             {
-                                main.moveAnchor(anchorX, anchorY);
+                                main.MoveAnchor(anchorX, anchorY);
                                 this.Close();
                             });
                             return;
@@ -377,7 +375,7 @@ namespace ACNHPokerCore
 
                     this.Invoke((MethodInvoker)delegate
                     {
-                        main.updataData(anchorX, anchorY, SpawnArea, false, true);
+                        main.UpdataData(anchorX, anchorY, SpawnArea, false, true);
                     });
                 }
                 else
@@ -391,13 +389,13 @@ namespace ACNHPokerCore
 
                     this.Invoke((MethodInvoker)delegate
                     {
-                        main.updataData(anchorX, anchorY, SpawnArea, false, false);
+                        main.UpdataData(anchorX, anchorY, SpawnArea, false, false);
                     });
                 }
             }
             catch (Exception ex)
             {
-                MyLog.logEvent("BulkSpawn", "ConfirmSpawn: " + ex.Message.ToString());
+                MyLog.LogEvent("BulkSpawn", "ConfirmSpawn: " + ex.Message.ToString());
                 MyMessageBox.Show(ex.Message.ToString(), "When I wrote this, only God and I understood what I was doing.");
             }
 
@@ -406,18 +404,18 @@ namespace ACNHPokerCore
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
 
-            hideMapWait();
+            HideMapWait();
 
             spawnlock = false;
 
             this.Invoke((MethodInvoker)delegate
             {
-                main.moveAnchor(anchorX, anchorY);
+                main.MoveAnchor(anchorX, anchorY);
                 this.Close();
             });
         }
 
-        private void showMapWait(int size, string msg = "")
+        private void ShowMapWait(int size, string msg = "")
         {
             this.Invoke((MethodInvoker)delegate
             {
@@ -431,7 +429,7 @@ namespace ACNHPokerCore
             });
         }
 
-        private void hideMapWait()
+        private void HideMapWait()
         {
             this.Invoke((MethodInvoker)delegate
             {
@@ -451,7 +449,7 @@ namespace ACNHPokerCore
             });
         }
 
-        private void miniMapBox_MouseDown(object sender, MouseEventArgs e)
+        private void MiniMapBox_MouseDown(object sender, MouseEventArgs e)
         {
             if (spawnlock)
                 return;
@@ -480,58 +478,13 @@ namespace ACNHPokerCore
                 xCoordinate.Text = x.ToString();
                 yCoordinate.Text = y.ToString();
 
-                miniMapBox.Image = MiniMap.drawMarker(anchorX, anchorY);
+                miniMapBox.Image = MiniMap.DrawMarker(anchorX, anchorY);
                 warningMessage.Visible = false;
                 spawnBtn.Visible = false;
             }
         }
 
-        private bool isAboutToSave(int second)
-        {
-            if (ignore)
-                return false;
-
-            try
-            {
-                byte[] b = Utilities.getSaving(s, bot);
-
-                if (b == null)
-                    return true;
-                if (b[0] == 1)
-                    return true;
-                else
-                {
-                    byte[] currentFrame = new byte[4];
-                    byte[] lastFrame = new byte[4];
-                    Buffer.BlockCopy(b, 12, currentFrame, 0, 4);
-                    Buffer.BlockCopy(b, 16, lastFrame, 0, 4);
-
-                    int currentFrameStr = Convert.ToInt32("0x" + Utilities.flip(Utilities.ByteToHexString(currentFrame)), 16);
-                    int lastFrameStr = Convert.ToInt32("0x" + Utilities.flip(Utilities.ByteToHexString(lastFrame)), 16);
-                    int FrameRemain = ((0x1518 - (currentFrameStr - lastFrameStr)));
-
-                    if (FrameRemain < 30 * second) // Not enough
-                        return true;
-                    else if (FrameRemain >= 30 * 300) // Have too too many for some reason?
-                        return false;
-                    else if (FrameRemain >= 30 * 175) // Just finish save buffer
-                        return true;
-                    else
-                    {
-                        Debug.Print(((0x1518 - (currentFrameStr - lastFrameStr))).ToString());
-                        return false;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MyLog.logEvent("BulkSpawn", "isAboutToSave: " + ex.Message.ToString());
-                MyMessageBox.Show(ex.Message.ToString(), "This is utterly fucking retarded.");
-                return false;
-            }
-        }
-
-        private void heightNumber_KeyPress(object sender, KeyPressEventArgs e)
+        private void HeightNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
             char c = e.KeyChar;
             if (!(c >= '0' && c <= '9'))
@@ -566,7 +519,7 @@ namespace ACNHPokerCore
             //xCoordinate.Text = x.ToString();
             //yCoordinate.Text = y.ToString();
 
-            miniMapBox.Image = MiniMap.drawMarker(anchorX, anchorY);
+            miniMapBox.Image = MiniMap.DrawMarker(anchorX, anchorY);
             warningMessage.Visible = false;
             spawnBtn.Visible = false;
         }

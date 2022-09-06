@@ -223,6 +223,10 @@ namespace ACNHPokerCore
         public static readonly string aSpeedX50 = "42480000";
         public static readonly string aSpeedX01 = "3DCCCCCD";
 
+        public static UInt32 MagicAddress = 0x008AFED8; //
+        public static readonly string MagicOn = "79401A60";
+        public static readonly string MagicOff = "52810840";
+
         public const int MapTileCount16x16 = 16 * 16 * 7 * 6;
         public const int TerrainTileSize = 0xE;
         public const int AllTerrainSize = MapTileCount16x16 * TerrainTileSize;
@@ -276,9 +280,9 @@ namespace ACNHPokerCore
 
         public static string BridgeImagePath = @"BridgeImage\";
 
-        public static Dictionary<string, string> itemkind = new Dictionary<string, string>();
+        public static Dictionary<string, string> itemkind = new();
 
-        private static Object botLock = new Object();
+        private static readonly Object botLock = new();
 
         public static void buildDictionary()
         {
@@ -1150,7 +1154,7 @@ namespace ACNHPokerCore
             size /= 4;
             int sent = 0;
             int UInt32ToSend;
-            StringBuilder dataTemp = new StringBuilder();
+            StringBuilder dataTemp = new();
             string msg;
             while (sent < size)
             {
@@ -1523,7 +1527,7 @@ namespace ACNHPokerCore
 
             const int maxBytesTosend = 468;
             int sent = 0;
-            int bytesToSend = 0;
+            int bytesToSend;
             byte[] temp;
             while (sent < size)
             {
@@ -2170,8 +2174,8 @@ namespace ACNHPokerCore
 
         public static string GetVillagerInternalName(byte Species, byte Variant)
         {
-            int s = Convert.ToInt32(Species);
-            int v = Convert.ToInt32(Variant);
+            //int s = Convert.ToInt32(Species);
+            //int v = Convert.ToInt32(Variant);
             return $"{(VillagerSpecies)Species}{Variant:00}";
         }
         public static string GetVillagerRealName(byte Species, byte Variant)
@@ -2232,6 +2236,39 @@ namespace ACNHPokerCore
                     MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "dropItem");
                 }
             }
+        }
+
+        public static void ExtDropItem(Socket socket, USBBot usb, long address, string itemId, string count, string flag1, string flag2)
+        {
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        SendByteArray8(socket, address, stringToByte(ExtbuildDropStringLeft(itemId, count, flag1, flag2)), 16);
+                        SendByteArray8(socket, address + mapOffset, stringToByte(ExtbuildDropStringLeft(itemId, count, flag1, flag2)), 16);
+
+                        SendByteArray8(socket, address + 0x600, stringToByte(buildDropStringRight("FFFE", true)), 16);
+                        SendByteArray8(socket, address + 0x600 + mapOffset, stringToByte(buildDropStringRight("FFFE", true)), 16);
+
+                        Debug.Print("Drop: " + address + " " + itemId + " " + count + " " + flag1 + " " + flag2);
+                    }
+                    else
+                    {
+
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "dropItem");
+                }
+            }
+        }
+
+        public static string ExtbuildDropStringLeft(string itemId, string count, string flag1, string flag2)
+        {
+            return flip(itemId) + flag2 + flag1 + flip(count) + flip("FFFE") + "0000" + "0000" + "00" + "00";
         }
 
         public static void deleteFloorItem(Socket socket, USBBot usb, long address)
@@ -2848,7 +2885,7 @@ namespace ACNHPokerCore
                 const int maxBytesTosend = 8192;
                 int sent = 0;
                 int bytesToSend = 0;
-                StringBuilder dataTemp = new StringBuilder();
+                StringBuilder dataTemp = new();
                 string msg;
                 while (sent < size)
                 {
@@ -2874,7 +2911,7 @@ namespace ACNHPokerCore
                 const int maxBytesTosend = 8192;
                 int sent = 0;
                 int bytesToSend = 0;
-                StringBuilder dataTemp = new StringBuilder();
+                StringBuilder dataTemp = new();
                 string msg;
                 while (sent < size)
                 {
@@ -3016,17 +3053,17 @@ namespace ACNHPokerCore
             {
                 if (enable)
                 {
-                    pokeAddress(socket, usb, Utilities.JumpDistance.ToString("X"), Utilities.LongJumpDistance);
-                    pokeAddress(socket, usb, Utilities.DiveTime.ToString("X"), Utilities.LongDiveTime);
-                    pokeAddress(socket, usb, Utilities.SwimSpeed.ToString("X"), Utilities.FastSwimSpeed);
-                    pokeAddress(socket, usb, Utilities.DiveSpeed.ToString("X"), Utilities.FastDiveSpeed);
+                    pokeAddress(socket, usb, JumpDistance.ToString("X"), LongJumpDistance);
+                    pokeAddress(socket, usb, DiveTime.ToString("X"), LongDiveTime);
+                    pokeAddress(socket, usb, SwimSpeed.ToString("X"), FastSwimSpeed);
+                    pokeAddress(socket, usb, DiveSpeed.ToString("X"), FastDiveSpeed);
                 }
                 else
                 {
-                    pokeAddress(socket, usb, Utilities.JumpDistance.ToString("X"), Utilities.DefaultJumpDistance);
-                    pokeAddress(socket, usb, Utilities.DiveTime.ToString("X"), Utilities.DefaultDiveTime);
-                    pokeAddress(socket, usb, Utilities.SwimSpeed.ToString("X"), Utilities.DefaultSwimSpeed);
-                    pokeAddress(socket, usb, Utilities.DiveSpeed.ToString("X"), Utilities.DefaultDiveSpeed);
+                    pokeAddress(socket, usb, JumpDistance.ToString("X"), DefaultJumpDistance);
+                    pokeAddress(socket, usb, DiveTime.ToString("X"), DefaultDiveTime);
+                    pokeAddress(socket, usb, SwimSpeed.ToString("X"), DefaultSwimSpeed);
+                    pokeAddress(socket, usb, DiveSpeed.ToString("X"), DefaultDiveSpeed);
                 }
             }
         }
@@ -3165,7 +3202,7 @@ namespace ACNHPokerCore
             uint max = 0x2000;
 
             if (size <= max)
-                Utilities.SendString(socket, Freeze(offset, data));
+                SendString(socket, Freeze(offset, data));
             else
             {
                 byte[] current = new byte[max];
@@ -3174,7 +3211,7 @@ namespace ACNHPokerCore
                 Buffer.BlockCopy(data, 0, current, 0, (int)max);
                 Buffer.BlockCopy(data, (int)max, remain, 0, (int)(size - max));
 
-                Utilities.SendString(socket, Freeze(offset, current));
+                SendString(socket, Freeze(offset, current));
 
                 FreezeBig(socket, offset + max, remain, size - max);
             }
@@ -3185,10 +3222,10 @@ namespace ACNHPokerCore
             uint max = 0x2000;
 
             if (size <= max)
-                Utilities.SendString(socket, UnFreeze(offset));
+                SendString(socket, UnFreeze(offset));
             else
             {
-                Utilities.SendString(socket, UnFreeze(offset));
+                SendString(socket, UnFreeze(offset));
 
                 unFreezeBig(socket, offset + max, size - max);
             }
@@ -3336,7 +3373,7 @@ namespace ACNHPokerCore
             HttpWebResponse OAuthresp = (HttpWebResponse)OAuthRq.GetResponse();
             try
             {
-                StreamReader streamReader = new StreamReader(OAuthresp.GetResponseStream(), true);
+                StreamReader streamReader = new(OAuthresp.GetResponseStream(), true);
                 try
                 {
                     OAuthTarget = streamReader.ReadToEnd();
@@ -3371,7 +3408,7 @@ namespace ACNHPokerCore
             HttpWebResponse resp = (HttpWebResponse)rq.GetResponse();
             try
             {
-                StreamReader streamReader = new StreamReader(resp.GetResponseStream(), true);
+                StreamReader streamReader = new(resp.GetResponseStream(), true);
                 try
                 {
                     target = streamReader.ReadToEnd();
@@ -3419,7 +3456,7 @@ namespace ACNHPokerCore
         {
             lock (botLock)
             {
-                List<string> VillagerList = new List<string>();
+                List<string> VillagerList = new();
                 byte[] b;
 
                 for (int i = 0; i < 10; i++)
@@ -3456,12 +3493,12 @@ namespace ACNHPokerCore
 
         public static bool isChinese(Socket socket, USBBot usb = null)
         {
-            byte[] b = Utilities.peekAddress(socket, usb, Utilities.readTimeAddress, 6);
-            string time = Utilities.ByteToHexString(b);
+            byte[] b = peekAddress(socket, usb, readTimeAddress, 6);
+            string time = ByteToHexString(b);
 
             Debug.Print(time);
 
-            Int32 year = Convert.ToInt32(Utilities.flip(time.Substring(0, 4)), 16);
+            Int32 year = Convert.ToInt32(flip(time.Substring(0, 4)), 16);
             Int32 month = Convert.ToInt32((time.Substring(4, 2)), 16);
             Int32 day = Convert.ToInt32((time.Substring(6, 2)), 16);
             Int32 hour = Convert.ToInt32((time.Substring(8, 2)), 16);
@@ -3469,10 +3506,10 @@ namespace ACNHPokerCore
 
             if (year > 3000 || month > 12 || day > 31 || hour > 24 || min > 60) //Try for Chineses
             {
-                b = Utilities.peekAddress(socket, usb, Utilities.readTimeAddress + Utilities.ChineseLanguageOffset, 6);
-                time = Utilities.ByteToHexString(b);
+                b = peekAddress(socket, usb, readTimeAddress + ChineseLanguageOffset, 6);
+                time = ByteToHexString(b);
 
-                year = Convert.ToInt32(Utilities.flip(time.Substring(0, 4)), 16);
+                year = Convert.ToInt32(flip(time.Substring(0, 4)), 16);
                 month = Convert.ToInt32((time.Substring(4, 2)), 16);
                 day = Convert.ToInt32((time.Substring(6, 2)), 16);
                 hour = Convert.ToInt32((time.Substring(8, 2)), 16);
@@ -3498,7 +3535,7 @@ namespace ACNHPokerCore
 
             if (hexValue <= 0x7)
             {
-                return Utilities.precedingZeros(input, 4);
+                return precedingZeros(input, 4);
             }
             else if (hexValue <= 0x27)
             {
@@ -3536,7 +3573,7 @@ namespace ACNHPokerCore
                 secondHalf = (hexValue - 0xE0);
             }
 
-            output = Utilities.precedingZeros((firstHalf + secondHalf).ToString("X"), 4);
+            output = precedingZeros((firstHalf + secondHalf).ToString("X"), 4);
             return output;
         }
 
@@ -3549,38 +3586,85 @@ namespace ACNHPokerCore
 
             if (hexValue < 0x8)
             {
-                return Utilities.precedingZeros(input, 4);
+                return precedingZeros(input, 4);
             }
             else if (hexValue < 0x10)
             {
-                return Utilities.precedingZeros((hexValue + 0x20 - 0x8).ToString("X"), 4);
+                return precedingZeros((hexValue + 0x20 - 0x8).ToString("X"), 4);
             }
             else if (hexValue < 0x18)
             {
-                return Utilities.precedingZeros((hexValue + 0x40 - 0x10).ToString("X"), 4);
+                return precedingZeros((hexValue + 0x40 - 0x10).ToString("X"), 4);
             }
             else if (hexValue < 0x20)
             {
-                return Utilities.precedingZeros((hexValue + 0x60 - 0x18).ToString("X"), 4);
+                return precedingZeros((hexValue + 0x60 - 0x18).ToString("X"), 4);
             }
             else if (hexValue < 0x28)
             {
-                return Utilities.precedingZeros((hexValue + 0x80 - 0x20).ToString("X"), 4);
+                return precedingZeros((hexValue + 0x80 - 0x20).ToString("X"), 4);
             }
             else if (hexValue < 0x30)
             {
-                return Utilities.precedingZeros((hexValue + 0xA0 - 0x28).ToString("X"), 4);
+                return precedingZeros((hexValue + 0xA0 - 0x28).ToString("X"), 4);
             }
             else if (hexValue < 0x38)
             {
-                return Utilities.precedingZeros((hexValue + 0xC0 - 0x30).ToString("X"), 4);
+                return precedingZeros((hexValue + 0xC0 - 0x30).ToString("X"), 4);
             }
             else if (hexValue < 0x40)
             {
-                return Utilities.precedingZeros((hexValue + 0xE0 - 0x38).ToString("X"), 4);
+                return precedingZeros((hexValue + 0xE0 - 0x38).ToString("X"), 4);
             }
             else
                 return "0000";
+        }
+
+        public static bool IsAboutToSave(Socket socket, USBBot usb, int second, int saveTime = 0, bool ignoreProtection = false)
+        {
+            if (ignoreProtection)
+                return false;
+            if (saveTime > 100 && saveTime < 175)
+                return false;
+
+            try
+            {
+                byte[] b = getSaving(socket, usb);
+
+                if (b == null)
+                    return true;
+                if (b[0] == 1)
+                    return true;
+                else
+                {
+                    byte[] currentFrame = new byte[4];
+                    byte[] lastFrame = new byte[4];
+                    Buffer.BlockCopy(b, 12, currentFrame, 0, 4);
+                    Buffer.BlockCopy(b, 16, lastFrame, 0, 4);
+
+                    int currentFrameStr = Convert.ToInt32("0x" + flip(ByteToHexString(currentFrame)), 16);
+                    int lastFrameStr = Convert.ToInt32("0x" + flip(ByteToHexString(lastFrame)), 16);
+                    int FrameRemain = ((0x1518 - (currentFrameStr - lastFrameStr)));
+
+                    if (FrameRemain < 30 * second) // Not enough
+                        return true;
+                    else if (FrameRemain >= 30 * 300) // Have too too many for some reason?
+                        return false;
+                    else if (FrameRemain >= 30 * 175) // Just finish save buffer
+                        return true;
+                    else
+                    {
+                        Debug.Print(((0x1518 - (currentFrameStr - lastFrameStr))).ToString());
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MyLog.LogEvent("Utilities", "IsAboutToSave: " + ex.Message.ToString());
+                MyMessageBox.Show(ex.Message.ToString(), "This is utterly fucking retarded.");
+                return false;
+            }
         }
 
         #region Villager
@@ -3636,7 +3720,7 @@ namespace ACNHPokerCore
             non = 0x23,
         }
 
-        public static Dictionary<string, byte> CheckSpecies = new Dictionary<string, byte>
+        public readonly static Dictionary<string, byte> CheckSpecies = new()
         {
             {"ant", 0x0},
             {"bea", 0x1},
@@ -3676,8 +3760,8 @@ namespace ACNHPokerCore
             {"non", 0x23},
         };
 
-        public static Dictionary<string, string> RealName = new Dictionary<string, string>
-            {
+        public readonly static Dictionary<string, string> RealName = new()
+        {
                 {"ant00", "Cyrano"},
                 {"ant01", "Antonio"},
                 {"ant02", "Pango"},
@@ -4296,7 +4380,7 @@ namespace ACNHPokerCore
         #endregion
 
         #region Kind
-        public static readonly Dictionary<string, int> CountByKind = new Dictionary<string, int>
+        public static readonly Dictionary<string, int> CountByKind = new()
         {
             {"Kind_Ftr", 1},
             {"Kind_Dishes", 1},

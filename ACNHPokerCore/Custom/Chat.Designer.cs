@@ -50,7 +50,7 @@
             this.chatButton.Tag = "";
             this.chatButton.Text = "Send";
             this.chatButton.UseVisualStyleBackColor = false;
-            this.chatButton.Click += new System.EventHandler(this.chatButton_Click);
+            this.chatButton.Click += new System.EventHandler(this.ChatButton_Click);
             // 
             // RetainChat
             // 
@@ -109,8 +109,8 @@
             this.chatBox.Size = new System.Drawing.Size(350, 90);
             this.chatBox.TabIndex = 3;
             this.chatBox.Text = "";
-            this.chatBox.TextChanged += new System.EventHandler(this.chatBox_TextChanged);
-            this.chatBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chatBox_KeyDown);
+            this.chatBox.TextChanged += new System.EventHandler(this.ChatBox_TextChanged);
+            this.chatBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChatBox_KeyDown);
             // 
             // Chat
             // 

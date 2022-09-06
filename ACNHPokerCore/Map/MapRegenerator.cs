@@ -20,12 +20,12 @@ namespace ACNHPokerCore
         private Boolean loop = false;
         private Boolean wasLoading = true;
         private Thread RegenThread = null;
-        private static Object mapLock = new Object();
+        private static readonly Object mapLock = new();
         private int delayTime = 50;
         private int pauseTime = 70;
-        private bool sound;
+        private readonly bool sound;
 
-        private miniMap MiniMap = null;
+        private MiniMap MiniMap = null;
         private int anchorX = -1;
         private int anchorY = -1;
         private byte[] tempData;
@@ -36,11 +36,11 @@ namespace ACNHPokerCore
         private static Boolean[] haveVillager;
         private static Boolean FormIsClosing = false;
 
-        public dodo dodoSetup = null;
+        public Dodo dodoSetup = null;
 
         private CancellationTokenSource cts;
 
-        public event CloseHandler closeForm;
+        public event CloseHandler CloseForm;
 
         #region Form Load
         public MapRegenerator(Socket S, bool Sound)
@@ -53,25 +53,25 @@ namespace ACNHPokerCore
                 InitializeComponent();
                 FinMsg.SelectionAlignment = HorizontalAlignment.Center;
                 logName.Text = Utilities.VisitorLogFile;
-                Random random = new Random();
+                Random random = new();
                 int v = random.Next(8192);
                 Debug.Print(v.ToString());
 
-                MyLog.logEvent("Regen", "RegenForm Started Successfully");
+                MyLog.LogEvent("Regen", "RegenForm Started Successfully");
             }
             catch (Exception ex)
             {
-                MyLog.logEvent("Regen", "Form Construct: " + ex.Message.ToString());
+                MyLog.LogEvent("Regen", "Form Construct: " + ex.Message.ToString());
             }
         }
         #endregion
 
         #region Save
-        private void saveMapBtn_Click(object sender, EventArgs e)
+        private void SaveMapBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                SaveFileDialog file = new SaveFileDialog()
+                SaveFileDialog file = new()
                 {
                     Filter = "New Horizons Fasil (*.nhf)|*.nhf",
                 };
@@ -107,20 +107,20 @@ namespace ACNHPokerCore
 
                 UInt32 address = Utilities.mapZero;
 
-                Thread LoadThread = new Thread(delegate () { saveMapFloor(address, file); });
+                Thread LoadThread = new(delegate () { SaveMapFloor(address, file); });
                 LoadThread.Start();
 
             }
             catch (Exception ex)
             {
-                MyLog.logEvent("Regen", "Save: " + ex.Message.ToString());
+                MyLog.LogEvent("Regen", "Save: " + ex.Message.ToString());
                 return;
             }
         }
 
-        private void saveMapFloor(UInt32 address, SaveFileDialog file)
+        private void SaveMapFloor(UInt32 address, SaveFileDialog file)
         {
-            showMapWait(42, "Saving...");
+            ShowMapWait(42, "Saving...");
 
             byte[] save = Utilities.ReadByteArray8(s, address, 0x54000, ref counter);
 
@@ -129,7 +129,7 @@ namespace ACNHPokerCore
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
 
-            hideMapWait();
+            HideMapWait();
 
             this.Invoke((MethodInvoker)delegate
             {
@@ -140,11 +140,11 @@ namespace ACNHPokerCore
         #endregion
 
         #region Load
-        private void loadMapBtn_Click(object sender, EventArgs e)
+        private void LoadMapBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                OpenFileDialog file = new OpenFileDialog()
+                OpenFileDialog file = new()
                 {
                     Filter = "New Horizons Fasil (*.nhf)|*.nhf|All files (*.*)|*.*",
                 };
@@ -190,19 +190,19 @@ namespace ACNHPokerCore
                     Buffer.BlockCopy(data, i * 0x2000, b[i], 0x0, 0x2000);
                 }
 
-                Thread LoadThread = new Thread(delegate () { loadMapFloor(b, address); });
+                Thread LoadThread = new(delegate () { LoadMapFloor(b, address); });
                 LoadThread.Start();
             }
             catch (Exception ex)
             {
-                MyLog.logEvent("Regen", "Load: " + ex.Message.ToString());
+                MyLog.LogEvent("Regen", "Load: " + ex.Message.ToString());
                 return;
             }
         }
 
-        private void loadMapFloor(byte[][] b, UInt32 address)
+        private void LoadMapFloor(byte[][] b, UInt32 address)
         {
-            showMapWait(42 * 2, "Loading...");
+            ShowMapWait(42 * 2, "Loading...");
 
             for (int i = 0; i < 42; i++)
             {
@@ -215,7 +215,7 @@ namespace ACNHPokerCore
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
 
-            hideMapWait();
+            HideMapWait();
 
             this.Invoke((MethodInvoker)delegate
             {
@@ -226,7 +226,7 @@ namespace ACNHPokerCore
         #endregion
 
         #region Regen 1
-        private void startRegen_Click(object sender, EventArgs e)
+        private void StartRegen_Click(object sender, EventArgs e)
         {
             FinMsg.Text = "";
             delayTime = int.Parse(delay.Text);
@@ -235,7 +235,7 @@ namespace ACNHPokerCore
             {
                 //updateVisitorName();
 
-                OpenFileDialog file = new OpenFileDialog()
+                OpenFileDialog file = new()
                 {
                     Filter = "New Horizons Fasil (*.nhf)|*.nhf|All files (*.*)|*.*",
                 };
@@ -294,20 +294,20 @@ namespace ACNHPokerCore
 
                 string[] name = file.FileName.Split('\\');
 
-                MyLog.logEvent("Regen", "Regen1 Started: " + name[name.Length - 1]);
+                MyLog.LogEvent("Regen", "Regen1 Started: " + name[name.Length - 1]);
 
-                string dodo = controller.setupDodo();
-                MyLog.logEvent("Regen", "Regen1 Dodo: " + dodo);
+                string dodo = Controller.SetupDodo();
+                MyLog.LogEvent("Regen", "Regen1 Dodo: " + dodo);
 
                 cts = new CancellationTokenSource();
                 CancellationToken token = cts.Token;
 
-                RegenThread = new Thread(delegate () { regenMapFloor(b, address, name[name.Length - 1], token); });
+                RegenThread = new Thread(delegate () { RegenMapFloor(b, address, name[name.Length - 1], token); });
                 RegenThread.Start();
             }
             else
             {
-                MyLog.logEvent("Regen", "Regen1 Stopped");
+                MyLog.LogEvent("Regen", "Regen1 Stopped");
                 loop = false;
                 startRegen.Tag = "Start";
                 startRegen.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
@@ -323,14 +323,14 @@ namespace ACNHPokerCore
         #endregion
 
         #region Regen 2
-        private void startRegen2_Click(object sender, EventArgs e)
+        private void StartRegen2_Click(object sender, EventArgs e)
         {
             FinMsg.Text = "";
             delayTime = int.Parse(delay.Text);
 
             if (startRegen2.Tag.ToString().Equals("Start"))
             {
-                OpenFileDialog file = new OpenFileDialog()
+                OpenFileDialog file = new()
                 {
                     Filter = "New Horizons Fasil (*.nhf)|*.nhf|All files (*.*)|*.*",
                 };
@@ -389,9 +389,9 @@ namespace ACNHPokerCore
                         Byte[] Terrain = Utilities.getTerrain(s, null);
 
                         if (MiniMap == null)
-                            MiniMap = new miniMap(data, Acre, Building, Terrain);
+                            MiniMap = new MiniMap(data, Acre, Building, Terrain);
 
-                        miniMapBox.BackgroundImage = MiniMap.combineMap(MiniMap.drawBackground(), MiniMap.drawItemMap());
+                        miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawBackground(), MiniMap.DrawItemMap());
                     }
                     else
                         return;
@@ -411,11 +411,11 @@ namespace ACNHPokerCore
                         }
                         xCoordinate.Text = anchorX.ToString();
                         yCoordinate.Text = anchorY.ToString();
-                        miniMapBox.Image = MiniMap.drawSelectSquare(anchorX, anchorY);
+                        miniMapBox.Image = MiniMap.DrawSelectSquare(anchorX, anchorY);
                     }
                     catch (Exception ex)
                     {
-                        MyLog.logEvent("Regen", "getCoordinate: " + ex.Message.ToString());
+                        MyLog.LogEvent("Regen", "getCoordinate: " + ex.Message.ToString());
                         MyMessageBox.Show("Something doesn't feel right at all. You should restart the program...\n\n" + ex.Message.ToString(), "!!! THIS SHIT DOESN'T WORK!! WHY? HAS I EVER?", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
@@ -442,24 +442,24 @@ namespace ACNHPokerCore
                         Buffer.BlockCopy(data, i * 0x1800, b[i], 0x0, 0x1800);
 
                         isEmpty[i] = new bool[0x1800];
-                        buildEmptyTable(b[i], ref isEmpty[i]);
+                        BuildEmptyTable(b[i], ref isEmpty[i]);
                     }
 
-                    MyLog.logEvent("Regen", "Regen2Normal Started: " + tempFilename);
+                    MyLog.LogEvent("Regen", "Regen2Normal Started: " + tempFilename);
 
-                    string dodo = controller.setupDodo();
-                    MyLog.logEvent("Regen", "Regen2 Dodo: " + dodo);
+                    string dodo = Controller.SetupDodo();
+                    MyLog.LogEvent("Regen", "Regen2 Dodo: " + dodo);
 
                     cts = new CancellationTokenSource();
                     CancellationToken token = cts.Token;
 
-                    RegenThread = new Thread(delegate () { regenMapFloor2(b, address, isEmpty, tempFilename, token); });
+                    RegenThread = new Thread(delegate () { RegenMapFloor2(b, address, isEmpty, tempFilename, token); });
                     RegenThread.Start();
                 }
             }
             else
             {
-                MyLog.logEvent("Regen", "Regen2 Stopped");
+                MyLog.LogEvent("Regen", "Regen2 Stopped");
                 WaitMessagebox.Text = "Stopping Regen...";
                 loop = false;
                 startRegen2.Tag = "Start";
@@ -476,7 +476,7 @@ namespace ACNHPokerCore
         #endregion
 
         #region Regen 2.5
-        private void startBtn_Click(object sender, EventArgs e)
+        private void StartBtn_Click(object sender, EventArgs e)
         {
             mapPanel.Visible = false;
             MiniMap = null;
@@ -505,22 +505,22 @@ namespace ACNHPokerCore
                 Buffer.BlockCopy(tempData, i * 0x1800, b[i], 0x0, 0x1800);
 
                 isEmpty[i] = new bool[0x1800];
-                buildEmptyTable(b[i], ref isEmpty[i], i * 2, i * 2 + 1);
+                BuildEmptyTable(b[i], ref isEmpty[i], i * 2, i * 2 + 1);
             }
-            MyLog.logEvent("Regen", "Regen2Limit Started: " + tempFilename);
-            MyLog.logEvent("Regen", "Regen2Limit Area: " + anchorX + " " + anchorY);
+            MyLog.LogEvent("Regen", "Regen2Limit Started: " + tempFilename);
+            MyLog.LogEvent("Regen", "Regen2Limit Area: " + anchorX + " " + anchorY);
 
-            string dodo = controller.setupDodo();
-            MyLog.logEvent("Regen", "Regen2 Dodo: " + dodo);
+            string dodo = Controller.SetupDodo();
+            MyLog.LogEvent("Regen", "Regen2 Dodo: " + dodo);
 
             cts = new CancellationTokenSource();
             CancellationToken token = cts.Token;
 
-            RegenThread = new Thread(delegate () { regenMapFloor2(b, address, isEmpty, tempFilename, token); });
+            RegenThread = new Thread(delegate () { RegenMapFloor2(b, address, isEmpty, tempFilename, token); });
             RegenThread.Start();
         }
 
-        private void miniMapBox_MouseDown(object sender, MouseEventArgs e)
+        private void MiniMapBox_MouseDown(object sender, MouseEventArgs e)
         {
             Debug.Print(e.X.ToString() + " " + e.Y.ToString());
 
@@ -547,10 +547,10 @@ namespace ACNHPokerCore
             xCoordinate.Text = x.ToString();
             yCoordinate.Text = y.ToString();
 
-            miniMapBox.Image = MiniMap.drawSelectSquare(anchorX, anchorY);
+            miniMapBox.Image = MiniMap.DrawSelectSquare(anchorX, anchorY);
         }
 
-        private void miniMapBox_MouseMove(object sender, MouseEventArgs e)
+        private void MiniMapBox_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
@@ -577,19 +577,19 @@ namespace ACNHPokerCore
                 xCoordinate.Text = x.ToString();
                 yCoordinate.Text = y.ToString();
 
-                miniMapBox.Image = MiniMap.drawSelectSquare(anchorX, anchorY);
+                miniMapBox.Image = MiniMap.DrawSelectSquare(anchorX, anchorY);
             }
         }
         #endregion
 
-        private void regenMapFloor(byte[][] b, UInt32 address, string name, CancellationToken token)
+        private void RegenMapFloor(byte[][] b, UInt32 address, string name, CancellationToken token)
         {
             string regenMsg = "Regenerating... " + name;
 
-            showMapWait(42, regenMsg);
+            ShowMapWait(42, regenMsg);
 
             if (keepVillagerBox.Checked)
-                prepareVillager(s);
+                PrepareVillager(s);
 
             byte[] c = new byte[0x2000];
 
@@ -597,7 +597,7 @@ namespace ACNHPokerCore
             int runCount = 0;
             int PauseCount = 0;
 
-            Stopwatch stopWatch = new Stopwatch();
+            Stopwatch stopWatch = new();
             stopWatch.Start();
 
             string newVisitor;
@@ -609,7 +609,7 @@ namespace ACNHPokerCore
             }
 
             Utilities.sendBlankName(s);
-            teleport.OverworldState state;
+            Teleport.OverworldState state;
 
             do
             {
@@ -624,18 +624,18 @@ namespace ACNHPokerCore
                     {
                         state = dodoSetup.DodoMonitor(token);
                         if (dodoSetup.CheckOnlineStatus() == true)
-                            dodoSetup.DisplayDodo(controller.setupDodo());
+                            dodoSetup.DisplayDodo(Controller.SetupDodo());
                     }
                     else
                     {
-                        state = teleport.GetOverworldState();
-                        controller.setupDodo();
+                        state = Teleport.GetOverworldState();
+                        Controller.SetupDodo();
                     }
 
                     counter = 0;
                     writeCount = 0;
 
-                    newVisitor = getVisitorName();
+                    newVisitor = GetVisitorName();
 
                     if (token.IsCancellationRequested)
                     {
@@ -671,7 +671,7 @@ namespace ACNHPokerCore
                             });
                         }
                         wasLoading = true;
-                        state = teleport.GetOverworldState();
+                        state = Teleport.GetOverworldState();
                     }
 
                     if (token.IsCancellationRequested)
@@ -679,14 +679,14 @@ namespace ACNHPokerCore
                         break;
                     }
 
-                    if (state == teleport.OverworldState.Loading || state == teleport.OverworldState.UserArriveLeavingOrTitleScreen)
+                    if (state == Teleport.OverworldState.Loading || state == Teleport.OverworldState.UserArriveLeavingOrTitleScreen)
                     {
                         Debug.Print("Loading Detected");
                         wasLoading = true;
                         PauseCount = 0;
                         Thread.Sleep(5000);
                     }
-                    else if (state == teleport.OverworldState.ItemDropping)
+                    else if (state == Teleport.OverworldState.ItemDropping)
                     {
                         Debug.Print("Item Dropping");
                         PauseCount = 0;
@@ -766,11 +766,10 @@ namespace ACNHPokerCore
                     {
                         this.Invoke((MethodInvoker)delegate
                         {
-                            MyLog.logEvent("Regen", "Regen1: " + ex.Message.ToString());
+                            MyLog.LogEvent("Regen", "Regen1: " + ex.Message.ToString());
                             //DateTime localDate = DateTime.Now;
-                            //myMessageBox.Show("Hey you! Stop messing with the switch!\n\n" + "Lost connection to the switch on " + localDate.ToString(), "Hey Listen!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            MyMessageBox.Show("Connection to the switch has been lost", "Yeeted", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            CreateLog("Connection to the switch has been lost");
+                            MyMessageBox.Show("Connection to the Switch has been lost.", "Yeeted", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            CreateLog("Connection to the Switch has been lost.");
                             this.Close();
                         });
                     }
@@ -780,15 +779,15 @@ namespace ACNHPokerCore
 
             if (token.IsCancellationRequested)
             {
-                MyLog.logEvent("Regen", "Regen1: Cancelled");
+                MyLog.LogEvent("Regen", "Regen1: Cancelled");
                 MyMessageBox.Show("Dodo Helper & Regen Aborted!\nPlease remember to exit the airport first if you want to restart!", "Airbag deployment!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (!FormIsClosing)
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
                         stopWatch.Stop();
-                        hideMapWait();
-                        MyLog.logEvent("Regen", "Regen1 Stopped");
+                        HideMapWait();
+                        MyLog.LogEvent("Regen", "Regen1 Stopped");
                         loop = false;
                         startRegen.Tag = "Start";
                         startRegen.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
@@ -805,16 +804,16 @@ namespace ACNHPokerCore
 
             stopWatch.Stop();
 
-            hideMapWait();
+            HideMapWait();
 
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
         }
 
-        private void regenMapFloor2(byte[][] b, UInt32 address, bool[][] isEmpty, string name, CancellationToken token)
+        private void RegenMapFloor2(byte[][] b, UInt32 address, bool[][] isEmpty, string name, CancellationToken token)
         {
             string regenMsg = "Regenerating... " + name;
-            showMapWait(56, regenMsg);
+            ShowMapWait(56, regenMsg);
 
             byte[][] u = new byte[56][];
 
@@ -825,7 +824,7 @@ namespace ACNHPokerCore
             }
 
             if (keepVillagerBox.Checked)
-                prepareVillager(s);
+                PrepareVillager(s);
 
             byte[] c = new byte[0x2000];
 
@@ -833,7 +832,7 @@ namespace ACNHPokerCore
             int runCount = 0;
             int PauseCount = 0;
 
-            Stopwatch stopWatch = new Stopwatch();
+            Stopwatch stopWatch = new();
             stopWatch.Start();
 
             string newVisitor;
@@ -845,7 +844,7 @@ namespace ACNHPokerCore
             }
 
             Utilities.sendBlankName(s);
-            teleport.OverworldState state;
+            Teleport.OverworldState state;
 
             do
             {
@@ -860,18 +859,18 @@ namespace ACNHPokerCore
                     {
                         state = dodoSetup.DodoMonitor(token);
                         if (dodoSetup.CheckOnlineStatus() == true)
-                            dodoSetup.DisplayDodo(controller.setupDodo());
+                            dodoSetup.DisplayDodo(Controller.SetupDodo());
                     }
                     else
                     {
-                        state = teleport.GetOverworldState();
-                        controller.setupDodo();
+                        state = Teleport.GetOverworldState();
+                        Controller.SetupDodo();
                     }
 
                     counter = 0;
                     writeCount = 0;
 
-                    newVisitor = getVisitorName();
+                    newVisitor = GetVisitorName();
 
                     if (token.IsCancellationRequested)
                     {
@@ -907,7 +906,7 @@ namespace ACNHPokerCore
                             });
                         }
                         wasLoading = true;
-                        state = teleport.GetOverworldState();
+                        state = Teleport.GetOverworldState();
                     }
 
                     if (token.IsCancellationRequested)
@@ -915,14 +914,14 @@ namespace ACNHPokerCore
                         break;
                     }
 
-                    if (state == teleport.OverworldState.Loading || state == teleport.OverworldState.UserArriveLeavingOrTitleScreen)
+                    if (state == Teleport.OverworldState.Loading || state == Teleport.OverworldState.UserArriveLeavingOrTitleScreen)
                     {
                         Debug.Print("Loading Detected");
                         wasLoading = true;
                         PauseCount = 0;
                         Thread.Sleep(5000);
                     }
-                    else if (state == teleport.OverworldState.ItemDropping)
+                    else if (state == Teleport.OverworldState.ItemDropping)
                     {
                         Debug.Print("Item Dropping");
                         PauseCount = 0;
@@ -1015,11 +1014,10 @@ namespace ACNHPokerCore
                     {
                         this.Invoke((MethodInvoker)delegate
                         {
-                            MyLog.logEvent("Regen", "Regen2: " + ex.Message.ToString());
+                            MyLog.LogEvent("Regen", "Regen2: " + ex.Message.ToString());
                             //DateTime localDate = DateTime.Now;
-                            //myMessageBox.Show("Hey you! Stop messing with the switch!\n\n" + "Lost connection to the switch on " + localDate.ToString(), "Hey Listen!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            MyMessageBox.Show("Connection to the switch has been lost", "Yeeted", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            CreateLog("Connection to the switch has been lost");
+                            MyMessageBox.Show("Connection to the Switch has been lost.", "Yeeted", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            CreateLog("Connection to the Switch has been lost.");
                             this.Close();
                         });
                     }
@@ -1029,15 +1027,15 @@ namespace ACNHPokerCore
 
             if (token.IsCancellationRequested)
             {
-                MyLog.logEvent("Regen", "Regen2: Cancelled");
+                MyLog.LogEvent("Regen", "Regen2: Cancelled");
                 MyMessageBox.Show("Dodo Helper & Regen Aborted!\nPlease remember to exit the airport first if you want to restart!", "Slamming on the brakes?", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (!FormIsClosing)
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
                         stopWatch.Stop();
-                        hideMapWait();
-                        MyLog.logEvent("Regen", "Regen2 Stopped");
+                        HideMapWait();
+                        MyLog.LogEvent("Regen", "Regen2 Stopped");
                         loop = false;
                         startRegen2.Tag = "Start";
                         startRegen2.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
@@ -1054,7 +1052,7 @@ namespace ACNHPokerCore
 
             stopWatch.Stop();
 
-            hideMapWait();
+            HideMapWait();
 
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
@@ -1075,7 +1073,7 @@ namespace ACNHPokerCore
             return true;
         }
 
-        private void showMapWait(int size, string msg = "")
+        private void ShowMapWait(int size, string msg = "")
         {
             if (!FormIsClosing)
             {
@@ -1092,7 +1090,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void hideMapWait()
+        private void HideMapWait()
         {
             if (!FormIsClosing)
             {
@@ -1126,10 +1124,10 @@ namespace ACNHPokerCore
 
         private void CloseCleaning()
         {
-            MyLog.logEvent("Regen", "Form Closed");
+            MyLog.LogEvent("Regen", "Form Closed");
             if (RegenThread != null)
             {
-                MyLog.logEvent("Regen", "Regen Force Closed");
+                MyLog.LogEvent("Regen", "Regen Force Closed");
                 if (sound)
                     System.Media.SystemSounds.Asterisk.Play();
                 cts.Cancel();
@@ -1141,10 +1139,10 @@ namespace ACNHPokerCore
                 dodoSetup = null;
             }
 
-            this.closeForm();
+            this.CloseForm();
         }
 
-        private void hideBtn_Click(object sender, EventArgs e)
+        private void HideBtn_Click(object sender, EventArgs e)
         {
             if (dodoSetup != null)
             {
@@ -1155,7 +1153,7 @@ namespace ACNHPokerCore
             this.Hide();
         }
 
-        private void backBtn_Click(object sender, EventArgs e)
+        private void BackBtn_Click(object sender, EventArgs e)
         {
             if (RegenThread != null)
             {
@@ -1171,7 +1169,7 @@ namespace ACNHPokerCore
             this.Close();
         }
 
-        private void buildEmptyTable(byte[] org, ref bool[] table)
+        private static void BuildEmptyTable(byte[] org, ref bool[] table)
         {
             byte[] Part1 = new byte[0xC00];
             byte[] Part2 = new byte[0xC00];
@@ -1229,7 +1227,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void buildEmptyTable(byte[] org, ref bool[] table, int Part1x, int Part2x)
+        private void BuildEmptyTable(byte[] org, ref bool[] table, int Part1x, int Part2x)
         {
             byte[] Part1 = new byte[0xC00];
             byte[] Part2 = new byte[0xC00];
@@ -1328,12 +1326,12 @@ namespace ACNHPokerCore
             if (NotEqualNum > 0x140)
             {
                 Debug.Print("Large byte different");
-                MyLog.logEvent("Regen", "[Warning] Shifted? " + NotEqualNum + " bytes different.");
+                MyLog.LogEvent("Regen", "[Warning] Shifted? " + NotEqualNum + " bytes different.");
             }
             return pass;
         }
 
-        private void delay_KeyPress(object sender, KeyPressEventArgs e)
+        private void Delay_KeyPress(object sender, KeyPressEventArgs e)
         {
             char c = e.KeyChar;
             if (!((c >= '0' && c <= '9')))
@@ -1342,7 +1340,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private string getVisitorName()
+        private static string GetVisitorName()
         {
             byte[] b = Utilities.getVisitorName(s);
             if (b == null)
@@ -1366,7 +1364,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void logBtn_Click(object sender, EventArgs e)
+        private void LogBtn_Click(object sender, EventArgs e)
         {
             if (logGridView.DataSource == null)
             {
@@ -1374,14 +1372,12 @@ namespace ACNHPokerCore
                 {
                     string logheader = "Timestamp" + "," + "Name";
 
-                    using (StreamWriter sw = File.CreateText(Utilities.VisitorLogPath))
-                    {
-                        sw.WriteLine(logheader);
-                    }
+                    using StreamWriter sw = File.CreateText(Utilities.VisitorLogPath);
+                    sw.WriteLine(logheader);
                 }
                 try
                 {
-                    logGridView.DataSource = loadCSV(Utilities.VisitorLogPath);
+                    logGridView.DataSource = LoadCSV(Utilities.VisitorLogPath);
                     logGridView.Columns["Timestamp"].Width = 195;
                     logGridView.Columns["Name"].Width = 128;
                     logGridView.Sort(logGridView.Columns[0], ListSortDirection.Descending);
@@ -1402,7 +1398,7 @@ namespace ACNHPokerCore
                                       "But don't worry! A new visitor log file have been created.\n" +
                                       "Your existing visitor log file has been renamed to \"OldVisitorLog.csv\".", "Error loading existing visitor log file!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                    logGridView.DataSource = loadCSV(Utilities.VisitorLogPath);
+                    logGridView.DataSource = LoadCSV(Utilities.VisitorLogPath);
                     logGridView.Columns["Timestamp"].Width = 195;
                     logGridView.Columns["Name"].Width = 128;
                     logGridView.Sort(logGridView.Columns[0], ListSortDirection.Descending);
@@ -1423,7 +1419,7 @@ namespace ACNHPokerCore
         #endregion
 
         #region Log
-        private DataTable loadCSV(string filePath)
+        private static DataTable LoadCSV(string filePath)
         {
             var dt = new DataTable();
 
@@ -1448,10 +1444,8 @@ namespace ACNHPokerCore
             {
                 string logheader = "Timestamp" + "," + "Name";
 
-                using (StreamWriter sw = File.CreateText(Utilities.VisitorLogPath))
-                {
-                    sw.WriteLine(logheader);
-                }
+                using StreamWriter sw = File.CreateText(Utilities.VisitorLogPath);
+                sw.WriteLine(logheader);
             }
 
             DateTime localDate = DateTime.Now;
@@ -1464,14 +1458,14 @@ namespace ACNHPokerCore
 
             if (logGridView.DataSource != null)
             {
-                logGridView.DataSource = loadCSV(Utilities.VisitorLogPath);
+                logGridView.DataSource = LoadCSV(Utilities.VisitorLogPath);
                 logGridView.Sort(logGridView.Columns[0], ListSortDirection.Descending);
             }
         }
 
-        private void newLogBtn_Click(object sender, EventArgs e)
+        private void NewLogBtn_Click(object sender, EventArgs e)
         {
-            SaveFileDialog file = new SaveFileDialog()
+            SaveFileDialog file = new()
             {
                 Filter = "Comma-Separated Values file (*.csv)|*.csv",
             };
@@ -1519,7 +1513,7 @@ namespace ACNHPokerCore
 
             if (logGridView.DataSource != null)
             {
-                logGridView.DataSource = loadCSV(Utilities.VisitorLogPath);
+                logGridView.DataSource = LoadCSV(Utilities.VisitorLogPath);
                 logGridView.Sort(logGridView.Columns[0], ListSortDirection.Descending);
             }
 
@@ -1527,9 +1521,9 @@ namespace ACNHPokerCore
                 System.Media.SystemSounds.Asterisk.Play();
         }
 
-        private void selectLogBtn_Click(object sender, EventArgs e)
+        private void SelectLogBtn_Click(object sender, EventArgs e)
         {
-            OpenFileDialog file = new OpenFileDialog()
+            OpenFileDialog file = new()
             {
                 Filter = "Comma-Separated Values file (*.csv)|*.csv",
             };
@@ -1570,7 +1564,7 @@ namespace ACNHPokerCore
 
             if (logGridView.DataSource != null)
             {
-                logGridView.DataSource = loadCSV(Utilities.VisitorLogPath);
+                logGridView.DataSource = LoadCSV(Utilities.VisitorLogPath);
                 logGridView.Sort(logGridView.Columns[0], ListSortDirection.Descending);
             }
         }
@@ -1579,7 +1573,7 @@ namespace ACNHPokerCore
 
         #region Villager
 
-        public static void prepareVillager(Socket s)
+        public static void PrepareVillager(Socket s)
         {
             villagerFlag = new byte[10][];
             villager = new byte[10][];
@@ -1589,26 +1583,26 @@ namespace ACNHPokerCore
             {
                 villager[i] = Utilities.GetVillager(s, null, i, 0x3);
                 villagerFlag[i] = Utilities.GetMoveout(s, null, i, (int)0x33);
-                haveVillager[i] = checkHaveVillager(villager[i]);
+                haveVillager[i] = CheckHaveVillager(villager[i]);
             }
-            writeVillager(villager, haveVillager);
+            WriteVillager(villager, haveVillager);
         }
 
-        public static void updateVillager(Socket s, int index)
+        public static void UpdateVillager(Socket s, int index)
         {
             if (villager == null)
-                prepareVillager(s);
+                PrepareVillager(s);
             else
             {
                 villager[index] = Utilities.GetVillager(s, null, index, 0x3);
                 villagerFlag[index] = Utilities.GetMoveout(s, null, index, (int)0x33);
                 haveVillager[index] = true;
 
-                writeVillager(villager, haveVillager);
+                WriteVillager(villager, haveVillager);
             }
         }
 
-        public static Boolean checkHaveVillager(byte[] villager)
+        public static Boolean CheckHaveVillager(byte[] villager)
         {
             if (villager[0] >= 0x23)
                 return false;
@@ -1616,7 +1610,7 @@ namespace ACNHPokerCore
                 return true;
         }
 
-        public static void writeVillager(byte[][] villager, Boolean[] haveVillager)
+        public static void WriteVillager(byte[][] villager, Boolean[] haveVillager)
         {
             string villagerStr = " | ";
             for (int i = 0; i < 10; i++)
@@ -1625,13 +1619,11 @@ namespace ACNHPokerCore
                     villagerStr += Utilities.GetVillagerRealName(villager[i][0], villager[i][1]) + " | ";
             }
 
-            using (StreamWriter sw = File.CreateText(Utilities.CurrentVillagerPath))
-            {
-                sw.WriteLine(villagerStr);
-            }
+            using StreamWriter sw = File.CreateText(Utilities.CurrentVillagerPath);
+            sw.WriteLine(villagerStr);
         }
 
-        private void CheckAndResetVillager(byte[] villagerFlag, Boolean haveVillager, int index, ref int counter)
+        private static void CheckAndResetVillager(byte[] villagerFlag, Boolean haveVillager, int index, ref int counter)
         {
             if (!haveVillager)
             {
@@ -1644,7 +1636,7 @@ namespace ACNHPokerCore
                 {
                     Utilities.SetMoveout(s, null, index, villagerFlag, ref counter);
                     Debug.Print("Reset Villager " + index);
-                    MyLog.logEvent("Regen", "Villager Reset : " + index);
+                    MyLog.LogEvent("Regen", "Villager Reset : " + index);
                 }
                 //else
                 //Debug.Print("No Reset Needed " + index);
@@ -1654,38 +1646,36 @@ namespace ACNHPokerCore
 
         #region Visitor
 
-        private void GetVisitorList()
+        private static void GetVisitorList()
         {
             string[] namelist = new string[8];
             int num = 0;
-            using (StreamWriter sw = File.CreateText(Utilities.CurrentVisitorPath))
+            using StreamWriter sw = File.CreateText(Utilities.CurrentVisitorPath);
+            for (int i = 0; i < 8; i++)
             {
-                for (int i = 0; i < 8; i++)
+                if (i == 0)
+                    continue;
+                namelist[i] = Utilities.GetVisitorName(s, null, i);
+                if (namelist[i].Equals(String.Empty))
+                    sw.WriteLine("[Empty]");
+                else
                 {
-                    if (i == 0)
-                        continue;
-                    namelist[i] = Utilities.GetVisitorName(s, null, i);
-                    if (namelist[i].Equals(String.Empty))
-                        sw.WriteLine("[Empty]");
-                    else
-                    {
-                        sw.WriteLine(namelist[i]);
-                        num++;
-                    }
+                    sw.WriteLine(namelist[i]);
+                    num++;
                 }
-                sw.WriteLine("Num of Visitor : " + num);
-                /*if (num >= 7)
-                {
-                    sw.WriteLine(" [Island Full] ");
-                }*/
             }
+            sw.WriteLine("Num of Visitor : " + num);
+            /*if (num >= 7)
+            {
+                sw.WriteLine(" [Island Full] ");
+            }*/
             //Debug.Print("Visitor Update");
         }
 
         #endregion
 
         #region Dodo Helper
-        private void dodoHelperBtn_Click(object sender, EventArgs e)
+        private void DodoHelperBtn_Click(object sender, EventArgs e)
         {
             var btn = (Button)sender;
             if (btn.Tag.ToString().Equals("Enable"))
@@ -1694,9 +1684,9 @@ namespace ACNHPokerCore
                 btn.Tag = "Disable";
                 btn.BackColor = Color.Orange;
 
-                dodoSetup = new dodo(s);
-                dodoSetup.closeForm += DodoSetup_closeForm;
-                dodoSetup.abortAll += DodoSetup_abortAll;
+                dodoSetup = new Dodo(s);
+                dodoSetup.CloseForm += DodoSetup_closeForm;
+                dodoSetup.AbortAll += DodoSetup_abortAll;
                 dodoSetup.Show();
                 dodoSetup.Location = new Point(this.Location.X - 590, this.Location.Y);
                 dodoSetup.ControlBox = false;
@@ -1721,7 +1711,7 @@ namespace ACNHPokerCore
 
         private void DodoSetup_abortAll()
         {
-            abort();
+            Abort();
         }
 
         private void DodoSetup_closeForm()
@@ -1741,9 +1731,9 @@ namespace ACNHPokerCore
             }
         }
 
-        private void changeDodoBtn_Click(object sender, EventArgs e)
+        private void ChangeDodoBtn_Click(object sender, EventArgs e)
         {
-            string newPath = controller.changeDodoPath();
+            string newPath = Controller.ChangeDodoPath();
 
             if (dodoSetup != null)
             {
@@ -1751,14 +1741,14 @@ namespace ACNHPokerCore
             }
         }
 
-        public void abort()
+        public void Abort()
         {
             cts.Cancel();
         }
 
         #endregion
 
-        private void trayIcon_DoubleClick(object sender, EventArgs e)
+        private void TrayIcon_DoubleClick(object sender, EventArgs e)
         {
             if (dodoSetup != null)
                 dodoSetup.Show();

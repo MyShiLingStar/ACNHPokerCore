@@ -7,7 +7,7 @@ namespace ACNHPokerCore
     static class ItemAttr
     {
         public const UInt16 empty = 0xFFFE;
-        private static readonly HashSet<UInt16> hasDurabilitySet = new HashSet<UInt16>
+        private static readonly HashSet<UInt16> hasDurabilitySet = new()
         {
             0x0833, // shovel
             0x0834, // axe
@@ -43,7 +43,7 @@ namespace ACNHPokerCore
             0x2591, // golden axe
             0x3147, // worn axe
         };
-        private static readonly HashSet<UInt16> hasUseSet = new HashSet<UInt16>
+        private static readonly HashSet<UInt16> hasUseSet = new()
         {
             0x0144, // rainbow soft serve
             0x0145, // berry-vanilla soft serve
@@ -82,7 +82,7 @@ namespace ACNHPokerCore
             0x3A04,
             0x3A05,
         };
-        private static readonly HashSet<UInt16> hasGeneticsSet = new HashSet<UInt16>
+        private static readonly HashSet<UInt16> hasGeneticsSet = new()
         {
             0x0A43, // red-cosmos stems
             0x0A44, // red-cosmos buds
@@ -453,7 +453,7 @@ namespace ACNHPokerCore
             0xEBEC, //orange-hyacinth (Flower)
             0xECC1, //lily-of-the-valley (Flower)
         };
-        private static readonly HashSet<UInt16> isRoseSet = new HashSet<UInt16>
+        private static readonly HashSet<UInt16> isRoseSet = new()
         {
             0x0B75, // white-rose stems
             0x0B76, // white-rose buds
@@ -486,7 +486,7 @@ namespace ACNHPokerCore
             0x0F24, // blue-rose plant
             0x0F26, // gold-rose plant
         };
-        private static readonly HashSet<UInt16> isTreeSet = new HashSet<UInt16>
+        private static readonly HashSet<UInt16> isTreeSet = new()
         {
             0x0AEC, // small young hardwood
             0x0AED, // medium young hardwood
@@ -612,7 +612,7 @@ namespace ACNHPokerCore
             0xEC9C, // Money Tree(Full-grown)
             0xED16, // Tree(Easter Egg)
         };
-        private static readonly HashSet<UInt16> isFruitSet = new HashSet<UInt16>
+        private static readonly HashSet<UInt16> isFruitSet = new()
         {
             0x08A5, // apple
             0x08A6, // orange
@@ -621,7 +621,7 @@ namespace ACNHPokerCore
             0x08EF, // cherry
             0x08F0, // coconut
         };
-        private static readonly HashSet<UInt16> isMushroomSet = new HashSet<UInt16>
+        private static readonly HashSet<UInt16> isMushroomSet = new()
         {
             0x0CCC, // elegant mushroom
             0x0CCD, // round mushroom
@@ -629,7 +629,7 @@ namespace ACNHPokerCore
             0x0CCF, // flat mushroom
             0x0CD0, // rare mushroom
         };
-        private static readonly HashSet<UInt16> isCraftMaterialSet = new HashSet<UInt16>
+        private static readonly HashSet<UInt16> isCraftMaterialSet = new()
         {
             0x09C4, // tree branch
             0x09C5, // bamboo piece
@@ -683,7 +683,7 @@ namespace ACNHPokerCore
             0x36AD, // sugar
             0x36AE, // brown sugar
         };
-        private static readonly HashSet<UInt16> isDummyContainerSet = new HashSet<UInt16>
+        private static readonly HashSet<UInt16> isDummyContainerSet = new()
         {
             0x1225, // delivery
             0x1180, // present
@@ -705,7 +705,7 @@ namespace ACNHPokerCore
             0x1E21, // present
             0x1E22, // present
         };
-        private static readonly HashSet<UInt16> isFenceSet = new HashSet<UInt16>
+        private static readonly HashSet<UInt16> isFenceSet = new()
         {
             0x0C08, // brick fence
             0x0D4A, // vertical-board fence
@@ -739,7 +739,7 @@ namespace ACNHPokerCore
             0x39A6,
             0x39A7,
         };
-        private static readonly HashSet<UInt16> isPlacedFenceSet = new HashSet<UInt16>
+        private static readonly HashSet<UInt16> isPlacedFenceSet = new()
         {
             0xEBD5, //corral fence
             0xEBBA, //vertical-board fence
@@ -843,7 +843,8 @@ namespace ACNHPokerCore
             0xECC4, //Harvey's island fence
             0xED46, //庭専用柵（編集外用）
         };
-        private static readonly HashSet<UInt16> isFenceWithVariation = new HashSet<UInt16>{
+        private static readonly HashSet<UInt16> isFenceWithVariation = new()
+        {
             0x0D4A, // vertical-board fence
             0x1105, // iron fence
             0x1457, // zen fence
@@ -855,7 +856,7 @@ namespace ACNHPokerCore
             0x39A6, // corrugated iron fence
             0x39A7, // park fence
         };
-        private static readonly HashSet<UInt16> isFlowerSet = new HashSet<UInt16>
+        private static readonly HashSet<UInt16> isFlowerSet = new()
         {
             0x0900, // red cosmos
             0x0901, // white cosmos
@@ -915,7 +916,7 @@ namespace ACNHPokerCore
             0x11AF, // Green Pumpkin
             0x11B0, // White Pumpkin
         };
-        private static readonly HashSet<UInt16> isFlowerSeedSet = new HashSet<UInt16>
+        private static readonly HashSet<UInt16> isFlowerSeedSet = new()
         {
             0x0A42, // red-cosmos bag
             0x0A45, // white-cosmos bag
@@ -948,7 +949,7 @@ namespace ACNHPokerCore
             0x0BE0, // seed potato
             0x0BE5, // carrot start
         };
-        private static readonly HashSet<UInt16> isBushStartSet = new HashSet<UInt16>
+        private static readonly HashSet<UInt16> isBushStartSet = new()
         {
             0x0B04, // white-azalea start
             0x0BCB, // red-hibiscus start
@@ -965,7 +966,7 @@ namespace ACNHPokerCore
             0x3424, // white-plumeria start
 
         };
-        private static readonly HashSet<UInt16> isWrappingPaperSet = new HashSet<UInt16>
+        private static readonly HashSet<UInt16> isWrappingPaperSet = new()
         {
             0x1E03, // yellow wrapping paper
             0x1E04, // pink wrapping paper
@@ -985,7 +986,7 @@ namespace ACNHPokerCore
             0x1E12, // black wrapping paper
             0x35E0, // festive wrapping paper
         };
-        private static readonly HashSet<UInt16> hasQuantitySet = new HashSet<UInt16>(
+        private static readonly HashSet<UInt16> hasQuantitySet = new(
             new UInt16[] {
                 0x09D1, // Customization Kit
                 0X11C5, // Fish Bait
@@ -1036,14 +1037,14 @@ namespace ACNHPokerCore
             .Union(isMushroomSet)
             .Union(isWrappingPaperSet)
             );
-        private static readonly HashSet<UInt16> containsItemSet = new HashSet<UInt16>(
+        private static readonly HashSet<UInt16> containsItemSet = new(
             new UInt16[] {
                 0x0A13, // Fossils contain the fossil
             }
             .Union(isTreeSet)
             .Union(isDummyContainerSet)
             );
-        private static readonly HashSet<UInt16> isShellSet = new HashSet<UInt16>(
+        private static readonly HashSet<UInt16> isShellSet = new(
             new UInt16[] {
                 0x0560,
                 0x0564,
@@ -1055,7 +1056,7 @@ namespace ACNHPokerCore
                 0x175E,
             }
         );
-        private static readonly HashSet<UInt16> isWeedSet = new HashSet<UInt16>(
+        private static readonly HashSet<UInt16> isWeedSet = new(
             new UInt16[] {
                 0xEB28,	// Spring Weed 1A
                 0xEB30,	// Spring Weed 1B
@@ -1108,7 +1109,7 @@ namespace ACNHPokerCore
                 0xEC8D,	// Winter Weed 13
             }
         );
-        private static readonly HashSet<UInt16> isStoneSet = new HashSet<UInt16>(
+        private static readonly HashSet<UInt16> isStoneSet = new(
             new UInt16[] {
                 0xEB12, // Stone A
                 0xEB13, // Stone B
@@ -1118,7 +1119,7 @@ namespace ACNHPokerCore
             }
         );
 
-        private static readonly HashSet<UInt16> isBushSet = new HashSet<UInt16>(
+        private static readonly HashSet<UInt16> isBushSet = new(
         new UInt16[] {
                 0xEACC,//PltBushAzalea0White,//white-azalea(Sapling); 00000000
                 0xEAD0,//PltBushAzalea1White,//white-azalea(Grow 1); 00000000

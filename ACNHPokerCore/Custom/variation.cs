@@ -15,7 +15,7 @@ namespace ACNHPokerCore
         private int lengthX = 0;
         private int lengthY = 0;
 
-        public event ReceiveVariationHandler sendVariationData;
+        public event ReceiveVariationHandler SendVariationData;
 
         public variation(int height = 265)
         {
@@ -23,7 +23,7 @@ namespace ACNHPokerCore
             this.Size = new Size(this.Width, height);
         }
 
-        private static DataTable loadItemCSV(string filePath)
+        private static DataTable LoadItemCSV(string filePath)
         {
             var dt = new DataTable();
 
@@ -43,17 +43,7 @@ namespace ACNHPokerCore
             return dt;
         }
 
-        private string removeSpace(string input)
-        {
-            return input.Replace(" ", String.Empty);
-        }
-
-        protected override Point ScrollToControl(Control activeControl)
-        {
-            return this.AutoScrollPosition;
-        }
-
-        public string GetImagePathFromID(string itemID, DataTable source)
+        public static string GetImagePathFromID(string itemID, DataTable source)
         {
             DataRow row = source.Rows.Find(itemID);
 
@@ -85,7 +75,7 @@ namespace ACNHPokerCore
         {
             if (File.Exists(Utilities.variationPath))
             {
-                itemSource = loadItemCSV(Utilities.variationPath);
+                itemSource = LoadItemCSV(Utilities.variationPath);
 
                 /*
                 furnitureGridView.DataSource = loadItemCSV(variationPath);
@@ -125,7 +115,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void furnitureGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void FurnitureGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             /*
             if (e.RowIndex >= 0 && e.RowIndex < this.furnitureGridView.Rows.Count)
@@ -153,7 +143,7 @@ namespace ACNHPokerCore
             */
         }
 
-        private void furnitureGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void FurnitureGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (lastRow != null)
             {
@@ -185,8 +175,8 @@ namespace ACNHPokerCore
                 string idString = furnitureGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
                 UInt16 id = Convert.ToUInt16("0x" + idString, 16);
                 UInt16 data = 0x0;
-                string category = furnitureGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
-                string iName = furnitureGridView.Rows[e.RowIndex].Cells[4].Value.ToString();
+                //string category = furnitureGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
+                //string iName = furnitureGridView.Rows[e.RowIndex].Cells[4].Value.ToString();
                 string path = GetImagePathFromID(idString, itemSource);
 
                 selectedItem.setup(name, id, data, path, true);
@@ -194,7 +184,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void showVariation(string name, UInt16 id, int main, int sub, string iName, string value)
+        private void ShowVariation(string name, UInt16 id, int main, int sub, string iName, string value)
         {
             selection = new inventorySlot[main + 1, sub + 1];
 
@@ -204,8 +194,10 @@ namespace ACNHPokerCore
                 {
                     string path = Utilities.imagePath + iName + "_Remake_" + j.ToString() + "_" + k.ToString() + ".png";
 
-                    selection[j, k] = new inventorySlot();
-                    selection[j, k].BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+                    selection[j, k] = new inventorySlot
+                    {
+                        BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))))
+                    };
                     selection[j, k].FlatAppearance.BorderSize = 0;
                     selection[j, k].FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                     if (sub > main)
@@ -232,7 +224,7 @@ namespace ACNHPokerCore
                     {
                         selection[j, k].setup(name, id, (uint)(j + (0x20 * k)), path, true);
                     }
-                    selection[j, k].MouseDown += new System.Windows.Forms.MouseEventHandler(this.variation_MouseClick);
+                    selection[j, k].MouseDown += new System.Windows.Forms.MouseEventHandler(this.Variation_MouseClick);
                     this.Controls.Add(selection[j, k]);
 
                     //            this.selectedItem.MouseClick += new System.Windows.Forms.MouseEventHandler(this.selectedItem_MouseClick);
@@ -244,13 +236,11 @@ namespace ACNHPokerCore
             this.lengthY = selection.GetLength(1);
         }
 
-        private void variation_MouseClick(object sender, MouseEventArgs e)
+        private void Variation_MouseClick(object sender, MouseEventArgs e)
         {
             var button = (inventorySlot)sender;
 
-            MouseEventArgs me = (MouseEventArgs)e;
-
-            if (me.Button == System.Windows.Forms.MouseButtons.Left)
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
 
                 foreach (inventorySlot btn in this.Controls.OfType<inventorySlot>())
@@ -260,7 +250,7 @@ namespace ACNHPokerCore
 
                 button.BackColor = System.Drawing.Color.LightSeaGreen;
 
-                this.sendVariationData((inventorySlot)sender, 0);
+                this.SendVariationData((inventorySlot)sender, 0);
             }
             else
             {
@@ -271,12 +261,12 @@ namespace ACNHPokerCore
 
                 button.BackColor = System.Drawing.Color.Orange;
 
-                this.sendVariationData((inventorySlot)sender, 1);
+                this.SendVariationData((inventorySlot)sender, 1);
             }
 
         }
 
-        private void removeVariation()
+        private void RemoveVariation()
         {
             for (int j = 0; j < this.lengthX; j++)
             {
@@ -302,7 +292,7 @@ namespace ACNHPokerCore
             this.selectedItem.UseVisualStyleBackColor = false;
          */
 
-        private static int findMaxVariation(string name)
+        private static int FindMaxVariation(string name)
         {
             for (int i = 9; i >= 0; i--)
             {
@@ -314,7 +304,7 @@ namespace ACNHPokerCore
             }
             return -1;
         }
-        private static int findMaxSubVariation(string name)
+        private static int FindMaxSubVariation(string name)
         {
             for (int i = 9; i >= 0; i--)
             {
@@ -327,9 +317,9 @@ namespace ACNHPokerCore
             return -1;
         }
 
-        public void receiveID(string id, string language, string value = "00000000")
+        public void ReceiveID(string id, string language, string value = "00000000")
         {
-            removeVariation();
+            RemoveVariation();
             this.itemIDLabel.Text = id;
             DataRow row = GetRowFromID(id);
             if (row != null)
@@ -345,11 +335,11 @@ namespace ACNHPokerCore
 
                 //updateSelectedItemInfo(selectedItem.displayItemName(), selectedItem.displayItemID(), selectedItem.displayItemData());
                 //Debug.Print(row[0].ToString() + " " + row[1].ToString() + " " + row[2].ToString() + " " + row[3].ToString() + " ");
-                int MaxVariation = findMaxVariation(iName);
-                int MaxSubxVariation = findMaxSubVariation(iName);
+                int MaxVariation = FindMaxVariation(iName);
+                int MaxSubxVariation = FindMaxSubVariation(iName);
 
                 if (MaxVariation >= 0 && MaxSubxVariation >= 0)
-                    showVariation(name, itemID, findMaxVariation(iName), findMaxSubVariation(iName), iName, value);
+                    ShowVariation(name, itemID, FindMaxVariation(iName), FindMaxSubVariation(iName), iName, value);
                 else
                     this.infoLabel.Text = "Did you forget the image pack?";
             }
@@ -364,7 +354,7 @@ namespace ACNHPokerCore
             if (itemSource == null)
             {
                 if (File.Exists(Utilities.variationPath))
-                    itemSource = loadItemCSV(Utilities.variationPath);
+                    itemSource = LoadItemCSV(Utilities.variationPath);
                 if (itemSource == null)
                     return null;
             }
@@ -373,7 +363,7 @@ namespace ACNHPokerCore
             return row;
         }
 
-        public static inventorySlot[,] getVariationList(string id, string flag1 = "00", string flag2 = "00", string value = "00000000", string language = "eng")
+        public static inventorySlot[,] GetVariationList(string id, string flag1 = "00", string flag2 = "00", string value = "00000000", string language = "eng")
         {
             DataRow row = GetRowFromID(id);
             if (row != null)
@@ -382,8 +372,8 @@ namespace ACNHPokerCore
                 string iName = row["iName"].ToString();
 
                 string name = row[language].ToString();
-                int main = findMaxVariation(iName);
-                int sub = findMaxSubVariation(iName);
+                int main = FindMaxVariation(iName);
+                int sub = FindMaxSubVariation(iName);
 
                 if (main >= 0 && sub >= 0)
                 {
