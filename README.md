@@ -19,7 +19,7 @@
 
 ## Installation
 
-   1. Download and install the x64 .NET Desktop Runtime [Here](https://dotnet.microsoft.com/en-us/download/dotnet/5.0/runtime). 
+   1. Download and install the x64 .NET 5.0 Desktop Runtime [Here](https://dotnet.microsoft.com/en-us/download/dotnet/5.0/runtime). 
 
    ![Image](https://i.ibb.co/ZSbmjqg/runtime.png)
    
