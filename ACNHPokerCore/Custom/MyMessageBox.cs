@@ -30,7 +30,7 @@ namespace ACNHPokerCore
         /// 
         /// Default is: 90% of the working area height.
         /// </summary>
-        public readonly static double MAX_HEIGHT_FACTOR = 0.9;
+        public readonly static double MAX_HEIGHT_FACTOR = 1.0;
 
         /// <summary>
         /// Defines the font for all FlexibleMessageBox instances.
@@ -460,7 +460,7 @@ namespace ACNHPokerCore
                 if (stringRows == null) return;
 
                 //Calculate whole text height
-                var textHeight = TextRenderer.MeasureText(text, FONT).Height + 20;
+                var textHeight = TextRenderer.MeasureText(text, FONT).Height + 10;
 
                 //Calculate width for longest text line
                 const int SCROLLBAR_WIDTH_OFFSET = 15;
@@ -662,7 +662,8 @@ namespace ACNHPokerCore
                 try
                 {
                     Cursor.Current = Cursors.WaitCursor;
-                    Process.Start(e.LinkText);
+                    string url = e.LinkText.Replace("&", "^&");
+                    Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
                 }
                 catch (Exception)
                 {

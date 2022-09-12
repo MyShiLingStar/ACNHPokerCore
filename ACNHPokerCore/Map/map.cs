@@ -91,6 +91,10 @@ namespace ACNHPokerCore
         bool[,] ActivateTable1;
         bool[,] ActivateTable2;
 
+        bool shiftRight = false;
+        bool shiftDown = false;
+        bool debugging = false;
+
         private readonly ToolStripMenuItem ActivateItem;
         private readonly ToolStripMenuItem DeactivateItem;
 
@@ -110,7 +114,7 @@ namespace ACNHPokerCore
         #endregion
 
         #region Form Load
-        public Map(Socket S, USBBot USB, string itemPath, string recipePath, string flowerPath, string variationPath, string favPath, string ImagePath, string LanguageSetting, Dictionary<string, string> overrideDict, bool Sound)
+        public Map(Socket S, USBBot USB, string itemPath, string recipePath, string flowerPath, string variationPath, string favPath, string ImagePath, string LanguageSetting, Dictionary<string, string> overrideDict, bool Sound, bool Debugging = false)
         {
             try
             {
@@ -131,6 +135,7 @@ namespace ACNHPokerCore
                 imagePath = ImagePath;
                 OverrideDict = overrideDict;
                 sound = Sound;
+                debugging = Debugging;
 
                 floorSlots = new FloorSlot[49];
 
@@ -279,6 +284,55 @@ namespace ACNHPokerCore
             fetchMapBtn.Enabled = false;
 
             btnToolTip.RemoveAll();
+
+            if (debugging)
+            {
+                OpenFileDialog file = new()
+                {
+                    Filter = "New Horizons Fasil (*.nhf)|*.nhf",
+                };
+
+                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
+
+                string savepath;
+
+                if (config.AppSettings.Settings["LastLoad"].Value.Equals(string.Empty))
+                    savepath = Directory.GetCurrentDirectory() + @"\save";
+                else
+                    savepath = config.AppSettings.Settings["LastLoad"].Value;
+
+                if (Directory.Exists(savepath))
+                {
+                    file.InitialDirectory = savepath;
+                }
+                else
+                {
+                    file.InitialDirectory = @"C:\";
+                }
+
+                if (file.ShowDialog() != DialogResult.OK)
+                    Layer1 = new byte[Utilities.mapSize];
+                else
+                    Layer1 = File.ReadAllBytes(file.FileName);
+
+                Layer2 = new byte[Utilities.mapSize];
+                Acre = new byte[Utilities.AcreAndPlaza];
+                Building = new byte[Utilities.AllBuildingSize];
+                Terrain = new byte[Utilities.AllTerrainSize];
+                ActivateLayer1 = new byte[Utilities.mapActivateSize];
+                ActivateLayer2 = new byte[Utilities.mapActivateSize];
+
+                if (MiniMap == null)
+                    MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, 2);
+
+                anchorX = 56;
+                anchorY = 48;
+
+                miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawBackground(), MiniMap.DrawItemMap());
+                DisplayAnchor(GetMapColumns(anchorX, anchorY));
+                EnableBtn();
+                return;
+            }
 
             if ((s == null || s.Connected == false) & usb == null)
             {
@@ -601,89 +655,102 @@ namespace ACNHPokerCore
 
         private void UpdateBtn(FloorSlot btn)
         {
-            byte[] Left = new byte[16];
-            byte[] Right = new byte[16];
-
-            if (layer1Btn.Checked)
+            lock (lockObject)
             {
-                Buffer.BlockCopy(Layer1, btn.mapX * 0xC00 + btn.mapY * 0x10, Left, 0, 16);
-                Buffer.BlockCopy(Layer1, btn.mapX * 0xC00 + 0x600 + btn.mapY * 0x10, Right, 0, 16);
+                byte[] Left = new byte[16];
+                byte[] Right = new byte[16];
+
+                if (layer1Btn.Checked)
+                {
+                    Buffer.BlockCopy(Layer1, btn.mapX * 0xC00 + btn.mapY * 0x10, Left, 0, 16);
+                    Buffer.BlockCopy(Layer1, btn.mapX * 0xC00 + 0x600 + btn.mapY * 0x10, Right, 0, 16);
+                }
+                else if (layer2Btn.Checked)
+                {
+                    Buffer.BlockCopy(Layer2, btn.mapX * 0xC00 + btn.mapY * 0x10, Left, 0, 16);
+                    Buffer.BlockCopy(Layer2, btn.mapX * 0xC00 + 0x600 + btn.mapY * 0x10, Right, 0, 16);
+                }
+
+                string LeftStr = Utilities.ByteToHexString(Left);
+                string RightStr = Utilities.ByteToHexString(Right);
+
+                string P1Id = Utilities.flip(LeftStr.Substring(0, 4));
+                string flag2 = LeftStr.Substring(4, 2);
+                string flag1 = LeftStr.Substring(6, 2);
+                string P1Data = Utilities.flip(LeftStr.Substring(8, 8));
+                string P2Id = Utilities.flip(LeftStr.Substring(16, 4));
+                string P2Data = Utilities.flip(LeftStr.Substring(24, 8));
+
+                string P3Id = Utilities.flip(RightStr.Substring(0, 4));
+                string P3Data = Utilities.flip(RightStr.Substring(8, 8));
+                string P4Id = Utilities.flip(RightStr.Substring(16, 4));
+                string P4Data = Utilities.flip(RightStr.Substring(24, 8));
+
+                string Path1;
+                string Path2;
+                string Path3;
+                string Path4;
+                string ContainPath = "";
+
+                string Name = GetNameFromID(P1Id, source);
+                UInt16 ID = Convert.ToUInt16("0x" + P1Id, 16);
+                UInt32 Data = Convert.ToUInt32("0x" + P1Data, 16);
+                UInt32 IntP2Id = Convert.ToUInt32("0x" + P2Id, 16);
+                UInt32 IntP2Data = Convert.ToUInt32("0x" + P2Data, 16);
+                UInt32 IntP3Id = Convert.ToUInt32("0x" + P3Id, 16);
+                UInt32 IntP3Data = Convert.ToUInt32("0x" + P3Data, 16);
+                UInt32 IntP4Id = Convert.ToUInt32("0x" + P4Id, 16);
+                UInt32 IntP4Data = Convert.ToUInt32("0x" + P4Data, 16);
+
+                string front = P1Data.Substring(0, 4);
+                string back = P1Data.Substring(4, 4);
+
+                if (P1Id == "FFFD")
+                    Path1 = GetImagePathFromID(back, source);
+                else if (P1Id == "16A2")
+                {
+                    Path1 = GetImagePathFromID(back, recipeSource, Data);
+                    Name = GetNameFromID(back, recipeSource) + " (Recipe)";
+                }
+                else if (P1Id == "315A" || P1Id == "1618" || P1Id == "342F")
+                {
+                    Path1 = GetImagePathFromID(P1Id, source, Data);
+                    ContainPath = GetImagePathFromID(back, source, Convert.ToUInt32("0x" + Utilities.translateVariationValueBack(front), 16));
+                }
+                else if (ItemAttr.hasFenceWithVariation(ID))  // Fence Variation
+                {
+                    Path1 = GetImagePathFromID(P1Id, source, Convert.ToUInt32("0x" + front, 16));
+                }
+                else
+                    Path1 = GetImagePathFromID(P1Id, source, Data);
+
+                if (P2Id == "FFFD")
+                    Path2 = GetImagePathFromID(P2Data.Substring(4, 4), source);
+                else
+                    Path2 = GetImagePathFromID(P2Id, source, IntP2Data);
+
+                if (P3Id == "FFFD")
+                    Path3 = GetImagePathFromID(P3Data.Substring(4, 4), source);
+                else
+                    Path3 = GetImagePathFromID(P3Id, source, IntP3Data);
+
+                if (P4Id == "FFFD")
+                    Path4 = GetImagePathFromID(P4Data.Substring(4, 4), source);
+                else
+                    Path4 = GetImagePathFromID(P4Id, source, IntP4Data);
+
+                btn.setup(Name, ID, Data, IntP2Id, IntP2Data, IntP3Id, IntP3Data, IntP4Id, IntP4Data, Path1, Path2, Path3, Path4, ContainPath, flag1, flag2);
             }
-            else if (layer2Btn.Checked)
-            {
-                Buffer.BlockCopy(Layer2, btn.mapX * 0xC00 + btn.mapY * 0x10, Left, 0, 16);
-                Buffer.BlockCopy(Layer2, btn.mapX * 0xC00 + 0x600 + btn.mapY * 0x10, Right, 0, 16);
-            }
+        }
 
-            string LeftStr = Utilities.ByteToHexString(Left);
-            string RightStr = Utilities.ByteToHexString(Right);
-
-            string P1Id = Utilities.flip(LeftStr.Substring(0, 4));
-            string flag2 = LeftStr.Substring(4, 2);
-            string flag1 = LeftStr.Substring(6, 2);
-            string P1Data = Utilities.flip(LeftStr.Substring(8, 8));
-            string P2Id = Utilities.flip(LeftStr.Substring(16, 4));
-            string P2Data = Utilities.flip(LeftStr.Substring(24, 8));
-
-            string P3Id = Utilities.flip(RightStr.Substring(0, 4));
-            string P3Data = Utilities.flip(RightStr.Substring(8, 8));
-            string P4Id = Utilities.flip(RightStr.Substring(16, 4));
-            string P4Data = Utilities.flip(RightStr.Substring(24, 8));
-
-            string Path1;
-            string Path2;
-            string Path3;
-            string Path4;
-            string ContainPath = "";
-
-            string Name = GetNameFromID(P1Id, source);
-            UInt16 ID = Convert.ToUInt16("0x" + P1Id, 16);
-            UInt32 Data = Convert.ToUInt32("0x" + P1Data, 16);
-            UInt32 IntP2Id = Convert.ToUInt32("0x" + P2Id, 16);
-            UInt32 IntP2Data = Convert.ToUInt32("0x" + P2Data, 16);
-            UInt32 IntP3Id = Convert.ToUInt32("0x" + P3Id, 16);
-            UInt32 IntP3Data = Convert.ToUInt32("0x" + P3Data, 16);
-            UInt32 IntP4Id = Convert.ToUInt32("0x" + P4Id, 16);
-            UInt32 IntP4Data = Convert.ToUInt32("0x" + P4Data, 16);
-
-            string front = P1Data.Substring(0, 4);
-            string back = P1Data.Substring(4, 4);
-
-            if (P1Id == "FFFD")
-                Path1 = GetImagePathFromID(back, source);
-            else if (P1Id == "16A2")
-            {
-                Path1 = GetImagePathFromID(back, recipeSource, Data);
-                Name = GetNameFromID(back, recipeSource) + " (Recipe)";
-            }
-            else if (P1Id == "315A" || P1Id == "1618" || P1Id == "342F")
-            {
-                Path1 = GetImagePathFromID(P1Id, source, Data);
-                ContainPath = GetImagePathFromID(back, source, Convert.ToUInt32("0x" + Utilities.translateVariationValueBack(front), 16));
-            }
-            else if (ItemAttr.hasFenceWithVariation(ID))  // Fence Variation
-            {
-                Path1 = GetImagePathFromID(P1Id, source, Convert.ToUInt32("0x" + front, 16));
-            }
-            else
-                Path1 = GetImagePathFromID(P1Id, source, Data);
-
-            if (P2Id == "FFFD")
-                Path2 = GetImagePathFromID(P2Data.Substring(4, 4), source);
-            else
-                Path2 = GetImagePathFromID(P2Id, source, IntP2Data);
-
-            if (P3Id == "FFFD")
-                Path3 = GetImagePathFromID(P3Data.Substring(4, 4), source);
-            else
-                Path3 = GetImagePathFromID(P3Id, source, IntP3Data);
-
-            if (P4Id == "FFFD")
-                Path4 = GetImagePathFromID(P4Data.Substring(4, 4), source);
-            else
-                Path4 = GetImagePathFromID(P4Id, source, IntP4Data);
-
-            btn.setup(Name, ID, Data, IntP2Id, IntP2Data, IntP3Id, IntP3Data, IntP4Id, IntP4Data, Path1, Path2, Path3, Path4, ContainPath, flag1, flag2);
+        private void UpdateNearBtn(int BtnNum)
+        {
+            if (shiftRight && BtnNum < 42)
+                UpdateBtn(floorSlots[BtnNum + 7]);
+            if (shiftDown && ((BtnNum + 1) % 7) != 0)
+                UpdateBtn(floorSlots[BtnNum + 1]);
+            if (shiftRight && shiftDown && ((BtnNum + 1) % 7) != 0 && BtnNum < 42)
+                UpdateBtn(floorSlots[BtnNum + 8]);
         }
 
         private void UpdateAllBtn()
@@ -721,9 +788,17 @@ namespace ACNHPokerCore
         }
         #endregion
 
-        private static UInt32 GetAddress(int x, int y)
+        private static UInt32 GetAddress(int x, int y, bool right = false, bool down = false)
         {
-            return (UInt32)(Utilities.mapZero + (0xC00 * x) + (0x10 * (y)));
+            int shiftRightValue = 0;
+            int shiftDownValue = 0;
+
+            if (right)
+                shiftRightValue = 0x600;
+            if (down)
+                shiftDownValue = 0x8;
+
+            return (UInt32)(Utilities.mapZero + (0xC00 * x + shiftRightValue) + (0x10 * y + shiftDownValue));
         }
 
         #region Arrow Buttons
@@ -1227,6 +1302,9 @@ namespace ACNHPokerCore
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
+                ShiftRightToggle.Checked = false;
+                ShiftDownToggle.Checked = false;
+
                 if (lastRow != null)
                 {
                     lastRow.Height = 22;
@@ -2079,15 +2157,31 @@ namespace ACNHPokerCore
                 return;
             }
 
+            if (selectedButton.mapX == 112 - 1)
+            {
+                shiftRight = false;
+                ShiftRightToggle.Checked = false;
+            }
+            else
+                shiftRight = ShiftRightToggle.Checked;
+
+            if (selectedButton.mapY == 96 - 1)
+            {
+                shiftDown = false;
+                ShiftDownToggle.Checked = false;
+            }
+            else
+                shiftDown = ShiftDownToggle.Checked;
+
             long address;
 
             if (layer1Btn.Checked)
             {
-                address = GetAddress(selectedButton.mapX, selectedButton.mapY);
+                address = GetAddress(selectedButton.mapX, selectedButton.mapY, shiftRight, shiftDown);
             }
             else if (layer2Btn.Checked)
             {
-                address = (GetAddress(selectedButton.mapX, selectedButton.mapY) + Utilities.mapSize);
+                address = GetAddress(selectedButton.mapX, selectedButton.mapY, shiftRight, shiftDown) + Utilities.mapSize;
             }
             else
                 return;
@@ -2107,35 +2201,39 @@ namespace ACNHPokerCore
         {
             ShowMapWait(2, "Spawning Item...");
 
-            int c = 0;
-
-            while (Utilities.IsAboutToSave(s, usb, 5, saveTime, ignore))
+            if (!debugging)
             {
-                if (c > 10)
+
+                int c = 0;
+
+                while (Utilities.IsAboutToSave(s, usb, 5, saveTime, ignore))
                 {
-                    if (IgnoreAutosave())
+                    if (c > 10)
                     {
-                        break;
-                    }
-                    else
-                    {
-                        this.Invoke((MethodInvoker)delegate
+                        if (IgnoreAutosave())
                         {
-                            EnableBtn();
-                        });
+                            break;
+                        }
+                        else
+                        {
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                EnableBtn();
+                            });
 
-                        if (sound)
-                            System.Media.SystemSounds.Asterisk.Play();
+                            if (sound)
+                                System.Media.SystemSounds.Asterisk.Play();
 
-                        HideMapWait();
-                        return;
+                            HideMapWait();
+                            return;
+                        }
                     }
+                    c++;
+                    Thread.Sleep(3000);
                 }
-                c++;
-                Thread.Sleep(3000);
-            }
 
-            Utilities.dropItem(s, usb, address, itemID, itemData, flag1, flag2);
+                Utilities.dropItem(s, usb, address, itemID, itemData, flag1, flag2);
+            }
 
             this.Invoke((MethodInvoker)delegate
             {
@@ -2146,8 +2244,10 @@ namespace ACNHPokerCore
                     SetBtn(btn, itemID, itemData, "0000FFFD", "0100" + itemID, "0000FFFD", "0001" + itemID, "0000FFFD", "0101" + itemID, "00", flag2);
                 */
 
-                UpdataData(btn.mapX, btn.mapY, itemID, itemData, flag1, flag2);
+                UpdataData(btn.mapX, btn.mapY, itemID, itemData, flag1, flag2, shiftRight, shiftDown);
                 UpdateBtn(btn);
+                if (shiftRight || shiftDown)
+                    UpdateNearBtn(int.Parse(btn.Tag.ToString()));
                 ResetBtnColor();
                 EnableBtn();
             });
@@ -3851,21 +3951,29 @@ namespace ACNHPokerCore
             Buffer.BlockCopy(dropItemRight, 0, b2, slot * 0x10, 16);
         }
 
-        private void UpdataData(int x, int y, string itemID, string itemData, string flag1, string flag2)
+        private void UpdataData(int x, int y, string itemID, string itemData, string flag1, string flag2, bool shiftRight, bool shiftDown)
         {
             byte[] Left = Utilities.stringToByte(Utilities.buildDropStringLeft(itemID, itemData, flag1, flag2));
             byte[] Right = Utilities.stringToByte(Utilities.buildDropStringRight(itemID));
 
+            int shiftRightValue = 0;
+            int shiftDownValue = 0;
+
+            if (shiftRight)
+                shiftRightValue = 0x600;
+            if (shiftDown)
+                shiftDownValue = 0x8;
+
             if (layer1Btn.Checked)
             {
-                Buffer.BlockCopy(Left, 0, Layer1, x * 0xC00 + y * 0x10, 16);
-                Buffer.BlockCopy(Right, 0, Layer1, x * 0xC00 + 0x600 + y * 0x10, 16);
+                Buffer.BlockCopy(Left, 0, Layer1, x * 0xC00 + shiftRightValue + y * 0x10 + shiftDownValue, 16);
+                Buffer.BlockCopy(Right, 0, Layer1, x * 0xC00 + 0x600 + shiftRightValue + y * 0x10 + shiftDownValue, 16);
                 miniMapBox.BackgroundImage = MiniMap.RefreshItemMap(Layer1);
             }
             else if (layer2Btn.Checked)
             {
-                Buffer.BlockCopy(Left, 0, Layer2, x * 0xC00 + y * 0x10, 16);
-                Buffer.BlockCopy(Right, 0, Layer2, x * 0xC00 + 0x600 + y * 0x10, 16);
+                Buffer.BlockCopy(Left, 0, Layer2, x * 0xC00 + shiftRightValue + y * 0x10 + shiftDownValue, 16);
+                Buffer.BlockCopy(Right, 0, Layer2, x * 0xC00 + 0x600 + shiftRightValue + y * 0x10 + shiftDownValue, 16);
                 miniMapBox.BackgroundImage = MiniMap.RefreshItemMap(Layer2);
             }
         }
@@ -4032,7 +4140,7 @@ namespace ACNHPokerCore
             selection = new variation(115);
             selection.SendVariationData += Selection_sendVariationData;
             selection.Show(this);
-            selection.Location = new System.Drawing.Point(this.Location.X + 533, this.Location.Y + 660);
+            selection.Location = new System.Drawing.Point(this.Location.X + 528, this.Location.Y + 660);
             string id = Utilities.precedingZeros(selectedItem.fillItemID(), 4);
             string value = Utilities.precedingZeros(selectedItem.fillItemData(), 8);
             UInt16 IntId = Convert.ToUInt16("0x" + id, 16);
@@ -4077,7 +4185,7 @@ namespace ACNHPokerCore
             {
                 selection.Dispose();
                 selection = null;
-                variationBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+                variationBtn.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
             }
         }
 
@@ -4136,7 +4244,7 @@ namespace ACNHPokerCore
         {
             if (selection != null)
             {
-                selection.Location = new System.Drawing.Point(this.Location.X + 533, this.Location.Y + 660);
+                selection.Location = new Point(this.Location.X + 533, this.Location.Y + 660);
             }
         }
         #endregion
@@ -4939,105 +5047,6 @@ namespace ACNHPokerCore
         #endregion
 
         #region Debug
-        private void Ext_Click(object sender, EventArgs e)
-        {
-            if (IdTextbox.Text == "" || HexTextbox.Text == "" || FlagTextbox.Text == "")
-            {
-                return;
-            }
-
-            if (Control.ModifierKeys == Keys.Control)
-            {
-                if (Corner1X < 0 || Corner1Y < 0 || Corner2X < 0 || Corner2Y < 0)
-                {
-                    MyMessageBox.Show("Selection area Invalid!", "Do You Know Da Wae ?", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    return;
-                }
-
-                AreaSpawn();
-
-                return;
-            }
-
-            if (selectedButton == null)
-            {
-                MessageBox.Show("Please select a slot!");
-                return;
-            }
-
-            long address;
-
-            if (layer1Btn.Checked)
-            {
-                address = GetAddress(selectedButton.mapX, selectedButton.mapY);
-            }
-            else if (layer2Btn.Checked)
-            {
-                address = (GetAddress(selectedButton.mapX, selectedButton.mapY) + Utilities.mapSize);
-            }
-            else
-                return;
-
-            string itemID = Utilities.precedingZeros(IdTextbox.Text, 4);
-            string itemData = Utilities.precedingZeros(HexTextbox.Text, 8);
-            string flag2 = Utilities.precedingZeros(FlagTextbox.Text, 2);
-            string flag1 = selectedItem.getFlag1();
-
-            DisableBtn();
-
-            Thread spawnThread = new(delegate () { ExtDropItem(address, itemID, itemData, flag1, flag2, selectedButton); });
-            spawnThread.Start();
-        }
-
-        private void ExtDropItem(long address, string itemID, string itemData, string flag1, string flag2, FloorSlot btn)
-        {
-            ShowMapWait(2, "Spawning Item...");
-
-            int c = 0;
-
-            while (Utilities.IsAboutToSave(s, usb, 5, saveTime, ignore))
-            {
-                if (c > 10)
-                {
-                    if (IgnoreAutosave())
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        this.Invoke((MethodInvoker)delegate
-                        {
-                            EnableBtn();
-                        });
-
-                        if (sound)
-                            System.Media.SystemSounds.Asterisk.Play();
-
-                        HideMapWait();
-                        return;
-                    }
-                }
-                c++;
-                Thread.Sleep(3000);
-            }
-
-            Utilities.ExtDropItem(s, usb, address, itemID, itemData, flag1, flag2);
-
-            this.Invoke((MethodInvoker)delegate
-            {
-                //SetBtn(btn, itemID, itemData, "0000FFFE", "00000000", "0000FFFE", "00000000", "0000FFFE", "00000000", "00", flag2);
-                UpdataData(btn.mapX, btn.mapY, itemID, itemData, flag1, flag2);
-                UpdateBtn(btn);
-                ResetBtnColor();
-                EnableBtn();
-            });
-
-            if (sound)
-                System.Media.SystemSounds.Asterisk.Play();
-
-            HideMapWait();
-        }
-
         #endregion
 
         #region AutoSave
@@ -6512,18 +6521,22 @@ namespace ACNHPokerCore
         {
             if (e.X <= FlagTextbox.Controls[1].Width + 1)
             {
-                Console.WriteLine("EditBox");
+                //Console.WriteLine("EditBox");
                 if (FlagTextbox.Value == 0x0)
                     FlagTextbox.Value = 0x20;
+                else if (FlagTextbox.Value == 0x20)
+                    FlagTextbox.Value = 0x04;
                 else
                     FlagTextbox.Value = 0x00;
             }
+            /*
             else if (e.Y <= FlagTextbox.Controls[1].Height / 2)
                 Console.WriteLine("UpArrow");
             else if (e.X >= FlagTextbox.Controls[0].Width + FlagTextbox.Controls[0].Left)
                 Console.WriteLine("Right border");
             else
                 Console.WriteLine("DownArrow");
+            */
         }
 
         private void HexTextbox_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -6635,6 +6648,7 @@ namespace ACNHPokerCore
                 selectedItem.setup(GetNameFromID(itemID, source), Convert.ToUInt16("0x" + itemID, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemID, source, Convert.ToUInt32("0x" + itemData, 16)), true, "", "00", flag2);
             }
 
+
             if (selection != null)
             {
                 //selection.Dispose();
@@ -6644,14 +6658,6 @@ namespace ACNHPokerCore
                 if (ItemAttr.hasFenceWithVariation(IntId))  // Fence Variation
                 {
                     selection.ReceiveID(Utilities.precedingZeros(selectedItem.fillItemID(), 4), languageSetting, value);
-                }
-                else if (id == "315A" || id == "1618" || id == "342F")
-                {
-                    selection.ReceiveID(Utilities.turn2bytes(selectedItem.fillItemData()), languageSetting);
-                }
-                else
-                {
-                    selection.ReceiveID(Utilities.precedingZeros(selectedItem.fillItemID(), 4), languageSetting);
                 }
             }
         }
@@ -6737,6 +6743,9 @@ namespace ACNHPokerCore
 
         private static string DisplayActivate(int x, int y, bool[,] ActivateTable)
         {
+            if (ActivateTable == null)
+                return "";
+
             string top;
             string bottom;
 
@@ -6989,6 +6998,11 @@ namespace ACNHPokerCore
                 System.Media.SystemSounds.Asterisk.Play();
 
             HideMapWait();
+        }
+
+        private void Map_Load(object sender, EventArgs e)
+        {
+            FetchMapBtn_Click(null, null);
         }
     }
 }

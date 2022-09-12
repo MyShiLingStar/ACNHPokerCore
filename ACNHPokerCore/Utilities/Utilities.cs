@@ -107,7 +107,7 @@ namespace ACNHPokerCore
 
         public static UInt32 BuildingOffset = mapZero + 0xCF600;
         private const int BuildingSize = 0x14;
-        private const int AllBuildingSize = 46 * BuildingSize;
+        public const int AllBuildingSize = 46 * BuildingSize;
 
         public static UInt32 player1SlotBase = masterAddress;
         public static UInt32 playerOffset = 0x11B968;

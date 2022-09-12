@@ -28,7 +28,7 @@ namespace ACNHPokerCore
     public partial class Main : Form
     {
         #region variable
-        private static readonly bool DEBUGGING;
+        private static readonly bool DEBUGGING = false;
 
         private static Socket socket;
         private static USBBot usb = null;
@@ -1165,27 +1165,35 @@ namespace ACNHPokerCore
                                     MyLog.LogEvent("MainForm", "Connection Failed : " + IPAddressInputBox.Text);
                                     this.IPAddressInputBackground.BackColor = Color.Red;
                                 });
-                                MyMessageBox.Show("You have successfully started a connection!\n" +
-                                                "Your IP address seems to be correct!\n" +
-                                                "However...\n" +
-                                                "Sys-botbase is not responding...\n\n\n" +
 
-                                                "First, \n" +
-                                                "check that your Switch is running in CFW mode.\n" +
-                                                "On your Switch, go to \"System Settings\"->\"System\"\n" +
-                                                "Check \"Current version:\" and make sure you have \"AMS\" in it.\n\n" +
-                                                "Second, \n" +
-                                                "check that you are connecting to the correct IP address.\n" +
-                                                "On your Switch, go to \"System Settings\"->\"Internet\"\n" +
-                                                "Check the \"IP address\" under \"Connection status\"\n\n" +
-                                                "Third, \n" +
-                                                "check that you have the latest version of Sys-botbase installed.\n" +
-                                                "You can get the latest version at \n        https://github.com/olliz0r/sys-botbase/releases \n" +
-                                                "You should double check your installation and make sure that the \n \"430000000000000B\" folder is inside the \"atmosphere\\contents\" folder.\n" +
-                                                "Also when your Switch is starting up,\n" +
-                                                "please also check that the LED of the \"Home button\" on your Joy-Con is lighting up. "
-
-                                                , "Where are you, my socket 6000?", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                if (MyMessageBox.Show("Sys-botbase not responding. Details?", "Error Code : 5318008 - Missing Sys-botbase Error!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                                {
+                                    MyMessageBox.Show("You have successfully started a connection!\n" +
+                                                        "Your IP address seems to be correct!\n" +
+                                                        "However, Sys-botbase is not responding...\n" +
+                                                        " \n" +
+                                                        "1) \n" +
+                                                        "Check that your Switch is running in CFW mode.\n" +
+                                                        "On your Switch, go to \"System Settings\"->\"System\"\n" +
+                                                        "Check \"Current version:\" and make sure you have \"AMS\" in it.\n" +
+                                                        " \n" +
+                                                        "2) \n" +
+                                                        "Check that you are connecting to the correct IP address.\n" +
+                                                        "On your Switch, go to \"System Settings\"->\"Internet\"\n" +
+                                                        "Check the \"IP address\" under \"Connection status\"\n" +
+                                                        " \n" +
+                                                        "3) \n" +
+                                                        "Check that you have the latest version of Sys-botbase installed.\n" +
+                                                        "You can get the latest version at \n        https://github.com/olliz0r/sys-botbase/releases \n" +
+                                                        "You should double check your installation and make sure that the \n \"430000000000000B\" folder is inside the \"sd: \\ atmosphere \\ contents \\\" folder.\n" +
+                                                        " \n" +
+                                                        "4) \n" +
+                                                        "When your Switch is booting up, \n" +
+                                                        "Check that the LED of the \"Home button\" on your Joy-Con is lighting up.\n" +
+                                                        " \n" +
+                                                        "https://github.com/MyShiLingStar/ACNHPokerCore/wiki/Connection-Troubleshooting#where-are-you-my-socket-6000"
+                                                        , "Where are you, my socket 6000?", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
 
                                 connecting = false;
                                 return;
@@ -1216,30 +1224,40 @@ namespace ACNHPokerCore
 
                                     string sysbotbaseVersion = Utilities.CheckSysBotBase(socket, usb);
 
+                                    string gameVersion = version.Split("v")[1];
+
                                     MyLog.LogEvent("MainForm", "sys-botbase version : " + sysbotbaseVersion);
 
-                                    MyMessageBox.Show("You have successfully established a connection!\n" +
+                                    if (MyMessageBox.Show("Sys-botbase validation failed. Details?", "Error Code : 71077345 - Sys-botbase Validation Error!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                                    {
+                                        MyMessageBox.Show("You have successfully established a connection!\n" +
                                                     "Your Sys-botbase installation and IP address are correct.\n" +
-                                                    "However...\n" +
-                                                    "Sys-botbase validation failed! Poke request is returning same result.\n\n\n" +
-
-                                                    "First, \n" +
-                                                    "check that you have the correct matching version.\n" +
+                                                    "However, Sys-botbase validation failed!\n" +
+                                                    " \n" +
+                                                    "1) \n" +
+                                                    "Check that you have booted the game up.\n" +
+                                                    "The best place to start the connection is at the title screen.\n" +
+                                                    " \n" +
+                                                    "2) \n" +
+                                                    "Check that you have the correct matching version.\n" +
                                                     "You are using \"" + version + "\" right now.\n" +
-                                                    "You can find the latest version at : \n   https://github.com/MyShiLingStar/ACNHPokerCore \n" +
-                                                    "Your sys-botbase version is :  " + sysbotbaseVersion + "\n" +
-                                                    "You can find the latest version at : \n   https://github.com/olliz0r/sys-botbase/releases \n\n" +
-                                                    "Second, \n" +
-                                                    "try holding the power button and restart your Switch.\n" +
+                                                    "You can find the latest version at : \n        https://github.com/MyShiLingStar/ACNHPokerCore \n" +
+                                                    "Please update your game if your game version is below \" " + gameVersion + " \".\n" +
+                                                    " \n" +
+                                                    "3) \n" +
+                                                    "Please try holding the power button and restart your Switch.\n" +
                                                     "Then press and HOLD the \"L\" button while you are selecting the game to boot up.\n" +
                                                     "Keep holding the \"L\" button and release it once you can see the title screen.\n" +
-                                                    "Retry the connection.\n\n" +
-                                                    "Third, \n" +
-                                                    "If you use a cheat file before and have the following folder : \n" +
-                                                    "sd: / atmospshere / contents / 01006F8002326000 /\n" +
-                                                    "please try to remove or rename it.\n"
+                                                    "Then retry the connection.\n" +
+                                                    " \n" +
+                                                    "4) \n" +
+                                                    "Some installed Mods or sys-modules might conflict with Sys-botbase.\n" +
+                                                    "Please try to remove or disable any unnecessary Mods.\n" +
+                                                    " \n" +
+                                                    "https://github.com/MyShiLingStar/ACNHPokerCore/wiki/Connection-Troubleshooting#sys-botbase-validation"
+                                                    , "Sys-botbase Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    }
 
-                                                    , "Sys-botbase validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     socket.Close();
                                     connecting = false;
                                     return;
@@ -3592,7 +3610,10 @@ namespace ACNHPokerCore
 
             if (M == null)
             {
-                M = new Map(socket, usb, Utilities.itemPath, Utilities.recipePath, Utilities.flowerPath, Utilities.variationPath, Utilities.favPath, Utilities.imagePath, languageSetting, OverrideDict, sound);
+                if (DEBUGGING)
+                    M = new Map(socket, usb, Utilities.itemPath, Utilities.recipePath, Utilities.flowerPath, Utilities.variationPath, Utilities.favPath, Utilities.imagePath, languageSetting, OverrideDict, sound, true);
+                else
+                    M = new Map(socket, usb, Utilities.itemPath, Utilities.recipePath, Utilities.flowerPath, Utilities.variationPath, Utilities.favPath, Utilities.imagePath, languageSetting, OverrideDict, sound);
                 M.CloseForm += MapDropperCloseForm;
                 M.Show();
             }

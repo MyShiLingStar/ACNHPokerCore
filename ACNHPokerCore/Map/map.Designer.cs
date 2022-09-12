@@ -129,6 +129,8 @@ namespace ACNHPokerCore
             this.clearGridBtn = new System.Windows.Forms.Button();
             this.ClearCopiedAreaBtn = new System.Windows.Forms.Button();
             this.FlagTextbox = new ACNHPokerCore.HexUpDown();
+            this.ShiftDownToggle = new JCS.ToggleSwitch();
+            this.ShiftRightToggle = new JCS.ToggleSwitch();
             this.LayerPanel = new System.Windows.Forms.Panel();
             this.functionPanel = new System.Windows.Forms.Panel();
             this.placeVariationBtn = new System.Windows.Forms.Button();
@@ -167,7 +169,6 @@ namespace ACNHPokerCore
             this.HexTextbox = new ACNHPokerCore.HexUpDown();
             this.selectedItem = new ACNHPokerCore.inventorySlot();
             this.SizeBox = new System.Windows.Forms.RichTextBox();
-            this.ext = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fieldGridView)).BeginInit();
             this.BtnPanel.SuspendLayout();
             this.floorRightClick.SuspendLayout();
@@ -2672,6 +2673,30 @@ namespace ACNHPokerCore
             this.FlagTextbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FlagTextbox_KeyPress);
             this.FlagTextbox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.FlagTextbox_MouseDoubleClick);
             // 
+            // ShiftDownToggle
+            // 
+            this.ShiftDownToggle.Location = new System.Drawing.Point(813, 536);
+            this.ShiftDownToggle.Name = "ShiftDownToggle";
+            this.ShiftDownToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ShiftDownToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ShiftDownToggle.Size = new System.Drawing.Size(40, 16);
+            this.ShiftDownToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            this.ShiftDownToggle.TabIndex = 238;
+            this.formToolTip.SetToolTip(this.ShiftDownToggle, "Shift DOWN ▼");
+            this.ShiftDownToggle.UseAnimation = false;
+            // 
+            // ShiftRightToggle
+            // 
+            this.ShiftRightToggle.Location = new System.Drawing.Point(813, 514);
+            this.ShiftRightToggle.Name = "ShiftRightToggle";
+            this.ShiftRightToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ShiftRightToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ShiftRightToggle.Size = new System.Drawing.Size(40, 16);
+            this.ShiftRightToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            this.ShiftRightToggle.TabIndex = 239;
+            this.formToolTip.SetToolTip(this.ShiftRightToggle, "Shift RIGHT ▶");
+            this.ShiftRightToggle.UseAnimation = false;
+            // 
             // LayerPanel
             // 
             this.LayerPanel.Controls.Add(this.layer2Btn);
@@ -3131,27 +3156,13 @@ namespace ACNHPokerCore
             this.SizeBox.TabIndex = 236;
             this.SizeBox.Text = "";
             // 
-            // ext
-            // 
-            this.ext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.ext.FlatAppearance.BorderSize = 0;
-            this.ext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ext.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ext.ForeColor = System.Drawing.Color.White;
-            this.ext.Location = new System.Drawing.Point(1127, 640);
-            this.ext.Name = "ext";
-            this.ext.Size = new System.Drawing.Size(73, 21);
-            this.ext.TabIndex = 237;
-            this.ext.Text = "ext";
-            this.ext.UseVisualStyleBackColor = false;
-            this.ext.Click += new System.EventHandler(this.Ext_Click);
-            // 
             // Map
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.ClientSize = new System.Drawing.Size(1204, 631);
-            this.Controls.Add(this.ext);
+            this.Controls.Add(this.ShiftRightToggle);
+            this.Controls.Add(this.ShiftDownToggle);
             this.Controls.Add(this.SizeBox);
             this.Controls.Add(this.HexTextbox);
             this.Controls.Add(this.Language);
@@ -3204,9 +3215,10 @@ namespace ACNHPokerCore
             this.MinimumSize = new System.Drawing.Size(1220, 670);
             this.Name = "Map";
             this.Opacity = 0.97D;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Map Dropper";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Map_FormClosed);
+            this.Load += new System.EventHandler(this.Map_Load);
             this.LocationChanged += new System.EventHandler(this.Map_LocationChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyboardKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.fieldGridView)).EndInit();
@@ -3366,6 +3378,7 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Timer FlashTimer;
         private HexUpDown HexTextbox;
         private System.Windows.Forms.RichTextBox SizeBox;
-        private System.Windows.Forms.Button ext;
+        private JCS.ToggleSwitch ShiftDownToggle;
+        private JCS.ToggleSwitch ShiftRightToggle;
     }
 }
