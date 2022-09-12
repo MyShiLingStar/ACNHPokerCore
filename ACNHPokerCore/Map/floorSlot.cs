@@ -177,7 +177,7 @@ namespace ACNHPokerCore
 
                 try
                 {
-                    if (itemID != 0xFFFE && (itemID == P2Id && P2Id == P3Id && P3Id == P4Id)) // Filled Slot
+                    if (itemID != 0xFFFE && (itemID == P2Id && P2Id == P3Id && P3Id == P4Id) && (part2 == part3 && part3 == part4)) // Filled Slot
                     {
 
                         if (flag2 != "20" || flag1 != "00")
@@ -186,7 +186,10 @@ namespace ACNHPokerCore
                         }
                         //this.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
 
-                        this.Image = displayItemImage(large, false);
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            this.Image = displayItemImage(large, false);
+                        });
                     }
                     else if (itemID == 0xFFFE && part2 == 0xFFFE && part3 == 0xFFFE && part4 == 0xFFFE) // Empty
                     {
@@ -194,7 +197,10 @@ namespace ACNHPokerCore
                     }
                     else if (itemID != 0xFFFE && flag1 != "00") // wrapped
                     {
-                        this.Image = displayItemImage(large, false);
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            this.Image = displayItemImage(large, false);
+                        });
                     }
                     else // seperate
                     {
@@ -205,7 +211,10 @@ namespace ACNHPokerCore
                             locked = true;
                         }
 
-                        this.Image = displayItemImage(large, true);
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            this.Image = displayItemImage(large, true);
+                        });
                     }
                 }
                 catch
@@ -258,7 +267,7 @@ namespace ACNHPokerCore
 
             try
             {
-                if (itemID != 0xFFFE && (itemID == P2Id && P2Id == P3Id && P3Id == P4Id)) // Filled Slot
+                if (itemID != 0xFFFE && (itemID == P2Id && P2Id == P3Id && P3Id == P4Id) && (part2 == part3 && part3 == part4)) // Filled Slot
                 {
 
                     if (flag2 != "20" || flag1 != "00")
@@ -579,7 +588,7 @@ namespace ACNHPokerCore
                         }
 
                         Image img = PlaceImages(background, topleft, topright, bottomleft, bottomright, 1);
-                        return (Image)(new Bitmap(img, size));
+                        return new Bitmap(img, size);
                     }
                 }
                 else
@@ -603,7 +612,7 @@ namespace ACNHPokerCore
 
                     if (image1Path == "" & itemID != 0xFFFE)
                     {
-                        return (Image)(new Bitmap(Properties.Resources.Leaf, size));
+                        return new Bitmap(Properties.Resources.Leaf, size);
                     }
                     else if (itemID == 0x16A2) // recipe
                     {
@@ -612,7 +621,7 @@ namespace ACNHPokerCore
                         Image icon = (new Bitmap(recipe, new Size(imageSize, imageSize)));
 
                         Image img = PlaceImageOverImage(background, icon, background.Width - (imageSize - 5), background.Width - (imageSize - 5), 1);
-                        return (Image)(new Bitmap(img, size));
+                        return new Bitmap(img, size);
                     }
                     else if (itemID == 0x315A || itemID == 0x1618 || itemID == 0x342F) // Wall-Mount
                     {
@@ -623,18 +632,18 @@ namespace ACNHPokerCore
                             Image icon = (new Bitmap(Image.FromFile(containItemPath), new Size(imageSize, imageSize)));
 
                             Image img = PlaceImageOverImage(background, icon, background.Width - (imageSize - 5), background.Width - (imageSize - 5), 1);
-                            return (Image)(new Bitmap(img, size));
+                            return new Bitmap(img, size);
                         }
                         else
                         {
                             Image img = Image.FromFile(image1Path);
-                            return (Image)(new Bitmap(img, size));
+                            return new Bitmap(img, size);
                         }
                     }
                     else if (image1Path != "")
                     {
                         Image img = Image.FromFile(image1Path);
-                        return (Image)(new Bitmap(img, size));
+                        return new Bitmap(img, size);
                     }
                     else
                     {
