@@ -131,6 +131,7 @@ namespace ACNHPokerCore
             this.FlagTextbox = new ACNHPokerCore.HexUpDown();
             this.ShiftDownToggle = new JCS.ToggleSwitch();
             this.ShiftRightToggle = new JCS.ToggleSwitch();
+            this.CoreOnlyToggle = new JCS.ToggleSwitch();
             this.LayerPanel = new System.Windows.Forms.Panel();
             this.functionPanel = new System.Windows.Forms.Panel();
             this.placeVariationBtn = new System.Windows.Forms.Button();
@@ -2697,6 +2698,18 @@ namespace ACNHPokerCore
             this.formToolTip.SetToolTip(this.ShiftRightToggle, "Shift RIGHT ▶");
             this.ShiftRightToggle.UseAnimation = false;
             // 
+            // CoreOnlyToggle
+            // 
+            this.CoreOnlyToggle.Location = new System.Drawing.Point(813, 558);
+            this.CoreOnlyToggle.Name = "CoreOnlyToggle";
+            this.CoreOnlyToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CoreOnlyToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CoreOnlyToggle.Size = new System.Drawing.Size(40, 16);
+            this.CoreOnlyToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            this.CoreOnlyToggle.TabIndex = 240;
+            this.formToolTip.SetToolTip(this.CoreOnlyToggle, "Core Only ◆ (Experimental)");
+            this.CoreOnlyToggle.UseAnimation = false;
+            // 
             // LayerPanel
             // 
             this.LayerPanel.Controls.Add(this.layer2Btn);
@@ -3161,6 +3174,7 @@ namespace ACNHPokerCore
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.ClientSize = new System.Drawing.Size(1204, 631);
+            this.Controls.Add(this.CoreOnlyToggle);
             this.Controls.Add(this.ShiftRightToggle);
             this.Controls.Add(this.ShiftDownToggle);
             this.Controls.Add(this.SizeBox);
@@ -3380,5 +3394,6 @@ namespace ACNHPokerCore
         private System.Windows.Forms.RichTextBox SizeBox;
         private JCS.ToggleSwitch ShiftDownToggle;
         private JCS.ToggleSwitch ShiftRightToggle;
+        private JCS.ToggleSwitch CoreOnlyToggle;
     }
 }

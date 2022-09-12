@@ -2238,6 +2238,31 @@ namespace ACNHPokerCore
             }
         }
 
+        public static void dropCore(Socket socket, USBBot usb, long address, string itemId, string count, string flag1, string flag2)
+        {
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        SendByteArray8(socket, address, stringToByte(buildDropCore(itemId, count, flag1, flag2)), 8);
+                        SendByteArray8(socket, address + mapOffset, stringToByte(buildDropCore(itemId, count, flag1, flag2)), 8);
+
+                        Debug.Print("DropCore: " + address + " " + itemId + " " + count + " " + flag1 + " " + flag2);
+                    }
+                    else
+                    {
+
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "dropItem");
+                }
+            }
+        }
+
         public static void ExtDropItem(Socket socket, USBBot usb, long address, string itemId, string count, string flag1, string flag2)
         {
             lock (botLock)
@@ -2825,6 +2850,10 @@ namespace ACNHPokerCore
                 return flip(itemId) + "0000" + "0000" + "00" + "00" + flip(itemId) + "0000" + "0000" + "00" + "00";
             else
                 return partID + flip(itemId) + "01" + "00" + partID + flip(itemId) + "01" + "01";
+        }
+        public static string buildDropCore(string itemId, string count, string flag1, string flag2)
+        {
+            return flip(itemId) + flag2 + flag1 + flip(count);
         }
 
         public static byte[] ReadByteArray8(Socket socket, long initAddr, int size, ref int counter)

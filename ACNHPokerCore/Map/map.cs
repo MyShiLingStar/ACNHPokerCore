@@ -93,6 +93,7 @@ namespace ACNHPokerCore
 
         bool shiftRight = false;
         bool shiftDown = false;
+        bool coreOnly = false;
         bool debugging = false;
 
         private readonly ToolStripMenuItem ActivateItem;
@@ -2173,6 +2174,8 @@ namespace ACNHPokerCore
             else
                 shiftDown = ShiftDownToggle.Checked;
 
+            coreOnly = CoreOnlyToggle.Checked;
+
             long address;
 
             if (layer1Btn.Checked)
@@ -2232,7 +2235,12 @@ namespace ACNHPokerCore
                     Thread.Sleep(3000);
                 }
 
-                Utilities.dropItem(s, usb, address, itemID, itemData, flag1, flag2);
+                if (coreOnly)
+                {
+                    Utilities.dropCore(s, usb, address, itemID, itemData, flag1, flag2);
+                }
+                else
+                    Utilities.dropItem(s, usb, address, itemID, itemData, flag1, flag2);
             }
 
             this.Invoke((MethodInvoker)delegate
@@ -2243,11 +2251,18 @@ namespace ACNHPokerCore
                 else
                     SetBtn(btn, itemID, itemData, "0000FFFD", "0100" + itemID, "0000FFFD", "0001" + itemID, "0000FFFD", "0101" + itemID, "00", flag2);
                 */
-
-                UpdataData(btn.mapX, btn.mapY, itemID, itemData, flag1, flag2, shiftRight, shiftDown);
-                UpdateBtn(btn);
-                if (shiftRight || shiftDown)
-                    UpdateNearBtn(int.Parse(btn.Tag.ToString()));
+                if (coreOnly)
+                {
+                    UpdataDataCoreOnly(btn.mapX, btn.mapY, itemID, itemData, flag1, flag2, shiftRight, shiftDown);
+                    UpdateBtn(btn);
+                }
+                else
+                {
+                    UpdataData(btn.mapX, btn.mapY, itemID, itemData, flag1, flag2, shiftRight, shiftDown);
+                    UpdateBtn(btn);
+                    if (shiftRight || shiftDown)
+                        UpdateNearBtn(int.Parse(btn.Tag.ToString()));
+                }
                 ResetBtnColor();
                 EnableBtn();
             });
@@ -3974,6 +3989,30 @@ namespace ACNHPokerCore
             {
                 Buffer.BlockCopy(Left, 0, Layer2, x * 0xC00 + shiftRightValue + y * 0x10 + shiftDownValue, 16);
                 Buffer.BlockCopy(Right, 0, Layer2, x * 0xC00 + 0x600 + shiftRightValue + y * 0x10 + shiftDownValue, 16);
+                miniMapBox.BackgroundImage = MiniMap.RefreshItemMap(Layer2);
+            }
+        }
+
+        private void UpdataDataCoreOnly(int x, int y, string itemID, string itemData, string flag1, string flag2, bool shiftRight, bool shiftDown)
+        {
+            byte[] Left = Utilities.stringToByte(Utilities.buildDropCore(itemID, itemData, flag1, flag2));
+
+            int shiftRightValue = 0;
+            int shiftDownValue = 0;
+
+            if (shiftRight)
+                shiftRightValue = 0x600;
+            if (shiftDown)
+                shiftDownValue = 0x8;
+
+            if (layer1Btn.Checked)
+            {
+                Buffer.BlockCopy(Left, 0, Layer1, x * 0xC00 + shiftRightValue + y * 0x10 + shiftDownValue, 8);
+                miniMapBox.BackgroundImage = MiniMap.RefreshItemMap(Layer1);
+            }
+            else if (layer2Btn.Checked)
+            {
+                Buffer.BlockCopy(Left, 0, Layer2, x * 0xC00 + shiftRightValue + y * 0x10 + shiftDownValue, 8);
                 miniMapBox.BackgroundImage = MiniMap.RefreshItemMap(Layer2);
             }
         }
