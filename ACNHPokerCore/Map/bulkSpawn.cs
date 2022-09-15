@@ -24,6 +24,7 @@ namespace ACNHPokerCore
         private readonly byte[] Acre = null;
         private readonly byte[] Building = null;
         private readonly byte[] Terrain = null;
+        private readonly byte[] Design = null;
 
         private readonly long SpawnAddress;
 
@@ -35,7 +36,7 @@ namespace ACNHPokerCore
         private int rowNum;
         private byte[][] SpawnArea = null;
         private bool spawnlock = false;
-        public BulkSpawn(Socket S, USBBot Bot, byte[] layer1, byte[] layer2, byte[] acre, byte[] building, byte[] terrain, int x, int y, Map Map, bool Ignore, bool Sound, bool Layer1Selected = true)
+        public BulkSpawn(Socket S, USBBot Bot, byte[] layer1, byte[] layer2, byte[] acre, byte[] building, byte[] terrain, byte[] design, int x, int y, Map Map, bool Ignore, bool Sound, bool Layer1Selected = true)
         {
             try
             {
@@ -46,12 +47,13 @@ namespace ACNHPokerCore
                 Acre = acre;
                 Building = building;
                 Terrain = terrain;
+                Design = design;
                 anchorX = x;
                 anchorY = y;
                 main = Map;
                 ignore = Ignore;
                 sound = Sound;
-                MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, 4);
+                MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, Design, 4);
                 InitializeComponent();
                 xCoordinate.Text = x.ToString();
                 yCoordinate.Text = y.ToString();

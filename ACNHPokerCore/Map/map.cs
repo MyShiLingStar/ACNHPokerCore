@@ -87,6 +87,7 @@ namespace ACNHPokerCore
         byte[] Terrain = null;
         byte[] ActivateLayer1 = null;
         byte[] ActivateLayer2 = null;
+        byte[] MapCustomDesgin = null;
 
         bool[,] ActivateTable1;
         bool[,] ActivateTable2;
@@ -322,9 +323,10 @@ namespace ACNHPokerCore
                 Terrain = new byte[Utilities.AllTerrainSize];
                 ActivateLayer1 = new byte[Utilities.mapActivateSize];
                 ActivateLayer2 = new byte[Utilities.mapActivateSize];
+                MapCustomDesgin = new byte[Utilities.MapTileCount16x16 * 2];
 
                 if (MiniMap == null)
-                    MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, 2);
+                    MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, MapCustomDesgin, 2);
 
                 anchorX = 56;
                 anchorY = 48;
@@ -358,11 +360,12 @@ namespace ACNHPokerCore
                 Terrain = Utilities.getTerrain(s, usb);
                 ActivateLayer1 = Utilities.getActivate(s, usb, Utilities.mapActivate, ref counter);
                 ActivateLayer2 = Utilities.getActivate(s, usb, Utilities.mapActivate + Utilities.mapActivateSize, ref counter);
+                MapCustomDesgin = Utilities.getCustomDesignMap(s, usb, ref counter);
 
                 if (Layer1 != null && Layer2 != null && Acre != null)
                 {
                     if (MiniMap == null)
-                        MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, 2);
+                        MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, MapCustomDesgin, 2);
                 }
                 else
                     throw new NullReferenceException("Layer1/Layer2/Acre");
@@ -3184,7 +3187,7 @@ namespace ACNHPokerCore
                 if (Layer1 != null && Layer2 != null && Acre != null)
                 {
                     if (MiniMap == null)
-                        MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, 2);
+                        MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, MapCustomDesgin, 2);
                 }
                 else
                     throw new NullReferenceException("Layer1/Layer2/Acre");
@@ -4371,7 +4374,7 @@ namespace ACNHPokerCore
 
         private void SaveTopngToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MiniMap big = new(Layer1, Acre, Building, Terrain, 4);
+            MiniMap big = new(Layer1, Acre, Building, Terrain, MapCustomDesgin, 4);
             SaveFileDialog file = new()
             {
                 Filter = "Portable Network Graphics (*.png)|*.png",
@@ -4538,9 +4541,9 @@ namespace ACNHPokerCore
             if (bulk == null)
             {
                 if (layer1Btn.Checked)
-                    bulk = new BulkSpawn(s, usb, Layer1, Layer2, Acre, Building, Terrain, anchorX, anchorY, this, ignore, sound, true);
+                    bulk = new BulkSpawn(s, usb, Layer1, Layer2, Acre, Building, Terrain, MapCustomDesgin, anchorX, anchorY, this, ignore, sound, true);
                 else
-                    bulk = new BulkSpawn(s, usb, Layer1, Layer2, Acre, Building, Terrain, anchorX, anchorY, this, ignore, sound, false);
+                    bulk = new BulkSpawn(s, usb, Layer1, Layer2, Acre, Building, Terrain, MapCustomDesgin, anchorX, anchorY, this, ignore, sound, false);
             }
             bulk.StartPosition = FormStartPosition.CenterParent;
             bulk.ShowDialog();
@@ -5880,7 +5883,7 @@ namespace ACNHPokerCore
                 int main = variationList.GetLength(0);
                 int sub = variationList.GetLength(1);
 
-                variationSpawn variationSpawner = new(variationList, Layer1, Acre, Building, Terrain, TopLeftX, TopLeftY, flag2, selectedSize);
+                variationSpawn variationSpawner = new(variationList, Layer1, Acre, Building, Terrain, MapCustomDesgin, TopLeftX, TopLeftY, flag2, selectedSize);
                 variationSpawner.SendObeySizeEvent += VariationSpawner_SendObeySizeEvent;
                 variationSpawner.SendRowAndColumnEvent += VariationSpawner_SendRowAndColumnEvent;
                 int result = (int)variationSpawner.ShowDialog(this);

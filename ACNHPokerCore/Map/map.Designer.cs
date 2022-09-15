@@ -42,6 +42,9 @@ namespace ACNHPokerCore
             this.moveDownRightBtn = new System.Windows.Forms.Button();
             this.moveDownLeftBtn = new System.Windows.Forms.Button();
             this.btnToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.ShiftDownToggle = new JCS.ToggleSwitch();
+            this.ShiftRightToggle = new JCS.ToggleSwitch();
+            this.CoreOnlyToggle = new JCS.ToggleSwitch();
             this.fieldGridView = new System.Windows.Forms.DataGridView();
             this.IdTextbox = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -129,9 +132,6 @@ namespace ACNHPokerCore
             this.clearGridBtn = new System.Windows.Forms.Button();
             this.ClearCopiedAreaBtn = new System.Windows.Forms.Button();
             this.FlagTextbox = new ACNHPokerCore.HexUpDown();
-            this.ShiftDownToggle = new JCS.ToggleSwitch();
-            this.ShiftRightToggle = new JCS.ToggleSwitch();
-            this.CoreOnlyToggle = new JCS.ToggleSwitch();
             this.LayerPanel = new System.Windows.Forms.Panel();
             this.functionPanel = new System.Windows.Forms.Panel();
             this.placeVariationBtn = new System.Windows.Forms.Button();
@@ -170,6 +170,7 @@ namespace ACNHPokerCore
             this.HexTextbox = new ACNHPokerCore.HexUpDown();
             this.selectedItem = new ACNHPokerCore.inventorySlot();
             this.SizeBox = new System.Windows.Forms.RichTextBox();
+            this.ToggleTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.fieldGridView)).BeginInit();
             this.BtnPanel.SuspendLayout();
             this.floorRightClick.SuspendLayout();
@@ -363,6 +364,42 @@ namespace ACNHPokerCore
             this.btnToolTip.ShowAlways = true;
             this.btnToolTip.UseAnimation = false;
             this.btnToolTip.UseFading = false;
+            // 
+            // ShiftDownToggle
+            // 
+            this.ShiftDownToggle.Location = new System.Drawing.Point(813, 536);
+            this.ShiftDownToggle.Name = "ShiftDownToggle";
+            this.ShiftDownToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ShiftDownToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ShiftDownToggle.Size = new System.Drawing.Size(40, 16);
+            this.ShiftDownToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            this.ShiftDownToggle.TabIndex = 238;
+            this.ToggleTip.SetToolTip(this.ShiftDownToggle, "Shift DOWN ▼");
+            this.ShiftDownToggle.UseAnimation = false;
+            // 
+            // ShiftRightToggle
+            // 
+            this.ShiftRightToggle.Location = new System.Drawing.Point(813, 514);
+            this.ShiftRightToggle.Name = "ShiftRightToggle";
+            this.ShiftRightToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ShiftRightToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ShiftRightToggle.Size = new System.Drawing.Size(40, 16);
+            this.ShiftRightToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            this.ShiftRightToggle.TabIndex = 239;
+            this.ToggleTip.SetToolTip(this.ShiftRightToggle, "Shift RIGHT ▶");
+            this.ShiftRightToggle.UseAnimation = false;
+            // 
+            // CoreOnlyToggle
+            // 
+            this.CoreOnlyToggle.Location = new System.Drawing.Point(813, 558);
+            this.CoreOnlyToggle.Name = "CoreOnlyToggle";
+            this.CoreOnlyToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CoreOnlyToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CoreOnlyToggle.Size = new System.Drawing.Size(40, 16);
+            this.CoreOnlyToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            this.CoreOnlyToggle.TabIndex = 240;
+            this.ToggleTip.SetToolTip(this.CoreOnlyToggle, "Core Only ◆ (Experimental)");
+            this.CoreOnlyToggle.UseAnimation = false;
             // 
             // fieldGridView
             // 
@@ -2674,42 +2711,6 @@ namespace ACNHPokerCore
             this.FlagTextbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FlagTextbox_KeyPress);
             this.FlagTextbox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.FlagTextbox_MouseDoubleClick);
             // 
-            // ShiftDownToggle
-            // 
-            this.ShiftDownToggle.Location = new System.Drawing.Point(813, 536);
-            this.ShiftDownToggle.Name = "ShiftDownToggle";
-            this.ShiftDownToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ShiftDownToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ShiftDownToggle.Size = new System.Drawing.Size(40, 16);
-            this.ShiftDownToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
-            this.ShiftDownToggle.TabIndex = 238;
-            this.formToolTip.SetToolTip(this.ShiftDownToggle, "Shift DOWN ▼");
-            this.ShiftDownToggle.UseAnimation = false;
-            // 
-            // ShiftRightToggle
-            // 
-            this.ShiftRightToggle.Location = new System.Drawing.Point(813, 514);
-            this.ShiftRightToggle.Name = "ShiftRightToggle";
-            this.ShiftRightToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ShiftRightToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ShiftRightToggle.Size = new System.Drawing.Size(40, 16);
-            this.ShiftRightToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
-            this.ShiftRightToggle.TabIndex = 239;
-            this.formToolTip.SetToolTip(this.ShiftRightToggle, "Shift RIGHT ▶");
-            this.ShiftRightToggle.UseAnimation = false;
-            // 
-            // CoreOnlyToggle
-            // 
-            this.CoreOnlyToggle.Location = new System.Drawing.Point(813, 558);
-            this.CoreOnlyToggle.Name = "CoreOnlyToggle";
-            this.CoreOnlyToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CoreOnlyToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CoreOnlyToggle.Size = new System.Drawing.Size(40, 16);
-            this.CoreOnlyToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
-            this.CoreOnlyToggle.TabIndex = 240;
-            this.formToolTip.SetToolTip(this.CoreOnlyToggle, "Core Only ◆ (Experimental)");
-            this.CoreOnlyToggle.UseAnimation = false;
-            // 
             // LayerPanel
             // 
             this.LayerPanel.Controls.Add(this.layer2Btn);
@@ -3169,6 +3170,15 @@ namespace ACNHPokerCore
             this.SizeBox.TabIndex = 236;
             this.SizeBox.Text = "";
             // 
+            // ToggleTip
+            // 
+            this.ToggleTip.AutomaticDelay = 10;
+            this.ToggleTip.AutoPopDelay = 10000;
+            this.ToggleTip.InitialDelay = 10;
+            this.ToggleTip.ReshowDelay = 2;
+            this.ToggleTip.UseAnimation = false;
+            this.ToggleTip.UseFading = false;
+            // 
             // Map
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -3395,5 +3405,6 @@ namespace ACNHPokerCore
         private JCS.ToggleSwitch ShiftDownToggle;
         private JCS.ToggleSwitch ShiftRightToggle;
         private JCS.ToggleSwitch CoreOnlyToggle;
+        private System.Windows.Forms.ToolTip ToggleTip;
     }
 }

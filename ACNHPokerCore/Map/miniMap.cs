@@ -16,6 +16,7 @@ namespace ACNHPokerCore
         private readonly byte[] BuildingByte;
         private byte[][] buildingList = null;
         private byte[] TerrainByte;
+        private byte[] CustomDesignByte;
         private TerrainUnit[][] terrainUnits;
 
         private const int numOfColumn = 0x70;
@@ -50,11 +51,12 @@ namespace ACNHPokerCore
         private const int AcreHeight = 6 + (2 * 1);
         private const int AcreMax = AcreWidth * AcreHeight;
         private const int AllAcreSize = AcreMax * 2;
-        public MiniMap(byte[] ItemMapByte, byte[] acreMapByte, byte[] buildingByte, byte[] terrainByte, int size = 2)
+        public MiniMap(byte[] ItemMapByte, byte[] acreMapByte, byte[] buildingByte, byte[] terrainByte, byte[] customDesignByte, int size = 2)
         {
             AcreMapByte = acreMapByte;
             BuildingByte = buildingByte;
             TerrainByte = terrainByte;
+            CustomDesignByte = customDesignByte;
 
             UpdatePlaza();
 
@@ -236,7 +238,12 @@ namespace ACNHPokerCore
                 {
                     for (int j = 0; j < numOfRow; j++)
                     {
-                        if (terrainUnits[i][j].HasRoad())
+                        if (terrainUnits[i][j].HaveCustomDesign())
+                        {
+                            terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Design];
+                            PutPixel(gr, i * mapSize, j * mapSize, terrainColor);
+                        }
+                        else if (terrainUnits[i][j].HasRoad())
                         {
                             if (terrainUnits[i][j].HasRoadWood())
                             {
@@ -950,6 +957,14 @@ namespace ACNHPokerCore
                     byte[] currentTile = new byte[TerrainSize];
                     Buffer.BlockCopy(TerrainByte, counter * TerrainSize, currentTile, 0, TerrainSize);
                     terrainUnits[i][j] = new TerrainUnit(currentTile);
+
+                    if (CustomDesignByte != null)
+                    {
+                        byte[] currentDesign = new byte[2];
+                        Buffer.BlockCopy(CustomDesignByte, (i * numOfRow + j) * 2, currentDesign, 0, 2);
+                        terrainUnits[i][j].SetCustomDesign(currentDesign);
+                    }
+
                     counter++;
                 }
             }
@@ -1003,7 +1018,7 @@ namespace ACNHPokerCore
                         }
                         else if (tilesType[i][j] == 10)
                         {
-                            PutPixel(gr, i * mapSize, j * mapSize, Color.Orange);
+                            PutPixel(gr, i * mapSize, j * mapSize, Color.Gold);
                         }
                         else if (tilesType[i][j] == 11)
                         {
@@ -1077,7 +1092,12 @@ namespace ACNHPokerCore
                 {
                     Color terrainColor = Color.Black;
 
-                    if (terrainUnits[j][i].HasRoad())
+                    if (terrainUnits[j][i].HaveCustomDesign())
+                    {
+                        terrainColor = TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Design];
+                        floorBackgroundColor[i][j] = terrainColor;
+                    }
+                    else if (terrainUnits[j][i].HasRoad())
                     {
                         if (terrainUnits[j][i].HasRoadWood())
                         {
@@ -1750,9 +1770,12 @@ namespace ACNHPokerCore
             return BuildingColor;
         }
 
-        public void UpdateTerrain(byte[] NewTerrain)
+        public void UpdateTerrain(byte[] NewTerrain, byte[] NewDesign = null)
         {
-            TerrainByte = NewTerrain;
+            if (NewTerrain != null)
+                TerrainByte = NewTerrain;
+            if (NewDesign != null)
+                CustomDesignByte = NewDesign;
             BuildTerrainUnits();
         }
 

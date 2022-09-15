@@ -384,12 +384,15 @@ namespace ACNHPokerCore
                     this.Width = 485;
                     if (MiniMap == null)
                     {
+                        counter = 0;
+
                         byte[] Acre = Utilities.getAcre(s, null);
                         byte[] Building = Utilities.getBuilding(s, null);
-                        Byte[] Terrain = Utilities.getTerrain(s, null);
+                        byte[] Terrain = Utilities.getTerrain(s, null);
+                        byte[] MapCustomDesgin = Utilities.getCustomDesignMap(s, null, ref counter);
 
                         if (MiniMap == null)
-                            MiniMap = new MiniMap(data, Acre, Building, Terrain);
+                            MiniMap = new MiniMap(data, Acre, Building, Terrain, MapCustomDesgin);
 
                         miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawBackground(), MiniMap.DrawItemMap());
                     }

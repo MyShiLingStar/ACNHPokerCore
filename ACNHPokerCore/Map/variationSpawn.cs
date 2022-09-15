@@ -18,6 +18,7 @@ namespace ACNHPokerCore
         private readonly byte[] Acre = null;
         private readonly byte[] Building = null;
         private readonly byte[] Terrain = null;
+        private readonly byte[] Design = null;
         private readonly string Flag;
         private bool previewOn = false;
 
@@ -37,12 +38,13 @@ namespace ACNHPokerCore
         public event ObeySizeHandler SendObeySizeEvent;
         public event UpdateRowAndColumnHandler SendRowAndColumnEvent;
 
-        public variationSpawn(inventorySlot[,] variationList, byte[] layer1, byte[] acre, byte[] building, byte[] terrain, int x, int y, string flag, string size)
+        public variationSpawn(inventorySlot[,] variationList, byte[] layer1, byte[] acre, byte[] building, byte[] terrain, byte[] design, int x, int y, string flag, string size)
         {
             Layer1 = layer1;
             Acre = acre;
             Building = building;
             Terrain = terrain;
+            Design = design;
             Flag = flag;
             X = x;
             Y = y;
@@ -168,7 +170,7 @@ namespace ACNHPokerCore
             if (Flag == "00" || Flag == "01" || Flag == "02" || Flag == "03" || Flag == "04")
                 ObeySizeToggle.Checked = true;
 
-            MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, 4);
+            MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, Design, 4);
             miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawBackground(), MiniMap.DrawItemMap());
             init = false;
 

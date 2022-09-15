@@ -91,7 +91,9 @@ namespace ACNHPokerCore
             this.NowLoading = new System.Windows.Forms.PictureBox();
             this.BridgeImage = new System.Windows.Forms.PictureBox();
             this.terrainPanel = new System.Windows.Forms.Panel();
-            this.flattenAllBtn = new System.Windows.Forms.Button();
+            this.removeAllCustomBtn = new System.Windows.Forms.Button();
+            this.removeAllRoadsBtn = new System.Windows.Forms.Button();
+            this.flattenAllTerrainBtn = new System.Windows.Forms.Button();
             this.saveTerrianBtn = new System.Windows.Forms.Button();
             this.loadTerrianBtn = new System.Windows.Forms.Button();
             this.PleaseWaitPanel = new System.Windows.Forms.Panel();
@@ -1051,7 +1053,9 @@ namespace ACNHPokerCore
             // 
             // terrainPanel
             // 
-            this.terrainPanel.Controls.Add(this.flattenAllBtn);
+            this.terrainPanel.Controls.Add(this.removeAllCustomBtn);
+            this.terrainPanel.Controls.Add(this.removeAllRoadsBtn);
+            this.terrainPanel.Controls.Add(this.flattenAllTerrainBtn);
             this.terrainPanel.Controls.Add(this.saveTerrianBtn);
             this.terrainPanel.Controls.Add(this.loadTerrianBtn);
             this.terrainPanel.Location = new System.Drawing.Point(578, 42);
@@ -1060,20 +1064,50 @@ namespace ACNHPokerCore
             this.terrainPanel.TabIndex = 243;
             this.terrainPanel.Visible = false;
             // 
-            // flattenAllBtn
+            // removeAllCustomBtn
             // 
-            this.flattenAllBtn.BackColor = System.Drawing.Color.Red;
-            this.flattenAllBtn.FlatAppearance.BorderSize = 0;
-            this.flattenAllBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.flattenAllBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.flattenAllBtn.ForeColor = System.Drawing.Color.White;
-            this.flattenAllBtn.Location = new System.Drawing.Point(7, 435);
-            this.flattenAllBtn.Name = "flattenAllBtn";
-            this.flattenAllBtn.Size = new System.Drawing.Size(178, 30);
-            this.flattenAllBtn.TabIndex = 243;
-            this.flattenAllBtn.Text = "Flatten All Terrrain";
-            this.flattenAllBtn.UseVisualStyleBackColor = false;
-            this.flattenAllBtn.Click += new System.EventHandler(this.FlattenAllBtn_Click);
+            this.removeAllCustomBtn.BackColor = System.Drawing.Color.Red;
+            this.removeAllCustomBtn.FlatAppearance.BorderSize = 0;
+            this.removeAllCustomBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.removeAllCustomBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.removeAllCustomBtn.ForeColor = System.Drawing.Color.White;
+            this.removeAllCustomBtn.Location = new System.Drawing.Point(307, 432);
+            this.removeAllCustomBtn.Name = "removeAllCustomBtn";
+            this.removeAllCustomBtn.Size = new System.Drawing.Size(201, 30);
+            this.removeAllCustomBtn.TabIndex = 245;
+            this.removeAllCustomBtn.Text = "Remove All Custom Designs";
+            this.removeAllCustomBtn.UseVisualStyleBackColor = false;
+            this.removeAllCustomBtn.Click += new System.EventHandler(this.removeAllDesignBtn_Click);
+            // 
+            // removeAllRoadsBtn
+            // 
+            this.removeAllRoadsBtn.BackColor = System.Drawing.Color.Red;
+            this.removeAllRoadsBtn.FlatAppearance.BorderSize = 0;
+            this.removeAllRoadsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.removeAllRoadsBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.removeAllRoadsBtn.ForeColor = System.Drawing.Color.White;
+            this.removeAllRoadsBtn.Location = new System.Drawing.Point(7, 432);
+            this.removeAllRoadsBtn.Name = "removeAllRoadsBtn";
+            this.removeAllRoadsBtn.Size = new System.Drawing.Size(178, 30);
+            this.removeAllRoadsBtn.TabIndex = 244;
+            this.removeAllRoadsBtn.Text = "Remove All Roads";
+            this.removeAllRoadsBtn.UseVisualStyleBackColor = false;
+            this.removeAllRoadsBtn.Click += new System.EventHandler(this.removeAllRoadsBtn_Click);
+            // 
+            // flattenAllTerrainBtn
+            // 
+            this.flattenAllTerrainBtn.BackColor = System.Drawing.Color.Red;
+            this.flattenAllTerrainBtn.FlatAppearance.BorderSize = 0;
+            this.flattenAllTerrainBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.flattenAllTerrainBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.flattenAllTerrainBtn.ForeColor = System.Drawing.Color.White;
+            this.flattenAllTerrainBtn.Location = new System.Drawing.Point(7, 396);
+            this.flattenAllTerrainBtn.Name = "flattenAllTerrainBtn";
+            this.flattenAllTerrainBtn.Size = new System.Drawing.Size(178, 30);
+            this.flattenAllTerrainBtn.TabIndex = 243;
+            this.flattenAllTerrainBtn.Text = "Flatten All Terrrain";
+            this.flattenAllTerrainBtn.UseVisualStyleBackColor = false;
+            this.flattenAllTerrainBtn.Click += new System.EventHandler(this.FlattenAllBtn_Click);
             // 
             // saveTerrianBtn
             // 
@@ -1082,7 +1116,7 @@ namespace ACNHPokerCore
             this.saveTerrianBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveTerrianBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.saveTerrianBtn.ForeColor = System.Drawing.Color.White;
-            this.saveTerrianBtn.Location = new System.Drawing.Point(7, 399);
+            this.saveTerrianBtn.Location = new System.Drawing.Point(7, 360);
             this.saveTerrianBtn.Name = "saveTerrianBtn";
             this.saveTerrianBtn.Size = new System.Drawing.Size(86, 30);
             this.saveTerrianBtn.TabIndex = 238;
@@ -1097,7 +1131,7 @@ namespace ACNHPokerCore
             this.loadTerrianBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loadTerrianBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.loadTerrianBtn.ForeColor = System.Drawing.Color.White;
-            this.loadTerrianBtn.Location = new System.Drawing.Point(99, 399);
+            this.loadTerrianBtn.Location = new System.Drawing.Point(99, 360);
             this.loadTerrianBtn.Name = "loadTerrianBtn";
             this.loadTerrianBtn.Size = new System.Drawing.Size(86, 30);
             this.loadTerrianBtn.TabIndex = 237;
@@ -1261,7 +1295,7 @@ namespace ACNHPokerCore
         private JCS.ToggleSwitch BridgeDiagonalToggle;
         private System.Windows.Forms.PictureBox BridgeImage;
         private System.Windows.Forms.Panel terrainPanel;
-        private System.Windows.Forms.Button flattenAllBtn;
+        private System.Windows.Forms.Button flattenAllTerrainBtn;
         private System.Windows.Forms.Button saveTerrianBtn;
         private System.Windows.Forms.Button loadTerrianBtn;
         private System.Windows.Forms.Panel PleaseWaitPanel;
@@ -1269,5 +1303,7 @@ namespace ACNHPokerCore
         private System.Windows.Forms.PictureBox PleaseWaitImage;
         private System.Windows.Forms.Button RemoveBuildingBtn;
         private System.Windows.Forms.ToolTip MapToolTip;
+        private System.Windows.Forms.Button removeAllRoadsBtn;
+        private System.Windows.Forms.Button removeAllCustomBtn;
     }
 }
