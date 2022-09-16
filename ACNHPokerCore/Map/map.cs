@@ -99,6 +99,13 @@ namespace ACNHPokerCore
 
         private readonly ToolStripMenuItem ActivateItem;
         private readonly ToolStripMenuItem DeactivateItem;
+        private readonly ToolStripMenuItem SetBaseItem;
+        private readonly ToolStripMenuItem CreateExtension;
+
+        private bool hasBaseItem = false;
+        private ushort BaseID = 0;
+        private int BaseMapX = -1;
+        private int BaseMapY = -1;
 
         public event CloseHandler CloseForm;
         private static readonly object lockObject = new();
@@ -250,6 +257,18 @@ namespace ACNHPokerCore
                 {
                     ForeColor = Color.White,
                     BackColor = Color.Crimson
+                };
+
+                SetBaseItem = new ToolStripMenuItem("Set As Base", null, SetBaseItemToolStripMenuItem_Click)
+                {
+                    ForeColor = Color.White,
+                    BackColor = Color.Blue
+                };
+
+                CreateExtension = new ToolStripMenuItem("Create Extension", null, CreateExtensionToolStripMenuItem_Click)
+                {
+                    ForeColor = Color.White,
+                    BackColor = Color.Orange
                 };
 
                 this.KeyPreview = true;
@@ -1005,6 +1024,23 @@ namespace ACNHPokerCore
         {
             var button = (FloorSlot)sender;
 
+            string name = button.itemName;
+            if (name.Equals(string.Empty))
+            {
+                if (button.isExtension())
+                {
+                    name = GetNameFromID(Utilities.precedingZeros((button.itemData & 0x0000FFFF).ToString("X"), 4), source);
+
+                    if (name.Equals(string.Empty))
+                    {
+                        name = "[ Extension ]";
+                    }
+                    else
+                    {
+                        name = "[ Extension of " + name + " ]";
+                    }
+                }
+            }
             /*
             string locked;
             if (button.locked)
@@ -1019,7 +1055,7 @@ namespace ACNHPokerCore
                 activateInfo = DisplayActivate(button.mapX, button.mapY, ActivateTable2);
 
             btnToolTip.SetToolTip(button,
-                                    button.itemName +
+                                    name +
                                     "\n\n" + "" +
                                     "ID : " + Utilities.precedingZeros(button.itemID.ToString("X"), 4) + "\n" +
                                     "Count : " + Utilities.precedingZeros(button.itemData.ToString("X"), 8) + "\n" +
@@ -2533,8 +2569,8 @@ namespace ACNHPokerCore
                 MyMessageBox.Show(ex.Message.ToString(), "I'm sorry.");
             }
 
-
-            Thread.Sleep(5000);
+            if (SpawnArea.Length > 2)
+                Thread.Sleep(3000);
 
             this.Invoke((MethodInvoker)delegate
             {
@@ -2591,6 +2627,37 @@ namespace ACNHPokerCore
                     if (floorRightClick.Items.Contains(DeactivateItem))
                         floorRightClick.Items.Remove(DeactivateItem);
                 }
+            }
+
+
+            floorRightClick.Items.Add(SetBaseItem);
+
+            if (hasBaseItem && (selectedButton.mapX >= BaseMapX || selectedButton.mapY >= BaseMapY))
+            {
+                if (selectedButton.mapX < BaseMapX || selectedButton.mapY < BaseMapY)
+                {
+                    if (floorRightClick.Items.Contains(CreateExtension))
+                        floorRightClick.Items.Remove(CreateExtension);
+                }
+                else if (selectedButton.mapX == BaseMapX && selectedButton.mapY == BaseMapY)
+                {
+                    if (floorRightClick.Items.Contains(CreateExtension))
+                        floorRightClick.Items.Remove(CreateExtension);
+                }
+                else if (selectedButton.mapX - BaseMapX > 8 || selectedButton.mapY - BaseMapY > 8)
+                {
+                    if (floorRightClick.Items.Contains(CreateExtension))
+                        floorRightClick.Items.Remove(CreateExtension);
+                }
+                else
+                {
+                    floorRightClick.Items.Add(CreateExtension);
+                }
+            }
+            else
+            {
+                if (floorRightClick.Items.Contains(CreateExtension))
+                    floorRightClick.Items.Remove(CreateExtension);
             }
         }
 
@@ -2983,6 +3050,54 @@ namespace ACNHPokerCore
             else
                 SetDeactivate(selectedButton.mapX, selectedButton.mapY, ref ActivateLayer2, ref ActivateTable2);
         }
+
+        private void CreateExtensionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!hasBaseItem)
+                return;
+            int DiffX = selectedButton.mapX - BaseMapX;
+            int DiffY = selectedButton.mapY - BaseMapY;
+
+            int sizeOfRow = 16;
+
+            string flag1 = "00";
+            string flag2 = "00";
+
+            long address;
+
+            if (layer1Btn.Checked)
+            {
+                address = Utilities.mapZero;
+            }
+            else if (layer2Btn.Checked)
+            {
+                address = Utilities.mapZero + Utilities.mapSize;
+            }
+            else
+                return;
+
+            byte[][] b = new byte[2][];
+
+            for (int i = 0; i < 2; i++)
+            {
+                b[i] = new byte[sizeOfRow];
+            }
+
+            b[0] = Utilities.stringToByte(Utilities.buildLeftExtension(Utilities.precedingZeros(BaseID.ToString("X"), 4), flag1, flag2, DiffX, DiffY));
+            b[1] = Utilities.stringToByte(Utilities.buildRightExtension(Utilities.precedingZeros(BaseID.ToString("X"), 4), flag1, flag2, DiffX, DiffY));
+
+            Thread SpawnThread = new(delegate () { AreaSpawnThread(address, b, selectedButton.mapX, selectedButton.mapY); });
+            SpawnThread.Start();
+        }
+
+        private void SetBaseItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            hasBaseItem = true;
+            BaseID = selectedButton.itemID;
+            BaseMapX = selectedButton.mapX;
+            BaseMapY = selectedButton.mapY;
+        }
+
         #endregion
 
         #region Delete Item

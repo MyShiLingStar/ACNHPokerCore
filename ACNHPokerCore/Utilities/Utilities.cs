@@ -2851,6 +2851,19 @@ namespace ACNHPokerCore
             else
                 return partID + flip(itemId) + "01" + "00" + partID + flip(itemId) + "01" + "01";
         }
+        public static string buildLeftExtension(string itemId, string flag1, string flag2, int DiffX, int DiffY)
+        {
+            string ExtensionID = "FFFD";
+            return flip(ExtensionID) + flag2 + flag1 + flip(itemId) + precedingZeros((DiffX * 2).ToString("X"), 2) + precedingZeros((DiffY * 2).ToString("X"), 2)
+                 + flip(ExtensionID) + flag2 + flag1 + flip(itemId) + precedingZeros((DiffX * 2).ToString("X"), 2) + precedingZeros((DiffY * 2 + 1).ToString("X"), 2);
+        }
+        public static string buildRightExtension(string itemId, string flag1, string flag2, int DiffX, int DiffY)
+        {
+            string ExtensionID = "FFFD";
+            return flip(ExtensionID) + flag2 + flag1 + flip(itemId) + precedingZeros((DiffX * 2 + 1).ToString("X"), 2) + precedingZeros((DiffY * 2).ToString("X"), 2)
+                 + flip(ExtensionID) + flag2 + flag1 + flip(itemId) + precedingZeros((DiffX * 2 + 1).ToString("X"), 2) + precedingZeros((DiffY * 2 + 1).ToString("X"), 2);
+        }
+
         public static string buildDropCore(string itemId, string count, string flag1, string flag2)
         {
             return flip(itemId) + flag2 + flag1 + flip(count);

@@ -1174,19 +1174,23 @@ namespace ACNHPokerCore
                                                         "1) \n" +
                                                         "Check that your Switch is running in CFW mode.\n" +
                                                         "On your Switch, go to [ System Settings ] -> [ System ]\n" +
-                                                        "Check [ Current version: ] and make sure you have [ AMS ] in it.\n" +
+                                                        "Under [ System Update ], check [ Current version: ] and make sure you have [ AMS ] in it.\n" +
                                                         " \n" +
                                                         "2) \n" +
                                                         "Check that you are connecting to the correct IP address.\n" +
                                                         "On your Switch, go to [ System Settings ] -> [ Internet ]\n" +
-                                                        "Check the [ IP address ] under [ Connection status ]\n" +
+                                                        "Check the [ IP Address ] under [ Connection Status ]\n" +
                                                         " \n" +
                                                         "3) \n" +
+                                                        "Sys-botbase might have crashed.\n" +
+                                                        "Please try holding down the power button and restart your Switch.\n" +
+                                                        " \n" +
+                                                        "4) \n" +
                                                         "Check that you have the latest version of Sys-botbase installed.\n" +
                                                         "You can get the latest version at \n        https://github.com/olliz0r/sys-botbase/releases \n" +
                                                         "Double-check your installation and make sure that the folder \n [ 430000000000000B ] can be located at [ SD: \\ atmosphere \\ contents \\ ] .\n" +
                                                         " \n" +
-                                                        "4) \n" +
+                                                        "5) \n" +
                                                         "When your Switch is booting up, \n" +
                                                         "Check that the LED of the [🏠 Home button] on your Joy-Con is lighting up.\n" +
                                                         " \n" +
@@ -1243,7 +1247,7 @@ namespace ACNHPokerCore
                                                     "Please update the game if your game version is below [ " + gameVersion + " ].\n" +
                                                     " \n" +
                                                     "3) \n" +
-                                                    "Please try holding the power button and restart your Switch.\n" +
+                                                    "Please try holding down the power button and restart your Switch.\n" +
                                                     "Then press and HOLD the [ L button ] while you are selecting the game to boot up.\n" +
                                                     "Keep holding the [ L button ] and release it once you can see the title screen.\n" +
                                                     "Then retry the connection.\n" +
@@ -2117,7 +2121,7 @@ namespace ACNHPokerCore
             selectedButton = button;
             selectedSlot = int.Parse(button.Tag.ToString());
 
-            if (Control.ModifierKeys == Keys.Control)
+            if (Control.ModifierKeys == Keys.Shift)
             {
                 if (currentPanel == ItemModePanel)
                 {
