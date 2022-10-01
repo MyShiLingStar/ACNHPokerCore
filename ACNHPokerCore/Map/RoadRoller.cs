@@ -469,7 +469,7 @@ namespace ACNHPokerCore
                     if (Acre != null)
                     {
                         if (MiniMap == null)
-                            MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, 2);
+                            MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, MapCustomDesgin, 2);
                     }
                     else
                         throw new NullReferenceException("Layer1/Layer2/Acre");
@@ -931,14 +931,21 @@ namespace ACNHPokerCore
 
         private void PlaceDesign(byte[] value, int x, int y)
         {
-            terrainUnits[x][y].SetCustomDesign(value);
+            TerrainUnit CurrentUnit = terrainUnits[x][y];
+
+            CurrentUnit.SetCustomDesign(value);
             _ = UpdateMainMapAsync(x, y);
+            AddMiniMapPixel(x, y, TerrainUnit.TerrainColor[(int)TerrainUnit.TerrainType.Design]);
         }
 
         private void RemoveDesign(int x, int y)
         {
-            terrainUnits[x][y].RemoveCustomDesign();
+            TerrainUnit CurrentUnit = terrainUnits[x][y];
+
+            ushort elevation = CurrentUnit.GetElevation();
+            CurrentUnit.RemoveCustomDesign();
             _ = UpdateMainMapAsync(x, y);
+            RemoveMiniMapPixel(x, y, elevation);
         }
 
         private void PlaceRoad(int x, int y)
@@ -2601,7 +2608,7 @@ namespace ACNHPokerCore
 
             this.Invoke((MethodInvoker)delegate
             {
-                MiniMap.UpdateTerrain(newTerrain);
+                MiniMap.UpdateTerrain(newTerrain, newCustomMap);
                 CurrentMiniMap = MiniMap.DrawBackground();
                 miniMapBox.BackgroundImage = CurrentMiniMap;
                 terrainSaving = false;

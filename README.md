@@ -4,6 +4,7 @@
 # ACNHPokerCore
 ![Release Image](https://user-images.githubusercontent.com/816502/189231022-02bfa2d8-1857-4b88-8edd-4a26a86a1c65.png)
 [![Video](https://img.youtube.com/vi/6RGZbiKzACg/maxresdefault.jpg)](https://youtu.be/6RGZbiKzACg)
+[![Video](https://img.youtube.com/vi/BPZ7Z1LlU94/maxresdefault.jpg)](https://youtu.be/BPZ7Z1LlU94)
 
    1. Spawns items for you on  Animal Crossing™: New Horizons using [sys-botbase](https://github.com/olliz0r/sys-botbase)
    2. Manipulate in-game critter spawn rate.

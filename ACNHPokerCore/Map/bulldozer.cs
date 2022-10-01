@@ -26,10 +26,15 @@ namespace ACNHPokerCore
         private byte[] Acre;
         private byte[] Building;
         private byte[] Terrain;
+        private byte[] MapCustomDesgin;
+        private int counter = 0;
 
         private byte[][] buildingList = null;
         private const int BuildingSize = 0x14;
         private const int NumOfBuilding = 46;
+
+        private const int numOfColumn = 0x70;
+        private const int numOfRow = 0x60;
 
         private int selectedAcre;
 
@@ -79,17 +84,20 @@ namespace ACNHPokerCore
 
             if (s != null || usb != null)
             {
+                counter = 0;
+
                 //Layer1 = Utilities.getMapLayer(s, usb, layer1Address, ref counter);
                 Layer1 = null;
                 //Layer2 = Utilities.getMapLayer(s, bot, layer2Address, ref counter);
                 Acre = Utilities.getAcre(s, usb);
                 Building = Utilities.getBuilding(s, usb);
                 Terrain = Utilities.getTerrain(s, usb);
+                MapCustomDesgin = Utilities.getCustomDesignMap(s, null, ref counter);
 
                 if (Acre != null && Building != null && Terrain != null)
                 {
                     if (MiniMap == null)
-                        MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, 4);
+                        MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, MapCustomDesgin, 4);
                 }
                 else
                     throw new NullReferenceException("Acre/Building/Terrain");
@@ -1720,6 +1728,123 @@ namespace ACNHPokerCore
             flattenWarning.ShowDialog();
             miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
             miniMapBox.Image = null;
+        }
+
+        private void removeAllRoadsBtn_Click(object sender, EventArgs e)
+        {
+            if (MyMessageBox.Show("Are you sure you would like to remove ALL roads on your island?", "Long road ahead...", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                LoadingPanel.Visible = true;
+                AcreBtn.Visible = false;
+                BuildingBtn.Visible = false;
+                TerrainBtn.Visible = false;
+                terrainPanel.Visible = false;
+
+                Thread RemoveRoadThread = new(delegate () { RemoveRoad(); });
+                RemoveRoadThread.Start();
+            }
+        }
+
+        private void RemoveRoad()
+        {
+            byte[] CurrentTerrainData = Utilities.getTerrain(s, usb);
+
+            int counter = 0;
+
+            while (Utilities.IsAboutToSave(s, usb, 10))
+            {
+                if (counter > 15)
+                    break;
+                Thread.Sleep(2000);
+                counter++;
+            }
+
+            counter = 0;
+
+            byte[] EmptyRoadData = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+
+            for (int i = 0; i < Utilities.MapTileCount16x16; i++)
+            {
+                Buffer.BlockCopy(EmptyRoadData, 0, CurrentTerrainData, i * Utilities.TerrainTileSize + 6, 6);
+            }
+
+            MiniMap.UpdateTerrain(CurrentTerrainData);
+
+            Utilities.sendTerrain(s, usb, CurrentTerrainData, ref counter);
+
+            if (sound)
+                System.Media.SystemSounds.Asterisk.Play();
+
+            this.Invoke((MethodInvoker)delegate
+            {
+                LoadingPanel.Visible = false;
+                AcreBtn.Visible = true;
+                BuildingBtn.Visible = true;
+                TerrainBtn.Visible = true;
+                terrainPanel.Visible = true;
+
+                miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
+                miniMapBox.Image = null;
+            });
+        }
+
+        private void removeAllDesignBtn_Click(object sender, EventArgs e)
+        {
+            if (MyMessageBox.Show("Are you sure you would like to remove ALL custom designs on your island?", "Deep Cleansing Scrub...", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                LoadingPanel.Visible = true;
+                AcreBtn.Visible = false;
+                BuildingBtn.Visible = false;
+                TerrainBtn.Visible = false;
+                terrainPanel.Visible = false;
+
+                Thread RemoveDesignThread = new(delegate () { RemoveDesign(); });
+                RemoveDesignThread.Start();
+            }
+        }
+
+        private void RemoveDesign()
+        {
+            int counter = 0;
+
+            while (Utilities.IsAboutToSave(s, usb, 10))
+            {
+                if (counter > 15)
+                    break;
+                Thread.Sleep(2000);
+                counter++;
+            }
+
+            counter = 0;
+
+            byte[] newCustomMap = new byte[numOfRow * numOfColumn * 2];
+
+            for (int i = 0; i < numOfColumn; i++)
+            {
+                for (int j = 0; j < numOfRow; j++)
+                {
+                    byte[] EmptyCustomDesignData = new byte[] { 0x00, 0xF8 };
+                    Buffer.BlockCopy(EmptyCustomDesignData, 0, newCustomMap, (i * numOfRow * 2) + (j * 2), 2);
+                }
+            }
+
+            Utilities.sendCustomMap(s, usb, newCustomMap, ref counter);
+
+            if (sound)
+                System.Media.SystemSounds.Asterisk.Play();
+
+            this.Invoke((MethodInvoker)delegate
+            {
+                LoadingPanel.Visible = false;
+                AcreBtn.Visible = true;
+                BuildingBtn.Visible = true;
+                TerrainBtn.Visible = true;
+                terrainPanel.Visible = true;
+
+                MiniMap.UpdateTerrain(null, newCustomMap);
+                miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
+                miniMapBox.Image = null;
+            });
         }
 
         private void SaveTerrianBtn_Click(object sender, EventArgs e)

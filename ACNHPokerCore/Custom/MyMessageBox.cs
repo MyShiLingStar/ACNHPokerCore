@@ -30,7 +30,7 @@ namespace ACNHPokerCore
         /// 
         /// Default is: 90% of the working area height.
         /// </summary>
-        public readonly static double MAX_HEIGHT_FACTOR = 1.0;
+        public readonly static double MAX_HEIGHT_FACTOR = 0.9;
 
         /// <summary>
         /// Defines the font for all FlexibleMessageBox instances.
@@ -460,7 +460,7 @@ namespace ACNHPokerCore
                 if (stringRows == null) return;
 
                 //Calculate whole text height
-                var textHeight = TextRenderer.MeasureText(text, FONT).Height + 10;
+                var textHeight = TextRenderer.MeasureText(text, FONT).Height * 1.3;
 
                 //Calculate width for longest text line
                 const int SCROLLBAR_WIDTH_OFFSET = 15;
@@ -474,7 +474,7 @@ namespace ACNHPokerCore
 
                 //Set calculated dialog size (if the calculated values exceed the maximums, they were cut by windows forms automatically)
                 flexibleMessageBoxForm.Size = new Size(textWidth + marginWidth,
-                                                       textHeight + marginHeight);
+                                                       (int)textHeight + marginHeight);
             }
 
             /// <summary>

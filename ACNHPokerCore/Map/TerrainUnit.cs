@@ -3992,6 +3992,7 @@ namespace ACNHPokerCore
             Elevation6 = 25,
             Elevation7 = 26,
             Elevation8 = 27,
+            Design = 248,
         }
         public static readonly Dictionary<int, Color> TerrainColor = new()
         {
@@ -4015,6 +4016,7 @@ namespace ACNHPokerCore
             {25, Color.FromArgb(252, 136, 248)},
             {26, Color.FromArgb(250, 90, 244)},
             {27, Color.FromArgb(250, 47, 242)},
+            {248, Color.Orange} // Custom Design 
         };
         public enum TerrainUnitModel : ushort
         {

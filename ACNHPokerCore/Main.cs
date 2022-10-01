@@ -1169,27 +1169,30 @@ namespace ACNHPokerCore
                                 if (MyMessageBox.Show("Sys-botbase not responding. Details?", "Error Code : 5318008 - Missing Sys-botbase Error!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                                 {
                                     MyMessageBox.Show("You have successfully started a connection!\n" +
-                                                        "Your IP address seems to be correct!\n" +
                                                         "However, Sys-botbase is not responding...\n" +
                                                         " \n" +
                                                         "1) \n" +
                                                         "Check that your Switch is running in CFW mode.\n" +
-                                                        "On your Switch, go to \"System Settings\"->\"System\"\n" +
-                                                        "Check \"Current version:\" and make sure you have \"AMS\" in it.\n" +
+                                                        "On your Switch, go to [ System Settings ] -> [ System ]\n" +
+                                                        "Under [ System Update ], check [ Current version: ] and make sure you have [ AMS ] in it.\n" +
                                                         " \n" +
                                                         "2) \n" +
                                                         "Check that you are connecting to the correct IP address.\n" +
-                                                        "On your Switch, go to \"System Settings\"->\"Internet\"\n" +
-                                                        "Check the \"IP address\" under \"Connection status\"\n" +
+                                                        "On your Switch, go to [ System Settings ] -> [ Internet ]\n" +
+                                                        "Check the [ IP Address ] under [ Connection Status ]\n" +
                                                         " \n" +
                                                         "3) \n" +
-                                                        "Check that you have the latest version of Sys-botbase installed.\n" +
-                                                        "You can get the latest version at \n        https://github.com/olliz0r/sys-botbase/releases \n" +
-                                                        "You should double check your installation and make sure that the \n \"430000000000000B\" folder is inside the \"sd: \\ atmosphere \\ contents \\\" folder.\n" +
+                                                        "Sys-botbase might have crashed.\n" +
+                                                        "Please try holding down the power button and restart your Switch.\n" +
                                                         " \n" +
                                                         "4) \n" +
+                                                        "Check that you have the latest version of Sys-botbase installed.\n" +
+                                                        "You can get the latest version at \n        https://github.com/olliz0r/sys-botbase/releases \n" +
+                                                        "Double-check your installation and make sure that the folder \n [ 430000000000000B ] can be located at [ SD: \\ atmosphere \\ contents \\ ] .\n" +
+                                                        " \n" +
+                                                        "5) \n" +
                                                         "When your Switch is booting up, \n" +
-                                                        "Check that the LED of the \"Home button\" on your Joy-Con is lighting up.\n" +
+                                                        "Check that the LED of the [🏠 Home button] on your Joy-Con is lighting up.\n" +
                                                         " \n" +
                                                         "https://github.com/MyShiLingStar/ACNHPokerCore/wiki/Connection-Troubleshooting#where-are-you-my-socket-6000"
                                                         , "Where are you, my socket 6000?", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1228,11 +1231,10 @@ namespace ACNHPokerCore
 
                                     MyLog.LogEvent("MainForm", "sys-botbase version : " + sysbotbaseVersion);
 
-                                    if (MyMessageBox.Show("Sys-botbase validation failed. Details?", "Error Code : 71077345 - Sys-botbase Validation Error!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                                    if (MyMessageBox.Show("Data validation failed. Details?", "Error Code : 71077345 - Data Validation Error!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                                     {
                                         MyMessageBox.Show("You have successfully established a connection!\n" +
-                                                    "Your Sys-botbase installation and IP address are correct.\n" +
-                                                    "However, Sys-botbase validation failed!\n" +
+                                                    "However, data validation has failed!\n" +
                                                     " \n" +
                                                     "1) \n" +
                                                     "Check that you have booted the game up.\n" +
@@ -1240,14 +1242,14 @@ namespace ACNHPokerCore
                                                     " \n" +
                                                     "2) \n" +
                                                     "Check that you have the correct matching version.\n" +
-                                                    "You are using \"" + version + "\" right now.\n" +
+                                                    "You are using [ " + version + " ] right now.\n" +
                                                     "You can find the latest version at : \n        https://github.com/MyShiLingStar/ACNHPokerCore \n" +
-                                                    "Please update your game if your game version is below \" " + gameVersion + " \".\n" +
+                                                    "Please update the game if your game version is below [ " + gameVersion + " ].\n" +
                                                     " \n" +
                                                     "3) \n" +
-                                                    "Please try holding the power button and restart your Switch.\n" +
-                                                    "Then press and HOLD the \"L\" button while you are selecting the game to boot up.\n" +
-                                                    "Keep holding the \"L\" button and release it once you can see the title screen.\n" +
+                                                    "Please try holding down the power button and restart your Switch.\n" +
+                                                    "Then press and HOLD the [ L button ] while you are selecting the game to boot up.\n" +
+                                                    "Keep holding the [ L button ] and release it once you can see the title screen.\n" +
                                                     "Then retry the connection.\n" +
                                                     " \n" +
                                                     "4) \n" +
@@ -1330,7 +1332,8 @@ namespace ACNHPokerCore
                                 this.IPAddressInputBackground.BackColor = Color.Red;
                             });
                             MyMessageBox.Show("Unable to connect to the Sys-botbase server.\n" +
-                                            "Please double check your IP address and Sys-botbase installation.\n\n" +
+                                            "Please double check your IP address and Sys-botbase installation.\n" +
+                                            " \n" +
                                             "You might also need to disable your firewall or antivirus temporary to allow outgoing connection."
                                             , "Unable to establish connection!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         }
@@ -2118,7 +2121,7 @@ namespace ACNHPokerCore
             selectedButton = button;
             selectedSlot = int.Parse(button.Tag.ToString());
 
-            if (Control.ModifierKeys == Keys.Control)
+            if (Control.ModifierKeys == Keys.Shift)
             {
                 if (currentPanel == ItemModePanel)
                 {
