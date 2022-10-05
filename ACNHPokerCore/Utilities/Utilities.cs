@@ -80,6 +80,7 @@ namespace ACNHPokerCore
         //=================================================================
 
         public static UInt32 VisitorNameAddress = 0xB750ED78; //0xB710ED78;
+        public static UInt32 VisitorIslandNameAddress = VisitorNameAddress - 0x1C;
 
         public static UInt32 dodoAddress = 0xABE015C; //0xABE015C;
         public static UInt32 OnlineSessionAddress = 0x945F740; //
@@ -2994,6 +2995,21 @@ namespace ACNHPokerCore
                 if (b == null)
                 {
                     MessageBox.Show("Wait something is wrong here!? \n\n peek " + VisitorNameAddress.ToString("X"));
+                }
+
+                return b;
+            }
+        }
+
+        public static byte[] getVisitorIslandName(Socket socket)
+        {
+            lock (botLock)
+            {
+                byte[] b = ReadByteArray(socket, VisitorIslandNameAddress, 20);
+                //Debug.Print("[Sys] Peek Visitor Name : " + VisitorNameAddress.ToString("X") + " " + "24");
+                if (b == null)
+                {
+                    MessageBox.Show("Wait something is wrong here!? \n\n peek " + VisitorIslandNameAddress.ToString("X"));
                 }
 
                 return b;
