@@ -1441,6 +1441,7 @@ namespace ACNHPokerCore
             bool init = true;
             idleNum = 0;
             string newVisitor;
+            string newVisitorIsland;
 
             do
             {
@@ -1466,10 +1467,34 @@ namespace ACNHPokerCore
                         wasLoading = true;
 
                         newVisitor = GetVisitorName();
+                        newVisitorIsland = GetVisitorIslandName();
 
                         if (!newVisitor.Equals(string.Empty))
                         {
                             CreateLog(newVisitor);
+                            WriteLog("Visitor: "+newVisitor+ " Island: "+newVisitorIsland, true);
+							/* uncomment if you want to take pics of visitor's pretty faces lol
+                            //capture visitor's arrival lol
+                            Thread.Sleep(300);
+                            Controller.ClickCAPTURE();
+                            Thread.Sleep(300);
+                            Controller.ClickCAPTURE();
+                            Thread.Sleep(300);
+                            Controller.ClickCAPTURE();
+                            Thread.Sleep(300);
+                            Controller.ClickCAPTURE();
+                            Thread.Sleep(300);
+                            Controller.ClickCAPTURE();
+                            Thread.Sleep(300);
+                            Controller.ClickCAPTURE();
+                            Thread.Sleep(300);
+                            Controller.ClickCAPTURE();
+                            Thread.Sleep(300);
+                            Controller.ClickCAPTURE();
+                            Thread.Sleep(300);
+                            Controller.ClickCAPTURE();
+                            WriteLog("Took Captures", true);
+							*/
                             Thread.Sleep(70000);
                             Utilities.sendBlankName(s);
                             state = Teleport.GetOverworldState();
@@ -1642,6 +1667,18 @@ namespace ACNHPokerCore
         private static string GetVisitorName()
         {
             byte[] b = Utilities.getVisitorName(s);
+            if (b == null)
+            {
+                return string.Empty;
+            }
+            //Debug.Print("Byte :   " +Utilities.ByteToHexString(b));
+            string tempName = Encoding.Unicode.GetString(b, 0, 20);
+            return tempName.Replace("\0", string.Empty);
+        }
+
+        private static string GetVisitorIslandName()
+        {
+            byte[] b = Utilities.getVisitorIslandName(s);
             if (b == null)
             {
                 return string.Empty;

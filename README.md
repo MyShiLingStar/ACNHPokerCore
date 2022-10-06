@@ -62,7 +62,8 @@
 ## Ely's Changes:   
 
     * Added function to convert the inventory to cheat sheet txt.  
-    * Added Auto-Refill Function and Switch to auto refill your inventory from the last nhi file you loaded.   
+    * Added Auto-Refill Function and Switch to auto refill your inventory from the last nhi file you loaded. 
+	* Added Incoming Visitor logging
 	
 ## Donate
 
