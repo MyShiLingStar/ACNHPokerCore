@@ -68,8 +68,8 @@ namespace ACNHPokerCore
         private bool ignore = false;
         private bool keepProtection = false;
         private int keepProtectionCounter = 0;
-        public int numOfColumn = 0;
-        public int numOfRow = 0;
+        public int numOfColumn = 1;
+        public int numOfRow = 1;
 
         private inventorySlot[,] variationList;
         private bool obeySize = false;
@@ -6001,6 +6001,7 @@ namespace ACNHPokerCore
                 variationSpawn variationSpawner = new(variationList, Layer1, Acre, Building, Terrain, MapCustomDesgin, TopLeftX, TopLeftY, flag2, selectedSize);
                 variationSpawner.SendObeySizeEvent += VariationSpawner_SendObeySizeEvent;
                 variationSpawner.SendRowAndColumnEvent += VariationSpawner_SendRowAndColumnEvent;
+
                 int result = (int)variationSpawner.ShowDialog(this);
 
                 if (result == 1) // Main

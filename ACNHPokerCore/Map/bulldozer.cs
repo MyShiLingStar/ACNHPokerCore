@@ -21,7 +21,6 @@ namespace ACNHPokerCore
         private static USBBot usb;
         private readonly bool sound;
         private MiniMap MiniMap = null;
-
         private byte[] Layer1;
         private byte[] Acre;
         private byte[] Building;
@@ -47,6 +46,7 @@ namespace ACNHPokerCore
         private int lastBuilding = 0;
 
         public event CloseHandler CloseForm;
+        private bool formClosed = false;
 
         public Bulldozer(Socket S, USBBot USB, bool Sound)
         {
@@ -58,17 +58,13 @@ namespace ACNHPokerCore
 
             Thread LoadThread = new(delegate () { LoadMap(); });
             LoadThread.Start();
-        }
-
-        private void LoadMap()
-        {
-            var layer1Address = Utilities.mapZero;
 
             var imageList = new ImageList
             {
                 ImageSize = new Size(64, 64)
             };
             acreList.LargeImageList = imageList;
+
             for (ushort i = 0; i < 0x13E; i++)
             {
                 if (Enum.IsDefined(typeof(Utilities.Acre), i))
@@ -80,7 +76,13 @@ namespace ACNHPokerCore
                     acreList.Items[acreList.Items.Count - 1].ToolTipText = AcreName.ToString();
                 }
             }
+
             ListViewItem_SetSpacing(acreList, 64 + 15, 80 + 15);
+        }
+
+        private void LoadMap()
+        {
+            var layer1Address = Utilities.mapZero;
 
             if (s != null || usb != null)
             {
@@ -190,15 +192,18 @@ namespace ACNHPokerCore
                 buildingGridView.CurrentCell = buildingGridView.Rows[0].Cells[2];
             }
 
-            this.Invoke((MethodInvoker)delegate
+            if (!formClosed)
             {
-                LoadingPanel.Visible = false;
-                miniMapBox.Visible = true;
-                AcreBtn.Visible = true;
-                BuildingBtn.Visible = true;
-                TerrainBtn.Visible = true;
-                acrePanel.Visible = true;
-            });
+                this.Invoke((MethodInvoker)delegate
+                {
+                    LoadingPanel.Visible = false;
+                    miniMapBox.Visible = true;
+                    AcreBtn.Visible = true;
+                    BuildingBtn.Visible = true;
+                    TerrainBtn.Visible = true;
+                    acrePanel.Visible = true;
+                });
+            }
         }
 
         private void FillBuilding()
@@ -475,12 +480,9 @@ namespace ACNHPokerCore
 
         private void ListViewItem_SetSpacing(ListView listview, short leftPadding, short topPadding)
         {
-            this.Invoke((MethodInvoker)delegate
-            {
                 const int LVM_FIRST = 0x1000;
                 const int LVM_SETICONSPACING = LVM_FIRST + 53;
                 _ = SendMessage(listview.Handle, LVM_SETICONSPACING, IntPtr.Zero, (IntPtr)MakeLong(leftPadding, topPadding));
-            });
         }
 
         private void AcreList_SelectedIndexChanged(object sender, EventArgs e)
@@ -493,6 +495,7 @@ namespace ACNHPokerCore
 
         private void Bulldozer_FormClosed(object sender, FormClosedEventArgs e)
         {
+            formClosed = true;
             MyLog.LogEvent("Bulldozer", "Form Closed");
             this.CloseForm();
         }
@@ -1775,17 +1778,20 @@ namespace ACNHPokerCore
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
 
-            this.Invoke((MethodInvoker)delegate
+            if (!formClosed)
             {
-                LoadingPanel.Visible = false;
-                AcreBtn.Visible = true;
-                BuildingBtn.Visible = true;
-                TerrainBtn.Visible = true;
-                terrainPanel.Visible = true;
+                this.Invoke((MethodInvoker)delegate
+                {
+                    LoadingPanel.Visible = false;
+                    AcreBtn.Visible = true;
+                    BuildingBtn.Visible = true;
+                    TerrainBtn.Visible = true;
+                    terrainPanel.Visible = true;
 
-                miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
-                miniMapBox.Image = null;
-            });
+                    miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
+                    miniMapBox.Image = null;
+                });
+            }
         }
 
         private void removeAllDesignBtn_Click(object sender, EventArgs e)
@@ -1833,18 +1839,21 @@ namespace ACNHPokerCore
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
 
-            this.Invoke((MethodInvoker)delegate
+            if (!formClosed)
             {
-                LoadingPanel.Visible = false;
-                AcreBtn.Visible = true;
-                BuildingBtn.Visible = true;
-                TerrainBtn.Visible = true;
-                terrainPanel.Visible = true;
+                this.Invoke((MethodInvoker)delegate
+                {
+                    LoadingPanel.Visible = false;
+                    AcreBtn.Visible = true;
+                    BuildingBtn.Visible = true;
+                    TerrainBtn.Visible = true;
+                    terrainPanel.Visible = true;
 
-                MiniMap.UpdateTerrain(null, newCustomMap);
-                miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
-                miniMapBox.Image = null;
-            });
+                    MiniMap.UpdateTerrain(null, newCustomMap);
+                    miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
+                    miniMapBox.Image = null;
+                });
+            }
         }
 
         private void SaveTerrianBtn_Click(object sender, EventArgs e)
@@ -1905,11 +1914,14 @@ namespace ACNHPokerCore
 
                 File.WriteAllBytes(file.FileName, terrain);
 
-                this.Invoke((MethodInvoker)delegate
+                if (!formClosed)
                 {
-                    PleaseWaitPanel.Visible = false;
-                    terrainPanel.Enabled = true;
-                });
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        PleaseWaitPanel.Visible = false;
+                        terrainPanel.Enabled = true;
+                    });
+                }
             }
             catch (Exception ex)
             {
@@ -2000,13 +2012,16 @@ namespace ACNHPokerCore
 
                 Utilities.sendTerrain(s, usb, terrain, ref counter);
 
-                this.Invoke((MethodInvoker)delegate
+                if (!formClosed)
                 {
-                    PleaseWaitPanel.Visible = false;
-                    terrainPanel.Enabled = true;
-                    miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
-                    miniMapBox.Image = null;
-                });
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        PleaseWaitPanel.Visible = false;
+                        terrainPanel.Enabled = true;
+                        miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
+                        miniMapBox.Image = null;
+                    });
+                }
             }
             catch (Exception ex)
             {

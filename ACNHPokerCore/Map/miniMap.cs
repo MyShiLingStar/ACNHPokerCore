@@ -924,7 +924,7 @@ namespace ACNHPokerCore
                     {
                         tilesType[i][j] = 11;
                     }
-                    else if (itemID == 0x12BA) // Hidden Chair
+                    else if (itemID == 0x1A9F || itemID == 0x1AF1 || itemID == 0x12BA) // transparent
                     {
                         tilesType[i][j] = 12;
                     }

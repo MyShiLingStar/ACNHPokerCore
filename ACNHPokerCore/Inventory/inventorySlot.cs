@@ -419,7 +419,7 @@ namespace ACNHPokerCore
                     if (displayItemData().Contains("83E0") || displayItemData().Contains("8642")) // Flower
                     {
                         this.TextAlign = System.Drawing.ContentAlignment.TopRight;
-                        this.Text = "✶";
+                        this.Text = "★";
                         return;
                     }
 

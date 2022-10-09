@@ -51,7 +51,6 @@ namespace ACNHPokerCore
 
             InitializeComponent();
             ProcessSize(size);
-            this.SendRowAndColumnEvent((int)rowBox.Value, (int)columnBox.Value);
 
             mainSlot[0, 0] = main00;
             mainSlot[0, 1] = main01;

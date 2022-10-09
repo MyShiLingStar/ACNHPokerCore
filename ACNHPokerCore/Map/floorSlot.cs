@@ -114,31 +114,6 @@ namespace ACNHPokerCore
             this.refresh(false);
         }
 
-        public async Task setupAsync(string Name, UInt16 ID, UInt32 Data, UInt32 P2, UInt32 P2Data, UInt32 P3, UInt32 P3Data, UInt32 P4, UInt32 P4Data, string Path1, string Path2, string Path3, string Path4, string containPath = "", string flagA = "00", string flagB = "00")
-        {
-            itemName = Name;
-            itemID = ID;
-            flag1 = flagA;
-            flag2 = flagB;
-            itemData = Data;
-
-            part2 = P2;
-            part2Data = P2Data;
-            part3 = P3;
-            part3Data = P3Data;
-            part4 = P4;
-            part4Data = P4Data;
-
-            image1Path = Path1;
-            image2Path = Path2;
-            image3Path = Path3;
-            image4Path = Path4;
-
-            containItemPath = containPath;
-
-            await refreshAsync(false);
-        }
-
         public void refresh(Boolean large)
         {
             lock (syncRoot)
@@ -235,122 +210,6 @@ namespace ACNHPokerCore
             }
         }
 
-        public async Task refreshAsync(Boolean large)
-        {
-            if (refreshing)
-                return;
-
-            refreshing = true;
-
-            this.ForeColor = System.Drawing.Color.White;
-            this.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-
-            lock (syncRoot)
-            {
-                this.Invoke((MethodInvoker)delegate
-                {
-                    this.Text = "";
-                    if (this.Image != null)
-                    {
-                        try
-                        {
-                            this.Image.Dispose();
-                            this.Image = null;
-                        }
-                        catch
-                        {
-                            refreshing = false;
-                            return;
-                        }
-                    }
-                });
-            };
-
-            //this.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.locked = false;
-
-            UInt32 P2Id = part2Data & 0x0000FFFF;
-            UInt32 P3Id = part3Data & 0x0000FFFF;
-            UInt32 P4Id = part4Data & 0x0000FFFF;
-
-            try
-            {
-                if (itemID != 0xFFFE && (itemID == P2Id && P2Id == P3Id && P3Id == P4Id) && (part2 == part3 && part3 == part4)) // Filled Slot
-                {
-
-                    if (flag2 != "20" || flag1 != "00")
-                    {
-                        locked = true;
-                    }
-                    //this.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-
-                    await Task.Run(() =>
-                    {
-                        lock (syncRoot)
-                        {
-                            try
-                            {
-                                this.Image = displayItemImage(large, false);
-                            }
-                            catch
-                            {
-                                refreshing = false;
-                                return;
-                            }
-                        };
-                    });
-                }
-                else if (itemID == 0xFFFE && part2 == 0xFFFE && part3 == 0xFFFE && part4 == 0xFFFE) // Empty
-                {
-                    //this.BackColor = Color.LightSalmon;
-                }
-                else if (itemID != 0xFFFE && flag1 != "00") // wrapped
-                {
-                    await Task.Run(() =>
-                    {
-                        try
-                        {
-                            this.Image = displayItemImage(large, false);
-                        }
-                        catch
-                        {
-                            refreshing = false;
-                            return;
-                        }
-                    });
-                }
-                else // seperate
-                {
-                    locked = true;
-
-                    if (flag1 != "00")
-                    {
-                        locked = true;
-                    }
-
-                    await Task.Run(() =>
-                    {
-                        try
-                        {
-                            this.Image = displayItemImage(large, true);
-                        }
-                        catch
-                        {
-                            refreshing = false;
-                            return;
-                        }
-                    });
-                }
-            }
-            catch
-            {
-                refreshing = false;
-                return;
-            }
-
-            refreshing = false;
-        }
-
         public void setBackColor(bool Layer1 = true, int Corner1X = -1, int Corner1Y = -1, int Corner2X = -1, int Corner2Y = -1, Boolean AreaSelected = false)
         {
             if (Layer1)
@@ -391,7 +250,7 @@ namespace ACNHPokerCore
                 if (itemData.ToString("X").Contains("83E0") || (itemData.ToString("X").Contains("8642"))) // Flower
                 {
                     this.TextAlign = System.Drawing.ContentAlignment.TopRight;
-                    this.Text = "✶";
+                    this.Text = "★";
                 }
                 else
                 {
