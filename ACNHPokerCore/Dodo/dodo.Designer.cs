@@ -2644,12 +2644,11 @@ namespace ACNHPokerCore
             this.controllerTimer.Interval = 15;
             this.controllerTimer.Tick += new System.EventHandler(this.ControllerTimer_Tick);
             // 
-            // dodo
+            // Dodo
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.ClientSize = new System.Drawing.Size(584, 291);
-            this.ControlBox = false;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.timerSettingPanel);
             this.Controls.Add(this.FullPanel);
@@ -2658,9 +2657,11 @@ namespace ACNHPokerCore
             this.Controls.Add(this.DoneAnchor2Btn);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1200, 440);
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(600, 330);
-            this.Name = "dodo";
+            this.Name = "Dodo";
             this.Opacity = 0.95D;
             this.ShowInTaskbar = false;
             this.Text = "Dutch Sailors            -> Click here to allow keyboard control <-";

@@ -95,6 +95,8 @@ namespace ACNHPokerCore
         bool shiftRight = false;
         bool shiftDown = false;
         bool coreOnly = false;
+        bool isPillar = false;
+        bool isHalfTileItem = false;
         bool debugging = false;
 
         private readonly ToolStripMenuItem ActivateItem;
@@ -343,6 +345,10 @@ namespace ACNHPokerCore
                 ActivateLayer1 = new byte[Utilities.mapActivateSize];
                 ActivateLayer2 = new byte[Utilities.mapActivateSize];
                 MapCustomDesgin = new byte[Utilities.MapTileCount16x16 * 2];
+
+                byte[] EmptyDesign = new byte[] { 0x00, 0xF8 };
+                for (int i = 0; i < Utilities.MapTileCount16x16; i++)
+                    Buffer.BlockCopy(EmptyDesign, 0, MapCustomDesgin, i * 2, 2);
 
                 if (MiniMap == null)
                     MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, MapCustomDesgin, 2);
@@ -1342,6 +1348,8 @@ namespace ACNHPokerCore
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
+                isHalfTileItem = false;
+                isPillar = false;
                 ShiftRightToggle.Checked = false;
                 ShiftDownToggle.Checked = false;
 
@@ -1363,6 +1371,10 @@ namespace ACNHPokerCore
                         IdTextbox.Text = id;
                         HexTextbox.Text = "00000000";
                         selectedSize = fieldGridView.Rows[e.RowIndex].Cells["size"].Value.ToString();
+                        if (selectedSize.Contains("Pillar"))
+                            isPillar = true;
+                        if (selectedSize.Contains("x0_5") && !selectedSize.Contains("_Wall") && !selectedSize.Contains("_Pillar"))
+                            isHalfTileItem = true;
                         SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("_Pillar", "Pillar").Replace("_Ceiling", "Ceiling").Replace("x", "x ");
 
                         selectedItem.setup(name, Convert.ToUInt16("0x" + id, 16), 0x0, GetImagePathFromID(id, source), true, "");
@@ -2233,6 +2245,12 @@ namespace ACNHPokerCore
             string flag2 = Utilities.precedingZeros(FlagTextbox.Text, 2);
             string flag1 = selectedItem.getFlag1();
 
+            if (isPillar || isHalfTileItem)
+            {
+                if (flag2.Equals("00") || flag2.Equals("01") || flag2.Equals("02") || flag2.Equals("03"))
+                    coreOnly = true;
+            }
+
             DisableBtn();
 
             Thread spawnThread = new(delegate () { DropItem(address, itemID, itemData, flag1, flag2, selectedButton); });
@@ -2520,57 +2538,60 @@ namespace ACNHPokerCore
         {
             ShowMapWait(SpawnArea.Length, "Spawning Items...");
 
-            try
+            if (!debugging)
             {
-                int time = SpawnArea.Length / 4;
-
-                Debug.Print("Length :" + SpawnArea.Length + " Time : " + time);
-
-                int c = 0;
-
-                while (Utilities.IsAboutToSave(s, usb, time + 10, saveTime, ignore))
+                try
                 {
-                    if (c > 10)
+                    int time = SpawnArea.Length / 4;
+
+                    //Debug.Print("Length :" + SpawnArea.Length + " Time : " + time);
+
+                    int c = 0;
+
+                    while (Utilities.IsAboutToSave(s, usb, time + 10, saveTime, ignore))
                     {
-                        if (IgnoreAutosave())
+                        if (c > 10)
                         {
-                            break;
-                        }
-                        else
-                        {
-                            this.Invoke((MethodInvoker)delegate
+                            if (IgnoreAutosave())
                             {
-                                EnableBtn();
-                            });
+                                break;
+                            }
+                            else
+                            {
+                                this.Invoke((MethodInvoker)delegate
+                                {
+                                    EnableBtn();
+                                });
 
-                            if (sound)
-                                System.Media.SystemSounds.Asterisk.Play();
+                                if (sound)
+                                    System.Media.SystemSounds.Asterisk.Play();
 
-                            HideMapWait();
-                            return;
+                                HideMapWait();
+                                return;
+                            }
                         }
+                        c++;
+                        Thread.Sleep(3000);
                     }
-                    c++;
-                    Thread.Sleep(3000);
-                }
 
-                for (int i = 0; i < SpawnArea.Length / 2; i++)
+                    for (int i = 0; i < SpawnArea.Length / 2; i++)
+                    {
+                        UInt32 currentColumn = (UInt32)(address + (0xC00 * (TopLeftX + i)) + (0x10 * (TopLeftY)));
+
+                        Utilities.dropColumn(s, usb, currentColumn, currentColumn + 0x600, SpawnArea[i * 2], SpawnArea[i * 2 + 1], ref counter);
+                    }
+
+                }
+                catch (Exception ex)
                 {
-                    UInt32 currentColumn = (UInt32)(address + (0xC00 * (TopLeftX + i)) + (0x10 * (TopLeftY)));
-
-                    Utilities.dropColumn(s, usb, currentColumn, currentColumn + 0x600, SpawnArea[i * 2], SpawnArea[i * 2 + 1], ref counter);
+                    MyLog.LogEvent("Map", "areaSpawn: " + ex.Message.ToString());
+                    NextSaveTimer.Stop();
+                    MyMessageBox.Show(ex.Message.ToString(), "I'm sorry.");
                 }
 
+                if (SpawnArea.Length > 2)
+                    Thread.Sleep(3000);
             }
-            catch (Exception ex)
-            {
-                MyLog.LogEvent("Map", "areaSpawn: " + ex.Message.ToString());
-                NextSaveTimer.Stop();
-                MyMessageBox.Show(ex.Message.ToString(), "I'm sorry.");
-            }
-
-            if (SpawnArea.Length > 2)
-                Thread.Sleep(3000);
 
             this.Invoke((MethodInvoker)delegate
             {

@@ -650,7 +650,7 @@ namespace ACNHPokerCore
                         Timestamp = DateTime.Now,
                         Color = SideColor, //alpha will be ignored, you can use any RGB color
                         Thumbnail = new EmbedMedia() { Url = imageURL },
-                        Footer = new EmbedFooter() { Text = "Sent From ACNHPoker" }
+                        Footer = new EmbedFooter() { Text = "Sent From ACNHPokerCore" }
                     };
 
                     message.Embeds = new[] { embed };

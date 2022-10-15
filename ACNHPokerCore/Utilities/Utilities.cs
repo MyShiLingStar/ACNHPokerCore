@@ -396,6 +396,8 @@ namespace ACNHPokerCore
 
         public static string ByteToHexString(byte[] b)
         {
+            if (b == null)
+                return "";
             String hexString = BitConverter.ToString(b);
             hexString = hexString.Replace("-", "");
 

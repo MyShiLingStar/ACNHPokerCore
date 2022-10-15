@@ -15,12 +15,12 @@ namespace ACNHPokerCore
 {
     public partial class MapRegenerator : Form
     {
-        private static Socket s;
+        private Socket s;
         private int counter = 0;
         private Boolean loop = false;
         private Boolean wasLoading = true;
         private Thread RegenThread = null;
-        private static readonly Object mapLock = new();
+        private readonly Object mapLock = new();
         private int delayTime = 50;
         private int pauseTime = 70;
         private readonly bool sound;
@@ -31,10 +31,10 @@ namespace ACNHPokerCore
         private byte[] tempData;
         private string tempFilename;
 
-        private static byte[][] villagerFlag;
-        private static byte[][] villager;
-        private static Boolean[] haveVillager;
-        private static Boolean FormIsClosing = false;
+        private byte[][] villagerFlag;
+        private byte[][] villager;
+        private Boolean[] haveVillager;
+        private Boolean FormIsClosing = false;
 
         public Dodo dodoSetup = null;
 
@@ -308,6 +308,8 @@ namespace ACNHPokerCore
             else
             {
                 MyLog.LogEvent("Regen", "Regen1 Stopped");
+                cts.Cancel();
+                WaitMessagebox.Text = "Stopping Regen...";
                 loop = false;
                 startRegen.Tag = "Start";
                 startRegen.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
@@ -463,6 +465,7 @@ namespace ACNHPokerCore
             else
             {
                 MyLog.LogEvent("Regen", "Regen2 Stopped");
+                cts.Cancel();
                 WaitMessagebox.Text = "Stopping Regen...";
                 loop = false;
                 startRegen2.Tag = "Start";
@@ -783,7 +786,8 @@ namespace ACNHPokerCore
             if (token.IsCancellationRequested)
             {
                 MyLog.LogEvent("Regen", "Regen1: Cancelled");
-                MyMessageBox.Show("Dodo Helper & Regen Aborted!\nPlease remember to exit the airport first if you want to restart!", "Airbag deployment!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (dodoSetup != null)
+                    MyMessageBox.Show("Dodo Helper & Regen Aborted!\nPlease remember to exit the airport first if you want to restart!", "Airbag deployment!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (!FormIsClosing)
                 {
                     this.Invoke((MethodInvoker)delegate
@@ -816,6 +820,7 @@ namespace ACNHPokerCore
         private void RegenMapFloor2(byte[][] b, UInt32 address, bool[][] isEmpty, string name, CancellationToken token)
         {
             string regenMsg = "Regenerating... " + name;
+
             ShowMapWait(56, regenMsg);
 
             byte[][] u = new byte[56][];
@@ -1031,7 +1036,8 @@ namespace ACNHPokerCore
             if (token.IsCancellationRequested)
             {
                 MyLog.LogEvent("Regen", "Regen2: Cancelled");
-                MyMessageBox.Show("Dodo Helper & Regen Aborted!\nPlease remember to exit the airport first if you want to restart!", "Slamming on the brakes?", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (dodoSetup != null)
+                    MyMessageBox.Show("Dodo Helper & Regen Aborted!\nPlease remember to exit the airport first if you want to restart!", "Slamming on the brakes?", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (!FormIsClosing)
                 {
                     this.Invoke((MethodInvoker)delegate
@@ -1062,7 +1068,7 @@ namespace ACNHPokerCore
         }
 
         #region Form functions/controls
-        private static bool SafeEquals(byte[] strA, byte[] strB)
+        private bool SafeEquals(byte[] strA, byte[] strB)
         {
             int length = strA.Length;
             if (length != strB.Length)
@@ -1172,7 +1178,7 @@ namespace ACNHPokerCore
             this.Close();
         }
 
-        private static void BuildEmptyTable(byte[] org, ref bool[] table)
+        private void BuildEmptyTable(byte[] org, ref bool[] table)
         {
             byte[] Part1 = new byte[0xC00];
             byte[] Part2 = new byte[0xC00];
@@ -1288,7 +1294,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private static bool Difference(byte[] org, ref byte[] upd, bool[] isEmpty, byte[] cur)
+        private bool Difference(byte[] org, ref byte[] upd, bool[] isEmpty, byte[] cur)
         {
             bool output = true;
             bool output2 = true;
@@ -1343,7 +1349,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private static string GetVisitorName()
+        private string GetVisitorName()
         {
             byte[] b = Utilities.getVisitorName(s);
             if (b == null)
@@ -1422,7 +1428,7 @@ namespace ACNHPokerCore
         #endregion
 
         #region Log
-        private static DataTable LoadCSV(string filePath)
+        private DataTable LoadCSV(string filePath)
         {
             var dt = new DataTable();
 
@@ -1576,7 +1582,7 @@ namespace ACNHPokerCore
 
         #region Villager
 
-        public static void PrepareVillager(Socket s)
+        public void PrepareVillager(Socket s)
         {
             villagerFlag = new byte[10][];
             villager = new byte[10][];
@@ -1591,7 +1597,7 @@ namespace ACNHPokerCore
             WriteVillager(villager, haveVillager);
         }
 
-        public static void UpdateVillager(Socket s, int index)
+        public void UpdateVillager(Socket s, int index)
         {
             if (villager == null)
                 PrepareVillager(s);
@@ -1626,7 +1632,7 @@ namespace ACNHPokerCore
             sw.WriteLine(villagerStr);
         }
 
-        private static void CheckAndResetVillager(byte[] villagerFlag, Boolean haveVillager, int index, ref int counter)
+        private void CheckAndResetVillager(byte[] villagerFlag, Boolean haveVillager, int index, ref int counter)
         {
             if (!haveVillager)
             {
@@ -1649,7 +1655,7 @@ namespace ACNHPokerCore
 
         #region Visitor
 
-        private static void GetVisitorList()
+        private void GetVisitorList()
         {
             string[] namelist = new string[8];
             int num = 0;
