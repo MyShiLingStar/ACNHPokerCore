@@ -648,6 +648,8 @@
             this.MapZero.Size = new System.Drawing.Size(180, 31);
             this.MapZero.TabIndex = 100;
             this.MapZero.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.MapZero.TextChanged += new System.EventHandler(this.BoxTextChanged);
+            this.MapZero.Validating += new System.ComponentModel.CancelEventHandler(this.BoxValidating);
             // 
             // SaveBtn
             // 

@@ -107,6 +107,8 @@ namespace ACNHPokerCore
             this.OtherTabButton = new System.Windows.Forms.Button();
             this.InventoryTabButton = new System.Windows.Forms.Button();
             this.InventoryLargePanel = new System.Windows.Forms.Panel();
+            this.ChasingAddressLabel = new System.Windows.Forms.Label();
+            this.ChaseBtn = new System.Windows.Forms.Button();
             this.StarFragmentToggle = new JCS.ToggleSwitch();
             this.AutoRefillLabel = new System.Windows.Forms.Label();
             this.AutoRefill = new JCS.ToggleSwitch();
@@ -346,6 +348,7 @@ namespace ACNHPokerCore
             this.PeekButton = new System.Windows.Forms.Button();
             this.PokeButton = new System.Windows.Forms.Button();
             this.FillButton = new System.Windows.Forms.Button();
+            this.ChaseTimer = new System.Windows.Forms.Timer(this.components);
             VillagerAutoCompleteMenu = new AutocompleteMenuNS.AutocompleteMenu();
             this.AlwaysOnControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IPAddressInputBackground)).BeginInit();
@@ -1470,7 +1473,7 @@ namespace ACNHPokerCore
             this.DebugAddress.Name = "DebugAddress";
             this.DebugAddress.Size = new System.Drawing.Size(294, 55);
             this.DebugAddress.TabIndex = 35;
-            this.DebugAddress.Text = "AFD559B0";
+            this.DebugAddress.Text = "AFB1E6E0";
             // 
             // DebugValue
             // 
@@ -2000,6 +2003,8 @@ namespace ACNHPokerCore
             // 
             // InventoryLargePanel
             // 
+            this.InventoryLargePanel.Controls.Add(this.ChasingAddressLabel);
+            this.InventoryLargePanel.Controls.Add(this.ChaseBtn);
             this.InventoryLargePanel.Controls.Add(this.StarFragmentToggle);
             this.InventoryLargePanel.Controls.Add(this.AutoRefillLabel);
             this.InventoryLargePanel.Controls.Add(this.AutoRefill);
@@ -2048,6 +2053,32 @@ namespace ACNHPokerCore
             this.InventoryLargePanel.Name = "InventoryLargePanel";
             this.InventoryLargePanel.Size = new System.Drawing.Size(1225, 550);
             this.InventoryLargePanel.TabIndex = 18;
+            // 
+            // ChasingAddressLabel
+            // 
+            this.ChasingAddressLabel.AutoSize = true;
+            this.ChasingAddressLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ChasingAddressLabel.ForeColor = System.Drawing.Color.White;
+            this.ChasingAddressLabel.Location = new System.Drawing.Point(1076, 534);
+            this.ChasingAddressLabel.Name = "ChasingAddressLabel";
+            this.ChasingAddressLabel.Size = new System.Drawing.Size(0, 16);
+            this.ChasingAddressLabel.TabIndex = 53;
+            // 
+            // ChaseBtn
+            // 
+            this.ChaseBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.ChaseBtn.FlatAppearance.BorderSize = 0;
+            this.ChaseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ChaseBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ChaseBtn.ForeColor = System.Drawing.Color.White;
+            this.ChaseBtn.Location = new System.Drawing.Point(968, 524);
+            this.ChaseBtn.Name = "ChaseBtn";
+            this.ChaseBtn.Size = new System.Drawing.Size(100, 23);
+            this.ChaseBtn.TabIndex = 52;
+            this.ChaseBtn.Tag = "";
+            this.ChaseBtn.Text = "Chase";
+            this.ChaseBtn.UseVisualStyleBackColor = false;
+            this.ChaseBtn.Click += new System.EventHandler(this.ChaseBtn_Click);
             // 
             // StarFragmentToggle
             // 
@@ -7567,6 +7598,11 @@ namespace ACNHPokerCore
             this.FillButton.UseVisualStyleBackColor = false;
             this.FillButton.Click += new System.EventHandler(this.FillButton_Click);
             // 
+            // ChaseTimer
+            // 
+            this.ChaseTimer.Interval = 1000;
+            this.ChaseTimer.Tick += new System.EventHandler(this.ChaseTimer_Tick);
+            // 
             // Main
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -7976,5 +8012,8 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Label AutoRefillLabel;
         private JCS.ToggleSwitch AutoRefill;
         private JCS.ToggleSwitch StarFragmentToggle;
+        private System.Windows.Forms.Button ChaseBtn;
+        private System.Windows.Forms.Label ChasingAddressLabel;
+        private System.Windows.Forms.Timer ChaseTimer;
     }
 }

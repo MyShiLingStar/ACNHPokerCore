@@ -75,7 +75,26 @@ namespace ACNHPokerCore
         public static UInt32 mapCustomDesign = mapZero + 0xCFA34;
 
         public static int PatternCount = 100;
-        public static UInt32 MyDesignZero = 0xAE7996F0;
+
+        public static UInt32 MyDesignZero = mapZero - 0x4BBA8;
+
+        public static UInt32 TerrainOffset = mapZero + 0xAAA00;
+
+        public static UInt32 AcreOffset = mapZero + 0xCF998;
+
+        private const int AcreWidth = 7 + (2 * 1);
+        private const int AcreHeight = 6 + (2 * 1);
+        private const int AcreMax = AcreWidth * AcreHeight;
+        public const int AllAcreSize = AcreMax * 2;
+        public const int AcreAndPlaza = AllAcreSize + 2 + 2 + 4 + 4;
+
+        public static UInt32 BuildingOffset = mapZero + 0xCF600;
+        private const int BuildingSize = 0x14;
+        public const int AllBuildingSize = 46 * BuildingSize;
+
+        public const int MapTileCount16x16 = 16 * 16 * 7 * 6;
+        public const int TerrainTileSize = 0xE;
+        public const int AllTerrainSize = MapTileCount16x16 * TerrainTileSize;
 
         //=================================================================
 
@@ -95,20 +114,6 @@ namespace ACNHPokerCore
         public static UInt32 savingOffset = 0x457B05AC; //
 
         //=================================================================
-
-        public static UInt32 TerrainOffset = mapZero + 0xAAA00; //TODO?
-
-        public static UInt32 AcreOffset = mapZero + 0xCF998;
-
-        private const int AcreWidth = 7 + (2 * 1);
-        private const int AcreHeight = 6 + (2 * 1);
-        private const int AcreMax = AcreWidth * AcreHeight;
-        public const int AllAcreSize = AcreMax * 2;
-        public const int AcreAndPlaza = AllAcreSize + 2 + 2 + 4 + 4;
-
-        public static UInt32 BuildingOffset = mapZero + 0xCF600;
-        private const int BuildingSize = 0x14;
-        public const int AllBuildingSize = 46 * BuildingSize;
 
         public static UInt32 player1SlotBase = masterAddress;
         public static UInt32 playerOffset = 0x11B968;
@@ -227,10 +232,6 @@ namespace ACNHPokerCore
         public static UInt32 MagicAddress = 0x008AFED8; //
         public static readonly string MagicOn = "79401A60";
         public static readonly string MagicOff = "52810840";
-
-        public const int MapTileCount16x16 = 16 * 16 * 7 * 6;
-        public const int TerrainTileSize = 0xE;
-        public const int AllTerrainSize = MapTileCount16x16 * TerrainTileSize;
 
         public static string csvFolder = @"csv\";
         public static string imagePath = @"img\";
@@ -3171,10 +3172,6 @@ namespace ACNHPokerCore
         public static void overrideAddresses(Dictionary<string, UInt32> config)
         {
             masterAddress = config["PlayerSlot"];
-
-            ItemSlotBase = masterAddress;
-            ItemSlot21Base = masterAddress - 0xB8;
-
             player1SlotBase = config["PlayerSlot"];
             playerOffset = config["PlayerOffset"];
             Slot21Offset = config["Slot21Offset"];
@@ -3196,6 +3193,19 @@ namespace ACNHPokerCore
             weatherSeed = config["WeatherSeed"];
             mapZero = config["MapZero"];
 
+
+
+            ItemSlotBase = masterAddress;
+            ItemSlot21Base = masterAddress - 0xB8;
+
+            TownNameddress = player1SlotBase + InventoryNameOffset;
+
+            mapActivate = mapZero + 0xA8000;
+            mapCustomDesign = mapZero + 0xCFA34;
+            TerrainOffset = mapZero + 0xAAA00;
+            AcreOffset = mapZero + 0xCF998;
+            BuildingOffset = mapZero + 0xCF600;
+            MyDesignZero = mapZero - 0x4BBA8;
 
             MasterRecycling21Base = MasterRecyclingBase + 0xA0;
             TurnipSellPriceAddr = TurnipPurchasePriceAddr + 0xC;

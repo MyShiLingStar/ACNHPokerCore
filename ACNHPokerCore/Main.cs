@@ -101,6 +101,8 @@ namespace ACNHPokerCore
         private int maxPage = 1;
         private int currentPage = 1;
 
+        private string ChasingAddress = "";
+
         private static readonly Object itemLock = new();
         private static readonly Object villagerLock = new();
 
@@ -2789,6 +2791,8 @@ namespace ACNHPokerCore
 
             SelectedItem.Visible = false;
             SelectedItemName.Visible = false;
+
+            ClearAllButton.Visible = false;
         }
 
         private void HideWait()
@@ -2808,6 +2812,8 @@ namespace ACNHPokerCore
 
             SelectedItem.Visible = true;
             SelectedItemName.Visible = true;
+
+            ClearAllButton.Visible = true;
         }
         #endregion
 
@@ -8478,5 +8484,146 @@ namespace ACNHPokerCore
         {
             Ch = null;
         }
+
+        #region Chaser
+
+        private void ChaseBtn_Click(object sender, EventArgs e)
+        {
+            Configuration Config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
+            if (Config.AppSettings.Settings["override"].Value == "true")
+            {
+                DialogResult dialogResult = MyMessageBox.Show("Would you like to disable [Address Override] now?", "Please disable [Address Override] before starting chaser!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    Config.AppSettings.Settings["override"].Value = "false";
+                    Config.Save(ConfigurationSaveMode.Minimal);
+
+                    Application.Restart();
+                }
+                return;
+            }
+
+            UInt32 startAddress = Convert.ToUInt32(DebugAddress.Text, 16);
+
+            ChaseTimer.Start();
+
+            Thread ChaserThread = new(delegate () { Chaser(startAddress); });
+            ChaserThread.Start();
+        }
+
+        private void Chaser(UInt32 startAddress)
+        {
+            ShowWait();
+
+            UInt32 MasterAddress = startAddress;
+            byte[] pattern = new byte[] { 0xC4, 0x09, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00 };
+
+            int offset = 0;
+
+            for (int i = 0; i < 10000; i++)
+            {
+                ChasingAddress = (MasterAddress + offset - 4).ToString("X");
+                Debug.Print("Chasing : " + ChasingAddress);
+                byte[] b = Utilities.ReadByteArray8(socket, MasterAddress + offset - 4, 8192);
+                int result = Search(b, pattern);
+                if (result >= 0)
+                {
+                    long fakeAddress = MasterAddress + offset + result - 4;
+
+                    int HeadResult = locatePlayerHead(fakeAddress);
+                    if (HeadResult > 0)
+                    {
+                        UInt32 FinalOffset = (uint)(fakeAddress - (Utilities.playerOffset * (HeadResult - 1)) - MasterAddress);
+                        DialogResult dialogResult = MyMessageBox.Show("Tree branch Address : " + fakeAddress.ToString("X") + "\n" +
+                                                                      "Header Address : " + (fakeAddress - (Utilities.playerOffset * (HeadResult - 1))).ToString("X") + "\n" +
+                                                                      "Offset : " + FinalOffset.ToString("X") + "\n\n" +
+                                                                      "Apply offset ?"
+                                                                    , "Address & Header Found!", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                        if (dialogResult == DialogResult.OK)
+                        {
+                            Configuration Config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
+                            Config.AppSettings.Settings["override"].Value = "true";
+
+                            Config.AppSettings.Settings["PlayerSlot"].Value = (Utilities.masterAddress + FinalOffset).ToString("X");
+
+                            Config.AppSettings.Settings["Villager"].Value = (Utilities.VillagerAddress + FinalOffset).ToString("X");
+
+                            Config.AppSettings.Settings["VillagerHouse"].Value = (Utilities.VillagerHouseAddress + FinalOffset).ToString("X");
+
+                            Config.AppSettings.Settings["RecyclingBin"].Value = (Utilities.MasterRecyclingBase + FinalOffset).ToString("X");
+                            Config.AppSettings.Settings["Turnip"].Value = (Utilities.TurnipPurchasePriceAddr + FinalOffset).ToString("X");
+                            Config.AppSettings.Settings["Stamina"].Value = (Utilities.staminaAddress + FinalOffset).ToString("X");
+
+                            Config.AppSettings.Settings["WeatherSeed"].Value = (Utilities.weatherSeed + FinalOffset).ToString("X");
+                            Config.AppSettings.Settings["MapZero"].Value = (Utilities.mapZero + FinalOffset).ToString("X");
+
+                            Config.Save(ConfigurationSaveMode.Minimal);
+                            this.Invoke((MethodInvoker)delegate { Application.Restart(); });
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MyMessageBox.Show("Tree branch Address : " + fakeAddress.ToString("X"), "Header Not Found!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    Debug.Print(result.ToString("X") + "  " + offset.ToString("X") + " Final : " + fakeAddress.ToString("X") + " Offset : " + (fakeAddress - Utilities.masterAddress).ToString("X"));
+                    break;
+                }
+                offset += 8188;
+            }
+
+            if (sound)
+                System.Media.SystemSounds.Asterisk.Play();
+
+            ChaseTimer.Stop();
+            HideWait();
+        }
+
+        private int Search(byte[] src, byte[] pattern)
+        {
+            int maxFirstCharSlot = src.Length - pattern.Length + 1;
+            for (int i = 0; i < maxFirstCharSlot; i++)
+            {
+                if (src[i] != pattern[0])
+                    continue;
+
+                for (int j = pattern.Length - 1; j >= 1; j--)
+                {
+                    if (src[i + j] != pattern[j]) break;
+                    if (j == 1) return i;
+                }
+            }
+            return -1;
+        }
+
+        private int locatePlayerHead(long currentAddress)
+        {
+            byte[] pattern1 = new byte[] { 0x58, 0xE5, 0xBF, 0x87}; ;
+            byte[] pattern2 = new byte[] { 0xF0, 0x96, 0x19, 0x25}; ;
+            byte[] pattern3 = new byte[] { 0xB0, 0x6F, 0x43, 0x26}; ;
+
+            string bytelist = "";
+
+            for (int i = 0; i < 8; i++)
+            {
+                byte[] b = Utilities.ReadByteArray(socket, currentAddress - (i * Utilities.playerOffset), 80);
+                bytelist += Utilities.ByteToHexString(b) + "\n";
+                if (Search(b, pattern1) >= 0 || Search(b, pattern2) >= 0 || Search(b, pattern3) >= 0)
+                {
+                    MyMessageBox.Show(bytelist, "Result");
+                    return i;
+                }
+            }
+            MyMessageBox.Show(bytelist, "Result");
+            return -1;
+        }
+
+        private void ChaseTimer_Tick(object sender, EventArgs e)
+        {
+            ChasingAddressLabel.Text = ChasingAddress;
+        }
+
+        #endregion
     }
 }
