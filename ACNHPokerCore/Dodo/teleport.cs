@@ -24,6 +24,8 @@ namespace ACNHPokerCore
         private static readonly int teleportSize = coordinateSize + turningSize;
 
         private static readonly object lockObject = new();
+        private static string anchorPath;
+
         public enum OverworldState
         {
             Null,
@@ -44,27 +46,59 @@ namespace ACNHPokerCore
 
         public static void Init(Socket S)
         {
+            /*
             if (!File.Exists(Utilities.teleportPath))
             {
                 byte[] teleportByte = new byte[teleportSize * 10];
                 File.WriteAllBytes(Utilities.teleportPath, teleportByte);
             }
-            if (!File.Exists(Utilities.anchorPath))
+            */
+
+            Configuration Config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
+
+            if (!File.Exists(Config.AppSettings.Settings["AnchorPath"].Value))
+            {
+                anchorPath = "Anchors.bin";
+                Config.AppSettings.Settings["AnchorPath"].Value = "Anchors.bin";
+                Config.Save(ConfigurationSaveMode.Minimal);
+            }
+            else
+            {
+                anchorPath = Config.AppSettings.Settings["AnchorPath"].Value;
+            }
+
+            if (!File.Exists(anchorPath))
             {
                 byte[] anchorByte = new byte[teleportSize * 5];
-                File.WriteAllBytes(Utilities.anchorPath, anchorByte);
+                File.WriteAllBytes(anchorPath, anchorByte);
             }
 
             s = S;
 
-            teleportByte = File.ReadAllBytes(Utilities.teleportPath);
-            anchorByte = File.ReadAllBytes(Utilities.anchorPath);
+            //teleportByte = File.ReadAllBytes(Utilities.teleportPath);
+            anchorByte = File.ReadAllBytes(anchorPath);
 
             if (anchorByte.Length < 120)
             {
                 MyMessageBox.Show("It seems you are using a smaller \"Anchors.bin\"... \nOr your \"Anchors.bin\" is totally corrupted.", "Bigger is not always better", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 FixAnchorByte();
             }
+        }
+
+        public static void LoadNewAnchors(byte[] newAnchors, string path)
+        {
+            anchorByte = newAnchors;
+
+            Configuration Config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
+
+            anchorPath = path;
+            Config.AppSettings.Settings["AnchorPath"].Value = path;
+            Config.Save(ConfigurationSaveMode.Minimal);
+        }
+
+        public static string getAnchorPath()
+        {
+            return anchorPath;
         }
 
         public static ulong GetCoordinateAddress(string strInput)
@@ -244,7 +278,7 @@ namespace ACNHPokerCore
             Buffer.BlockCopy(CurCoordinate, 0, anchorByte, teleportSize * num, coordinateSize);
             Buffer.BlockCopy(CurTurning, 0, anchorByte, teleportSize * num + coordinateSize, turningSize);
 
-            File.WriteAllBytes(Utilities.anchorPath, anchorByte);
+            File.WriteAllBytes(anchorPath, anchorByte);
         }
         public static byte CheckOnlineStatus(bool chi = false)
         {
@@ -339,7 +373,7 @@ namespace ACNHPokerCore
 
             anchorByte = temp;
 
-            File.WriteAllBytes(Utilities.anchorPath, anchorByte);
+            File.WriteAllBytes(anchorPath, anchorByte);
 
             Debug.Print(Utilities.ByteToHexString(anchorByte));
         }

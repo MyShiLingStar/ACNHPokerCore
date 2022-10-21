@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -56,6 +57,8 @@ namespace ACNHPokerCore
         bool L = false;
         bool holdingL = false;
 
+        private string header = "Dutch Sailors            -> Click here to allow keyboard control <-            ";
+
         private CancellationTokenSource cts;
 
         public event CloseHandler CloseForm;
@@ -100,6 +103,8 @@ namespace ACNHPokerCore
             }
             controllerTimer.Start();
             this.KeyPreview = true;
+            string[] path = Teleport.getAnchorPath().Split('\\');
+            this.Text = header + path[path.Length - 1];
         }
 
         #region Teleport Setup
@@ -1472,8 +1477,8 @@ namespace ACNHPokerCore
                         if (!newVisitor.Equals(string.Empty))
                         {
                             CreateLog(newVisitor);
-                            WriteLog("Visitor: "+newVisitor+ " Island: "+newVisitorIsland, true);
-							/* uncomment if you want to take pics of visitor's pretty faces lol
+                            WriteLog("Visitor: " + newVisitor + " Island: " + newVisitorIsland, true);
+                            /* uncomment if you want to take pics of visitor's pretty faces lol
                             //capture visitor's arrival lol
                             Thread.Sleep(300);
                             Controller.ClickCAPTURE();
@@ -2153,6 +2158,50 @@ namespace ACNHPokerCore
         private void SessionBox_CheckedChanged(object sender, EventArgs e)
         {
             resetSession = sessionBox.Checked;
+        }
+
+        private void LoadAnchorBtn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog file = new()
+            {
+                Filter = "Anchors File (*.bin)|*.bin",
+                FileName = "Anchors.bin",
+            };
+
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
+
+            string savepath;
+
+            if (config.AppSettings.Settings["LastLoad"].Value.Equals(string.Empty))
+                savepath = Directory.GetCurrentDirectory() + @"\save";
+            else
+                savepath = config.AppSettings.Settings["LastLoad"].Value;
+
+            if (Directory.Exists(savepath))
+            {
+                file.InitialDirectory = savepath;
+            }
+            else
+            {
+                file.InitialDirectory = @"C:\";
+            }
+
+            if (file.ShowDialog() != DialogResult.OK)
+                return;
+
+            byte[] LoadAnchors = File.ReadAllBytes(file.FileName);
+
+            if (LoadAnchors.Length != 120)
+            {
+                MessageBox.Show("Anchors file size incorrect!", "Anchors file invalid");
+                return;
+            }
+
+            Teleport.LoadNewAnchors(LoadAnchors, file.FileName);
+
+            string[] temp = file.FileName.Split('\\');
+
+            this.Text = header + temp[temp.Length - 1];
         }
     }
 }

@@ -8599,9 +8599,9 @@ namespace ACNHPokerCore
 
         private int locatePlayerHead(long currentAddress)
         {
-            byte[] pattern1 = new byte[] { 0x58, 0xE5, 0xBF, 0x87}; ;
-            byte[] pattern2 = new byte[] { 0xF0, 0x96, 0x19, 0x25}; ;
-            byte[] pattern3 = new byte[] { 0xB0, 0x6F, 0x43, 0x26}; ;
+            byte[] pattern1 = new byte[] { 0x58, 0xE5, 0xBF, 0x87 }; ;
+            byte[] pattern2 = new byte[] { 0xF0, 0x96, 0x19, 0x25 }; ;
+            byte[] pattern3 = new byte[] { 0xB0, 0x6F, 0x43, 0x26 }; ;
 
             string bytelist = "";
 

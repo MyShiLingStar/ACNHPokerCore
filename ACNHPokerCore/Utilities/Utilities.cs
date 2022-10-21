@@ -274,7 +274,6 @@ namespace ACNHPokerCore
 
         public static string teleportFile = @"teleport.bin";
         public static string teleportPath = saveFolder + teleportFile;
-        public static string anchorPath = @"Anchors.bin";
 
         public static string MissingImage = @"QuestionMark.png";
         public static string RecipeOverlayFile = @"PaperRecipe.png";

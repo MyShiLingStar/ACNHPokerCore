@@ -34,6 +34,7 @@ namespace ACNHPokerCore
             this.FullPanel = new System.Windows.Forms.Panel();
             this.AbortBtn = new System.Windows.Forms.Button();
             this.functionPanel = new System.Windows.Forms.Panel();
+            this.LoadAnchorBtn = new System.Windows.Forms.Button();
             this.restoreDodobox = new System.Windows.Forms.CheckBox();
             this.injectVillagerBox = new System.Windows.Forms.CheckBox();
             this.dropItemBox = new System.Windows.Forms.CheckBox();
@@ -329,6 +330,7 @@ namespace ACNHPokerCore
             // 
             // functionPanel
             // 
+            this.functionPanel.Controls.Add(this.LoadAnchorBtn);
             this.functionPanel.Controls.Add(this.restoreDodobox);
             this.functionPanel.Controls.Add(this.injectVillagerBox);
             this.functionPanel.Controls.Add(this.dropItemBox);
@@ -350,6 +352,22 @@ namespace ACNHPokerCore
             this.functionPanel.Name = "functionPanel";
             this.functionPanel.Size = new System.Drawing.Size(119, 258);
             this.functionPanel.TabIndex = 318;
+            // 
+            // LoadAnchorBtn
+            // 
+            this.LoadAnchorBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.LoadAnchorBtn.FlatAppearance.BorderSize = 0;
+            this.LoadAnchorBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LoadAnchorBtn.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LoadAnchorBtn.ForeColor = System.Drawing.Color.White;
+            this.LoadAnchorBtn.Location = new System.Drawing.Point(5, 108);
+            this.LoadAnchorBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.LoadAnchorBtn.Name = "LoadAnchorBtn";
+            this.LoadAnchorBtn.Size = new System.Drawing.Size(22, 22);
+            this.LoadAnchorBtn.TabIndex = 341;
+            this.LoadAnchorBtn.Text = "⚓";
+            this.LoadAnchorBtn.UseVisualStyleBackColor = false;
+            this.LoadAnchorBtn.Click += new System.EventHandler(this.LoadAnchorBtn_Click);
             // 
             // restoreDodobox
             // 
@@ -409,10 +427,10 @@ namespace ACNHPokerCore
             this.standaloneStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.standaloneStart.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.standaloneStart.ForeColor = System.Drawing.Color.White;
-            this.standaloneStart.Location = new System.Drawing.Point(3, 108);
+            this.standaloneStart.Location = new System.Drawing.Point(30, 108);
             this.standaloneStart.Margin = new System.Windows.Forms.Padding(4);
             this.standaloneStart.Name = "standaloneStart";
-            this.standaloneStart.Size = new System.Drawing.Size(112, 22);
+            this.standaloneStart.Size = new System.Drawing.Size(85, 22);
             this.standaloneStart.TabIndex = 338;
             this.standaloneStart.Tag = "Start";
             this.standaloneStart.Text = "Start";
@@ -2859,5 +2877,6 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Timer controllerTimer;
         private System.Windows.Forms.Button clearSlotBtn;
         private System.Windows.Forms.CheckBox sessionBox;
+        private System.Windows.Forms.Button LoadAnchorBtn;
     }
 }
