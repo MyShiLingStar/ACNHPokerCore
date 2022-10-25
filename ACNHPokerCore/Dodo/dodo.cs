@@ -40,6 +40,8 @@ namespace ACNHPokerCore
         private bool standaloneRunning = false;
         private bool resetSession = false;
 
+        private Boolean FormIsClosing = false;
+        private String[] CurrentVisitorList = null;
 
         bool W = false;
         bool A = false;
@@ -488,6 +490,8 @@ namespace ACNHPokerCore
 
         private void Dodo_FormClosed(object sender, FormClosedEventArgs e)
         {
+            FormIsClosing = true;
+
             controllerTimer.Stop();
 
             if (MyPubSub != null)
@@ -1434,7 +1438,7 @@ namespace ACNHPokerCore
             {
                 if (i == 0)
                     continue;
-                namelist[i] = Utilities.GetVisitorName(s, null, i);
+                namelist[i] = Utilities.GetVisitorNameFromList(s, null, i);
                 if (!namelist[i].Equals(String.Empty))
                     num++;
             }
@@ -1476,7 +1480,7 @@ namespace ACNHPokerCore
 
                         if (!newVisitor.Equals(string.Empty))
                         {
-                            CreateLog(newVisitor);
+                            CreateLog(newVisitor, newVisitorIsland, "In");
                             WriteLog("Visitor: " + newVisitor + " Island: " + newVisitorIsland, true);
                             /* uncomment if you want to take pics of visitor's pretty faces lol
                             //capture visitor's arrival lol
@@ -1660,7 +1664,7 @@ namespace ACNHPokerCore
 
                 if (wasLoading)
                 {
-                    GetVisitorList();
+                    CurrentVisitorList = GetVisitorList(CurrentVisitorList);
                 }
                 idleNum++;
 
@@ -1693,25 +1697,77 @@ namespace ACNHPokerCore
             return tempName.Replace("\0", string.Empty);
         }
 
-        private static void GetVisitorList()
+        private string[] GetVisitorList(string[] oldVisitorList)
         {
-            string[] namelist = new string[8];
+            string[] newVisitorList = new string[8];
             int num = 0;
+
             using StreamWriter sw = File.CreateText(Utilities.CurrentVisitorPath);
             for (int i = 0; i < 8; i++)
             {
                 if (i == 0)
+                {
+                    newVisitorList[i] = String.Empty;
                     continue;
-                namelist[i] = Utilities.GetVisitorName(s, null, i);
-                if (namelist[i].Equals(String.Empty))
+                }
+                else
+                    newVisitorList[i] = Utilities.GetVisitorNameFromList(s, null, i);
+
+                if (newVisitorList[i].Equals(String.Empty))
                     sw.WriteLine("[Empty]");
                 else
                 {
-                    sw.WriteLine(namelist[i]);
+                    sw.WriteLine(newVisitorList[i]);
                     num++;
                 }
             }
             sw.WriteLine("Num of Visitor : " + num);
+
+            string[] Leaver = new string[8];
+            bool StillHere;
+
+            if (oldVisitorList != null)
+            {
+                for (int i = 0; i < oldVisitorList.Length; i++)
+                {
+                    StillHere = false;
+
+                    for (int j = 0; j < newVisitorList.Length; j++)
+                    {
+                        if (oldVisitorList[i] == newVisitorList[j])
+                        {
+                            StillHere = true;
+                            break;
+                        }
+                    }
+
+                    if (StillHere)
+                    {
+                        Leaver[i] = string.Empty;
+                    }
+                    else
+                    {
+                        Leaver[i] = oldVisitorList[i];
+                    }
+                }
+
+                foreach (string visitor in Leaver)
+                {
+                    if (visitor != string.Empty && visitor != null)
+                    {
+                        if (!FormIsClosing)
+                        {
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                CreateLog(visitor, "", "Out");
+                            });
+                        }
+                    }
+                }
+            }
+
+            return newVisitorList;
+
             /*if (num >= 7)
             {
                 sw.WriteLine(" [Island Full] ");
@@ -1719,18 +1775,18 @@ namespace ACNHPokerCore
             //Debug.Print("Visitor Update");
         }
 
-        private static void CreateLog(string newVisitor)
+        private static void CreateLog(string newVisitor, string newVisitorIsland = "", string state = "")
         {
             if (!File.Exists(Utilities.VisitorLogPath))
             {
-                string logheader = "Timestamp" + "," + "Name";
+                string logheader = "Timestamp" + "," + "Name" + "," + "Island" + "," + "I/O";
 
                 using StreamWriter sw = File.CreateText(Utilities.VisitorLogPath);
                 sw.WriteLine(logheader);
             }
 
             DateTime localDate = DateTime.Now;
-            string newLog = localDate.ToString() + "," + newVisitor;
+            string newLog = localDate.ToString() + "," + newVisitor + "," + newVisitorIsland + "," + state;
 
             using (StreamWriter sw = File.AppendText(Utilities.VisitorLogPath))
             {

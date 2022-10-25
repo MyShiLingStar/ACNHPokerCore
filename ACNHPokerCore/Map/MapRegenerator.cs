@@ -38,6 +38,8 @@ namespace ACNHPokerCore
 
         public Dodo dodoSetup = null;
 
+        private String[] CurrentVisitorList = null;
+
         private CancellationTokenSource cts;
 
         public event CloseHandler CloseForm;
@@ -131,11 +133,14 @@ namespace ACNHPokerCore
 
             HideMapWait();
 
-            this.Invoke((MethodInvoker)delegate
+            if (!FormIsClosing)
             {
-                FinMsg.Visible = true;
-                FinMsg.Text = "Template Saved!";
-            });
+                this.Invoke((MethodInvoker)delegate
+                {
+                    FinMsg.Visible = true;
+                    FinMsg.Text = "Template Saved!";
+                });
+            }
         }
         #endregion
 
@@ -217,11 +222,14 @@ namespace ACNHPokerCore
 
             HideMapWait();
 
-            this.Invoke((MethodInvoker)delegate
+            if (!FormIsClosing)
             {
-                FinMsg.Visible = true;
-                FinMsg.Text = "Template Loaded!";
-            });
+                this.Invoke((MethodInvoker)delegate
+                {
+                    FinMsg.Visible = true;
+                    FinMsg.Text = "Template Loaded!";
+                });
+            }
         }
         #endregion
 
@@ -607,6 +615,7 @@ namespace ACNHPokerCore
             stopWatch.Start();
 
             string newVisitor;
+            string newVisitorIsland;
             TimeSpan ts;
 
             if (dodoSetup != null)
@@ -642,6 +651,7 @@ namespace ACNHPokerCore
                     writeCount = 0;
 
                     newVisitor = GetVisitorName();
+                    newVisitorIsland = GetVisitorIslandName();
 
                     if (token.IsCancellationRequested)
                     {
@@ -656,10 +666,9 @@ namespace ACNHPokerCore
                             {
                                 visitorNameBox.Text = newVisitor;
                                 WaitMessagebox.Text = "Paused. " + newVisitor + " arriving!";
-                                CreateLog(newVisitor);
+                                CreateLog(newVisitor, newVisitorIsland, "In");
                                 PauseTimeLabel.Visible = true;
                                 PauseTimer.Start();
-
                             });
                         }
 
@@ -676,6 +685,7 @@ namespace ACNHPokerCore
                                 WaitMessagebox.Text = regenMsg;
                             });
                         }
+
                         wasLoading = true;
                         state = Teleport.GetOverworldState();
                     }
@@ -701,7 +711,7 @@ namespace ACNHPokerCore
                     {
                         if (wasLoading || PauseCount >= 30)
                         {
-                            GetVisitorList();
+                            CurrentVisitorList = GetVisitorList(CurrentVisitorList);
                             wasLoading = false;
                             PauseCount = 0;
 
@@ -745,25 +755,28 @@ namespace ACNHPokerCore
                         }
                     }
 
-                    this.Invoke((MethodInvoker)delegate
+                    if (!FormIsClosing)
                     {
-                        ts = stopWatch.Elapsed;
-                        timeLabel.Text = Utilities.precedingZeros(ts.Hours.ToString(), 2) + ":" + Utilities.precedingZeros(ts.Minutes.ToString(), 2) + ":" + Utilities.precedingZeros(ts.Seconds.ToString(), 2);
-                        if (keepVillagerBox.Checked)
+                        this.Invoke((MethodInvoker)delegate
                         {
-                            int index = runCount % 10;
-                            CheckAndResetVillager(villagerFlag[index], haveVillager[index], index, ref writeCount);
-                        }
-                        runCount++;
-                        if (PauseCount > 0)
-                        {
-                            WaitMessagebox.Text = "Regen idling...";
-                        }
-                        else
-                        {
-                            WaitMessagebox.Text = regenMsg;
-                        }
-                    });
+                            ts = stopWatch.Elapsed;
+                            timeLabel.Text = Utilities.precedingZeros(ts.Hours.ToString(), 2) + ":" + Utilities.precedingZeros(ts.Minutes.ToString(), 2) + ":" + Utilities.precedingZeros(ts.Seconds.ToString(), 2);
+                            if (keepVillagerBox.Checked)
+                            {
+                                int index = runCount % 10;
+                                CheckAndResetVillager(villagerFlag[index], haveVillager[index], index, ref writeCount);
+                            }
+                            runCount++;
+                            if (PauseCount > 0)
+                            {
+                                WaitMessagebox.Text = "Regen idling...";
+                            }
+                            else
+                            {
+                                WaitMessagebox.Text = regenMsg;
+                            }
+                        });
+                    }
                     Debug.Print("------ " + runCount + " " + PauseCount);
                 }
                 catch (Exception ex)
@@ -844,6 +857,7 @@ namespace ACNHPokerCore
             stopWatch.Start();
 
             string newVisitor;
+            string newVisitorIsland;
             TimeSpan ts;
 
             if (dodoSetup != null)
@@ -879,6 +893,7 @@ namespace ACNHPokerCore
                     writeCount = 0;
 
                     newVisitor = GetVisitorName();
+                    newVisitorIsland = GetVisitorIslandName();
 
                     if (token.IsCancellationRequested)
                     {
@@ -893,7 +908,7 @@ namespace ACNHPokerCore
                             {
                                 visitorNameBox.Text = newVisitor;
                                 WaitMessagebox.Text = "Paused. " + newVisitor + " arriving!";
-                                CreateLog(newVisitor);
+                                CreateLog(newVisitor, newVisitorIsland, "In");
                                 PauseTimeLabel.Visible = true;
                                 PauseTimer.Start();
                             });
@@ -913,6 +928,7 @@ namespace ACNHPokerCore
                                 WaitMessagebox.Text = regenMsg;
                             });
                         }
+
                         wasLoading = true;
                         state = Teleport.GetOverworldState();
                     }
@@ -938,7 +954,7 @@ namespace ACNHPokerCore
                     {
                         if (wasLoading || PauseCount >= 30)
                         {
-                            GetVisitorList();
+                            CurrentVisitorList = GetVisitorList(CurrentVisitorList);
                             wasLoading = false;
                             PauseCount = 0;
 
@@ -1361,6 +1377,18 @@ namespace ACNHPokerCore
             return tempName.Replace("\0", string.Empty);
         }
 
+        private string GetVisitorIslandName()
+        {
+            byte[] b = Utilities.getVisitorIslandName(s);
+            if (b == null)
+            {
+                return string.Empty;
+            }
+            //Debug.Print("Byte :   " +Utilities.ByteToHexString(b));
+            string tempName = Encoding.Unicode.GetString(b, 0, 20);
+            return tempName.Replace("\0", string.Empty);
+        }
+
         private void PauseTimer_Tick(object sender, EventArgs e)
         {
             if (!FormIsClosing)
@@ -1379,7 +1407,7 @@ namespace ACNHPokerCore
             {
                 if (!File.Exists(Utilities.VisitorLogPath))
                 {
-                    string logheader = "Timestamp" + "," + "Name";
+                    string logheader = "Timestamp" + "," + "Name" + "," + "Island" + "," + "I/O";
 
                     using StreamWriter sw = File.CreateText(Utilities.VisitorLogPath);
                     sw.WriteLine(logheader);
@@ -1387,8 +1415,10 @@ namespace ACNHPokerCore
                 try
                 {
                     logGridView.DataSource = LoadCSV(Utilities.VisitorLogPath);
-                    logGridView.Columns["Timestamp"].Width = 195;
-                    logGridView.Columns["Name"].Width = 128;
+                    logGridView.Columns["Timestamp"].Width = 140;
+                    logGridView.Columns["Name"].Width = 75;
+                    logGridView.Columns["Island"].Width = 75;
+                    logGridView.Columns["I/O"].Width = 40;
                     logGridView.Sort(logGridView.Columns[0], ListSortDirection.Descending);
                     logPanel.Visible = true;
                 }
@@ -1396,7 +1426,7 @@ namespace ACNHPokerCore
                 {
                     File.Move(Utilities.VisitorLogPath, Utilities.saveFolder + @"OldVisitorLog.csv");
 
-                    string logheader = "Timestamp" + "," + "Name";
+                    string logheader = "Timestamp" + "," + "Name" + "," + "Island" + "," + "I/O";
 
                     using (StreamWriter sw = File.CreateText(Utilities.VisitorLogPath))
                     {
@@ -1408,8 +1438,10 @@ namespace ACNHPokerCore
                                       "Your existing visitor log file has been renamed to \"OldVisitorLog.csv\".", "Error loading existing visitor log file!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                     logGridView.DataSource = LoadCSV(Utilities.VisitorLogPath);
-                    logGridView.Columns["Timestamp"].Width = 195;
-                    logGridView.Columns["Name"].Width = 128;
+                    logGridView.Columns["Timestamp"].Width = 140;
+                    logGridView.Columns["Name"].Width = 75;
+                    logGridView.Columns["Island"].Width = 75;
+                    logGridView.Columns["I/O"].Width = 40;
                     logGridView.Sort(logGridView.Columns[0], ListSortDirection.Descending);
                     logPanel.Visible = true;
                 }
@@ -1440,25 +1472,25 @@ namespace ACNHPokerCore
             dt.Columns["Timestamp"].DataType = typeof(DateTime);
 
             File.ReadLines(filePath).Skip(1)
-                .Select(x => x.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries))
+                .Select(x => x.Split(new[] { "," }, StringSplitOptions.None))
                 .ToList()
                 .ForEach(line => dt.Rows.Add(line));
 
             return dt;
         }
 
-        private void CreateLog(string newVisitor)
+        private void CreateLog(string newVisitor, string newVisitorIsland = "", string state = "")
         {
             if (!File.Exists(Utilities.VisitorLogPath))
             {
-                string logheader = "Timestamp" + "," + "Name";
+                string logheader = "Timestamp" + "," + "Name" + "," + "Island" + "," + "I/O";
 
                 using StreamWriter sw = File.CreateText(Utilities.VisitorLogPath);
                 sw.WriteLine(logheader);
             }
 
             DateTime localDate = DateTime.Now;
-            string newLog = localDate.ToString() + "," + newVisitor;
+            string newLog = localDate.ToString() + "," + newVisitor + "," + newVisitorIsland + "," + state;
 
             using (StreamWriter sw = File.AppendText(Utilities.VisitorLogPath))
             {
@@ -1508,7 +1540,7 @@ namespace ACNHPokerCore
             config.AppSettings.Settings["LastSave"].Value = path;
             config.Save(ConfigurationSaveMode.Minimal);
 
-            string logheader = "Timestamp" + "," + "Name";
+            string logheader = "Timestamp" + "," + "Name" + "," + "Island" + "," + "I/O";
 
             using (StreamWriter sw = File.CreateText(file.FileName))
             {
@@ -1655,25 +1687,77 @@ namespace ACNHPokerCore
 
         #region Visitor
 
-        private void GetVisitorList()
+        private string[] GetVisitorList(string[] oldVisitorList)
         {
-            string[] namelist = new string[8];
+            string[] newVisitorList = new string[8];
             int num = 0;
+
             using StreamWriter sw = File.CreateText(Utilities.CurrentVisitorPath);
             for (int i = 0; i < 8; i++)
             {
                 if (i == 0)
+                {
+                    newVisitorList[i] = String.Empty;
                     continue;
-                namelist[i] = Utilities.GetVisitorName(s, null, i);
-                if (namelist[i].Equals(String.Empty))
+                }
+                else
+                    newVisitorList[i] = Utilities.GetVisitorNameFromList(s, null, i);
+
+                if (newVisitorList[i].Equals(String.Empty))
                     sw.WriteLine("[Empty]");
                 else
                 {
-                    sw.WriteLine(namelist[i]);
+                    sw.WriteLine(newVisitorList[i]);
                     num++;
                 }
             }
             sw.WriteLine("Num of Visitor : " + num);
+
+            string[] Leaver = new string[8];
+            bool StillHere;
+
+            if (oldVisitorList != null)
+            {
+                for (int i = 0; i < oldVisitorList.Length; i++)
+                {
+                    StillHere = false;
+
+                    for (int j = 0; j < newVisitorList.Length; j++)
+                    {
+                        if (oldVisitorList[i] == newVisitorList[j])
+                        {
+                            StillHere = true;
+                            break;
+                        }
+                    }
+
+                    if (StillHere)
+                    {
+                        Leaver[i] = string.Empty;
+                    }
+                    else
+                    {
+                        Leaver[i] = oldVisitorList[i];
+                    }
+                }
+
+                foreach (string visitor in Leaver)
+                {
+                    if (visitor != string.Empty && visitor != null)
+                    {
+                        if (!FormIsClosing)
+                        {
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                CreateLog(visitor, "", "Out");
+                            });
+                        }
+                    }
+                }
+            }
+
+            return newVisitorList;
+
             /*if (num >= 7)
             {
                 sw.WriteLine(" [Island Full] ");

@@ -480,9 +480,9 @@ namespace ACNHPokerCore
 
         private void ListViewItem_SetSpacing(ListView listview, short leftPadding, short topPadding)
         {
-                const int LVM_FIRST = 0x1000;
-                const int LVM_SETICONSPACING = LVM_FIRST + 53;
-                _ = SendMessage(listview.Handle, LVM_SETICONSPACING, IntPtr.Zero, (IntPtr)MakeLong(leftPadding, topPadding));
+            const int LVM_FIRST = 0x1000;
+            const int LVM_SETICONSPACING = LVM_FIRST + 53;
+            _ = SendMessage(listview.Handle, LVM_SETICONSPACING, IntPtr.Zero, (IntPtr)MakeLong(leftPadding, topPadding));
         }
 
         private void AcreList_SelectedIndexChanged(object sender, EventArgs e)

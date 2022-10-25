@@ -3382,7 +3382,7 @@ namespace ACNHPokerCore
             catch (SocketException) { return false; }
         }
 
-        public static string GetVisitorName(Socket socket, USBBot usb, int i)
+        public static string GetVisitorNameFromList(Socket socket, USBBot usb, int i)
         {
             lock (botLock)
             {
@@ -3395,7 +3395,7 @@ namespace ACNHPokerCore
 
                     if (b == null)
                     {
-                        MessageBox.Show("Wait something is wrong here!? \n\n Dodo");
+                        MessageBox.Show("Wait something is wrong here!? \n\n GetVisitorNameFromList");
                         return "";
                     }
                 }
@@ -3405,7 +3405,7 @@ namespace ACNHPokerCore
 
                     if (b == null)
                     {
-                        MessageBox.Show("Wait something is wrong here!? \n\n Dodo");
+                        MessageBox.Show("Wait something is wrong here!? \n\n GetVisitorNameFromList");
                         return "";
                     }
                 }
