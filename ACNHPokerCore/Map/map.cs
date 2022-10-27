@@ -7183,5 +7183,26 @@ namespace ACNHPokerCore
         {
             FetchMapBtn_Click(null, null);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DataGridViewColumn KindColumn = new DataGridViewColumn()
+            {
+                Name = "Kind",
+                HeaderText = "Item Kind",
+            };
+            KindColumn.CellTemplate = new DataGridViewTextBoxCell();
+
+            fieldGridView.Columns.Add(KindColumn);
+
+            for (int i = 0; i < fieldGridView.Rows.Count; i++)
+            {
+                string id = fieldGridView.Rows[i].Cells["id"].Value.ToString();
+                if (Utilities.itemkind.ContainsKey(id))
+                    fieldGridView.Rows[i].Cells["Kind"].Value = Utilities.itemkind[fieldGridView.Rows[i].Cells["id"].Value.ToString()];
+                else
+                    fieldGridView.Rows[i].Cells["Kind"].Value = "NULL";
+            }
+        }
     }
 }

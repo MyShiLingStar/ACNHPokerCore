@@ -303,6 +303,10 @@ namespace ACNHPokerCore
                         else
                             itemkind.Add(parts[0], parts[1]);
                     }
+                    else
+                    {
+                        itemkind.Add(parts[0], parts[1]);
+                    }
                 }
             }
         }

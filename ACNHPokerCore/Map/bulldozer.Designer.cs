@@ -252,7 +252,9 @@ namespace ACNHPokerCore
             this.acreList.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.acreList.ForeColor = System.Drawing.Color.White;
             this.acreList.GridLines = true;
+            this.acreList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.acreList.HideSelection = false;
+            this.acreList.LabelWrap = false;
             this.acreList.Location = new System.Drawing.Point(0, 0);
             this.acreList.MultiSelect = false;
             this.acreList.Name = "acreList";
@@ -261,7 +263,7 @@ namespace ACNHPokerCore
             this.acreList.TabIndex = 231;
             this.acreList.TileSize = new System.Drawing.Size(1, 1);
             this.acreList.UseCompatibleStateImageBehavior = false;
-            this.acreList.SelectedIndexChanged += new System.EventHandler(this.AcreList_SelectedIndexChanged);
+            this.acreList.View = System.Windows.Forms.View.Tile;
             // 
             // sendBtn
             // 

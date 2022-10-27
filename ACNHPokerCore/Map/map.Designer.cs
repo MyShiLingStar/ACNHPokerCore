@@ -171,6 +171,7 @@ namespace ACNHPokerCore
             this.selectedItem = new ACNHPokerCore.inventorySlot();
             this.SizeBox = new System.Windows.Forms.RichTextBox();
             this.ToggleTip = new System.Windows.Forms.ToolTip(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fieldGridView)).BeginInit();
             this.BtnPanel.SuspendLayout();
             this.floorRightClick.SuspendLayout();
@@ -475,9 +476,9 @@ namespace ACNHPokerCore
             this.favModeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.favModeBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.favModeBtn.ForeColor = System.Drawing.Color.White;
-            this.favModeBtn.Location = new System.Drawing.Point(1045, 3);
+            this.favModeBtn.Location = new System.Drawing.Point(1042, 3);
             this.favModeBtn.Name = "favModeBtn";
-            this.favModeBtn.Size = new System.Drawing.Size(79, 23);
+            this.favModeBtn.Size = new System.Drawing.Size(68, 23);
             this.favModeBtn.TabIndex = 171;
             this.favModeBtn.Text = "Favorite";
             this.favModeBtn.UseVisualStyleBackColor = false;
@@ -505,7 +506,7 @@ namespace ACNHPokerCore
             this.recipeModeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.recipeModeBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.recipeModeBtn.ForeColor = System.Drawing.Color.White;
-            this.recipeModeBtn.Location = new System.Drawing.Point(919, 3);
+            this.recipeModeBtn.Location = new System.Drawing.Point(918, 3);
             this.recipeModeBtn.Name = "recipeModeBtn";
             this.recipeModeBtn.Size = new System.Drawing.Size(60, 23);
             this.recipeModeBtn.TabIndex = 169;
@@ -520,7 +521,7 @@ namespace ACNHPokerCore
             this.flowerModeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.flowerModeBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.flowerModeBtn.ForeColor = System.Drawing.Color.White;
-            this.flowerModeBtn.Location = new System.Drawing.Point(982, 3);
+            this.flowerModeBtn.Location = new System.Drawing.Point(980, 3);
             this.flowerModeBtn.Name = "flowerModeBtn";
             this.flowerModeBtn.Size = new System.Drawing.Size(60, 23);
             this.flowerModeBtn.TabIndex = 170;
@@ -2476,7 +2477,7 @@ namespace ACNHPokerCore
             this.fieldModeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.fieldModeBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.fieldModeBtn.ForeColor = System.Drawing.Color.White;
-            this.fieldModeBtn.Location = new System.Drawing.Point(1127, 3);
+            this.fieldModeBtn.Location = new System.Drawing.Point(1112, 3);
             this.fieldModeBtn.Name = "fieldModeBtn";
             this.fieldModeBtn.Size = new System.Drawing.Size(60, 23);
             this.fieldModeBtn.TabIndex = 181;
@@ -3179,6 +3180,22 @@ namespace ACNHPokerCore
             this.ToggleTip.UseAnimation = false;
             this.ToggleTip.UseFading = false;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(1174, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(25, 23);
+            this.button1.TabIndex = 241;
+            this.button1.Text = "➕";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Map
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -3232,6 +3249,7 @@ namespace ACNHPokerCore
             this.Controls.Add(this.BtnPanel);
             this.Controls.Add(this.FlagTextbox);
             this.Controls.Add(this.functionPanel);
+            this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
@@ -3406,5 +3424,6 @@ namespace ACNHPokerCore
         private JCS.ToggleSwitch ShiftRightToggle;
         private JCS.ToggleSwitch CoreOnlyToggle;
         private System.Windows.Forms.ToolTip ToggleTip;
+        private System.Windows.Forms.Button button1;
     }
 }

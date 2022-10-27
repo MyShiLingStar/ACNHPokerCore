@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Net.Sockets;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -14,8 +13,6 @@ namespace ACNHPokerCore
 
     public partial class Bulldozer : Form
     {
-        [DllImport("user32.dll")]
-        private static extern int SendMessage(IntPtr hWnd, int msg, IntPtr wParam, IntPtr lParam);
 
         private static Socket s;
         private static USBBot usb;
@@ -64,6 +61,10 @@ namespace ACNHPokerCore
                 ImageSize = new Size(64, 64)
             };
             acreList.LargeImageList = imageList;
+            acreList.TileSize = new Size(80, 80);
+            acreList.View = View.Tile;
+            acreList.OwnerDraw = true;
+            acreList.DrawItem += AcreList_DrawItem;
 
             for (ushort i = 0; i < 0x13E; i++)
             {
@@ -76,8 +77,22 @@ namespace ACNHPokerCore
                     acreList.Items[acreList.Items.Count - 1].ToolTipText = AcreName.ToString();
                 }
             }
+        }
 
-            ListViewItem_SetSpacing(acreList, 64 + 15, 80 + 15);
+        private void AcreList_DrawItem(object sender, DrawListViewItemEventArgs e)
+        {
+            using Graphics g = e.Graphics;
+            if (e.Item.Selected)
+            {
+                if ((e.State & ListViewItemStates.Selected) != 0)
+                {
+                    SolidBrush Select = new(Color.Orange);
+                    g.FillRectangle(Select, e.Bounds);
+                    e.DrawFocusRectangle();
+                }
+            }
+
+            g.DrawImage(e.Item.ImageList.Images[e.ItemIndex], new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 4, e.Bounds.Width - 8, e.Bounds.Height - 8));
         }
 
         private void LoadMap()
@@ -478,12 +493,14 @@ namespace ACNHPokerCore
             return (int)(((ushort)lowPart) | (uint)(highPart << 16));
         }
 
+        /*
         private void ListViewItem_SetSpacing(ListView listview, short leftPadding, short topPadding)
         {
             const int LVM_FIRST = 0x1000;
             const int LVM_SETICONSPACING = LVM_FIRST + 53;
             _ = SendMessage(listview.Handle, LVM_SETICONSPACING, IntPtr.Zero, (IntPtr)MakeLong(leftPadding, topPadding));
         }
+        */
 
         private void AcreList_SelectedIndexChanged(object sender, EventArgs e)
         {
