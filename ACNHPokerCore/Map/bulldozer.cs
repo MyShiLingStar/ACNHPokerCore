@@ -10,7 +10,6 @@ using System.Windows.Forms;
 
 namespace ACNHPokerCore
 {
-
     public partial class Bulldozer : Form
     {
 
@@ -61,7 +60,7 @@ namespace ACNHPokerCore
                 ImageSize = new Size(64, 64)
             };
             acreList.LargeImageList = imageList;
-            acreList.TileSize = new Size(80, 80);
+            acreList.TileSize = new Size(80, 100);
             acreList.View = View.Tile;
             acreList.OwnerDraw = true;
             acreList.DrawItem += AcreList_DrawItem;
@@ -92,7 +91,13 @@ namespace ACNHPokerCore
                 }
             }
 
-            g.DrawImage(e.Item.ImageList.Images[e.ItemIndex], new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 4, e.Bounds.Width - 8, e.Bounds.Height - 8));
+            g.DrawImage(e.Item.ImageList.Images[e.ItemIndex], new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 4, e.Bounds.Width - 8, e.Bounds.Width - 8));
+            Font drawFont = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            SolidBrush drawBrush = new SolidBrush(Color.White);
+            StringFormat drawFormat = new StringFormat();
+            drawFormat.LineAlignment = StringAlignment.Center;
+            drawFormat.Alignment = StringAlignment.Center;
+            g.DrawString(e.Item.Text, drawFont, drawBrush, new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 4 + e.Bounds.Width, e.Bounds.Width - 8, 10), drawFormat);
         }
 
         private void LoadMap()
