@@ -19,6 +19,7 @@ namespace ACNHPokerCore
     public delegate void ObeySizeHandler(bool toggle, int itemHeight = 0, int itemWidth = 0, int newSpawnHeight = 0, int newSpawnWidth = 0, bool wallmount = false, bool ceiling = false);
     public delegate void UpdateRowAndColumnHandler(int row, int column);
     public delegate void ApplyFilter(string itemkind);
+    public delegate void CloseFilter();
     #endregion
 
     public partial class Map : Form
@@ -7276,9 +7277,15 @@ namespace ACNHPokerCore
             {
                 itemFilter = new Filter();
                 itemFilter.applyFilter += ItemFilter_applyFilter;
+                itemFilter.closeFilter += ItemFilter_closeFilter;
                 itemFilter.Show(this);
                 itemFilter.Location = new Point(this.Location.X + this.Width, this.Location.Y);
             }
+        }
+
+        private void ItemFilter_closeFilter()
+        {
+            itemFilter = null;
         }
 
         private void ItemFilter_applyFilter(string itemkind)

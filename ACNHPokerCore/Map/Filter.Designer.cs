@@ -638,6 +638,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Item Filter";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Filter_FormClosed);
             this.ResumeLayout(false);
 
         }

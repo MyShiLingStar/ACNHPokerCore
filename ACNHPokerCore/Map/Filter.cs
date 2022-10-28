@@ -7,7 +7,7 @@ namespace ACNHPokerCore
     public partial class Filter : Form
     {
         public event ApplyFilter applyFilter;
-
+        public event CloseFilter closeFilter;
         public Filter()
         {
             InitializeComponent();
@@ -24,6 +24,11 @@ namespace ACNHPokerCore
             Button b = (Button)sender;
             b.BackColor = Color.Orange;
             applyFilter(b.Tag.ToString());
+        }
+
+        private void Filter_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            closeFilter();
         }
     }
 }
