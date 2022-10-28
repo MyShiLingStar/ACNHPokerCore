@@ -105,6 +105,7 @@ namespace ACNHPokerCore
             }
             controllerTimer.Start();
             this.KeyPreview = true;
+
             string[] path = Teleport.getAnchorPath().Split('\\');
             this.Text = header + path[path.Length - 1];
         }

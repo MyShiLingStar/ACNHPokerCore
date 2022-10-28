@@ -18,6 +18,7 @@ namespace ACNHPokerCore
     #region event
     public delegate void ObeySizeHandler(bool toggle, int itemHeight = 0, int itemWidth = 0, int newSpawnHeight = 0, int newSpawnWidth = 0, bool wallmount = false, bool ceiling = false);
     public delegate void UpdateRowAndColumnHandler(int row, int column);
+    public delegate void ApplyFilter(string itemkind);
     #endregion
 
     public partial class Map : Form
@@ -26,11 +27,11 @@ namespace ACNHPokerCore
         private static Socket s;
         private readonly USBBot usb;
 
-        private readonly DataTable source;
+        private DataTable source;
         private readonly DataTable recipeSource;
         private readonly DataTable flowerSource;
         private readonly DataTable variationSource;
-        private readonly DataTable favSource;
+        private DataTable favSource;
         private readonly DataTable fieldSource;
         private FloorSlot selectedButton = null;
         private string selectedSize;
@@ -38,6 +39,7 @@ namespace ACNHPokerCore
         private variation selection = null;
         private MiniMap MiniMap = null;
         public BulkSpawn bulk = null;
+        private Filter itemFilter = null;
         private int counter = 0;
         private int saveTime = -1;
         private bool drawing = false;
@@ -98,6 +100,8 @@ namespace ACNHPokerCore
         bool isPillar = false;
         bool isHalfTileItem = false;
         bool debugging = false;
+        bool filterOn = false;
+        string filterKind = "";
 
         private readonly ToolStripMenuItem ActivateItem;
         private readonly ToolStripMenuItem DeactivateItem;
@@ -132,7 +136,7 @@ namespace ACNHPokerCore
                 s = S;
                 usb = USB;
                 if (File.Exists(itemPath))
-                    source = LoadItemCSV(itemPath);
+                    source = LoadItemCSVWithKind(itemPath);
                 if (File.Exists(recipePath))
                     recipeSource = LoadItemCSV(recipePath);
                 if (File.Exists(flowerPath))
@@ -140,7 +144,7 @@ namespace ACNHPokerCore
                 if (File.Exists(variationPath))
                     variationSource = LoadItemCSV(variationPath);
                 if (File.Exists(favPath))
-                    favSource = LoadItemCSV(favPath, false);
+                    favSource = LoadItemCSVWithKind(favPath, false);
                 if (File.Exists(Utilities.fieldPath))
                     fieldSource = LoadItemCSV(Utilities.fieldPath);
                 imagePath = ImagePath;
@@ -178,6 +182,7 @@ namespace ACNHPokerCore
                     fieldGridView.Columns["rus"].Visible = false;
                     fieldGridView.Columns["color"].Visible = false;
                     fieldGridView.Columns["size"].Visible = false;
+                    fieldGridView.Columns["Kind"].Visible = false;
 
                     //select the full row and change color cause windows blue sux
                     fieldGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -1508,6 +1513,8 @@ namespace ACNHPokerCore
                 fieldGridView.Columns["id"].Visible = false;
                 fieldGridView.Columns["iName"].Visible = false;
                 fieldGridView.Columns["color"].Visible = false;
+                fieldGridView.Columns["size"].Visible = false;
+                fieldGridView.Columns["Kind"].Visible = false;
 
                 if (fieldGridView.Columns.Contains(languageSetting))
                 {
@@ -1553,6 +1560,9 @@ namespace ACNHPokerCore
             }
 
             FlagTextbox.Text = "20";
+
+            FilterBtn.Enabled = true;
+            resetFilter();
         }
 
         private void RecipeModeBtn_Click(object sender, EventArgs e)
@@ -1621,6 +1631,9 @@ namespace ACNHPokerCore
             }
 
             FlagTextbox.Text = "00";
+
+            FilterBtn.Enabled = false;
+            resetFilter();
         }
 
         private void FlowerModeBtn_Click(object sender, EventArgs e)
@@ -1690,6 +1703,9 @@ namespace ACNHPokerCore
             }
 
             FlagTextbox.Text = "20";
+
+            FilterBtn.Enabled = false;
+            resetFilter();
         }
 
         private void FavModeBtn_Click(object sender, EventArgs e)
@@ -1715,6 +1731,7 @@ namespace ACNHPokerCore
                 fieldGridView.Columns["iName"].Visible = false;
                 fieldGridView.Columns["Name"].Visible = true;
                 fieldGridView.Columns["value"].Visible = false;
+                fieldGridView.Columns["Kind"].Visible = false;
 
                 DataGridViewImageColumn imageColumn = new()
                 {
@@ -1732,6 +1749,9 @@ namespace ACNHPokerCore
             }
 
             FlagTextbox.Text = "20";
+
+            FilterBtn.Enabled = true;
+            resetFilter();
         }
 
         private void FieldModeBtn_Click(object sender, EventArgs e)
@@ -1778,6 +1798,9 @@ namespace ACNHPokerCore
             }
 
             FlagTextbox.Text = "00";
+
+            FilterBtn.Enabled = false;
+            resetFilter();
         }
 
         private static DataTable LoadItemCSV(string filePath, bool key = true)
@@ -1803,17 +1826,70 @@ namespace ACNHPokerCore
             return dt;
         }
 
+        private static DataTable LoadItemCSVWithKind(string filePath, bool key = true)
+        {
+            var dt = new DataTable();
+
+            var lines = File.ReadLines(filePath);
+            foreach (var line in lines.Take(1))
+            {
+                var headers = (line + "Kind ; ").Split(new[] { " ; " }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var header in headers)
+                {
+                    dt.Columns.Add(header.Trim());
+                }
+            }
+
+            foreach (var line in lines.Skip(1))
+            {
+                string[] dataRow = line.Split(new[] { " ; " }, StringSplitOptions.RemoveEmptyEntries);
+                string id = dataRow[0];
+
+                if (Utilities.itemkind.ContainsKey(id))
+                    dataRow = dataRow.ToList().Append(Utilities.itemkind[id]).ToArray();
+                else
+                    _ = dataRow.ToList().Append("Null").ToArray();
+
+                dt.Rows.Add(dataRow);
+            }
+
+            if (key)
+            {
+                if (dt.Columns.Contains("id"))
+                    dt.PrimaryKey = new DataColumn[1] { dt.Columns["id"] };
+            }
+
+            return dt;
+        }
+
         private void ItemSearchBox_TextChanged(object sender, EventArgs e)
         {
-            if (itemSearchBox.Text == "Search...")
-                return;
+            if (itemSearchBox.Text.Equals("Search...") || itemSearchBox.Text.Equals(String.Empty))
+            {
+                if (filterOn)
+                {
+                    if (currentDataTable == source || currentDataTable == favSource)
+                    {
+                        (fieldGridView.DataSource as DataTable).DefaultView.RowFilter = "Kind = '" + filterKind + "'";
+                    }
+                    return;
+                }
+                else
+                    return;
+            }
+
             try
             {
                 if (fieldGridView.DataSource != null)
                 {
                     if (currentDataTable == source)
                     {
-                        (fieldGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format(languageSetting + " LIKE '%{0}%'", EscapeLikeValue(itemSearchBox.Text));
+                        if (filterOn)
+                        {
+                            (fieldGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format(languageSetting + " LIKE '%{0}%' AND Kind = '{1}'", EscapeLikeValue(itemSearchBox.Text), filterKind);
+                        }
+                        else
+                            (fieldGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format(languageSetting + " LIKE '%{0}%'", EscapeLikeValue(itemSearchBox.Text));
                     }
                     else if (currentDataTable == recipeSource)
                     {
@@ -1825,7 +1901,12 @@ namespace ACNHPokerCore
                     }
                     else if (currentDataTable == favSource)
                     {
-                        (fieldGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format("name" + " LIKE '%{0}%'", EscapeLikeValue(itemSearchBox.Text));
+                        if (filterOn)
+                        {
+                            (fieldGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format("name" + " LIKE '%{0}%' AND Kind = '{1}'", EscapeLikeValue(itemSearchBox.Text), filterKind);
+                        }
+                        else
+                            (fieldGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format("name" + " LIKE '%{0}%'", EscapeLikeValue(itemSearchBox.Text));
                     }
                     else if (currentDataTable == fieldSource)
                     {
@@ -4423,6 +4504,11 @@ namespace ACNHPokerCore
             if (selection != null)
             {
                 selection.Location = new Point(this.Location.X + 533, this.Location.Y + 660);
+            }
+
+            if (itemFilter != null)
+            {
+                itemFilter.Location = new Point(this.Location.X + this.Width, this.Location.Y);
             }
         }
         #endregion
@@ -7184,25 +7270,45 @@ namespace ACNHPokerCore
             FetchMapBtn_Click(null, null);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void FilterBtn_Click(object sender, EventArgs e)
         {
-            DataGridViewColumn KindColumn = new DataGridViewColumn()
+            if (itemFilter == null)
             {
-                Name = "Kind",
-                HeaderText = "Item Kind",
-            };
-            KindColumn.CellTemplate = new DataGridViewTextBoxCell();
-
-            fieldGridView.Columns.Add(KindColumn);
-
-            for (int i = 0; i < fieldGridView.Rows.Count; i++)
-            {
-                string id = fieldGridView.Rows[i].Cells["id"].Value.ToString();
-                if (Utilities.itemkind.ContainsKey(id))
-                    fieldGridView.Rows[i].Cells["Kind"].Value = Utilities.itemkind[fieldGridView.Rows[i].Cells["id"].Value.ToString()];
-                else
-                    fieldGridView.Rows[i].Cells["Kind"].Value = "NULL";
+                itemFilter = new Filter();
+                itemFilter.applyFilter += ItemFilter_applyFilter;
+                itemFilter.Show(this);
+                itemFilter.Location = new Point(this.Location.X + this.Width, this.Location.Y);
             }
+        }
+
+        private void ItemFilter_applyFilter(string itemkind)
+        {
+            if (itemkind.Equals("Clear"))
+            {
+                resetFilter();
+            }
+            else
+            {
+                filterOn = true;
+                FilterBtn.BackColor = Color.Orange;
+                filterKind = itemkind;
+            }
+            //throw new NotImplementedException();
+            ItemSearchBox_TextChanged(null, null);
+        }
+
+        private void resetFilter()
+        {
+            filterOn = false;
+            FilterBtn.BackColor = Color.FromArgb(114, 137, 218);
+            filterKind = "";
+
+            if (itemFilter != null)
+                itemFilter.Close();
+
+            itemFilter = null;
+
+            (fieldGridView.DataSource as DataTable).DefaultView.RowFilter = null;
         }
     }
 }

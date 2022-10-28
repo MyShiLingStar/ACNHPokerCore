@@ -171,7 +171,7 @@ namespace ACNHPokerCore
             this.selectedItem = new ACNHPokerCore.inventorySlot();
             this.SizeBox = new System.Windows.Forms.RichTextBox();
             this.ToggleTip = new System.Windows.Forms.ToolTip(this.components);
-            this.button1 = new System.Windows.Forms.Button();
+            this.FilterBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fieldGridView)).BeginInit();
             this.BtnPanel.SuspendLayout();
             this.floorRightClick.SuspendLayout();
@@ -538,7 +538,7 @@ namespace ACNHPokerCore
             this.itemSearchBox.Location = new System.Drawing.Point(856, 28);
             this.itemSearchBox.Multiline = false;
             this.itemSearchBox.Name = "itemSearchBox";
-            this.itemSearchBox.Size = new System.Drawing.Size(220, 23);
+            this.itemSearchBox.Size = new System.Drawing.Size(191, 24);
             this.itemSearchBox.TabIndex = 172;
             this.itemSearchBox.Text = "Search...";
             this.itemSearchBox.Click += new System.EventHandler(this.ItemSearchBox_Click);
@@ -3104,7 +3104,7 @@ namespace ACNHPokerCore
             "Italian",
             "Dutch",
             "Russian"});
-            this.Language.Location = new System.Drawing.Point(1082, 27);
+            this.Language.Location = new System.Drawing.Point(1082, 28);
             this.Language.Name = "Language";
             this.Language.Size = new System.Drawing.Size(118, 24);
             this.Language.TabIndex = 234;
@@ -3180,21 +3180,20 @@ namespace ACNHPokerCore
             this.ToggleTip.UseAnimation = false;
             this.ToggleTip.UseFading = false;
             // 
-            // button1
+            // FilterBtn
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(1174, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(25, 23);
-            this.button1.TabIndex = 241;
-            this.button1.Text = "➕";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.FilterBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.FilterBtn.FlatAppearance.BorderSize = 0;
+            this.FilterBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.FilterBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.FilterBtn.ForeColor = System.Drawing.Color.White;
+            this.FilterBtn.Location = new System.Drawing.Point(1052, 28);
+            this.FilterBtn.Name = "FilterBtn";
+            this.FilterBtn.Size = new System.Drawing.Size(25, 24);
+            this.FilterBtn.TabIndex = 241;
+            this.FilterBtn.Text = "➕";
+            this.FilterBtn.UseVisualStyleBackColor = false;
+            this.FilterBtn.Click += new System.EventHandler(this.FilterBtn_Click);
             // 
             // Map
             // 
@@ -3249,7 +3248,7 @@ namespace ACNHPokerCore
             this.Controls.Add(this.BtnPanel);
             this.Controls.Add(this.FlagTextbox);
             this.Controls.Add(this.functionPanel);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.FilterBtn);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
@@ -3424,6 +3423,6 @@ namespace ACNHPokerCore
         private JCS.ToggleSwitch ShiftRightToggle;
         private JCS.ToggleSwitch CoreOnlyToggle;
         private System.Windows.Forms.ToolTip ToggleTip;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button FilterBtn;
     }
 }

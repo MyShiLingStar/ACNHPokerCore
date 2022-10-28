@@ -1780,7 +1780,7 @@ namespace ACNHPokerCore
                 dodoSetup = new Dodo(s);
                 dodoSetup.CloseForm += DodoSetup_closeForm;
                 dodoSetup.AbortAll += DodoSetup_abortAll;
-                dodoSetup.Show();
+                dodoSetup.Show(this);
                 dodoSetup.Location = new Point(this.Location.X - 590, this.Location.Y);
                 dodoSetup.ControlBox = false;
                 dodoSetup.WriteLog("[Dodo Helper Ready! Waiting for Regen.]\n\n" +
