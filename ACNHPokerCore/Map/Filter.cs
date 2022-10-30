@@ -1,5 +1,7 @@
 ﻿
+using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace ACNHPokerCore
@@ -29,6 +31,20 @@ namespace ACNHPokerCore
         private void Filter_FormClosed(object sender, FormClosedEventArgs e)
         {
             closeFilter();
+        }
+
+        private void ChangeLanguage(string lang)
+        {
+            foreach (Control c in this.Controls)
+            {
+                ComponentResourceManager resources = new ComponentResourceManager(typeof(Filter));
+                resources.ApplyResources(c, c.Name, new CultureInfo(lang));
+            }
+        }
+
+        private void ChangeLanguageBtn_Click(object sender, System.EventArgs e)
+        {
+            ChangeLanguage("zh");
         }
     }
 }

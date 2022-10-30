@@ -4633,6 +4633,14 @@ namespace ACNHPokerCore
             {"Kind_ShopTorso", 1},
             {"Kind_DummyWrappingOtoshidama", 1},
             {"Kind_GardenEditList", 1},
+            {"UnitIcon_FlwCosmos", 10},
+            {"UnitIcon_FlwTulip", 10},
+            {"UnitIcon_FlwPansy", 10},
+            {"UnitIcon_FlwRose", 10},
+            {"UnitIcon_FlwLily", 10},
+            {"UnitIcon_FlwAnemone", 10},
+            {"UnitIcon_FlwHyacinth", 10},
+            {"UnitIcon_FlwMum", 10},
         };
         #endregion
     }

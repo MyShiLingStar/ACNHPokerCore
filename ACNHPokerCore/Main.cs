@@ -7598,55 +7598,65 @@ namespace ACNHPokerCore
 
             if (Utilities.itemkind.ContainsKey(id))
             {
-                int value = Utilities.CountByKind[Utilities.itemkind[id]];
-
-                if (ItemAttr.hasFenceWithVariation(IntId))  // Fence Variation
+                if (Utilities.CountByKind.ContainsKey(Utilities.itemkind[id]))
                 {
-                    string hexValue = "00000000";
-                    if (HexModeButton.Tag.ToString() == "Normal")
+                    int value = Utilities.CountByKind[Utilities.itemkind[id]];
+
+                    if (ItemAttr.hasFenceWithVariation(IntId))  // Fence Variation
                     {
-                        int decValue = Convert.ToInt32(AmountOrCountTextbox.Text) - 1;
-                        if (decValue >= 0)
-                            hexValue = Utilities.precedingZeros(decValue.ToString("X"), 8);
+                        string hexValue = "00000000";
+                        if (HexModeButton.Tag.ToString() == "Normal")
+                        {
+                            int decValue = Convert.ToInt32(AmountOrCountTextbox.Text) - 1;
+                            if (decValue >= 0)
+                                hexValue = Utilities.precedingZeros(decValue.ToString("X"), 8);
+                        }
+                        else
+                            hexValue = Utilities.precedingZeros(AmountOrCountTextbox.Text, 8);
+
+
+                        string front = Utilities.precedingZeros(hexValue, 8).Substring(0, 4);
+                        //string back = Utilities.precedingZeros(hexValue, 8).Substring(4, 4);
+
+                        if (HexModeButton.Tag.ToString() == "Normal")
+                        {
+                            int decValue = value - 1;
+                            if (decValue >= 0)
+                                AmountOrCountTextbox.Text = (int.Parse(front + Utilities.precedingZeros(decValue.ToString("X"), 4), System.Globalization.NumberStyles.HexNumber) + 1).ToString();
+                            else
+                                AmountOrCountTextbox.Text = (int.Parse(front + Utilities.precedingZeros("0", 4), System.Globalization.NumberStyles.HexNumber) + 1).ToString();
+                        }
+                        else
+                        {
+                            int decValue = value - 1;
+                            if (decValue >= 0)
+                                AmountOrCountTextbox.Text = front + Utilities.precedingZeros(decValue.ToString("X"), 4);
+                            else
+                                AmountOrCountTextbox.Text = front + Utilities.precedingZeros("0", 4);
+                        }
                     }
                     else
-                        hexValue = Utilities.precedingZeros(AmountOrCountTextbox.Text, 8);
-
-
-                    string front = Utilities.precedingZeros(hexValue, 8).Substring(0, 4);
-                    //string back = Utilities.precedingZeros(hexValue, 8).Substring(4, 4);
-
-                    if (HexModeButton.Tag.ToString() == "Normal")
                     {
-                        int decValue = value - 1;
-                        if (decValue >= 0)
-                            AmountOrCountTextbox.Text = (int.Parse(front + Utilities.precedingZeros(decValue.ToString("X"), 4), System.Globalization.NumberStyles.HexNumber) + 1).ToString();
+                        if (HexModeButton.Tag.ToString() == "Normal")
+                        {
+                            AmountOrCountTextbox.Text = value.ToString();
+                        }
                         else
-                            AmountOrCountTextbox.Text = (int.Parse(front + Utilities.precedingZeros("0", 4), System.Globalization.NumberStyles.HexNumber) + 1).ToString();
-                    }
-                    else
-                    {
-                        int decValue = value - 1;
-                        if (decValue >= 0)
-                            AmountOrCountTextbox.Text = front + Utilities.precedingZeros(decValue.ToString("X"), 4);
-                        else
-                            AmountOrCountTextbox.Text = front + Utilities.precedingZeros("0", 4);
+                        {
+                            int decValue = value - 1;
+                            if (decValue >= 0)
+                                AmountOrCountTextbox.Text = Utilities.precedingZeros(decValue.ToString("X"), 8);
+                            else
+                                AmountOrCountTextbox.Text = Utilities.precedingZeros("0", 8);
+                        }
                     }
                 }
                 else
                 {
                     if (HexModeButton.Tag.ToString() == "Normal")
-                    {
-                        AmountOrCountTextbox.Text = value.ToString();
-                    }
+                        AmountOrCountTextbox.Text = "1";
                     else
-                    {
-                        int decValue = value - 1;
-                        if (decValue >= 0)
-                            AmountOrCountTextbox.Text = Utilities.precedingZeros(decValue.ToString("X"), 8);
-                        else
-                            AmountOrCountTextbox.Text = Utilities.precedingZeros("0", 8);
-                    }
+                        AmountOrCountTextbox.Text = Utilities.precedingZeros("0", 8);
                 }
             }
             else

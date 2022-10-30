@@ -1876,7 +1876,10 @@ namespace ACNHPokerCore
                     return;
                 }
                 else
+                {
+                    (fieldGridView.DataSource as DataTable).DefaultView.RowFilter = null;
                     return;
+                }
             }
 
             try
@@ -6821,30 +6824,35 @@ namespace ACNHPokerCore
 
                 if (Utilities.itemkind.ContainsKey(id))
                 {
-                    int value = Utilities.CountByKind[Utilities.itemkind[id]];
-
-                    if (ItemAttr.hasFenceWithVariation(IntId))  // Fence Variation
+                    if (Utilities.CountByKind.ContainsKey(Utilities.itemkind[id]))
                     {
-                        string hexValue = Utilities.precedingZeros(HexTextbox.Text, 8);
+                        int value = Utilities.CountByKind[Utilities.itemkind[id]];
+
+                        if (ItemAttr.hasFenceWithVariation(IntId))  // Fence Variation
+                        {
+                            string hexValue = Utilities.precedingZeros(HexTextbox.Text, 8);
 
 
-                        string front = Utilities.precedingZeros(hexValue, 8).Substring(0, 4);
-                        //string back = Utilities.precedingZeros(hexValue, 8).Substring(4, 4);
+                            string front = Utilities.precedingZeros(hexValue, 8).Substring(0, 4);
+                            //string back = Utilities.precedingZeros(hexValue, 8).Substring(4, 4);
 
-                        int decValue = value - 1;
-                        if (decValue >= 0)
-                            HexTextbox.Text = front + Utilities.precedingZeros(decValue.ToString("X"), 4);
+                            int decValue = value - 1;
+                            if (decValue >= 0)
+                                HexTextbox.Text = front + Utilities.precedingZeros(decValue.ToString("X"), 4);
+                            else
+                                HexTextbox.Text = front + Utilities.precedingZeros("0", 4);
+                        }
                         else
-                            HexTextbox.Text = front + Utilities.precedingZeros("0", 4);
+                        {
+                            int decValue = value - 1;
+                            if (decValue >= 0)
+                                HexTextbox.Text = Utilities.precedingZeros(decValue.ToString("X"), 8);
+                            else
+                                HexTextbox.Text = Utilities.precedingZeros("0", 8);
+                        }
                     }
                     else
-                    {
-                        int decValue = value - 1;
-                        if (decValue >= 0)
-                            HexTextbox.Text = Utilities.precedingZeros(decValue.ToString("X"), 8);
-                        else
-                            HexTextbox.Text = Utilities.precedingZeros("0", 8);
-                    }
+                        HexTextbox.Text = "00000000";
                 }
                 else
                 {
