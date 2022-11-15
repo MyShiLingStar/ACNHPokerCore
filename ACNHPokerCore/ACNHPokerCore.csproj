@@ -18,19 +18,19 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <NoWarn>1701;1702;NU1701;CS0169;IDE0057;IDE0074;IDE0056</NoWarn>
+    <NoWarn>1701;1702;NU1701;CS0169;IDE0057;IDE0074;IDE0056;NETSDK1138</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <NoWarn>1701;1702;NU1701;CS0169;IDE0057;IDE0074;IDE0056</NoWarn>
+    <NoWarn>1701;1702;NU1701;CS0169;IDE0057;IDE0074;IDE0056;NETSDK1138</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <NoWarn>1701;1702;NU1701;CS0169;IDE0057;IDE0074;IDE0056</NoWarn>
+    <NoWarn>1701;1702;NU1701;CS0169;IDE0057;IDE0074;IDE0056;NETSDK1138</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
-    <NoWarn>1701;1702;NU1701;CS0169;IDE0057;IDE0074;IDE0056</NoWarn>
+    <NoWarn>1701;1702;NU1701;CS0169;IDE0057;IDE0074;IDE0056;NETSDK1138</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

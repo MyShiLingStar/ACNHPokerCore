@@ -32,7 +32,7 @@ namespace ACNHPokerCore
 
         private static Socket socket;
         private static USBBot usb = null;
-        private readonly string version = "ACNHPokerCore R22 for v2.0.5";
+        private readonly string version = "ACNHPokerCore R22 for v2.0.6";
 
         private Panel currentPanel;
 
@@ -8463,7 +8463,7 @@ namespace ACNHPokerCore
         {
             if (Ro == null)
             {
-                Ro = new(socket, usb, sound);
+                Ro = new(socket, usb, sound, DEBUGGING);
                 Ro.CloseForm += Ro_closeForm;
                 Ro.Show();
             }

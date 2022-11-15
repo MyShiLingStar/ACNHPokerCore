@@ -782,7 +782,9 @@ namespace ACNHPokerCore
                         {
                             if (isSpace != null)
                             {
-                                if (isSpace[Counter] == true)
+                                if (Counter >= isSpace.Length)
+                                    previewtilesType[i][j] = 3;
+                                else if (isSpace[Counter] == true)
                                     previewtilesType[i][j] = 3;
                                 else
                                     previewtilesType[i][j] = 1;
@@ -815,7 +817,9 @@ namespace ACNHPokerCore
                         {
                             if (isSpace != null)
                             {
-                                if (isSpace[Counter] == true)
+                                if (Counter >= isSpace.Length)
+                                    previewtilesType[i][j] = 3;
+                                else if (isSpace[Counter] == true)
                                     previewtilesType[i][j] = 3;
                                 else
                                     previewtilesType[i][j] = 1;
@@ -826,8 +830,6 @@ namespace ACNHPokerCore
                         }
                         else
                             previewtilesType[i][j] = 0;
-
-                        Counter++;
                     }
                 }
             }
@@ -851,7 +853,7 @@ namespace ACNHPokerCore
                         else if (previewtilesType[i][j] == 2)
                             PutPixel(gr, i * mapSize, j * mapSize, Color.LightSkyBlue);
                         else if (previewtilesType[i][j] == 3)
-                            PutPixel(gr, i * mapSize, j * mapSize, Color.FromArgb(100, Color.HotPink));
+                            PutPixel(gr, i * mapSize, j * mapSize, Color.FromArgb(200, Color.HotPink));
 
                     }
                 }
@@ -859,6 +861,110 @@ namespace ACNHPokerCore
 
             return myBitmap;
         }
+
+        public static Bitmap DrawPreviewHori(int row, int column, int x, int y, bool right, bool[] isSpace = null)
+        {
+            int[][] previewtilesType;
+            int Counter = 0;
+
+            if (right)
+            {
+                previewtilesType = new int[numOfRow][];
+
+                for (int i = 0; i < numOfRow; i++)
+                {
+                    previewtilesType[i] = new int[numOfColumn];
+
+                    for (int j = 0; j < numOfColumn; j++)
+                    {
+                        if (j == x && i == y)
+                        {
+                            previewtilesType[i][j] = 2;
+                            Counter++;
+                        }
+                        else if (j >= x && j < x + column && i >= y && i < y + row)
+                        {
+                            if (isSpace != null)
+                            {
+                                if (Counter >= isSpace.Length)
+                                    previewtilesType[i][j] = 3;
+                                else if (isSpace[Counter] == true)
+                                    previewtilesType[i][j] = 3;
+                                else
+                                    previewtilesType[i][j] = 1;
+                            }
+                            else
+                                previewtilesType[i][j] = 1;
+                            Counter++;
+                        }
+                        else
+                            previewtilesType[i][j] = 0;
+                    }
+                }
+            }
+            else
+            {
+                previewtilesType = new int[numOfRow][];
+
+                for (int i = 0; i < numOfRow; i++)
+                {
+                    previewtilesType[i] = new int[numOfColumn];
+
+                    for (int j = numOfColumn - 1; j >= 0; j--)
+                    {
+                        if (j == x && i == y)
+                        {
+                            previewtilesType[i][j] = 2;
+                            Counter++;
+                        }
+                        else if (j <= x && j > x - column && i >= y && i < y + row)
+                        {
+                            if (isSpace != null)
+                            {
+                                if (Counter >= isSpace.Length)
+                                    previewtilesType[i][j] = 3;
+                                else if (isSpace[Counter] == true)
+                                    previewtilesType[i][j] = 3;
+                                else
+                                    previewtilesType[i][j] = 1;
+                            }
+                            else
+                                previewtilesType[i][j] = 1;
+                            Counter++;
+                        }
+                        else
+                            previewtilesType[i][j] = 0;
+                    }
+                }
+            }
+
+
+
+            Bitmap myBitmap;
+
+            myBitmap = new Bitmap(numOfColumn * mapSize, numOfRow * mapSize);
+
+            using (Graphics gr = Graphics.FromImage(myBitmap))
+            {
+                gr.SmoothingMode = SmoothingMode.None;
+
+                for (int i = 0; i < numOfRow; i++)
+                {
+                    for (int j = 0; j < numOfColumn; j++)
+                    {
+                        if (previewtilesType[i][j] == 1)
+                            PutPixel(gr, j * mapSize, i * mapSize, Color.FromArgb(200, Color.Red));
+                        else if (previewtilesType[i][j] == 2)
+                            PutPixel(gr, j * mapSize, i * mapSize, Color.LightSkyBlue);
+                        else if (previewtilesType[i][j] == 3)
+                            PutPixel(gr, j * mapSize, i * mapSize, Color.FromArgb(200, Color.HotPink));
+                    }
+                }
+            }
+
+            return myBitmap;
+        }
+
 
         private void TransformItemMap()
         {

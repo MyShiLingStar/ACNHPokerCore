@@ -314,6 +314,8 @@ namespace ACNHPokerCore
                 return OverworldState.Loading;
             else if ($"{value:X8}".EndsWith("BC10"))
                 return OverworldState.Loading;
+            else if ($"{value:X8}".EndsWith("5B08"))
+                return OverworldState.Loading;
             return value switch
             {
                 0x00000000 => OverworldState.Null,
@@ -387,6 +389,7 @@ namespace ACNHPokerCore
             {
                 0x3EB44F1A => LocationState.Announcement,
                 0xB5CA1578 or 0x43140000 or 0x432A0CCD or 0x430C0CCD or 0x43200CCD => LocationState.Indoor,
+                0x43200000 or 0x430C0000 or 0x4329FFBF or 0x430BFFBF or 0x431FFFBF => LocationState.Indoor,
                 0x0 or 0xFF => LocationState.Loading,
                 _ => LocationState.Unknown,
             };

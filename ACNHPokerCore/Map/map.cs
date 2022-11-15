@@ -39,8 +39,9 @@ namespace ACNHPokerCore
         private readonly FloorSlot[] floorSlots;
         private variation selection = null;
         private MiniMap MiniMap = null;
-        public BulkSpawn bulk = null;
+        public BulkSpawn bulkSpawn = null;
         private Filter itemFilter = null;
+        private BulkList bulkList = null;
         private int counter = 0;
         private int saveTime = -1;
         private bool drawing = false;
@@ -166,36 +167,36 @@ namespace ACNHPokerCore
 
                 if (source != null)
                 {
-                    fieldGridView.DataSource = source;
+                    FieldGridView.DataSource = source;
 
                     //set the ID row invisible
-                    fieldGridView.Columns["id"].Visible = false;
-                    fieldGridView.Columns["iName"].Visible = false;
-                    fieldGridView.Columns["jpn"].Visible = false;
-                    fieldGridView.Columns["tchi"].Visible = false;
-                    fieldGridView.Columns["schi"].Visible = false;
-                    fieldGridView.Columns["kor"].Visible = false;
-                    fieldGridView.Columns["fre"].Visible = false;
-                    fieldGridView.Columns["ger"].Visible = false;
-                    fieldGridView.Columns["spa"].Visible = false;
-                    fieldGridView.Columns["ita"].Visible = false;
-                    fieldGridView.Columns["dut"].Visible = false;
-                    fieldGridView.Columns["rus"].Visible = false;
-                    fieldGridView.Columns["color"].Visible = false;
-                    fieldGridView.Columns["size"].Visible = false;
-                    fieldGridView.Columns["Kind"].Visible = false;
+                    FieldGridView.Columns["id"].Visible = false;
+                    FieldGridView.Columns["iName"].Visible = false;
+                    FieldGridView.Columns["jpn"].Visible = false;
+                    FieldGridView.Columns["tchi"].Visible = false;
+                    FieldGridView.Columns["schi"].Visible = false;
+                    FieldGridView.Columns["kor"].Visible = false;
+                    FieldGridView.Columns["fre"].Visible = false;
+                    FieldGridView.Columns["ger"].Visible = false;
+                    FieldGridView.Columns["spa"].Visible = false;
+                    FieldGridView.Columns["ita"].Visible = false;
+                    FieldGridView.Columns["dut"].Visible = false;
+                    FieldGridView.Columns["rus"].Visible = false;
+                    FieldGridView.Columns["color"].Visible = false;
+                    FieldGridView.Columns["size"].Visible = false;
+                    FieldGridView.Columns["Kind"].Visible = false;
 
                     //select the full row and change color cause windows blue sux
-                    fieldGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                    fieldGridView.DefaultCellStyle.BackColor = Color.FromArgb(255, 47, 49, 54);
-                    fieldGridView.DefaultCellStyle.ForeColor = Color.FromArgb(255, 114, 105, 110);
-                    fieldGridView.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 57, 60, 67);
+                    FieldGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    FieldGridView.DefaultCellStyle.BackColor = Color.FromArgb(255, 47, 49, 54);
+                    FieldGridView.DefaultCellStyle.ForeColor = Color.FromArgb(255, 114, 105, 110);
+                    FieldGridView.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 57, 60, 67);
 
-                    fieldGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(255, 57, 60, 67);
-                    fieldGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-                    fieldGridView.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 57, 60, 67);
+                    FieldGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(255, 57, 60, 67);
+                    FieldGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                    FieldGridView.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 57, 60, 67);
 
-                    fieldGridView.EnableHeadersVisualStyles = false;
+                    FieldGridView.EnableHeadersVisualStyles = false;
 
                     //create the image column
                     DataGridViewImageColumn imageColumn = new()
@@ -204,37 +205,37 @@ namespace ACNHPokerCore
                         HeaderText = "Image",
                         ImageLayout = DataGridViewImageCellLayout.Zoom
                     };
-                    fieldGridView.Columns.Insert(13, imageColumn);
+                    FieldGridView.Columns.Insert(13, imageColumn);
                     imageColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
 
-                    fieldGridView.Columns["eng"].Width = 195;
-                    fieldGridView.Columns["jpn"].Width = 195;
-                    fieldGridView.Columns["tchi"].Width = 195;
-                    fieldGridView.Columns["schi"].Width = 195;
-                    fieldGridView.Columns["kor"].Width = 195;
-                    fieldGridView.Columns["fre"].Width = 195;
-                    fieldGridView.Columns["ger"].Width = 195;
-                    fieldGridView.Columns["spa"].Width = 195;
-                    fieldGridView.Columns["ita"].Width = 195;
-                    fieldGridView.Columns["dut"].Width = 195;
-                    fieldGridView.Columns["rus"].Width = 195;
-                    fieldGridView.Columns["Image"].Width = 128;
+                    FieldGridView.Columns["eng"].Width = 195;
+                    FieldGridView.Columns["jpn"].Width = 195;
+                    FieldGridView.Columns["tchi"].Width = 195;
+                    FieldGridView.Columns["schi"].Width = 195;
+                    FieldGridView.Columns["kor"].Width = 195;
+                    FieldGridView.Columns["fre"].Width = 195;
+                    FieldGridView.Columns["ger"].Width = 195;
+                    FieldGridView.Columns["spa"].Width = 195;
+                    FieldGridView.Columns["ita"].Width = 195;
+                    FieldGridView.Columns["dut"].Width = 195;
+                    FieldGridView.Columns["rus"].Width = 195;
+                    FieldGridView.Columns["Image"].Width = 128;
 
-                    fieldGridView.Columns["eng"].HeaderText = "Name";
-                    fieldGridView.Columns["jpn"].HeaderText = "Name";
-                    fieldGridView.Columns["tchi"].HeaderText = "Name";
-                    fieldGridView.Columns["schi"].HeaderText = "Name";
-                    fieldGridView.Columns["kor"].HeaderText = "Name";
-                    fieldGridView.Columns["fre"].HeaderText = "Name";
-                    fieldGridView.Columns["ger"].HeaderText = "Name";
-                    fieldGridView.Columns["spa"].HeaderText = "Name";
-                    fieldGridView.Columns["ita"].HeaderText = "Name";
-                    fieldGridView.Columns["dut"].HeaderText = "Name";
-                    fieldGridView.Columns["rus"].HeaderText = "Name";
+                    FieldGridView.Columns["eng"].HeaderText = "Name";
+                    FieldGridView.Columns["jpn"].HeaderText = "Name";
+                    FieldGridView.Columns["tchi"].HeaderText = "Name";
+                    FieldGridView.Columns["schi"].HeaderText = "Name";
+                    FieldGridView.Columns["kor"].HeaderText = "Name";
+                    FieldGridView.Columns["fre"].HeaderText = "Name";
+                    FieldGridView.Columns["ger"].HeaderText = "Name";
+                    FieldGridView.Columns["spa"].HeaderText = "Name";
+                    FieldGridView.Columns["ita"].HeaderText = "Name";
+                    FieldGridView.Columns["dut"].HeaderText = "Name";
+                    FieldGridView.Columns["rus"].HeaderText = "Name";
 
                     currentDataTable = source;
 
-                    fieldGridView.DefaultCellStyle.Font = new Font("Microsoft JhengHei UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+                    FieldGridView.DefaultCellStyle.Font = new Font("Microsoft JhengHei UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
                 }
 
 
@@ -284,10 +285,10 @@ namespace ACNHPokerCore
                 LanguageSetup(LanguageSetting);
                 languageSetting = LanguageSetting;
 
-                if (fieldGridView.Columns.Contains(languageSetting))
+                if (FieldGridView.Columns.Contains(languageSetting))
                 {
                     HideAllLanguage();
-                    fieldGridView.Columns[languageSetting].Visible = true;
+                    FieldGridView.Columns[languageSetting].Visible = true;
                 }
 
                 FlashTimer.Start();
@@ -1274,7 +1275,7 @@ namespace ACNHPokerCore
 
         private void FieldGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            AddImage(fieldGridView, e);
+            AddImage(FieldGridView, e);
         }
 
         private void AddImage(DataGridView Grid, DataGridViewCellFormattingEventArgs e)
@@ -1350,9 +1351,10 @@ namespace ACNHPokerCore
         #endregion
 
         #region GridView Control
-        private void FieldGridView_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+
+        private void FieldGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 isHalfTileItem = false;
                 isPillar = false;
@@ -1366,17 +1368,17 @@ namespace ACNHPokerCore
 
                 if (e.RowIndex > -1)
                 {
-                    lastRow = fieldGridView.Rows[e.RowIndex];
-                    fieldGridView.Rows[e.RowIndex].Height = 128;
+                    lastRow = FieldGridView.Rows[e.RowIndex];
+                    FieldGridView.Rows[e.RowIndex].Height = 128;
 
                     if (currentDataTable == source)
                     {
-                        string id = fieldGridView.Rows[e.RowIndex].Cells["id"].Value.ToString();
-                        string name = fieldGridView.Rows[e.RowIndex].Cells[languageSetting].Value.ToString();
+                        string id = FieldGridView.Rows[e.RowIndex].Cells["id"].Value.ToString();
+                        string name = FieldGridView.Rows[e.RowIndex].Cells[languageSetting].Value.ToString();
 
                         IdTextbox.Text = id;
                         HexTextbox.Text = "00000000";
-                        selectedSize = fieldGridView.Rows[e.RowIndex].Cells["size"].Value.ToString();
+                        selectedSize = FieldGridView.Rows[e.RowIndex].Cells["size"].Value.ToString();
                         if (selectedSize.Contains("Pillar"))
                             isPillar = true;
                         if (selectedSize.Contains("x0_5") && !selectedSize.Contains("_Wall") && !selectedSize.Contains("_Pillar"))
@@ -1388,8 +1390,8 @@ namespace ACNHPokerCore
                     else if (currentDataTable == recipeSource)
                     {
                         string id = "16A2"; // Recipe;
-                        string name = fieldGridView.Rows[e.RowIndex].Cells[languageSetting].Value.ToString();
-                        string hexValue = fieldGridView.Rows[e.RowIndex].Cells["id"].Value.ToString();
+                        string name = FieldGridView.Rows[e.RowIndex].Cells[languageSetting].Value.ToString();
+                        string hexValue = FieldGridView.Rows[e.RowIndex].Cells["id"].Value.ToString();
 
                         IdTextbox.Text = id;
                         HexTextbox.Text = Utilities.precedingZeros(hexValue, 8);
@@ -1399,9 +1401,9 @@ namespace ACNHPokerCore
                     }
                     else if (currentDataTable == flowerSource)
                     {
-                        string id = fieldGridView.Rows[e.RowIndex].Cells["id"].Value.ToString();
-                        string name = fieldGridView.Rows[e.RowIndex].Cells[languageSetting].Value.ToString();
-                        string hexValue = fieldGridView.Rows[e.RowIndex].Cells["value"].Value.ToString();
+                        string id = FieldGridView.Rows[e.RowIndex].Cells["id"].Value.ToString();
+                        string name = FieldGridView.Rows[e.RowIndex].Cells[languageSetting].Value.ToString();
+                        string hexValue = FieldGridView.Rows[e.RowIndex].Cells["value"].Value.ToString();
 
                         IdTextbox.Text = id;
                         HexTextbox.Text = Utilities.precedingZeros(hexValue, 8);
@@ -1411,9 +1413,9 @@ namespace ACNHPokerCore
                     }
                     else if (currentDataTable == favSource)
                     {
-                        string id = fieldGridView.Rows[e.RowIndex].Cells["id"].Value.ToString();
-                        string name = fieldGridView.Rows[e.RowIndex].Cells["Name"].Value.ToString();
-                        string hexValue = fieldGridView.Rows[e.RowIndex].Cells["value"].Value.ToString();
+                        string id = FieldGridView.Rows[e.RowIndex].Cells["id"].Value.ToString();
+                        string name = FieldGridView.Rows[e.RowIndex].Cells["Name"].Value.ToString();
+                        string hexValue = FieldGridView.Rows[e.RowIndex].Cells["value"].Value.ToString();
 
                         IdTextbox.Text = id;
                         HexTextbox.Text = Utilities.precedingZeros(hexValue, 8);
@@ -1423,9 +1425,9 @@ namespace ACNHPokerCore
                     }
                     else if (currentDataTable == fieldSource)
                     {
-                        string id = fieldGridView.Rows[e.RowIndex].Cells["id"].Value.ToString();
-                        string name = fieldGridView.Rows[e.RowIndex].Cells["Name"].Value.ToString();
-                        string hexValue = fieldGridView.Rows[e.RowIndex].Cells["value"].Value.ToString();
+                        string id = FieldGridView.Rows[e.RowIndex].Cells["id"].Value.ToString();
+                        string name = FieldGridView.Rows[e.RowIndex].Cells["Name"].Value.ToString();
+                        string hexValue = FieldGridView.Rows[e.RowIndex].Cells["value"].Value.ToString();
 
                         IdTextbox.Text = id;
                         HexTextbox.Text = Utilities.precedingZeros(hexValue, 8);
@@ -1439,11 +1441,11 @@ namespace ACNHPokerCore
                         string hexValue = "00000000";
 
                         if (currentDataTable == flowerSource)
-                            hexValue = fieldGridView.Rows[e.RowIndex].Cells["value"].Value.ToString();
+                            hexValue = FieldGridView.Rows[e.RowIndex].Cells["value"].Value.ToString();
                         else if (currentDataTable == favSource)
-                            hexValue = fieldGridView.Rows[e.RowIndex].Cells["value"].Value.ToString();
+                            hexValue = FieldGridView.Rows[e.RowIndex].Cells["value"].Value.ToString();
                         else if (currentDataTable == fieldSource)
-                            hexValue = fieldGridView.Rows[e.RowIndex].Cells["value"].Value.ToString();
+                            hexValue = FieldGridView.Rows[e.RowIndex].Cells["value"].Value.ToString();
 
                         selection.ReceiveID(Utilities.precedingZeros(selectedItem.fillItemID(), 4), languageSetting, Utilities.precedingZeros(hexValue, 8));
                     }
@@ -1452,7 +1454,7 @@ namespace ACNHPokerCore
 
                 }
             }
-            else if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            else if (e.Button == MouseButtons.Right)
             {
                 if (lastRow != null)
                 {
@@ -1461,8 +1463,8 @@ namespace ACNHPokerCore
 
                 if (e.RowIndex > -1)
                 {
-                    lastRow = fieldGridView.Rows[e.RowIndex];
-                    fieldGridView.Rows[e.RowIndex].Height = 128;
+                    lastRow = FieldGridView.Rows[e.RowIndex];
+                    FieldGridView.Rows[e.RowIndex].Height = 128;
 
                     string name = selectedItem.displayItemName();
                     string id = selectedItem.displayItemID();
@@ -1472,13 +1474,13 @@ namespace ACNHPokerCore
                     {
                         if (IdTextbox.Text == "315A" || IdTextbox.Text == "1618" || IdTextbox.Text == "342F") // Wall-Mounted
                         {
-                            HexTextbox.Text = Utilities.precedingZeros("00" + fieldGridView.Rows[e.RowIndex].Cells["id"].Value.ToString(), 8);
-                            selectedItem.setup(name, Convert.ToUInt16(id, 16), Convert.ToUInt32("0x" + HexTextbox.Text, 16), path, true, GetImagePathFromID(fieldGridView.Rows[e.RowIndex].Cells["id"].Value.ToString(), source));
+                            HexTextbox.Text = Utilities.precedingZeros("00" + FieldGridView.Rows[e.RowIndex].Cells["id"].Value.ToString(), 8);
+                            selectedItem.setup(name, Convert.ToUInt16(id, 16), Convert.ToUInt32("0x" + HexTextbox.Text, 16), path, true, GetImagePathFromID(FieldGridView.Rows[e.RowIndex].Cells["id"].Value.ToString(), source));
                         }
                         else
                         {
-                            HexTextbox.Text = Utilities.precedingZeros(fieldGridView.Rows[e.RowIndex].Cells["id"].Value.ToString(), 8);
-                            selectedItem.setup(name, Convert.ToUInt16(id, 16), Convert.ToUInt32("0x" + HexTextbox.Text, 16), path, true, GetNameFromID(fieldGridView.Rows[e.RowIndex].Cells["id"].Value.ToString(), source));
+                            HexTextbox.Text = Utilities.precedingZeros(FieldGridView.Rows[e.RowIndex].Cells["id"].Value.ToString(), 8);
+                            selectedItem.setup(name, Convert.ToUInt16(id, 16), Convert.ToUInt32("0x" + HexTextbox.Text, 16), path, true, GetNameFromID(FieldGridView.Rows[e.RowIndex].Cells["id"].Value.ToString(), source));
                         }
 
                         if (selection != null)
@@ -1504,23 +1506,23 @@ namespace ACNHPokerCore
                 itemSearchBox.Clear();
             }
 
-            fieldGridView.Columns.Remove("Image");
+            FieldGridView.Columns.Remove("Image");
 
             if (source != null)
             {
-                fieldGridView.DataSource = source;
+                FieldGridView.DataSource = source;
 
                 //set the ID row invisible
-                fieldGridView.Columns["id"].Visible = false;
-                fieldGridView.Columns["iName"].Visible = false;
-                fieldGridView.Columns["color"].Visible = false;
-                fieldGridView.Columns["size"].Visible = false;
-                fieldGridView.Columns["Kind"].Visible = false;
+                FieldGridView.Columns["id"].Visible = false;
+                FieldGridView.Columns["iName"].Visible = false;
+                FieldGridView.Columns["color"].Visible = false;
+                FieldGridView.Columns["size"].Visible = false;
+                FieldGridView.Columns["Kind"].Visible = false;
 
-                if (fieldGridView.Columns.Contains(languageSetting))
+                if (FieldGridView.Columns.Contains(languageSetting))
                 {
                     HideAllLanguage();
-                    fieldGridView.Columns[languageSetting].Visible = true;
+                    FieldGridView.Columns[languageSetting].Visible = true;
                 }
 
                 DataGridViewImageColumn imageColumn = new()
@@ -1529,33 +1531,33 @@ namespace ACNHPokerCore
                     HeaderText = "Image",
                     ImageLayout = DataGridViewImageCellLayout.Zoom
                 };
-                fieldGridView.Columns.Insert(13, imageColumn);
+                FieldGridView.Columns.Insert(13, imageColumn);
                 imageColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
 
-                fieldGridView.Columns["eng"].Width = 195;
-                fieldGridView.Columns["jpn"].Width = 195;
-                fieldGridView.Columns["tchi"].Width = 195;
-                fieldGridView.Columns["schi"].Width = 195;
-                fieldGridView.Columns["kor"].Width = 195;
-                fieldGridView.Columns["fre"].Width = 195;
-                fieldGridView.Columns["ger"].Width = 195;
-                fieldGridView.Columns["spa"].Width = 195;
-                fieldGridView.Columns["ita"].Width = 195;
-                fieldGridView.Columns["dut"].Width = 195;
-                fieldGridView.Columns["rus"].Width = 195;
-                fieldGridView.Columns["Image"].Width = 128;
+                FieldGridView.Columns["eng"].Width = 195;
+                FieldGridView.Columns["jpn"].Width = 195;
+                FieldGridView.Columns["tchi"].Width = 195;
+                FieldGridView.Columns["schi"].Width = 195;
+                FieldGridView.Columns["kor"].Width = 195;
+                FieldGridView.Columns["fre"].Width = 195;
+                FieldGridView.Columns["ger"].Width = 195;
+                FieldGridView.Columns["spa"].Width = 195;
+                FieldGridView.Columns["ita"].Width = 195;
+                FieldGridView.Columns["dut"].Width = 195;
+                FieldGridView.Columns["rus"].Width = 195;
+                FieldGridView.Columns["Image"].Width = 128;
 
-                fieldGridView.Columns["eng"].HeaderText = "Name";
-                fieldGridView.Columns["jpn"].HeaderText = "Name";
-                fieldGridView.Columns["tchi"].HeaderText = "Name";
-                fieldGridView.Columns["schi"].HeaderText = "Name";
-                fieldGridView.Columns["kor"].HeaderText = "Name";
-                fieldGridView.Columns["fre"].HeaderText = "Name";
-                fieldGridView.Columns["ger"].HeaderText = "Name";
-                fieldGridView.Columns["spa"].HeaderText = "Name";
-                fieldGridView.Columns["ita"].HeaderText = "Name";
-                fieldGridView.Columns["dut"].HeaderText = "Name";
-                fieldGridView.Columns["rus"].HeaderText = "Name";
+                FieldGridView.Columns["eng"].HeaderText = "Name";
+                FieldGridView.Columns["jpn"].HeaderText = "Name";
+                FieldGridView.Columns["tchi"].HeaderText = "Name";
+                FieldGridView.Columns["schi"].HeaderText = "Name";
+                FieldGridView.Columns["kor"].HeaderText = "Name";
+                FieldGridView.Columns["fre"].HeaderText = "Name";
+                FieldGridView.Columns["ger"].HeaderText = "Name";
+                FieldGridView.Columns["spa"].HeaderText = "Name";
+                FieldGridView.Columns["ita"].HeaderText = "Name";
+                FieldGridView.Columns["dut"].HeaderText = "Name";
+                FieldGridView.Columns["rus"].HeaderText = "Name";
 
                 currentDataTable = source;
             }
@@ -1564,6 +1566,7 @@ namespace ACNHPokerCore
 
             FilterBtn.Enabled = true;
             resetFilter();
+            FieldGridView.ClearSelection();
         }
 
         private void RecipeModeBtn_Click(object sender, EventArgs e)
@@ -1579,19 +1582,19 @@ namespace ACNHPokerCore
                 itemSearchBox.Clear();
             }
 
-            fieldGridView.Columns.Remove("Image");
+            FieldGridView.Columns.Remove("Image");
 
             if (recipeSource != null)
             {
-                fieldGridView.DataSource = recipeSource;
+                FieldGridView.DataSource = recipeSource;
 
-                fieldGridView.Columns["id"].Visible = false;
-                fieldGridView.Columns["iName"].Visible = false;
+                FieldGridView.Columns["id"].Visible = false;
+                FieldGridView.Columns["iName"].Visible = false;
 
-                if (fieldGridView.Columns.Contains(languageSetting))
+                if (FieldGridView.Columns.Contains(languageSetting))
                 {
                     HideAllLanguage();
-                    fieldGridView.Columns[languageSetting].Visible = true;
+                    FieldGridView.Columns[languageSetting].Visible = true;
                 }
 
                 DataGridViewImageColumn imageColumn = new()
@@ -1600,33 +1603,33 @@ namespace ACNHPokerCore
                     HeaderText = "Image",
                     ImageLayout = DataGridViewImageCellLayout.Zoom
                 };
-                fieldGridView.Columns.Insert(13, imageColumn);
+                FieldGridView.Columns.Insert(13, imageColumn);
                 imageColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
 
-                fieldGridView.Columns["eng"].Width = 195;
-                fieldGridView.Columns["jpn"].Width = 195;
-                fieldGridView.Columns["tchi"].Width = 195;
-                fieldGridView.Columns["schi"].Width = 195;
-                fieldGridView.Columns["kor"].Width = 195;
-                fieldGridView.Columns["fre"].Width = 195;
-                fieldGridView.Columns["ger"].Width = 195;
-                fieldGridView.Columns["spa"].Width = 195;
-                fieldGridView.Columns["ita"].Width = 195;
-                fieldGridView.Columns["dut"].Width = 195;
-                fieldGridView.Columns["rus"].Width = 195;
-                fieldGridView.Columns["Image"].Width = 128;
+                FieldGridView.Columns["eng"].Width = 195;
+                FieldGridView.Columns["jpn"].Width = 195;
+                FieldGridView.Columns["tchi"].Width = 195;
+                FieldGridView.Columns["schi"].Width = 195;
+                FieldGridView.Columns["kor"].Width = 195;
+                FieldGridView.Columns["fre"].Width = 195;
+                FieldGridView.Columns["ger"].Width = 195;
+                FieldGridView.Columns["spa"].Width = 195;
+                FieldGridView.Columns["ita"].Width = 195;
+                FieldGridView.Columns["dut"].Width = 195;
+                FieldGridView.Columns["rus"].Width = 195;
+                FieldGridView.Columns["Image"].Width = 128;
 
-                fieldGridView.Columns["eng"].HeaderText = "Name";
-                fieldGridView.Columns["jpn"].HeaderText = "Name";
-                fieldGridView.Columns["tchi"].HeaderText = "Name";
-                fieldGridView.Columns["schi"].HeaderText = "Name";
-                fieldGridView.Columns["kor"].HeaderText = "Name";
-                fieldGridView.Columns["fre"].HeaderText = "Name";
-                fieldGridView.Columns["ger"].HeaderText = "Name";
-                fieldGridView.Columns["spa"].HeaderText = "Name";
-                fieldGridView.Columns["ita"].HeaderText = "Name";
-                fieldGridView.Columns["dut"].HeaderText = "Name";
-                fieldGridView.Columns["rus"].HeaderText = "Name";
+                FieldGridView.Columns["eng"].HeaderText = "Name";
+                FieldGridView.Columns["jpn"].HeaderText = "Name";
+                FieldGridView.Columns["tchi"].HeaderText = "Name";
+                FieldGridView.Columns["schi"].HeaderText = "Name";
+                FieldGridView.Columns["kor"].HeaderText = "Name";
+                FieldGridView.Columns["fre"].HeaderText = "Name";
+                FieldGridView.Columns["ger"].HeaderText = "Name";
+                FieldGridView.Columns["spa"].HeaderText = "Name";
+                FieldGridView.Columns["ita"].HeaderText = "Name";
+                FieldGridView.Columns["dut"].HeaderText = "Name";
+                FieldGridView.Columns["rus"].HeaderText = "Name";
 
                 currentDataTable = recipeSource;
             }
@@ -1635,6 +1638,7 @@ namespace ACNHPokerCore
 
             FilterBtn.Enabled = false;
             resetFilter();
+            FieldGridView.ClearSelection();
         }
 
         private void FlowerModeBtn_Click(object sender, EventArgs e)
@@ -1650,20 +1654,20 @@ namespace ACNHPokerCore
                 itemSearchBox.Clear();
             }
 
-            fieldGridView.Columns.Remove("Image");
+            FieldGridView.Columns.Remove("Image");
 
             if (flowerSource != null)
             {
-                fieldGridView.DataSource = flowerSource;
+                FieldGridView.DataSource = flowerSource;
 
-                fieldGridView.Columns["id"].Visible = false;
-                fieldGridView.Columns["iName"].Visible = false;
-                fieldGridView.Columns["value"].Visible = false;
+                FieldGridView.Columns["id"].Visible = false;
+                FieldGridView.Columns["iName"].Visible = false;
+                FieldGridView.Columns["value"].Visible = false;
 
-                if (fieldGridView.Columns.Contains(languageSetting))
+                if (FieldGridView.Columns.Contains(languageSetting))
                 {
                     HideAllLanguage();
-                    fieldGridView.Columns[languageSetting].Visible = true;
+                    FieldGridView.Columns[languageSetting].Visible = true;
                 }
 
                 DataGridViewImageColumn imageColumn = new()
@@ -1672,33 +1676,33 @@ namespace ACNHPokerCore
                     HeaderText = "Image",
                     ImageLayout = DataGridViewImageCellLayout.Zoom
                 };
-                fieldGridView.Columns.Insert(13, imageColumn);
+                FieldGridView.Columns.Insert(13, imageColumn);
                 imageColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
 
-                fieldGridView.Columns["eng"].Width = 195;
-                fieldGridView.Columns["jpn"].Width = 195;
-                fieldGridView.Columns["tchi"].Width = 195;
-                fieldGridView.Columns["schi"].Width = 195;
-                fieldGridView.Columns["kor"].Width = 195;
-                fieldGridView.Columns["fre"].Width = 195;
-                fieldGridView.Columns["ger"].Width = 195;
-                fieldGridView.Columns["spa"].Width = 195;
-                fieldGridView.Columns["ita"].Width = 195;
-                fieldGridView.Columns["dut"].Width = 195;
-                fieldGridView.Columns["rus"].Width = 195;
-                fieldGridView.Columns["Image"].Width = 128;
+                FieldGridView.Columns["eng"].Width = 195;
+                FieldGridView.Columns["jpn"].Width = 195;
+                FieldGridView.Columns["tchi"].Width = 195;
+                FieldGridView.Columns["schi"].Width = 195;
+                FieldGridView.Columns["kor"].Width = 195;
+                FieldGridView.Columns["fre"].Width = 195;
+                FieldGridView.Columns["ger"].Width = 195;
+                FieldGridView.Columns["spa"].Width = 195;
+                FieldGridView.Columns["ita"].Width = 195;
+                FieldGridView.Columns["dut"].Width = 195;
+                FieldGridView.Columns["rus"].Width = 195;
+                FieldGridView.Columns["Image"].Width = 128;
 
-                fieldGridView.Columns["eng"].HeaderText = "Name";
-                fieldGridView.Columns["jpn"].HeaderText = "Name";
-                fieldGridView.Columns["tchi"].HeaderText = "Name";
-                fieldGridView.Columns["schi"].HeaderText = "Name";
-                fieldGridView.Columns["kor"].HeaderText = "Name";
-                fieldGridView.Columns["fre"].HeaderText = "Name";
-                fieldGridView.Columns["ger"].HeaderText = "Name";
-                fieldGridView.Columns["spa"].HeaderText = "Name";
-                fieldGridView.Columns["ita"].HeaderText = "Name";
-                fieldGridView.Columns["dut"].HeaderText = "Name";
-                fieldGridView.Columns["rus"].HeaderText = "Name";
+                FieldGridView.Columns["eng"].HeaderText = "Name";
+                FieldGridView.Columns["jpn"].HeaderText = "Name";
+                FieldGridView.Columns["tchi"].HeaderText = "Name";
+                FieldGridView.Columns["schi"].HeaderText = "Name";
+                FieldGridView.Columns["kor"].HeaderText = "Name";
+                FieldGridView.Columns["fre"].HeaderText = "Name";
+                FieldGridView.Columns["ger"].HeaderText = "Name";
+                FieldGridView.Columns["spa"].HeaderText = "Name";
+                FieldGridView.Columns["ita"].HeaderText = "Name";
+                FieldGridView.Columns["dut"].HeaderText = "Name";
+                FieldGridView.Columns["rus"].HeaderText = "Name";
 
                 currentDataTable = flowerSource;
             }
@@ -1707,6 +1711,7 @@ namespace ACNHPokerCore
 
             FilterBtn.Enabled = false;
             resetFilter();
+            FieldGridView.ClearSelection();
         }
 
         private void FavModeBtn_Click(object sender, EventArgs e)
@@ -1722,17 +1727,17 @@ namespace ACNHPokerCore
                 itemSearchBox.Clear();
             }
 
-            fieldGridView.Columns.Remove("Image");
+            FieldGridView.Columns.Remove("Image");
 
             if (favSource != null)
             {
-                fieldGridView.DataSource = favSource;
+                FieldGridView.DataSource = favSource;
 
-                fieldGridView.Columns["id"].Visible = false;
-                fieldGridView.Columns["iName"].Visible = false;
-                fieldGridView.Columns["Name"].Visible = true;
-                fieldGridView.Columns["value"].Visible = false;
-                fieldGridView.Columns["Kind"].Visible = false;
+                FieldGridView.Columns["id"].Visible = false;
+                FieldGridView.Columns["iName"].Visible = false;
+                FieldGridView.Columns["Name"].Visible = true;
+                FieldGridView.Columns["value"].Visible = false;
+                FieldGridView.Columns["Kind"].Visible = false;
 
                 DataGridViewImageColumn imageColumn = new()
                 {
@@ -1740,11 +1745,11 @@ namespace ACNHPokerCore
                     HeaderText = "Image",
                     ImageLayout = DataGridViewImageCellLayout.Zoom
                 };
-                fieldGridView.Columns.Insert(4, imageColumn);
+                FieldGridView.Columns.Insert(4, imageColumn);
                 imageColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
 
-                fieldGridView.Columns["Name"].Width = 195;
-                fieldGridView.Columns["Image"].Width = 128;
+                FieldGridView.Columns["Name"].Width = 195;
+                FieldGridView.Columns["Image"].Width = 128;
 
                 currentDataTable = favSource;
             }
@@ -1753,6 +1758,7 @@ namespace ACNHPokerCore
 
             FilterBtn.Enabled = true;
             resetFilter();
+            FieldGridView.ClearSelection();
         }
 
         private void FieldModeBtn_Click(object sender, EventArgs e)
@@ -1770,16 +1776,16 @@ namespace ACNHPokerCore
                 itemSearchBox.Clear();
             }
 
-            fieldGridView.Columns.Remove("Image");
+            FieldGridView.Columns.Remove("Image");
 
             if (favSource != null)
             {
-                fieldGridView.DataSource = fieldSource;
+                FieldGridView.DataSource = fieldSource;
 
-                fieldGridView.Columns["id"].Visible = false;
-                fieldGridView.Columns["iName"].Visible = false;
-                fieldGridView.Columns["name"].Visible = true;
-                fieldGridView.Columns["value"].Visible = false;
+                FieldGridView.Columns["id"].Visible = false;
+                FieldGridView.Columns["iName"].Visible = false;
+                FieldGridView.Columns["name"].Visible = true;
+                FieldGridView.Columns["value"].Visible = false;
 
                 DataGridViewImageColumn imageColumn = new()
                 {
@@ -1787,13 +1793,13 @@ namespace ACNHPokerCore
                     HeaderText = "Image",
                     ImageLayout = DataGridViewImageCellLayout.Zoom
                 };
-                fieldGridView.Columns.Insert(3, imageColumn);
+                FieldGridView.Columns.Insert(3, imageColumn);
                 imageColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
 
-                fieldGridView.Columns["name"].Width = 195;
-                fieldGridView.Columns["Image"].Width = 128;
+                FieldGridView.Columns["name"].Width = 195;
+                FieldGridView.Columns["Image"].Width = 128;
 
-                fieldGridView.Columns["name"].HeaderText = "Name";
+                FieldGridView.Columns["name"].HeaderText = "Name";
 
                 currentDataTable = fieldSource;
             }
@@ -1802,6 +1808,7 @@ namespace ACNHPokerCore
 
             FilterBtn.Enabled = false;
             resetFilter();
+            FieldGridView.ClearSelection();
         }
 
         private static DataTable LoadItemCSV(string filePath, bool key = true)
@@ -1871,50 +1878,52 @@ namespace ACNHPokerCore
                 {
                     if (currentDataTable == source || currentDataTable == favSource)
                     {
-                        (fieldGridView.DataSource as DataTable).DefaultView.RowFilter = "Kind = '" + filterKind + "'";
+                        (FieldGridView.DataSource as DataTable).DefaultView.RowFilter = "Kind = '" + filterKind + "'";
+                        FieldGridView.ClearSelection();
                     }
                     return;
                 }
                 else
                 {
-                    (fieldGridView.DataSource as DataTable).DefaultView.RowFilter = null;
+                    (FieldGridView.DataSource as DataTable).DefaultView.RowFilter = null;
+                    FieldGridView.ClearSelection();
                     return;
                 }
             }
 
             try
             {
-                if (fieldGridView.DataSource != null)
+                if (FieldGridView.DataSource != null)
                 {
                     if (currentDataTable == source)
                     {
                         if (filterOn)
                         {
-                            (fieldGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format(languageSetting + " LIKE '%{0}%' AND Kind = '{1}'", EscapeLikeValue(itemSearchBox.Text), filterKind);
+                            (FieldGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format(languageSetting + " LIKE '%{0}%' AND Kind = '{1}'", EscapeLikeValue(itemSearchBox.Text), filterKind);
                         }
                         else
-                            (fieldGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format(languageSetting + " LIKE '%{0}%'", EscapeLikeValue(itemSearchBox.Text));
+                            (FieldGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format(languageSetting + " LIKE '%{0}%'", EscapeLikeValue(itemSearchBox.Text));
                     }
                     else if (currentDataTable == recipeSource)
                     {
-                        (fieldGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format(languageSetting + " LIKE '%{0}%'", EscapeLikeValue(itemSearchBox.Text));
+                        (FieldGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format(languageSetting + " LIKE '%{0}%'", EscapeLikeValue(itemSearchBox.Text));
                     }
                     else if (currentDataTable == flowerSource)
                     {
-                        (fieldGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format(languageSetting + " LIKE '%{0}%'", EscapeLikeValue(itemSearchBox.Text));
+                        (FieldGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format(languageSetting + " LIKE '%{0}%'", EscapeLikeValue(itemSearchBox.Text));
                     }
                     else if (currentDataTable == favSource)
                     {
                         if (filterOn)
                         {
-                            (fieldGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format("name" + " LIKE '%{0}%' AND Kind = '{1}'", EscapeLikeValue(itemSearchBox.Text), filterKind);
+                            (FieldGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format("name" + " LIKE '%{0}%' AND Kind = '{1}'", EscapeLikeValue(itemSearchBox.Text), filterKind);
                         }
                         else
-                            (fieldGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format("name" + " LIKE '%{0}%'", EscapeLikeValue(itemSearchBox.Text));
+                            (FieldGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format("name" + " LIKE '%{0}%'", EscapeLikeValue(itemSearchBox.Text));
                     }
                     else if (currentDataTable == fieldSource)
                     {
-                        (fieldGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format("name" + " LIKE '%{0}%'", EscapeLikeValue(itemSearchBox.Text));
+                        (FieldGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format("name" + " LIKE '%{0}%'", EscapeLikeValue(itemSearchBox.Text));
                     }
                 }
             }
@@ -1922,6 +1931,7 @@ namespace ACNHPokerCore
             {
                 itemSearchBox.Clear();
             }
+            FieldGridView.ClearSelection();
         }
 
         public static string EscapeLikeValue(string valueWithoutWildcards)
@@ -2078,28 +2088,28 @@ namespace ACNHPokerCore
             }
             else if (e.KeyCode.ToString() == "End")
             {
-                if (fieldGridView.Rows.Count <= 0)
+                if (FieldGridView.Rows.Count <= 0)
                 {
                     return;
                 }
-                else if (fieldGridView.Rows.Count == 1)
+                else if (FieldGridView.Rows.Count == 1)
                 {
-                    lastRow = fieldGridView.Rows[fieldGridView.CurrentRow.Index];
-                    fieldGridView.Rows[fieldGridView.CurrentRow.Index].Height = 160;
+                    lastRow = FieldGridView.Rows[FieldGridView.CurrentRow.Index];
+                    FieldGridView.Rows[FieldGridView.CurrentRow.Index].Height = 160;
 
-                    KeyPressSetup(fieldGridView.CurrentRow.Index);
+                    KeyPressSetup(FieldGridView.CurrentRow.Index);
                 }
-                else if (fieldGridView.CurrentRow.Index + 1 < fieldGridView.Rows.Count)
+                else if (FieldGridView.CurrentRow.Index + 1 < FieldGridView.Rows.Count)
                 {
                     if (lastRow != null)
                     {
                         lastRow.Height = 22;
                     }
-                    lastRow = fieldGridView.Rows[fieldGridView.CurrentRow.Index + 1];
-                    fieldGridView.Rows[fieldGridView.CurrentRow.Index + 1].Height = 160;
+                    lastRow = FieldGridView.Rows[FieldGridView.CurrentRow.Index + 1];
+                    FieldGridView.Rows[FieldGridView.CurrentRow.Index + 1].Height = 160;
 
-                    KeyPressSetup(fieldGridView.CurrentRow.Index + 1);
-                    fieldGridView.CurrentCell = fieldGridView.Rows[fieldGridView.CurrentRow.Index + 1].Cells[fieldGridView.CurrentCell.ColumnIndex];
+                    KeyPressSetup(FieldGridView.CurrentRow.Index + 1);
+                    FieldGridView.CurrentCell = FieldGridView.Rows[FieldGridView.CurrentRow.Index + 1].Cells[FieldGridView.CurrentCell.ColumnIndex];
                 }
 
                 if (selection != null)
@@ -2107,11 +2117,11 @@ namespace ACNHPokerCore
                     string hexValue = "00000000";
 
                     if (currentDataTable == flowerSource)
-                        hexValue = fieldGridView.Rows[fieldGridView.CurrentRow.Index + 1].Cells["value"].Value.ToString();
+                        hexValue = FieldGridView.Rows[FieldGridView.CurrentRow.Index + 1].Cells["value"].Value.ToString();
                     else if (currentDataTable == favSource)
-                        hexValue = fieldGridView.Rows[fieldGridView.CurrentRow.Index + 1].Cells["value"].Value.ToString();
+                        hexValue = FieldGridView.Rows[FieldGridView.CurrentRow.Index + 1].Cells["value"].Value.ToString();
                     else if (currentDataTable == fieldSource)
-                        hexValue = fieldGridView.Rows[fieldGridView.CurrentRow.Index + 1].Cells["value"].Value.ToString();
+                        hexValue = FieldGridView.Rows[FieldGridView.CurrentRow.Index + 1].Cells["value"].Value.ToString();
 
                     selection.ReceiveID(Utilities.precedingZeros(selectedItem.fillItemID(), 4), languageSetting, Utilities.precedingZeros(hexValue, 8));
                 }
@@ -2119,29 +2129,29 @@ namespace ACNHPokerCore
             }
             else if (e.KeyCode.ToString() == "Home")
             {
-                if (fieldGridView.Rows.Count <= 0)
+                if (FieldGridView.Rows.Count <= 0)
                 {
                     return;
                 }
-                else if (fieldGridView.Rows.Count == 1)
+                else if (FieldGridView.Rows.Count == 1)
                 {
-                    lastRow = fieldGridView.Rows[fieldGridView.CurrentRow.Index];
-                    fieldGridView.Rows[fieldGridView.CurrentRow.Index].Height = 160;
+                    lastRow = FieldGridView.Rows[FieldGridView.CurrentRow.Index];
+                    FieldGridView.Rows[FieldGridView.CurrentRow.Index].Height = 160;
 
-                    KeyPressSetup(fieldGridView.CurrentRow.Index);
+                    KeyPressSetup(FieldGridView.CurrentRow.Index);
                 }
-                else if (fieldGridView.CurrentRow.Index > 0)
+                else if (FieldGridView.CurrentRow.Index > 0)
                 {
                     if (lastRow != null)
                     {
                         lastRow.Height = 22;
                     }
 
-                    lastRow = fieldGridView.Rows[fieldGridView.CurrentRow.Index - 1];
-                    fieldGridView.Rows[fieldGridView.CurrentRow.Index - 1].Height = 160;
+                    lastRow = FieldGridView.Rows[FieldGridView.CurrentRow.Index - 1];
+                    FieldGridView.Rows[FieldGridView.CurrentRow.Index - 1].Height = 160;
 
-                    KeyPressSetup(fieldGridView.CurrentRow.Index - 1);
-                    fieldGridView.CurrentCell = fieldGridView.Rows[fieldGridView.CurrentRow.Index - 1].Cells[fieldGridView.CurrentCell.ColumnIndex];
+                    KeyPressSetup(FieldGridView.CurrentRow.Index - 1);
+                    FieldGridView.CurrentCell = FieldGridView.Rows[FieldGridView.CurrentRow.Index - 1].Cells[FieldGridView.CurrentCell.ColumnIndex];
                 }
 
                 if (selection != null)
@@ -2149,11 +2159,11 @@ namespace ACNHPokerCore
                     string hexValue = "00000000";
 
                     if (currentDataTable == flowerSource)
-                        hexValue = fieldGridView.Rows[fieldGridView.CurrentRow.Index - 1].Cells["value"].Value.ToString();
+                        hexValue = FieldGridView.Rows[FieldGridView.CurrentRow.Index - 1].Cells["value"].Value.ToString();
                     else if (currentDataTable == favSource)
-                        hexValue = fieldGridView.Rows[fieldGridView.CurrentRow.Index - 1].Cells["value"].Value.ToString();
+                        hexValue = FieldGridView.Rows[FieldGridView.CurrentRow.Index - 1].Cells["value"].Value.ToString();
                     else if (currentDataTable == fieldSource)
-                        hexValue = fieldGridView.Rows[fieldGridView.CurrentRow.Index - 1].Cells["value"].Value.ToString();
+                        hexValue = FieldGridView.Rows[FieldGridView.CurrentRow.Index - 1].Cells["value"].Value.ToString();
 
                     selection.ReceiveID(Utilities.precedingZeros(selectedItem.fillItemID(), 4), languageSetting, Utilities.precedingZeros(hexValue, 8));
                 }
@@ -2173,12 +2183,12 @@ namespace ACNHPokerCore
         {
             if (currentDataTable == source)
             {
-                string id = fieldGridView.Rows[index].Cells["id"].Value.ToString();
-                string name = fieldGridView.Rows[index].Cells[languageSetting].Value.ToString();
+                string id = FieldGridView.Rows[index].Cells["id"].Value.ToString();
+                string name = FieldGridView.Rows[index].Cells[languageSetting].Value.ToString();
 
                 IdTextbox.Text = id;
                 HexTextbox.Text = "00000000";
-                selectedSize = fieldGridView.Rows[index].Cells["size"].Value.ToString();
+                selectedSize = FieldGridView.Rows[index].Cells["size"].Value.ToString();
                 SizeBox.Text = selectedSize.Replace("_5", ".5 ").Replace("_0", ".0 ").Replace("_Wall", "Wall").Replace("_Rug", "Rug").Replace("_Pillar", "Pillar").Replace("_Ceiling", "Ceiling").Replace("x", "x ");
 
 
@@ -2187,8 +2197,8 @@ namespace ACNHPokerCore
             else if (currentDataTable == recipeSource)
             {
                 string id = "16A2"; // Recipe;
-                string name = fieldGridView.Rows[index].Cells[languageSetting].Value.ToString();
-                string hexValue = fieldGridView.Rows[index].Cells["id"].Value.ToString();
+                string name = FieldGridView.Rows[index].Cells[languageSetting].Value.ToString();
+                string hexValue = FieldGridView.Rows[index].Cells["id"].Value.ToString();
 
                 IdTextbox.Text = id;
                 HexTextbox.Text = Utilities.precedingZeros(hexValue, 8);
@@ -2198,9 +2208,9 @@ namespace ACNHPokerCore
             }
             else if (currentDataTable == flowerSource)
             {
-                string id = fieldGridView.Rows[index].Cells["id"].Value.ToString();
-                string name = fieldGridView.Rows[index].Cells[languageSetting].Value.ToString();
-                string hexValue = fieldGridView.Rows[index].Cells["value"].Value.ToString();
+                string id = FieldGridView.Rows[index].Cells["id"].Value.ToString();
+                string name = FieldGridView.Rows[index].Cells[languageSetting].Value.ToString();
+                string hexValue = FieldGridView.Rows[index].Cells["value"].Value.ToString();
 
                 IdTextbox.Text = id;
                 HexTextbox.Text = Utilities.precedingZeros(hexValue, 8);
@@ -2211,9 +2221,9 @@ namespace ACNHPokerCore
             }
             else if (currentDataTable == favSource)
             {
-                string id = fieldGridView.Rows[index].Cells["id"].Value.ToString();
-                string name = fieldGridView.Rows[index].Cells["Name"].Value.ToString();
-                string hexValue = fieldGridView.Rows[index].Cells["value"].Value.ToString();
+                string id = FieldGridView.Rows[index].Cells["id"].Value.ToString();
+                string name = FieldGridView.Rows[index].Cells["Name"].Value.ToString();
+                string hexValue = FieldGridView.Rows[index].Cells["value"].Value.ToString();
 
                 IdTextbox.Text = id;
                 HexTextbox.Text = Utilities.precedingZeros(hexValue, 8);
@@ -2223,9 +2233,9 @@ namespace ACNHPokerCore
             }
             else if (currentDataTable == fieldSource)
             {
-                string id = fieldGridView.Rows[index].Cells["id"].Value.ToString();
-                string name = fieldGridView.Rows[index].Cells["Name"].Value.ToString();
-                string hexValue = fieldGridView.Rows[index].Cells["value"].Value.ToString();
+                string id = FieldGridView.Rows[index].Cells["id"].Value.ToString();
+                string name = FieldGridView.Rows[index].Cells["Name"].Value.ToString();
+                string hexValue = FieldGridView.Rows[index].Cells["value"].Value.ToString();
 
                 IdTextbox.Text = id;
                 HexTextbox.Text = Utilities.precedingZeros(hexValue, 8);
@@ -4379,10 +4389,32 @@ namespace ACNHPokerCore
         {
             MyLog.LogEvent("Map", "Form Closed");
             this.CloseForm();
+        }
+
+        private void Map_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (bulkList != null)
+            {
+                bulkList.Close();
+                if (bulkList != null && bulkList.CancelFormClose)
+                {
+                    e.Cancel = true;
+                    bulkList.CancelFormClose = false;
+                    return;
+                }
+                bulkList = null;
+            }
+
             if (selection != null)
             {
                 selection.Close();
                 selection = null;
+            }
+
+            if (itemFilter != null)
+            {
+                itemFilter.Close();
+                itemFilter = null;
             }
         }
 
@@ -4764,15 +4796,16 @@ namespace ACNHPokerCore
 
         private void BulkSpawnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (bulk == null)
+            if (bulkSpawn == null)
             {
                 if (layer1Btn.Checked)
-                    bulk = new BulkSpawn(s, usb, Layer1, Layer2, Acre, Building, Terrain, MapCustomDesgin, anchorX, anchorY, this, ignore, sound, true);
+                    bulkSpawn = new BulkSpawn(s, usb, Layer1, Layer2, Acre, Building, Terrain, MapCustomDesgin, anchorX, anchorY, ignore, sound, debugging, true);
                 else
-                    bulk = new BulkSpawn(s, usb, Layer1, Layer2, Acre, Building, Terrain, MapCustomDesgin, anchorX, anchorY, this, ignore, sound, false);
+                    bulkSpawn = new BulkSpawn(s, usb, Layer1, Layer2, Acre, Building, Terrain, MapCustomDesgin, anchorX, anchorY, ignore, sound, debugging, false);
             }
-            bulk.StartPosition = FormStartPosition.CenterParent;
-            bulk.ShowDialog();
+            bulkSpawn.StartPosition = FormStartPosition.CenterParent;
+            bulkSpawn.setOwner(this);
+            bulkSpawn.ShowDialog(this);
         }
 
         private void WeedsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -6704,10 +6737,10 @@ namespace ACNHPokerCore
                 10 => "rus",
                 _ => "eng",
             };
-            if (fieldGridView.Columns.Contains(languageSetting))
+            if (FieldGridView.Columns.Contains(languageSetting))
             {
                 HideAllLanguage();
-                fieldGridView.Columns[languageSetting].Visible = true;
+                FieldGridView.Columns[languageSetting].Visible = true;
             }
 
             itemSearchBox.Text = "Search...";
@@ -6715,19 +6748,19 @@ namespace ACNHPokerCore
 
         private void HideAllLanguage()
         {
-            if (fieldGridView.Columns.Contains("id"))
+            if (FieldGridView.Columns.Contains("id"))
             {
-                fieldGridView.Columns["eng"].Visible = false;
-                fieldGridView.Columns["jpn"].Visible = false;
-                fieldGridView.Columns["tchi"].Visible = false;
-                fieldGridView.Columns["schi"].Visible = false;
-                fieldGridView.Columns["kor"].Visible = false;
-                fieldGridView.Columns["fre"].Visible = false;
-                fieldGridView.Columns["ger"].Visible = false;
-                fieldGridView.Columns["spa"].Visible = false;
-                fieldGridView.Columns["ita"].Visible = false;
-                fieldGridView.Columns["dut"].Visible = false;
-                fieldGridView.Columns["rus"].Visible = false;
+                FieldGridView.Columns["eng"].Visible = false;
+                FieldGridView.Columns["jpn"].Visible = false;
+                FieldGridView.Columns["tchi"].Visible = false;
+                FieldGridView.Columns["schi"].Visible = false;
+                FieldGridView.Columns["kor"].Visible = false;
+                FieldGridView.Columns["fre"].Visible = false;
+                FieldGridView.Columns["ger"].Visible = false;
+                FieldGridView.Columns["spa"].Visible = false;
+                FieldGridView.Columns["ita"].Visible = false;
+                FieldGridView.Columns["dut"].Visible = false;
+                FieldGridView.Columns["rus"].Visible = false;
             }
         }
 
@@ -7038,7 +7071,10 @@ namespace ACNHPokerCore
 
         private static bool IsActivate(int x, int y, bool[,] ActivateTable)
         {
-            return ActivateTable[x, y * 2]; // || ActivateTable[x, y * 2 + 1];
+            if (ActivateTable == null)
+                return false;
+            else
+                return ActivateTable[x, y * 2]; // || ActivateTable[x, y * 2 + 1];
         }
 
         private void SetActivate(int x, int y, ref byte[] ActivateLayer, ref bool[,] ActivateTable)
@@ -7308,7 +7344,7 @@ namespace ACNHPokerCore
                 FilterBtn.BackColor = Color.Orange;
                 filterKind = itemkind;
             }
-            //throw new NotImplementedException();
+
             ItemSearchBox_TextChanged(null, null);
         }
 
@@ -7323,7 +7359,31 @@ namespace ACNHPokerCore
 
             itemFilter = null;
 
-            (fieldGridView.DataSource as DataTable).DefaultView.RowFilter = null;
+            (FieldGridView.DataSource as DataTable).DefaultView.RowFilter = null;
+        }
+
+        private void AddToListBtn_Click(object sender, EventArgs e)
+        {
+            if (IdTextbox.Text.Equals(String.Empty))
+                return;
+
+            if (bulkList == null)
+            {
+                bulkList = new BulkList(sound);
+                bulkList.CloseForm += BulkList_CloseForm;
+                bulkList.Show();
+            }
+            else
+            {
+                //bulkList.BringToFront();
+            }
+
+            bulkList.ReceiveItem(Utilities.precedingZeros(selectedItem.fillItemID(), 4), Utilities.precedingZeros(selectedItem.fillItemData(), 8), selectedItem.displayItemName(), selectedItem.getPath());
+        }
+
+        private void BulkList_CloseForm()
+        {
+            bulkList = null;
         }
     }
 }

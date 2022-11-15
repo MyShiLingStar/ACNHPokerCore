@@ -45,7 +45,7 @@ namespace ACNHPokerCore
             this.ShiftDownToggle = new JCS.ToggleSwitch();
             this.ShiftRightToggle = new JCS.ToggleSwitch();
             this.CoreOnlyToggle = new JCS.ToggleSwitch();
-            this.fieldGridView = new System.Windows.Forms.DataGridView();
+            this.FieldGridView = new System.Windows.Forms.DataGridView();
             this.IdTextbox = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -172,7 +172,8 @@ namespace ACNHPokerCore
             this.SizeBox = new System.Windows.Forms.RichTextBox();
             this.ToggleTip = new System.Windows.Forms.ToolTip(this.components);
             this.FilterBtn = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.fieldGridView)).BeginInit();
+            this.AddToListBtn = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.FieldGridView)).BeginInit();
             this.BtnPanel.SuspendLayout();
             this.floorRightClick.SuspendLayout();
             this.saveMap.SuspendLayout();
@@ -402,23 +403,24 @@ namespace ACNHPokerCore
             this.ToggleTip.SetToolTip(this.CoreOnlyToggle, "Core Only ◆ (Experimental)");
             this.CoreOnlyToggle.UseAnimation = false;
             // 
-            // fieldGridView
+            // FieldGridView
             // 
-            this.fieldGridView.AllowUserToAddRows = false;
-            this.fieldGridView.AllowUserToDeleteRows = false;
-            this.fieldGridView.AllowUserToResizeRows = false;
-            this.fieldGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(54)))));
-            this.fieldGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.fieldGridView.Location = new System.Drawing.Point(855, 55);
-            this.fieldGridView.MultiSelect = false;
-            this.fieldGridView.Name = "fieldGridView";
-            this.fieldGridView.ReadOnly = true;
-            this.fieldGridView.RowHeadersVisible = false;
-            this.fieldGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.fieldGridView.Size = new System.Drawing.Size(345, 455);
-            this.fieldGridView.TabIndex = 147;
-            this.fieldGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.FieldGridView_CellFormatting);
-            this.fieldGridView.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.FieldGridView_CellMouseUp);
+            this.FieldGridView.AllowUserToAddRows = false;
+            this.FieldGridView.AllowUserToDeleteRows = false;
+            this.FieldGridView.AllowUserToResizeRows = false;
+            this.FieldGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(54)))));
+            this.FieldGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.FieldGridView.Location = new System.Drawing.Point(855, 55);
+            this.FieldGridView.MultiSelect = false;
+            this.FieldGridView.Name = "FieldGridView";
+            this.FieldGridView.ReadOnly = true;
+            this.FieldGridView.RowHeadersVisible = false;
+            this.FieldGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.FieldGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.FieldGridView.Size = new System.Drawing.Size(345, 455);
+            this.FieldGridView.TabIndex = 147;
+            this.FieldGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.FieldGridView_CellFormatting);
+            this.FieldGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.FieldGridView_CellMouseClick);
             // 
             // IdTextbox
             // 
@@ -3195,11 +3197,27 @@ namespace ACNHPokerCore
             this.FilterBtn.UseVisualStyleBackColor = false;
             this.FilterBtn.Click += new System.EventHandler(this.FilterBtn_Click);
             // 
+            // AddToListBtn
+            // 
+            this.AddToListBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.AddToListBtn.FlatAppearance.BorderSize = 0;
+            this.AddToListBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddToListBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.AddToListBtn.ForeColor = System.Drawing.Color.White;
+            this.AddToListBtn.Location = new System.Drawing.Point(1098, 530);
+            this.AddToListBtn.Name = "AddToListBtn";
+            this.AddToListBtn.Size = new System.Drawing.Size(25, 24);
+            this.AddToListBtn.TabIndex = 242;
+            this.AddToListBtn.Text = "➕";
+            this.AddToListBtn.UseVisualStyleBackColor = false;
+            this.AddToListBtn.Click += new System.EventHandler(this.AddToListBtn_Click);
+            // 
             // Map
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.ClientSize = new System.Drawing.Size(1204, 631);
+            this.Controls.Add(this.AddToListBtn);
             this.Controls.Add(this.CoreOnlyToggle);
             this.Controls.Add(this.ShiftRightToggle);
             this.Controls.Add(this.ShiftDownToggle);
@@ -3233,7 +3251,7 @@ namespace ACNHPokerCore
             this.Controls.Add(this.label1);
             this.Controls.Add(this.IdTextbox);
             this.Controls.Add(this.selectedItem);
-            this.Controls.Add(this.fieldGridView);
+            this.Controls.Add(this.FieldGridView);
             this.Controls.Add(this.moveDownLeftBtn);
             this.Controls.Add(this.moveDownRightBtn);
             this.Controls.Add(this.moveUpLeftBtn);
@@ -3258,11 +3276,12 @@ namespace ACNHPokerCore
             this.Opacity = 0.97D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Map Dropper";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Map_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Map_FormClosed);
             this.Load += new System.EventHandler(this.Map_Load);
             this.LocationChanged += new System.EventHandler(this.Map_LocationChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyboardKeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.fieldGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FieldGridView)).EndInit();
             this.BtnPanel.ResumeLayout(false);
             this.floorRightClick.ResumeLayout(false);
             this.saveMap.ResumeLayout(false);
@@ -3343,7 +3362,7 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Button moveDownRightBtn;
         private System.Windows.Forms.Button moveDownLeftBtn;
         private System.Windows.Forms.ToolTip btnToolTip;
-        private System.Windows.Forms.DataGridView fieldGridView;
+        private System.Windows.Forms.DataGridView FieldGridView;
         private inventorySlot selectedItem;
         private System.Windows.Forms.RichTextBox IdTextbox;
         private System.Windows.Forms.Label label1;
@@ -3424,5 +3443,6 @@ namespace ACNHPokerCore
         private JCS.ToggleSwitch CoreOnlyToggle;
         private System.Windows.Forms.ToolTip ToggleTip;
         private System.Windows.Forms.Button FilterBtn;
+        private System.Windows.Forms.Button AddToListBtn;
     }
 }

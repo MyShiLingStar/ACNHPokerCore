@@ -133,8 +133,8 @@ namespace ACNHPokerCore
                     {
                         try
                         {
-                            this.Image.Dispose();
                             this.Image = null;
+                            //this.Image.Dispose();
                         }
                         catch
                         {

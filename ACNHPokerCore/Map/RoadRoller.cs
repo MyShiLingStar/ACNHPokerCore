@@ -18,6 +18,7 @@ namespace ACNHPokerCore
         private readonly Socket socket;
         private readonly USBBot usb;
         private readonly bool sound;
+        private readonly bool debugging;
 
         private byte[] Layer1 = null;
         private byte[] Acre = null;
@@ -88,11 +89,12 @@ namespace ACNHPokerCore
         public event CloseHandler CloseForm;
 
         private static readonly object lockObject = new();
-        public RoadRoller(Socket S, USBBot USB, bool Sound)
+        public RoadRoller(Socket S, USBBot USB, bool Sound, bool Debugging)
         {
             socket = S;
             usb = USB;
             sound = Sound;
+            debugging = Debugging;
             InitializeComponent();
             SetSubDivider();
             Bitmap CliffImg = new(Properties.Resources.cliff, new Size(60, 60));
@@ -137,12 +139,59 @@ namespace ACNHPokerCore
 
             selectedManualMode = ManualRoadPanel;
 
-            ShowMapWait(42);
 
+            if (debugging)
+            {
+                Layer1 = new byte[Utilities.mapSize];
+                Acre = new byte[Utilities.AcreAndPlaza];
+                Building = new byte[Utilities.AllBuildingSize];
+                Terrain = new byte[Utilities.AllTerrainSize];
+                MapCustomDesgin = new byte[Utilities.MapTileCount16x16 * 2];
 
+                byte[] EmptyDesign = new byte[] { 0x00, 0xF8 };
+                for (int i = 0; i < Utilities.MapTileCount16x16; i++)
+                    Buffer.BlockCopy(EmptyDesign, 0, MapCustomDesgin, i * 2, 2);
 
-            Thread LoadThread = new(delegate () { FetchMap(); });
-            LoadThread.Start();
+                if (MiniMap == null)
+                    MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, MapCustomDesgin, 2);
+
+                int iterator = 0;
+
+                terrainUnits = new TerrainUnit[numOfColumn][];
+                for (int i = 0; i < numOfColumn; i++)
+                {
+                    terrainUnits[i] = new TerrainUnit[numOfRow];
+                    for (int j = 0; j < numOfRow; j++)
+                    {
+                        byte[] currentTile = new byte[TerrainSize];
+                        Buffer.BlockCopy(Terrain, iterator * TerrainSize, currentTile, 0, TerrainSize);
+                        terrainUnits[i][j] = new TerrainUnit(currentTile);
+
+                        if (MapCustomDesgin != null)
+                        {
+                            byte[] currentDesign = new byte[2];
+                            Buffer.BlockCopy(MapCustomDesgin, (i * numOfRow + j) * 2, currentDesign, 0, 2);
+                            terrainUnits[i][j].SetCustomDesign(currentDesign);
+                        }
+
+                        iterator++;
+                    }
+                }
+
+                CurrentMiniMap = MiniMap.DrawBackground();
+                miniMapBox.BackgroundImage = CurrentMiniMap;
+                miniMapBox.Image = MiniMap.DrawSelectSquare16(8, 8);
+                DrawMainMap(anchorX, anchorY);
+                this.MaximizeBox = true;
+
+            }
+            else
+            {
+                ShowMapWait(42);
+
+                Thread LoadThread = new(delegate () { FetchMap(); });
+                LoadThread.Start();
+            }
         }
 
         private void CreateDict()
@@ -769,72 +818,6 @@ namespace ACNHPokerCore
 
             mapDrawing = false;
         }
-
-        /*private void UpdateMainMap(int x, int y)
-        {
-            if (mapDrawing)
-                return;
-
-            if (x < 0 || y < 0)
-                return;
-
-            mapDrawing = true;
-
-            int size;
-            int w = SubDivider.Width;
-            int h = SubDivider.Height;
-            if (w - h >= 0)
-                size = h;
-            else
-                size = w;
-
-            GridSize = (size / 16) - 1;
-
-            Bitmap myBitmap = new(CurrentMainMap);
-            lock (lockObject)
-            {
-                using (Graphics graphics = Graphics.FromImage(myBitmap))
-                {
-                    var cm = new ColorMatrix
-                    {
-                        Matrix33 = 1
-                    };
-
-                    var ia = new ImageAttributes();
-                    ia.SetColorMatrix(cm);
-
-                    for (int i = -1; i < 2; i++)
-                    {
-                        for (int j = -1; j < 2; j++)
-                        {
-                            if (x + i >= 0 && x + i < numOfColumn && y + j >= 0 && y + j < numOfRow)
-                            {
-                                Bitmap tile;
-
-                                TerrainUnit CurrentUnit = terrainUnits[x + i][y + j];
-
-                                if (displayCustomDesign && CurrentUnit.haveCustomDesign())
-                                {
-                                    tile = drawTileWithCustomDesign(CurrentUnit, GridSize);
-                                }
-                                else
-                                {
-                                    tile = new Bitmap(CurrentUnit.getImage(GridSize, x + i, y + j, displayRoad, displayBuilding, highlightRoadCorner, highlightCliffCorner, highlightRiverCorner));
-                                }
-
-                                graphics.DrawImage(tile, new Rectangle((x + i - anchorX) * GridSize, (y + j - anchorY) * GridSize, GridSize, GridSize), 0, 0, GridSize, GridSize, GraphicsUnit.Pixel, ia);
-                            }
-                        }
-                    }
-                }
-
-                MainMap.BackgroundImage = myBitmap;
-                CurrentMainMap = myBitmap;
-            };
-
-            mapDrawing = false;
-        }
-        */
 
         private async Task UpdateMainMapAsync(int x, int y)
         {

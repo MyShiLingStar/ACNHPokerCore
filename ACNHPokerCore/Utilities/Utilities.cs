@@ -212,13 +212,13 @@ namespace ACNHPokerCore
         public static readonly string freezeTimeValue = "D503201F";
         public static readonly string unfreezeTimeValue = "F9203260";
 
-        public static UInt32 wSpeedAddress = 0x01612740; //0x01612720;
+        public static UInt32 wSpeedAddress = 0x016127A0; //0x01612740; //0x01612720;
         public static readonly string wSpeedX1 = "BD578661";
         public static readonly string wSpeedX2 = "1E201001";
         public static readonly string wSpeedX3 = "1E211001";
         public static readonly string wSpeedX4 = "1E221001";
 
-        public static UInt32 CollisionAddress = 0x0155FD60; //0x0155FD40;
+        public static UInt32 CollisionAddress = 0x0155FDC0; //0x0155FD60; //0x0155FD40;
         public static readonly string CollisionDisable = "12800014";
         public static readonly string CollisionEnable = "B95BA014";
 
