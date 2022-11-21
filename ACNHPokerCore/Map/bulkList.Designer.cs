@@ -50,6 +50,8 @@
             this.ItemGridView.RowHeadersVisible = false;
             this.ItemGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.ItemGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ItemGridView.ShowCellToolTips = false;
+            this.ItemGridView.ShowEditingIcon = false;
             this.ItemGridView.Size = new System.Drawing.Size(395, 437);
             this.ItemGridView.TabIndex = 148;
             this.ItemGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.ItemGridView_CellFormatting);

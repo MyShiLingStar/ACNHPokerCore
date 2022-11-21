@@ -46,6 +46,8 @@ namespace ACNHPokerCore
             this.ShiftRightToggle = new JCS.ToggleSwitch();
             this.CoreOnlyToggle = new JCS.ToggleSwitch();
             this.FieldGridView = new System.Windows.Forms.DataGridView();
+            this.EnableMultiSelectMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.EnableMultiSelectOption = new System.Windows.Forms.ToolStripMenuItem();
             this.IdTextbox = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -173,7 +175,11 @@ namespace ACNHPokerCore
             this.ToggleTip = new System.Windows.Forms.ToolTip(this.components);
             this.FilterBtn = new System.Windows.Forms.Button();
             this.AddToListBtn = new System.Windows.Forms.Button();
+            this.AddToBulkMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.AddToBulkOption = new System.Windows.Forms.ToolStripMenuItem();
+            this.DisableMultiSelectOption = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.FieldGridView)).BeginInit();
+            this.EnableMultiSelectMenu.SuspendLayout();
             this.BtnPanel.SuspendLayout();
             this.floorRightClick.SuspendLayout();
             this.saveMap.SuspendLayout();
@@ -186,6 +192,7 @@ namespace ACNHPokerCore
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.miniMapBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HexTextbox)).BeginInit();
+            this.AddToBulkMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // xCoordinate
@@ -421,6 +428,27 @@ namespace ACNHPokerCore
             this.FieldGridView.TabIndex = 147;
             this.FieldGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.FieldGridView_CellFormatting);
             this.FieldGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.FieldGridView_CellMouseClick);
+            this.FieldGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FieldGridView_MouseDown);
+            // 
+            // EnableMultiSelectMenu
+            // 
+            this.EnableMultiSelectMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
+            this.EnableMultiSelectMenu.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.EnableMultiSelectMenu.ImageScalingSize = new System.Drawing.Size(0, 0);
+            this.EnableMultiSelectMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.EnableMultiSelectOption});
+            this.EnableMultiSelectMenu.Name = "floorRightClick";
+            this.EnableMultiSelectMenu.ShowImageMargin = false;
+            this.EnableMultiSelectMenu.Size = new System.Drawing.Size(169, 26);
+            // 
+            // EnableMultiSelectOption
+            // 
+            this.EnableMultiSelectOption.BackColor = System.Drawing.Color.Orange;
+            this.EnableMultiSelectOption.ForeColor = System.Drawing.Color.White;
+            this.EnableMultiSelectOption.Name = "EnableMultiSelectOption";
+            this.EnableMultiSelectOption.Size = new System.Drawing.Size(168, 22);
+            this.EnableMultiSelectOption.Text = "Enable MultiSelect";
+            this.EnableMultiSelectOption.Click += new System.EventHandler(this.EnableMultiSelectOption_Click);
             // 
             // IdTextbox
             // 
@@ -2753,6 +2781,7 @@ namespace ACNHPokerCore
             this.placeVariationBtn.Size = new System.Drawing.Size(138, 28);
             this.placeVariationBtn.TabIndex = 225;
             this.placeVariationBtn.Text = "Place Variation";
+            this.formToolTip.SetToolTip(this.placeVariationBtn, "Spawn the variations of the selected item.");
             this.placeVariationBtn.UseVisualStyleBackColor = false;
             this.placeVariationBtn.Click += new System.EventHandler(this.PlaceVariationBtn_Click);
             // 
@@ -3194,6 +3223,7 @@ namespace ACNHPokerCore
             this.FilterBtn.Size = new System.Drawing.Size(25, 24);
             this.FilterBtn.TabIndex = 241;
             this.FilterBtn.Text = "➕";
+            this.formToolTip.SetToolTip(this.FilterBtn, "Enable the clothes filters.");
             this.FilterBtn.UseVisualStyleBackColor = false;
             this.FilterBtn.Click += new System.EventHandler(this.FilterBtn_Click);
             // 
@@ -3209,8 +3239,38 @@ namespace ACNHPokerCore
             this.AddToListBtn.Size = new System.Drawing.Size(25, 24);
             this.AddToListBtn.TabIndex = 242;
             this.AddToListBtn.Text = "➕";
+            this.formToolTip.SetToolTip(this.AddToListBtn, "Add the selected item to the bulk selector.");
             this.AddToListBtn.UseVisualStyleBackColor = false;
             this.AddToListBtn.Click += new System.EventHandler(this.AddToListBtn_Click);
+            // 
+            // AddToBulkMenu
+            // 
+            this.AddToBulkMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
+            this.AddToBulkMenu.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.AddToBulkMenu.ImageScalingSize = new System.Drawing.Size(0, 0);
+            this.AddToBulkMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AddToBulkOption,
+            this.DisableMultiSelectOption});
+            this.AddToBulkMenu.Name = "floorRightClick";
+            this.AddToBulkMenu.ShowImageMargin = false;
+            this.AddToBulkMenu.Size = new System.Drawing.Size(183, 48);
+            // 
+            // AddToBulkOption
+            // 
+            this.AddToBulkOption.ForeColor = System.Drawing.Color.White;
+            this.AddToBulkOption.Name = "AddToBulkOption";
+            this.AddToBulkOption.Size = new System.Drawing.Size(182, 22);
+            this.AddToBulkOption.Text = "Add To Bulk Selector";
+            this.AddToBulkOption.Click += new System.EventHandler(this.AddToBulkOption_Click);
+            // 
+            // DisableMultiSelectOption
+            // 
+            this.DisableMultiSelectOption.BackColor = System.Drawing.Color.DarkBlue;
+            this.DisableMultiSelectOption.ForeColor = System.Drawing.Color.White;
+            this.DisableMultiSelectOption.Name = "DisableMultiSelectOption";
+            this.DisableMultiSelectOption.Size = new System.Drawing.Size(182, 22);
+            this.DisableMultiSelectOption.Text = "Disable MultiSelect";
+            this.DisableMultiSelectOption.Click += new System.EventHandler(this.DisableMultiSelectOption_Click);
             // 
             // Map
             // 
@@ -3282,6 +3342,7 @@ namespace ACNHPokerCore
             this.LocationChanged += new System.EventHandler(this.Map_LocationChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyboardKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.FieldGridView)).EndInit();
+            this.EnableMultiSelectMenu.ResumeLayout(false);
             this.BtnPanel.ResumeLayout(false);
             this.floorRightClick.ResumeLayout(false);
             this.saveMap.ResumeLayout(false);
@@ -3296,6 +3357,7 @@ namespace ACNHPokerCore
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.miniMapBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HexTextbox)).EndInit();
+            this.AddToBulkMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3444,5 +3506,10 @@ namespace ACNHPokerCore
         private System.Windows.Forms.ToolTip ToggleTip;
         private System.Windows.Forms.Button FilterBtn;
         private System.Windows.Forms.Button AddToListBtn;
+        private System.Windows.Forms.ContextMenuStrip EnableMultiSelectMenu;
+        private System.Windows.Forms.ToolStripMenuItem EnableMultiSelectOption;
+        private System.Windows.Forms.ContextMenuStrip AddToBulkMenu;
+        private System.Windows.Forms.ToolStripMenuItem AddToBulkOption;
+        private System.Windows.Forms.ToolStripMenuItem DisableMultiSelectOption;
     }
 }

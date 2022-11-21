@@ -126,22 +126,23 @@ namespace ACNHPokerCore
                 this.ForeColor = System.Drawing.Color.White;
                 this.TextAlign = System.Drawing.ContentAlignment.TopLeft;
 
-                this.Invoke((MethodInvoker)delegate
+                try
                 {
-                    this.Text = "";
-                    if (this.Image != null)
+                    this.Invoke((MethodInvoker)delegate
                     {
-                        try
+                        this.Text = "";
+                        if (this.Image != null)
                         {
+                            this.Image.Dispose();
                             this.Image = null;
-                            //this.Image.Dispose();
                         }
-                        catch
-                        {
-                            return;
-                        }
-                    }
-                });
+                    });
+                }
+                catch
+                {
+                    refreshing = false;
+                    return;
+                }
 
                 //this.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
                 this.locked = false;

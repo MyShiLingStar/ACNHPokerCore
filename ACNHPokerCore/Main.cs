@@ -28,7 +28,7 @@ namespace ACNHPokerCore
     public partial class Main : Form
     {
         #region variable
-        private static readonly bool DEBUGGING = false;
+        private static bool DEBUGGING = false;
 
         private static Socket socket;
         private static USBBot usb = null;
@@ -7883,6 +7883,21 @@ namespace ACNHPokerCore
                 CopyItem(sender, e);
                 if (sound)
                     System.Media.SystemSounds.Asterisk.Play();
+            }
+            else if (e.KeyCode.ToString() == "F12")
+            {
+                this.Text += " DEBUG";
+                DEBUGGING = true;
+
+                this.OtherTabButton.Visible = true;
+                this.CritterTabButton.Visible = true;
+                this.MapDropperButton.Visible = true;
+                this.RegeneratorButton.Visible = true;
+                this.FreezerButton.Visible = true;
+                this.RoadRollerButton.Visible = true;
+                this.DodoHelperButton.Visible = true;
+                this.BulldozerButton.Visible = true;
+                this.chatButton.Visible = true;
             }
             else if (e.KeyCode.ToString() == "End")
             {

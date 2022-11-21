@@ -100,7 +100,7 @@ namespace ACNHPokerCore
 
             OpenFileDialog file = new()
             {
-                Filter = "New Horizons Bulk Spawn (*.nhbs)|*.nhbs|New Horizons Inventory(*.nhi) | *.nhi",
+                Filter = "New Horizons Bulk Spawn/New Horizons Inventory (*.nhbs;*.nhi)|*.nhbs;*.nhi|All files (*.*)|*.*",
             };
 
             Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
