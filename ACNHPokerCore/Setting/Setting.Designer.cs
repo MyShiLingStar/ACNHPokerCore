@@ -78,6 +78,8 @@
             this.ValidationToggle = new JCS.ToggleSwitch();
             this.SoundToggle = new JCS.ToggleSwitch();
             this.SoundLabel = new System.Windows.Forms.Label();
+            this.CaptureToggle = new JCS.ToggleSwitch();
+            this.CaptureLabel = new System.Windows.Forms.Label();
             this.addresses.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -762,11 +764,40 @@
             this.SoundLabel.TabIndex = 106;
             this.SoundLabel.Text = "Sound";
             // 
+            // CaptureToggle
+            // 
+            this.CaptureToggle.Location = new System.Drawing.Point(628, 9);
+            this.CaptureToggle.Name = "CaptureToggle";
+            this.CaptureToggle.OffFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CaptureToggle.OffForeColor = System.Drawing.Color.White;
+            this.CaptureToggle.OffText = "Off";
+            this.CaptureToggle.OnFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CaptureToggle.OnForeColor = System.Drawing.Color.White;
+            this.CaptureToggle.OnText = "On";
+            this.CaptureToggle.Size = new System.Drawing.Size(59, 19);
+            this.CaptureToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            this.CaptureToggle.TabIndex = 107;
+            this.CaptureToggle.UseAnimation = false;
+            this.CaptureToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.CaptureToggle_CheckedChanged);
+            // 
+            // CaptureLabel
+            // 
+            this.CaptureLabel.AutoSize = true;
+            this.CaptureLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CaptureLabel.ForeColor = System.Drawing.Color.White;
+            this.CaptureLabel.Location = new System.Drawing.Point(561, 11);
+            this.CaptureLabel.Name = "CaptureLabel";
+            this.CaptureLabel.Size = new System.Drawing.Size(63, 16);
+            this.CaptureLabel.TabIndex = 108;
+            this.CaptureLabel.Text = "Capture";
+            // 
             // Setting
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.ClientSize = new System.Drawing.Size(964, 506);
+            this.Controls.Add(this.CaptureLabel);
+            this.Controls.Add(this.CaptureToggle);
             this.Controls.Add(this.SoundToggle);
             this.Controls.Add(this.SoundLabel);
             this.Controls.Add(this.ValidationToggle);
@@ -845,5 +876,7 @@
         private JCS.ToggleSwitch ValidationToggle;
         private JCS.ToggleSwitch SoundToggle;
         private System.Windows.Forms.Label SoundLabel;
+        private JCS.ToggleSwitch CaptureToggle;
+        private System.Windows.Forms.Label CaptureLabel;
     }
 }
