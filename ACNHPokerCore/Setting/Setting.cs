@@ -13,19 +13,23 @@ namespace ACNHPokerCore
         bool startup = true;
 
         bool Sound;
+        bool CaptureSetting;
         bool OverrideSetting;
         bool Validation;
 
         public event OverrideHandler ToggleOverride;
         public event ValidationHandler ToggleValidation;
         public event SoundHandler ToggleSound;
+        public event CaptureHandler ToggleCapture;
 
-        public Setting(bool overrideSetting, bool validation, bool sound)
+
+        public Setting(bool overrideSetting, bool validation, bool sound, bool capturesetting)
         {
             InitializeComponent();
             OverrideSetting = overrideSetting;
             Validation = validation;
             Sound = sound;
+            CaptureSetting = capturesetting;
 
             this.PlayerSlot.Text = Utilities.player1SlotBase.ToString("X");
             this.PlayerOffset.Text = Utilities.playerOffset.ToString("X");
@@ -83,6 +87,15 @@ namespace ACNHPokerCore
             else
             {
                 SoundToggle.Checked = false;
+            }
+
+            if (CaptureSetting)
+            {
+                CaptureToggle.Checked = true;
+            }
+            else
+            {
+                CaptureToggle.Checked = false;
             }
 
             startup = false;
@@ -383,12 +396,36 @@ namespace ACNHPokerCore
                 Config.AppSettings.Settings["sound"].Value = "true";
                 Config.Save(ConfigurationSaveMode.Minimal);
                 Sound = true;
-                this.ToggleSound(false);
+                this.ToggleSound(true);
             }
             if (Sound)
                 System.Media.SystemSounds.Asterisk.Play();
         }
+        private void CaptureToggle_CheckedChanged(object sender, EventArgs e)
+        {
+            if (startup)
+                return;
 
+            Configuration Config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
+
+            if (Config.AppSettings.Settings["capture"].Value == "true")
+            {
+                CaptureSetting = false;
+                Config.AppSettings.Settings["capture"].Value = "false";
+                Config.Save(ConfigurationSaveMode.Minimal);
+                CaptureSetting = false;
+                this.ToggleCapture(false);
+            }
+            else
+            {
+                CaptureSetting = true;
+                Config.AppSettings.Settings["capture"].Value = "true";
+                Config.Save(ConfigurationSaveMode.Minimal);
+                CaptureSetting = true;
+                this.ToggleCapture(true);
+            }
+
+        }
         private void Setting_Load(object sender, EventArgs e)
         {
             UpdateToggle(true);

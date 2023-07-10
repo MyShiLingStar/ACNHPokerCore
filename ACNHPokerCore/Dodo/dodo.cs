@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Twitch;
+using static System.Windows.Forms.AxHost;
 
 namespace ACNHPokerCore
 {
@@ -32,9 +33,12 @@ namespace ACNHPokerCore
         private bool lastOrderIsRecipe = false;
         private static OrderDisplay itemDisplay;
         private static MyStopWatch stopWatch;
+        bool maxBells = false;
         bool dropItem = false;
         bool injectVillager = false;
         bool restoreDodo = true;
+
+        bool capturesetting = false;
 
         Thread standaloneThread;
         private bool standaloneRunning = false;
@@ -84,6 +88,30 @@ namespace ACNHPokerCore
             InitializeComponent();
             s = S;
 
+
+            if (ConfigurationManager.AppSettings["capture"] == "true")
+            {
+                capturesetting = true;
+            }
+
+            if (ConfigurationManager.AppSettings["AutoMaxBells"] == "true")
+            {
+                maxBells = true;
+                maxBellsBox.Checked = true;
+            }
+            else {
+                maxBells = false;
+                maxBellsBox.Checked = false;
+            }
+            if (maxBells == true)
+            {
+                maxBellsBox.Checked = true;
+            }
+            else {
+                maxBellsBox.Checked = false;
+            }
+
+            
             if (Teleport.AllAnchorValid())
             {
                 Point Done = new(-4200, 0);
@@ -96,6 +124,7 @@ namespace ACNHPokerCore
                 TwitchBtn.Visible = true;
                 itemDisplayBtn.Visible = true;
                 dropItemBox.Enabled = true;
+                maxBellsBox.Enabled = true;
                 injectVillagerBox.Enabled = true;
             }
 
@@ -680,6 +709,19 @@ namespace ACNHPokerCore
 
             if (state != Teleport.OverworldState.Loading && state != Teleport.OverworldState.UserArriveLeavingOrTitleScreen)
             {
+
+                //setting up max bells
+                if (maxBells)
+                {
+                    WriteLog(state.ToString() + "Enabling MAX Bells", true);
+                    //setting max bells prices to MAX 
+                    var Main = new Main();
+                    Main.SetTurnipPriceMax();
+
+
+                }
+
+
                 if (MyPubSub != null)
                 {
                     if (dropItem)
@@ -1311,6 +1353,29 @@ namespace ACNHPokerCore
                 idleEmote = false;
         }
 
+
+        void maxBellsBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
+            if (maxBellsBox.Checked)
+            {
+                DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to set all the turnip prices to MAX?\n[Warning] All original prices will be overwritten!", "Set all turnip prices", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    maxBells = true;
+                    config.AppSettings.Settings["AutoMaxBells"].Value = "true";
+                    var Main = new Main();
+                    Main.SetTurnipPriceMax();
+                }
+
+            }
+            else
+            {
+                maxBells = false;
+                config.AppSettings.Settings["AutoMaxBells"].Value = "false";
+            }
+        }
+
         private void DropItemBox_CheckedChanged(object sender, EventArgs e)
         {
             if (dropItemBox.Checked)
@@ -1421,6 +1486,15 @@ namespace ACNHPokerCore
 
                 standaloneThread = new Thread(delegate () { StandaloneLoop(token); });
                 standaloneThread.Start();
+
+                if (maxBells)
+                {
+                    WriteLog("Enabling MAX Bells\r\n", true);
+                    //setting max bells prices to MAX 
+                    var Main = new Main();
+                    Main.SetTurnipPriceMax();
+                }
+
             }
             else
             {
@@ -1453,6 +1527,11 @@ namespace ACNHPokerCore
             string newVisitor;
             string newVisitorIsland;
 
+            if (ConfigurationManager.AppSettings["capture"] == "true")
+            {
+                capturesetting = true;
+            }
+
             do
             {
                 if (token.IsCancellationRequested)
@@ -1462,6 +1541,13 @@ namespace ACNHPokerCore
 
                 Teleport.OverworldState state = Teleport.GetOverworldState();
                 WriteLog(state.ToString() + " " + idleNum, true);
+                if (capturesetting)
+                {
+                    if ((state.ToString() != "OverworldOrInAirport") && (state.ToString() != "Null"))
+                    {
+                        Controller.ClickCAPTURE();
+                    }
+                }
 
                 if (CheckOnlineStatus() == true)
                 {
@@ -1483,28 +1569,30 @@ namespace ACNHPokerCore
                         {
                             CreateLog(newVisitor, newVisitorIsland, "In");
                             WriteLog("Visitor: " + newVisitor + " Island: " + newVisitorIsland, true);
-                            /* uncomment if you want to take pics of visitor's pretty faces lol
+                            //enable Capture in the Settings - if you want to take pics of visitor's pretty and cute faces lol
                             //capture visitor's arrival lol
-                            Thread.Sleep(300);
-                            Controller.ClickCAPTURE();
-                            Thread.Sleep(300);
-                            Controller.ClickCAPTURE();
-                            Thread.Sleep(300);
-                            Controller.ClickCAPTURE();
-                            Thread.Sleep(300);
-                            Controller.ClickCAPTURE();
-                            Thread.Sleep(300);
-                            Controller.ClickCAPTURE();
-                            Thread.Sleep(300);
-                            Controller.ClickCAPTURE();
-                            Thread.Sleep(300);
-                            Controller.ClickCAPTURE();
-                            Thread.Sleep(300);
-                            Controller.ClickCAPTURE();
-                            Thread.Sleep(300);
-                            Controller.ClickCAPTURE();
-                            WriteLog("Took Captures", true);
-							*/
+                            if (capturesetting)
+                            {
+                                Thread.Sleep(300);
+                                Controller.ClickCAPTURE();
+                                Thread.Sleep(300);
+                                Controller.ClickCAPTURE();
+                                Thread.Sleep(300);
+                                Controller.ClickCAPTURE();
+                                Thread.Sleep(300);
+                                Controller.ClickCAPTURE();
+                                Thread.Sleep(300);
+                                Controller.ClickCAPTURE();
+                                Thread.Sleep(300);
+                                Controller.ClickCAPTURE();
+                                Thread.Sleep(300);
+                                Controller.ClickCAPTURE();
+                                Thread.Sleep(300);
+                                Controller.ClickCAPTURE();
+                                Thread.Sleep(300);
+                                Controller.ClickCAPTURE();
+                                WriteLog("Took Captures", true);
+                            }
                             Thread.Sleep(70000);
                             Utilities.sendBlankName(s);
                             state = Teleport.GetOverworldState();

@@ -21,6 +21,7 @@ namespace ACNHPokerCore
     public delegate void OverrideHandler();
     public delegate void ValidationHandler();
     public delegate void SoundHandler(bool SoundOn);
+    public delegate void CaptureHandler(bool CaptureOn);
     public delegate void ReceiveVariationHandler(inventorySlot item, int type);
     public delegate void ThreadAbortHandler();
     #endregion
@@ -78,6 +79,7 @@ namespace ACNHPokerCore
         private bool validation = true;
         private bool connecting = false;
         public bool sound = true;
+        public bool capturesetting = false;
         private string languageSetting = "eng";
 
         private const string insectAppearFileName = @"InsectAppearParam.bin";
@@ -137,10 +139,18 @@ namespace ACNHPokerCore
                 sound = false;
             }
 
-            setting = new Setting(overrideSetting, validation, sound);
+            if (ConfigurationManager.AppSettings["Capture"] == "false")
+            {
+                capturesetting = false;
+            }
+            else {
+                capturesetting = true;
+            }
+            setting = new Setting(overrideSetting, validation, sound, capturesetting);
             setting.ToggleOverride += Setting_toggleOverride;
             setting.ToggleValidation += Setting_toggleValidation;
             setting.ToggleSound += Setting_toggleSound;
+            setting.ToggleCapture += Setting_toggleCapture;
             if (overrideSetting)
                 setting.OverrideAddresses();
 
@@ -472,6 +482,10 @@ namespace ACNHPokerCore
         private void Setting_toggleSound(bool SoundOn)
         {
             sound = SoundOn;
+        }
+        private void Setting_toggleCapture(bool CaptureOn)
+        {
+            capturesetting = CaptureOn;
         }
 
         private void Setting_toggleValidation()
@@ -5224,6 +5238,43 @@ namespace ACNHPokerCore
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
         }
+
+
+
+        public void SetTurnipPriceMax()
+        {
+            string max = "999999999";
+            string min = "1";
+            
+            //DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to set all the turnip prices to MAX?\n[Warning] All original prices will be overwritten!", "Set all turnip prices", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            //if (dialogResult == DialogResult.Yes)
+            //{
+                UInt32[] prices = new UInt32[13] {
+                Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
+                Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
+                Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
+                Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
+                Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
+                Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
+                Convert.ToUInt32(min, 10)};
+
+                try
+                {
+                    Utilities.ChangeTurnipPrices(socket, usb, prices);
+                    UpdateTurnipPrices();
+                }
+                catch (Exception ex)
+                {
+                    MyLog.LogEvent("MainForm", "SetAllTurnip: " + ex.Message.ToString());
+                    MyMessageBox.Show(ex.Message.ToString(), "This is a terrible way of doing this!");
+                }
+
+                if (sound)
+                    System.Media.SystemSounds.Asterisk.Play();
+            //}
+        }
+
+
 
         private void SetTurnipPriceMaxButton_Click(object sender, EventArgs e)
         {
