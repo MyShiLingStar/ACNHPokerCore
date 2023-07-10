@@ -5245,9 +5245,10 @@ namespace ACNHPokerCore
         {
             string max = "999999999";
             string min = "1";
-            DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to set all the turnip prices to MAX?\n[Warning] All original prices will be overwritten!", "Set all turnip prices", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-            if (dialogResult == DialogResult.Yes)
-            {
+            
+            //DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to set all the turnip prices to MAX?\n[Warning] All original prices will be overwritten!", "Set all turnip prices", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            //if (dialogResult == DialogResult.Yes)
+            //{
                 UInt32[] prices = new UInt32[13] {
                 Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
                 Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
@@ -5270,7 +5271,7 @@ namespace ACNHPokerCore
 
                 if (sound)
                     System.Media.SystemSounds.Asterisk.Play();
-            }
+            //}
         }
 
 

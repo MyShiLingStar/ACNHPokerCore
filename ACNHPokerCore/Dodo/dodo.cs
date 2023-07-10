@@ -94,7 +94,24 @@ namespace ACNHPokerCore
                 capturesetting = true;
             }
 
+            if (ConfigurationManager.AppSettings["AutoMaxBells"] == "true")
+            {
+                maxBells = true;
+                maxBellsBox.Checked = true;
+            }
+            else {
+                maxBells = false;
+                maxBellsBox.Checked = false;
+            }
+            if (maxBells == true)
+            {
+                maxBellsBox.Checked = true;
+            }
+            else {
+                maxBellsBox.Checked = false;
+            }
 
+            
             if (Teleport.AllAnchorValid())
             {
                 Point Done = new(-4200, 0);
@@ -1337,21 +1354,25 @@ namespace ACNHPokerCore
         }
 
 
-       
-
-
         void maxBellsBox_CheckedChanged(object sender, EventArgs e)
         {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
             if (maxBellsBox.Checked)
             {
-                maxBells = true;
-                var Main = new Main();
-                Main.SetTurnipPriceMax();
+                DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to set all the turnip prices to MAX?\n[Warning] All original prices will be overwritten!", "Set all turnip prices", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    maxBells = true;
+                    config.AppSettings.Settings["AutoMaxBells"].Value = "true";
+                    var Main = new Main();
+                    Main.SetTurnipPriceMax();
+                }
 
             }
             else
             {
                 maxBells = false;
+                config.AppSettings.Settings["AutoMaxBells"].Value = "false";
             }
         }
 
