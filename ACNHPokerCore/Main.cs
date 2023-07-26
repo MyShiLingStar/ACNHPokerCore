@@ -1,4 +1,5 @@
-﻿using NAudio.Wave;
+﻿using Microsoft.Extensions.FileSystemGlobbing.Internal;
+using NAudio.Wave;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -8648,11 +8649,11 @@ namespace ACNHPokerCore
         {
             ShowWait();
 
-            byte[] pattern = new byte[] { 0xC4, 0x09, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00 };
+            byte[] pattern = new byte[] { 0xC4, 0x09, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00 }; // 3 tree branches
 
             int offset = 0;
 
-            for (int i = 0; i < 50000; i++)
+            for (int i = 0; i < 20000; i++)
             {
                 ChasingAddress = (startAddress + offset - 4).ToString("X");
                 Debug.Print("Chasing : " + ChasingAddress);
@@ -8662,41 +8663,77 @@ namespace ACNHPokerCore
                 {
                     long fakeAddress = startAddress + offset + result - 4;
 
-                    int HeadResult = LocatePlayerHead(fakeAddress);
-                    if (HeadResult > 0)
+                    byte[] nameBytes = Utilities.PeekAddress(socket, usb, (uint)fakeAddress + Utilities.InventoryNameOffset, 0x34);
+                    string IslandName = Utilities.GetString(nameBytes, 4, 10);
+                    string CharacterName = Utilities.GetString(nameBytes, 32, 10);
+
+                    DialogResult dialogResult = MyMessageBox.Show("Character Name : [   " + CharacterName + "   ]\n" +
+                                              "Island Name : [   " + IslandName + "   ]\n\n" +
+                                              "Are these correct?"
+                                            , "Character & Island Name Found!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (dialogResult == DialogResult.Yes)
                     {
-                        UInt32 FinalOffset = (uint)(fakeAddress - (Utilities.playerOffset * (HeadResult - 1)) - startAddress);
-                        DialogResult dialogResult = MyMessageBox.Show("Tree branch Address : " + fakeAddress.ToString("X") + "\n" +
-                                                                      "Header Address : " + (fakeAddress - (Utilities.playerOffset * (HeadResult - 1))).ToString("X") + "\n" +
-                                                                      "Offset : " + FinalOffset.ToString("X") + "\n\n" +
-                                                                      "Apply offset ?"
-                                                                    , "Address & Header Found!", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                        if (dialogResult == DialogResult.OK)
+                        byte[] namePattern = new byte[8];
+                        Buffer.BlockCopy(nameBytes, 4, namePattern, 0, 8);
+
+                        int offsetNumber = 0;
+
+                        for (int j = 1; j < 8; j++)
                         {
-                            Configuration Config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
-                            Config.AppSettings.Settings["override"].Value = "true";
+                            byte[] bBefore = Utilities.PeekAddress(socket, usb, (uint)(fakeAddress - (j * Utilities.playerOffset)) + Utilities.InventoryNameOffset, 0x34);
 
-                            Config.AppSettings.Settings["PlayerSlot"].Value = (Utilities.masterAddress + FinalOffset).ToString("X");
+                            if (Search(bBefore, namePattern) >= 0)
+                                offsetNumber++;
+                        }
 
-                            Config.AppSettings.Settings["Villager"].Value = (Utilities.VillagerAddress + FinalOffset).ToString("X");
 
-                            Config.AppSettings.Settings["VillagerHouse"].Value = (Utilities.VillagerHouseAddress + FinalOffset).ToString("X");
+                        UInt32 FinalHeadAddress = (uint)(fakeAddress - (Utilities.playerOffset * offsetNumber));
+                        UInt32 FinalOffset = FinalHeadAddress - startAddress;
 
-                            Config.AppSettings.Settings["RecyclingBin"].Value = (Utilities.MasterRecyclingBase + FinalOffset).ToString("X");
-                            Config.AppSettings.Settings["Turnip"].Value = (Utilities.TurnipPurchasePriceAddr + FinalOffset).ToString("X");
-                            Config.AppSettings.Settings["Stamina"].Value = (Utilities.staminaAddress + FinalOffset).ToString("X");
+                        if (FinalOffset != 0)
+                        {
+                            DialogResult dialogResult2 = MyMessageBox.Show("Tree Branch Address : " + fakeAddress.ToString("X") + "\n" +
+                                                                           "Number of Players Before Tree Branch: " + (offsetNumber).ToString() + "\n\n" +
+                                                                           "Final Head Address : " + FinalHeadAddress.ToString("X") + "\n" +
+                                                                           "Offset : " + FinalOffset.ToString("X") + "\n\n" +
+                                                                           "Apply offset ?"
+                                                                         , "Address & Header Found!", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                            if (dialogResult2 == DialogResult.OK)
+                            {
+                                Configuration Config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
+                                Config.AppSettings.Settings["override"].Value = "true";
 
-                            Config.AppSettings.Settings["WeatherSeed"].Value = (Utilities.weatherSeed + FinalOffset).ToString("X");
-                            Config.AppSettings.Settings["MapZero"].Value = (Utilities.mapZero + FinalOffset).ToString("X");
+                                Config.AppSettings.Settings["PlayerSlot"].Value = (Utilities.masterAddress + FinalOffset).ToString("X");
 
-                            Config.Save(ConfigurationSaveMode.Minimal);
-                            Invoke((MethodInvoker)delegate { Application.Restart(); });
-                            return;
+                                Config.AppSettings.Settings["Villager"].Value = (Utilities.VillagerAddress + FinalOffset).ToString("X");
+
+                                Config.AppSettings.Settings["VillagerHouse"].Value = (Utilities.VillagerHouseAddress + FinalOffset).ToString("X");
+
+                                Config.AppSettings.Settings["RecyclingBin"].Value = (Utilities.MasterRecyclingBase + FinalOffset).ToString("X");
+                                Config.AppSettings.Settings["Turnip"].Value = (Utilities.TurnipPurchasePriceAddr + FinalOffset).ToString("X");
+                                Config.AppSettings.Settings["Stamina"].Value = (Utilities.staminaAddress + FinalOffset).ToString("X");
+
+                                Config.AppSettings.Settings["WeatherSeed"].Value = (Utilities.weatherSeed + FinalOffset).ToString("X");
+                                Config.AppSettings.Settings["MapZero"].Value = (Utilities.mapZero + FinalOffset).ToString("X");
+
+                                Config.Save(ConfigurationSaveMode.Minimal);
+                                Invoke((MethodInvoker)delegate { Application.Restart(); });
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            MyMessageBox.Show("Tree Branch Address : " + fakeAddress.ToString("X") + "\n" +
+                                              "Number of Players Before Tree Branch: " + (offsetNumber).ToString() + "\n\n" +
+                                              "Final Head Address : " + FinalHeadAddress.ToString("X") + "\n" +
+                                              "Offset : " + FinalOffset.ToString("X")
+                                            , "No Change Needed!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     else
                     {
-                        MyMessageBox.Show("Tree branch Address : " + fakeAddress.ToString("X"), "Header Not Found!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MyMessageBox.Show("Tree branch Address : " + fakeAddress.ToString("X"), "Not Found!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
                     Debug.Print(result.ToString("X") + "  " + offset.ToString("X") + " Final : " + fakeAddress.ToString("X") + " Offset : " + (fakeAddress - Utilities.masterAddress).ToString("X"));
@@ -8726,32 +8763,6 @@ namespace ACNHPokerCore
                     if (j == 1) return i;
                 }
             }
-            return -1;
-        }
-
-        private static int LocatePlayerHead(long currentAddress)
-        {
-            byte[] pattern1 = { 0x58, 0xE5, 0xBF, 0x87 };
-            byte[] pattern2 = { 0xF0, 0x96, 0x19, 0x25 };
-            byte[] pattern3 = { 0xB0, 0x6F, 0x43, 0x26 };
-            //byte[] pattern4 = { 0x58, 0xE5, 0xBF, 0x4D };
-            //byte[] pattern5 = { 0xF0, 0x96, 0x19, 0xF9 };
-            //byte[] pattern6 = { 0x8A, 0x30, 0x02, 0x00 };
-
-
-            string bytelist = "";
-
-            for (int i = 0; i < 16; i++)
-            {
-                byte[] b = Utilities.ReadByteArray(socket, currentAddress - (i * Utilities.playerOffset), 80);
-                bytelist += Utilities.ByteToHexString(b) + "\n";
-                if (Search(b, pattern1) >= 0 || Search(b, pattern2) >= 0 || Search(b, pattern3) >= 0)
-                {
-                    MyMessageBox.Show(bytelist, "Result");
-                    return i;
-                }
-            }
-            MyMessageBox.Show(bytelist, "Result");
             return -1;
         }
 
