@@ -20,8 +20,9 @@ namespace ACNHPokerCore
     public delegate void CloseHandler();
     public delegate void OverrideHandler();
     public delegate void ValidationHandler();
-    public delegate void SoundHandler(bool soundOn);
-    public delegate void ReceiveVariationHandler(InventorySlot item, int type);
+    public delegate void SoundHandler(bool SoundOn);
+    public delegate void CaptureHandler(bool CaptureOn);
+    public delegate void ReceiveVariationHandler(inventorySlot item, int type);
     public delegate void ThreadAbortHandler();
     #endregion
 
@@ -76,9 +77,10 @@ namespace ACNHPokerCore
 
         private bool overrideSetting;
         private bool validation = true;
-        private bool connecting;
-        private bool sound = true;
-        private static string languageSetting = "eng";
+        private bool connecting = false;
+        public bool sound = true;
+        public bool capturesetting = false;
+        private string languageSetting = "eng";
 
         private const string insectAppearFileName = @"InsectAppearParam.bin";
         private const string fishRiverAppearFileName = @"FishAppearRiverParam.bin";
@@ -137,10 +139,18 @@ namespace ACNHPokerCore
                 sound = false;
             }
 
-            setting = new Setting(overrideSetting, validation, sound);
+            if (ConfigurationManager.AppSettings["Capture"] == "false")
+            {
+                capturesetting = false;
+            }
+            else {
+                capturesetting = true;
+            }
+            setting = new Setting(overrideSetting, validation, sound, capturesetting);
             setting.ToggleOverride += Setting_toggleOverride;
             setting.ToggleValidation += Setting_toggleValidation;
             setting.ToggleSound += Setting_toggleSound;
+            setting.ToggleCapture += Setting_toggleCapture;
             if (overrideSetting)
                 setting.OverrideAddresses();
 
@@ -477,6 +487,10 @@ namespace ACNHPokerCore
         private void Setting_toggleSound(bool soundOn)
         {
             sound = soundOn;
+        }
+        private void Setting_toggleCapture(bool CaptureOn)
+        {
+            capturesetting = CaptureOn;
         }
 
         private void Setting_toggleValidation()

@@ -29,57 +29,59 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Setting));
-            PlayerSlotLabel = new System.Windows.Forms.Label();
-            PlayerSlot = new System.Windows.Forms.TextBox();
-            Slot21Offset = new System.Windows.Forms.TextBox();
-            HomeOffset = new System.Windows.Forms.TextBox();
-            ReactionOffset = new System.Windows.Forms.TextBox();
-            PlayerOffset = new System.Windows.Forms.TextBox();
-            Villager = new System.Windows.Forms.TextBox();
-            VillagerOffset = new System.Windows.Forms.TextBox();
-            PlayerOffsetLabel = new System.Windows.Forms.Label();
-            Slot21OffsetLabel = new System.Windows.Forms.Label();
-            HomeOffsetLabel = new System.Windows.Forms.Label();
-            ReactionOffsetLabel = new System.Windows.Forms.Label();
-            VillagerLabel = new System.Windows.Forms.Label();
-            VillagerOffsetLabel = new System.Windows.Forms.Label();
-            VillagerHouse = new System.Windows.Forms.TextBox();
-            VillagerHouseLabel = new System.Windows.Forms.Label();
-            VillagerHouseOffsetLabel = new System.Windows.Forms.Label();
-            VillagerHouseOffset = new System.Windows.Forms.TextBox();
-            VillagerHouseBufferLabel = new System.Windows.Forms.Label();
-            VillagerHouseBuffer = new System.Windows.Forms.TextBox();
-            StaminaLabel = new System.Windows.Forms.Label();
-            Stamina = new System.Windows.Forms.TextBox();
-            WalkSpeedLabel = new System.Windows.Forms.Label();
-            AnimationSpeedLabel = new System.Windows.Forms.Label();
-            WalkSpeed = new System.Windows.Forms.TextBox();
-            AnimationSpeed = new System.Windows.Forms.TextBox();
-            CollisionLabel = new System.Windows.Forms.Label();
-            Collision = new System.Windows.Forms.TextBox();
-            FreezeTimeLabel = new System.Windows.Forms.Label();
-            FreezeTime = new System.Windows.Forms.TextBox();
-            ReadTimeLabel = new System.Windows.Forms.Label();
-            ReadTime = new System.Windows.Forms.TextBox();
-            RecyclingBinLabel = new System.Windows.Forms.Label();
-            TurnipLabel = new System.Windows.Forms.Label();
-            RecyclingBin = new System.Windows.Forms.TextBox();
-            Turnip = new System.Windows.Forms.TextBox();
-            WeatherSeedLabel = new System.Windows.Forms.Label();
-            WeatherSeed = new System.Windows.Forms.TextBox();
-            addresses = new System.Windows.Forms.Panel();
-            MapZeroLabel = new System.Windows.Forms.Label();
-            MapZero = new System.Windows.Forms.TextBox();
-            SaveBtn = new System.Windows.Forms.Button();
-            ImageBtn = new System.Windows.Forms.Button();
-            AddressOverrideToggle = new JCS.ToggleSwitch();
-            AddressOverrideLabel = new System.Windows.Forms.Label();
-            ValidationLabel = new System.Windows.Forms.Label();
-            ValidationToggle = new JCS.ToggleSwitch();
-            SoundToggle = new JCS.ToggleSwitch();
-            SoundLabel = new System.Windows.Forms.Label();
-            addresses.SuspendLayout();
-            SuspendLayout();
+            this.PlayerSlotLabel = new System.Windows.Forms.Label();
+            this.PlayerSlot = new System.Windows.Forms.TextBox();
+            this.Slot21Offset = new System.Windows.Forms.TextBox();
+            this.HomeOffset = new System.Windows.Forms.TextBox();
+            this.ReactionOffset = new System.Windows.Forms.TextBox();
+            this.PlayerOffset = new System.Windows.Forms.TextBox();
+            this.Villager = new System.Windows.Forms.TextBox();
+            this.VillagerOffset = new System.Windows.Forms.TextBox();
+            this.PlayerOffsetLabel = new System.Windows.Forms.Label();
+            this.Slot21OffsetLabel = new System.Windows.Forms.Label();
+            this.HomeOffsetLabel = new System.Windows.Forms.Label();
+            this.ReactionOffsetLabel = new System.Windows.Forms.Label();
+            this.VillagerLabel = new System.Windows.Forms.Label();
+            this.VillagerOffsetLabel = new System.Windows.Forms.Label();
+            this.VillagerHouse = new System.Windows.Forms.TextBox();
+            this.VillagerHouseLabel = new System.Windows.Forms.Label();
+            this.VillagerHouseOffsetLabel = new System.Windows.Forms.Label();
+            this.VillagerHouseOffset = new System.Windows.Forms.TextBox();
+            this.VillagerHouseBufferLabel = new System.Windows.Forms.Label();
+            this.VillagerHouseBuffer = new System.Windows.Forms.TextBox();
+            this.StaminaLabel = new System.Windows.Forms.Label();
+            this.Stamina = new System.Windows.Forms.TextBox();
+            this.WalkSpeedLabel = new System.Windows.Forms.Label();
+            this.AnimationSpeedLabel = new System.Windows.Forms.Label();
+            this.WalkSpeed = new System.Windows.Forms.TextBox();
+            this.AnimationSpeed = new System.Windows.Forms.TextBox();
+            this.CollisionLabel = new System.Windows.Forms.Label();
+            this.Collision = new System.Windows.Forms.TextBox();
+            this.FreezeTimeLabel = new System.Windows.Forms.Label();
+            this.FreezeTime = new System.Windows.Forms.TextBox();
+            this.ReadTimeLabel = new System.Windows.Forms.Label();
+            this.ReadTime = new System.Windows.Forms.TextBox();
+            this.RecyclingBinLabel = new System.Windows.Forms.Label();
+            this.TurnipLabel = new System.Windows.Forms.Label();
+            this.RecyclingBin = new System.Windows.Forms.TextBox();
+            this.Turnip = new System.Windows.Forms.TextBox();
+            this.WeatherSeedLabel = new System.Windows.Forms.Label();
+            this.WeatherSeed = new System.Windows.Forms.TextBox();
+            this.addresses = new System.Windows.Forms.Panel();
+            this.MapZeroLabel = new System.Windows.Forms.Label();
+            this.MapZero = new System.Windows.Forms.TextBox();
+            this.SaveBtn = new System.Windows.Forms.Button();
+            this.ImageBtn = new System.Windows.Forms.Button();
+            this.AddressOverrideToggle = new JCS.ToggleSwitch();
+            this.AddressOverrideLabel = new System.Windows.Forms.Label();
+            this.ValidationLabel = new System.Windows.Forms.Label();
+            this.ValidationToggle = new JCS.ToggleSwitch();
+            this.SoundToggle = new JCS.ToggleSwitch();
+            this.SoundLabel = new System.Windows.Forms.Label();
+            this.CaptureToggle = new JCS.ToggleSwitch();
+            this.CaptureLabel = new System.Windows.Forms.Label();
+            this.addresses.SuspendLayout();
+            this.SuspendLayout();
             // 
             // PlayerSlotLabel
             // 
@@ -762,6 +764,33 @@
             SoundLabel.TabIndex = 106;
             SoundLabel.Text = "Sound";
             // 
+            // CaptureToggle
+            // 
+            this.CaptureToggle.Location = new System.Drawing.Point(628, 9);
+            this.CaptureToggle.Name = "CaptureToggle";
+            this.CaptureToggle.OffFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CaptureToggle.OffForeColor = System.Drawing.Color.White;
+            this.CaptureToggle.OffText = "Off";
+            this.CaptureToggle.OnFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CaptureToggle.OnForeColor = System.Drawing.Color.White;
+            this.CaptureToggle.OnText = "On";
+            this.CaptureToggle.Size = new System.Drawing.Size(59, 19);
+            this.CaptureToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            this.CaptureToggle.TabIndex = 107;
+            this.CaptureToggle.UseAnimation = false;
+            this.CaptureToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.CaptureToggle_CheckedChanged);
+            // 
+            // CaptureLabel
+            // 
+            this.CaptureLabel.AutoSize = true;
+            this.CaptureLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CaptureLabel.ForeColor = System.Drawing.Color.White;
+            this.CaptureLabel.Location = new System.Drawing.Point(561, 11);
+            this.CaptureLabel.Name = "CaptureLabel";
+            this.CaptureLabel.Size = new System.Drawing.Size(63, 16);
+            this.CaptureLabel.TabIndex = 108;
+            this.CaptureLabel.Text = "Capture";
+            // 
             // Setting
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -844,5 +873,7 @@
         private JCS.ToggleSwitch ValidationToggle;
         private JCS.ToggleSwitch SoundToggle;
         private System.Windows.Forms.Label SoundLabel;
+        private JCS.ToggleSwitch CaptureToggle;
+        private System.Windows.Forms.Label CaptureLabel;
     }
 }
