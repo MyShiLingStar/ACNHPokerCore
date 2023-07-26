@@ -22,7 +22,7 @@ namespace ACNHPokerCore
     public delegate void ValidationHandler();
     public delegate void SoundHandler(bool SoundOn);
     public delegate void CaptureHandler(bool CaptureOn);
-    public delegate void ReceiveVariationHandler(inventorySlot item, int type);
+    public delegate void ReceiveVariationHandler(InventorySlot item, int type);
     public delegate void ThreadAbortHandler();
     #endregion
 
@@ -80,7 +80,7 @@ namespace ACNHPokerCore
         private bool connecting = false;
         public bool sound = true;
         public bool capturesetting = false;
-        private string languageSetting = "eng";
+        private static string languageSetting = "eng";
 
         private const string insectAppearFileName = @"InsectAppearParam.bin";
         private const string fishRiverAppearFileName = @"FishAppearRiverParam.bin";
@@ -5188,6 +5188,35 @@ namespace ACNHPokerCore
                 if (sound)
                     System.Media.SystemSounds.Asterisk.Play();
             }
+        }
+
+        public void SetTurnipPriceMax()
+        {
+            string max = "999999999";
+            string min = "1";
+
+            UInt32[] prices = new[] {
+                Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
+                Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
+                Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
+                Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
+                Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
+                Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
+                Convert.ToUInt32(min, 10)};
+
+            try
+            {
+                Utilities.ChangeTurnipPrices(socket, usb, prices);
+                UpdateTurnipPrices();
+            }
+            catch (Exception ex)
+            {
+                MyLog.LogEvent("MainForm", "SetAllTurnip: " + ex.Message.ToString());
+                MyMessageBox.Show(ex.Message.ToString(), "This is a terrible way of doing this!");
+            }
+
+            if (sound)
+                System.Media.SystemSounds.Asterisk.Play();
         }
 
         private void SetTurnipPriceButton_Click(object sender, EventArgs e)

@@ -112,7 +112,7 @@ namespace ACNHPokerCore
             }
 
             
-            if (Teleport.AllAnchorValid())
+            if (Teleport.AllAnchorValid() || debugging)
             {
                 Point Done = new(-4200, 0);
                 FullPanel.Location = Done;

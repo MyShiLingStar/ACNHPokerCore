@@ -29,64 +29,64 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Setting));
-            this.PlayerSlotLabel = new System.Windows.Forms.Label();
-            this.PlayerSlot = new System.Windows.Forms.TextBox();
-            this.Slot21Offset = new System.Windows.Forms.TextBox();
-            this.HomeOffset = new System.Windows.Forms.TextBox();
-            this.ReactionOffset = new System.Windows.Forms.TextBox();
-            this.PlayerOffset = new System.Windows.Forms.TextBox();
-            this.Villager = new System.Windows.Forms.TextBox();
-            this.VillagerOffset = new System.Windows.Forms.TextBox();
-            this.PlayerOffsetLabel = new System.Windows.Forms.Label();
-            this.Slot21OffsetLabel = new System.Windows.Forms.Label();
-            this.HomeOffsetLabel = new System.Windows.Forms.Label();
-            this.ReactionOffsetLabel = new System.Windows.Forms.Label();
-            this.VillagerLabel = new System.Windows.Forms.Label();
-            this.VillagerOffsetLabel = new System.Windows.Forms.Label();
-            this.VillagerHouse = new System.Windows.Forms.TextBox();
-            this.VillagerHouseLabel = new System.Windows.Forms.Label();
-            this.VillagerHouseOffsetLabel = new System.Windows.Forms.Label();
-            this.VillagerHouseOffset = new System.Windows.Forms.TextBox();
-            this.VillagerHouseBufferLabel = new System.Windows.Forms.Label();
-            this.VillagerHouseBuffer = new System.Windows.Forms.TextBox();
-            this.StaminaLabel = new System.Windows.Forms.Label();
-            this.Stamina = new System.Windows.Forms.TextBox();
-            this.WalkSpeedLabel = new System.Windows.Forms.Label();
-            this.AnimationSpeedLabel = new System.Windows.Forms.Label();
-            this.WalkSpeed = new System.Windows.Forms.TextBox();
-            this.AnimationSpeed = new System.Windows.Forms.TextBox();
-            this.CollisionLabel = new System.Windows.Forms.Label();
-            this.Collision = new System.Windows.Forms.TextBox();
-            this.FreezeTimeLabel = new System.Windows.Forms.Label();
-            this.FreezeTime = new System.Windows.Forms.TextBox();
-            this.ReadTimeLabel = new System.Windows.Forms.Label();
-            this.ReadTime = new System.Windows.Forms.TextBox();
-            this.RecyclingBinLabel = new System.Windows.Forms.Label();
-            this.TurnipLabel = new System.Windows.Forms.Label();
-            this.RecyclingBin = new System.Windows.Forms.TextBox();
-            this.Turnip = new System.Windows.Forms.TextBox();
-            this.WeatherSeedLabel = new System.Windows.Forms.Label();
-            this.WeatherSeed = new System.Windows.Forms.TextBox();
-            this.addresses = new System.Windows.Forms.Panel();
-            this.MapZeroLabel = new System.Windows.Forms.Label();
-            this.MapZero = new System.Windows.Forms.TextBox();
-            this.SaveBtn = new System.Windows.Forms.Button();
-            this.ImageBtn = new System.Windows.Forms.Button();
-            this.AddressOverrideToggle = new JCS.ToggleSwitch();
-            this.AddressOverrideLabel = new System.Windows.Forms.Label();
-            this.ValidationLabel = new System.Windows.Forms.Label();
-            this.ValidationToggle = new JCS.ToggleSwitch();
-            this.SoundToggle = new JCS.ToggleSwitch();
-            this.SoundLabel = new System.Windows.Forms.Label();
-            this.CaptureToggle = new JCS.ToggleSwitch();
-            this.CaptureLabel = new System.Windows.Forms.Label();
-            this.addresses.SuspendLayout();
-            this.SuspendLayout();
+            PlayerSlotLabel = new System.Windows.Forms.Label();
+            PlayerSlot = new System.Windows.Forms.TextBox();
+            Slot21Offset = new System.Windows.Forms.TextBox();
+            HomeOffset = new System.Windows.Forms.TextBox();
+            ReactionOffset = new System.Windows.Forms.TextBox();
+            PlayerOffset = new System.Windows.Forms.TextBox();
+            Villager = new System.Windows.Forms.TextBox();
+            VillagerOffset = new System.Windows.Forms.TextBox();
+            PlayerOffsetLabel = new System.Windows.Forms.Label();
+            Slot21OffsetLabel = new System.Windows.Forms.Label();
+            HomeOffsetLabel = new System.Windows.Forms.Label();
+            ReactionOffsetLabel = new System.Windows.Forms.Label();
+            VillagerLabel = new System.Windows.Forms.Label();
+            VillagerOffsetLabel = new System.Windows.Forms.Label();
+            VillagerHouse = new System.Windows.Forms.TextBox();
+            VillagerHouseLabel = new System.Windows.Forms.Label();
+            VillagerHouseOffsetLabel = new System.Windows.Forms.Label();
+            VillagerHouseOffset = new System.Windows.Forms.TextBox();
+            VillagerHouseBufferLabel = new System.Windows.Forms.Label();
+            VillagerHouseBuffer = new System.Windows.Forms.TextBox();
+            StaminaLabel = new System.Windows.Forms.Label();
+            Stamina = new System.Windows.Forms.TextBox();
+            WalkSpeedLabel = new System.Windows.Forms.Label();
+            AnimationSpeedLabel = new System.Windows.Forms.Label();
+            WalkSpeed = new System.Windows.Forms.TextBox();
+            AnimationSpeed = new System.Windows.Forms.TextBox();
+            CollisionLabel = new System.Windows.Forms.Label();
+            Collision = new System.Windows.Forms.TextBox();
+            FreezeTimeLabel = new System.Windows.Forms.Label();
+            FreezeTime = new System.Windows.Forms.TextBox();
+            ReadTimeLabel = new System.Windows.Forms.Label();
+            ReadTime = new System.Windows.Forms.TextBox();
+            RecyclingBinLabel = new System.Windows.Forms.Label();
+            TurnipLabel = new System.Windows.Forms.Label();
+            RecyclingBin = new System.Windows.Forms.TextBox();
+            Turnip = new System.Windows.Forms.TextBox();
+            WeatherSeedLabel = new System.Windows.Forms.Label();
+            WeatherSeed = new System.Windows.Forms.TextBox();
+            addresses = new System.Windows.Forms.Panel();
+            MapZeroLabel = new System.Windows.Forms.Label();
+            MapZero = new System.Windows.Forms.TextBox();
+            SaveBtn = new System.Windows.Forms.Button();
+            ImageBtn = new System.Windows.Forms.Button();
+            AddressOverrideToggle = new JCS.ToggleSwitch();
+            AddressOverrideLabel = new System.Windows.Forms.Label();
+            ValidationLabel = new System.Windows.Forms.Label();
+            ValidationToggle = new JCS.ToggleSwitch();
+            SoundToggle = new JCS.ToggleSwitch();
+            SoundLabel = new System.Windows.Forms.Label();
+            CaptureToggle = new JCS.ToggleSwitch();
+            CaptureLabel = new System.Windows.Forms.Label();
+            addresses.SuspendLayout();
+            SuspendLayout();
             // 
             // PlayerSlotLabel
             // 
             PlayerSlotLabel.AutoSize = true;
-            PlayerSlotLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            PlayerSlotLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             PlayerSlotLabel.ForeColor = System.Drawing.Color.White;
             PlayerSlotLabel.Location = new System.Drawing.Point(8, 11);
             PlayerSlotLabel.Name = "PlayerSlotLabel";
@@ -98,7 +98,7 @@
             // 
             PlayerSlot.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
             PlayerSlot.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            PlayerSlot.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            PlayerSlot.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
             PlayerSlot.ForeColor = System.Drawing.Color.White;
             PlayerSlot.Location = new System.Drawing.Point(306, 4);
             PlayerSlot.MaxLength = 8;
@@ -113,7 +113,7 @@
             // 
             Slot21Offset.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
             Slot21Offset.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            Slot21Offset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            Slot21Offset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
             Slot21Offset.ForeColor = System.Drawing.Color.White;
             Slot21Offset.Location = new System.Drawing.Point(306, 78);
             Slot21Offset.MaxLength = 8;
@@ -128,7 +128,7 @@
             // 
             HomeOffset.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
             HomeOffset.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            HomeOffset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            HomeOffset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
             HomeOffset.ForeColor = System.Drawing.Color.White;
             HomeOffset.Location = new System.Drawing.Point(306, 115);
             HomeOffset.MaxLength = 8;
@@ -143,7 +143,7 @@
             // 
             ReactionOffset.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
             ReactionOffset.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            ReactionOffset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ReactionOffset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
             ReactionOffset.ForeColor = System.Drawing.Color.White;
             ReactionOffset.Location = new System.Drawing.Point(306, 152);
             ReactionOffset.MaxLength = 8;
@@ -158,7 +158,7 @@
             // 
             PlayerOffset.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
             PlayerOffset.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            PlayerOffset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            PlayerOffset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
             PlayerOffset.ForeColor = System.Drawing.Color.White;
             PlayerOffset.Location = new System.Drawing.Point(306, 41);
             PlayerOffset.MaxLength = 8;
@@ -173,7 +173,7 @@
             // 
             Villager.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
             Villager.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            Villager.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            Villager.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
             Villager.ForeColor = System.Drawing.Color.White;
             Villager.Location = new System.Drawing.Point(306, 198);
             Villager.MaxLength = 8;
@@ -188,7 +188,7 @@
             // 
             VillagerOffset.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
             VillagerOffset.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            VillagerOffset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            VillagerOffset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
             VillagerOffset.ForeColor = System.Drawing.Color.White;
             VillagerOffset.Location = new System.Drawing.Point(306, 235);
             VillagerOffset.MaxLength = 8;
@@ -202,7 +202,7 @@
             // PlayerOffsetLabel
             // 
             PlayerOffsetLabel.AutoSize = true;
-            PlayerOffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            PlayerOffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             PlayerOffsetLabel.ForeColor = System.Drawing.Color.White;
             PlayerOffsetLabel.Location = new System.Drawing.Point(8, 45);
             PlayerOffsetLabel.Name = "PlayerOffsetLabel";
@@ -213,7 +213,7 @@
             // Slot21OffsetLabel
             // 
             Slot21OffsetLabel.AutoSize = true;
-            Slot21OffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            Slot21OffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             Slot21OffsetLabel.ForeColor = System.Drawing.Color.White;
             Slot21OffsetLabel.Location = new System.Drawing.Point(8, 82);
             Slot21OffsetLabel.Name = "Slot21OffsetLabel";
@@ -224,7 +224,7 @@
             // HomeOffsetLabel
             // 
             HomeOffsetLabel.AutoSize = true;
-            HomeOffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            HomeOffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             HomeOffsetLabel.ForeColor = System.Drawing.Color.White;
             HomeOffsetLabel.Location = new System.Drawing.Point(8, 119);
             HomeOffsetLabel.Name = "HomeOffsetLabel";
@@ -235,7 +235,7 @@
             // ReactionOffsetLabel
             // 
             ReactionOffsetLabel.AutoSize = true;
-            ReactionOffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ReactionOffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             ReactionOffsetLabel.ForeColor = System.Drawing.Color.White;
             ReactionOffsetLabel.Location = new System.Drawing.Point(8, 156);
             ReactionOffsetLabel.Name = "ReactionOffsetLabel";
@@ -247,7 +247,7 @@
             // VillagerLabel
             // 
             VillagerLabel.AutoSize = true;
-            VillagerLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            VillagerLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             VillagerLabel.ForeColor = System.Drawing.Color.White;
             VillagerLabel.Location = new System.Drawing.Point(8, 202);
             VillagerLabel.Name = "VillagerLabel";
@@ -258,7 +258,7 @@
             // VillagerOffsetLabel
             // 
             VillagerOffsetLabel.AutoSize = true;
-            VillagerOffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            VillagerOffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             VillagerOffsetLabel.ForeColor = System.Drawing.Color.White;
             VillagerOffsetLabel.Location = new System.Drawing.Point(8, 239);
             VillagerOffsetLabel.Name = "VillagerOffsetLabel";
@@ -270,7 +270,7 @@
             // 
             VillagerHouse.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
             VillagerHouse.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            VillagerHouse.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            VillagerHouse.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
             VillagerHouse.ForeColor = System.Drawing.Color.White;
             VillagerHouse.Location = new System.Drawing.Point(306, 272);
             VillagerHouse.MaxLength = 8;
@@ -284,7 +284,7 @@
             // VillagerHouseLabel
             // 
             VillagerHouseLabel.AutoSize = true;
-            VillagerHouseLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            VillagerHouseLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             VillagerHouseLabel.ForeColor = System.Drawing.Color.White;
             VillagerHouseLabel.Location = new System.Drawing.Point(8, 276);
             VillagerHouseLabel.Name = "VillagerHouseLabel";
@@ -295,7 +295,7 @@
             // VillagerHouseOffsetLabel
             // 
             VillagerHouseOffsetLabel.AutoSize = true;
-            VillagerHouseOffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            VillagerHouseOffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             VillagerHouseOffsetLabel.ForeColor = System.Drawing.Color.White;
             VillagerHouseOffsetLabel.Location = new System.Drawing.Point(8, 313);
             VillagerHouseOffsetLabel.Name = "VillagerHouseOffsetLabel";
@@ -307,7 +307,7 @@
             // 
             VillagerHouseOffset.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
             VillagerHouseOffset.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            VillagerHouseOffset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            VillagerHouseOffset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
             VillagerHouseOffset.ForeColor = System.Drawing.Color.White;
             VillagerHouseOffset.Location = new System.Drawing.Point(306, 309);
             VillagerHouseOffset.MaxLength = 8;
@@ -321,7 +321,7 @@
             // VillagerHouseBufferLabel
             // 
             VillagerHouseBufferLabel.AutoSize = true;
-            VillagerHouseBufferLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            VillagerHouseBufferLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             VillagerHouseBufferLabel.ForeColor = System.Drawing.Color.White;
             VillagerHouseBufferLabel.Location = new System.Drawing.Point(8, 350);
             VillagerHouseBufferLabel.Name = "VillagerHouseBufferLabel";
@@ -333,7 +333,7 @@
             // 
             VillagerHouseBuffer.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
             VillagerHouseBuffer.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            VillagerHouseBuffer.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            VillagerHouseBuffer.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
             VillagerHouseBuffer.ForeColor = System.Drawing.Color.White;
             VillagerHouseBuffer.Location = new System.Drawing.Point(306, 346);
             VillagerHouseBuffer.MaxLength = 8;
@@ -347,7 +347,7 @@
             // StaminaLabel
             // 
             StaminaLabel.AutoSize = true;
-            StaminaLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            StaminaLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             StaminaLabel.ForeColor = System.Drawing.Color.White;
             StaminaLabel.Location = new System.Drawing.Point(597, 11);
             StaminaLabel.Name = "StaminaLabel";
@@ -359,7 +359,7 @@
             // 
             Stamina.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
             Stamina.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            Stamina.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            Stamina.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
             Stamina.ForeColor = System.Drawing.Color.White;
             Stamina.Location = new System.Drawing.Point(774, 4);
             Stamina.MaxLength = 8;
@@ -373,7 +373,7 @@
             // WalkSpeedLabel
             // 
             WalkSpeedLabel.AutoSize = true;
-            WalkSpeedLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            WalkSpeedLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             WalkSpeedLabel.ForeColor = System.Drawing.Color.White;
             WalkSpeedLabel.Location = new System.Drawing.Point(597, 48);
             WalkSpeedLabel.Name = "WalkSpeedLabel";
@@ -384,7 +384,7 @@
             // AnimationSpeedLabel
             // 
             AnimationSpeedLabel.AutoSize = true;
-            AnimationSpeedLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            AnimationSpeedLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             AnimationSpeedLabel.ForeColor = System.Drawing.Color.White;
             AnimationSpeedLabel.Location = new System.Drawing.Point(597, 85);
             AnimationSpeedLabel.Name = "AnimationSpeedLabel";
@@ -396,7 +396,7 @@
             // 
             WalkSpeed.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
             WalkSpeed.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            WalkSpeed.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            WalkSpeed.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
             WalkSpeed.ForeColor = System.Drawing.Color.White;
             WalkSpeed.Location = new System.Drawing.Point(774, 41);
             WalkSpeed.MaxLength = 8;
@@ -411,7 +411,7 @@
             // 
             AnimationSpeed.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
             AnimationSpeed.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            AnimationSpeed.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            AnimationSpeed.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
             AnimationSpeed.ForeColor = System.Drawing.Color.White;
             AnimationSpeed.Location = new System.Drawing.Point(774, 78);
             AnimationSpeed.MaxLength = 8;
@@ -425,7 +425,7 @@
             // CollisionLabel
             // 
             CollisionLabel.AutoSize = true;
-            CollisionLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CollisionLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             CollisionLabel.ForeColor = System.Drawing.Color.White;
             CollisionLabel.Location = new System.Drawing.Point(597, 122);
             CollisionLabel.Name = "CollisionLabel";
@@ -437,7 +437,7 @@
             // 
             Collision.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
             Collision.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            Collision.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            Collision.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
             Collision.ForeColor = System.Drawing.Color.White;
             Collision.Location = new System.Drawing.Point(774, 115);
             Collision.MaxLength = 8;
@@ -451,7 +451,7 @@
             // FreezeTimeLabel
             // 
             FreezeTimeLabel.AutoSize = true;
-            FreezeTimeLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            FreezeTimeLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             FreezeTimeLabel.ForeColor = System.Drawing.Color.White;
             FreezeTimeLabel.Location = new System.Drawing.Point(597, 176);
             FreezeTimeLabel.Name = "FreezeTimeLabel";
@@ -463,7 +463,7 @@
             // 
             FreezeTime.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
             FreezeTime.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            FreezeTime.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            FreezeTime.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
             FreezeTime.ForeColor = System.Drawing.Color.White;
             FreezeTime.Location = new System.Drawing.Point(774, 169);
             FreezeTime.MaxLength = 8;
@@ -477,7 +477,7 @@
             // ReadTimeLabel
             // 
             ReadTimeLabel.AutoSize = true;
-            ReadTimeLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ReadTimeLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             ReadTimeLabel.ForeColor = System.Drawing.Color.White;
             ReadTimeLabel.Location = new System.Drawing.Point(597, 213);
             ReadTimeLabel.Name = "ReadTimeLabel";
@@ -489,7 +489,7 @@
             // 
             ReadTime.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
             ReadTime.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            ReadTime.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ReadTime.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
             ReadTime.ForeColor = System.Drawing.Color.White;
             ReadTime.Location = new System.Drawing.Point(774, 206);
             ReadTime.MaxLength = 8;
@@ -503,7 +503,7 @@
             // RecyclingBinLabel
             // 
             RecyclingBinLabel.AutoSize = true;
-            RecyclingBinLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RecyclingBinLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             RecyclingBinLabel.ForeColor = System.Drawing.Color.White;
             RecyclingBinLabel.Location = new System.Drawing.Point(8, 395);
             RecyclingBinLabel.Name = "RecyclingBinLabel";
@@ -514,7 +514,7 @@
             // TurnipLabel
             // 
             TurnipLabel.AutoSize = true;
-            TurnipLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            TurnipLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             TurnipLabel.ForeColor = System.Drawing.Color.White;
             TurnipLabel.Location = new System.Drawing.Point(8, 432);
             TurnipLabel.Name = "TurnipLabel";
@@ -526,7 +526,7 @@
             // 
             RecyclingBin.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
             RecyclingBin.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            RecyclingBin.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RecyclingBin.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
             RecyclingBin.ForeColor = System.Drawing.Color.White;
             RecyclingBin.Location = new System.Drawing.Point(306, 391);
             RecyclingBin.MaxLength = 8;
@@ -541,7 +541,7 @@
             // 
             Turnip.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
             Turnip.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            Turnip.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            Turnip.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
             Turnip.ForeColor = System.Drawing.Color.White;
             Turnip.Location = new System.Drawing.Point(306, 428);
             Turnip.MaxLength = 8;
@@ -555,7 +555,7 @@
             // WeatherSeedLabel
             // 
             WeatherSeedLabel.AutoSize = true;
-            WeatherSeedLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            WeatherSeedLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             WeatherSeedLabel.ForeColor = System.Drawing.Color.White;
             WeatherSeedLabel.Location = new System.Drawing.Point(599, 316);
             WeatherSeedLabel.Name = "WeatherSeedLabel";
@@ -567,7 +567,7 @@
             // 
             WeatherSeed.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
             WeatherSeed.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            WeatherSeed.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            WeatherSeed.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
             WeatherSeed.ForeColor = System.Drawing.Color.White;
             WeatherSeed.Location = new System.Drawing.Point(774, 309);
             WeatherSeed.MaxLength = 8;
@@ -630,7 +630,7 @@
             // MapZeroLabel
             // 
             MapZeroLabel.AutoSize = true;
-            MapZeroLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            MapZeroLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             MapZeroLabel.ForeColor = System.Drawing.Color.White;
             MapZeroLabel.Location = new System.Drawing.Point(599, 353);
             MapZeroLabel.Name = "MapZeroLabel";
@@ -642,7 +642,7 @@
             // 
             MapZero.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
             MapZero.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            MapZero.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            MapZero.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold);
             MapZero.ForeColor = System.Drawing.Color.White;
             MapZero.Location = new System.Drawing.Point(774, 346);
             MapZero.MaxLength = 8;
@@ -658,7 +658,7 @@
             SaveBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
             SaveBtn.FlatAppearance.BorderSize = 0;
             SaveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            SaveBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            SaveBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             SaveBtn.ForeColor = System.Drawing.Color.White;
             SaveBtn.Location = new System.Drawing.Point(774, 424);
             SaveBtn.Name = "SaveBtn";
@@ -673,7 +673,7 @@
             ImageBtn.BackColor = System.Drawing.Color.Orange;
             ImageBtn.FlatAppearance.BorderSize = 0;
             ImageBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            ImageBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ImageBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             ImageBtn.ForeColor = System.Drawing.Color.White;
             ImageBtn.Location = new System.Drawing.Point(774, 4);
             ImageBtn.Name = "ImageBtn";
@@ -687,10 +687,10 @@
             // 
             AddressOverrideToggle.Location = new System.Drawing.Point(143, 9);
             AddressOverrideToggle.Name = "AddressOverrideToggle";
-            AddressOverrideToggle.OffFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            AddressOverrideToggle.OffFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             AddressOverrideToggle.OffForeColor = System.Drawing.Color.White;
             AddressOverrideToggle.OffText = "Off";
-            AddressOverrideToggle.OnFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            AddressOverrideToggle.OnFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             AddressOverrideToggle.OnForeColor = System.Drawing.Color.White;
             AddressOverrideToggle.OnText = "On";
             AddressOverrideToggle.Size = new System.Drawing.Size(59, 19);
@@ -702,7 +702,7 @@
             // AddressOverrideLabel
             // 
             AddressOverrideLabel.AutoSize = true;
-            AddressOverrideLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            AddressOverrideLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             AddressOverrideLabel.ForeColor = System.Drawing.Color.White;
             AddressOverrideLabel.Location = new System.Drawing.Point(10, 11);
             AddressOverrideLabel.Name = "AddressOverrideLabel";
@@ -713,7 +713,7 @@
             // ValidationLabel
             // 
             ValidationLabel.AutoSize = true;
-            ValidationLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ValidationLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             ValidationLabel.ForeColor = System.Drawing.Color.White;
             ValidationLabel.Location = new System.Drawing.Point(238, 11);
             ValidationLabel.Name = "ValidationLabel";
@@ -725,10 +725,10 @@
             // 
             ValidationToggle.Location = new System.Drawing.Point(316, 9);
             ValidationToggle.Name = "ValidationToggle";
-            ValidationToggle.OffFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ValidationToggle.OffFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             ValidationToggle.OffForeColor = System.Drawing.Color.White;
             ValidationToggle.OffText = "Off";
-            ValidationToggle.OnFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ValidationToggle.OnFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             ValidationToggle.OnForeColor = System.Drawing.Color.White;
             ValidationToggle.OnText = "On";
             ValidationToggle.Size = new System.Drawing.Size(59, 19);
@@ -741,10 +741,10 @@
             // 
             SoundToggle.Location = new System.Drawing.Point(469, 9);
             SoundToggle.Name = "SoundToggle";
-            SoundToggle.OffFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            SoundToggle.OffFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             SoundToggle.OffForeColor = System.Drawing.Color.White;
             SoundToggle.OffText = "Off";
-            SoundToggle.OnFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            SoundToggle.OnFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             SoundToggle.OnForeColor = System.Drawing.Color.White;
             SoundToggle.OnText = "On";
             SoundToggle.Size = new System.Drawing.Size(59, 19);
@@ -756,7 +756,7 @@
             // SoundLabel
             // 
             SoundLabel.AutoSize = true;
-            SoundLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            SoundLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             SoundLabel.ForeColor = System.Drawing.Color.White;
             SoundLabel.Location = new System.Drawing.Point(414, 11);
             SoundLabel.Name = "SoundLabel";
@@ -766,36 +766,38 @@
             // 
             // CaptureToggle
             // 
-            this.CaptureToggle.Location = new System.Drawing.Point(628, 9);
-            this.CaptureToggle.Name = "CaptureToggle";
-            this.CaptureToggle.OffFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CaptureToggle.OffForeColor = System.Drawing.Color.White;
-            this.CaptureToggle.OffText = "Off";
-            this.CaptureToggle.OnFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CaptureToggle.OnForeColor = System.Drawing.Color.White;
-            this.CaptureToggle.OnText = "On";
-            this.CaptureToggle.Size = new System.Drawing.Size(59, 19);
-            this.CaptureToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
-            this.CaptureToggle.TabIndex = 107;
-            this.CaptureToggle.UseAnimation = false;
-            this.CaptureToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.CaptureToggle_CheckedChanged);
+            CaptureToggle.Location = new System.Drawing.Point(628, 9);
+            CaptureToggle.Name = "CaptureToggle";
+            CaptureToggle.OffFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            CaptureToggle.OffForeColor = System.Drawing.Color.White;
+            CaptureToggle.OffText = "Off";
+            CaptureToggle.OnFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            CaptureToggle.OnForeColor = System.Drawing.Color.White;
+            CaptureToggle.OnText = "On";
+            CaptureToggle.Size = new System.Drawing.Size(59, 19);
+            CaptureToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            CaptureToggle.TabIndex = 107;
+            CaptureToggle.UseAnimation = false;
+            CaptureToggle.CheckedChanged += CaptureToggle_CheckedChanged;
             // 
             // CaptureLabel
             // 
-            this.CaptureLabel.AutoSize = true;
-            this.CaptureLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CaptureLabel.ForeColor = System.Drawing.Color.White;
-            this.CaptureLabel.Location = new System.Drawing.Point(561, 11);
-            this.CaptureLabel.Name = "CaptureLabel";
-            this.CaptureLabel.Size = new System.Drawing.Size(63, 16);
-            this.CaptureLabel.TabIndex = 108;
-            this.CaptureLabel.Text = "Capture";
+            CaptureLabel.AutoSize = true;
+            CaptureLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            CaptureLabel.ForeColor = System.Drawing.Color.White;
+            CaptureLabel.Location = new System.Drawing.Point(562, 11);
+            CaptureLabel.Name = "CaptureLabel";
+            CaptureLabel.Size = new System.Drawing.Size(63, 16);
+            CaptureLabel.TabIndex = 108;
+            CaptureLabel.Text = "Capture";
             // 
             // Setting
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
             ClientSize = new System.Drawing.Size(964, 506);
+            Controls.Add(CaptureToggle);
+            Controls.Add(CaptureLabel);
             Controls.Add(SoundToggle);
             Controls.Add(SoundLabel);
             Controls.Add(ValidationToggle);

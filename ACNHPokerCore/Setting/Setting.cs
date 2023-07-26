@@ -427,7 +427,8 @@ namespace ACNHPokerCore
                 CaptureSetting = true;
                 this.ToggleCapture(true);
             }
-
+            if (Sound)
+                System.Media.SystemSounds.Asterisk.Play();
         }
         private void Setting_Load(object sender, EventArgs e)
         {
