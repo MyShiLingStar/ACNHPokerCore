@@ -1,6 +1,6 @@
 ﻿namespace ACNHPokerCore
 {
-    partial class variation
+    partial class Variation
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(variation));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Variation));
             this.furnitureGridView = new System.Windows.Forms.DataGridView();
-            this.selectedItem = new ACNHPokerCore.inventorySlot();
+            this.selectedItem = new ACNHPokerCore.InventorySlot();
             this.itemIDLabel = new System.Windows.Forms.Label();
             this.infoLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.furnitureGridView)).BeginInit();
@@ -61,11 +61,11 @@
             this.selectedItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
             this.selectedItem.FlatAppearance.BorderSize = 0;
             this.selectedItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.selectedItem.flowerQuantity = ((ushort)(0));
+            this.selectedItem.FlowerQuantity = ((ushort)(0));
             this.selectedItem.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.selectedItem.ForeColor = System.Drawing.Color.White;
-            this.selectedItem.itemDurability = ((ushort)(0));
-            this.selectedItem.itemQuantity = ((ushort)(0));
+            this.selectedItem.ItemDurability = ((ushort)(0));
+            this.selectedItem.ItemQuantity = ((ushort)(0));
             this.selectedItem.Location = new System.Drawing.Point(692, 145);
             this.selectedItem.Margin = new System.Windows.Forms.Padding(0);
             this.selectedItem.Name = "selectedItem";
@@ -126,7 +126,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView furnitureGridView;
-        private inventorySlot selectedItem;
+        private InventorySlot selectedItem;
         private System.Windows.Forms.Label itemIDLabel;
         private System.Windows.Forms.Label infoLabel;
     }

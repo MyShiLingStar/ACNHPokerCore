@@ -4,13 +4,13 @@ using System.Windows.Forms;
 
 namespace ACNHPokerCore
 {
-    public partial class MyStopWatch : Form, IDisposable
+    public partial class MyStopWatch : Form
     {
         readonly CountDownTimer timer;
 
         public int minutes = 10;
-        public int seconds = 0;
-        public bool done = false;
+        public int seconds;
+        public bool done;
 
         public MyStopWatch()
         {

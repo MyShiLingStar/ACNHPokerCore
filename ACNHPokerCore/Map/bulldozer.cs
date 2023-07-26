@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Net.Sockets;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ACNHPokerCore
@@ -16,15 +16,15 @@ namespace ACNHPokerCore
         private static Socket s;
         private static USBBot usb;
         private readonly bool sound;
-        private MiniMap MiniMap = null;
+        private MiniMap MiniMap;
         private byte[] Layer1;
         private byte[] Acre;
         private byte[] Building;
         private byte[] Terrain;
         private byte[] MapCustomDesgin;
-        private int counter = 0;
+        private int counter;
 
-        private byte[][] buildingList = null;
+        private byte[][] buildingList;
         private const int BuildingSize = 0x14;
         private const int NumOfBuilding = 46;
 
@@ -34,31 +34,101 @@ namespace ACNHPokerCore
         private int selectedAcre;
 
         private Panel selectedPanel;
-        private bool MapOrGridViewChange = false;
-        private bool plazaEdited = false;
-        private bool valueUpdated = false;
+        private bool MapOrGridViewChange;
+        private bool plazaEdited;
+        private bool valueUpdated;
         private Point lastDisplayTooltip = new(-1, -1);
 
-        private int lastBuilding = 0;
+        private int lastBuilding;
 
         public event CloseHandler CloseForm;
-        private bool formClosed = false;
+        private bool formClosed;
 
-        public Bulldozer(Socket S, USBBot USB, bool Sound)
+        private bool debugging;
+        private string debugTerrain = @"terrainAcres.nht";
+        private string debugAcres = @"acres.nha";
+        private string debugBuilding = @"buildings.nhb";
+
+        public Bulldozer(Socket S, USBBot USB, bool Sound, bool Debugging)
         {
             s = S;
             usb = USB;
             sound = Sound;
+            debugging = Debugging;
 
             InitializeComponent();
 
-            Thread LoadThread = new(delegate () { LoadMap(); });
-            LoadThread.Start();
+            KeyPreview = true;
+
+            if (debugging)
+            {
+                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
+
+                string savepath;
+
+                if (config.AppSettings.Settings["LastLoad"].Value.Equals(string.Empty))
+                    savepath = Directory.GetCurrentDirectory() + @"\save";
+                else
+                    savepath = config.AppSettings.Settings["LastLoad"].Value;
+
+                byte[] emptyPlaza = new byte[12];
+
+                if (File.Exists(savepath + debugAcres))
+                {
+                    Acre = Utilities.Add(File.ReadAllBytes(savepath + debugAcres), emptyPlaza);
+
+                    if (File.Exists(savepath + debugTerrain))
+                    {
+                        Terrain = File.ReadAllBytes(savepath + debugTerrain);
+                    }
+                    else
+                    {
+                        Terrain = new byte[Utilities.AllTerrainSize];
+                    }
+
+                    if (File.Exists(savepath + debugBuilding))
+                    {
+                        Building = File.ReadAllBytes(savepath + debugBuilding);
+                    }
+                    else
+                    {
+                        Building = new byte[Utilities.AllBuildingSize];
+                    }
+                }
+                else
+                {
+                    Acre = new byte[Utilities.AcreAndPlaza];
+                    Terrain = new byte[Utilities.AllTerrainSize];
+                    Building = new byte[Utilities.AllBuildingSize];
+                }
+
+
+                Layer1 = null;
+                MapCustomDesgin = new byte[Utilities.MapTileCount16x16 * 2];
+
+                byte[] EmptyDesign = new byte[] { 0x00, 0xF8 };
+                for (int i = 0; i < Utilities.MapTileCount16x16; i++)
+                    Buffer.BlockCopy(EmptyDesign, 0, MapCustomDesgin, i * 2, 2);
+
+                Task.Run(UISetup);
+            }
+            else
+            {
+                Thread LoadThread = new(delegate ()
+                {
+                    if (ModifierKeys == Keys.Shift)
+                        LoadMap(true);
+                    else
+                        LoadMap(false);
+                });
+                LoadThread.Start();
+            }
 
             var imageList = new ImageList
             {
                 ImageSize = new Size(64, 64)
             };
+
             acreList.LargeImageList = imageList;
             acreList.TileSize = new Size(80, 100);
             acreList.View = View.Tile;
@@ -100,164 +170,183 @@ namespace ACNHPokerCore
             g.DrawString(e.Item.Text, drawFont, drawBrush, new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 4 + e.Bounds.Width, e.Bounds.Width - 8, 10), drawFormat);
         }
 
-        private void LoadMap()
+        private void LoadMap(bool saveFile)
         {
-            var layer1Address = Utilities.mapZero;
+            if (s == null && usb == null)
+                return;
 
-            if (s != null || usb != null)
+            counter = 0;
+
+            //Layer1 = Utilities.getMapLayer(s, usb, layer1Address, ref counter);
+            Layer1 = null;
+            //Layer2 = Utilities.getMapLayer(s, bot, layer2Address, ref counter);
+            Acre = Utilities.GetAcre(s, usb);
+            Building = Utilities.GetBuilding(s, usb);
+            Terrain = Utilities.GetTerrain(s, usb);
+            MapCustomDesgin = Utilities.GetCustomDesignMap(s, usb, ref counter);
+
+            if (saveFile)
             {
-                counter = 0;
+                if (!Directory.Exists(@"Your\"))
+                    Directory.CreateDirectory(@"Your\");
 
-                //Layer1 = Utilities.getMapLayer(s, usb, layer1Address, ref counter);
-                Layer1 = null;
-                //Layer2 = Utilities.getMapLayer(s, bot, layer2Address, ref counter);
-                Acre = Utilities.getAcre(s, usb);
-                Building = Utilities.getBuilding(s, usb);
-                Terrain = Utilities.getTerrain(s, usb);
-                MapCustomDesgin = Utilities.getCustomDesignMap(s, null, ref counter);
-
-                if (Acre != null && Building != null && Terrain != null)
-                {
-                    if (MiniMap == null)
-                        MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, MapCustomDesgin, 4);
-                }
-                else
-                    throw new NullReferenceException("Acre/Building/Terrain");
-
-                selectedPanel = acrePanel;
-
-                miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
-
-                buildingGridView.SelectionMode = DataGridViewSelectionMode.CellSelect;
-                buildingGridView.DefaultCellStyle.BackColor = Color.FromArgb(255, 47, 49, 54);
-                buildingGridView.DefaultCellStyle.ForeColor = Color.White;
-                buildingGridView.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 114, 137, 218);
-                buildingGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(255, 57, 60, 67);
-                buildingGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-                buildingGridView.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 57, 60, 67);
-                buildingGridView.EnableHeadersVisualStyles = false;
-
-                DataGridViewColumn BuildingColor = new DataGridViewTextBoxColumn();
-                DataGridViewColumn BuildingID = new DataGridViewTextBoxColumn();
-                DataGridViewColumn BuildingName = new DataGridViewTextBoxColumn();
-                DataGridViewColumn BuildingX = new DataGridViewTextBoxColumn();
-                DataGridViewColumn BuildingY = new DataGridViewTextBoxColumn();
-
-                DataGridViewColumn BuildingA = new DataGridViewTextBoxColumn();
-                DataGridViewColumn BuildingT = new DataGridViewTextBoxColumn();
-
-                BuildingColor.HeaderText = "";
-                BuildingColor.Name = "Color";
-                BuildingColor.SortMode = DataGridViewColumnSortMode.NotSortable;
-                BuildingColor.Width = 23;
-                BuildingID.HeaderText = "";
-                BuildingID.Name = "ID";
-                BuildingID.SortMode = DataGridViewColumnSortMode.NotSortable;
-                BuildingID.Width = 60;
-                BuildingName.HeaderText = "";
-                BuildingName.Name = "Name";
-                BuildingName.SortMode = DataGridViewColumnSortMode.NotSortable;
-                BuildingName.Width = 200;
-                BuildingX.HeaderText = "X";
-                BuildingX.Name = "X-Coordinate";
-                BuildingX.SortMode = DataGridViewColumnSortMode.NotSortable;
-                BuildingX.Width = 60;
-                BuildingY.HeaderText = "Y";
-                BuildingY.Name = "Y-Coordinate";
-                BuildingY.SortMode = DataGridViewColumnSortMode.NotSortable;
-                BuildingY.Width = 60;
-                BuildingA.HeaderText = "Angle";
-                BuildingA.Name = "Angle";
-                BuildingA.SortMode = DataGridViewColumnSortMode.NotSortable;
-                BuildingA.Width = 60;
-                BuildingT.HeaderText = "Type";
-                BuildingT.Name = "Type";
-                BuildingT.SortMode = DataGridViewColumnSortMode.NotSortable;
-                BuildingT.Width = 60;
-
-                buildingGridView.Columns.Add(BuildingID);
-                buildingGridView.Columns.Add(BuildingColor);
-                buildingGridView.Columns.Add(BuildingName);
-                buildingGridView.Columns.Add(BuildingX);
-                buildingGridView.Columns.Add(BuildingY);
-                buildingGridView.Columns.Add(BuildingA);
-                buildingGridView.Columns.Add(BuildingT);
-
-                buildingGridView.Columns["ID"].Visible = false;
-
-                buildingGridView.Columns["X-Coordinate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                buildingGridView.Columns["Y-Coordinate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                buildingGridView.Columns["X-Coordinate"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                buildingGridView.Columns["Y-Coordinate"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                buildingGridView.Columns["Angle"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                buildingGridView.Columns["Type"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                buildingGridView.Columns["Angle"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                buildingGridView.Columns["Type"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-
-                if (Acre != null)
-                {
-                    buildingGridView.Rows.Add(0x00FF, "", "Plaza", Acre[0x94], Acre[0x98], 0, 0);
-
-                    DataGridViewCellStyle style = new()
-                    {
-                        BackColor = Color.DarkSalmon
-                    };
-                    buildingGridView.Rows[0].Cells["Color"].Style = style;
-                }
-
-                if (Building != null)
-                    FillBuilding();
-
-                buildingGridView.CurrentCell = buildingGridView.Rows[0].Cells[2];
+                File.WriteAllBytes(@"Your\YourAcre.nha", Acre);
+                File.WriteAllBytes(@"Your\YourBuilding.nhb", Building);
+                File.WriteAllBytes(@"Your\YourTerrain.nht", Terrain);
+                File.WriteAllBytes(@"Your\YourCustomDesignMap.nhdm", MapCustomDesgin);
+                MyMessageBox.Show("File saved!", "Nanomachines, Son!", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
+
+            UISetup();
+        }
+
+        private void UISetup()
+        {
+            if (Acre != null && Building != null && Terrain != null)
+            {
+                if (MiniMap == null)
+                    MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, MapCustomDesgin, 4);
+            }
+            else
+                throw new NullReferenceException("Acre/Building/Terrain");
+
+            selectedPanel = acrePanel;
+
+            miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
+
+            buildingGridView.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            buildingGridView.DefaultCellStyle.BackColor = Color.FromArgb(255, 47, 49, 54);
+            buildingGridView.DefaultCellStyle.ForeColor = Color.White;
+            buildingGridView.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 114, 137, 218);
+            buildingGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(255, 57, 60, 67);
+            buildingGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            buildingGridView.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 57, 60, 67);
+            buildingGridView.EnableHeadersVisualStyles = false;
+
+            DataGridViewColumn BuildingColor = new DataGridViewTextBoxColumn();
+            DataGridViewColumn BuildingID = new DataGridViewTextBoxColumn();
+            DataGridViewColumn BuildingName = new DataGridViewTextBoxColumn();
+            DataGridViewColumn BuildingX = new DataGridViewTextBoxColumn();
+            DataGridViewColumn BuildingY = new DataGridViewTextBoxColumn();
+
+            DataGridViewColumn BuildingA = new DataGridViewTextBoxColumn();
+            DataGridViewColumn BuildingT = new DataGridViewTextBoxColumn();
+
+            BuildingColor.HeaderText = "";
+            BuildingColor.Name = "Color";
+            BuildingColor.SortMode = DataGridViewColumnSortMode.NotSortable;
+            BuildingColor.Width = 23;
+            BuildingID.HeaderText = "";
+            BuildingID.Name = "ID";
+            BuildingID.SortMode = DataGridViewColumnSortMode.NotSortable;
+            BuildingID.Width = 60;
+            BuildingName.HeaderText = "";
+            BuildingName.Name = "Name";
+            BuildingName.SortMode = DataGridViewColumnSortMode.NotSortable;
+            BuildingName.Width = 200;
+            BuildingX.HeaderText = "X";
+            BuildingX.Name = "X-Coordinate";
+            BuildingX.SortMode = DataGridViewColumnSortMode.NotSortable;
+            BuildingX.Width = 60;
+            BuildingY.HeaderText = "Y";
+            BuildingY.Name = "Y-Coordinate";
+            BuildingY.SortMode = DataGridViewColumnSortMode.NotSortable;
+            BuildingY.Width = 60;
+            BuildingA.HeaderText = "Angle";
+            BuildingA.Name = "Angle";
+            BuildingA.SortMode = DataGridViewColumnSortMode.NotSortable;
+            BuildingA.Width = 60;
+            BuildingT.HeaderText = "Type";
+            BuildingT.Name = "Type";
+            BuildingT.SortMode = DataGridViewColumnSortMode.NotSortable;
+            BuildingT.Width = 60;
+
+            buildingGridView.Columns.Add(BuildingID);
+            buildingGridView.Columns.Add(BuildingColor);
+            buildingGridView.Columns.Add(BuildingName);
+            buildingGridView.Columns.Add(BuildingX);
+            buildingGridView.Columns.Add(BuildingY);
+            buildingGridView.Columns.Add(BuildingA);
+            buildingGridView.Columns.Add(BuildingT);
+
+            buildingGridView.Columns["ID"].Visible = false;
+
+            buildingGridView.Columns["X-Coordinate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            buildingGridView.Columns["Y-Coordinate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            buildingGridView.Columns["X-Coordinate"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            buildingGridView.Columns["Y-Coordinate"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            buildingGridView.Columns["Angle"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            buildingGridView.Columns["Type"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            buildingGridView.Columns["Angle"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            buildingGridView.Columns["Type"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+
+            if (Acre != null)
+            {
+                buildingGridView.Rows.Add(0x00FF, "", "Plaza", Acre[0x94], Acre[0x98], 0, 0);
+
+                DataGridViewCellStyle style = new()
+                {
+                    BackColor = Color.DarkSalmon
+                };
+                buildingGridView.Rows[0].Cells["Color"].Style = style;
+            }
+
+            if (Building != null)
+                FillBuilding();
 
             if (!formClosed)
             {
-                this.Invoke((MethodInvoker)delegate
+                while (!this.IsHandleCreated)
+                    Thread.Sleep(100);
+
+                Invoke((MethodInvoker)delegate
                 {
-                    LoadingPanel.Visible = false;
+                    if (buildingGridView.RowCount > 0)
+                        buildingGridView.CurrentCell = buildingGridView.Rows[0].Cells[2];
+
                     miniMapBox.Visible = true;
+                    acrePanel.Visible = true;
                     AcreBtn.Visible = true;
                     BuildingBtn.Visible = true;
                     TerrainBtn.Visible = true;
-                    acrePanel.Visible = true;
+                    LoadingPanel.Visible = false;
                 });
             }
         }
 
         private void FillBuilding()
         {
-            if (Building != null)
+            if (Building == null) return;
+
+            buildingList = new byte[NumOfBuilding][];
+            for (int i = 0; i < NumOfBuilding; i++)
             {
-                buildingList = new byte[NumOfBuilding][];
-                for (int i = 0; i < NumOfBuilding; i++)
+                buildingList[i] = new byte[BuildingSize];
+                Buffer.BlockCopy(Building, i * BuildingSize, buildingList[i], 0x0, BuildingSize);
+
+                DataGridViewCellStyle style = new();
+
+                byte key = buildingList[i][0];
+                if (BuildingName.ContainsKey(key))
                 {
-                    buildingList[i] = new byte[BuildingSize];
-                    Buffer.BlockCopy(Building, i * BuildingSize, buildingList[i], 0x0, BuildingSize);
-
-                    DataGridViewCellStyle style = new();
-
-                    byte key = buildingList[i][0];
-                    if (BuildingName.ContainsKey(key))
-                    {
-                        buildingGridView.Rows.Add(buildingList[i][0x0], "", BuildingName[key], buildingList[i][0x2], buildingList[i][0x4], buildingList[i][0x6], buildingList[i][0x8]);
-                        style.BackColor = MiniMap.ByteToBuildingColor[buildingList[i][0x0]];
-                    }
-                    else
-                    {
-                        buildingGridView.Rows.Add(buildingList[i][0x0], "", key.ToString("X"), buildingList[i][0x2], buildingList[i][0x4], buildingList[i][0x6], buildingList[i][0x8]);
-                        style.BackColor = Color.Black;
-                    }
-
-                    buildingGridView.Rows[buildingGridView.RowCount - 1].Cells["Color"].Style = style;
+                    buildingGridView.Rows.Add(buildingList[i][0x0], "", BuildingName[key], buildingList[i][0x2], buildingList[i][0x4], buildingList[i][0x6], buildingList[i][0x8]);
+                    style.BackColor = MiniMap.ByteToBuildingColor[buildingList[i][0x0]];
                 }
+                else
+                {
+                    buildingGridView.Rows.Add(buildingList[i][0x0], "", key.ToString("X"), buildingList[i][0x2], buildingList[i][0x4], buildingList[i][0x6], buildingList[i][0x8]);
+                    style.BackColor = Color.Black;
+                }
+
+                buildingGridView.Rows[buildingGridView.RowCount - 1].Cells["Color"].Style = style;
             }
         }
 
         private void MiniMapBox_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 int Realx;
                 int Realy;
@@ -344,7 +433,7 @@ namespace ACNHPokerCore
                     selectedAcre = AcreX + 45;
                 else if (AcreY == 6)
                     selectedAcre = AcreX + 54;
-                else if (AcreY >= 7)
+                else
                     selectedAcre = AcreX + 63;
 
                 selectedAcreBox.Text = selectedAcre.ToString();
@@ -380,7 +469,7 @@ namespace ACNHPokerCore
                 {
                     string CoordinateText = "( " + AcreX + " , " + AcreY + " )";
 
-                    int HoverAcre = 0;
+                    int HoverAcre;
                     if (AcreY <= 0)
                         HoverAcre = AcreX;
                     else if (AcreY == 1)
@@ -395,7 +484,7 @@ namespace ACNHPokerCore
                         HoverAcre = AcreX + 45;
                     else if (AcreY == 6)
                         HoverAcre = AcreX + 54;
-                    else if (AcreY >= 7)
+                    else
                         HoverAcre = AcreX + 63;
 
                     byte[] AcreBytes = new byte[2];
@@ -403,13 +492,13 @@ namespace ACNHPokerCore
                     AcreBytes[1] = Acre[HoverAcre * 2 + 1];
                     int AcreNumber = BitConverter.ToInt16(AcreBytes, 0);
                     var AcreName = (Utilities.Acre)AcreNumber;
-                    MapToolTip.Show(CoordinateText + "\n" + AcreName + "\n" + AcreNumber.ToString(), miniMapBox, AcreX * 64 + 64, AcreY * 64 + 64);
+                    MapToolTip.Show(CoordinateText + "\n" + AcreName + "\n" + AcreNumber, miniMapBox, AcreX * 64 + 64, AcreY * 64 + 64);
                     lastDisplayTooltip = new Point(AcreX, AcreY);
                 }
             }
 
 
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 int x = (e.X / 2 - 32) / 2;
                 int y = (e.Y / 2 - 32) / 2;
@@ -465,7 +554,7 @@ namespace ACNHPokerCore
             byte[] AcreOnly = new byte[0x90];
             Buffer.BlockCopy(Acre, 0x0, AcreOnly, 0x0, 0x90);
             int counter = 0;
-            Utilities.sendAcre(s, usb, AcreOnly, ref counter);
+            Utilities.SendAcre(s, usb, AcreOnly, ref counter);
             sendBtn.BackColor = Color.FromArgb(114, 137, 218);
 
             if (sound)
@@ -507,19 +596,11 @@ namespace ACNHPokerCore
         }
         */
 
-        private void AcreList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (acreList.FocusedItem == null)
-                Debug.Print("NULL");
-            else
-                Debug.Print(acreList.Items[acreList.FocusedItem.Index].Text.ToString());
-        }
-
         private void Bulldozer_FormClosed(object sender, FormClosedEventArgs e)
         {
             formClosed = true;
             MyLog.LogEvent("Bulldozer", "Form Closed");
-            this.CloseForm();
+            if (CloseForm != null) CloseForm();
         }
 
         private void BuildingBtn_Click(object sender, EventArgs e)
@@ -548,6 +629,9 @@ namespace ACNHPokerCore
             selectedPanel = acrePanel;
             miniMapBox.Image = null;
             selectedAcre = -1;
+
+            if (Width > 1110)
+                Width = 1110;
         }
 
         private void TerrainBtn_Click(object sender, EventArgs e)
@@ -562,6 +646,9 @@ namespace ACNHPokerCore
             selectedPanel = terrainPanel;
             miniMapBox.Image = null;
             selectedAcre = -1;
+
+            if (Width > 1110)
+                Width = 1110;
         }
 
         private void BuildingGridView_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
@@ -636,8 +723,8 @@ namespace ACNHPokerCore
                             31 => 7,
                             _ => 0,
                         };
-                        if (this.Width > 1110)
-                            this.Width = 1110;
+                        if (Width > 1110)
+                            Width = 1110;
                     }
                     else if (index == 26) // bridge
                     {
@@ -947,8 +1034,8 @@ namespace ACNHPokerCore
                         bridgePanel.Visible = false;
                         inclinePanel.Visible = false;
 
-                        if (this.Width > 1110)
-                            this.Width = 1110;
+                        if (Width > 1110)
+                            Width = 1110;
                     }
 
                     valueUpdated = false;
@@ -996,7 +1083,7 @@ namespace ACNHPokerCore
             {
                 SaveFileDialog file = new()
                 {
-                    Filter = "New Horizons Acres (*.nha)|*.nha",
+                    Filter = @"New Horizons Acres (*.nha)|*.nha",
                 };
 
                 Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
@@ -1039,7 +1126,7 @@ namespace ACNHPokerCore
             }
             catch
             {
-                return;
+                // ignored
             }
         }
 
@@ -1049,7 +1136,7 @@ namespace ACNHPokerCore
             {
                 OpenFileDialog file = new()
                 {
-                    Filter = "New Horizons Acres (*.nha)|*.nha| All files (*.*)|*.*",
+                    Filter = @"New Horizons Acres (*.nha)|*.nha| All files (*.*)|*.*",
                 };
 
                 Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
@@ -1097,7 +1184,7 @@ namespace ACNHPokerCore
             }
             catch
             {
-                return;
+                // ignored
             }
         }
 
@@ -1244,10 +1331,10 @@ namespace ACNHPokerCore
             {
                 byte[] PlazaOnly = new byte[0x8];
                 Buffer.BlockCopy(Acre, 0x94, PlazaOnly, 0x0, 0x8);
-                Utilities.sendPlaza(s, usb, PlazaOnly, ref counter);
+                Utilities.SendPlaza(s, usb, PlazaOnly, ref counter);
             }
 
-            Utilities.sendBuilding(s, usb, Building, ref counter);
+            Utilities.SendBuilding(s, usb, Building, ref counter);
             buildingConfirmBtn.BackColor = Color.FromArgb(114, 137, 218);
             miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
             miniMapBox.Image = null;
@@ -1262,7 +1349,7 @@ namespace ACNHPokerCore
             {
                 SaveFileDialog file = new()
                 {
-                    Filter = "New Horizons Building List (*.nhb)|*.nhb",
+                    Filter = @"New Horizons Building List (*.nhb)|*.nhb",
                 };
 
                 Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
@@ -1302,7 +1389,7 @@ namespace ACNHPokerCore
             }
             catch
             {
-                return;
+                // ignored
             }
         }
 
@@ -1312,7 +1399,7 @@ namespace ACNHPokerCore
             {
                 OpenFileDialog file = new()
                 {
-                    Filter = "New Horizons Building List (*.nhb)|*.nhb| All files (*.*)|*.*",
+                    Filter = @"New Horizons Building List (*.nhb)|*.nhb| All files (*.*)|*.*",
                 };
 
                 Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
@@ -1388,7 +1475,6 @@ namespace ACNHPokerCore
                 XUpDown.Value = Int16.Parse(buildingGridView.Rows[0].Cells["X-Coordinate"].Value.ToString());
                 YUpDown.Value = Int16.Parse(buildingGridView.Rows[0].Cells["Y-Coordinate"].Value.ToString());
                 int index = Int16.Parse(buildingGridView.Rows[0].Cells["ID"].Value.ToString());
-                byte type = (byte)index;
                 if (index <= BuildingType.Items.Count)
                 {
                     BuildingType.Enabled = true;
@@ -1407,7 +1493,7 @@ namespace ACNHPokerCore
             }
             catch
             {
-                return;
+                // @
             }
         }
 
@@ -1721,7 +1807,7 @@ namespace ACNHPokerCore
 
         private void UpdateBridgeImage(int value, int angle)
         {
-            string ImagePath = Utilities.BridgeImagePath + Utilities.precedingZeros(value.ToString(), 2) + ".png";
+            string ImagePath = Utilities.BridgeImagePath + Utilities.PrecedingZeros(value.ToString(), 2) + ".png";
             if (File.Exists(ImagePath))
             {
                 BridgeImage.Visible = true;
@@ -1739,11 +1825,9 @@ namespace ACNHPokerCore
                     case 3:
                         image.RotateFlip(RotateFlipType.Rotate90FlipNone);
                         break;
-                    default:
-                        break;
                 }
                 BridgeImage.Image = image;
-                this.Width = 1320;
+                Width = 1320;
             }
         }
 
@@ -1772,7 +1856,7 @@ namespace ACNHPokerCore
 
         private void RemoveRoad()
         {
-            byte[] CurrentTerrainData = Utilities.getTerrain(s, usb);
+            byte[] CurrentTerrainData = Utilities.GetTerrain(s, usb);
 
             int counter = 0;
 
@@ -1795,14 +1879,14 @@ namespace ACNHPokerCore
 
             MiniMap.UpdateTerrain(CurrentTerrainData);
 
-            Utilities.sendTerrain(s, usb, CurrentTerrainData, ref counter);
+            Utilities.SendTerrain(s, usb, CurrentTerrainData, ref counter);
 
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
 
             if (!formClosed)
             {
-                this.Invoke((MethodInvoker)delegate
+                Invoke((MethodInvoker)delegate
                 {
                     LoadingPanel.Visible = false;
                     AcreBtn.Visible = true;
@@ -1856,14 +1940,14 @@ namespace ACNHPokerCore
                 }
             }
 
-            Utilities.sendCustomMap(s, usb, newCustomMap, ref counter);
+            Utilities.SendCustomMap(s, usb, newCustomMap, ref counter);
 
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
 
             if (!formClosed)
             {
-                this.Invoke((MethodInvoker)delegate
+                Invoke((MethodInvoker)delegate
                 {
                     LoadingPanel.Visible = false;
                     AcreBtn.Visible = true;
@@ -1884,7 +1968,7 @@ namespace ACNHPokerCore
             {
                 SaveFileDialog file = new()
                 {
-                    Filter = "New Horizons Terrain (*.nht)|*.nht",
+                    Filter = @"New Horizons Terrain (*.nht)|*.nht",
                 };
 
                 Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
@@ -1924,7 +2008,7 @@ namespace ACNHPokerCore
             }
             catch
             {
-                return;
+                // ignored
             }
         }
 
@@ -1932,13 +2016,13 @@ namespace ACNHPokerCore
         {
             try
             {
-                byte[] terrain = Utilities.getTerrain(s, usb);
+                byte[] terrain = Utilities.GetTerrain(s, usb);
 
                 File.WriteAllBytes(file.FileName, terrain);
 
                 if (!formClosed)
                 {
-                    this.Invoke((MethodInvoker)delegate
+                    Invoke((MethodInvoker)delegate
                     {
                         PleaseWaitPanel.Visible = false;
                         terrainPanel.Enabled = true;
@@ -1947,8 +2031,8 @@ namespace ACNHPokerCore
             }
             catch (Exception ex)
             {
-                MyLog.LogEvent("Bulldozer", "SaveTerrain: " + ex.Message.ToString());
-                MyMessageBox.Show(ex.Message.ToString(), "drunk, fix later");
+                MyLog.LogEvent("Bulldozer", "SaveTerrain: " + ex.Message);
+                MyMessageBox.Show(ex.Message, "drunk, fix later");
             }
 
             if (sound)
@@ -1961,7 +2045,7 @@ namespace ACNHPokerCore
             {
                 OpenFileDialog file = new()
                 {
-                    Filter = "New Horizons Terrain (*.nht)|*.nht| All files (*.*)|*.*",
+                    Filter = @"New Horizons Terrain (*.nht)|*.nht| All files (*.*)|*.*",
                 };
 
                 Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
@@ -2012,7 +2096,7 @@ namespace ACNHPokerCore
             }
             catch
             {
-                return;
+                // ignored
             }
         }
 
@@ -2032,11 +2116,11 @@ namespace ACNHPokerCore
 
                 counter = 0;
 
-                Utilities.sendTerrain(s, usb, terrain, ref counter);
+                Utilities.SendTerrain(s, usb, terrain, ref counter);
 
                 if (!formClosed)
                 {
-                    this.Invoke((MethodInvoker)delegate
+                    Invoke((MethodInvoker)delegate
                     {
                         PleaseWaitPanel.Visible = false;
                         terrainPanel.Enabled = true;
@@ -2047,8 +2131,8 @@ namespace ACNHPokerCore
             }
             catch (Exception ex)
             {
-                MyLog.LogEvent("Bulldozer", "LoadTerrain: " + ex.Message.ToString());
-                MyMessageBox.Show(ex.Message.ToString(), "drunk, fix later");
+                MyLog.LogEvent("Bulldozer", "LoadTerrain: " + ex.Message);
+                MyMessageBox.Show(ex.Message, "drunk, fix later");
             }
 
             if (sound)

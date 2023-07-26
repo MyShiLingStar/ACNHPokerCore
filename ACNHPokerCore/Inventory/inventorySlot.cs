@@ -6,23 +6,23 @@ using System.IO;
 
 namespace ACNHPokerCore
 {
-    public class inventorySlot : System.Windows.Forms.Button
+    public class InventorySlot : System.Windows.Forms.Button
     {
         private string itemName;
         private UInt16 itemID = 0xFFFE;
         private UInt32 itemData = 0x0;
         private string imagePath = "";
-        private Boolean hide = false;
+        private bool hide = false;
+        private string flag0 = "00";
         private string flag1 = "00";
-        private string flag2 = "00";
 
         private int mapX = -1;
         private int mapY = -1;
 
-        private readonly Image recipe;
+        private Image recipe = null;
 
         private string containItemPath = "";
-        public UInt16 itemDurability
+        public UInt16 ItemDurability
         {
             get
             {
@@ -33,7 +33,7 @@ namespace ACNHPokerCore
                 itemData = (itemData & 0xFFFF) + ((UInt32)value << 16);
             }
         }
-        public UInt16 itemQuantity
+        public UInt16 ItemQuantity
         {
             get
             {
@@ -45,7 +45,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public UInt16 flowerQuantity
+        public UInt16 FlowerQuantity
         {
             get
             {
@@ -57,44 +57,41 @@ namespace ACNHPokerCore
             }
         }
 
-        public inventorySlot()
+        public InventorySlot()
         {
-            if (File.Exists(Utilities.RecipeOverlayPath))
-                recipe = Image.FromFile(Utilities.RecipeOverlayPath);
-            else
-                recipe = null;
+
         }
 
-        public string displayItemID()
+        public string DisplayItemID()
         {
             return "0x" + String.Format("{0:X4}", itemID);
         }
 
-        public string fillItemID()
+        public string FillItemID()
         {
             return itemID.ToString("X");
         }
 
-        public string displayItemData()
+        public string DisplayItemData()
         {
             return "0x" + itemData.ToString("X");
         }
-        public string fillItemData()
+        public string FillItemData()
         {
             return itemData.ToString("X");
         }
 
-        public string displayItemName()
+        public string DisplayItemName()
         {
             return itemName;
         }
 
-        public string getPath()
+        public string GetPath()
         {
             return imagePath;
         }
 
-        public string getiName()
+        public string GetiName()
         {
 
             string[] firstSplit = imagePath.Split('.');
@@ -103,7 +100,7 @@ namespace ACNHPokerCore
             return SecondSplit[SecondSplit.Length - 1];
         }
 
-        public Boolean isEmpty()
+        public Boolean IsEmpty()
         {
             if (itemID == 0x0 || itemID == 0xFFFE)
             {
@@ -112,13 +109,19 @@ namespace ACNHPokerCore
             return false;
         }
 
-        public Image displayItemImage(Boolean large)
+        public Image DisplayItemImage(Boolean large)
         {
+            if (recipe == null)
+            {
+                if (File.Exists(Utilities.RecipeOverlayPath))
+                    recipe = Image.FromFile(Utilities.RecipeOverlayPath);
+            }
+
             if (large)
             {
                 if (imagePath == "" & itemID != 0xFFFE)
                 {
-                    return (Image)(new Bitmap(Properties.Resources.Leaf, new Size(128, 128)));
+                    return new Bitmap(Properties.Resources.Leaf, new Size(128, 128));
                 }
                 else if (itemID == 0x16A2) //recipe
                 {
@@ -131,10 +134,10 @@ namespace ACNHPokerCore
 
                         Image img = PlaceImageOverImage(background, icon, background.Width - imageSize - 10, background.Width - imageSize - 10, 1);
 
-                        return (Image)(new Bitmap(img, new Size(128, 128)));
+                        return new Bitmap(img, new Size(128, 128));
                     }
                     else
-                        return (Image)(new Bitmap(background, new Size(128, 128)));
+                        return new Bitmap(background, new Size(128, 128));
                 }
                 else if (itemID == 0x315A || itemID == 0x1618 || itemID == 0x342F) // Wall-Mount
                 {
@@ -145,18 +148,18 @@ namespace ACNHPokerCore
                         Image icon = (new Bitmap(Image.FromFile(containItemPath), new Size(imageSize, imageSize)));
 
                         Image img = PlaceImageOverImage(background, icon, background.Width - imageSize - 10, background.Width - imageSize - 10, 1);
-                        return (Image)(new Bitmap(img, new Size(128, 128)));
+                        return new Bitmap(img, new Size(128, 128));
                     }
                     else
                     {
                         Image img = Image.FromFile(imagePath);
-                        return (Image)(new Bitmap(img, new Size(128, 128)));
+                        return new Bitmap(img, new Size(128, 128));
                     }
                 }
                 else if (imagePath != "")
                 {
                     Image img = Image.FromFile(imagePath);
-                    return (Image)(new Bitmap(img, new Size(128, 128)));
+                    return new Bitmap(img, new Size(128, 128));
                 }
                 else
                 {
@@ -167,7 +170,7 @@ namespace ACNHPokerCore
             {
                 if (imagePath == "" & itemID != 0xFFFE)
                 {
-                    return (Image)(new Bitmap(Properties.Resources.Leaf, new Size(64, 64)));
+                    return new Bitmap(Properties.Resources.Leaf, new Size(64, 64));
                 }
                 else if (itemID == 0x315A || itemID == 0x1618 || itemID == 0x342F) // Wall-Mount
                 {
@@ -178,12 +181,12 @@ namespace ACNHPokerCore
                         Image icon = (new Bitmap(Image.FromFile(containItemPath), new Size(imageSize, imageSize)));
 
                         Image img = PlaceImageOverImage(background, icon, background.Width - imageSize, background.Width - imageSize, 1);
-                        return (Image)(new Bitmap(img, new Size(64, 64)));
+                        return new Bitmap(img, new Size(64, 64));
                     }
                     else
                     {
                         Image img = Image.FromFile(imagePath);
-                        return (Image)(new Bitmap(img, new Size(64, 64)));
+                        return new Bitmap(img, new Size(64, 64));
                     }
                 }
                 else if (itemID == 0x16A2) // recipe
@@ -196,16 +199,16 @@ namespace ACNHPokerCore
 
                         Image img = PlaceImageOverImage(background, icon, background.Width - imageSize, background.Width - imageSize, 1);
 
-                        return (Image)(new Bitmap(img, new Size(64, 64)));
+                        return new Bitmap(img, new Size(64, 64));
                     }
                     else
-                        return (Image)(new Bitmap(background, new Size(64, 64)));
+                        return new Bitmap(background, new Size(64, 64));
 
                 }
                 else if (imagePath != "")
                 {
                     Image img = Image.FromFile(imagePath);
-                    return (Image)(new Bitmap(img, new Size(64, 64)));
+                    return new Bitmap(img, new Size(64, 64));
 
                 }
                 else
@@ -215,44 +218,44 @@ namespace ACNHPokerCore
             }
         }
 
-        public void setFlag1(string flag)
+        public void SetFlag0(string flag)
+        {
+            flag0 = flag;
+        }
+        public void SetFlag1(string flag)
         {
             flag1 = flag;
         }
-        public void setFlag2(string flag)
+        public string GetFlag0() // Wrapping
         {
-            flag2 = flag;
+            return flag0;
         }
-        public string getFlag1() // Wrapping
+        public string GetFlag1() // Direction ?
         {
             return flag1;
         }
-        public string getFlag2() // Direction ?
-        {
-            return flag2;
-        }
-        public void setmapX(int x)
+        public void SetmapX(int x)
         {
             mapX = x;
         }
-        public void setmapY(int y)
+        public void SetmapY(int y)
         {
             mapY = y;
         }
-        public int getmapX()
+        public int GetmapX()
         {
             return mapX;
         }
-        public int getmapY()
+        public int GetmapY()
         {
             return mapY;
         }
 
-        public void setHide(Boolean flag)
+        public void SetHide(Boolean flag)
         {
             hide = flag;
         }
-        public string getContainItemPath()
+        public string GetContainItemPath()
         {
             return containItemPath;
         }
@@ -300,130 +303,123 @@ namespace ACNHPokerCore
             return hexCharacterToBinary[hex.ToLower()];
         }
 
-        public void reset()
+        public void Reset()
         {
             itemName = "";
             itemID = 0xFFFE;
+            flag0 = "00";
             flag1 = "00";
-            flag2 = "00";
             itemData = 0x0;
             imagePath = "";
             hide = false;
             containItemPath = "";
-            this.Image = null;
-            this.Text = "";
+            Image = null;
+            Text = "";
             //init = false;
         }
 
-        public void setup(string Name, UInt16 ID, UInt32 Data, string Path, string containPath = "", string flagA = "00", string flagB = "00")
+        public void Setup(string Name, UInt16 ID, UInt32 Data, string Path, string containPath = "", string flagA = "00", string flagB = "00")
         {
             itemName = Name;
             itemID = ID;
-            flag1 = flagA;
-            flag2 = flagB;
+            flag0 = flagA;
+            flag1 = flagB;
             itemData = Data;
             imagePath = Path;
             containItemPath = containPath;
-            this.refresh(false);
+            Refresh(false);
             //init = true;
         }
 
-        public void setup(string Name, UInt16 ID, UInt32 Data, string Path, Boolean large, string containPath = "", string flagA = "00", string flagB = "00")
+        public void Setup(string Name, UInt16 ID, UInt32 Data, string Path, Boolean large, string containPath = "", string flagA = "00", string flagB = "00")
         {
             itemName = Name;
             itemID = ID;
-            flag1 = flagA;
-            flag2 = flagB;
+            flag0 = flagA;
+            flag1 = flagB;
             itemData = Data;
             imagePath = Path;
             containItemPath = containPath;
-            this.refresh(large);
+            Refresh(large);
             //init = true;
         }
 
-        public void setup(inventorySlot btn)
+        public void Setup(InventorySlot btn)
         {
             itemName = btn.itemName;
             itemID = btn.itemID;
+            flag0 = btn.flag0;
             flag1 = btn.flag1;
-            flag2 = btn.flag2;
             itemData = btn.itemData;
             imagePath = btn.imagePath;
             containItemPath = btn.containItemPath;
-            this.refresh(true);
+            Refresh(true);
             //init = true;
         }
 
-        public void refresh(Boolean large)
+        public void Refresh(Boolean large)
         {
-            this.ForeColor = System.Drawing.Color.White;
-            this.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.Text = "";
+            ForeColor = Color.White;
+            TextAlign = ContentAlignment.TopLeft;
+            Text = "";
 
             if (itemID != 0xFFFE) //Empty
             {
-                this.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-                this.Image = displayItemImage(large);
+                Font = new Font("Arial", 10F, FontStyle.Bold);
+                Image = DisplayItemImage(large);
                 if (hide)
                 {
-                    return;
                 }
-                else if (flag1 != "00") //Wrapped
+                else if (flag0 != "00") //Wrapped
                 {
                     if (itemID == 0x16A1) //Inside Bottle
                     {
-                        this.Text = "Bottle";
-                        this.ForeColor = System.Drawing.Color.LightGreen;
-                        this.TextAlign = System.Drawing.ContentAlignment.TopRight;
+                        Text = @"Bottle";
+                        ForeColor = Color.LightGreen;
+                        TextAlign = ContentAlignment.TopRight;
                     }
                     else if (itemID == 0x16A2) // Recipe
                     {
-                        this.Text = "Wrap";
-                        this.ForeColor = System.Drawing.Color.LightSalmon;
-                        return;
+                        Text = @"Wrap";
+                        ForeColor = Color.LightSalmon;
                     }
                     else
                     {
-                        this.Text = "Wrap";
-                        this.ForeColor = System.Drawing.Color.LightSalmon;
+                        Text = @"Wrap";
+                        ForeColor = Color.LightSalmon;
                     }
-                    return;
                 }
                 else if (ItemAttr.hasDurability(itemID)) //Tools
                 {
-                    this.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-                    this.Text = "Dur: " + itemDurability.ToString();
-                    return;
+                    TextAlign = ContentAlignment.BottomLeft;
+                    Text = @"Dur: " + ItemDurability;
                 }
                 else if (ItemAttr.hasUse(itemID)) // Food/Drink
                 {
-                    this.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-                    this.Text = "Use: " + itemDurability.ToString();
-                    return;
+                    TextAlign = ContentAlignment.BottomLeft;
+                    Text = @"Use: " + ItemDurability;
                 }
                 else if (ItemAttr.isFlower(itemID)) //Flowers
                 {
-                    this.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-                    this.ForeColor = System.Drawing.Color.Yellow;
-                    this.Text = (flowerQuantity + 1).ToString();
-                    return;
+                    TextAlign = ContentAlignment.BottomRight;
+                    ForeColor = Color.Yellow;
+                    Text = (FlowerQuantity + 1).ToString();
                 }
                 else if (ItemAttr.hasQuantity(itemID)) // Materials
                 {
-                    this.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-                    this.Text = (itemQuantity + 1).ToString();
-                    return;
+                    TextAlign = ContentAlignment.BottomRight;
+                    Text = (ItemQuantity + 1).ToString();
                 }
                 else if (ItemAttr.hasGenetics(itemID))
                 {
-                    if (displayItemData().Contains("83E0") || displayItemData().Contains("8642")) // Flower
+                    if (DisplayItemData().Contains("83E0") || DisplayItemData().Contains("8642")) // Flower
                     {
-                        this.TextAlign = System.Drawing.ContentAlignment.TopRight;
-                        this.Text = "★";
+                        TextAlign = ContentAlignment.TopRight;
+                        Text = @"★";
                         return;
                     }
 
-                    this.TextAlign = System.Drawing.ContentAlignment.TopRight;
+                    TextAlign = ContentAlignment.TopRight;
                     string value = itemData.ToString("X");
                     int length = value.Length;
                     string firstByte;
@@ -438,27 +434,24 @@ namespace ACNHPokerCore
                         firstByte = value.Substring(length - 2, 1);
                         secondByte = value.Substring(length - 1, 1);
                     }
-                    this.Text = HexToBinary(secondByte) + "-" + HexToBinary(firstByte);
+                    Text = HexToBinary(secondByte) + "-" + HexToBinary(firstByte);
                     //System.Diagnostics.Debug.Print(secondByte + " " + firstByte + " " + HexToBinary(secondByte) + " " + HexToBinary(firstByte));
                 }
                 else if (itemID == 0x16A2) // Recipe
                 {
-                    this.Text = "";
-                    return;
+                    Text = "";
                 }
                 else if (itemID == 0x1095) // Villager Delivery
                 {
-                    this.Text = "Delivery";
-                    this.ForeColor = System.Drawing.Color.Red;
-                    this.TextAlign = System.Drawing.ContentAlignment.TopRight;
-                    return;
+                    Text = @"Delivery";
+                    ForeColor = Color.Red;
+                    TextAlign = ContentAlignment.TopRight;
                 }
                 else if (itemID == 0x0A13) // Fossil
                 {
-                    this.Text = "Fossil";
-                    this.ForeColor = System.Drawing.Color.Blue;
-                    this.TextAlign = System.Drawing.ContentAlignment.TopRight;
-                    return;
+                    Text = @"Fossil";
+                    ForeColor = Color.Blue;
+                    TextAlign = ContentAlignment.TopRight;
                 }
                 /*
                 else if (itemID == 0x114A) // Money Tree
@@ -482,15 +475,15 @@ namespace ACNHPokerCore
                 }
                 else if (itemData > 0)
                 {
-                    this.ForeColor = System.Drawing.Color.Gold;
-                    this.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-                    this.Text = "Var: " + itemData.ToString("X");
+                    ForeColor = Color.Gold;
+                    TextAlign = ContentAlignment.BottomRight;
+                    Text = @"Var: " + itemData.ToString("X");
                 }
             }
             else
             {
-                this.Image = null;
-                this.Text = "";
+                Image = null;
+                Text = "";
             }
         }
 

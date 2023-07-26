@@ -16,16 +16,16 @@ namespace ACNHPokerCore
     public partial class MapRegenerator : Form
     {
         private Socket s;
-        private int counter = 0;
-        private Boolean loop = false;
-        private Boolean wasLoading = true;
-        private Thread RegenThread = null;
-        private readonly Object mapLock = new();
+        private int counter;
+        private bool loop;
+        private bool wasLoading = true;
+        private Thread RegenThread;
+        private readonly object mapLock = new();
         private int delayTime = 50;
         private int pauseTime = 70;
         private readonly bool sound;
 
-        private MiniMap MiniMap = null;
+        private MiniMap MiniMap;
         private int anchorX = -1;
         private int anchorY = -1;
         private byte[] tempData;
@@ -33,12 +33,12 @@ namespace ACNHPokerCore
 
         private byte[][] villagerFlag;
         private byte[][] villager;
-        private Boolean[] haveVillager;
-        private Boolean FormIsClosing = false;
+        private bool[] haveVillager;
+        private bool FormIsClosing;
 
-        public Dodo dodoSetup = null;
+        public Dodo dodoSetup;
 
-        private String[] CurrentVisitorList = null;
+        private string[] CurrentVisitorList;
 
         private CancellationTokenSource cts;
 
@@ -55,15 +55,12 @@ namespace ACNHPokerCore
                 InitializeComponent();
                 FinMsg.SelectionAlignment = HorizontalAlignment.Center;
                 logName.Text = Utilities.VisitorLogFile;
-                Random random = new();
-                int v = random.Next(8192);
-                Debug.Print(v.ToString());
 
                 MyLog.LogEvent("Regen", "RegenForm Started Successfully");
             }
             catch (Exception ex)
             {
-                MyLog.LogEvent("Regen", "Form Construct: " + ex.Message.ToString());
+                MyLog.LogEvent("Regen", "Form Construct: " + ex.Message);
             }
         }
         #endregion
@@ -107,7 +104,7 @@ namespace ACNHPokerCore
                 config.AppSettings.Settings["LastSave"].Value = path;
                 config.Save(ConfigurationSaveMode.Minimal);
 
-                UInt32 address = Utilities.mapZero;
+                uint address = Utilities.mapZero;
 
                 Thread LoadThread = new(delegate () { SaveMapFloor(address, file); });
                 LoadThread.Start();
@@ -115,12 +112,11 @@ namespace ACNHPokerCore
             }
             catch (Exception ex)
             {
-                MyLog.LogEvent("Regen", "Save: " + ex.Message.ToString());
-                return;
+                MyLog.LogEvent("Regen", "Save: " + ex.Message);
             }
         }
 
-        private void SaveMapFloor(UInt32 address, SaveFileDialog file)
+        private void SaveMapFloor(uint address, SaveFileDialog file)
         {
             ShowMapWait(42, "Saving...");
 
@@ -135,7 +131,7 @@ namespace ACNHPokerCore
 
             if (!FormIsClosing)
             {
-                this.Invoke((MethodInvoker)delegate
+                Invoke((MethodInvoker)delegate
                 {
                     FinMsg.Visible = true;
                     FinMsg.Text = "Template Saved!";
@@ -185,7 +181,7 @@ namespace ACNHPokerCore
 
                 byte[] data = File.ReadAllBytes(file.FileName);
 
-                UInt32 address = Utilities.mapZero;
+                uint address = Utilities.mapZero;
 
                 byte[][] b = new byte[42][];
 
@@ -200,12 +196,11 @@ namespace ACNHPokerCore
             }
             catch (Exception ex)
             {
-                MyLog.LogEvent("Regen", "Load: " + ex.Message.ToString());
-                return;
+                MyLog.LogEvent("Regen", "Load: " + ex.Message);
             }
         }
 
-        private void LoadMapFloor(byte[][] b, UInt32 address)
+        private void LoadMapFloor(byte[][] b, uint address)
         {
             ShowMapWait(42 * 2, "Loading...");
 
@@ -224,7 +219,7 @@ namespace ACNHPokerCore
 
             if (!FormIsClosing)
             {
-                this.Invoke((MethodInvoker)delegate
+                Invoke((MethodInvoker)delegate
                 {
                     FinMsg.Visible = true;
                     FinMsg.Text = "Template Loaded!";
@@ -290,7 +285,7 @@ namespace ACNHPokerCore
 
                 byte[] data = File.ReadAllBytes(file.FileName);
 
-                UInt32 address = Utilities.mapZero;
+                uint address = Utilities.mapZero;
 
                 byte[][] b = new byte[42][];
 
@@ -320,7 +315,7 @@ namespace ACNHPokerCore
                 WaitMessagebox.Text = "Stopping Regen...";
                 loop = false;
                 startRegen.Tag = "Start";
-                startRegen.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+                startRegen.BackColor = Color.FromArgb(114, 137, 218);
                 startRegen.Text = "Cast Regen";
                 saveMapBtn.Enabled = true;
                 loadMapBtn.Enabled = true;
@@ -379,7 +374,7 @@ namespace ACNHPokerCore
                 string[] name = file.FileName.Split('\\');
                 tempFilename = name[name.Length - 1];
 
-                UInt32 address = Utilities.mapZero;
+                uint address = Utilities.mapZero;
 
                 DialogResult dialogResult = MyMessageBox.Show("Would you like to limit the \"ignore empty tiles\" area?" + "\n\n" +
                                                             "This would allow you to pick a 7 x 7 area which the regenerator would only ignore."
@@ -391,15 +386,15 @@ namespace ACNHPokerCore
 
                     tempData = data;
 
-                    this.Width = 485;
+                    Width = 485;
                     if (MiniMap == null)
                     {
                         counter = 0;
 
-                        byte[] Acre = Utilities.getAcre(s, null);
-                        byte[] Building = Utilities.getBuilding(s, null);
-                        byte[] Terrain = Utilities.getTerrain(s, null);
-                        byte[] MapCustomDesgin = Utilities.getCustomDesignMap(s, null, ref counter);
+                        byte[] Acre = Utilities.GetAcre(s, null);
+                        byte[] Building = Utilities.GetBuilding(s, null);
+                        byte[] Terrain = Utilities.GetTerrain(s, null);
+                        byte[] MapCustomDesgin = Utilities.GetCustomDesignMap(s, null, ref counter);
 
                         if (MiniMap == null)
                             MiniMap = new MiniMap(data, Acre, Building, Terrain, MapCustomDesgin);
@@ -410,7 +405,7 @@ namespace ACNHPokerCore
                         return;
                     try
                     {
-                        byte[] Coordinate = Utilities.getCoordinate(s, null);
+                        byte[] Coordinate = Utilities.GetCoordinate(s, null);
                         int x = BitConverter.ToInt32(Coordinate, 0);
                         int y = BitConverter.ToInt32(Coordinate, 4);
 
@@ -428,8 +423,8 @@ namespace ACNHPokerCore
                     }
                     catch (Exception ex)
                     {
-                        MyLog.LogEvent("Regen", "getCoordinate: " + ex.Message.ToString());
-                        MyMessageBox.Show("Something doesn't feel right at all. You should restart the program...\n\n" + ex.Message.ToString(), "!!! THIS SHIT DOESN'T WORK!! WHY? HAS I EVER?", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MyLog.LogEvent("Regen", "getCoordinate: " + ex.Message);
+                        MyMessageBox.Show("Something doesn't feel right at all. You should restart the program...\n\n" + ex.Message, "!!! THIS SHIT DOESN'T WORK!! WHY? HAS I EVER?", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 else
@@ -477,7 +472,7 @@ namespace ACNHPokerCore
                 WaitMessagebox.Text = "Stopping Regen...";
                 loop = false;
                 startRegen2.Tag = "Start";
-                startRegen2.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+                startRegen2.BackColor = Color.FromArgb(114, 137, 218);
                 startRegen2.Text = "Cast Moogle Regenja";
                 saveMapBtn.Enabled = true;
                 loadMapBtn.Enabled = true;
@@ -494,9 +489,9 @@ namespace ACNHPokerCore
         {
             mapPanel.Visible = false;
             MiniMap = null;
-            this.Width = 250;
+            Width = 250;
 
-            UInt32 address = Utilities.mapZero;
+            uint address = Utilities.mapZero;
 
             loop = true;
             startRegen2.Tag = "Stop";
@@ -536,7 +531,7 @@ namespace ACNHPokerCore
 
         private void MiniMapBox_MouseDown(object sender, MouseEventArgs e)
         {
-            Debug.Print(e.X.ToString() + " " + e.Y.ToString());
+            Debug.Print(e.X + " " + e.Y);
 
             int x;
             int y;
@@ -566,7 +561,7 @@ namespace ACNHPokerCore
 
         private void MiniMapBox_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 int x;
                 int y;
@@ -596,7 +591,7 @@ namespace ACNHPokerCore
         }
         #endregion
 
-        private void RegenMapFloor(byte[][] b, UInt32 address, string name, CancellationToken token)
+        private void RegenMapFloor(byte[][] b, uint address, string name, CancellationToken token)
         {
             string regenMsg = "Regenerating... " + name;
 
@@ -604,8 +599,6 @@ namespace ACNHPokerCore
 
             if (keepVillagerBox.Checked)
                 PrepareVillager(s);
-
-            byte[] c = new byte[0x2000];
 
             int writeCount;
             int runCount = 0;
@@ -618,12 +611,9 @@ namespace ACNHPokerCore
             string newVisitorIsland;
             TimeSpan ts;
 
-            if (dodoSetup != null)
-            {
-                dodoSetup.LockBtn();
-            }
+            dodoSetup?.LockBtn();
 
-            Utilities.sendBlankName(s);
+            Utilities.SendBlankName(s);
             Teleport.OverworldState state;
 
             do
@@ -638,7 +628,7 @@ namespace ACNHPokerCore
                     if (dodoSetup != null && dodoSetup.dodoSetupDone)
                     {
                         state = dodoSetup.DodoMonitor(token);
-                        if (dodoSetup.CheckOnlineStatus() == true)
+                        if (dodoSetup.CheckOnlineStatus())
                             dodoSetup.DisplayDodo(Controller.SetupDodo());
                     }
                     else
@@ -662,21 +652,23 @@ namespace ACNHPokerCore
                     {
                         if (!FormIsClosing)
                         {
-                            this.Invoke((MethodInvoker)delegate
+                            var visitor = newVisitor;
+                            var island = newVisitorIsland;
+                            Invoke((MethodInvoker)delegate
                             {
-                                visitorNameBox.Text = newVisitor;
-                                WaitMessagebox.Text = "Paused. " + newVisitor + " arriving!";
-                                CreateLog(newVisitor, newVisitorIsland, "In");
+                                visitorNameBox.Text = visitor;
+                                WaitMessagebox.Text = "Paused. " + visitor + " arriving!";
+                                CreateLog(visitor, island, "In");
                                 PauseTimeLabel.Visible = true;
                                 PauseTimer.Start();
                             });
                         }
 
                         Thread.Sleep(70000);
-                        Utilities.sendBlankName(s);
+                        Utilities.SendBlankName(s);
                         if (!FormIsClosing)
                         {
-                            this.Invoke((MethodInvoker)delegate
+                            Invoke((MethodInvoker)delegate
                             {
                                 PauseTimeLabel.Visible = false;
                                 PauseTimer.Stop();
@@ -720,7 +712,7 @@ namespace ACNHPokerCore
                             {
                                 lock (mapLock)
                                 {
-                                    c = Utilities.ReadByteArray8(s, address + (i * 0x2000), 0x2000, ref counter);
+                                    var c = Utilities.ReadByteArray8(s, address + (i * 0x2000), 0x2000, ref counter);
 
                                     if (c != null)
                                     {
@@ -757,10 +749,10 @@ namespace ACNHPokerCore
 
                     if (!FormIsClosing)
                     {
-                        this.Invoke((MethodInvoker)delegate
+                        Invoke((MethodInvoker)delegate
                         {
                             ts = stopWatch.Elapsed;
-                            timeLabel.Text = Utilities.precedingZeros(ts.Hours.ToString(), 2) + ":" + Utilities.precedingZeros(ts.Minutes.ToString(), 2) + ":" + Utilities.precedingZeros(ts.Seconds.ToString(), 2);
+                            timeLabel.Text = Utilities.PrecedingZeros(ts.Hours.ToString(), 2) + ":" + Utilities.PrecedingZeros(ts.Minutes.ToString(), 2) + ":" + Utilities.PrecedingZeros(ts.Seconds.ToString(), 2);
                             if (keepVillagerBox.Checked)
                             {
                                 int index = runCount % 10;
@@ -783,13 +775,13 @@ namespace ACNHPokerCore
                 {
                     if (!FormIsClosing)
                     {
-                        this.Invoke((MethodInvoker)delegate
+                        Invoke((MethodInvoker)delegate
                         {
-                            MyLog.LogEvent("Regen", "Regen1: " + ex.Message.ToString());
+                            MyLog.LogEvent("Regen", "Regen1: " + ex.Message);
                             //DateTime localDate = DateTime.Now;
                             MyMessageBox.Show("Connection to the Switch has been lost.", "Yeeted", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             CreateLog("Connection to the Switch has been lost.");
-                            this.Close();
+                            Close();
                         });
                     }
                     break;
@@ -803,14 +795,14 @@ namespace ACNHPokerCore
                     MyMessageBox.Show("Dodo Helper & Regen Aborted!\nPlease remember to exit the airport first if you want to restart!", "Airbag deployment!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (!FormIsClosing)
                 {
-                    this.Invoke((MethodInvoker)delegate
+                    Invoke((MethodInvoker)delegate
                     {
                         stopWatch.Stop();
                         HideMapWait();
                         MyLog.LogEvent("Regen", "Regen1 Stopped");
                         loop = false;
                         startRegen.Tag = "Start";
-                        startRegen.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+                        startRegen.BackColor = Color.FromArgb(114, 137, 218);
                         startRegen.Text = "Cast Regen";
                         saveMapBtn.Enabled = true;
                         loadMapBtn.Enabled = true;
@@ -830,7 +822,7 @@ namespace ACNHPokerCore
                 System.Media.SystemSounds.Asterisk.Play();
         }
 
-        private void RegenMapFloor2(byte[][] b, UInt32 address, bool[][] isEmpty, string name, CancellationToken token)
+        private void RegenMapFloor2(byte[][] b, uint address, bool[][] isEmpty, string name, CancellationToken token)
         {
             string regenMsg = "Regenerating... " + name;
 
@@ -847,8 +839,6 @@ namespace ACNHPokerCore
             if (keepVillagerBox.Checked)
                 PrepareVillager(s);
 
-            byte[] c = new byte[0x2000];
-
             int writeCount;
             int runCount = 0;
             int PauseCount = 0;
@@ -860,12 +850,9 @@ namespace ACNHPokerCore
             string newVisitorIsland;
             TimeSpan ts;
 
-            if (dodoSetup != null)
-            {
-                dodoSetup.LockBtn();
-            }
+            dodoSetup?.LockBtn();
 
-            Utilities.sendBlankName(s);
+            Utilities.SendBlankName(s);
             Teleport.OverworldState state;
 
             do
@@ -880,7 +867,7 @@ namespace ACNHPokerCore
                     if (dodoSetup != null && dodoSetup.dodoSetupDone)
                     {
                         state = dodoSetup.DodoMonitor(token);
-                        if (dodoSetup.CheckOnlineStatus() == true)
+                        if (dodoSetup.CheckOnlineStatus())
                             dodoSetup.DisplayDodo(Controller.SetupDodo());
                     }
                     else
@@ -904,22 +891,24 @@ namespace ACNHPokerCore
                     {
                         if (!FormIsClosing)
                         {
-                            this.Invoke((MethodInvoker)delegate
+                            var visitor = newVisitor;
+                            var island = newVisitorIsland;
+                            Invoke((MethodInvoker)delegate
                             {
-                                visitorNameBox.Text = newVisitor;
-                                WaitMessagebox.Text = "Paused. " + newVisitor + " arriving!";
-                                CreateLog(newVisitor, newVisitorIsland, "In");
+                                visitorNameBox.Text = visitor;
+                                WaitMessagebox.Text = "Paused. " + visitor + " arriving!";
+                                CreateLog(visitor, island, "In");
                                 PauseTimeLabel.Visible = true;
                                 PauseTimer.Start();
                             });
                         }
 
                         Thread.Sleep(70000);
-                        Utilities.sendBlankName(s);
+                        Utilities.SendBlankName(s);
 
                         if (!FormIsClosing)
                         {
-                            this.Invoke((MethodInvoker)delegate
+                            Invoke((MethodInvoker)delegate
                             {
                                 PauseTimeLabel.Visible = false;
                                 PauseTimer.Stop();
@@ -968,7 +957,7 @@ namespace ACNHPokerCore
 
                                 lock (mapLock)
                                 {
-                                    c = Utilities.ReadByteArray8(s, address + (i * 0x1800), 0x1800, ref counter);
+                                    var c = Utilities.ReadByteArray8(s, address + (i * 0x1800), 0x1800, ref counter);
 
                                     if (c != null)
                                     {
@@ -1010,10 +999,10 @@ namespace ACNHPokerCore
 
                     if (!FormIsClosing)
                     {
-                        this.Invoke((MethodInvoker)delegate
+                        Invoke((MethodInvoker)delegate
                         {
                             ts = stopWatch.Elapsed;
-                            timeLabel.Text = Utilities.precedingZeros(ts.Hours.ToString(), 2) + ":" + Utilities.precedingZeros(ts.Minutes.ToString(), 2) + ":" + Utilities.precedingZeros(ts.Seconds.ToString(), 2);
+                            timeLabel.Text = Utilities.PrecedingZeros(ts.Hours.ToString(), 2) + ":" + Utilities.PrecedingZeros(ts.Minutes.ToString(), 2) + ":" + Utilities.PrecedingZeros(ts.Seconds.ToString(), 2);
                             if (keepVillagerBox.Checked)
                             {
                                 int index = runCount % 10;
@@ -1036,13 +1025,13 @@ namespace ACNHPokerCore
                 {
                     if (!FormIsClosing)
                     {
-                        this.Invoke((MethodInvoker)delegate
+                        Invoke((MethodInvoker)delegate
                         {
-                            MyLog.LogEvent("Regen", "Regen2: " + ex.Message.ToString());
+                            MyLog.LogEvent("Regen", "Regen2: " + ex.Message);
                             //DateTime localDate = DateTime.Now;
                             MyMessageBox.Show("Connection to the Switch has been lost.", "Yeeted", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             CreateLog("Connection to the Switch has been lost.");
-                            this.Close();
+                            Close();
                         });
                     }
                     break;
@@ -1056,14 +1045,14 @@ namespace ACNHPokerCore
                     MyMessageBox.Show("Dodo Helper & Regen Aborted!\nPlease remember to exit the airport first if you want to restart!", "Slamming on the brakes?", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (!FormIsClosing)
                 {
-                    this.Invoke((MethodInvoker)delegate
+                    Invoke((MethodInvoker)delegate
                     {
                         stopWatch.Stop();
                         HideMapWait();
                         MyLog.LogEvent("Regen", "Regen2 Stopped");
                         loop = false;
                         startRegen2.Tag = "Start";
-                        startRegen2.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+                        startRegen2.BackColor = Color.FromArgb(114, 137, 218);
                         startRegen2.Text = "Cast Moogle Regenja";
                         saveMapBtn.Enabled = true;
                         loadMapBtn.Enabled = true;
@@ -1102,7 +1091,7 @@ namespace ACNHPokerCore
         {
             if (!FormIsClosing)
             {
-                this.Invoke((MethodInvoker)delegate
+                Invoke((MethodInvoker)delegate
                 {
                     WaitMessagebox.SelectionAlignment = HorizontalAlignment.Center;
                     WaitMessagebox.Text = msg;
@@ -1119,7 +1108,7 @@ namespace ACNHPokerCore
         {
             if (!FormIsClosing)
             {
-                this.Invoke((MethodInvoker)delegate
+                Invoke((MethodInvoker)delegate
                 {
                     PleaseWaitPanel.Visible = false;
                     ProgressTimer.Stop();
@@ -1164,7 +1153,7 @@ namespace ACNHPokerCore
                 dodoSetup = null;
             }
 
-            this.CloseForm();
+            if (CloseForm != null) CloseForm();
         }
 
         private void HideBtn_Click(object sender, EventArgs e)
@@ -1174,8 +1163,8 @@ namespace ACNHPokerCore
                 dodoSetup.Hide();
                 dodoSetup.BringToFront();
             }
-            this.ShowInTaskbar = false;
-            this.Hide();
+            ShowInTaskbar = false;
+            Hide();
         }
 
         private void BackBtn_Click(object sender, EventArgs e)
@@ -1191,7 +1180,7 @@ namespace ACNHPokerCore
                     dodoSetup = null;
                 }
             }
-            this.Close();
+            Close();
         }
 
         private void BuildEmptyTable(byte[] org, ref bool[] table)
@@ -1367,7 +1356,7 @@ namespace ACNHPokerCore
 
         private string GetVisitorName()
         {
-            byte[] b = Utilities.getVisitorName(s);
+            byte[] b = Utilities.GetVisitorName(s);
             if (b == null)
             {
                 return string.Empty;
@@ -1379,7 +1368,7 @@ namespace ACNHPokerCore
 
         private string GetVisitorIslandName()
         {
-            byte[] b = Utilities.getVisitorIslandName(s);
+            byte[] b = Utilities.GetVisitorIslandName(s);
             if (b == null)
             {
                 return string.Empty;
@@ -1393,7 +1382,7 @@ namespace ACNHPokerCore
         {
             if (!FormIsClosing)
             {
-                this.Invoke((MethodInvoker)delegate
+                Invoke((MethodInvoker)delegate
                 {
                     pauseTime--;
                     PauseTimeLabel.Text = pauseTime.ToString();
@@ -1446,14 +1435,14 @@ namespace ACNHPokerCore
                     logPanel.Visible = true;
                 }
             }
-            if (this.Width < 610)
+            if (Width < 610)
             {
-                this.Width = 610;
+                Width = 610;
                 logPanel.Visible = true;
             }
             else
             {
-                this.Width = 250;
+                Width = 250;
                 logPanel.Visible = false;
             }
         }
@@ -1490,7 +1479,7 @@ namespace ACNHPokerCore
             }
 
             DateTime localDate = DateTime.Now;
-            string newLog = localDate.ToString() + "," + newVisitor + "," + newVisitorIsland + "," + state;
+            string newLog = localDate + "," + newVisitor + "," + newVisitorIsland + "," + state;
 
             using (StreamWriter sw = File.AppendText(Utilities.VisitorLogPath))
             {
@@ -1618,12 +1607,12 @@ namespace ACNHPokerCore
         {
             villagerFlag = new byte[10][];
             villager = new byte[10][];
-            haveVillager = new Boolean[10];
+            haveVillager = new bool[10];
 
             for (int i = 0; i < 10; i++)
             {
                 villager[i] = Utilities.GetVillager(s, null, i, 0x3);
-                villagerFlag[i] = Utilities.GetMoveout(s, null, i, (int)0x33);
+                villagerFlag[i] = Utilities.GetMoveout(s, null, i, 0x33);
                 haveVillager[i] = CheckHaveVillager(villager[i]);
             }
             WriteVillager(villager, haveVillager);
@@ -1636,14 +1625,14 @@ namespace ACNHPokerCore
             else
             {
                 villager[index] = Utilities.GetVillager(s, null, index, 0x3);
-                villagerFlag[index] = Utilities.GetMoveout(s, null, index, (int)0x33);
+                villagerFlag[index] = Utilities.GetMoveout(s, null, index, 0x33);
                 haveVillager[index] = true;
 
                 WriteVillager(villager, haveVillager);
             }
         }
 
-        public static Boolean CheckHaveVillager(byte[] villager)
+        public static bool CheckHaveVillager(byte[] villager)
         {
             if (villager[0] >= 0x23)
                 return false;
@@ -1651,7 +1640,7 @@ namespace ACNHPokerCore
                 return true;
         }
 
-        public static void WriteVillager(byte[][] villager, Boolean[] haveVillager)
+        public static void WriteVillager(byte[][] villager, bool[] haveVillager)
         {
             string villagerStr = " | ";
             for (int i = 0; i < 10; i++)
@@ -1664,15 +1653,14 @@ namespace ACNHPokerCore
             sw.WriteLine(villagerStr);
         }
 
-        private void CheckAndResetVillager(byte[] villagerFlag, Boolean haveVillager, int index, ref int counter)
+        private void CheckAndResetVillager(byte[] villagerFlag, bool haveVillager, int index, ref int counter)
         {
             if (!haveVillager)
             {
-                return;
             }
             else
             {
-                string ByteString = Utilities.ByteToHexString(Utilities.GetMoveout(s, null, index, (int)0x33, ref counter));
+                string ByteString = Utilities.ByteToHexString(Utilities.GetMoveout(s, null, index, 0x33, ref counter));
                 if (!ByteString.Equals(Utilities.ByteToHexString(villagerFlag)))
                 {
                     Utilities.SetMoveout(s, null, index, villagerFlag, ref counter);
@@ -1697,13 +1685,13 @@ namespace ACNHPokerCore
             {
                 if (i == 0)
                 {
-                    newVisitorList[i] = String.Empty;
+                    newVisitorList[i] = string.Empty;
                     continue;
                 }
                 else
                     newVisitorList[i] = Utilities.GetVisitorNameFromList(s, null, i);
 
-                if (newVisitorList[i].Equals(String.Empty))
+                if (newVisitorList[i].Equals(string.Empty))
                     sw.WriteLine("[Empty]");
                 else
                 {
@@ -1747,7 +1735,7 @@ namespace ACNHPokerCore
                     {
                         if (!FormIsClosing)
                         {
-                            this.Invoke((MethodInvoker)delegate
+                            Invoke((MethodInvoker)delegate
                             {
                                 CreateLog(visitor, "", "Out");
                             });
@@ -1781,7 +1769,7 @@ namespace ACNHPokerCore
                 dodoSetup.CloseForm += DodoSetup_closeForm;
                 dodoSetup.AbortAll += DodoSetup_abortAll;
                 dodoSetup.Show(this);
-                dodoSetup.Location = new Point(this.Location.X - 590, this.Location.Y);
+                dodoSetup.Location = new Point(Location.X - 590, Location.Y);
                 dodoSetup.ControlBox = false;
                 dodoSetup.WriteLog("[Dodo Helper Ready! Waiting for Regen.]\n\n" +
                     "1. Disconnect all controller by selecting \"Controllers\" > \"Change Grip/Order\"\n" +
@@ -1796,7 +1784,7 @@ namespace ACNHPokerCore
             {
                 btn.Text = "Enable Dodo Helper";
                 btn.Tag = "Enable";
-                btn.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+                btn.BackColor = Color.FromArgb(114, 137, 218);
                 dodoSetup.Close();
                 dodoSetup = null;
             }
@@ -1811,7 +1799,7 @@ namespace ACNHPokerCore
         {
             dodoSetupBtn.Text = "Enable Dodo Helper";
             dodoSetupBtn.Tag = "Enable";
-            dodoSetupBtn.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            dodoSetupBtn.BackColor = Color.FromArgb(114, 137, 218);
             dodoSetup = null;
         }
 
@@ -1819,7 +1807,7 @@ namespace ACNHPokerCore
         {
             if (dodoSetup != null)
             {
-                dodoSetup.Location = new Point(this.Location.X - 590, this.Location.Y);
+                dodoSetup.Location = new Point(Location.X - 590, Location.Y);
                 dodoSetup.BringToFront();
             }
         }
@@ -1828,10 +1816,7 @@ namespace ACNHPokerCore
         {
             string newPath = Controller.ChangeDodoPath();
 
-            if (dodoSetup != null)
-            {
-                dodoSetup.WriteLog(">> Dodo path change to : " + newPath);
-            }
+            dodoSetup?.WriteLog(">> Dodo path change to : " + newPath);
         }
 
         public void Abort()
@@ -1843,11 +1828,10 @@ namespace ACNHPokerCore
 
         private void TrayIcon_DoubleClick(object sender, EventArgs e)
         {
-            if (dodoSetup != null)
-                dodoSetup.Show();
-            this.ShowInTaskbar = true;
-            this.WindowState = FormWindowState.Normal;
-            this.Show();
+            dodoSetup?.Show();
+            ShowInTaskbar = true;
+            WindowState = FormWindowState.Normal;
+            Show();
         }
     }
 }

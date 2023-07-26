@@ -13,64 +13,51 @@ namespace ACNHPokerCore
     {
         private readonly Socket s;
         private readonly USBBot bot;
-        private readonly MiniMap MiniMap = null;
-        private Map MainMap = null;
-        private int counter = 0;
+        private Map MainMap;
+        private int counter;
         private int anchorX = -1;
         private int anchorY = -1;
-        private readonly bool ignore = false;
+        private readonly bool ignore;
         private readonly bool sound;
-        private readonly byte[] Layer1 = null;
-        private readonly byte[] Layer2 = null;
-        private readonly byte[] Acre = null;
-        private readonly byte[] Building = null;
-        private readonly byte[] Terrain = null;
-        private readonly byte[] Design = null;
 
         private readonly long SpawnAddress;
 
-        private byte[][] item = null;
-        private byte[][] itemWithSpace = null;
-        private int numOfitem = 0;
-        private int numOfSpace = 0;
+        private byte[][] item;
+        private byte[][] itemWithSpace;
+        private int numOfitem;
+        private int numOfSpace;
         private bool[] isSpace;
         private int rowNum;
         private int colNum;
-        private byte[][] SpawnArea = null;
-        private bool spawnlock = false;
-        private bool debugging = false;
+        private byte[][] SpawnArea;
+        private bool spawnlock;
+        private bool debugging;
         public BulkSpawn(Socket S, USBBot Bot, byte[] layer1, byte[] layer2, byte[] acre, byte[] building, byte[] terrain, byte[] design, int x, int y, bool Ignore, bool Sound, bool Debugging, bool Layer1Selected)
         {
             try
             {
                 s = S;
                 bot = Bot;
-                Layer1 = layer1;
-                Layer2 = layer2;
-                Acre = acre;
-                Building = building;
-                Terrain = terrain;
-                Design = design;
                 anchorX = x;
                 anchorY = y;
                 ignore = Ignore;
                 sound = Sound;
                 debugging = Debugging;
-                MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, Design, 4);
+                var miniMap = new MiniMap(layer1, acre, building, terrain, design, 4);
 
                 InitializeComponent();
 
                 xCoordinate.Value = x;
                 yCoordinate.Value = y;
 
-                miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawBackground(), MiniMap.DrawItemMap());
+                miniMapBox.BackgroundImage = MiniMap.CombineMap(miniMap.DrawBackground(), miniMap.DrawItemMap());
                 if (Layer1Selected)
                 {
                     SpawnAddress = Utilities.mapZero;
                 }
                 else
                 {
-                    miniMapBox.BackgroundImage = MiniMap.RefreshItemMap(Layer2);
+                    miniMapBox.BackgroundImage = miniMap.RefreshItemMap(layer2);
                     SpawnAddress = Utilities.mapZero + Utilities.mapSize;
                 }
                 miniMapBox.Image = MiniMap.DrawMarker(anchorX, anchorY);
@@ -85,11 +72,11 @@ namespace ACNHPokerCore
             }
             catch (Exception ex)
             {
-                MyLog.LogEvent("BulkSpawn", "Form Construct: " + ex.Message.ToString());
+                MyLog.LogEvent("BulkSpawn", "Form Construct: " + ex.Message);
             }
         }
 
-        public void setOwner(Map map)
+        public void SetOwner(Map map)
         {
             MainMap = map;
         }
@@ -100,7 +87,7 @@ namespace ACNHPokerCore
 
             OpenFileDialog file = new()
             {
-                Filter = "New Horizons Bulk Spawn/New Horizons Inventory (*.nhbs;*.nhi)|*.nhbs;*.nhi|All files (*.*)|*.*",
+                Filter = @"New Horizons Bulk Spawn/New Horizons Inventory (*.nhbs;*.nhi)|*.nhbs;*.nhi|All files (*.*)|*.*",
             };
 
             Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
@@ -209,9 +196,9 @@ namespace ACNHPokerCore
         private byte[][] BuildSpawnArea(int row)
         {
             int itemNum = 0;
-            string flag = Utilities.precedingZeros(FlagTextbox.Text, 2);
-            byte[] emptyLeft = Utilities.stringToByte("FEFF000000000000FEFF000000000000");
-            byte[] emptyRight = Utilities.stringToByte("FEFF000000000000FEFF000000000000");
+            string flag = Utilities.PrecedingZeros(FlagTextbox.Text, 2);
+            byte[] emptyLeft = Utilities.StringToByte("FEFF000000000000FEFF000000000000");
+            byte[] emptyRight = Utilities.StringToByte("FEFF000000000000FEFF000000000000");
             byte[][] processingArea;
 
             if (IgnoreSpaceToggle.Checked)
@@ -256,9 +243,9 @@ namespace ACNHPokerCore
         private byte[][] BuildSpawnAreaHoriz(int col)
         {
             int itemNum = 0;
-            string flag = Utilities.precedingZeros(FlagTextbox.Text, 2);
-            byte[] emptyLeft = Utilities.stringToByte("FEFF000000000000FEFF000000000000");
-            byte[] emptyRight = Utilities.stringToByte("FEFF000000000000FEFF000000000000");
+            string flag = Utilities.PrecedingZeros(FlagTextbox.Text, 2);
+            byte[] emptyLeft = Utilities.StringToByte("FEFF000000000000FEFF000000000000");
+            byte[] emptyRight = Utilities.StringToByte("FEFF000000000000FEFF000000000000");
             byte[][] processingArea;
 
             if (IgnoreSpaceToggle.Checked)
@@ -304,26 +291,26 @@ namespace ACNHPokerCore
         private static void TransformToFloorItem(ref byte[] b1, ref byte[] b2, int slot, byte[] item, string flag)
         {
             byte[] slotBytes = new byte[2];
+            byte[] flag0Bytes = new byte[1];
             byte[] flag1Bytes = new byte[1];
-            byte[] flag2Bytes = new byte[1];
             byte[] dataBytes = new byte[4];
 
             Buffer.BlockCopy(item, 0x0, slotBytes, 0, 2);
-            Buffer.BlockCopy(item, 0x3, flag1Bytes, 0, 1);
-            Buffer.BlockCopy(item, 0x2, flag2Bytes, 0, 1);
+            Buffer.BlockCopy(item, 0x3, flag0Bytes, 0, 1);
+            Buffer.BlockCopy(item, 0x2, flag1Bytes, 0, 1);
             Buffer.BlockCopy(item, 0x4, dataBytes, 0, 4);
 
-            string itemID = Utilities.flip(Utilities.ByteToHexString(slotBytes));
-            string itemData = Utilities.flip(Utilities.ByteToHexString(dataBytes));
-            string flag1 = Utilities.ByteToHexString(flag1Bytes);
-            string flag2;
+            string itemID = Utilities.Flip(Utilities.ByteToHexString(slotBytes));
+            string itemData = Utilities.Flip(Utilities.ByteToHexString(dataBytes));
+            string flag0 = Utilities.ByteToHexString(flag0Bytes);
+            string flag1;
             if (itemID == "FFFE" || itemID == "FFFD")
-                flag2 = "00";
+                flag1 = "00";
             else
-                flag2 = flag;
+                flag1 = flag;
 
-            byte[] dropItemLeft = Utilities.stringToByte(Utilities.buildDropStringLeft(itemID, itemData, flag1, flag2));
-            byte[] dropItemRight = Utilities.stringToByte(Utilities.buildDropStringRight(itemID));
+            byte[] dropItemLeft = Utilities.StringToByte(Utilities.BuildDropStringLeft(itemID, itemData, flag0, flag1));
+            byte[] dropItemRight = Utilities.StringToByte(Utilities.BuildDropStringRight(itemID));
 
             Buffer.BlockCopy(dropItemLeft, 0, b1, slot * 0x10, 16);
             Buffer.BlockCopy(dropItemRight, 0, b2, slot * 0x10, 16);
@@ -389,10 +376,10 @@ namespace ACNHPokerCore
 
                                 spawnlock = false;
 
-                                this.Invoke((MethodInvoker)delegate
+                                Invoke((MethodInvoker)delegate
                                 {
                                     MainMap.MoveAnchor(anchorX, anchorY);
-                                    this.Close();
+                                    Close();
                                 });
                                 return;
                             }
@@ -411,11 +398,11 @@ namespace ACNHPokerCore
                         {
                             UInt32 address = (UInt32)(SpawnAddress + (0xC00 * (anchorX + i)) + (0x10 * (anchorY)));
 
-                            Utilities.dropColumn(s, bot, address, address + 0x600, SpawnArea[i * 2], SpawnArea[i * 2 + 1], ref counter);
+                            Utilities.DropColumn(s, bot, address, address + 0x600, SpawnArea[i * 2], SpawnArea[i * 2 + 1], ref counter);
                         }
                     }
 
-                    this.Invoke((MethodInvoker)delegate
+                    Invoke((MethodInvoker)delegate
                     {
                         MainMap.UpdataData(anchorX, anchorY, SpawnArea, false, true);
                     });
@@ -428,11 +415,11 @@ namespace ACNHPokerCore
                         {
                             UInt32 address = (UInt32)(SpawnAddress + (0xC00 * (anchorX - i)) + (0x10 * (anchorY)));
 
-                            Utilities.dropColumn(s, bot, address, address + 0x600, SpawnArea[i * 2], SpawnArea[i * 2 + 1], ref counter);
+                            Utilities.DropColumn(s, bot, address, address + 0x600, SpawnArea[i * 2], SpawnArea[i * 2 + 1], ref counter);
                         }
                     }
 
-                    this.Invoke((MethodInvoker)delegate
+                    Invoke((MethodInvoker)delegate
                     {
                         MainMap.UpdataData(anchorX, anchorY, SpawnArea, false, false);
                     });
@@ -440,8 +427,8 @@ namespace ACNHPokerCore
             }
             catch (Exception ex)
             {
-                MyLog.LogEvent("BulkSpawn", "ConfirmSpawn: " + ex.Message.ToString());
-                MyMessageBox.Show(ex.Message.ToString(), "When I wrote this, only God and I understood what I was doing.");
+                MyLog.LogEvent("BulkSpawn", "ConfirmSpawn: " + ex.Message);
+                MyMessageBox.Show(ex.Message, "When I wrote this, only God and I understood what I was doing.");
             }
 
             if (!debugging)
@@ -456,16 +443,16 @@ namespace ACNHPokerCore
 
             spawnlock = false;
 
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
                 MainMap.MoveAnchor(anchorX, anchorY);
-                this.Close();
+                Close();
             });
         }
 
         private void ShowMapWait(int size, string msg = "")
         {
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
                 WaitMessagebox.SelectionAlignment = HorizontalAlignment.Center;
                 WaitMessagebox.Text = msg;
@@ -479,7 +466,7 @@ namespace ACNHPokerCore
 
         private void HideMapWait()
         {
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
                 PleaseWaitPanel.Visible = false;
                 ProgressTimer.Stop();
@@ -501,7 +488,7 @@ namespace ACNHPokerCore
         {
             if (spawnlock)
                 return;
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 int x;
                 int y;
@@ -540,15 +527,6 @@ namespace ACNHPokerCore
             }
         }
 
-        private void HeightNumber_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char c = e.KeyChar;
-            if (!(c >= '0' && c <= '9'))
-            {
-                e.Handled = true;
-            }
-        }
-
         private void CoordinateChanged(object sender, EventArgs e)
         {
             if (spawnlock)
@@ -580,15 +558,6 @@ namespace ACNHPokerCore
             //VertSpawnBtn.Visible = false;
 
             UpdatePreview();
-        }
-
-        private void CoordinateKeyPress(object sender, KeyPressEventArgs e)
-        {
-            char c = e.KeyChar;
-            if (!(c >= '0' && c <= '9'))
-            {
-                e.Handled = true;
-            }
         }
 
         private void IgnoreSpaceToggle_CheckedChanged(object sender, EventArgs e)
@@ -657,99 +626,93 @@ namespace ACNHPokerCore
             {
                 if (VertHeightNumber.Text.Equals(string.Empty) || item == null)
                     return;
+                rowNum = (int)VertHeightNumber.Value;
+                if (rowNum <= 0)
+                    return;
+                //VertWidthLabel.Visible = true;
+                //VertWidthNumber.Visible = true;
+                SpawnArea = BuildSpawnArea(rowNum);
+                VertWidthNumber.Text = (SpawnArea.Length / 2).ToString();
+
+                bool right;
+                if (LeftBtn.Checked)
+                    right = false;
+                else
+                    right = true;
+
+                xCoordinate.Value = anchorX;
+                yCoordinate.Value = anchorY;
+
+                if (IgnoreSpaceToggle.Checked)
+                    miniMapBox.Image = MiniMap.DrawPreview(rowNum, SpawnArea.Length / 2, anchorX, anchorY, right);
+                else
+                    miniMapBox.Image = MiniMap.DrawPreview(rowNum, SpawnArea.Length / 2, anchorX, anchorY, right, isSpace);
+
+                if (anchorY + rowNum > 96)
+                {
+                    WarningMessage.Visible = true;
+                    SpawnBtn.Visible = false;
+                }
+                else if (right && anchorX + SpawnArea.Length / 2 > 112)
+                {
+                    WarningMessage.Visible = true;
+                    SpawnBtn.Visible = false;
+                }
+                else if (!right && anchorX - SpawnArea.Length / 2 < -1)
+                {
+                    WarningMessage.Visible = true;
+                    SpawnBtn.Visible = false;
+                }
                 else
                 {
-                    rowNum = (int)VertHeightNumber.Value;
-                    if (rowNum <= 0)
-                        return;
-                    //VertWidthLabel.Visible = true;
-                    //VertWidthNumber.Visible = true;
-                    SpawnArea = BuildSpawnArea(rowNum);
-                    VertWidthNumber.Text = (SpawnArea.Length / 2).ToString();
-
-                    bool right;
-                    if (LeftBtn.Checked)
-                        right = false;
-                    else
-                        right = true;
-
-                    xCoordinate.Value = anchorX;
-                    yCoordinate.Value = anchorY;
-
-                    if (IgnoreSpaceToggle.Checked)
-                        miniMapBox.Image = MiniMap.DrawPreview(rowNum, SpawnArea.Length / 2, anchorX, anchorY, right);
-                    else
-                        miniMapBox.Image = MiniMap.DrawPreview(rowNum, SpawnArea.Length / 2, anchorX, anchorY, right, isSpace);
-
-                    if (anchorY + rowNum > 96)
-                    {
-                        WarningMessage.Visible = true;
-                        SpawnBtn.Visible = false;
-                    }
-                    else if (right && anchorX + SpawnArea.Length / 2 > 112)
-                    {
-                        WarningMessage.Visible = true;
-                        SpawnBtn.Visible = false;
-                    }
-                    else if (!right && anchorX - SpawnArea.Length / 2 < -1)
-                    {
-                        WarningMessage.Visible = true;
-                        SpawnBtn.Visible = false;
-                    }
-                    else
-                    {
-                        WarningMessage.Visible = false;
-                        SpawnBtn.Visible = true;
-                    }
+                    WarningMessage.Visible = false;
+                    SpawnBtn.Visible = true;
                 }
             }
             else if (HorizThenVert.Checked)
             {
                 if (HoriWidthNumber.Text.Equals(string.Empty) || item == null)
                     return;
+                colNum = (int)HoriWidthNumber.Value;
+                if (colNum <= 0)
+                    return;
+
+                SpawnArea = BuildSpawnAreaHoriz(colNum);
+                HoriHeightNumber.Text = (SpawnArea[0].Length / 16).ToString();
+
+                bool right;
+                if (LeftBtn.Checked)
+                    right = false;
+                else
+                    right = true;
+
+                xCoordinate.Value = anchorX;
+                yCoordinate.Value = anchorY;
+
+                if (IgnoreSpaceToggle.Checked)
+                    miniMapBox.Image = MiniMap.DrawPreviewHori(SpawnArea[0].Length / 16, colNum, anchorX, anchorY, right);
+                else
+                    miniMapBox.Image = MiniMap.DrawPreviewHori(SpawnArea[0].Length / 16, colNum, anchorX, anchorY, right, isSpace);
+
+                if (anchorY + (SpawnArea[0].Length / 16) > 96)
+                {
+                    WarningMessage.Visible = true;
+                    SpawnBtn.Visible = false;
+                }
+                else if (right && anchorX + colNum > 112)
+                {
+                    WarningMessage.Visible = true;
+                    SpawnBtn.Visible = false;
+                }
+                else if (!right && anchorX - colNum < -1)
+                {
+                    WarningMessage.Visible = true;
+                    SpawnBtn.Visible = false;
+                }
                 else
                 {
-                    colNum = (int)HoriWidthNumber.Value;
-                    if (colNum <= 0)
-                        return;
-
-                    SpawnArea = BuildSpawnAreaHoriz(colNum);
-                    HoriHeightNumber.Text = (SpawnArea[0].Length / 16).ToString();
-
-                    bool right;
-                    if (LeftBtn.Checked)
-                        right = false;
-                    else
-                        right = true;
-
-                    xCoordinate.Value = anchorX;
-                    yCoordinate.Value = anchorY;
-
-                    if (IgnoreSpaceToggle.Checked)
-                        miniMapBox.Image = MiniMap.DrawPreviewHori(SpawnArea[0].Length / 16, colNum, anchorX, anchorY, right);
-                    else
-                        miniMapBox.Image = MiniMap.DrawPreviewHori(SpawnArea[0].Length / 16, colNum, anchorX, anchorY, right, isSpace);
-
-                    if (anchorY + (SpawnArea[0].Length / 16) > 96)
-                    {
-                        WarningMessage.Visible = true;
-                        SpawnBtn.Visible = false;
-                    }
-                    else if (right && anchorX + colNum > 112)
-                    {
-                        WarningMessage.Visible = true;
-                        SpawnBtn.Visible = false;
-                    }
-                    else if (!right && anchorX - colNum < -1)
-                    {
-                        WarningMessage.Visible = true;
-                        SpawnBtn.Visible = false;
-                    }
-                    else
-                    {
-                        WarningMessage.Visible = false;
-                        SpawnBtn.Visible = true;
-                    }
+                    WarningMessage.Visible = false;
+                    SpawnBtn.Visible = true;
                 }
             }
         }

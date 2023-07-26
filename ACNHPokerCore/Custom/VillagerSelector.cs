@@ -22,18 +22,18 @@ namespace ACNHPokerCore
                 e.DrawBackground();
                 e.DrawFocusRectangle();
 
-                string[] lines = this.Items[e.Index].ToString().Split(new string[] { " " }, StringSplitOptions.None);
+                string[] lines = Items[e.Index].ToString()?.Split(new[] { " " }, StringSplitOptions.None);
                 Image img;
-                if (File.Exists(Utilities.GetVillagerImage(lines[lines.Length - 1])))
+                if (lines != null && File.Exists(Utilities.GetVillagerImage(lines[lines.Length - 1])))
                     img = Image.FromFile(Utilities.GetVillagerImage(lines[lines.Length - 1]));
                 else
                     img = new Bitmap(Properties.Resources.Leaf, new Size(60, 60));
                 // Draw the colored 16 x 16 square
                 Bitmap resize = new(img, new Size(60, 60));
-                e.Graphics.DrawImage((Image)resize, e.Bounds.Left, e.Bounds.Top);
+                e.Graphics.DrawImage(resize, e.Bounds.Left, e.Bounds.Top);
                 // Draw the value (in this case, the color name)
                 //e.Graphics.DrawString(this.Items[e.Index].ToString(), e.Font, myBrush, e.Bounds, StringFormat.GenericDefault);
-                e.Graphics.DrawString(this.Items[e.Index].ToString(), e.Font, new SolidBrush(e.ForeColor), e.Bounds.Left + resize.Width, e.Bounds.Top + 22);
+                e.Graphics.DrawString(Items[e.Index].ToString(), e.Font, new SolidBrush(e.ForeColor), e.Bounds.Left + resize.Width, e.Bounds.Top + 22);
             }
             base.OnDrawItem(e);
         }

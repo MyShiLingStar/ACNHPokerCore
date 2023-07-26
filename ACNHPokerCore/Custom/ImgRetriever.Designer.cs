@@ -29,122 +29,133 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImgRetriever));
-            this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.yesBtn = new System.Windows.Forms.Button();
-            this.noBtn = new System.Windows.Forms.Button();
-            this.msg = new System.Windows.Forms.Label();
-            this.waitmsg = new System.Windows.Forms.Label();
-            this.configBtn = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            progressBar = new System.Windows.Forms.ProgressBar();
+            yesBtn = new System.Windows.Forms.Button();
+            noBtn = new System.Windows.Forms.Button();
+            msg = new System.Windows.Forms.Label();
+            waitmsg = new System.Windows.Forms.Label();
+            configBtn = new System.Windows.Forms.Button();
+            NowLoadingImage = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)NowLoadingImage).BeginInit();
+            SuspendLayout();
             // 
             // progressBar
             // 
-            this.progressBar.BackColor = System.Drawing.Color.Black;
-            this.progressBar.ForeColor = System.Drawing.Color.Pink;
-            this.progressBar.Location = new System.Drawing.Point(5, 131);
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(425, 25);
-            this.progressBar.TabIndex = 5;
-            this.progressBar.Visible = false;
+            progressBar.BackColor = System.Drawing.Color.Black;
+            progressBar.ForeColor = System.Drawing.Color.Pink;
+            progressBar.Location = new System.Drawing.Point(12, 127);
+            progressBar.Name = "progressBar";
+            progressBar.Size = new System.Drawing.Size(410, 20);
+            progressBar.TabIndex = 5;
             // 
             // yesBtn
             // 
-            this.yesBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.yesBtn.FlatAppearance.BorderSize = 0;
-            this.yesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.yesBtn.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.yesBtn.ForeColor = System.Drawing.Color.Transparent;
-            this.yesBtn.Location = new System.Drawing.Point(85, 81);
-            this.yesBtn.Name = "yesBtn";
-            this.yesBtn.Size = new System.Drawing.Size(116, 32);
-            this.yesBtn.TabIndex = 4;
-            this.yesBtn.Text = "Yes";
-            this.yesBtn.UseVisualStyleBackColor = false;
-            this.yesBtn.Click += new System.EventHandler(this.YesBtn_Click);
+            yesBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            yesBtn.FlatAppearance.BorderSize = 0;
+            yesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            yesBtn.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            yesBtn.ForeColor = System.Drawing.Color.Transparent;
+            yesBtn.Location = new System.Drawing.Point(85, 79);
+            yesBtn.Name = "yesBtn";
+            yesBtn.Size = new System.Drawing.Size(116, 32);
+            yesBtn.TabIndex = 4;
+            yesBtn.Text = "Yes";
+            yesBtn.UseVisualStyleBackColor = false;
+            yesBtn.Click += YesBtn_Click;
             // 
             // noBtn
             // 
-            this.noBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.noBtn.FlatAppearance.BorderSize = 0;
-            this.noBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.noBtn.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.noBtn.ForeColor = System.Drawing.Color.White;
-            this.noBtn.Location = new System.Drawing.Point(236, 81);
-            this.noBtn.Name = "noBtn";
-            this.noBtn.Size = new System.Drawing.Size(116, 32);
-            this.noBtn.TabIndex = 3;
-            this.noBtn.Text = "No";
-            this.noBtn.UseVisualStyleBackColor = false;
-            this.noBtn.Click += new System.EventHandler(this.NoBtn_Click);
+            noBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            noBtn.FlatAppearance.BorderSize = 0;
+            noBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            noBtn.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            noBtn.ForeColor = System.Drawing.Color.Transparent;
+            noBtn.Location = new System.Drawing.Point(236, 79);
+            noBtn.Name = "noBtn";
+            noBtn.Size = new System.Drawing.Size(116, 32);
+            noBtn.TabIndex = 3;
+            noBtn.Text = "No";
+            noBtn.UseVisualStyleBackColor = false;
+            noBtn.Click += NoBtn_Click;
             // 
             // msg
             // 
-            this.msg.AutoSize = true;
-            this.msg.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.msg.ForeColor = System.Drawing.Color.White;
-            this.msg.Location = new System.Drawing.Point(23, 9);
-            this.msg.Name = "msg";
-            this.msg.Size = new System.Drawing.Size(387, 57);
-            this.msg.TabIndex = 2;
-            this.msg.Text = "Would you like to download the item sprites now?\r\n\r\n(You can find this dialog in " +
-    "          again if needed)";
-            this.msg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            msg.AutoSize = true;
+            msg.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            msg.ForeColor = System.Drawing.Color.White;
+            msg.Location = new System.Drawing.Point(23, 9);
+            msg.Name = "msg";
+            msg.Size = new System.Drawing.Size(387, 57);
+            msg.TabIndex = 2;
+            msg.Text = "Would you like to download the item sprites now?\r\n\r\n(You can find this dialog in           again if needed.)";
+            msg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // waitmsg
             // 
-            this.waitmsg.AutoSize = true;
-            this.waitmsg.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.waitmsg.ForeColor = System.Drawing.Color.Pink;
-            this.waitmsg.Location = new System.Drawing.Point(16, 95);
-            this.waitmsg.Name = "waitmsg";
-            this.waitmsg.Size = new System.Drawing.Size(399, 96);
-            this.waitmsg.TabIndex = 1;
-            this.waitmsg.Text = resources.GetString("waitmsg.Text");
-            this.waitmsg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.waitmsg.Visible = false;
+            waitmsg.AutoSize = true;
+            waitmsg.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            waitmsg.ForeColor = System.Drawing.Color.White;
+            waitmsg.Location = new System.Drawing.Point(122, 95);
+            waitmsg.Name = "waitmsg";
+            waitmsg.Size = new System.Drawing.Size(213, 16);
+            waitmsg.TabIndex = 1;
+            waitmsg.Text = "Downloading Image Archive...";
+            waitmsg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            waitmsg.Visible = false;
             // 
             // configBtn
             // 
-            this.configBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.configBtn.FlatAppearance.BorderSize = 0;
-            this.configBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.configBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.configBtn.ForeColor = System.Drawing.Color.White;
-            this.configBtn.Image = global::ACNHPokerCore.Properties.Resources.gear;
-            this.configBtn.Location = new System.Drawing.Point(243, 43);
-            this.configBtn.Name = "configBtn";
-            this.configBtn.Size = new System.Drawing.Size(25, 25);
-            this.configBtn.TabIndex = 0;
-            this.configBtn.UseVisualStyleBackColor = false;
+            configBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            configBtn.FlatAppearance.BorderSize = 0;
+            configBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            configBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            configBtn.ForeColor = System.Drawing.Color.White;
+            configBtn.Image = Properties.Resources.gear;
+            configBtn.Location = new System.Drawing.Point(241, 43);
+            configBtn.Name = "configBtn";
+            configBtn.Size = new System.Drawing.Size(25, 25);
+            configBtn.TabIndex = 0;
+            configBtn.UseVisualStyleBackColor = false;
+            // 
+            // NowLoadingImage
+            // 
+            NowLoadingImage.Image = Properties.Resources.loading;
+            NowLoadingImage.Location = new System.Drawing.Point(92, 91);
+            NowLoadingImage.Name = "NowLoadingImage";
+            NowLoadingImage.Size = new System.Drawing.Size(24, 24);
+            NowLoadingImage.TabIndex = 6;
+            NowLoadingImage.TabStop = false;
+            NowLoadingImage.Visible = false;
             // 
             // ImgRetriever
             // 
-            this.AcceptButton = this.yesBtn;
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.CancelButton = this.noBtn;
-            this.ClientSize = new System.Drawing.Size(434, 196);
-            this.Controls.Add(this.configBtn);
-            this.Controls.Add(this.waitmsg);
-            this.Controls.Add(this.msg);
-            this.Controls.Add(this.noBtn);
-            this.Controls.Add(this.yesBtn);
-            this.Controls.Add(this.progressBar);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(450, 235);
-            this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(450, 235);
-            this.Name = "ImgRetriever";
-            this.Opacity = 0.95D;
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Golden Image Retriever";
-            this.TopMost = true;
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AcceptButton = yesBtn;
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            CancelButton = noBtn;
+            ClientSize = new System.Drawing.Size(434, 161);
+            Controls.Add(progressBar);
+            Controls.Add(configBtn);
+            Controls.Add(msg);
+            Controls.Add(noBtn);
+            Controls.Add(yesBtn);
+            Controls.Add(NowLoadingImage);
+            Controls.Add(waitmsg);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MaximumSize = new System.Drawing.Size(450, 255);
+            MinimizeBox = false;
+            MinimumSize = new System.Drawing.Size(450, 200);
+            Name = "ImgRetriever";
+            Opacity = 0.95D;
+            ShowInTaskbar = false;
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "Golden Image Retriever";
+            TopMost = true;
+            ((System.ComponentModel.ISupportInitialize)NowLoadingImage).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -155,5 +166,6 @@
         private System.Windows.Forms.Label msg;
         private System.Windows.Forms.Label waitmsg;
         private System.Windows.Forms.Button configBtn;
+        private System.Windows.Forms.PictureBox NowLoadingImage;
     }
 }

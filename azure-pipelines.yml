@@ -32,6 +32,6 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: ACNHPokerCore'
   inputs:
-    PathtoPublish: 'ACNHPokerCore\bin\Release\net5.0-windows'
+    PathtoPublish: 'ACNHPokerCore\bin\Release\net7.0-windows\win-x64'
     ArtifactName: ACNHPokerCore
   condition: succeededOrFailed()

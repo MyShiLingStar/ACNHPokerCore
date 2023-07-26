@@ -11,13 +11,13 @@ namespace ACNHPokerCore
 
     public class USBBot
     {
-        private static bool debug = false;
+        private static bool debugging;
         private const byte READPOINT = 129;
         private const byte WRITEPOINT = 1;
-        private static bool CorrectIDFound = false;
-        private static bool NormalIDFound = false;
+        private static bool CorrectIDFound;
+        private static bool NormalIDFound;
 
-        public static int MaximumTransferSize { get { return 468; } }
+        public static int MaximumTransferSize => 468;
 
         private static readonly Encoding Encoder = Encoding.UTF8;
         private static byte[] Encode(string command, bool addrn = true) => Encoder.GetBytes(addrn ? command + "\r\n" : command);
@@ -34,9 +34,9 @@ namespace ACNHPokerCore
 
         private MonoUsbSessionHandle context;
 
-        public USBBot(bool Debug)
+        public USBBot(bool Debugging)
         {
-            debug = Debug;
+            debugging = Debugging;
         }
         public bool Connect()
         {
@@ -52,14 +52,13 @@ namespace ACNHPokerCore
 
                 var sessionHandle = new MonoUsbSessionHandle();
                 var profileList = new MonoUsbProfileList();
-                MonoUsbDeviceHandle deviceHandle = null;
                 profileList.Refresh(sessionHandle);
 
                 List<MonoUsbProfile> usbList = profileList.GetList();
                 string deviceList = "";
+
                 foreach (MonoUsbProfile profile in usbList)
                 {
-                    deviceHandle = profile.OpenDeviceHandle();
                     string VendorID = profile.DeviceDescriptor.VendorID.ToString();
                     string ProductID = profile.DeviceDescriptor.ProductID.ToString();
                     if (VendorID.Equals("1406") && ProductID.Equals("12288"))
@@ -80,10 +79,8 @@ namespace ACNHPokerCore
 
                 profileList.Close();
                 sessionHandle.Close();
-                if (deviceHandle != null)
-                    deviceHandle.Close();
 
-                if (debug)
+                if (debugging)
                 {
                     if (deviceList.Equals(""))
                     {
@@ -194,7 +191,7 @@ namespace ACNHPokerCore
             return len;
         }
 
-        private int SendInternal(byte[] buffer)
+        private void SendInternal(byte[] buffer)
         {
             var handle = GetUsableAndOpenUsbHandle();
             if (handle == null)
@@ -202,14 +199,14 @@ namespace ACNHPokerCore
 
             uint pack = (uint)buffer.Length + 2;
             byte[] packed = BitConverter.GetBytes(pack);
-            var ec = MonoUsbApi.BulkTransfer(handle, WRITEPOINT, packed, packed.Length, out var _, 5000);
+            var ec = MonoUsbApi.BulkTransfer(handle, WRITEPOINT, packed, packed.Length, out _, 5000);
             if (ec != 0)
             {
                 string err = MonoUsbSessionHandle.LastErrorString;
                 CleanUpHandle(handle);
                 throw new Exception(err);
             }
-            ec = MonoUsbApi.BulkTransfer(handle, WRITEPOINT, buffer, buffer.Length, out var len, 5000);
+            ec = MonoUsbApi.BulkTransfer(handle, WRITEPOINT, buffer, buffer.Length, out _, 5000);
             if (ec != 0)
             {
                 string err = MonoUsbSessionHandle.LastErrorString;
@@ -218,7 +215,6 @@ namespace ACNHPokerCore
             }
 
             CleanUpHandle(handle);
-            return len;
         }
 
         public int Read(byte[] buffer)

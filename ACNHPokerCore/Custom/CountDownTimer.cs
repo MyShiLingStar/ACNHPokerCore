@@ -66,7 +66,7 @@ namespace ACNHPokerCore
         private void Init()
         {
             StepMs = 1000;
-            timer.Tick += new EventHandler(TimerTick);
+            timer.Tick += TimerTick;
         }
 
         public void SetTime(TimeSpan ts)

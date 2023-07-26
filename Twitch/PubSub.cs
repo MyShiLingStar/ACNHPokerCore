@@ -22,8 +22,8 @@ namespace Twitch
 
         private static TwitchBot MyTwitchBot;
 
-        private static DataTable itemSource = null;
-        private static DataTable recipeSource = null;
+        private static DataTable itemSource;
+        private static DataTable recipeSource;
         private static Dictionary<string, string> ItemDict;
         private static Dictionary<string, string> ReverseDict;
         private static Dictionary<string, string> ColorDict;
@@ -65,10 +65,10 @@ namespace Twitch
                 VillagerDict = CreateVillagerDictionary(); // Rname -> Iname
             }
 
-            connect().SafeFireAndForget();
+            Connect().SafeFireAndForget();
         }
 
-        private async Task connect()
+        private async Task Connect()
         {
             //Set up twitchlib pubsub
             MyPubSub = new TwitchPubSub();
@@ -161,11 +161,7 @@ namespace Twitch
                 {
                     //_logger.Information($"{e.Subscription.DisplayName} just subscribed (total of {cumulativeMonths} months)");
                 }
-                else
-                {
-                    //_logger.Information($"{e.Subscription.DisplayName} just subscribed");
-                }
-
+                //_logger.Information($"{e.Subscription.DisplayName} just subscribed");
             }
 
         }
@@ -176,26 +172,82 @@ namespace Twitch
 
         private void ListenToRewards(string channelId)
         {
+            MyPubSub.OnChannelPointsRewardRedeemed += MyPubSub_OnChannelPointsRewardRedeemed;
+            MyPubSub.ListenToChannelPoints(channelId);
+            /*
             MyPubSub.OnRewardRedeemed += PubSub_OnRewardRedeemed;
             MyPubSub.OnCustomRewardCreated += PubSub_OnCustomRewardCreated;
             MyPubSub.OnCustomRewardDeleted += PubSub_OnCustomRewardDeleted;
             MyPubSub.OnCustomRewardUpdated += PubSub_OnCustomRewardUpdated;
             MyPubSub.ListenToRewards(channelId);
+            */
         }
 
-        private void PubSub_OnCustomRewardUpdated(object sender, OnCustomRewardUpdatedArgs e)
+        private async void MyPubSub_OnChannelPointsRewardRedeemed(object sender, OnChannelPointsRewardRedeemedArgs e)
         {
-            WriteLog($"Reward {e.RewardTitle} \"{e.RewardId}\" has been updated", false);
-        }
+            string TimeStamp = e.RewardRedeemed.Redemption.RedeemedAt.ToString(CultureInfo.InvariantCulture);
+            string ChannelId = e.ChannelId;
+            string DisplayName = e.RewardRedeemed.Redemption.User.DisplayName;
+            string RewardTitle = e.RewardRedeemed.Redemption.Reward.Title;
+            string RewardId = e.RewardRedeemed.Redemption.Reward.Id;
+            string Message = e.RewardRedeemed.Redemption.UserInput;
 
-        private void PubSub_OnCustomRewardDeleted(object sender, OnCustomRewardDeletedArgs e)
-        {
-            WriteLog($"Reward {e.RewardTitle} \"{e.RewardId}\" has been removed", false);
-        }
+            Debug.Print($"{TimeStamp} {ChannelId} {DisplayName} {RewardTitle} {RewardId} : {Message}");
 
-        private void PubSub_OnCustomRewardCreated(object sender, OnCustomRewardCreatedArgs e)
-        {
-            WriteLog($"Reward {e.RewardTitle} \"{e.RewardId}\" has been created", false);
+            if (RewardId.Equals(DropItemRewardId)) // Drop item
+            {
+                if (Message == null)
+                {
+                    WriteLog($">>> Reward : \"{RewardTitle}\" is missing the \"Require Viewer to Enter Text\" setting! <<< ");
+                    return;
+                }
+
+                string name = "";
+                string num = "0";
+                string message = Message.Replace('’', '\'').Replace('`', '\'').Trim();
+                if (message.Contains(","))
+                {
+                    string[] temp = message.Split(',');
+                    if (temp.Length >= 2)
+                    {
+                        name = temp[0].Trim();
+                        num = temp[temp.Length - 1].Trim();
+                    }
+                }
+                else
+                {
+                    name = message;
+                }
+                await CheckAndAddItem(name, num, DisplayName);
+            }
+            else if (RewardId.Equals(DropRecipeRewardId)) // Drop recipe
+            {
+                if (Message == null)
+                {
+                    WriteLog($">>> Reward : \"{RewardTitle}\" is missing the \"Require Viewer to Enter Text\" setting! <<< ");
+                }
+                else
+                {
+                    string name = Message.Replace('’', '\'').Replace('`', '\'').Trim();
+                    await CheckAndAddRecipe(name, DisplayName);
+                }
+            }
+            else if (RewardId.Equals(InjectVillagerRewardId)) // Inject villager
+            {
+                if (Message == null)
+                {
+                    WriteLog($">>> Reward : \"{RewardTitle}\" is missing the \"Require Viewer to Enter Text\" setting! <<< ");
+                }
+                else
+                {
+                    string name = Message.Replace('’', '\'').Replace('é', 'e').Replace('É', 'E').Replace('[', ' ').Replace(']', ' ').Trim();
+                    await CheckAndAddVillager(name, DisplayName, Message);
+                }
+            }
+            else
+            {
+                WriteLog($"An unknown Reward : [{RewardTitle}] - \"{RewardId}\" has been redeemed.", true);
+            }
         }
 
         private async void PubSub_OnRewardRedeemed(object sender, OnRewardRedeemedArgs e)
@@ -217,8 +269,7 @@ namespace Twitch
             {
                 if (e.Message == null)
                 {
-                    WriteLog($">>> Reward : \"{e.RewardTitle}\" is missing the \"Require Viewer to Enter Text\" setting! <<< ", false);
-                    return;
+                    WriteLog($">>> Reward : \"{e.RewardTitle}\" is missing the \"Require Viewer to Enter Text\" setting! <<< ");
                 }
                 else
                 {
@@ -245,27 +296,23 @@ namespace Twitch
             {
                 if (e.Message == null)
                 {
-                    WriteLog($">>> Reward : \"{e.RewardTitle}\" is missing the \"Require Viewer to Enter Text\" setting! <<< ", false);
+                    WriteLog($">>> Reward : \"{e.RewardTitle}\" is missing the \"Require Viewer to Enter Text\" setting! <<< ");
                     return;
                 }
-                else
-                {
-                    string name = e.Message.Replace('’', '\'').Replace('`', '\'').Trim();
-                    await CheckAndAddRecipe(name, e.DisplayName);
-                }
+
+                string name = e.Message.Replace('’', '\'').Replace('`', '\'').Trim();
+                await CheckAndAddRecipe(name, e.DisplayName);
             }
             else if (e.RewardId.ToString().Equals(InjectVillagerRewardId)) // Inject villager
             {
                 if (e.Message == null)
                 {
-                    WriteLog($">>> Reward : \"{e.RewardTitle}\" is missing the \"Require Viewer to Enter Text\" setting! <<< ", false);
+                    WriteLog($">>> Reward : \"{e.RewardTitle}\" is missing the \"Require Viewer to Enter Text\" setting! <<< ");
                     return;
                 }
-                else
-                {
-                    string name = e.Message.Replace('’', '\'').Replace('é', 'e').Replace('É', 'E').Replace('[', ' ').Replace(']', ' ').Trim();
-                    await CheckAndAddVillager(name, e.DisplayName, e.Message);
-                }
+
+                string name = e.Message.Replace('’', '\'').Replace('é', 'e').Replace('É', 'E').Replace('[', ' ').Replace(']', ' ').Trim();
+                await CheckAndAddVillager(name, e.DisplayName, e.Message);
             }
         }
 
@@ -310,7 +357,7 @@ namespace Twitch
             }
 
             //-----------------------------------------------------------------
-            string matchName = "";
+            string matchName;
             string id = "";
             string color = "";
             if (ItemDict.ContainsKey(name.ToLower()) && otherColor == 0)            // exect name       exect name,[red]
@@ -321,7 +368,7 @@ namespace Twitch
                 {
                     DataRowView drv = dv[0];
                     matchName = drv["eng"].ToString();
-                    if (matchName.Contains("[!]"))
+                    if (matchName != null && matchName.Contains("[!]"))
                     {
                         await MyTwitchBot.SendMessage($"Sorry, the item \"{name}\" is invalid.");
                         return;
@@ -346,7 +393,7 @@ namespace Twitch
                     {
                         DataRowView drv = dv[0];
                         matchName = drv["eng"].ToString();
-                        if (matchName.Contains("[!]"))
+                        if (matchName != null && matchName.Contains("[!]"))
                         {
                             await MyTwitchBot.SendMessage($"Sorry, the item \"{name}\" is invalid.");
                             return;
@@ -357,7 +404,7 @@ namespace Twitch
                 }
 
 
-                if (id.Equals(string.Empty))
+                if (id != null && id.Equals(string.Empty))
                 {
                     DataView dv = new DataView(itemSource);
                     dv.RowFilter = string.Format("eng LIKE '%{0}%'", EscapeLikeValue(name));
@@ -367,26 +414,26 @@ namespace Twitch
 
                         if (ItemDict.ContainsKey(name.ToLower()))                   // exect name,[2]
                         {
-                            int StartRow = 9999;
-                            int EndRow = 0;
+                            int startRow = 9999;
+                            int endRow = 0;
                             for (int i = 0; i < dv.Count; i++)
                             {
-                                if (dv[i]["eng"].ToString().ToLower() == name.ToLower())
+                                if (dv[i]["eng"].ToString()?.ToLower() == name.ToLower())
                                 {
-                                    if (i < StartRow)
-                                        StartRow = i;
-                                    if (i > EndRow)
-                                        EndRow = i;
+                                    if (i < startRow)
+                                        startRow = i;
+                                    if (i > endRow)
+                                        endRow = i;
                                 }
                             }
 
-                            if (StartRow + otherColor <= EndRow)
+                            if (startRow + otherColor <= endRow)
                             {
-                                drv = dv[StartRow + otherColor];
+                                drv = dv[startRow + otherColor];
                             }
                             else
                             {
-                                drv = dv[EndRow];
+                                drv = dv[endRow];
                             }
 
                         }
@@ -402,7 +449,7 @@ namespace Twitch
                             }
                         }
                         matchName = drv["eng"].ToString();
-                        if (matchName.Contains("[!]"))
+                        if (matchName != null && matchName.Contains("[!]"))
                         {
                             await MyTwitchBot.SendMessage($"Sorry, the item \"{name}\" is invalid.");
                             return;
@@ -415,7 +462,7 @@ namespace Twitch
                         if (name.Contains("[") && name.Contains("]"))
                             await MyTwitchBot.SendMessage($"Sorry, I am unable to find an item with the name \"{name}\". Did you forget the comma \",\" before the Brackets \"[ ]\"?");
                         else if (name.Contains("poster") || name.Contains("photo"))
-                            await MyTwitchBot.SendMessage($"Sorry, I am unable to find an item with the name \"{name}\". Did you forget the comma \"\'s \" after the name?");
+                            await MyTwitchBot.SendMessage($"Sorry, I am unable to find an item with the name \"{name}\". Did you forget the \"\'s \" after the name?");
                         else if (name.Contains("0") || name.Contains("1") || name.Contains("2") || name.Contains("3") || name.Contains("4") || name.Contains("5") || name.Contains("6") || name.Contains("7") || name.Contains("8") || name.Contains("9"))
                             await MyTwitchBot.SendMessage($"Sorry, I am unable to find an item with the name \"{name}\". Did you forget the comma \",\" before the number?");
                         else
@@ -431,12 +478,11 @@ namespace Twitch
             Debug.Print($"id {id} | hexValue {hexValue} | color {color}");
 
 
-            if (!id.Equals(String.Empty))
+            if (id != null && !id.Equals(String.Empty))
             {
-                UInt16 itemId;
-                bool success = UInt16.TryParse(id, NumberStyles.HexNumber, CultureInfo.CurrentCulture, out itemId);
+                bool success = UInt16.TryParse(id, NumberStyles.HexNumber, CultureInfo.CurrentCulture, out _);
 
-                if (!color.Equals(string.Empty))
+                if (color != null && !color.Equals(string.Empty))
                 {
                     if (ReverseDict.ContainsKey(id))
                         await MyTwitchBot.SendMessage($"{displayName}, your order of \"{ReverseDict[id]}\" ({color}) have been received!");
@@ -474,18 +520,18 @@ namespace Twitch
                     image = Image.FromFile(path);
                 */
 
-                AddItem(displayName, id, hexValue, ReverseDict[id], color, null);
+                AddItem(displayName, id, hexValue, ReverseDict[id], color);
             }
         }
 
         public static async Task CheckAndAddRecipe(string name, string displayName)
         {
-            string ItemId = "16A2";
+            const string ItemId = "16A2";
 
-            string RecipeId = "";
+            string recipeId;
             if (RecipeDict.ContainsKey(name.ToLower()))
             {
-                RecipeId = RecipeDict[name.ToLower()];
+                recipeId = RecipeDict[name.ToLower()];
             }
             else
             {
@@ -495,7 +541,7 @@ namespace Twitch
                 {
                     DataRowView drv;
                     drv = dv[0];
-                    RecipeId = drv["id"].ToString();
+                    recipeId = drv["id"].ToString();
                 }
                 else
                 {
@@ -504,25 +550,25 @@ namespace Twitch
                 }
             }
 
-            Debug.Print($"ItemId {ItemId} | hexValue {RecipeId}");
+            Debug.Print($"ItemId {ItemId} | hexValue {recipeId}");
 
-            if (!RecipeId.Equals(String.Empty))
+            if (recipeId != null && !recipeId.Equals(String.Empty))
             {
-                if (RecipeDict.ContainsKey(RecipeId))
-                    await MyTwitchBot.SendMessage($"{displayName}, your order of \"{RecipeDict[RecipeId]} recipe\" have been received!");
+                if (RecipeDict.ContainsKey(recipeId))
+                    await MyTwitchBot.SendMessage($"{displayName}, your order of \"{RecipeDict[recipeId]} recipe\" have been received!");
                 else
                     await MyTwitchBot.SendMessage($"{displayName}, your order of recipe have been received!");
 
-                if (RecipeDict.ContainsKey(RecipeId))
-                    WriteLog($"{displayName} | {RecipeDict[RecipeId]} recipe | {RecipeId} ", true);
+                if (RecipeDict.ContainsKey(recipeId))
+                    WriteLog($"{displayName} | {RecipeDict[recipeId]} recipe | {recipeId} ", true);
                 else
-                    WriteLog($"{displayName} | {RecipeId}", true);
+                    WriteLog($"{displayName} | {recipeId}", true);
 
-                AddItem(displayName, ItemId, RecipeId, RecipeDict[RecipeId] + " recipe", "");
+                AddItem(displayName, ItemId, recipeId, RecipeDict[recipeId] + " recipe", "");
             }
         }
 
-        private async Task CheckAndAddVillager(string name, string displayName, string userInput)
+        public static async Task CheckAndAddVillager(string name, string displayName, string userInput)
         {
             if (VillagerDict.ContainsKey(name.ToLower()))
             {
@@ -530,7 +576,7 @@ namespace Twitch
 
                 if (Iname.Equals("cbr18") || Iname.Equals("der10") || Iname.Equals("elp11") || Iname.Equals("gor11") || Iname.Equals("rbt20") || Iname.Equals("shp14"))
                 {
-                    await MyTwitchBot.SendMessage($"Sorry, but Sanrio Villagers require special care. Talk to the streamer if you really want them.");
+                    await MyTwitchBot.SendMessage("Sorry, but Sanrio Villagers require special care. Talk to the streamer if you really want them.");
                     return;
                 }
 
@@ -549,16 +595,15 @@ namespace Twitch
                 await MyTwitchBot.SendMessage($"{displayName}, villager \"{name}\" is now packing up. Please wait for the confirmation before flying in.");
                 WriteLog($"{displayName} | {Iname} | {Rname} ", true);
 
-                AddVillager(displayName, Iname, Rname, null);
+                AddVillager(displayName, Iname, Rname);
             }
             else
             {
                 await MyTwitchBot.SendMessage($"Sorry, I am unable to find a villager with the name \"{userInput}\". Are you sure you are using the correct \"English\" name?");
-                return;
             }
         }
 
-        public static string EscapeLikeValue(string valueWithoutWildcards)
+        private static string EscapeLikeValue(string valueWithoutWildcards)
         {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < valueWithoutWildcards.Length; i++)
@@ -589,7 +634,7 @@ namespace Twitch
                 .ForEach(line => dt.Rows.Add(line));
 
             if (dt.Columns.Contains("id"))
-                dt.PrimaryKey = new DataColumn[1] { dt.Columns["id"] };
+                dt.PrimaryKey = new[] { dt.Columns["id"] };
 
             return dt;
         }
@@ -701,229 +746,6 @@ namespace Twitch
 
         #endregion
 
-        /*
-        #region Outgoing Raid Events
-
-        private void ListenToRaid(string channelId)
-        {
-            MyPubSub.OnRaidUpdate += PubSub_OnRaidUpdate;
-            MyPubSub.OnRaidUpdateV2 += PubSub_OnRaidUpdateV2;
-            MyPubSub.OnRaidGo += PubSub_OnRaidGo;
-            MyPubSub.ListenToRaid(channelId);
-        }
-
-        private void PubSub_OnRaidGo(object sender, OnRaidGoArgs e)
-        {
-            _logger.Information($"Execute raid for {e.TargetDisplayName}");
-        }
-
-        private void PubSub_OnRaidUpdateV2(object sender, OnRaidUpdateV2Args e)
-        {
-            _logger.Information($"Started raid to {e.TargetDisplayName} with {e.ViewerCount} viewers");
-        }
-
-        private void PubSub_OnRaidUpdate(object sender, OnRaidUpdateArgs e)
-        {
-            _logger.Information($"Started Raid to {e.TargetChannelId} with {e.ViewerCount} viewers will start in {e.RemainingDurationSeconds} seconds");
-        }
-
-        #endregion
-
-        #region Prediction Events
-
-        private void ListenToPredictions(string channelId)
-        {
-            MyPubSub.OnPrediction += PubSub_OnPrediction;
-            MyPubSub.ListenToPredictions(channelId);
-        }
-
-        private void PubSub_OnPrediction(object sender, OnPredictionArgs e)
-        {
-            //if (e.Type == PredictionType.EventCreated)
-            {
-                _logger.Information($"A new prediction has started: {e.Title}");
-            }
-
-            //if (e.Type == PredictionType.EventUpdated)
-            {
-                if (e.Status == PredictionStatus.Active)
-                {
-                    var winningOutcome = e.Outcomes.First(x => e.WinningOutcomeId.Equals(x.Id));
-                    _logger.Information($"Prediction: {e.Status}, {e.Title} => winning: {winningOutcome.Title}({winningOutcome.TotalPoints} points by {winningOutcome.TotalUsers} users)");
-                }
-
-                if (e.Status == PredictionStatus.Resolved)
-                {
-                    var winningOutcome = e.Outcomes.First(x => e.WinningOutcomeId.Equals(x.Id));
-                    _logger.Information($"Prediction: {e.Status}, {e.Title} => Won: {winningOutcome.Title}({winningOutcome.TotalPoints} points by {winningOutcome.TotalUsers} users)");
-                }
-            }
-        }
-
-        #endregion
-
-        #region Leaderboard Events
-
-        private void ListenToLeaderboards(string channelId)
-        {
-            MyPubSub.OnLeaderboardBits += PubSub_OnLeaderboardBits;
-            MyPubSub.OnLeaderboardSubs += PubSub_OnLeaderboardSubs;
-            MyPubSub.ListenToLeaderboards(channelId);
-        }
-
-        private void PubSub_OnLeaderboardSubs(object sender, OnLeaderboardEventArgs e)
-        {
-            _logger.Information($"Gifted Subs leader board");
-            foreach (LeaderBoard leaderBoard in e.TopList)
-            {
-                _logger.Information($"{leaderBoard.Place}) {leaderBoard.UserId} ({leaderBoard.Score})");
-            }
-        }
-
-        private void PubSub_OnLeaderboardBits(object sender, OnLeaderboardEventArgs e)
-        {
-            _logger.Information($"Bits leader board");
-            foreach (LeaderBoard leaderBoard in e.TopList)
-            {
-                _logger.Information($"{leaderBoard.Place}) {leaderBoard.UserId} ({leaderBoard.Score})");
-            }
-        }
-
-        #endregion
-
-        #region Follow Events
-
-        private void ListenToFollows(string channelId)
-        {
-            MyPubSub.OnFollow += PubSub_OnFollow;
-            MyPubSub.ListenToFollows(channelId);
-        }
-
-        private void PubSub_OnFollow(object sender, OnFollowArgs e)
-        {
-            _logger.Information($"{e.Username} is now following");
-        }
-
-        #endregion
-
-        #region Commerce Events
-
-        private void ListenToCommerce(string channelId)
-        {
-            MyPubSub.OnChannelCommerceReceived += PubSub_OnChannelCommerceReceived;
-            MyPubSub.ListenToCommerce(channelId);
-        }
-
-        private void PubSub_OnChannelCommerceReceived(object sender, OnChannelCommerceReceivedArgs e)
-        {
-            _logger.Information($"{e.ItemDescription} => {e.Username}: {e.PurchaseMessage} ");
-        }
-
-        #endregion
-
-        #region Moderator Events
-
-        private void ListenToChatModeratorActions(string myTwitchId, string channelId)
-        {
-            MyPubSub.OnTimeout += PubSub_OnTimeout;
-            MyPubSub.OnBan += PubSub_OnBan;
-            MyPubSub.OnMessageDeleted += PubSub_OnMessageDeleted;
-            MyPubSub.OnUnban += PubSub_OnUnban;
-            MyPubSub.OnUntimeout += PubSub_OnUntimeout;
-            MyPubSub.OnHost += PubSub_OnHost;
-            MyPubSub.OnSubscribersOnly += PubSub_OnSubscribersOnly;
-            MyPubSub.OnSubscribersOnlyOff += PubSub_OnSubscribersOnlyOff;
-            MyPubSub.OnClear += PubSub_OnClear;
-            MyPubSub.OnEmoteOnly += PubSub_OnEmoteOnly;
-            MyPubSub.OnEmoteOnlyOff += PubSub_OnEmoteOnlyOff;
-            MyPubSub.OnR9kBeta += PubSub_OnR9kBeta;
-            MyPubSub.OnR9kBetaOff += PubSub_OnR9kBetaOff;
-            MyPubSub.ListenToChatModeratorActions(myTwitchId, channelId);
-        }
-
-        private void PubSub_OnR9kBetaOff(object sender, OnR9kBetaOffArgs e)
-        {
-            _logger.Information($"{e.Moderator} disabled R9K mode");
-        }
-
-        private void PubSub_OnR9kBeta(object sender, OnR9kBetaArgs e)
-        {
-            _logger.Information($"{e.Moderator} enabled R9K mode");
-        }
-
-        private void PubSub_OnEmoteOnlyOff(object sender, OnEmoteOnlyOffArgs e)
-        {
-            _logger.Information($"{e.Moderator} disabled emote only mode");
-        }
-
-        private void PubSub_OnEmoteOnly(object sender, OnEmoteOnlyArgs e)
-        {
-            _logger.Information($"{e.Moderator} enabled emote only mode");
-        }
-
-        private void PubSub_OnClear(object sender, OnClearArgs e)
-        {
-            _logger.Information($"{e.Moderator} cleared the chat");
-        }
-
-        private void PubSub_OnSubscribersOnlyOff(object sender, OnSubscribersOnlyOffArgs e)
-        {
-            _logger.Information($"{e.Moderator} disabled subscriber only mode");
-        }
-
-        private void PubSub_OnSubscribersOnly(object sender, OnSubscribersOnlyArgs e)
-        {
-            _logger.Information($"{e.Moderator} enabled subscriber only mode");
-        }
-
-        private void PubSub_OnHost(object sender, OnHostArgs e)
-        {
-            _logger.Information($"{e.Moderator} started host to {e.HostedChannel}");
-        }
-
-        private void PubSub_OnUntimeout(object sender, OnUntimeoutArgs e)
-        {
-            _logger.Information($"{e.UntimeoutedUser} undid the timeout of {e.UntimeoutedUser}");
-        }
-
-        private void PubSub_OnUnban(object sender, OnUnbanArgs e)
-        {
-            _logger.Information($"{e.UnbannedBy} unbanned {e.UnbannedUser}");
-        }
-
-        private void PubSub_OnMessageDeleted(object sender, OnMessageDeletedArgs e)
-        {
-            _logger.Information($"{e.DeletedBy} deleted the message \"{e.Message}\" from {e.TargetUser}");
-        }
-
-        private void PubSub_OnBan(object sender, OnBanArgs e)
-        {
-            _logger.Information($"{e.BannedBy} banned {e.BannedUser} ({e.BanReason})");
-        }
-
-        private void PubSub_OnTimeout(object sender, OnTimeoutArgs e)
-        {
-            _logger.Information($"{e.TimedoutBy} timed out {e.TimedoutUser} ({e.TimeoutReason}) for {e.TimeoutDuration.Seconds} seconds");
-        }
-
-        #endregion
-
-        #region Bits Events
-
-        private void ListenToBits(string channelId)
-        {
-            MyPubSub.OnBitsReceived += PubSub_OnBitsReceived;
-            MyPubSub.ListenToBitsEvents(channelId);
-        }
-
-        private void PubSub_OnBitsReceived(object sender, OnBitsReceivedArgs e)
-        {
-            _logger.Information($"{e.Username} trowed {e.TotalBitsUsed} bits");
-        }
-
-        #endregion
-        */
-
         #region Pubsub events
 
         private void OnPubSubServiceError(object sender, OnPubSubServiceErrorArgs e)
@@ -933,12 +755,12 @@ namespace Twitch
 
         private void OnPubSubServiceClosed(object sender, EventArgs e)
         {
-            Debug.Print($"Connection closed to pubsub server");
+            Debug.Print("Connection closed to pubsub server");
         }
 
         private void OnPubSubServiceConnected(object sender, EventArgs e)
         {
-            WriteLog($"Connected to Twitch pubsub server", true);
+            WriteLog("Connected to Twitch pubsub server", true);
             MyPubSub.SendTopics(accessToken);
         }
 
@@ -964,7 +786,7 @@ namespace Twitch
                 if (time)
                 {
                     DateTime localDate = DateTime.Now;
-                    LogBox.AppendText(localDate.ToString() + " : " + line + "\n");
+                    LogBox.AppendText(localDate + " : " + line + "\n");
                 }
                 else
                     LogBox.AppendText(line + "\n");
@@ -973,7 +795,7 @@ namespace Twitch
 
         public static void AddItem(string Owner, string Id, string Count, string Name, string Color, Image Image = null)
         {
-            DropOrderList.Add(new ItemOrder() { Owner = Owner, Id = Id, Count = Count, Name = Name, Color = Color, Image = Image });
+            DropOrderList.Add(new ItemOrder { Owner = Owner, Id = Id, Count = Count, Name = Name, Color = Color, Image = Image });
 
             /*
             if (itemDisplay != null && Image != null)
@@ -985,7 +807,7 @@ namespace Twitch
 
         public static void AddVillager(string Owner, string Iname, string Rname, Image Image = null)
         {
-            VillagerOrderList.Add(new VillagerOrder() { Owner = Owner, InternalName = Iname, RealName = Rname, Image = Image });
+            VillagerOrderList.Add(new VillagerOrder { Owner = Owner, InternalName = Iname, RealName = Rname, Image = Image });
 
             Debug.Print($"{Owner} - Villager Added : {Rname} [{Iname}] ");
         }

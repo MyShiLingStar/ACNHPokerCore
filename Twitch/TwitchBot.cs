@@ -24,13 +24,12 @@ namespace Twitch
         public event TwitchChatEventHandler OnMessage = delegate { };
         public delegate void TwitchChatEventHandler(object sender, TwitchChatMessage e);
 
-        private string AllowCommand;
         private string DropItemCommand;
         private string DropRecipeCommand;
 
         private bool commandMode;
 
-        private bool stop = false;
+        private bool stop;
 
         public static string csvFolder = @"csv\";
         public static string itemFile = @"items.csv";
@@ -51,11 +50,11 @@ namespace Twitch
 
         public TwitchBot(string TwitchBotUserName, string TwitchBotOauth, string TwitchChannelName)
         {
-            AllowCommand = GetJsonSetting(TwitchSettingPath, "AllowCommand");
+            var allowCommand = GetJsonSetting(TwitchSettingPath, "AllowCommand");
             DropItemCommand = GetJsonSetting(TwitchSettingPath, "DropItemCommand");
             DropRecipeCommand = GetJsonSetting(TwitchSettingPath, "DropRecipeCommand");
 
-            if (AllowCommand.ToLower().Equals("true"))
+            if (allowCommand.ToLower().Equals("true"))
             {
                 commandMode = true;
             }
@@ -77,7 +76,7 @@ namespace Twitch
             else
                 await SendMessage(channel, "Chat bot has started up!");
 
-            OnMessage += async (sender, twitchChatMessage) =>
+            OnMessage += async (_, twitchChatMessage) =>
             {
                 //Console.WriteLine($"{twitchChatMessage.Sender} said '{twitchChatMessage.Message}'");
                 //Listen for !hey command
@@ -93,32 +92,45 @@ namespace Twitch
                     {
                         message = twitchChatMessage.Message.Replace(DropItemCommand, "").Replace('’', '\'').Trim();
                         //Console.WriteLine(message);
-
-                        string name = "";
-                        string num = "0";
-
-                        if (message.Contains(","))
+                        if (message.Equals(string.Empty))
                         {
-                            string[] temp = message.Split(',');
-                            if (temp.Length >= 2)
-                            {
-                                name = temp[0].Trim();
-                                num = temp[temp.Length - 1].Trim();
-                            }
+                            await SendMessage(twitchChatMessage.Channel, $"Hey {twitchChatMessage.Sender}, you miss the item name!");
                         }
                         else
                         {
-                            name = message;
-                        }
+                            string name = "";
+                            string num = "0";
 
-                        await PubSub.CheckAndAddItem(name, num, twitchChatMessage.Sender);
+                            if (message.Contains(","))
+                            {
+                                string[] temp = message.Split(',');
+                                if (temp.Length >= 2)
+                                {
+                                    name = temp[0].Trim();
+                                    num = temp[temp.Length - 1].Trim();
+                                }
+                            }
+                            else
+                            {
+                                name = message;
+                            }
+
+                            await PubSub.CheckAndAddItem(name, num, twitchChatMessage.Sender);
+                        }
                     }
                     else if (twitchChatMessage.Message.StartsWith(DropRecipeCommand))
                     {
                         message = twitchChatMessage.Message.Replace(DropRecipeCommand, "").Replace('’', '\'').Trim();
                         //Console.WriteLine(message);
 
-                        await PubSub.CheckAndAddRecipe(message, twitchChatMessage.Sender);
+                        if (message.Equals(string.Empty))
+                        {
+                            await SendMessage(twitchChatMessage.Channel, $"Hey {twitchChatMessage.Sender}, you miss the recipe name!");
+                        }
+                        else
+                        {
+                            await PubSub.CheckAndAddRecipe(message, twitchChatMessage.Sender);
+                        }
                     }
                 }
             };
@@ -162,7 +174,7 @@ namespace Twitch
                     //:mytwitchchannel!mytwitchchannel@mytwitchchannel.tmi.twitch.tv 
                     // ^^^^^^^^
                     //Grab this name here
-                    int exclamationPointPosition = split[0].IndexOf("!");
+                    int exclamationPointPosition = split[0].IndexOf("!", StringComparison.Ordinal);
                     string username = split[0].Substring(1, exclamationPointPosition - 1);
                     //Skip the first character, the first colon, then find the next colon
                     int secondColonPosition = line.IndexOf(':', 1);//the 1 here is what skips the first character
@@ -212,8 +224,7 @@ namespace Twitch
             var value = o.SelectToken(key);
             if (value == null)
                 return string.Empty;
-            else
-                return value.ToString();
+            return value.ToString();
         }
     }
 }

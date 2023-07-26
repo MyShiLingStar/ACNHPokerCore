@@ -29,7670 +29,5464 @@ namespace ACNHPokerCore
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             AutocompleteMenuNS.AutocompleteMenu VillagerAutoCompleteMenu;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            this.IPAddressInputBox = new System.Windows.Forms.RichTextBox();
-            this.ItemSearchBox = new System.Windows.Forms.RichTextBox();
-            this.AmountOrCountTextbox = new System.Windows.Forms.RichTextBox();
-            this.IDTextbox = new System.Windows.Forms.RichTextBox();
-            this.FlowerValueTextbox = new System.Windows.Forms.RichTextBox();
-            this.FlowerIDTextbox = new System.Windows.Forms.RichTextBox();
-            this.RecipeIDTextbox = new System.Windows.Forms.RichTextBox();
-            this.MinuteTextbox = new System.Windows.Forms.RichTextBox();
-            this.HourTextbox = new System.Windows.Forms.RichTextBox();
-            this.DayTextbox = new System.Windows.Forms.RichTextBox();
-            this.MonthTextbox = new System.Windows.Forms.RichTextBox();
-            this.YearTextbox = new System.Windows.Forms.RichTextBox();
-            this.WeatherSeedTextbox = new System.Windows.Forms.RichTextBox();
-            this.turnipSell6PM = new System.Windows.Forms.RichTextBox();
-            this.turnipSell5PM = new System.Windows.Forms.RichTextBox();
-            this.turnipSell4PM = new System.Windows.Forms.RichTextBox();
-            this.turnipSell3PM = new System.Windows.Forms.RichTextBox();
-            this.turnipSell2PM = new System.Windows.Forms.RichTextBox();
-            this.turnipSell1PM = new System.Windows.Forms.RichTextBox();
-            this.turnipSell6AM = new System.Windows.Forms.RichTextBox();
-            this.turnipSell5AM = new System.Windows.Forms.RichTextBox();
-            this.turnipSell4AM = new System.Windows.Forms.RichTextBox();
-            this.turnipSell3AM = new System.Windows.Forms.RichTextBox();
-            this.turnipSell2AM = new System.Windows.Forms.RichTextBox();
-            this.turnipBuyPrice = new System.Windows.Forms.RichTextBox();
-            this.turnipSell1AM = new System.Windows.Forms.RichTextBox();
-            this.CritterSearchBox = new System.Windows.Forms.RichTextBox();
-            this.VillagerNowLoadingLongMessage = new System.Windows.Forms.RichTextBox();
-            this.VillagerHouseIndex = new System.Windows.Forms.RichTextBox();
-            this.VillagerFriendship = new System.Windows.Forms.RichTextBox();
-            this.VillagerIndex = new System.Windows.Forms.RichTextBox();
-            this.VillagerPersonality = new System.Windows.Forms.RichTextBox();
-            this.VillagerIName = new System.Windows.Forms.RichTextBox();
-            this.VillagerName = new System.Windows.Forms.RichTextBox();
-            this.VillagerHeader = new System.Windows.Forms.RichTextBox();
-            this.VillagerForceMoveoutFlag = new System.Windows.Forms.RichTextBox();
-            this.VillagerAbandonedHouseFlag = new System.Windows.Forms.RichTextBox();
-            this.VillagerMoveInFlag = new System.Windows.Forms.RichTextBox();
-            this.ReplaceMysVilllagerSearchBox = new System.Windows.Forms.RichTextBox();
-            this.VillagerCatchphrase = new System.Windows.Forms.RichTextBox();
-            this.ReplaceVilllagerSearchBox = new System.Windows.Forms.RichTextBox();
-            this.DebugAddress = new System.Windows.Forms.RichTextBox();
-            this.DebugValue = new System.Windows.Forms.RichTextBox();
-            this.PeekResult1 = new System.Windows.Forms.RichTextBox();
-            this.PeekResult2 = new System.Windows.Forms.RichTextBox();
-            this.PeekResult4 = new System.Windows.Forms.RichTextBox();
-            this.PeekResult3 = new System.Windows.Forms.RichTextBox();
-            this.FullPeekResult1 = new System.Windows.Forms.RichTextBox();
-            this.FullPeekResult2 = new System.Windows.Forms.RichTextBox();
-            this.FullPeekResult3 = new System.Windows.Forms.RichTextBox();
-            this.FullPeekResult4 = new System.Windows.Forms.RichTextBox();
-            this.FullPeekResult5 = new System.Windows.Forms.RichTextBox();
-            this.StartConnectionButton = new System.Windows.Forms.Button();
-            this.USBConnectionButton = new System.Windows.Forms.Button();
-            this.MapDropperButton = new System.Windows.Forms.Button();
-            this.RegeneratorButton = new System.Windows.Forms.Button();
-            this.BulldozerButton = new System.Windows.Forms.Button();
-            this.FreezerButton = new System.Windows.Forms.Button();
-            this.DodoHelperButton = new System.Windows.Forms.Button();
-            this.PlayerInventorySelector = new System.Windows.Forms.ComboBox();
-            this.SaveNHIButton = new System.Windows.Forms.Button();
-            this.LoadNHIButton = new System.Windows.Forms.Button();
-            this.RefreshButton = new System.Windows.Forms.Button();
-            this.InventoryAutoRefreshToggle = new JCS.ToggleSwitch();
-            this.AutoRefreshLabel = new System.Windows.Forms.Label();
-            this.LanguageSelector = new System.Windows.Forms.ComboBox();
-            this.AlwaysOnControl = new System.Windows.Forms.Panel();
-            this.EasterEggButton = new System.Windows.Forms.Button();
-            this.SettingButton = new System.Windows.Forms.Button();
-            this.IPAddressInputBackground = new System.Windows.Forms.PictureBox();
-            this.VillagerTabButton = new System.Windows.Forms.Button();
-            this.CritterTabButton = new System.Windows.Forms.Button();
-            this.OtherTabButton = new System.Windows.Forms.Button();
-            this.InventoryTabButton = new System.Windows.Forms.Button();
-            this.InventoryLargePanel = new System.Windows.Forms.Panel();
-            this.ChasingAddressLabel = new System.Windows.Forms.Label();
-            this.ChaseBtn = new System.Windows.Forms.Button();
-            this.StarFragmentToggle = new JCS.ToggleSwitch();
-            this.AutoRefillLabel = new System.Windows.Forms.Label();
-            this.AutoRefill = new JCS.ToggleSwitch();
-            this.chatButton = new System.Windows.Forms.Button();
-            this.RoadRollerButton = new System.Windows.Forms.Button();
-            this.UnhideButton = new System.Windows.Forms.Button();
-            this.ConvertToCheat = new System.Windows.Forms.Button();
-            this.SelectedItemName = new System.Windows.Forms.Label();
-            this.VersionButton = new System.Windows.Forms.Button();
-            this.CheckStateButton = new System.Windows.Forms.Button();
-            this.RetainNameToggle = new JCS.ToggleSwitch();
-            this.RetainNameLabel = new System.Windows.Forms.Label();
-            this.PaginationPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.NextButton = new System.Windows.Forms.Button();
-            this.FastNextButton = new System.Windows.Forms.Button();
-            this.PageLabel = new System.Windows.Forms.Label();
-            this.FastBackButton = new System.Windows.Forms.Button();
-            this.BackButton = new System.Windows.Forms.Button();
-            this.WrapSelector = new System.Windows.Forms.ComboBox();
-            this.ClearAllButton = new System.Windows.Forms.Button();
-            this.WrappingLabel = new System.Windows.Forms.Label();
-            this.selectedFlag2 = new System.Windows.Forms.Label();
-            this.selectedFlag1 = new System.Windows.Forms.Label();
-            this.selectedData = new System.Windows.Forms.Label();
-            this.selectedID = new System.Windows.Forms.Label();
-            this.LoadingPanel = new System.Windows.Forms.Panel();
-            this.NowLoadingMessage = new System.Windows.Forms.Label();
-            this.NowLoadingImage = new System.Windows.Forms.PictureBox();
-            this.ModeButtonPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.FavoriteModeButton = new System.Windows.Forms.Button();
-            this.FlowerModeButton = new System.Windows.Forms.Button();
-            this.RecipeModeButton = new System.Windows.Forms.Button();
-            this.ItemModeButton = new System.Windows.Forms.Button();
-            this.VariationButton = new System.Windows.Forms.Button();
-            this.SelectedItem = new ACNHPokerCore.inventorySlot();
-            this.InventoryPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.inventorySlot40 = new ACNHPokerCore.inventorySlot();
-            this.ItemRightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.copyItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.wrapItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.wrapAllItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addToFavoriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.unwrapAllItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.inventorySlot39 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot38 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot37 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot36 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot35 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot34 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot33 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot32 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot31 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot30 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot29 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot28 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot27 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot26 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot25 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot24 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot23 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot22 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot21 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot20 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot19 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot18 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot17 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot16 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot15 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot14 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot13 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot12 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot11 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot10 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot9 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot8 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot7 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot6 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot5 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot4 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot3 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot2 = new ACNHPokerCore.inventorySlot();
-            this.inventorySlot1 = new ACNHPokerCore.inventorySlot();
-            this.ItemGridView = new System.Windows.Forms.DataGridView();
-            this.FavGridView = new System.Windows.Forms.DataGridView();
-            this.FavGridRightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deletedSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.RecipeGridView = new System.Windows.Forms.DataGridView();
-            this.FlowerGridView = new System.Windows.Forms.DataGridView();
-            this.ItemModePanel = new System.Windows.Forms.Panel();
-            this.WallMountMsg = new System.Windows.Forms.Label();
-            this.GenePanel = new System.Windows.Forms.Panel();
-            this.FlowerGeneS = new System.Windows.Forms.ComboBox();
-            this.FlowerGeneW = new System.Windows.Forms.ComboBox();
-            this.FlowerGeneY = new System.Windows.Forms.ComboBox();
-            this.FlowerGeneR = new System.Windows.Forms.ComboBox();
-            this.SpawnAllButton = new System.Windows.Forms.Button();
-            this.FillRemainButton = new System.Windows.Forms.Button();
-            this.AmountOrCountLabel = new System.Windows.Forms.Label();
-            this.ItemIDLabel = new System.Windows.Forms.Label();
-            this.HexModeButton = new System.Windows.Forms.Button();
-            this.FlowerModePanel = new System.Windows.Forms.Panel();
-            this.FlowerIDLabel = new System.Windows.Forms.Label();
-            this.RecipeModePanel = new System.Windows.Forms.Panel();
-            this.RecipeIDLabel = new System.Windows.Forms.Label();
-            this.AlwaysOnTab = new System.Windows.Forms.Panel();
-            this.InventoryRefreshTimer = new System.Windows.Forms.Timer(this.components);
-            this.AutoRefillTimer = new System.Windows.Forms.Timer(this.components);
-            this.ButtonToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.OtherLargePanel = new System.Windows.Forms.Panel();
-            this.TimeAndWeatherPanel = new System.Windows.Forms.Panel();
-            this.DateAndTimeControlPanel = new System.Windows.Forms.Panel();
-            this.Minus1HourButton = new System.Windows.Forms.Button();
-            this.Add1HourButton = new System.Windows.Forms.Button();
-            this.SetDateAndTimeButton = new System.Windows.Forms.Button();
-            this.MinuteLabel = new System.Windows.Forms.Label();
-            this.HourLabel = new System.Windows.Forms.Label();
-            this.DayLabel = new System.Windows.Forms.Label();
-            this.MonthLabel = new System.Windows.Forms.Label();
-            this.YearLabel = new System.Windows.Forms.Label();
-            this.UnFreezeTimeButton = new System.Windows.Forms.Button();
-            this.FreezeTimeLabel = new System.Windows.Forms.Label();
-            this.FreezeTimeButton = new System.Windows.Forms.Button();
-            this.WeatherSeedLabel = new System.Windows.Forms.Label();
-            this.CheatPanel = new System.Windows.Forms.Panel();
-            this.FastSwimToggle = new JCS.ToggleSwitch();
-            this.SwimClubModeLabel = new System.Windows.Forms.Label();
-            this.DisableCollisionToggle = new JCS.ToggleSwitch();
-            this.animationSpeedx1 = new System.Windows.Forms.Button();
-            this.animationSpeedx0_1 = new System.Windows.Forms.Button();
-            this.animationSpeedx2 = new System.Windows.Forms.Button();
-            this.animationSpeedx5 = new System.Windows.Forms.Button();
-            this.animationSpeedx50 = new System.Windows.Forms.Button();
-            this.maxSpeedX1Btn = new System.Windows.Forms.Button();
-            this.maxSpeedX2Btn = new System.Windows.Forms.Button();
-            this.maxSpeedX3Btn = new System.Windows.Forms.Button();
-            this.maxSpeedX5Btn = new System.Windows.Forms.Button();
-            this.maxSpeedX100Btn = new System.Windows.Forms.Button();
-            this.PoopButton = new System.Windows.Forms.Button();
-            this.EatButton = new System.Windows.Forms.Button();
-            this.AnimationSpeedLabel = new System.Windows.Forms.Label();
-            this.DisableCollisionLabel = new System.Windows.Forms.Label();
-            this.MaxWalkSpeedLabel = new System.Windows.Forms.Label();
-            this.StaminaLabel = new System.Windows.Forms.Label();
-            this.ReactionPanel = new System.Windows.Forms.Panel();
-            this.SetReactionWheelButton = new System.Windows.Forms.Button();
-            this.PlayerInventorySelectorOther = new System.Windows.Forms.ComboBox();
-            this.ReactionSlot8 = new System.Windows.Forms.ComboBox();
-            this.ReactionSlot7 = new System.Windows.Forms.ComboBox();
-            this.ReactionSlot6 = new System.Windows.Forms.ComboBox();
-            this.ReactionSlot5 = new System.Windows.Forms.ComboBox();
-            this.ReactionSlot4 = new System.Windows.Forms.ComboBox();
-            this.ReactionSlot3 = new System.Windows.Forms.ComboBox();
-            this.ReactionSlot2 = new System.Windows.Forms.ComboBox();
-            this.ReactionSlot1 = new System.Windows.Forms.ComboBox();
-            this.ReactionWheelLabel = new System.Windows.Forms.Label();
-            this.TurnipPanel = new System.Windows.Forms.Panel();
-            this.SetTurnipPriceButton = new System.Windows.Forms.Button();
-            this.SetTurnipPriceMaxButton = new System.Windows.Forms.Button();
-            this.SaturdayPMLabel = new System.Windows.Forms.Label();
-            this.FridayPMLabel = new System.Windows.Forms.Label();
-            this.ThursdayPMLabel = new System.Windows.Forms.Label();
-            this.WednesdayPMLabel = new System.Windows.Forms.Label();
-            this.TuesdayPMLabel = new System.Windows.Forms.Label();
-            this.MondayPMLabel = new System.Windows.Forms.Label();
-            this.SaturdayAMLabel = new System.Windows.Forms.Label();
-            this.FridayAMLabel = new System.Windows.Forms.Label();
-            this.ThursdayAMLabel = new System.Windows.Forms.Label();
-            this.WednesdayAMLabel = new System.Windows.Forms.Label();
-            this.TuesdayAMLabel = new System.Windows.Forms.Label();
-            this.MondayAMLabel = new System.Windows.Forms.Label();
-            this.TurnipBuyPriceLabel = new System.Windows.Forms.Label();
-            this.saturdayPMStar = new System.Windows.Forms.Label();
-            this.fridayPMStar = new System.Windows.Forms.Label();
-            this.thursdayPMStar = new System.Windows.Forms.Label();
-            this.wednesdayPMStar = new System.Windows.Forms.Label();
-            this.tuesdayPMStar = new System.Windows.Forms.Label();
-            this.saturdayAMStar = new System.Windows.Forms.Label();
-            this.fridayAMStar = new System.Windows.Forms.Label();
-            this.thursdayAMStar = new System.Windows.Forms.Label();
-            this.wednesdayAMStar = new System.Windows.Forms.Label();
-            this.mondayPMStar = new System.Windows.Forms.Label();
-            this.mondayAMStar = new System.Windows.Forms.Label();
-            this.tuesdayAMStar = new System.Windows.Forms.Label();
-            this.CritterLargePanel = new System.Windows.Forms.Panel();
-            this.ResetAllButton = new System.Windows.Forms.Button();
-            this.DisableAllButton = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.SeaFishButton = new System.Windows.Forms.Button();
-            this.SeaCreatureButton = new System.Windows.Forms.Button();
-            this.InsectButton = new System.Windows.Forms.Button();
-            this.RiverFishButton = new System.Windows.Forms.Button();
-            this.CritterNowLoadingPanel = new System.Windows.Forms.Panel();
-            this.CritterNowLoadingMessage = new System.Windows.Forms.Label();
-            this.CritterNowLoadingImage = new System.Windows.Forms.PictureBox();
-            this.ReadCritterDataButton = new System.Windows.Forms.Button();
-            this.InsectGridView = new System.Windows.Forms.DataGridView();
-            this.RiverFishGridView = new System.Windows.Forms.DataGridView();
-            this.SeaFishGridView = new System.Windows.Forms.DataGridView();
-            this.SeaCreatureGridView = new System.Windows.Forms.DataGridView();
-            this.VillagerLargePanel = new System.Windows.Forms.Panel();
-            this.VillagerNowLoadingPanel = new System.Windows.Forms.Panel();
-            this.VillagerNowLoadingProgressBar = new System.Windows.Forms.ProgressBar();
-            this.VillagerNowLoadingMessage = new System.Windows.Forms.Label();
-            this.VillagerNowLoadingImage = new System.Windows.Forms.PictureBox();
-            this.VillagerMysIslandLabel = new System.Windows.Forms.Label();
-            this.VillagerCatchphraseLabel = new System.Windows.Forms.Label();
-            this.VillagerHeaderIgnore = new JCS.ToggleSwitch();
-            this.VillagerHouseIndexLabel = new System.Windows.Forms.Label();
-            this.VillagerFriendshipLabel = new System.Windows.Forms.Label();
-            this.VillagerIndexLabel = new System.Windows.Forms.Label();
-            this.VillagerPersonalityLabel = new System.Windows.Forms.Label();
-            this.VillagerINameLabel = new System.Windows.Forms.Label();
-            this.VillagerNameLabel = new System.Windows.Forms.Label();
-            this.VillagerControlPanel = new System.Windows.Forms.Panel();
-            this.VillagerRefreshButton = new System.Windows.Forms.Button();
-            this.ReplaceMysVillagerButton = new System.Windows.Forms.Button();
-            this.MysVillagerReplaceSelector = new ACNHPokerCore.VillagerSelector();
-            this.VillagerReplaceSelector = new ACNHPokerCore.VillagerSelector();
-            this.MysVillagerDisplay = new System.Windows.Forms.Button();
-            this.ReplaceVillagerButton = new System.Windows.Forms.Button();
-            this.ReadMysVillagerButton = new System.Windows.Forms.Button();
-            this.ForcedMoveoutButton = new System.Windows.Forms.Button();
-            this.LoadHouseButton = new System.Windows.Forms.Button();
-            this.IrregularMoveoutButton = new System.Windows.Forms.Button();
-            this.LoadVillagerButton = new System.Windows.Forms.Button();
-            this.CancelMoveoutButton = new System.Windows.Forms.Button();
-            this.SaveHouseButton = new System.Windows.Forms.Button();
-            this.ForcedMoveoutAllButton = new System.Windows.Forms.Button();
-            this.SaveVillagerButton = new System.Windows.Forms.Button();
-            this.IrregularMoveoutAllButton = new System.Windows.Forms.Button();
-            this.VillagerCatchphraseClearButton = new System.Windows.Forms.Button();
-            this.CancelMoveoutAllButton = new System.Windows.Forms.Button();
-            this.VillagerCatchphraseSetButton = new System.Windows.Forms.Button();
-            this.FriendshipButton = new System.Windows.Forms.Button();
-            this.VillagerProgressTimer = new System.Windows.Forms.Timer(this.components);
-            this.PeekButton = new System.Windows.Forms.Button();
-            this.PokeButton = new System.Windows.Forms.Button();
-            this.FillButton = new System.Windows.Forms.Button();
-            this.ChaseTimer = new System.Windows.Forms.Timer(this.components);
+            IPAddressInputBox = new System.Windows.Forms.RichTextBox();
+            ItemSearchBox = new System.Windows.Forms.RichTextBox();
+            AmountOrCountTextbox = new System.Windows.Forms.RichTextBox();
+            IDTextbox = new System.Windows.Forms.RichTextBox();
+            FlowerValueTextbox = new System.Windows.Forms.RichTextBox();
+            FlowerIDTextbox = new System.Windows.Forms.RichTextBox();
+            RecipeIDTextbox = new System.Windows.Forms.RichTextBox();
+            MinuteTextbox = new System.Windows.Forms.RichTextBox();
+            HourTextbox = new System.Windows.Forms.RichTextBox();
+            DayTextbox = new System.Windows.Forms.RichTextBox();
+            MonthTextbox = new System.Windows.Forms.RichTextBox();
+            YearTextbox = new System.Windows.Forms.RichTextBox();
+            WeatherSeedTextbox = new System.Windows.Forms.RichTextBox();
+            turnipSell6PM = new System.Windows.Forms.RichTextBox();
+            turnipSell5PM = new System.Windows.Forms.RichTextBox();
+            turnipSell4PM = new System.Windows.Forms.RichTextBox();
+            turnipSell3PM = new System.Windows.Forms.RichTextBox();
+            turnipSell2PM = new System.Windows.Forms.RichTextBox();
+            turnipSell1PM = new System.Windows.Forms.RichTextBox();
+            turnipSell6AM = new System.Windows.Forms.RichTextBox();
+            turnipSell5AM = new System.Windows.Forms.RichTextBox();
+            turnipSell4AM = new System.Windows.Forms.RichTextBox();
+            turnipSell3AM = new System.Windows.Forms.RichTextBox();
+            turnipSell2AM = new System.Windows.Forms.RichTextBox();
+            turnipBuyPrice = new System.Windows.Forms.RichTextBox();
+            turnipSell1AM = new System.Windows.Forms.RichTextBox();
+            CritterSearchBox = new System.Windows.Forms.RichTextBox();
+            VillagerNowLoadingLongMessage = new System.Windows.Forms.RichTextBox();
+            VillagerHouseIndex = new System.Windows.Forms.RichTextBox();
+            VillagerFriendship = new System.Windows.Forms.RichTextBox();
+            VillagerIndex = new System.Windows.Forms.RichTextBox();
+            VillagerPersonality = new System.Windows.Forms.RichTextBox();
+            VillagerIName = new System.Windows.Forms.RichTextBox();
+            VillagerName = new System.Windows.Forms.RichTextBox();
+            VillagerHeader = new System.Windows.Forms.RichTextBox();
+            VillagerForceMoveoutFlag = new System.Windows.Forms.RichTextBox();
+            VillagerAbandonedHouseFlag = new System.Windows.Forms.RichTextBox();
+            VillagerMoveInFlag = new System.Windows.Forms.RichTextBox();
+            ReplaceMysVilllagerSearchBox = new System.Windows.Forms.RichTextBox();
+            VillagerCatchphrase = new System.Windows.Forms.RichTextBox();
+            ReplaceVilllagerSearchBox = new System.Windows.Forms.RichTextBox();
+            DebugAddress = new System.Windows.Forms.RichTextBox();
+            DebugValue = new System.Windows.Forms.RichTextBox();
+            PeekResult1 = new System.Windows.Forms.RichTextBox();
+            PeekResult2 = new System.Windows.Forms.RichTextBox();
+            PeekResult4 = new System.Windows.Forms.RichTextBox();
+            PeekResult3 = new System.Windows.Forms.RichTextBox();
+            FullPeekResult1 = new System.Windows.Forms.RichTextBox();
+            FullPeekResult2 = new System.Windows.Forms.RichTextBox();
+            FullPeekResult3 = new System.Windows.Forms.RichTextBox();
+            FullPeekResult4 = new System.Windows.Forms.RichTextBox();
+            FullPeekResult5 = new System.Windows.Forms.RichTextBox();
+            StartConnectionButton = new System.Windows.Forms.Button();
+            USBConnectionButton = new System.Windows.Forms.Button();
+            MapDropperButton = new System.Windows.Forms.Button();
+            RegeneratorButton = new System.Windows.Forms.Button();
+            BulldozerButton = new System.Windows.Forms.Button();
+            FreezerButton = new System.Windows.Forms.Button();
+            DodoHelperButton = new System.Windows.Forms.Button();
+            PlayerInventorySelector = new System.Windows.Forms.ComboBox();
+            SaveNHIButton = new System.Windows.Forms.Button();
+            LoadNHIButton = new System.Windows.Forms.Button();
+            RefreshButton = new System.Windows.Forms.Button();
+            InventoryAutoRefreshToggle = new JCS.ToggleSwitch();
+            AutoRefreshLabel = new System.Windows.Forms.Label();
+            LanguageSelector = new System.Windows.Forms.ComboBox();
+            AlwaysOnControl = new System.Windows.Forms.Panel();
+            EasterEggButton = new System.Windows.Forms.Button();
+            SettingButton = new System.Windows.Forms.Button();
+            IPAddressInputBackground = new System.Windows.Forms.PictureBox();
+            VillagerTabButton = new System.Windows.Forms.Button();
+            CritterTabButton = new System.Windows.Forms.Button();
+            OtherTabButton = new System.Windows.Forms.Button();
+            InventoryTabButton = new System.Windows.Forms.Button();
+            InventoryLargePanel = new System.Windows.Forms.Panel();
+            webhookBtn = new System.Windows.Forms.Button();
+            ChasingAddressLabel = new System.Windows.Forms.Label();
+            ChaseBtn = new System.Windows.Forms.Button();
+            StarFragmentToggle = new JCS.ToggleSwitch();
+            AutoRefillLabel = new System.Windows.Forms.Label();
+            AutoRefill = new JCS.ToggleSwitch();
+            chatButton = new System.Windows.Forms.Button();
+            RoadRollerButton = new System.Windows.Forms.Button();
+            UnhideButton = new System.Windows.Forms.Button();
+            ConvertToCheat = new System.Windows.Forms.Button();
+            SelectedItemName = new System.Windows.Forms.Label();
+            VersionButton = new System.Windows.Forms.Button();
+            CheckStateButton = new System.Windows.Forms.Button();
+            RetainNameToggle = new JCS.ToggleSwitch();
+            RetainNameLabel = new System.Windows.Forms.Label();
+            PaginationPanel = new System.Windows.Forms.TableLayoutPanel();
+            NextButton = new System.Windows.Forms.Button();
+            FastNextButton = new System.Windows.Forms.Button();
+            PageLabel = new System.Windows.Forms.Label();
+            FastBackButton = new System.Windows.Forms.Button();
+            BackButton = new System.Windows.Forms.Button();
+            WrapSelector = new System.Windows.Forms.ComboBox();
+            ClearAllButton = new System.Windows.Forms.Button();
+            WrappingLabel = new System.Windows.Forms.Label();
+            selectedFlag1 = new System.Windows.Forms.Label();
+            selectedFlag0 = new System.Windows.Forms.Label();
+            selectedData = new System.Windows.Forms.Label();
+            selectedID = new System.Windows.Forms.Label();
+            LoadingPanel = new System.Windows.Forms.Panel();
+            NowLoadingMessage = new System.Windows.Forms.Label();
+            NowLoadingImage = new System.Windows.Forms.PictureBox();
+            ModeButtonPanel = new System.Windows.Forms.TableLayoutPanel();
+            FavoriteModeButton = new System.Windows.Forms.Button();
+            FlowerModeButton = new System.Windows.Forms.Button();
+            RecipeModeButton = new System.Windows.Forms.Button();
+            ItemModeButton = new System.Windows.Forms.Button();
+            VariationButton = new System.Windows.Forms.Button();
+            SelectedItem = new InventorySlot();
+            InventoryPanel = new System.Windows.Forms.TableLayoutPanel();
+            inventorySlot40 = new InventorySlot();
+            ItemRightClick = new System.Windows.Forms.ContextMenuStrip(components);
+            copyItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            deleteItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            wrapItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            wrapAllItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            addToFavoriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            unwrapAllItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            inventorySlot39 = new InventorySlot();
+            inventorySlot38 = new InventorySlot();
+            inventorySlot37 = new InventorySlot();
+            inventorySlot36 = new InventorySlot();
+            inventorySlot35 = new InventorySlot();
+            inventorySlot34 = new InventorySlot();
+            inventorySlot33 = new InventorySlot();
+            inventorySlot32 = new InventorySlot();
+            inventorySlot31 = new InventorySlot();
+            inventorySlot30 = new InventorySlot();
+            inventorySlot29 = new InventorySlot();
+            inventorySlot28 = new InventorySlot();
+            inventorySlot27 = new InventorySlot();
+            inventorySlot26 = new InventorySlot();
+            inventorySlot25 = new InventorySlot();
+            inventorySlot24 = new InventorySlot();
+            inventorySlot23 = new InventorySlot();
+            inventorySlot22 = new InventorySlot();
+            inventorySlot21 = new InventorySlot();
+            inventorySlot20 = new InventorySlot();
+            inventorySlot19 = new InventorySlot();
+            inventorySlot18 = new InventorySlot();
+            inventorySlot17 = new InventorySlot();
+            inventorySlot16 = new InventorySlot();
+            inventorySlot15 = new InventorySlot();
+            inventorySlot14 = new InventorySlot();
+            inventorySlot13 = new InventorySlot();
+            inventorySlot12 = new InventorySlot();
+            inventorySlot11 = new InventorySlot();
+            inventorySlot10 = new InventorySlot();
+            inventorySlot9 = new InventorySlot();
+            inventorySlot8 = new InventorySlot();
+            inventorySlot7 = new InventorySlot();
+            inventorySlot6 = new InventorySlot();
+            inventorySlot5 = new InventorySlot();
+            inventorySlot4 = new InventorySlot();
+            inventorySlot3 = new InventorySlot();
+            inventorySlot2 = new InventorySlot();
+            inventorySlot1 = new InventorySlot();
+            ItemGridView = new System.Windows.Forms.DataGridView();
+            FavGridView = new System.Windows.Forms.DataGridView();
+            FavGridRightClick = new System.Windows.Forms.ContextMenuStrip(components);
+            deletedSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            RecipeGridView = new System.Windows.Forms.DataGridView();
+            FlowerGridView = new System.Windows.Forms.DataGridView();
+            ItemModePanel = new System.Windows.Forms.Panel();
+            WallMountMsg = new System.Windows.Forms.Label();
+            GenePanel = new System.Windows.Forms.Panel();
+            FlowerGeneS = new System.Windows.Forms.ComboBox();
+            FlowerGeneW = new System.Windows.Forms.ComboBox();
+            FlowerGeneY = new System.Windows.Forms.ComboBox();
+            FlowerGeneR = new System.Windows.Forms.ComboBox();
+            SpawnAllButton = new System.Windows.Forms.Button();
+            FillRemainButton = new System.Windows.Forms.Button();
+            AmountOrCountLabel = new System.Windows.Forms.Label();
+            ItemIDLabel = new System.Windows.Forms.Label();
+            HexModeButton = new System.Windows.Forms.Button();
+            FlowerModePanel = new System.Windows.Forms.Panel();
+            FlowerIDLabel = new System.Windows.Forms.Label();
+            RecipeModePanel = new System.Windows.Forms.Panel();
+            RecipeIDLabel = new System.Windows.Forms.Label();
+            AlwaysOnTab = new System.Windows.Forms.Panel();
+            InventoryRefreshTimer = new System.Windows.Forms.Timer(components);
+            AutoRefillTimer = new System.Windows.Forms.Timer(components);
+            ButtonToolTip = new System.Windows.Forms.ToolTip(components);
+            OtherLargePanel = new System.Windows.Forms.Panel();
+            TimeAndWeatherPanel = new System.Windows.Forms.Panel();
+            SetAirportColorBtn = new System.Windows.Forms.Button();
+            AirportColor = new System.Windows.Forms.ComboBox();
+            AirportColorLabel = new System.Windows.Forms.Label();
+            DateAndTimeControlPanel = new System.Windows.Forms.Panel();
+            Minus1HourButton = new System.Windows.Forms.Button();
+            Add1HourButton = new System.Windows.Forms.Button();
+            SetDateAndTimeButton = new System.Windows.Forms.Button();
+            MinuteLabel = new System.Windows.Forms.Label();
+            HourLabel = new System.Windows.Forms.Label();
+            DayLabel = new System.Windows.Forms.Label();
+            MonthLabel = new System.Windows.Forms.Label();
+            YearLabel = new System.Windows.Forms.Label();
+            UnFreezeTimeButton = new System.Windows.Forms.Button();
+            FreezeTimeLabel = new System.Windows.Forms.Label();
+            FreezeTimeButton = new System.Windows.Forms.Button();
+            WeatherSeedLabel = new System.Windows.Forms.Label();
+            CheatPanel = new System.Windows.Forms.Panel();
+            FastSwimToggle = new JCS.ToggleSwitch();
+            SwimClubModeLabel = new System.Windows.Forms.Label();
+            DisableCollisionToggle = new JCS.ToggleSwitch();
+            animationSpeedx1 = new System.Windows.Forms.Button();
+            animationSpeedx0_1 = new System.Windows.Forms.Button();
+            animationSpeedx2 = new System.Windows.Forms.Button();
+            animationSpeedx5 = new System.Windows.Forms.Button();
+            animationSpeedx50 = new System.Windows.Forms.Button();
+            maxSpeedX1Btn = new System.Windows.Forms.Button();
+            maxSpeedX2Btn = new System.Windows.Forms.Button();
+            maxSpeedX3Btn = new System.Windows.Forms.Button();
+            maxSpeedX5Btn = new System.Windows.Forms.Button();
+            maxSpeedX100Btn = new System.Windows.Forms.Button();
+            PoopButton = new System.Windows.Forms.Button();
+            EatButton = new System.Windows.Forms.Button();
+            AnimationSpeedLabel = new System.Windows.Forms.Label();
+            DisableCollisionLabel = new System.Windows.Forms.Label();
+            MaxWalkSpeedLabel = new System.Windows.Forms.Label();
+            StaminaLabel = new System.Windows.Forms.Label();
+            ReactionPanel = new System.Windows.Forms.Panel();
+            SetReactionWheelButton = new System.Windows.Forms.Button();
+            PlayerInventorySelectorOther = new System.Windows.Forms.ComboBox();
+            ReactionSlot8 = new System.Windows.Forms.ComboBox();
+            ReactionSlot7 = new System.Windows.Forms.ComboBox();
+            ReactionSlot6 = new System.Windows.Forms.ComboBox();
+            ReactionSlot5 = new System.Windows.Forms.ComboBox();
+            ReactionSlot4 = new System.Windows.Forms.ComboBox();
+            ReactionSlot3 = new System.Windows.Forms.ComboBox();
+            ReactionSlot2 = new System.Windows.Forms.ComboBox();
+            ReactionSlot1 = new System.Windows.Forms.ComboBox();
+            ReactionWheelLabel = new System.Windows.Forms.Label();
+            TurnipPanel = new System.Windows.Forms.Panel();
+            SetTurnipPriceButton = new System.Windows.Forms.Button();
+            SetTurnipPriceMaxButton = new System.Windows.Forms.Button();
+            SaturdayPMLabel = new System.Windows.Forms.Label();
+            FridayPMLabel = new System.Windows.Forms.Label();
+            ThursdayPMLabel = new System.Windows.Forms.Label();
+            WednesdayPMLabel = new System.Windows.Forms.Label();
+            TuesdayPMLabel = new System.Windows.Forms.Label();
+            MondayPMLabel = new System.Windows.Forms.Label();
+            SaturdayAMLabel = new System.Windows.Forms.Label();
+            FridayAMLabel = new System.Windows.Forms.Label();
+            ThursdayAMLabel = new System.Windows.Forms.Label();
+            WednesdayAMLabel = new System.Windows.Forms.Label();
+            TuesdayAMLabel = new System.Windows.Forms.Label();
+            MondayAMLabel = new System.Windows.Forms.Label();
+            TurnipBuyPriceLabel = new System.Windows.Forms.Label();
+            saturdayPMStar = new System.Windows.Forms.Label();
+            fridayPMStar = new System.Windows.Forms.Label();
+            thursdayPMStar = new System.Windows.Forms.Label();
+            wednesdayPMStar = new System.Windows.Forms.Label();
+            tuesdayPMStar = new System.Windows.Forms.Label();
+            saturdayAMStar = new System.Windows.Forms.Label();
+            fridayAMStar = new System.Windows.Forms.Label();
+            thursdayAMStar = new System.Windows.Forms.Label();
+            wednesdayAMStar = new System.Windows.Forms.Label();
+            mondayPMStar = new System.Windows.Forms.Label();
+            mondayAMStar = new System.Windows.Forms.Label();
+            tuesdayAMStar = new System.Windows.Forms.Label();
+            CritterLargePanel = new System.Windows.Forms.Panel();
+            ResetAllButton = new System.Windows.Forms.Button();
+            DisableAllButton = new System.Windows.Forms.Button();
+            tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            SeaFishButton = new System.Windows.Forms.Button();
+            SeaCreatureButton = new System.Windows.Forms.Button();
+            InsectButton = new System.Windows.Forms.Button();
+            RiverFishButton = new System.Windows.Forms.Button();
+            CritterNowLoadingPanel = new System.Windows.Forms.Panel();
+            CritterNowLoadingMessage = new System.Windows.Forms.Label();
+            CritterNowLoadingImage = new System.Windows.Forms.PictureBox();
+            ReadCritterDataButton = new System.Windows.Forms.Button();
+            InsectGridView = new System.Windows.Forms.DataGridView();
+            RiverFishGridView = new System.Windows.Forms.DataGridView();
+            SeaFishGridView = new System.Windows.Forms.DataGridView();
+            SeaCreatureGridView = new System.Windows.Forms.DataGridView();
+            VillagerLargePanel = new System.Windows.Forms.Panel();
+            VillagerNowLoadingPanel = new System.Windows.Forms.Panel();
+            VillagerNowLoadingProgressBar = new System.Windows.Forms.ProgressBar();
+            VillagerNowLoadingMessage = new System.Windows.Forms.Label();
+            VillagerNowLoadingImage = new System.Windows.Forms.PictureBox();
+            VillagerMysIslandLabel = new System.Windows.Forms.Label();
+            VillagerCatchphraseLabel = new System.Windows.Forms.Label();
+            VillagerHeaderIgnore = new JCS.ToggleSwitch();
+            VillagerHouseIndexLabel = new System.Windows.Forms.Label();
+            VillagerFriendshipLabel = new System.Windows.Forms.Label();
+            VillagerIndexLabel = new System.Windows.Forms.Label();
+            VillagerPersonalityLabel = new System.Windows.Forms.Label();
+            VillagerINameLabel = new System.Windows.Forms.Label();
+            VillagerNameLabel = new System.Windows.Forms.Label();
+            VillagerControlPanel = new System.Windows.Forms.Panel();
+            VillagerRefreshButton = new System.Windows.Forms.Button();
+            ReplaceMysVillagerButton = new System.Windows.Forms.Button();
+            MysVillagerReplaceSelector = new VillagerSelector();
+            VillagerReplaceSelector = new VillagerSelector();
+            MysVillagerDisplay = new System.Windows.Forms.Button();
+            ReplaceVillagerButton = new System.Windows.Forms.Button();
+            ReadMysVillagerButton = new System.Windows.Forms.Button();
+            ForcedMoveoutButton = new System.Windows.Forms.Button();
+            LoadHouseButton = new System.Windows.Forms.Button();
+            IrregularMoveoutButton = new System.Windows.Forms.Button();
+            LoadVillagerButton = new System.Windows.Forms.Button();
+            CancelMoveoutButton = new System.Windows.Forms.Button();
+            SaveHouseButton = new System.Windows.Forms.Button();
+            ForcedMoveoutAllButton = new System.Windows.Forms.Button();
+            SaveVillagerButton = new System.Windows.Forms.Button();
+            IrregularMoveoutAllButton = new System.Windows.Forms.Button();
+            VillagerCatchphraseClearButton = new System.Windows.Forms.Button();
+            CancelMoveoutAllButton = new System.Windows.Forms.Button();
+            VillagerCatchphraseSetButton = new System.Windows.Forms.Button();
+            FriendshipButton = new System.Windows.Forms.Button();
+            VillagerProgressTimer = new System.Windows.Forms.Timer(components);
+            PeekButton = new System.Windows.Forms.Button();
+            PokeButton = new System.Windows.Forms.Button();
+            FillButton = new System.Windows.Forms.Button();
+            ChaseTimer = new System.Windows.Forms.Timer(components);
             VillagerAutoCompleteMenu = new AutocompleteMenuNS.AutocompleteMenu();
-            this.AlwaysOnControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.IPAddressInputBackground)).BeginInit();
-            this.InventoryLargePanel.SuspendLayout();
-            this.PaginationPanel.SuspendLayout();
-            this.LoadingPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NowLoadingImage)).BeginInit();
-            this.ModeButtonPanel.SuspendLayout();
-            this.InventoryPanel.SuspendLayout();
-            this.ItemRightClick.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FavGridView)).BeginInit();
-            this.FavGridRightClick.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RecipeGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FlowerGridView)).BeginInit();
-            this.ItemModePanel.SuspendLayout();
-            this.GenePanel.SuspendLayout();
-            this.FlowerModePanel.SuspendLayout();
-            this.RecipeModePanel.SuspendLayout();
-            this.AlwaysOnTab.SuspendLayout();
-            this.OtherLargePanel.SuspendLayout();
-            this.TimeAndWeatherPanel.SuspendLayout();
-            this.DateAndTimeControlPanel.SuspendLayout();
-            this.CheatPanel.SuspendLayout();
-            this.ReactionPanel.SuspendLayout();
-            this.TurnipPanel.SuspendLayout();
-            this.CritterLargePanel.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.CritterNowLoadingPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CritterNowLoadingImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.InsectGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RiverFishGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SeaFishGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SeaCreatureGridView)).BeginInit();
-            this.VillagerLargePanel.SuspendLayout();
-            this.VillagerNowLoadingPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.VillagerNowLoadingImage)).BeginInit();
-            this.VillagerControlPanel.SuspendLayout();
-            this.SuspendLayout();
+            AlwaysOnControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)IPAddressInputBackground).BeginInit();
+            InventoryLargePanel.SuspendLayout();
+            PaginationPanel.SuspendLayout();
+            LoadingPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)NowLoadingImage).BeginInit();
+            ModeButtonPanel.SuspendLayout();
+            InventoryPanel.SuspendLayout();
+            ItemRightClick.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ItemGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)FavGridView).BeginInit();
+            FavGridRightClick.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)RecipeGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)FlowerGridView).BeginInit();
+            ItemModePanel.SuspendLayout();
+            GenePanel.SuspendLayout();
+            FlowerModePanel.SuspendLayout();
+            RecipeModePanel.SuspendLayout();
+            AlwaysOnTab.SuspendLayout();
+            OtherLargePanel.SuspendLayout();
+            TimeAndWeatherPanel.SuspendLayout();
+            DateAndTimeControlPanel.SuspendLayout();
+            CheatPanel.SuspendLayout();
+            ReactionPanel.SuspendLayout();
+            TurnipPanel.SuspendLayout();
+            CritterLargePanel.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
+            CritterNowLoadingPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)CritterNowLoadingImage).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)InsectGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)RiverFishGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)SeaFishGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)SeaCreatureGridView).BeginInit();
+            VillagerLargePanel.SuspendLayout();
+            VillagerNowLoadingPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)VillagerNowLoadingImage).BeginInit();
+            VillagerControlPanel.SuspendLayout();
+            SuspendLayout();
             // 
             // VillagerAutoCompleteMenu
             // 
-            VillagerAutoCompleteMenu.Colors = ((AutocompleteMenuNS.Colors)(resources.GetObject("VillagerAutoCompleteMenu.Colors")));
-            VillagerAutoCompleteMenu.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            VillagerAutoCompleteMenu.Colors = (AutocompleteMenuNS.Colors)resources.GetObject("VillagerAutoCompleteMenu.Colors");
+            VillagerAutoCompleteMenu.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             VillagerAutoCompleteMenu.ImageList = null;
-            VillagerAutoCompleteMenu.Items = new string[] {
-        "Ace : brd09",
-        "Admiral : brd06",
-        "Agent S : squ05",
-        "Agnes : pig17",
-        "Al : gor08",
-        "Alfonso : crd00",
-        "Alice : kal01",
-        "Alli : crd01",
-        "Amelia : pbr01",
-        "Anabelle : ant03",
-        "Anchovy : brd02",
-        "Angus : bul00",
-        "Anicotti : mus10",
-        "Ankha : cat19",
-        "Annalisa : ant08",
-        "Annalise : hrs09",
-        "Antonio : ant01",
-        "Apollo : pbr00",
-        "Apple : ham01",
-        "Astrid : kgr05",
-        "Audie : wol12",
-        "Aurora : pgn00",
-        "Ava : chn05",
-        "Avery : pbr05",
-        "Axel : elp06",
-        "Azalea : rhn05",
-        "Baabara : shp01",
-        "Bam : der01",
-        "Bangle : tig03",
-        "Barold : cbr16",
-        "Bea : dog10",
-        "Beardo : bea13",
-        "Beau : der07",
-        "Becky : chn09",
-        "Bella : mus02",
-        "Benedict : chn01",
-        "Benjamin : dog16",
-        "Bertha : hip03",
-        "Bettina : mus15",
-        "Bianca : tig06",
-        "Biff : hip04",
-        "Big Top : elp02",
-        "Bill : duk00",
-        "Billy : goa02",
-        "Biskit : dog03",
-        "Bitty : hip05",
-        "Blaire : squ01",
-        "Blanche : ost08",
-        "Bluebear : cbr00",
-        "Bob : cat00",
-        "Bonbon : rbt17",
-        "Bones : dog04",
-        "Boomer : pgn10",
-        "Boone : gor02",
-        "Boots : crd02",
-        "Boris : pig09",
-        "Boyd : gor05",
-        "Bree : mus03",
-        "Broccolo : mus12",
-        "Broffina : chn12",
-        "Bruce : der03",
-        "Bubbles : hip02",
-        "Buck : hrs00",
-        "Bud : lon00",
-        "Bunnie : rbt00",
-        "Butch : dog01",
-        "Buzz : pbr03",
-        "Cally : squ11",
-        "Camofrog : flg03",
-        "Canberra : kal08",
-        "Candi : mus08",
-        "Carmen : rbt16",
-        "Caroline : squ06",
-        "Carrie : kgr02",
-        "Cashmere : shp04",
-        "Celia : pbr09",
-        "Cephalobot : ocp04",
-        "Cesar : gor00",
-        "Chabwick : pgn07",
-        "Chadder : mus18",
-        "Chai : elp11",
-        "Charlise : bea12",
-        "Chelsea : der10",
-        "Cheri : cbr10",
-        "Cherry : dog17",
-        "Chester : cbr15",
-        "Chevre : goa00",
-        "Chief : wol00",
-        "Chops : pig14",
-        "Chow : bea03",
-        "Chrissy : rbt13",
-        "Claude : rbt11",
-        "Claudia : tig05",
-        "Clay : ham05",
-        "Cleo : hrs07",
-        "Clyde : hrs10",
-        "Coach : bul07",
-        "Cobb : pig08",
-        "Coco : rbt02",
-        "Cole : rbt18",
-        "Colton : hrs11",
-        "Cookie : dog08",
-        "Cousteau : flg10",
-        "Cranston : ost06",
-        "Croque : flg17",
-        "Cube : pgn02",
-        "Curlos : shp08",
-        "Curly : pig00",
-        "Curt : bea02",
-        "Cyd : elp12",
-        "Cyrano : ant00",
-        "Daisy : dog07",
-        "Deena : duk04",
-        "Deirdre : der04",
-        "Del : crd04",
-        "Deli : mnk08",
-        "Derwin : duk08",
-        "Diana : der08",
-        "Diva : flg18",
-        "Dizzy : elp01",
-        "Dobie : wol04",
-        "Doc : rbt10",
-        "Dom : shp15",
-        "Dora : mus00",
-        "Dotty : rbt01",
-        "Drago : crd08",
-        "Drake : duk09",
-        "Drift : flg04",
-        "Ed : hrs06",
-        "Egbert : chn02",
-        "Elise : mnk05",
-        "Ellie : elp07",
-        "Elmer : hrs03",
-        "Eloise : elp03",
-        "Elvis : lon01",
-        "Erik : der09",
-        "Étoile : shp14",
-        "Eugene : kal10",
-        "Eunice : shp02",
-        "Faith : kal07",
-        "Fang : wol06",
-        "Fauna : der00",
-        "Felicity : cat17",
-        "Filbert : squ02",
-        "Flip : mnk06",
-        "Flo : pgn13",
-        "Flora : ost09",
-        "Flurry : ham06",
-        "Francine : rbt12",
-        "Frank : pbr06",
-        "Freckles : duk07",
-        "Frett : dog11",
-        "Freya : wol05",
-        "Friga : pgn04",
-        "Frita : shp11",
-        "Frobert : flg02",
-        "Fuchsia : der06",
-        "Gabi : rbt05",
-        "Gala : pig13",
-        "Gaston : rbt04",
-        "Gayle : crd07",
-        "Genji : rbt08",
-        "Gigi : flg16",
-        "Gladys : ost01",
-        "Gloria : duk15",
-        "Goldie : dog00",
-        "Gonzo : kal04",
-        "Goose : chn00",
-        "Graham : ham02",
-        "Greta : mus16",
-        "Grizzly : bea09",
-        "Groucho : bea06",
-        "Gruff : goa04",
-        "Gwen : pgn05",
-        "Hamlet : ham00",
-        "Hamphrey : ham07",
-        "Hans : gor10",
-        "Harry : hip08",
-        "Hazel : squ18",
-        "Henry : flg19",
-        "Hippeux : hip09",
-        "Hopkins : rbt14",
-        "Hopper : pgn03",
-        "Hornsby : rhn04",
-        "Huck : flg11",
-        "Hugh : pig03",
-        "Iggly : pgn11",
-        "Ike : bea11",
-        "Ione : squ21",
-        "Jacob : brd11",
-        "Jacques : brd16",
-        "Jambette : flg13",
-        "Jay : brd00",
-        "Jeremiah : flg07",
-        "Jitters : brd04",
-        "Joey : duk01",
-        "Judy : cbr19",
-        "Julia : ost05",
-        "Julian : hrs13",
-        "June : cbr13",
-        "Kabuki : cat09",
-        "Katt : cat21",
-        "Keaton : pbr08",
-        "Ken : chn13",
-        "Ketchup : duk13",
-        "Kevin : pig15",
-        "Kid Cat : cat10",
-        "Kidd : goa07",
-        "Kiki : cat04",
-        "Kitt : kgr00",
-        "Kitty : cat14",
-        "Klaus : bea14",
-        "Knox : chn11",
-        "Kody : cbr04",
-        "Kyle : wol10",
-        "Leonardo : tig04",
-        "Leopold : lon04",
-        "Lily : flg00",
-        "Limberg : mus01",
-        "Lionel : lon08",
-        "Lobo : wol01",
-        "Lolly : cat18",
-        "Lopez : der05",
-        "Louie : gor04",
-        "Lucha : brd15",
-        "Lucky : dog02",
-        "Lucy : pig04",
-        "Lyman : kal09",
-        "Mac : dog14",
-        "Maddie : dog09",
-        "Maelle : duk03",
-        "Maggie : pig10",
-        "Mallary : duk06",
-        "Maple : cbr01",
-        "Marcel : dog15",
-        "Marcie : kgr10",
-        "Margie : elp04",
-        "Marina : ocp01",
-        "Marlo : ham09",
-        "Marshal : squ17",
-        "Marty : cbr18",
-        "Mathilda : kgr01",
-        "Megan : bea15",
-        "Melba : kal02",
-        "Merengue : rhn07",
-        "Merry : cat16",
-        "Midge : brd08",
-        "Mint : squ09",
-        "Mira : rbt19",
-        "Miranda : duk12",
-        "Mitzi : cat01",
-        "Moe : cat08",
-        "Molly : duk16",
-        "Monique : cat11",
-        "Monty : mnk04",
-        "Moose : mus14",
-        "Mott : lon06",
-        "Muffy : shp12",
-        "Murphy : cbr07",
-        "Nan : goa01",
-        "Nana : mnk01",
-        "Naomi : cow07",
-        "Nate : bea05",
-        "Nibbles : squ04",
-        "Norma : cow06",
-        "O\'Hare : rbt15",
-        "Octavian : ocp00",
-        "Olaf : ant09",
-        "Olive : cbr09",
-        "Olivia : cat03",
-        "Opal : elp00",
-        "Ozzie : kal05",
-        "Pancetti : pig16",
-        "Pango : ant02",
-        "Paolo : elp05",
-        "Papi : hrs12",
-        "Pashmina : goa08",
-        "Pate : duk02",
-        "Patty : cow00",
-        "Paula : bea10",
-        "Peaches : hrs08",
-        "Peanut : squ00",
-        "Pecan : squ03",
-        "Peck : brd17",
-        "Peewee : gor01",
-        "Peggy : pig11",
-        "Pekoe : cbr14",
-        "Penelope : mus17",
-        "Petri : mus19",
-        "Phil : ost07",
-        "Phoebe : ost10",
-        "Pierce : pbr02",
-        "Pietro : shp13",
-        "Pinky : bea01",
-        "Piper : brd05",
-        "Pippy : rbt06",
-        "Plucky : chn10",
-        "Pompom : duk05",
-        "Poncho : cbr02",
-        "Poppy : squ15",
-        "Portia : dog05",
-        "Prince : flg12",
-        "Puck : pgn06",
-        "Puddles : flg06",
-        "Pudge : cbr03",
-        "Punchy : cat06",
-        "Purrl : cat07",
-        "Queenie : ost00",
-        "Quillson : duk17",
-        "Quinn : pbr10",
-        "Raddle : flg15",
-        "Rasher : pig02",
-        "Raymond : cat23",
-        "Renée : rhn08",
-        "Reneigh : hrs16",
-        "Rex : lon02",
-        "Rhonda : rhn01",
-        "Ribbot : flg01",
-        "Ricky : squ10",
-        "Rilla : gor11",
-        "Rio : ost04",
-        "Rizzo : mus09",
-        "Roald : pgn01",
-        "Robin : brd01",
-        "Rocco : hip00",
-        "Rocket : gor09",
-        "Rod : mus05",
-        "Rodeo : bul01",
-        "Rodney : ham03",
-        "Rolf : tig00",
-        "Rooney : kgr09",
-        "Rory : lon07",
-        "Roscoe : hrs04",
-        "Rosie : cat02",
-        "Roswell : crd05",
-        "Rowan : tig01",
-        "Ruby : rbt09",
-        "Rudy : cat20",
-        "Sally : squ07",
-        "Samson : mus04",
-        "Sandy : ost02",
-        "Sasha : rbt21",
-        "Savannah : hrs02",
-        "Scoot : duk10",
-        "Shari : mnk07",
-        "Sheldon : squ16",
-        "Shep : dog18",
-        "Sherb : goa09",
-        "Shino : der11",
-        "Simon : mnk02",
-        "Skye : wol09",
-        "Sly : crd06",
-        "Snake : rbt03",
-        "Snooty : ant06",
-        "Soleil : ham04",
-        "Sparro : brd18",
-        "Spike : rhn02",
-        "Spork : pig05",
-        "Sprinkle : pgn14",
-        "Sprocket : ost03",
-        "Static : squ08",
-        "Stella : shp03",
-        "Sterling : pbr07",
-        "Stinky : cat13",
-        "Stitches : cbr05",
-        "Stu : bul03",
-        "Sydney : kal03",
-        "Sylvana : squ14",
-        "Sylvia : kgr06",
-        "T-Bone : bul05",
-        "Tabby : cat12",
-        "Tad : flg09",
-        "Tammi : mnk03",
-        "Tammy : cbr17",
-        "Tangy : cat05",
-        "Tank : rhn00",
-        "Tasha : squ13",
-        "Teddy : bea00",
-        "Tex : pgn12",
-        "Tia : elp10",
-        "Tiansheng : mnk09",
-        "Tiffany : rbt07",
-        "Timbra : shp10",
-        "Tipper : cow01",
-        "Toby : rbt20",
-        "Tom : cat15",
-        "Truffles : pig01",
-        "Tucker : elp09",
-        "Tutu : bea07",
-        "Twiggy : brd03",
-        "Tybalt : tig02",
-        "Ursala : bea08",
-        "Velma : goa06",
-        "Vesta : shp00",
-        "Vic : bul08",
-        "Victoria : hrs01",
-        "Violet : gor07",
-        "Vivian : wol08",
-        "Vladimir : cbr06",
-        "Wade : pgn09",
-        "Walker : dog06",
-        "Walt : kgr08",
-        "Wart Jr. : flg05",
-        "Weber : duk11",
-        "Wendy : shp09",
-        "Whitney : wol03",
-        "Willow : shp07",
-        "Winnie : hrs05",
-        "Wolfgang : wol02",
-        "Yuka : kal00",
-        "Zell : der02",
-        "Zoe : ant05",
-        "Zucker : ocp02"};
+            VillagerAutoCompleteMenu.Items = new string[] { "Ace : brd09", "Admiral : brd06", "Agent S : squ05", "Agnes : pig17", "Al : gor08", "Alfonso : crd00", "Alice : kal01", "Alli : crd01", "Amelia : pbr01", "Anabelle : ant03", "Anchovy : brd02", "Angus : bul00", "Anicotti : mus10", "Ankha : cat19", "Annalisa : ant08", "Annalise : hrs09", "Antonio : ant01", "Apollo : pbr00", "Apple : ham01", "Astrid : kgr05", "Audie : wol12", "Aurora : pgn00", "Ava : chn05", "Avery : pbr05", "Axel : elp06", "Azalea : rhn05", "Baabara : shp01", "Bam : der01", "Bangle : tig03", "Barold : cbr16", "Bea : dog10", "Beardo : bea13", "Beau : der07", "Becky : chn09", "Bella : mus02", "Benedict : chn01", "Benjamin : dog16", "Bertha : hip03", "Bettina : mus15", "Bianca : tig06", "Biff : hip04", "Big Top : elp02", "Bill : duk00", "Billy : goa02", "Biskit : dog03", "Bitty : hip05", "Blaire : squ01", "Blanche : ost08", "Bluebear : cbr00", "Bob : cat00", "Bonbon : rbt17", "Bones : dog04", "Boomer : pgn10", "Boone : gor02", "Boots : crd02", "Boris : pig09", "Boyd : gor05", "Bree : mus03", "Broccolo : mus12", "Broffina : chn12", "Bruce : der03", "Bubbles : hip02", "Buck : hrs00", "Bud : lon00", "Bunnie : rbt00", "Butch : dog01", "Buzz : pbr03", "Cally : squ11", "Camofrog : flg03", "Canberra : kal08", "Candi : mus08", "Carmen : rbt16", "Caroline : squ06", "Carrie : kgr02", "Cashmere : shp04", "Celia : pbr09", "Cephalobot : ocp04", "Cesar : gor00", "Chabwick : pgn07", "Chadder : mus18", "Chai : elp11", "Charlise : bea12", "Chelsea : der10", "Cheri : cbr10", "Cherry : dog17", "Chester : cbr15", "Chevre : goa00", "Chief : wol00", "Chops : pig14", "Chow : bea03", "Chrissy : rbt13", "Claude : rbt11", "Claudia : tig05", "Clay : ham05", "Cleo : hrs07", "Clyde : hrs10", "Coach : bul07", "Cobb : pig08", "Coco : rbt02", "Cole : rbt18", "Colton : hrs11", "Cookie : dog08", "Cousteau : flg10", "Cranston : ost06", "Croque : flg17", "Cube : pgn02", "Curlos : shp08", "Curly : pig00", "Curt : bea02", "Cyd : elp12", "Cyrano : ant00", "Daisy : dog07", "Deena : duk04", "Deirdre : der04", "Del : crd04", "Deli : mnk08", "Derwin : duk08", "Diana : der08", "Diva : flg18", "Dizzy : elp01", "Dobie : wol04", "Doc : rbt10", "Dom : shp15", "Dora : mus00", "Dotty : rbt01", "Drago : crd08", "Drake : duk09", "Drift : flg04", "Ed : hrs06", "Egbert : chn02", "Elise : mnk05", "Ellie : elp07", "Elmer : hrs03", "Eloise : elp03", "Elvis : lon01", "Erik : der09", "Étoile : shp14", "Eugene : kal10", "Eunice : shp02", "Faith : kal07", "Fang : wol06", "Fauna : der00", "Felicity : cat17", "Filbert : squ02", "Flip : mnk06", "Flo : pgn13", "Flora : ost09", "Flurry : ham06", "Francine : rbt12", "Frank : pbr06", "Freckles : duk07", "Frett : dog11", "Freya : wol05", "Friga : pgn04", "Frita : shp11", "Frobert : flg02", "Fuchsia : der06", "Gabi : rbt05", "Gala : pig13", "Gaston : rbt04", "Gayle : crd07", "Genji : rbt08", "Gigi : flg16", "Gladys : ost01", "Gloria : duk15", "Goldie : dog00", "Gonzo : kal04", "Goose : chn00", "Graham : ham02", "Greta : mus16", "Grizzly : bea09", "Groucho : bea06", "Gruff : goa04", "Gwen : pgn05", "Hamlet : ham00", "Hamphrey : ham07", "Hans : gor10", "Harry : hip08", "Hazel : squ18", "Henry : flg19", "Hippeux : hip09", "Hopkins : rbt14", "Hopper : pgn03", "Hornsby : rhn04", "Huck : flg11", "Hugh : pig03", "Iggly : pgn11", "Ike : bea11", "Ione : squ21", "Jacob : brd11", "Jacques : brd16", "Jambette : flg13", "Jay : brd00", "Jeremiah : flg07", "Jitters : brd04", "Joey : duk01", "Judy : cbr19", "Julia : ost05", "Julian : hrs13", "June : cbr13", "Kabuki : cat09", "Katt : cat21", "Keaton : pbr08", "Ken : chn13", "Ketchup : duk13", "Kevin : pig15", "Kid Cat : cat10", "Kidd : goa07", "Kiki : cat04", "Kitt : kgr00", "Kitty : cat14", "Klaus : bea14", "Knox : chn11", "Kody : cbr04", "Kyle : wol10", "Leonardo : tig04", "Leopold : lon04", "Lily : flg00", "Limberg : mus01", "Lionel : lon08", "Lobo : wol01", "Lolly : cat18", "Lopez : der05", "Louie : gor04", "Lucha : brd15", "Lucky : dog02", "Lucy : pig04", "Lyman : kal09", "Mac : dog14", "Maddie : dog09", "Maelle : duk03", "Maggie : pig10", "Mallary : duk06", "Maple : cbr01", "Marcel : dog15", "Marcie : kgr10", "Margie : elp04", "Marina : ocp01", "Marlo : ham09", "Marshal : squ17", "Marty : cbr18", "Mathilda : kgr01", "Megan : bea15", "Melba : kal02", "Merengue : rhn07", "Merry : cat16", "Midge : brd08", "Mint : squ09", "Mira : rbt19", "Miranda : duk12", "Mitzi : cat01", "Moe : cat08", "Molly : duk16", "Monique : cat11", "Monty : mnk04", "Moose : mus14", "Mott : lon06", "Muffy : shp12", "Murphy : cbr07", "Nan : goa01", "Nana : mnk01", "Naomi : cow07", "Nate : bea05", "Nibbles : squ04", "Norma : cow06", "O'Hare : rbt15", "Octavian : ocp00", "Olaf : ant09", "Olive : cbr09", "Olivia : cat03", "Opal : elp00", "Ozzie : kal05", "Pancetti : pig16", "Pango : ant02", "Paolo : elp05", "Papi : hrs12", "Pashmina : goa08", "Pate : duk02", "Patty : cow00", "Paula : bea10", "Peaches : hrs08", "Peanut : squ00", "Pecan : squ03", "Peck : brd17", "Peewee : gor01", "Peggy : pig11", "Pekoe : cbr14", "Penelope : mus17", "Petri : mus19", "Phil : ost07", "Phoebe : ost10", "Pierce : pbr02", "Pietro : shp13", "Pinky : bea01", "Piper : brd05", "Pippy : rbt06", "Plucky : chn10", "Pompom : duk05", "Poncho : cbr02", "Poppy : squ15", "Portia : dog05", "Prince : flg12", "Puck : pgn06", "Puddles : flg06", "Pudge : cbr03", "Punchy : cat06", "Purrl : cat07", "Queenie : ost00", "Quillson : duk17", "Quinn : pbr10", "Raddle : flg15", "Rasher : pig02", "Raymond : cat23", "Renée : rhn08", "Reneigh : hrs16", "Rex : lon02", "Rhonda : rhn01", "Ribbot : flg01", "Ricky : squ10", "Rilla : gor11", "Rio : ost04", "Rizzo : mus09", "Roald : pgn01", "Robin : brd01", "Rocco : hip00", "Rocket : gor09", "Rod : mus05", "Rodeo : bul01", "Rodney : ham03", "Rolf : tig00", "Rooney : kgr09", "Rory : lon07", "Roscoe : hrs04", "Rosie : cat02", "Roswell : crd05", "Rowan : tig01", "Ruby : rbt09", "Rudy : cat20", "Sally : squ07", "Samson : mus04", "Sandy : ost02", "Sasha : rbt21", "Savannah : hrs02", "Scoot : duk10", "Shari : mnk07", "Sheldon : squ16", "Shep : dog18", "Sherb : goa09", "Shino : der11", "Simon : mnk02", "Skye : wol09", "Sly : crd06", "Snake : rbt03", "Snooty : ant06", "Soleil : ham04", "Sparro : brd18", "Spike : rhn02", "Spork : pig05", "Sprinkle : pgn14", "Sprocket : ost03", "Static : squ08", "Stella : shp03", "Sterling : pbr07", "Stinky : cat13", "Stitches : cbr05", "Stu : bul03", "Sydney : kal03", "Sylvana : squ14", "Sylvia : kgr06", "T-Bone : bul05", "Tabby : cat12", "Tad : flg09", "Tammi : mnk03", "Tammy : cbr17", "Tangy : cat05", "Tank : rhn00", "Tasha : squ13", "Teddy : bea00", "Tex : pgn12", "Tia : elp10", "Tiansheng : mnk09", "Tiffany : rbt07", "Timbra : shp10", "Tipper : cow01", "Toby : rbt20", "Tom : cat15", "Truffles : pig01", "Tucker : elp09", "Tutu : bea07", "Twiggy : brd03", "Tybalt : tig02", "Ursala : bea08", "Velma : goa06", "Vesta : shp00", "Vic : bul08", "Victoria : hrs01", "Violet : gor07", "Vivian : wol08", "Vladimir : cbr06", "Wade : pgn09", "Walker : dog06", "Walt : kgr08", "Wart Jr. : flg05", "Weber : duk11", "Wendy : shp09", "Whitney : wol03", "Willow : shp07", "Winnie : hrs05", "Wolfgang : wol02", "Yuka : kal00", "Zell : der02", "Zoe : ant05", "Zucker : ocp02" };
             VillagerAutoCompleteMenu.LeftPadding = 0;
             VillagerAutoCompleteMenu.TargetControlWrapper = null;
             // 
             // IPAddressInputBox
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.IPAddressInputBox, null);
-            this.IPAddressInputBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.IPAddressInputBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.IPAddressInputBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.IPAddressInputBox.ForeColor = System.Drawing.Color.White;
-            this.IPAddressInputBox.Location = new System.Drawing.Point(118, 15);
-            this.IPAddressInputBox.MaxLength = 15;
-            this.IPAddressInputBox.Multiline = false;
-            this.IPAddressInputBox.Name = "IPAddressInputBox";
-            this.IPAddressInputBox.Size = new System.Drawing.Size(133, 18);
-            this.IPAddressInputBox.TabIndex = 2;
-            this.IPAddressInputBox.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(IPAddressInputBox, null);
+            IPAddressInputBox.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            IPAddressInputBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            IPAddressInputBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            IPAddressInputBox.ForeColor = System.Drawing.Color.White;
+            IPAddressInputBox.Location = new System.Drawing.Point(118, 15);
+            IPAddressInputBox.MaxLength = 15;
+            IPAddressInputBox.Multiline = false;
+            IPAddressInputBox.Name = "IPAddressInputBox";
+            IPAddressInputBox.Size = new System.Drawing.Size(133, 18);
+            IPAddressInputBox.TabIndex = 2;
+            IPAddressInputBox.Text = "";
             // 
             // ItemSearchBox
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.ItemSearchBox, null);
-            this.ItemSearchBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.ItemSearchBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ItemSearchBox.DetectUrls = false;
-            this.ItemSearchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ItemSearchBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(118)))), ((int)(((byte)(125)))));
-            this.ItemSearchBox.Location = new System.Drawing.Point(859, 1);
-            this.ItemSearchBox.MaxLength = 30;
-            this.ItemSearchBox.Multiline = false;
-            this.ItemSearchBox.Name = "ItemSearchBox";
-            this.ItemSearchBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.ItemSearchBox.Size = new System.Drawing.Size(228, 24);
-            this.ItemSearchBox.TabIndex = 15;
-            this.ItemSearchBox.Text = "Search...";
-            this.ItemSearchBox.WordWrap = false;
-            this.ItemSearchBox.Click += new System.EventHandler(this.ItemSearchBox_Click);
-            this.ItemSearchBox.TextChanged += new System.EventHandler(this.ItemSearchBox_TextChanged);
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(ItemSearchBox, null);
+            ItemSearchBox.BackColor = System.Drawing.Color.FromArgb(32, 34, 37);
+            ItemSearchBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            ItemSearchBox.DetectUrls = false;
+            ItemSearchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            ItemSearchBox.ForeColor = System.Drawing.Color.FromArgb(114, 118, 125);
+            ItemSearchBox.Location = new System.Drawing.Point(859, 1);
+            ItemSearchBox.MaxLength = 30;
+            ItemSearchBox.Multiline = false;
+            ItemSearchBox.Name = "ItemSearchBox";
+            ItemSearchBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            ItemSearchBox.Size = new System.Drawing.Size(228, 24);
+            ItemSearchBox.TabIndex = 15;
+            ItemSearchBox.Text = "Search...";
+            ItemSearchBox.WordWrap = false;
+            ItemSearchBox.Click += ItemSearchBox_Click;
+            ItemSearchBox.TextChanged += ItemSearchBox_TextChanged;
             // 
             // AmountOrCountTextbox
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.AmountOrCountTextbox, null);
-            this.AmountOrCountTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.AmountOrCountTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.AmountOrCountTextbox.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.AmountOrCountTextbox.ForeColor = System.Drawing.Color.White;
-            this.AmountOrCountTextbox.Location = new System.Drawing.Point(167, 22);
-            this.AmountOrCountTextbox.MaxLength = 8;
-            this.AmountOrCountTextbox.Multiline = false;
-            this.AmountOrCountTextbox.Name = "AmountOrCountTextbox";
-            this.AmountOrCountTextbox.Size = new System.Drawing.Size(294, 55);
-            this.AmountOrCountTextbox.TabIndex = 29;
-            this.AmountOrCountTextbox.Text = "";
-            this.AmountOrCountTextbox.DoubleClick += new System.EventHandler(this.AmountOrCountTextbox_DoubleClick);
-            this.AmountOrCountTextbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DecAndHex_KeyPress);
-            this.AmountOrCountTextbox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.AmountOrCountTextbox_KeyUp);
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(AmountOrCountTextbox, null);
+            AmountOrCountTextbox.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            AmountOrCountTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            AmountOrCountTextbox.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold);
+            AmountOrCountTextbox.ForeColor = System.Drawing.Color.White;
+            AmountOrCountTextbox.Location = new System.Drawing.Point(167, 22);
+            AmountOrCountTextbox.MaxLength = 8;
+            AmountOrCountTextbox.Multiline = false;
+            AmountOrCountTextbox.Name = "AmountOrCountTextbox";
+            AmountOrCountTextbox.Size = new System.Drawing.Size(294, 55);
+            AmountOrCountTextbox.TabIndex = 29;
+            AmountOrCountTextbox.Text = "";
+            AmountOrCountTextbox.DoubleClick += AmountOrCountTextbox_DoubleClick;
+            AmountOrCountTextbox.KeyPress += DecAndHex_KeyPress;
+            AmountOrCountTextbox.KeyUp += AmountOrCountTextbox_KeyUp;
             // 
             // IDTextbox
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.IDTextbox, null);
-            this.IDTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.IDTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.IDTextbox.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.IDTextbox.ForeColor = System.Drawing.Color.White;
-            this.IDTextbox.Location = new System.Drawing.Point(3, 22);
-            this.IDTextbox.MaxLength = 4;
-            this.IDTextbox.Multiline = false;
-            this.IDTextbox.Name = "IDTextbox";
-            this.IDTextbox.Size = new System.Drawing.Size(158, 55);
-            this.IDTextbox.TabIndex = 9;
-            this.IDTextbox.Text = "";
-            this.IDTextbox.TextChanged += new System.EventHandler(this.IDTextbox_TextChanged);
-            this.IDTextbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Hex_KeyPress);
-            this.IDTextbox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.IDTextbox_KeyUp);
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(IDTextbox, null);
+            IDTextbox.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            IDTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            IDTextbox.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold);
+            IDTextbox.ForeColor = System.Drawing.Color.White;
+            IDTextbox.Location = new System.Drawing.Point(3, 22);
+            IDTextbox.MaxLength = 4;
+            IDTextbox.Multiline = false;
+            IDTextbox.Name = "IDTextbox";
+            IDTextbox.Size = new System.Drawing.Size(158, 55);
+            IDTextbox.TabIndex = 9;
+            IDTextbox.Text = "";
+            IDTextbox.TextChanged += IDTextbox_TextChanged;
+            IDTextbox.KeyPress += Hex_KeyPress;
+            IDTextbox.KeyUp += IDTextbox_KeyUp;
             // 
             // FlowerValueTextbox
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.FlowerValueTextbox, null);
-            this.FlowerValueTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.FlowerValueTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.FlowerValueTextbox.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FlowerValueTextbox.ForeColor = System.Drawing.Color.White;
-            this.FlowerValueTextbox.Location = new System.Drawing.Point(167, 22);
-            this.FlowerValueTextbox.MaxLength = 8;
-            this.FlowerValueTextbox.Multiline = false;
-            this.FlowerValueTextbox.Name = "FlowerValueTextbox";
-            this.FlowerValueTextbox.Size = new System.Drawing.Size(294, 55);
-            this.FlowerValueTextbox.TabIndex = 29;
-            this.FlowerValueTextbox.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(FlowerValueTextbox, null);
+            FlowerValueTextbox.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            FlowerValueTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            FlowerValueTextbox.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold);
+            FlowerValueTextbox.ForeColor = System.Drawing.Color.White;
+            FlowerValueTextbox.Location = new System.Drawing.Point(167, 22);
+            FlowerValueTextbox.MaxLength = 8;
+            FlowerValueTextbox.Multiline = false;
+            FlowerValueTextbox.Name = "FlowerValueTextbox";
+            FlowerValueTextbox.Size = new System.Drawing.Size(294, 55);
+            FlowerValueTextbox.TabIndex = 29;
+            FlowerValueTextbox.Text = "";
             // 
             // FlowerIDTextbox
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.FlowerIDTextbox, null);
-            this.FlowerIDTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.FlowerIDTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.FlowerIDTextbox.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FlowerIDTextbox.ForeColor = System.Drawing.Color.White;
-            this.FlowerIDTextbox.Location = new System.Drawing.Point(3, 22);
-            this.FlowerIDTextbox.MaxLength = 4;
-            this.FlowerIDTextbox.Multiline = false;
-            this.FlowerIDTextbox.Name = "FlowerIDTextbox";
-            this.FlowerIDTextbox.Size = new System.Drawing.Size(158, 55);
-            this.FlowerIDTextbox.TabIndex = 9;
-            this.FlowerIDTextbox.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(FlowerIDTextbox, null);
+            FlowerIDTextbox.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            FlowerIDTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            FlowerIDTextbox.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold);
+            FlowerIDTextbox.ForeColor = System.Drawing.Color.White;
+            FlowerIDTextbox.Location = new System.Drawing.Point(3, 22);
+            FlowerIDTextbox.MaxLength = 4;
+            FlowerIDTextbox.Multiline = false;
+            FlowerIDTextbox.Name = "FlowerIDTextbox";
+            FlowerIDTextbox.Size = new System.Drawing.Size(158, 55);
+            FlowerIDTextbox.TabIndex = 9;
+            FlowerIDTextbox.Text = "";
             // 
             // RecipeIDTextbox
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.RecipeIDTextbox, null);
-            this.RecipeIDTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.RecipeIDTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.RecipeIDTextbox.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RecipeIDTextbox.ForeColor = System.Drawing.Color.White;
-            this.RecipeIDTextbox.Location = new System.Drawing.Point(3, 22);
-            this.RecipeIDTextbox.MaxLength = 4;
-            this.RecipeIDTextbox.Multiline = false;
-            this.RecipeIDTextbox.Name = "RecipeIDTextbox";
-            this.RecipeIDTextbox.Size = new System.Drawing.Size(158, 55);
-            this.RecipeIDTextbox.TabIndex = 9;
-            this.RecipeIDTextbox.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(RecipeIDTextbox, null);
+            RecipeIDTextbox.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            RecipeIDTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            RecipeIDTextbox.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold);
+            RecipeIDTextbox.ForeColor = System.Drawing.Color.White;
+            RecipeIDTextbox.Location = new System.Drawing.Point(3, 22);
+            RecipeIDTextbox.MaxLength = 4;
+            RecipeIDTextbox.Multiline = false;
+            RecipeIDTextbox.Name = "RecipeIDTextbox";
+            RecipeIDTextbox.Size = new System.Drawing.Size(158, 55);
+            RecipeIDTextbox.TabIndex = 9;
+            RecipeIDTextbox.Text = "";
             // 
             // MinuteTextbox
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.MinuteTextbox, null);
-            this.MinuteTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.MinuteTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.MinuteTextbox.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.MinuteTextbox.ForeColor = System.Drawing.Color.White;
-            this.MinuteTextbox.Location = new System.Drawing.Point(71, 74);
-            this.MinuteTextbox.MaxLength = 2;
-            this.MinuteTextbox.Multiline = false;
-            this.MinuteTextbox.Name = "MinuteTextbox";
-            this.MinuteTextbox.Size = new System.Drawing.Size(58, 22);
-            this.MinuteTextbox.TabIndex = 105;
-            this.MinuteTextbox.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(MinuteTextbox, null);
+            MinuteTextbox.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            MinuteTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            MinuteTextbox.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            MinuteTextbox.ForeColor = System.Drawing.Color.White;
+            MinuteTextbox.Location = new System.Drawing.Point(71, 74);
+            MinuteTextbox.MaxLength = 2;
+            MinuteTextbox.Multiline = false;
+            MinuteTextbox.Name = "MinuteTextbox";
+            MinuteTextbox.Size = new System.Drawing.Size(58, 22);
+            MinuteTextbox.TabIndex = 105;
+            MinuteTextbox.Text = "";
             // 
             // HourTextbox
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.HourTextbox, null);
-            this.HourTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.HourTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.HourTextbox.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.HourTextbox.ForeColor = System.Drawing.Color.White;
-            this.HourTextbox.Location = new System.Drawing.Point(7, 74);
-            this.HourTextbox.MaxLength = 2;
-            this.HourTextbox.Multiline = false;
-            this.HourTextbox.Name = "HourTextbox";
-            this.HourTextbox.Size = new System.Drawing.Size(58, 22);
-            this.HourTextbox.TabIndex = 104;
-            this.HourTextbox.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(HourTextbox, null);
+            HourTextbox.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            HourTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            HourTextbox.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            HourTextbox.ForeColor = System.Drawing.Color.White;
+            HourTextbox.Location = new System.Drawing.Point(7, 74);
+            HourTextbox.MaxLength = 2;
+            HourTextbox.Multiline = false;
+            HourTextbox.Name = "HourTextbox";
+            HourTextbox.Size = new System.Drawing.Size(58, 22);
+            HourTextbox.TabIndex = 104;
+            HourTextbox.Text = "";
             // 
             // DayTextbox
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.DayTextbox, null);
-            this.DayTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.DayTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.DayTextbox.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DayTextbox.ForeColor = System.Drawing.Color.White;
-            this.DayTextbox.Location = new System.Drawing.Point(135, 22);
-            this.DayTextbox.MaxLength = 2;
-            this.DayTextbox.Multiline = false;
-            this.DayTextbox.Name = "DayTextbox";
-            this.DayTextbox.Size = new System.Drawing.Size(58, 22);
-            this.DayTextbox.TabIndex = 103;
-            this.DayTextbox.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(DayTextbox, null);
+            DayTextbox.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            DayTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            DayTextbox.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            DayTextbox.ForeColor = System.Drawing.Color.White;
+            DayTextbox.Location = new System.Drawing.Point(135, 22);
+            DayTextbox.MaxLength = 2;
+            DayTextbox.Multiline = false;
+            DayTextbox.Name = "DayTextbox";
+            DayTextbox.Size = new System.Drawing.Size(58, 22);
+            DayTextbox.TabIndex = 103;
+            DayTextbox.Text = "";
             // 
             // MonthTextbox
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.MonthTextbox, null);
-            this.MonthTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.MonthTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.MonthTextbox.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.MonthTextbox.ForeColor = System.Drawing.Color.White;
-            this.MonthTextbox.Location = new System.Drawing.Point(71, 22);
-            this.MonthTextbox.MaxLength = 2;
-            this.MonthTextbox.Multiline = false;
-            this.MonthTextbox.Name = "MonthTextbox";
-            this.MonthTextbox.Size = new System.Drawing.Size(58, 22);
-            this.MonthTextbox.TabIndex = 102;
-            this.MonthTextbox.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(MonthTextbox, null);
+            MonthTextbox.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            MonthTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            MonthTextbox.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            MonthTextbox.ForeColor = System.Drawing.Color.White;
+            MonthTextbox.Location = new System.Drawing.Point(71, 22);
+            MonthTextbox.MaxLength = 2;
+            MonthTextbox.Multiline = false;
+            MonthTextbox.Name = "MonthTextbox";
+            MonthTextbox.Size = new System.Drawing.Size(58, 22);
+            MonthTextbox.TabIndex = 102;
+            MonthTextbox.Text = "";
             // 
             // YearTextbox
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.YearTextbox, null);
-            this.YearTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.YearTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.YearTextbox.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.YearTextbox.ForeColor = System.Drawing.Color.White;
-            this.YearTextbox.Location = new System.Drawing.Point(7, 22);
-            this.YearTextbox.MaxLength = 4;
-            this.YearTextbox.Multiline = false;
-            this.YearTextbox.Name = "YearTextbox";
-            this.YearTextbox.Size = new System.Drawing.Size(58, 22);
-            this.YearTextbox.TabIndex = 97;
-            this.YearTextbox.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(YearTextbox, null);
+            YearTextbox.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            YearTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            YearTextbox.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            YearTextbox.ForeColor = System.Drawing.Color.White;
+            YearTextbox.Location = new System.Drawing.Point(7, 22);
+            YearTextbox.MaxLength = 4;
+            YearTextbox.Multiline = false;
+            YearTextbox.Name = "YearTextbox";
+            YearTextbox.Size = new System.Drawing.Size(58, 22);
+            YearTextbox.TabIndex = 97;
+            YearTextbox.Text = "";
             // 
             // WeatherSeedTextbox
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.WeatherSeedTextbox, null);
-            this.WeatherSeedTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.WeatherSeedTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.WeatherSeedTextbox.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.WeatherSeedTextbox.ForeColor = System.Drawing.Color.White;
-            this.WeatherSeedTextbox.Location = new System.Drawing.Point(161, 3);
-            this.WeatherSeedTextbox.MaxLength = 30;
-            this.WeatherSeedTextbox.Multiline = false;
-            this.WeatherSeedTextbox.Name = "WeatherSeedTextbox";
-            this.WeatherSeedTextbox.Size = new System.Drawing.Size(205, 22);
-            this.WeatherSeedTextbox.TabIndex = 95;
-            this.WeatherSeedTextbox.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(WeatherSeedTextbox, null);
+            WeatherSeedTextbox.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            WeatherSeedTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            WeatherSeedTextbox.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            WeatherSeedTextbox.ForeColor = System.Drawing.Color.White;
+            WeatherSeedTextbox.Location = new System.Drawing.Point(161, 3);
+            WeatherSeedTextbox.MaxLength = 30;
+            WeatherSeedTextbox.Multiline = false;
+            WeatherSeedTextbox.Name = "WeatherSeedTextbox";
+            WeatherSeedTextbox.Size = new System.Drawing.Size(205, 22);
+            WeatherSeedTextbox.TabIndex = 95;
+            WeatherSeedTextbox.Text = "";
             // 
             // turnipSell6PM
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.turnipSell6PM, null);
-            this.turnipSell6PM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.turnipSell6PM.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.turnipSell6PM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.turnipSell6PM.ForeColor = System.Drawing.Color.White;
-            this.turnipSell6PM.Location = new System.Drawing.Point(259, 404);
-            this.turnipSell6PM.MaxLength = 15;
-            this.turnipSell6PM.Multiline = false;
-            this.turnipSell6PM.Name = "turnipSell6PM";
-            this.turnipSell6PM.Size = new System.Drawing.Size(155, 38);
-            this.turnipSell6PM.TabIndex = 53;
-            this.turnipSell6PM.Text = "6PM";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(turnipSell6PM, null);
+            turnipSell6PM.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            turnipSell6PM.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            turnipSell6PM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
+            turnipSell6PM.ForeColor = System.Drawing.Color.White;
+            turnipSell6PM.Location = new System.Drawing.Point(259, 404);
+            turnipSell6PM.MaxLength = 15;
+            turnipSell6PM.Multiline = false;
+            turnipSell6PM.Name = "turnipSell6PM";
+            turnipSell6PM.Size = new System.Drawing.Size(155, 38);
+            turnipSell6PM.TabIndex = 53;
+            turnipSell6PM.Text = "6PM";
             // 
             // turnipSell5PM
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.turnipSell5PM, null);
-            this.turnipSell5PM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.turnipSell5PM.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.turnipSell5PM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.turnipSell5PM.ForeColor = System.Drawing.Color.White;
-            this.turnipSell5PM.Location = new System.Drawing.Point(259, 341);
-            this.turnipSell5PM.MaxLength = 15;
-            this.turnipSell5PM.Multiline = false;
-            this.turnipSell5PM.Name = "turnipSell5PM";
-            this.turnipSell5PM.Size = new System.Drawing.Size(155, 38);
-            this.turnipSell5PM.TabIndex = 51;
-            this.turnipSell5PM.Text = "5PM";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(turnipSell5PM, null);
+            turnipSell5PM.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            turnipSell5PM.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            turnipSell5PM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
+            turnipSell5PM.ForeColor = System.Drawing.Color.White;
+            turnipSell5PM.Location = new System.Drawing.Point(259, 341);
+            turnipSell5PM.MaxLength = 15;
+            turnipSell5PM.Multiline = false;
+            turnipSell5PM.Name = "turnipSell5PM";
+            turnipSell5PM.Size = new System.Drawing.Size(155, 38);
+            turnipSell5PM.TabIndex = 51;
+            turnipSell5PM.Text = "5PM";
             // 
             // turnipSell4PM
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.turnipSell4PM, null);
-            this.turnipSell4PM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.turnipSell4PM.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.turnipSell4PM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.turnipSell4PM.ForeColor = System.Drawing.Color.White;
-            this.turnipSell4PM.Location = new System.Drawing.Point(259, 278);
-            this.turnipSell4PM.MaxLength = 15;
-            this.turnipSell4PM.Multiline = false;
-            this.turnipSell4PM.Name = "turnipSell4PM";
-            this.turnipSell4PM.Size = new System.Drawing.Size(155, 38);
-            this.turnipSell4PM.TabIndex = 49;
-            this.turnipSell4PM.Text = "4PM";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(turnipSell4PM, null);
+            turnipSell4PM.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            turnipSell4PM.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            turnipSell4PM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
+            turnipSell4PM.ForeColor = System.Drawing.Color.White;
+            turnipSell4PM.Location = new System.Drawing.Point(259, 278);
+            turnipSell4PM.MaxLength = 15;
+            turnipSell4PM.Multiline = false;
+            turnipSell4PM.Name = "turnipSell4PM";
+            turnipSell4PM.Size = new System.Drawing.Size(155, 38);
+            turnipSell4PM.TabIndex = 49;
+            turnipSell4PM.Text = "4PM";
             // 
             // turnipSell3PM
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.turnipSell3PM, null);
-            this.turnipSell3PM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.turnipSell3PM.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.turnipSell3PM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.turnipSell3PM.ForeColor = System.Drawing.Color.White;
-            this.turnipSell3PM.Location = new System.Drawing.Point(259, 215);
-            this.turnipSell3PM.MaxLength = 15;
-            this.turnipSell3PM.Multiline = false;
-            this.turnipSell3PM.Name = "turnipSell3PM";
-            this.turnipSell3PM.Size = new System.Drawing.Size(155, 38);
-            this.turnipSell3PM.TabIndex = 47;
-            this.turnipSell3PM.Text = "3PM";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(turnipSell3PM, null);
+            turnipSell3PM.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            turnipSell3PM.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            turnipSell3PM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
+            turnipSell3PM.ForeColor = System.Drawing.Color.White;
+            turnipSell3PM.Location = new System.Drawing.Point(259, 215);
+            turnipSell3PM.MaxLength = 15;
+            turnipSell3PM.Multiline = false;
+            turnipSell3PM.Name = "turnipSell3PM";
+            turnipSell3PM.Size = new System.Drawing.Size(155, 38);
+            turnipSell3PM.TabIndex = 47;
+            turnipSell3PM.Text = "3PM";
             // 
             // turnipSell2PM
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.turnipSell2PM, null);
-            this.turnipSell2PM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.turnipSell2PM.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.turnipSell2PM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.turnipSell2PM.ForeColor = System.Drawing.Color.White;
-            this.turnipSell2PM.Location = new System.Drawing.Point(259, 152);
-            this.turnipSell2PM.MaxLength = 15;
-            this.turnipSell2PM.Multiline = false;
-            this.turnipSell2PM.Name = "turnipSell2PM";
-            this.turnipSell2PM.Size = new System.Drawing.Size(155, 38);
-            this.turnipSell2PM.TabIndex = 45;
-            this.turnipSell2PM.Text = "2PM";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(turnipSell2PM, null);
+            turnipSell2PM.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            turnipSell2PM.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            turnipSell2PM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
+            turnipSell2PM.ForeColor = System.Drawing.Color.White;
+            turnipSell2PM.Location = new System.Drawing.Point(259, 152);
+            turnipSell2PM.MaxLength = 15;
+            turnipSell2PM.Multiline = false;
+            turnipSell2PM.Name = "turnipSell2PM";
+            turnipSell2PM.Size = new System.Drawing.Size(155, 38);
+            turnipSell2PM.TabIndex = 45;
+            turnipSell2PM.Text = "2PM";
             // 
             // turnipSell1PM
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.turnipSell1PM, null);
-            this.turnipSell1PM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.turnipSell1PM.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.turnipSell1PM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.turnipSell1PM.ForeColor = System.Drawing.Color.White;
-            this.turnipSell1PM.Location = new System.Drawing.Point(259, 89);
-            this.turnipSell1PM.MaxLength = 15;
-            this.turnipSell1PM.Multiline = false;
-            this.turnipSell1PM.Name = "turnipSell1PM";
-            this.turnipSell1PM.Size = new System.Drawing.Size(155, 38);
-            this.turnipSell1PM.TabIndex = 43;
-            this.turnipSell1PM.Text = "1PM";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(turnipSell1PM, null);
+            turnipSell1PM.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            turnipSell1PM.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            turnipSell1PM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
+            turnipSell1PM.ForeColor = System.Drawing.Color.White;
+            turnipSell1PM.Location = new System.Drawing.Point(259, 89);
+            turnipSell1PM.MaxLength = 15;
+            turnipSell1PM.Multiline = false;
+            turnipSell1PM.Name = "turnipSell1PM";
+            turnipSell1PM.Size = new System.Drawing.Size(155, 38);
+            turnipSell1PM.TabIndex = 43;
+            turnipSell1PM.Text = "1PM";
             // 
             // turnipSell6AM
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.turnipSell6AM, null);
-            this.turnipSell6AM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.turnipSell6AM.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.turnipSell6AM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.turnipSell6AM.ForeColor = System.Drawing.Color.White;
-            this.turnipSell6AM.Location = new System.Drawing.Point(51, 404);
-            this.turnipSell6AM.MaxLength = 15;
-            this.turnipSell6AM.Multiline = false;
-            this.turnipSell6AM.Name = "turnipSell6AM";
-            this.turnipSell6AM.Size = new System.Drawing.Size(155, 38);
-            this.turnipSell6AM.TabIndex = 41;
-            this.turnipSell6AM.Text = "6AM";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(turnipSell6AM, null);
+            turnipSell6AM.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            turnipSell6AM.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            turnipSell6AM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
+            turnipSell6AM.ForeColor = System.Drawing.Color.White;
+            turnipSell6AM.Location = new System.Drawing.Point(51, 404);
+            turnipSell6AM.MaxLength = 15;
+            turnipSell6AM.Multiline = false;
+            turnipSell6AM.Name = "turnipSell6AM";
+            turnipSell6AM.Size = new System.Drawing.Size(155, 38);
+            turnipSell6AM.TabIndex = 41;
+            turnipSell6AM.Text = "6AM";
             // 
             // turnipSell5AM
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.turnipSell5AM, null);
-            this.turnipSell5AM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.turnipSell5AM.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.turnipSell5AM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.turnipSell5AM.ForeColor = System.Drawing.Color.White;
-            this.turnipSell5AM.Location = new System.Drawing.Point(51, 341);
-            this.turnipSell5AM.MaxLength = 15;
-            this.turnipSell5AM.Multiline = false;
-            this.turnipSell5AM.Name = "turnipSell5AM";
-            this.turnipSell5AM.Size = new System.Drawing.Size(155, 38);
-            this.turnipSell5AM.TabIndex = 39;
-            this.turnipSell5AM.Text = "5AM";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(turnipSell5AM, null);
+            turnipSell5AM.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            turnipSell5AM.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            turnipSell5AM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
+            turnipSell5AM.ForeColor = System.Drawing.Color.White;
+            turnipSell5AM.Location = new System.Drawing.Point(51, 341);
+            turnipSell5AM.MaxLength = 15;
+            turnipSell5AM.Multiline = false;
+            turnipSell5AM.Name = "turnipSell5AM";
+            turnipSell5AM.Size = new System.Drawing.Size(155, 38);
+            turnipSell5AM.TabIndex = 39;
+            turnipSell5AM.Text = "5AM";
             // 
             // turnipSell4AM
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.turnipSell4AM, null);
-            this.turnipSell4AM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.turnipSell4AM.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.turnipSell4AM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.turnipSell4AM.ForeColor = System.Drawing.Color.White;
-            this.turnipSell4AM.Location = new System.Drawing.Point(51, 278);
-            this.turnipSell4AM.MaxLength = 15;
-            this.turnipSell4AM.Multiline = false;
-            this.turnipSell4AM.Name = "turnipSell4AM";
-            this.turnipSell4AM.Size = new System.Drawing.Size(155, 38);
-            this.turnipSell4AM.TabIndex = 37;
-            this.turnipSell4AM.Text = "4AM";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(turnipSell4AM, null);
+            turnipSell4AM.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            turnipSell4AM.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            turnipSell4AM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
+            turnipSell4AM.ForeColor = System.Drawing.Color.White;
+            turnipSell4AM.Location = new System.Drawing.Point(51, 278);
+            turnipSell4AM.MaxLength = 15;
+            turnipSell4AM.Multiline = false;
+            turnipSell4AM.Name = "turnipSell4AM";
+            turnipSell4AM.Size = new System.Drawing.Size(155, 38);
+            turnipSell4AM.TabIndex = 37;
+            turnipSell4AM.Text = "4AM";
             // 
             // turnipSell3AM
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.turnipSell3AM, null);
-            this.turnipSell3AM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.turnipSell3AM.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.turnipSell3AM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.turnipSell3AM.ForeColor = System.Drawing.Color.White;
-            this.turnipSell3AM.Location = new System.Drawing.Point(51, 215);
-            this.turnipSell3AM.MaxLength = 15;
-            this.turnipSell3AM.Multiline = false;
-            this.turnipSell3AM.Name = "turnipSell3AM";
-            this.turnipSell3AM.Size = new System.Drawing.Size(155, 38);
-            this.turnipSell3AM.TabIndex = 35;
-            this.turnipSell3AM.Text = "3AM";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(turnipSell3AM, null);
+            turnipSell3AM.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            turnipSell3AM.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            turnipSell3AM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
+            turnipSell3AM.ForeColor = System.Drawing.Color.White;
+            turnipSell3AM.Location = new System.Drawing.Point(51, 215);
+            turnipSell3AM.MaxLength = 15;
+            turnipSell3AM.Multiline = false;
+            turnipSell3AM.Name = "turnipSell3AM";
+            turnipSell3AM.Size = new System.Drawing.Size(155, 38);
+            turnipSell3AM.TabIndex = 35;
+            turnipSell3AM.Text = "3AM";
             // 
             // turnipSell2AM
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.turnipSell2AM, null);
-            this.turnipSell2AM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.turnipSell2AM.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.turnipSell2AM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.turnipSell2AM.ForeColor = System.Drawing.Color.White;
-            this.turnipSell2AM.Location = new System.Drawing.Point(51, 152);
-            this.turnipSell2AM.MaxLength = 15;
-            this.turnipSell2AM.Multiline = false;
-            this.turnipSell2AM.Name = "turnipSell2AM";
-            this.turnipSell2AM.Size = new System.Drawing.Size(155, 38);
-            this.turnipSell2AM.TabIndex = 33;
-            this.turnipSell2AM.Text = "2AM";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(turnipSell2AM, null);
+            turnipSell2AM.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            turnipSell2AM.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            turnipSell2AM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
+            turnipSell2AM.ForeColor = System.Drawing.Color.White;
+            turnipSell2AM.Location = new System.Drawing.Point(51, 152);
+            turnipSell2AM.MaxLength = 15;
+            turnipSell2AM.Multiline = false;
+            turnipSell2AM.Name = "turnipSell2AM";
+            turnipSell2AM.Size = new System.Drawing.Size(155, 38);
+            turnipSell2AM.TabIndex = 33;
+            turnipSell2AM.Text = "2AM";
             // 
             // turnipBuyPrice
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.turnipBuyPrice, null);
-            this.turnipBuyPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.turnipBuyPrice.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.turnipBuyPrice.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.turnipBuyPrice.ForeColor = System.Drawing.Color.White;
-            this.turnipBuyPrice.Location = new System.Drawing.Point(51, 26);
-            this.turnipBuyPrice.MaxLength = 15;
-            this.turnipBuyPrice.Multiline = false;
-            this.turnipBuyPrice.Name = "turnipBuyPrice";
-            this.turnipBuyPrice.Size = new System.Drawing.Size(155, 38);
-            this.turnipBuyPrice.TabIndex = 32;
-            this.turnipBuyPrice.Text = "Buy";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(turnipBuyPrice, null);
+            turnipBuyPrice.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            turnipBuyPrice.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            turnipBuyPrice.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
+            turnipBuyPrice.ForeColor = System.Drawing.Color.White;
+            turnipBuyPrice.Location = new System.Drawing.Point(51, 26);
+            turnipBuyPrice.MaxLength = 15;
+            turnipBuyPrice.Multiline = false;
+            turnipBuyPrice.Name = "turnipBuyPrice";
+            turnipBuyPrice.Size = new System.Drawing.Size(155, 38);
+            turnipBuyPrice.TabIndex = 32;
+            turnipBuyPrice.Text = "Buy";
             // 
             // turnipSell1AM
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.turnipSell1AM, null);
-            this.turnipSell1AM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.turnipSell1AM.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.turnipSell1AM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.turnipSell1AM.ForeColor = System.Drawing.Color.White;
-            this.turnipSell1AM.Location = new System.Drawing.Point(51, 89);
-            this.turnipSell1AM.MaxLength = 15;
-            this.turnipSell1AM.Multiline = false;
-            this.turnipSell1AM.Name = "turnipSell1AM";
-            this.turnipSell1AM.Size = new System.Drawing.Size(155, 38);
-            this.turnipSell1AM.TabIndex = 30;
-            this.turnipSell1AM.Text = "1AM";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(turnipSell1AM, null);
+            turnipSell1AM.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            turnipSell1AM.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            turnipSell1AM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
+            turnipSell1AM.ForeColor = System.Drawing.Color.White;
+            turnipSell1AM.Location = new System.Drawing.Point(51, 89);
+            turnipSell1AM.MaxLength = 15;
+            turnipSell1AM.Multiline = false;
+            turnipSell1AM.Name = "turnipSell1AM";
+            turnipSell1AM.Size = new System.Drawing.Size(155, 38);
+            turnipSell1AM.TabIndex = 30;
+            turnipSell1AM.Text = "1AM";
             // 
             // CritterSearchBox
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.CritterSearchBox, null);
-            this.CritterSearchBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.CritterSearchBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.CritterSearchBox.DetectUrls = false;
-            this.CritterSearchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CritterSearchBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(118)))), ((int)(((byte)(125)))));
-            this.CritterSearchBox.Location = new System.Drawing.Point(174, 64);
-            this.CritterSearchBox.MaxLength = 30;
-            this.CritterSearchBox.Multiline = false;
-            this.CritterSearchBox.Name = "CritterSearchBox";
-            this.CritterSearchBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.CritterSearchBox.Size = new System.Drawing.Size(316, 24);
-            this.CritterSearchBox.TabIndex = 27;
-            this.CritterSearchBox.Text = "Search...";
-            this.CritterSearchBox.WordWrap = false;
-            this.CritterSearchBox.Click += new System.EventHandler(this.CritterSearchBox_Click);
-            this.CritterSearchBox.TextChanged += new System.EventHandler(this.CritterSearchBox_TextChanged);
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(CritterSearchBox, null);
+            CritterSearchBox.BackColor = System.Drawing.Color.FromArgb(32, 34, 37);
+            CritterSearchBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            CritterSearchBox.DetectUrls = false;
+            CritterSearchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            CritterSearchBox.ForeColor = System.Drawing.Color.FromArgb(114, 118, 125);
+            CritterSearchBox.Location = new System.Drawing.Point(174, 64);
+            CritterSearchBox.MaxLength = 30;
+            CritterSearchBox.Multiline = false;
+            CritterSearchBox.Name = "CritterSearchBox";
+            CritterSearchBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            CritterSearchBox.Size = new System.Drawing.Size(316, 24);
+            CritterSearchBox.TabIndex = 27;
+            CritterSearchBox.Text = "Search...";
+            CritterSearchBox.WordWrap = false;
+            CritterSearchBox.Click += CritterSearchBox_Click;
+            CritterSearchBox.TextChanged += CritterSearchBox_TextChanged;
             // 
             // VillagerNowLoadingLongMessage
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.VillagerNowLoadingLongMessage, null);
-            this.VillagerNowLoadingLongMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.VillagerNowLoadingLongMessage.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.VillagerNowLoadingLongMessage.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerNowLoadingLongMessage.ForeColor = System.Drawing.Color.White;
-            this.VillagerNowLoadingLongMessage.Location = new System.Drawing.Point(2, 33);
-            this.VillagerNowLoadingLongMessage.MaxLength = 15;
-            this.VillagerNowLoadingLongMessage.Multiline = false;
-            this.VillagerNowLoadingLongMessage.Name = "VillagerNowLoadingLongMessage";
-            this.VillagerNowLoadingLongMessage.Size = new System.Drawing.Size(390, 20);
-            this.VillagerNowLoadingLongMessage.TabIndex = 35;
-            this.VillagerNowLoadingLongMessage.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(VillagerNowLoadingLongMessage, null);
+            VillagerNowLoadingLongMessage.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            VillagerNowLoadingLongMessage.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            VillagerNowLoadingLongMessage.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            VillagerNowLoadingLongMessage.ForeColor = System.Drawing.Color.White;
+            VillagerNowLoadingLongMessage.Location = new System.Drawing.Point(2, 33);
+            VillagerNowLoadingLongMessage.MaxLength = 15;
+            VillagerNowLoadingLongMessage.Multiline = false;
+            VillagerNowLoadingLongMessage.Name = "VillagerNowLoadingLongMessage";
+            VillagerNowLoadingLongMessage.Size = new System.Drawing.Size(390, 20);
+            VillagerNowLoadingLongMessage.TabIndex = 35;
+            VillagerNowLoadingLongMessage.Text = "";
             // 
             // VillagerHouseIndex
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.VillagerHouseIndex, null);
-            this.VillagerHouseIndex.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.VillagerHouseIndex.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.VillagerHouseIndex.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerHouseIndex.ForeColor = System.Drawing.Color.White;
-            this.VillagerHouseIndex.Location = new System.Drawing.Point(684, 331);
-            this.VillagerHouseIndex.MaxLength = 2;
-            this.VillagerHouseIndex.Multiline = false;
-            this.VillagerHouseIndex.Name = "VillagerHouseIndex";
-            this.VillagerHouseIndex.ReadOnly = true;
-            this.VillagerHouseIndex.Size = new System.Drawing.Size(56, 28);
-            this.VillagerHouseIndex.TabIndex = 106;
-            this.VillagerHouseIndex.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(VillagerHouseIndex, null);
+            VillagerHouseIndex.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            VillagerHouseIndex.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            VillagerHouseIndex.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            VillagerHouseIndex.ForeColor = System.Drawing.Color.White;
+            VillagerHouseIndex.Location = new System.Drawing.Point(684, 331);
+            VillagerHouseIndex.MaxLength = 2;
+            VillagerHouseIndex.Multiline = false;
+            VillagerHouseIndex.Name = "VillagerHouseIndex";
+            VillagerHouseIndex.ReadOnly = true;
+            VillagerHouseIndex.Size = new System.Drawing.Size(56, 28);
+            VillagerHouseIndex.TabIndex = 106;
+            VillagerHouseIndex.Text = "";
             // 
             // VillagerFriendship
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.VillagerFriendship, null);
-            this.VillagerFriendship.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.VillagerFriendship.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.VillagerFriendship.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerFriendship.ForeColor = System.Drawing.Color.White;
-            this.VillagerFriendship.Location = new System.Drawing.Point(485, 365);
-            this.VillagerFriendship.MaxLength = 3;
-            this.VillagerFriendship.Multiline = false;
-            this.VillagerFriendship.Name = "VillagerFriendship";
-            this.VillagerFriendship.ReadOnly = true;
-            this.VillagerFriendship.Size = new System.Drawing.Size(56, 28);
-            this.VillagerFriendship.TabIndex = 105;
-            this.VillagerFriendship.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(VillagerFriendship, null);
+            VillagerFriendship.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            VillagerFriendship.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            VillagerFriendship.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            VillagerFriendship.ForeColor = System.Drawing.Color.White;
+            VillagerFriendship.Location = new System.Drawing.Point(485, 365);
+            VillagerFriendship.MaxLength = 3;
+            VillagerFriendship.Multiline = false;
+            VillagerFriendship.Name = "VillagerFriendship";
+            VillagerFriendship.ReadOnly = true;
+            VillagerFriendship.Size = new System.Drawing.Size(56, 28);
+            VillagerFriendship.TabIndex = 105;
+            VillagerFriendship.Text = "";
             // 
             // VillagerIndex
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.VillagerIndex, null);
-            this.VillagerIndex.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.VillagerIndex.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.VillagerIndex.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerIndex.ForeColor = System.Drawing.Color.White;
-            this.VillagerIndex.Location = new System.Drawing.Point(485, 331);
-            this.VillagerIndex.MaxLength = 2;
-            this.VillagerIndex.Multiline = false;
-            this.VillagerIndex.Name = "VillagerIndex";
-            this.VillagerIndex.ReadOnly = true;
-            this.VillagerIndex.Size = new System.Drawing.Size(56, 28);
-            this.VillagerIndex.TabIndex = 104;
-            this.VillagerIndex.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(VillagerIndex, null);
+            VillagerIndex.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            VillagerIndex.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            VillagerIndex.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            VillagerIndex.ForeColor = System.Drawing.Color.White;
+            VillagerIndex.Location = new System.Drawing.Point(485, 331);
+            VillagerIndex.MaxLength = 2;
+            VillagerIndex.Multiline = false;
+            VillagerIndex.Name = "VillagerIndex";
+            VillagerIndex.ReadOnly = true;
+            VillagerIndex.Size = new System.Drawing.Size(56, 28);
+            VillagerIndex.TabIndex = 104;
+            VillagerIndex.Text = "";
             // 
             // VillagerPersonality
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.VillagerPersonality, null);
-            this.VillagerPersonality.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.VillagerPersonality.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.VillagerPersonality.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerPersonality.ForeColor = System.Drawing.Color.White;
-            this.VillagerPersonality.Location = new System.Drawing.Point(198, 399);
-            this.VillagerPersonality.MaxLength = 30;
-            this.VillagerPersonality.Multiline = false;
-            this.VillagerPersonality.Name = "VillagerPersonality";
-            this.VillagerPersonality.ReadOnly = true;
-            this.VillagerPersonality.Size = new System.Drawing.Size(127, 28);
-            this.VillagerPersonality.TabIndex = 103;
-            this.VillagerPersonality.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(VillagerPersonality, null);
+            VillagerPersonality.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            VillagerPersonality.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            VillagerPersonality.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            VillagerPersonality.ForeColor = System.Drawing.Color.White;
+            VillagerPersonality.Location = new System.Drawing.Point(198, 399);
+            VillagerPersonality.MaxLength = 30;
+            VillagerPersonality.Multiline = false;
+            VillagerPersonality.Name = "VillagerPersonality";
+            VillagerPersonality.ReadOnly = true;
+            VillagerPersonality.Size = new System.Drawing.Size(127, 28);
+            VillagerPersonality.TabIndex = 103;
+            VillagerPersonality.Text = "";
             // 
             // VillagerIName
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.VillagerIName, null);
-            this.VillagerIName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.VillagerIName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.VillagerIName.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerIName.ForeColor = System.Drawing.Color.White;
-            this.VillagerIName.Location = new System.Drawing.Point(198, 365);
-            this.VillagerIName.MaxLength = 30;
-            this.VillagerIName.Multiline = false;
-            this.VillagerIName.Name = "VillagerIName";
-            this.VillagerIName.ReadOnly = true;
-            this.VillagerIName.Size = new System.Drawing.Size(127, 28);
-            this.VillagerIName.TabIndex = 102;
-            this.VillagerIName.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(VillagerIName, null);
+            VillagerIName.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            VillagerIName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            VillagerIName.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            VillagerIName.ForeColor = System.Drawing.Color.White;
+            VillagerIName.Location = new System.Drawing.Point(198, 365);
+            VillagerIName.MaxLength = 30;
+            VillagerIName.Multiline = false;
+            VillagerIName.Name = "VillagerIName";
+            VillagerIName.ReadOnly = true;
+            VillagerIName.Size = new System.Drawing.Size(127, 28);
+            VillagerIName.TabIndex = 102;
+            VillagerIName.Text = "";
             // 
             // VillagerName
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.VillagerName, null);
-            this.VillagerName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.VillagerName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.VillagerName.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerName.ForeColor = System.Drawing.Color.White;
-            this.VillagerName.Location = new System.Drawing.Point(198, 331);
-            this.VillagerName.MaxLength = 30;
-            this.VillagerName.Multiline = false;
-            this.VillagerName.Name = "VillagerName";
-            this.VillagerName.ReadOnly = true;
-            this.VillagerName.Size = new System.Drawing.Size(127, 28);
-            this.VillagerName.TabIndex = 96;
-            this.VillagerName.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(VillagerName, null);
+            VillagerName.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            VillagerName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            VillagerName.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            VillagerName.ForeColor = System.Drawing.Color.White;
+            VillagerName.Location = new System.Drawing.Point(198, 331);
+            VillagerName.MaxLength = 30;
+            VillagerName.Multiline = false;
+            VillagerName.Name = "VillagerName";
+            VillagerName.ReadOnly = true;
+            VillagerName.Size = new System.Drawing.Size(127, 28);
+            VillagerName.TabIndex = 96;
+            VillagerName.Text = "";
             // 
             // VillagerHeader
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.VillagerHeader, null);
-            this.VillagerHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.VillagerHeader.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.VillagerHeader.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerHeader.ForeColor = System.Drawing.Color.White;
-            this.VillagerHeader.Location = new System.Drawing.Point(48, 519);
-            this.VillagerHeader.MaxLength = 1000;
-            this.VillagerHeader.Multiline = false;
-            this.VillagerHeader.Name = "VillagerHeader";
-            this.VillagerHeader.Size = new System.Drawing.Size(490, 28);
-            this.VillagerHeader.TabIndex = 135;
-            this.VillagerHeader.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(VillagerHeader, null);
+            VillagerHeader.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            VillagerHeader.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            VillagerHeader.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            VillagerHeader.ForeColor = System.Drawing.Color.White;
+            VillagerHeader.Location = new System.Drawing.Point(48, 519);
+            VillagerHeader.MaxLength = 1000;
+            VillagerHeader.Multiline = false;
+            VillagerHeader.Name = "VillagerHeader";
+            VillagerHeader.Size = new System.Drawing.Size(490, 28);
+            VillagerHeader.TabIndex = 135;
+            VillagerHeader.Text = "";
             // 
             // VillagerForceMoveoutFlag
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.VillagerForceMoveoutFlag, null);
-            this.VillagerForceMoveoutFlag.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.VillagerForceMoveoutFlag.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.VillagerForceMoveoutFlag.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerForceMoveoutFlag.ForeColor = System.Drawing.Color.White;
-            this.VillagerForceMoveoutFlag.Location = new System.Drawing.Point(716, 519);
-            this.VillagerForceMoveoutFlag.MaxLength = 5;
-            this.VillagerForceMoveoutFlag.Multiline = false;
-            this.VillagerForceMoveoutFlag.Name = "VillagerForceMoveoutFlag";
-            this.VillagerForceMoveoutFlag.Size = new System.Drawing.Size(80, 28);
-            this.VillagerForceMoveoutFlag.TabIndex = 134;
-            this.VillagerForceMoveoutFlag.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(VillagerForceMoveoutFlag, null);
+            VillagerForceMoveoutFlag.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            VillagerForceMoveoutFlag.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            VillagerForceMoveoutFlag.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            VillagerForceMoveoutFlag.ForeColor = System.Drawing.Color.White;
+            VillagerForceMoveoutFlag.Location = new System.Drawing.Point(716, 519);
+            VillagerForceMoveoutFlag.MaxLength = 5;
+            VillagerForceMoveoutFlag.Multiline = false;
+            VillagerForceMoveoutFlag.Name = "VillagerForceMoveoutFlag";
+            VillagerForceMoveoutFlag.Size = new System.Drawing.Size(80, 28);
+            VillagerForceMoveoutFlag.TabIndex = 134;
+            VillagerForceMoveoutFlag.Text = "";
             // 
             // VillagerAbandonedHouseFlag
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.VillagerAbandonedHouseFlag, null);
-            this.VillagerAbandonedHouseFlag.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.VillagerAbandonedHouseFlag.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.VillagerAbandonedHouseFlag.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerAbandonedHouseFlag.ForeColor = System.Drawing.Color.White;
-            this.VillagerAbandonedHouseFlag.Location = new System.Drawing.Point(630, 519);
-            this.VillagerAbandonedHouseFlag.MaxLength = 5;
-            this.VillagerAbandonedHouseFlag.Multiline = false;
-            this.VillagerAbandonedHouseFlag.Name = "VillagerAbandonedHouseFlag";
-            this.VillagerAbandonedHouseFlag.Size = new System.Drawing.Size(80, 28);
-            this.VillagerAbandonedHouseFlag.TabIndex = 133;
-            this.VillagerAbandonedHouseFlag.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(VillagerAbandonedHouseFlag, null);
+            VillagerAbandonedHouseFlag.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            VillagerAbandonedHouseFlag.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            VillagerAbandonedHouseFlag.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            VillagerAbandonedHouseFlag.ForeColor = System.Drawing.Color.White;
+            VillagerAbandonedHouseFlag.Location = new System.Drawing.Point(630, 519);
+            VillagerAbandonedHouseFlag.MaxLength = 5;
+            VillagerAbandonedHouseFlag.Multiline = false;
+            VillagerAbandonedHouseFlag.Name = "VillagerAbandonedHouseFlag";
+            VillagerAbandonedHouseFlag.Size = new System.Drawing.Size(80, 28);
+            VillagerAbandonedHouseFlag.TabIndex = 133;
+            VillagerAbandonedHouseFlag.Text = "";
             // 
             // VillagerMoveInFlag
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.VillagerMoveInFlag, null);
-            this.VillagerMoveInFlag.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.VillagerMoveInFlag.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.VillagerMoveInFlag.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerMoveInFlag.ForeColor = System.Drawing.Color.White;
-            this.VillagerMoveInFlag.Location = new System.Drawing.Point(544, 519);
-            this.VillagerMoveInFlag.MaxLength = 5;
-            this.VillagerMoveInFlag.Multiline = false;
-            this.VillagerMoveInFlag.Name = "VillagerMoveInFlag";
-            this.VillagerMoveInFlag.Size = new System.Drawing.Size(80, 28);
-            this.VillagerMoveInFlag.TabIndex = 132;
-            this.VillagerMoveInFlag.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(VillagerMoveInFlag, null);
+            VillagerMoveInFlag.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            VillagerMoveInFlag.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            VillagerMoveInFlag.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            VillagerMoveInFlag.ForeColor = System.Drawing.Color.White;
+            VillagerMoveInFlag.Location = new System.Drawing.Point(544, 519);
+            VillagerMoveInFlag.MaxLength = 5;
+            VillagerMoveInFlag.Multiline = false;
+            VillagerMoveInFlag.Name = "VillagerMoveInFlag";
+            VillagerMoveInFlag.Size = new System.Drawing.Size(80, 28);
+            VillagerMoveInFlag.TabIndex = 132;
+            VillagerMoveInFlag.Text = "";
             // 
             // ReplaceMysVilllagerSearchBox
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.ReplaceMysVilllagerSearchBox, VillagerAutoCompleteMenu);
-            this.ReplaceMysVilllagerSearchBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.ReplaceMysVilllagerSearchBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ReplaceMysVilllagerSearchBox.DetectUrls = false;
-            this.ReplaceMysVilllagerSearchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ReplaceMysVilllagerSearchBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(118)))), ((int)(((byte)(125)))));
-            this.ReplaceMysVilllagerSearchBox.Location = new System.Drawing.Point(955, 260);
-            this.ReplaceMysVilllagerSearchBox.MaxLength = 30;
-            this.ReplaceMysVilllagerSearchBox.Multiline = false;
-            this.ReplaceMysVilllagerSearchBox.Name = "ReplaceMysVilllagerSearchBox";
-            this.ReplaceMysVilllagerSearchBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.ReplaceMysVilllagerSearchBox.Size = new System.Drawing.Size(237, 24);
-            this.ReplaceMysVilllagerSearchBox.TabIndex = 130;
-            this.ReplaceMysVilllagerSearchBox.Text = "Search...";
-            this.ReplaceMysVilllagerSearchBox.WordWrap = false;
-            this.ReplaceMysVilllagerSearchBox.Click += new System.EventHandler(this.ReplaceMysVilllagerSearchBox_Click);
-            this.ReplaceMysVilllagerSearchBox.TextChanged += new System.EventHandler(this.ReplaceMysVilllagerSearchBox_TextChanged);
-            this.ReplaceMysVilllagerSearchBox.Leave += new System.EventHandler(this.ReplaceMysVilllagerSearchBox_Leave);
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(ReplaceMysVilllagerSearchBox, VillagerAutoCompleteMenu);
+            ReplaceMysVilllagerSearchBox.BackColor = System.Drawing.Color.FromArgb(32, 34, 37);
+            ReplaceMysVilllagerSearchBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            ReplaceMysVilllagerSearchBox.DetectUrls = false;
+            ReplaceMysVilllagerSearchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            ReplaceMysVilllagerSearchBox.ForeColor = System.Drawing.Color.FromArgb(114, 118, 125);
+            ReplaceMysVilllagerSearchBox.Location = new System.Drawing.Point(955, 260);
+            ReplaceMysVilllagerSearchBox.MaxLength = 30;
+            ReplaceMysVilllagerSearchBox.Multiline = false;
+            ReplaceMysVilllagerSearchBox.Name = "ReplaceMysVilllagerSearchBox";
+            ReplaceMysVilllagerSearchBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            ReplaceMysVilllagerSearchBox.Size = new System.Drawing.Size(237, 24);
+            ReplaceMysVilllagerSearchBox.TabIndex = 130;
+            ReplaceMysVilllagerSearchBox.Text = "Search...";
+            ReplaceMysVilllagerSearchBox.WordWrap = false;
+            ReplaceMysVilllagerSearchBox.Click += ReplaceMysVillagerSearchBox_Click;
+            ReplaceMysVilllagerSearchBox.TextChanged += ReplaceMysVillagerSearchBox_TextChanged;
+            ReplaceMysVilllagerSearchBox.Leave += ReplaceMysVillagerSearchBox_Leave;
             // 
             // VillagerCatchphrase
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.VillagerCatchphrase, null);
-            this.VillagerCatchphrase.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.VillagerCatchphrase.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.VillagerCatchphrase.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerCatchphrase.ForeColor = System.Drawing.Color.White;
-            this.VillagerCatchphrase.Location = new System.Drawing.Point(485, 399);
-            this.VillagerCatchphrase.MaxLength = 22;
-            this.VillagerCatchphrase.Multiline = false;
-            this.VillagerCatchphrase.Name = "VillagerCatchphrase";
-            this.VillagerCatchphrase.Size = new System.Drawing.Size(585, 28);
-            this.VillagerCatchphrase.TabIndex = 108;
-            this.VillagerCatchphrase.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(VillagerCatchphrase, null);
+            VillagerCatchphrase.BackColor = System.Drawing.Color.FromArgb(32, 34, 37);
+            VillagerCatchphrase.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            VillagerCatchphrase.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            VillagerCatchphrase.ForeColor = System.Drawing.Color.White;
+            VillagerCatchphrase.Location = new System.Drawing.Point(485, 399);
+            VillagerCatchphrase.MaxLength = 22;
+            VillagerCatchphrase.Multiline = false;
+            VillagerCatchphrase.Name = "VillagerCatchphrase";
+            VillagerCatchphrase.Size = new System.Drawing.Size(585, 28);
+            VillagerCatchphrase.TabIndex = 108;
+            VillagerCatchphrase.Text = "";
             // 
             // ReplaceVilllagerSearchBox
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.ReplaceVilllagerSearchBox, VillagerAutoCompleteMenu);
-            this.ReplaceVilllagerSearchBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.ReplaceVilllagerSearchBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ReplaceVilllagerSearchBox.DetectUrls = false;
-            this.ReplaceVilllagerSearchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ReplaceVilllagerSearchBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(118)))), ((int)(((byte)(125)))));
-            this.ReplaceVilllagerSearchBox.Location = new System.Drawing.Point(340, 479);
-            this.ReplaceVilllagerSearchBox.MaxLength = 30;
-            this.ReplaceVilllagerSearchBox.Multiline = false;
-            this.ReplaceVilllagerSearchBox.Name = "ReplaceVilllagerSearchBox";
-            this.ReplaceVilllagerSearchBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.ReplaceVilllagerSearchBox.Size = new System.Drawing.Size(197, 26);
-            this.ReplaceVilllagerSearchBox.TabIndex = 111;
-            this.ReplaceVilllagerSearchBox.Text = "Search...";
-            this.ReplaceVilllagerSearchBox.WordWrap = false;
-            this.ReplaceVilllagerSearchBox.Click += new System.EventHandler(this.ReplaceVilllagerSearchBox_Click);
-            this.ReplaceVilllagerSearchBox.TextChanged += new System.EventHandler(this.ReplaceVilllagerSearchBox_TextChanged);
-            this.ReplaceVilllagerSearchBox.Leave += new System.EventHandler(this.ReplaceVilllagerSearchBox_Leave);
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(ReplaceVilllagerSearchBox, VillagerAutoCompleteMenu);
+            ReplaceVilllagerSearchBox.BackColor = System.Drawing.Color.FromArgb(32, 34, 37);
+            ReplaceVilllagerSearchBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            ReplaceVilllagerSearchBox.DetectUrls = false;
+            ReplaceVilllagerSearchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            ReplaceVilllagerSearchBox.ForeColor = System.Drawing.Color.FromArgb(114, 118, 125);
+            ReplaceVilllagerSearchBox.Location = new System.Drawing.Point(340, 479);
+            ReplaceVilllagerSearchBox.MaxLength = 30;
+            ReplaceVilllagerSearchBox.Multiline = false;
+            ReplaceVilllagerSearchBox.Name = "ReplaceVilllagerSearchBox";
+            ReplaceVilllagerSearchBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            ReplaceVilllagerSearchBox.Size = new System.Drawing.Size(197, 26);
+            ReplaceVilllagerSearchBox.TabIndex = 111;
+            ReplaceVilllagerSearchBox.Text = "Search...";
+            ReplaceVilllagerSearchBox.WordWrap = false;
+            ReplaceVilllagerSearchBox.Click += ReplaceVillagerSearchBox_Click;
+            ReplaceVilllagerSearchBox.TextChanged += ReplaceVillagerSearchBox_TextChanged;
+            ReplaceVilllagerSearchBox.Leave += ReplaceVillagerSearchBox_Leave;
             // 
             // DebugAddress
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.DebugAddress, null);
-            this.DebugAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.DebugAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.DebugAddress.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DebugAddress.ForeColor = System.Drawing.Color.White;
-            this.DebugAddress.Location = new System.Drawing.Point(86, 556);
-            this.DebugAddress.MaxLength = 8;
-            this.DebugAddress.Multiline = false;
-            this.DebugAddress.Name = "DebugAddress";
-            this.DebugAddress.Size = new System.Drawing.Size(294, 55);
-            this.DebugAddress.TabIndex = 35;
-            this.DebugAddress.Text = "AFB1E6E0";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(DebugAddress, null);
+            DebugAddress.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            DebugAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            DebugAddress.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold);
+            DebugAddress.ForeColor = System.Drawing.Color.White;
+            DebugAddress.Location = new System.Drawing.Point(86, 556);
+            DebugAddress.MaxLength = 8;
+            DebugAddress.Multiline = false;
+            DebugAddress.Name = "DebugAddress";
+            DebugAddress.Size = new System.Drawing.Size(294, 55);
+            DebugAddress.TabIndex = 35;
+            DebugAddress.Text = "AFB1E6E0";
             // 
             // DebugValue
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.DebugValue, null);
-            this.DebugValue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.DebugValue.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.DebugValue.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DebugValue.ForeColor = System.Drawing.Color.White;
-            this.DebugValue.Location = new System.Drawing.Point(86, 617);
-            this.DebugValue.MaxLength = 8;
-            this.DebugValue.Multiline = false;
-            this.DebugValue.Name = "DebugValue";
-            this.DebugValue.Size = new System.Drawing.Size(294, 55);
-            this.DebugValue.TabIndex = 40;
-            this.DebugValue.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(DebugValue, null);
+            DebugValue.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            DebugValue.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            DebugValue.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold);
+            DebugValue.ForeColor = System.Drawing.Color.White;
+            DebugValue.Location = new System.Drawing.Point(86, 617);
+            DebugValue.MaxLength = 8;
+            DebugValue.Multiline = false;
+            DebugValue.Name = "DebugValue";
+            DebugValue.Size = new System.Drawing.Size(294, 55);
+            DebugValue.TabIndex = 40;
+            DebugValue.Text = "";
             // 
             // PeekResult1
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.PeekResult1, null);
-            this.PeekResult1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.PeekResult1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.PeekResult1.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.PeekResult1.ForeColor = System.Drawing.Color.White;
-            this.PeekResult1.Location = new System.Drawing.Point(459, 556);
-            this.PeekResult1.MaxLength = 8;
-            this.PeekResult1.Multiline = false;
-            this.PeekResult1.Name = "PeekResult1";
-            this.PeekResult1.Size = new System.Drawing.Size(294, 55);
-            this.PeekResult1.TabIndex = 41;
-            this.PeekResult1.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(PeekResult1, null);
+            PeekResult1.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            PeekResult1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            PeekResult1.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold);
+            PeekResult1.ForeColor = System.Drawing.Color.White;
+            PeekResult1.Location = new System.Drawing.Point(459, 556);
+            PeekResult1.MaxLength = 8;
+            PeekResult1.Multiline = false;
+            PeekResult1.Name = "PeekResult1";
+            PeekResult1.Size = new System.Drawing.Size(294, 55);
+            PeekResult1.TabIndex = 41;
+            PeekResult1.Text = "";
             // 
             // PeekResult2
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.PeekResult2, null);
-            this.PeekResult2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.PeekResult2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.PeekResult2.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.PeekResult2.ForeColor = System.Drawing.Color.White;
-            this.PeekResult2.Location = new System.Drawing.Point(759, 556);
-            this.PeekResult2.MaxLength = 8;
-            this.PeekResult2.Multiline = false;
-            this.PeekResult2.Name = "PeekResult2";
-            this.PeekResult2.Size = new System.Drawing.Size(294, 55);
-            this.PeekResult2.TabIndex = 42;
-            this.PeekResult2.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(PeekResult2, null);
+            PeekResult2.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            PeekResult2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            PeekResult2.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold);
+            PeekResult2.ForeColor = System.Drawing.Color.White;
+            PeekResult2.Location = new System.Drawing.Point(759, 556);
+            PeekResult2.MaxLength = 8;
+            PeekResult2.Multiline = false;
+            PeekResult2.Name = "PeekResult2";
+            PeekResult2.Size = new System.Drawing.Size(294, 55);
+            PeekResult2.TabIndex = 42;
+            PeekResult2.Text = "";
             // 
             // PeekResult4
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.PeekResult4, null);
-            this.PeekResult4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.PeekResult4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.PeekResult4.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.PeekResult4.ForeColor = System.Drawing.Color.White;
-            this.PeekResult4.Location = new System.Drawing.Point(759, 617);
-            this.PeekResult4.MaxLength = 8;
-            this.PeekResult4.Multiline = false;
-            this.PeekResult4.Name = "PeekResult4";
-            this.PeekResult4.Size = new System.Drawing.Size(294, 55);
-            this.PeekResult4.TabIndex = 44;
-            this.PeekResult4.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(PeekResult4, null);
+            PeekResult4.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            PeekResult4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            PeekResult4.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold);
+            PeekResult4.ForeColor = System.Drawing.Color.White;
+            PeekResult4.Location = new System.Drawing.Point(759, 617);
+            PeekResult4.MaxLength = 8;
+            PeekResult4.Multiline = false;
+            PeekResult4.Name = "PeekResult4";
+            PeekResult4.Size = new System.Drawing.Size(294, 55);
+            PeekResult4.TabIndex = 44;
+            PeekResult4.Text = "";
             // 
             // PeekResult3
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.PeekResult3, null);
-            this.PeekResult3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.PeekResult3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.PeekResult3.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.PeekResult3.ForeColor = System.Drawing.Color.White;
-            this.PeekResult3.Location = new System.Drawing.Point(459, 617);
-            this.PeekResult3.MaxLength = 8;
-            this.PeekResult3.Multiline = false;
-            this.PeekResult3.Name = "PeekResult3";
-            this.PeekResult3.Size = new System.Drawing.Size(294, 55);
-            this.PeekResult3.TabIndex = 43;
-            this.PeekResult3.Text = "";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(PeekResult3, null);
+            PeekResult3.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            PeekResult3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            PeekResult3.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold);
+            PeekResult3.ForeColor = System.Drawing.Color.White;
+            PeekResult3.Location = new System.Drawing.Point(459, 617);
+            PeekResult3.MaxLength = 8;
+            PeekResult3.Multiline = false;
+            PeekResult3.Name = "PeekResult3";
+            PeekResult3.Size = new System.Drawing.Size(294, 55);
+            PeekResult3.TabIndex = 43;
+            PeekResult3.Text = "";
             // 
             // FullPeekResult1
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.FullPeekResult1, null);
-            this.FullPeekResult1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.FullPeekResult1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.FullPeekResult1.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FullPeekResult1.ForeColor = System.Drawing.Color.White;
-            this.FullPeekResult1.Location = new System.Drawing.Point(83, 678);
-            this.FullPeekResult1.MaxLength = 64;
-            this.FullPeekResult1.Multiline = false;
-            this.FullPeekResult1.Name = "FullPeekResult1";
-            this.FullPeekResult1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.FullPeekResult1.Size = new System.Drawing.Size(970, 23);
-            this.FullPeekResult1.TabIndex = 45;
-            this.FullPeekResult1.Text = "AAAA";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(FullPeekResult1, null);
+            FullPeekResult1.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            FullPeekResult1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            FullPeekResult1.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold);
+            FullPeekResult1.ForeColor = System.Drawing.Color.White;
+            FullPeekResult1.Location = new System.Drawing.Point(83, 678);
+            FullPeekResult1.MaxLength = 64;
+            FullPeekResult1.Multiline = false;
+            FullPeekResult1.Name = "FullPeekResult1";
+            FullPeekResult1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            FullPeekResult1.Size = new System.Drawing.Size(970, 23);
+            FullPeekResult1.TabIndex = 45;
+            FullPeekResult1.Text = "AAAA";
             // 
             // FullPeekResult2
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.FullPeekResult2, null);
-            this.FullPeekResult2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.FullPeekResult2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.FullPeekResult2.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FullPeekResult2.ForeColor = System.Drawing.Color.White;
-            this.FullPeekResult2.Location = new System.Drawing.Point(83, 702);
-            this.FullPeekResult2.MaxLength = 64;
-            this.FullPeekResult2.Multiline = false;
-            this.FullPeekResult2.Name = "FullPeekResult2";
-            this.FullPeekResult2.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.FullPeekResult2.Size = new System.Drawing.Size(970, 23);
-            this.FullPeekResult2.TabIndex = 46;
-            this.FullPeekResult2.Text = "AAAA";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(FullPeekResult2, null);
+            FullPeekResult2.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            FullPeekResult2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            FullPeekResult2.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold);
+            FullPeekResult2.ForeColor = System.Drawing.Color.White;
+            FullPeekResult2.Location = new System.Drawing.Point(83, 702);
+            FullPeekResult2.MaxLength = 64;
+            FullPeekResult2.Multiline = false;
+            FullPeekResult2.Name = "FullPeekResult2";
+            FullPeekResult2.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            FullPeekResult2.Size = new System.Drawing.Size(970, 23);
+            FullPeekResult2.TabIndex = 46;
+            FullPeekResult2.Text = "AAAA";
             // 
             // FullPeekResult3
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.FullPeekResult3, null);
-            this.FullPeekResult3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.FullPeekResult3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.FullPeekResult3.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FullPeekResult3.ForeColor = System.Drawing.Color.White;
-            this.FullPeekResult3.Location = new System.Drawing.Point(83, 726);
-            this.FullPeekResult3.MaxLength = 64;
-            this.FullPeekResult3.Multiline = false;
-            this.FullPeekResult3.Name = "FullPeekResult3";
-            this.FullPeekResult3.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.FullPeekResult3.Size = new System.Drawing.Size(970, 23);
-            this.FullPeekResult3.TabIndex = 47;
-            this.FullPeekResult3.Text = "AAAA";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(FullPeekResult3, null);
+            FullPeekResult3.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            FullPeekResult3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            FullPeekResult3.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold);
+            FullPeekResult3.ForeColor = System.Drawing.Color.White;
+            FullPeekResult3.Location = new System.Drawing.Point(83, 726);
+            FullPeekResult3.MaxLength = 64;
+            FullPeekResult3.Multiline = false;
+            FullPeekResult3.Name = "FullPeekResult3";
+            FullPeekResult3.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            FullPeekResult3.Size = new System.Drawing.Size(970, 23);
+            FullPeekResult3.TabIndex = 47;
+            FullPeekResult3.Text = "AAAA";
             // 
             // FullPeekResult4
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.FullPeekResult4, null);
-            this.FullPeekResult4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.FullPeekResult4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.FullPeekResult4.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FullPeekResult4.ForeColor = System.Drawing.Color.White;
-            this.FullPeekResult4.Location = new System.Drawing.Point(83, 750);
-            this.FullPeekResult4.MaxLength = 64;
-            this.FullPeekResult4.Multiline = false;
-            this.FullPeekResult4.Name = "FullPeekResult4";
-            this.FullPeekResult4.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.FullPeekResult4.Size = new System.Drawing.Size(970, 23);
-            this.FullPeekResult4.TabIndex = 48;
-            this.FullPeekResult4.Text = "AAAA";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(FullPeekResult4, null);
+            FullPeekResult4.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            FullPeekResult4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            FullPeekResult4.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold);
+            FullPeekResult4.ForeColor = System.Drawing.Color.White;
+            FullPeekResult4.Location = new System.Drawing.Point(83, 750);
+            FullPeekResult4.MaxLength = 64;
+            FullPeekResult4.Multiline = false;
+            FullPeekResult4.Name = "FullPeekResult4";
+            FullPeekResult4.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            FullPeekResult4.Size = new System.Drawing.Size(970, 23);
+            FullPeekResult4.TabIndex = 48;
+            FullPeekResult4.Text = "AAAA";
             // 
             // FullPeekResult5
             // 
-            VillagerAutoCompleteMenu.SetAutocompleteMenu(this.FullPeekResult5, null);
-            this.FullPeekResult5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.FullPeekResult5.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.FullPeekResult5.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FullPeekResult5.ForeColor = System.Drawing.Color.White;
-            this.FullPeekResult5.Location = new System.Drawing.Point(83, 774);
-            this.FullPeekResult5.MaxLength = 64;
-            this.FullPeekResult5.Multiline = false;
-            this.FullPeekResult5.Name = "FullPeekResult5";
-            this.FullPeekResult5.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.FullPeekResult5.Size = new System.Drawing.Size(970, 23);
-            this.FullPeekResult5.TabIndex = 49;
-            this.FullPeekResult5.Text = "AAAA";
+            VillagerAutoCompleteMenu.SetAutocompleteMenu(FullPeekResult5, null);
+            FullPeekResult5.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            FullPeekResult5.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            FullPeekResult5.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold);
+            FullPeekResult5.ForeColor = System.Drawing.Color.White;
+            FullPeekResult5.Location = new System.Drawing.Point(83, 774);
+            FullPeekResult5.MaxLength = 64;
+            FullPeekResult5.Multiline = false;
+            FullPeekResult5.Name = "FullPeekResult5";
+            FullPeekResult5.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            FullPeekResult5.Size = new System.Drawing.Size(970, 23);
+            FullPeekResult5.TabIndex = 49;
+            FullPeekResult5.Text = "AAAA";
             // 
             // StartConnectionButton
             // 
-            this.StartConnectionButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.StartConnectionButton.FlatAppearance.BorderSize = 0;
-            this.StartConnectionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.StartConnectionButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.StartConnectionButton.ForeColor = System.Drawing.Color.White;
-            this.StartConnectionButton.Location = new System.Drawing.Point(28, 1);
-            this.StartConnectionButton.Name = "StartConnectionButton";
-            this.StartConnectionButton.Size = new System.Drawing.Size(85, 23);
-            this.StartConnectionButton.TabIndex = 0;
-            this.StartConnectionButton.Tag = "connect";
-            this.StartConnectionButton.Text = "Connect";
-            this.StartConnectionButton.UseVisualStyleBackColor = false;
-            this.StartConnectionButton.Click += new System.EventHandler(this.StartConnectionButton_Click);
+            StartConnectionButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            StartConnectionButton.FlatAppearance.BorderSize = 0;
+            StartConnectionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            StartConnectionButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            StartConnectionButton.ForeColor = System.Drawing.Color.White;
+            StartConnectionButton.Location = new System.Drawing.Point(28, 1);
+            StartConnectionButton.Name = "StartConnectionButton";
+            StartConnectionButton.Size = new System.Drawing.Size(85, 23);
+            StartConnectionButton.TabIndex = 0;
+            StartConnectionButton.Tag = "connect";
+            StartConnectionButton.Text = "Connect";
+            StartConnectionButton.UseVisualStyleBackColor = false;
+            StartConnectionButton.Click += StartConnectionButton_Click;
             // 
             // USBConnectionButton
             // 
-            this.USBConnectionButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.USBConnectionButton.FlatAppearance.BorderSize = 0;
-            this.USBConnectionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.USBConnectionButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.USBConnectionButton.ForeColor = System.Drawing.Color.White;
-            this.USBConnectionButton.Location = new System.Drawing.Point(28, 25);
-            this.USBConnectionButton.Name = "USBConnectionButton";
-            this.USBConnectionButton.Size = new System.Drawing.Size(85, 23);
-            this.USBConnectionButton.TabIndex = 1;
-            this.USBConnectionButton.Tag = "connect";
-            this.USBConnectionButton.Text = "USB";
-            this.USBConnectionButton.UseVisualStyleBackColor = false;
-            this.USBConnectionButton.Click += new System.EventHandler(this.USBConnectionButton_Click);
+            USBConnectionButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            USBConnectionButton.FlatAppearance.BorderSize = 0;
+            USBConnectionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            USBConnectionButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            USBConnectionButton.ForeColor = System.Drawing.Color.White;
+            USBConnectionButton.Location = new System.Drawing.Point(28, 25);
+            USBConnectionButton.Name = "USBConnectionButton";
+            USBConnectionButton.Size = new System.Drawing.Size(85, 23);
+            USBConnectionButton.TabIndex = 1;
+            USBConnectionButton.Tag = "connect";
+            USBConnectionButton.Text = "USB";
+            USBConnectionButton.UseVisualStyleBackColor = false;
+            USBConnectionButton.Click += USBConnectionButton_Click;
             // 
             // MapDropperButton
             // 
-            this.MapDropperButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.MapDropperButton.FlatAppearance.BorderSize = 0;
-            this.MapDropperButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MapDropperButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.MapDropperButton.ForeColor = System.Drawing.Color.White;
-            this.MapDropperButton.Location = new System.Drawing.Point(261, 1);
-            this.MapDropperButton.Name = "MapDropperButton";
-            this.MapDropperButton.Size = new System.Drawing.Size(100, 23);
-            this.MapDropperButton.TabIndex = 4;
-            this.MapDropperButton.Tag = "";
-            this.MapDropperButton.Text = "Map Dropper";
-            this.MapDropperButton.UseVisualStyleBackColor = false;
-            this.MapDropperButton.Visible = false;
-            this.MapDropperButton.Click += new System.EventHandler(this.MapDropperButton_Click);
+            MapDropperButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            MapDropperButton.FlatAppearance.BorderSize = 0;
+            MapDropperButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            MapDropperButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            MapDropperButton.ForeColor = System.Drawing.Color.White;
+            MapDropperButton.Location = new System.Drawing.Point(261, 1);
+            MapDropperButton.Name = "MapDropperButton";
+            MapDropperButton.Size = new System.Drawing.Size(100, 23);
+            MapDropperButton.TabIndex = 4;
+            MapDropperButton.Tag = "";
+            MapDropperButton.Text = "Map Dropper";
+            MapDropperButton.UseVisualStyleBackColor = false;
+            MapDropperButton.Visible = false;
+            MapDropperButton.Click += MapDropperButton_Click;
             // 
             // RegeneratorButton
             // 
-            this.RegeneratorButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.RegeneratorButton.FlatAppearance.BorderSize = 0;
-            this.RegeneratorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RegeneratorButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RegeneratorButton.ForeColor = System.Drawing.Color.White;
-            this.RegeneratorButton.Location = new System.Drawing.Point(261, 25);
-            this.RegeneratorButton.Name = "RegeneratorButton";
-            this.RegeneratorButton.Size = new System.Drawing.Size(100, 23);
-            this.RegeneratorButton.TabIndex = 5;
-            this.RegeneratorButton.Tag = "";
-            this.RegeneratorButton.Text = "Regenerator";
-            this.RegeneratorButton.UseVisualStyleBackColor = false;
-            this.RegeneratorButton.Visible = false;
-            this.RegeneratorButton.Click += new System.EventHandler(this.RegeneratorButton_Click);
+            RegeneratorButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            RegeneratorButton.FlatAppearance.BorderSize = 0;
+            RegeneratorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RegeneratorButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            RegeneratorButton.ForeColor = System.Drawing.Color.White;
+            RegeneratorButton.Location = new System.Drawing.Point(261, 25);
+            RegeneratorButton.Name = "RegeneratorButton";
+            RegeneratorButton.Size = new System.Drawing.Size(100, 23);
+            RegeneratorButton.TabIndex = 5;
+            RegeneratorButton.Tag = "";
+            RegeneratorButton.Text = "Regenerator";
+            RegeneratorButton.UseVisualStyleBackColor = false;
+            RegeneratorButton.Visible = false;
+            RegeneratorButton.Click += RegeneratorButton_Click;
             // 
             // BulldozerButton
             // 
-            this.BulldozerButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.BulldozerButton.FlatAppearance.BorderSize = 0;
-            this.BulldozerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BulldozerButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.BulldozerButton.ForeColor = System.Drawing.Color.White;
-            this.BulldozerButton.Location = new System.Drawing.Point(367, 1);
-            this.BulldozerButton.Name = "BulldozerButton";
-            this.BulldozerButton.Size = new System.Drawing.Size(100, 23);
-            this.BulldozerButton.TabIndex = 6;
-            this.BulldozerButton.Tag = "";
-            this.BulldozerButton.Text = "Bulldozer";
-            this.BulldozerButton.UseVisualStyleBackColor = false;
-            this.BulldozerButton.Visible = false;
-            this.BulldozerButton.Click += new System.EventHandler(this.BulldozerButton_Click);
+            BulldozerButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            BulldozerButton.FlatAppearance.BorderSize = 0;
+            BulldozerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            BulldozerButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            BulldozerButton.ForeColor = System.Drawing.Color.White;
+            BulldozerButton.Location = new System.Drawing.Point(367, 1);
+            BulldozerButton.Name = "BulldozerButton";
+            BulldozerButton.Size = new System.Drawing.Size(100, 23);
+            BulldozerButton.TabIndex = 6;
+            BulldozerButton.Tag = "";
+            BulldozerButton.Text = "Bulldozer";
+            BulldozerButton.UseVisualStyleBackColor = false;
+            BulldozerButton.Visible = false;
+            BulldozerButton.Click += BulldozerButton_Click;
             // 
             // FreezerButton
             // 
-            this.FreezerButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.FreezerButton.FlatAppearance.BorderSize = 0;
-            this.FreezerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.FreezerButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FreezerButton.ForeColor = System.Drawing.Color.White;
-            this.FreezerButton.Location = new System.Drawing.Point(367, 25);
-            this.FreezerButton.Name = "FreezerButton";
-            this.FreezerButton.Size = new System.Drawing.Size(100, 23);
-            this.FreezerButton.TabIndex = 7;
-            this.FreezerButton.Tag = "";
-            this.FreezerButton.Text = "Freezer";
-            this.FreezerButton.UseVisualStyleBackColor = false;
-            this.FreezerButton.Visible = false;
-            this.FreezerButton.Click += new System.EventHandler(this.FreezerButton_Click);
+            FreezerButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            FreezerButton.FlatAppearance.BorderSize = 0;
+            FreezerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            FreezerButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            FreezerButton.ForeColor = System.Drawing.Color.White;
+            FreezerButton.Location = new System.Drawing.Point(367, 25);
+            FreezerButton.Name = "FreezerButton";
+            FreezerButton.Size = new System.Drawing.Size(100, 23);
+            FreezerButton.TabIndex = 7;
+            FreezerButton.Tag = "";
+            FreezerButton.Text = "Freezer";
+            FreezerButton.UseVisualStyleBackColor = false;
+            FreezerButton.Visible = false;
+            FreezerButton.Click += FreezerButton_Click;
             // 
             // DodoHelperButton
             // 
-            this.DodoHelperButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.DodoHelperButton.FlatAppearance.BorderSize = 0;
-            this.DodoHelperButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DodoHelperButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DodoHelperButton.ForeColor = System.Drawing.Color.White;
-            this.DodoHelperButton.Location = new System.Drawing.Point(473, 25);
-            this.DodoHelperButton.Name = "DodoHelperButton";
-            this.DodoHelperButton.Size = new System.Drawing.Size(100, 23);
-            this.DodoHelperButton.TabIndex = 8;
-            this.DodoHelperButton.Tag = "";
-            this.DodoHelperButton.Text = "Dodo Helper";
-            this.DodoHelperButton.UseVisualStyleBackColor = false;
-            this.DodoHelperButton.Visible = false;
-            this.DodoHelperButton.Click += new System.EventHandler(this.DodoHelperButton_Click);
+            DodoHelperButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            DodoHelperButton.FlatAppearance.BorderSize = 0;
+            DodoHelperButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            DodoHelperButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            DodoHelperButton.ForeColor = System.Drawing.Color.White;
+            DodoHelperButton.Location = new System.Drawing.Point(473, 25);
+            DodoHelperButton.Name = "DodoHelperButton";
+            DodoHelperButton.Size = new System.Drawing.Size(100, 23);
+            DodoHelperButton.TabIndex = 8;
+            DodoHelperButton.Tag = "";
+            DodoHelperButton.Text = "Dodo Helper";
+            DodoHelperButton.UseVisualStyleBackColor = false;
+            DodoHelperButton.Visible = false;
+            DodoHelperButton.Click += DodoHelperButton_Click;
             // 
             // PlayerInventorySelector
             // 
-            this.PlayerInventorySelector.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.PlayerInventorySelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.PlayerInventorySelector.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PlayerInventorySelector.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.PlayerInventorySelector.ForeColor = System.Drawing.Color.White;
-            this.PlayerInventorySelector.FormattingEnabled = true;
-            this.PlayerInventorySelector.Items.AddRange(new object[] {
-            "Player 1",
-            "Player 2",
-            "Player 3",
-            "Player 4",
-            "Player 5",
-            "Player 6",
-            "Player 7",
-            "Player 8",
-            "Player 1 House",
-            "Player 2 House",
-            "Player 3 House",
-            "Player 4 House",
-            "Player 5 House",
-            "Player 6 House",
-            "Player 7 House",
-            "Player 8 House",
-            "Recycling Bin"});
-            this.PlayerInventorySelector.Location = new System.Drawing.Point(579, 1);
-            this.PlayerInventorySelector.Name = "PlayerInventorySelector";
-            this.PlayerInventorySelector.Size = new System.Drawing.Size(147, 24);
-            this.PlayerInventorySelector.TabIndex = 9;
-            this.PlayerInventorySelector.Visible = false;
-            this.PlayerInventorySelector.SelectedIndexChanged += new System.EventHandler(this.PlayerInventorySelector_SelectedIndexChanged);
+            PlayerInventorySelector.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            PlayerInventorySelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            PlayerInventorySelector.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            PlayerInventorySelector.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            PlayerInventorySelector.ForeColor = System.Drawing.Color.White;
+            PlayerInventorySelector.FormattingEnabled = true;
+            PlayerInventorySelector.Items.AddRange(new object[] { "Player 1", "Player 2", "Player 3", "Player 4", "Player 5", "Player 6", "Player 7", "Player 8", "Player 1 House", "Player 2 House", "Player 3 House", "Player 4 House", "Player 5 House", "Player 6 House", "Player 7 House", "Player 8 House", "Recycling Bin" });
+            PlayerInventorySelector.Location = new System.Drawing.Point(579, 1);
+            PlayerInventorySelector.Name = "PlayerInventorySelector";
+            PlayerInventorySelector.Size = new System.Drawing.Size(147, 24);
+            PlayerInventorySelector.TabIndex = 9;
+            PlayerInventorySelector.Visible = false;
+            PlayerInventorySelector.SelectedIndexChanged += PlayerInventorySelector_SelectedIndexChanged;
             // 
             // SaveNHIButton
             // 
-            this.SaveNHIButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.SaveNHIButton.FlatAppearance.BorderSize = 0;
-            this.SaveNHIButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SaveNHIButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SaveNHIButton.ForeColor = System.Drawing.Color.White;
-            this.SaveNHIButton.Location = new System.Drawing.Point(731, 1);
-            this.SaveNHIButton.Name = "SaveNHIButton";
-            this.SaveNHIButton.Size = new System.Drawing.Size(60, 23);
-            this.SaveNHIButton.TabIndex = 10;
-            this.SaveNHIButton.Tag = "";
-            this.SaveNHIButton.Text = "Save";
-            this.SaveNHIButton.UseVisualStyleBackColor = false;
-            this.SaveNHIButton.Click += new System.EventHandler(this.SaveNHIButton_Click);
+            SaveNHIButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            SaveNHIButton.FlatAppearance.BorderSize = 0;
+            SaveNHIButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            SaveNHIButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            SaveNHIButton.ForeColor = System.Drawing.Color.White;
+            SaveNHIButton.Location = new System.Drawing.Point(731, 1);
+            SaveNHIButton.Name = "SaveNHIButton";
+            SaveNHIButton.Size = new System.Drawing.Size(60, 23);
+            SaveNHIButton.TabIndex = 10;
+            SaveNHIButton.Tag = "";
+            SaveNHIButton.Text = "Save";
+            SaveNHIButton.UseVisualStyleBackColor = false;
+            SaveNHIButton.Click += SaveNHIButton_Click;
             // 
             // LoadNHIButton
             // 
-            this.LoadNHIButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.LoadNHIButton.FlatAppearance.BorderSize = 0;
-            this.LoadNHIButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LoadNHIButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.LoadNHIButton.ForeColor = System.Drawing.Color.White;
-            this.LoadNHIButton.Location = new System.Drawing.Point(731, 25);
-            this.LoadNHIButton.Name = "LoadNHIButton";
-            this.LoadNHIButton.Size = new System.Drawing.Size(60, 23);
-            this.LoadNHIButton.TabIndex = 11;
-            this.LoadNHIButton.Tag = "";
-            this.LoadNHIButton.Text = "Load";
-            this.LoadNHIButton.UseVisualStyleBackColor = false;
-            this.LoadNHIButton.Click += new System.EventHandler(this.LoadNHIButton_Click);
+            LoadNHIButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            LoadNHIButton.FlatAppearance.BorderSize = 0;
+            LoadNHIButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            LoadNHIButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            LoadNHIButton.ForeColor = System.Drawing.Color.White;
+            LoadNHIButton.Location = new System.Drawing.Point(731, 25);
+            LoadNHIButton.Name = "LoadNHIButton";
+            LoadNHIButton.Size = new System.Drawing.Size(60, 23);
+            LoadNHIButton.TabIndex = 11;
+            LoadNHIButton.Tag = "";
+            LoadNHIButton.Text = "Load";
+            LoadNHIButton.UseVisualStyleBackColor = false;
+            LoadNHIButton.Click += LoadNHIButton_Click;
             // 
             // RefreshButton
             // 
-            this.RefreshButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.RefreshButton.FlatAppearance.BorderSize = 0;
-            this.RefreshButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RefreshButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RefreshButton.ForeColor = System.Drawing.Color.White;
-            this.RefreshButton.Location = new System.Drawing.Point(792, 1);
-            this.RefreshButton.Name = "RefreshButton";
-            this.RefreshButton.Size = new System.Drawing.Size(65, 23);
-            this.RefreshButton.TabIndex = 12;
-            this.RefreshButton.Tag = "";
-            this.RefreshButton.Text = "Refresh";
-            this.RefreshButton.UseVisualStyleBackColor = false;
-            this.RefreshButton.Visible = false;
-            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
+            RefreshButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            RefreshButton.FlatAppearance.BorderSize = 0;
+            RefreshButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RefreshButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            RefreshButton.ForeColor = System.Drawing.Color.White;
+            RefreshButton.Location = new System.Drawing.Point(792, 1);
+            RefreshButton.Name = "RefreshButton";
+            RefreshButton.Size = new System.Drawing.Size(65, 23);
+            RefreshButton.TabIndex = 12;
+            RefreshButton.Tag = "";
+            RefreshButton.Text = "Refresh";
+            RefreshButton.UseVisualStyleBackColor = false;
+            RefreshButton.Visible = false;
+            RefreshButton.Click += RefreshButton_Click;
             // 
             // InventoryAutoRefreshToggle
             // 
-            this.InventoryAutoRefreshToggle.Location = new System.Drawing.Point(822, 30);
-            this.InventoryAutoRefreshToggle.Name = "InventoryAutoRefreshToggle";
-            this.InventoryAutoRefreshToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.InventoryAutoRefreshToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.InventoryAutoRefreshToggle.Size = new System.Drawing.Size(35, 16);
-            this.InventoryAutoRefreshToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
-            this.InventoryAutoRefreshToggle.TabIndex = 13;
-            this.InventoryAutoRefreshToggle.UseAnimation = false;
-            this.InventoryAutoRefreshToggle.Visible = false;
-            this.InventoryAutoRefreshToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.InventoryAutoRefreshToggle_CheckedChanged);
+            InventoryAutoRefreshToggle.Location = new System.Drawing.Point(822, 30);
+            InventoryAutoRefreshToggle.Name = "InventoryAutoRefreshToggle";
+            InventoryAutoRefreshToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F);
+            InventoryAutoRefreshToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F);
+            InventoryAutoRefreshToggle.Size = new System.Drawing.Size(35, 16);
+            InventoryAutoRefreshToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            InventoryAutoRefreshToggle.TabIndex = 13;
+            InventoryAutoRefreshToggle.UseAnimation = false;
+            InventoryAutoRefreshToggle.Visible = false;
+            InventoryAutoRefreshToggle.CheckedChanged += InventoryAutoRefreshToggle_CheckedChanged;
             // 
             // AutoRefreshLabel
             // 
-            this.AutoRefreshLabel.AutoSize = true;
-            this.AutoRefreshLabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.AutoRefreshLabel.ForeColor = System.Drawing.Color.White;
-            this.AutoRefreshLabel.Location = new System.Drawing.Point(791, 30);
-            this.AutoRefreshLabel.Name = "AutoRefreshLabel";
-            this.AutoRefreshLabel.Size = new System.Drawing.Size(33, 15);
-            this.AutoRefreshLabel.TabIndex = 14;
-            this.AutoRefreshLabel.Text = "Auto";
-            this.AutoRefreshLabel.Visible = false;
+            AutoRefreshLabel.AutoSize = true;
+            AutoRefreshLabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            AutoRefreshLabel.ForeColor = System.Drawing.Color.White;
+            AutoRefreshLabel.Location = new System.Drawing.Point(791, 30);
+            AutoRefreshLabel.Name = "AutoRefreshLabel";
+            AutoRefreshLabel.Size = new System.Drawing.Size(33, 15);
+            AutoRefreshLabel.TabIndex = 14;
+            AutoRefreshLabel.Text = "Auto";
+            AutoRefreshLabel.Visible = false;
             // 
             // LanguageSelector
             // 
-            this.LanguageSelector.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.LanguageSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LanguageSelector.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LanguageSelector.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.LanguageSelector.ForeColor = System.Drawing.Color.White;
-            this.LanguageSelector.FormattingEnabled = true;
-            this.LanguageSelector.Items.AddRange(new object[] {
-            "English",
-            "Japanese",
-            "T. Chinese",
-            "S. Chinese",
-            "Korean",
-            "French",
-            "German",
-            "Spanish",
-            "Italian",
-            "Dutch",
-            "Russian"});
-            this.LanguageSelector.Location = new System.Drawing.Point(1089, 1);
-            this.LanguageSelector.Name = "LanguageSelector";
-            this.LanguageSelector.Size = new System.Drawing.Size(115, 24);
-            this.LanguageSelector.TabIndex = 16;
-            this.LanguageSelector.SelectedIndexChanged += new System.EventHandler(this.LanguageSelector_SelectedIndexChanged);
+            LanguageSelector.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            LanguageSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            LanguageSelector.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            LanguageSelector.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            LanguageSelector.ForeColor = System.Drawing.Color.White;
+            LanguageSelector.FormattingEnabled = true;
+            LanguageSelector.Items.AddRange(new object[] { "English", "Japanese", "T. Chinese", "S. Chinese", "Korean", "French", "German", "Spanish", "Italian", "Dutch", "Russian" });
+            LanguageSelector.Location = new System.Drawing.Point(1089, 1);
+            LanguageSelector.Name = "LanguageSelector";
+            LanguageSelector.Size = new System.Drawing.Size(115, 24);
+            LanguageSelector.TabIndex = 16;
+            LanguageSelector.SelectedIndexChanged += LanguageSelector_SelectedIndexChanged;
             // 
             // AlwaysOnControl
             // 
-            this.AlwaysOnControl.Controls.Add(this.EasterEggButton);
-            this.AlwaysOnControl.Controls.Add(this.SettingButton);
-            this.AlwaysOnControl.Controls.Add(this.StartConnectionButton);
-            this.AlwaysOnControl.Controls.Add(this.USBConnectionButton);
-            this.AlwaysOnControl.Controls.Add(this.IPAddressInputBox);
-            this.AlwaysOnControl.Controls.Add(this.IPAddressInputBackground);
-            this.AlwaysOnControl.Location = new System.Drawing.Point(0, 0);
-            this.AlwaysOnControl.Name = "AlwaysOnControl";
-            this.AlwaysOnControl.Size = new System.Drawing.Size(260, 50);
-            this.AlwaysOnControl.TabIndex = 17;
+            AlwaysOnControl.Controls.Add(EasterEggButton);
+            AlwaysOnControl.Controls.Add(SettingButton);
+            AlwaysOnControl.Controls.Add(StartConnectionButton);
+            AlwaysOnControl.Controls.Add(USBConnectionButton);
+            AlwaysOnControl.Controls.Add(IPAddressInputBox);
+            AlwaysOnControl.Controls.Add(IPAddressInputBackground);
+            AlwaysOnControl.Location = new System.Drawing.Point(0, 0);
+            AlwaysOnControl.Name = "AlwaysOnControl";
+            AlwaysOnControl.Size = new System.Drawing.Size(260, 50);
+            AlwaysOnControl.TabIndex = 17;
             // 
             // EasterEggButton
             // 
-            this.EasterEggButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.EasterEggButton.FlatAppearance.BorderSize = 0;
-            this.EasterEggButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.EasterEggButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.EasterEggButton.ForeColor = System.Drawing.Color.White;
-            this.EasterEggButton.Location = new System.Drawing.Point(-7, -7);
-            this.EasterEggButton.Name = "EasterEggButton";
-            this.EasterEggButton.Size = new System.Drawing.Size(10, 10);
-            this.EasterEggButton.TabIndex = 27;
-            this.EasterEggButton.Tag = "";
-            this.EasterEggButton.UseVisualStyleBackColor = false;
-            this.EasterEggButton.Click += new System.EventHandler(this.EasterEggButton_Click);
+            EasterEggButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            EasterEggButton.FlatAppearance.BorderSize = 0;
+            EasterEggButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            EasterEggButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            EasterEggButton.ForeColor = System.Drawing.Color.White;
+            EasterEggButton.Location = new System.Drawing.Point(-7, -7);
+            EasterEggButton.Name = "EasterEggButton";
+            EasterEggButton.Size = new System.Drawing.Size(10, 10);
+            EasterEggButton.TabIndex = 27;
+            EasterEggButton.Tag = "";
+            EasterEggButton.UseVisualStyleBackColor = false;
+            EasterEggButton.Click += EasterEggButton_Click;
             // 
             // SettingButton
             // 
-            this.SettingButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.SettingButton.FlatAppearance.BorderSize = 0;
-            this.SettingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SettingButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SettingButton.ForeColor = System.Drawing.Color.White;
-            this.SettingButton.Image = global::ACNHPokerCore.Properties.Resources.gear;
-            this.SettingButton.Location = new System.Drawing.Point(1, 12);
-            this.SettingButton.Name = "SettingButton";
-            this.SettingButton.Size = new System.Drawing.Size(25, 25);
-            this.SettingButton.TabIndex = 8;
-            this.SettingButton.Tag = "";
-            this.SettingButton.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.SettingButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.SettingButton.UseVisualStyleBackColor = false;
-            this.SettingButton.Click += new System.EventHandler(this.SettingButton_Click);
+            SettingButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            SettingButton.FlatAppearance.BorderSize = 0;
+            SettingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            SettingButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            SettingButton.ForeColor = System.Drawing.Color.White;
+            SettingButton.Image = Properties.Resources.gear;
+            SettingButton.Location = new System.Drawing.Point(1, 12);
+            SettingButton.Name = "SettingButton";
+            SettingButton.Size = new System.Drawing.Size(25, 25);
+            SettingButton.TabIndex = 8;
+            SettingButton.Tag = "";
+            SettingButton.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            SettingButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            SettingButton.UseVisualStyleBackColor = false;
+            SettingButton.Click += SettingButton_Click;
             // 
             // IPAddressInputBackground
             // 
-            this.IPAddressInputBackground.Location = new System.Drawing.Point(115, 13);
-            this.IPAddressInputBackground.Name = "IPAddressInputBackground";
-            this.IPAddressInputBackground.Size = new System.Drawing.Size(139, 22);
-            this.IPAddressInputBackground.TabIndex = 3;
-            this.IPAddressInputBackground.TabStop = false;
+            IPAddressInputBackground.Location = new System.Drawing.Point(115, 13);
+            IPAddressInputBackground.Name = "IPAddressInputBackground";
+            IPAddressInputBackground.Size = new System.Drawing.Size(139, 22);
+            IPAddressInputBackground.TabIndex = 3;
+            IPAddressInputBackground.TabStop = false;
             // 
             // VillagerTabButton
             // 
-            this.VillagerTabButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.VillagerTabButton.FlatAppearance.BorderSize = 0;
-            this.VillagerTabButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.VillagerTabButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerTabButton.ForeColor = System.Drawing.Color.White;
-            this.VillagerTabButton.Location = new System.Drawing.Point(1, 246);
-            this.VillagerTabButton.Name = "VillagerTabButton";
-            this.VillagerTabButton.Size = new System.Drawing.Size(25, 75);
-            this.VillagerTabButton.TabIndex = 7;
-            this.VillagerTabButton.Tag = "Villager";
-            this.VillagerTabButton.UseVisualStyleBackColor = false;
-            this.VillagerTabButton.Visible = false;
-            this.VillagerTabButton.Click += new System.EventHandler(this.VillagerTabButton_Click);
-            this.VillagerTabButton.Paint += new System.Windows.Forms.PaintEventHandler(this.VillagerTabButton_Paint);
+            VillagerTabButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            VillagerTabButton.FlatAppearance.BorderSize = 0;
+            VillagerTabButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            VillagerTabButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            VillagerTabButton.ForeColor = System.Drawing.Color.White;
+            VillagerTabButton.Location = new System.Drawing.Point(1, 246);
+            VillagerTabButton.Name = "VillagerTabButton";
+            VillagerTabButton.Size = new System.Drawing.Size(25, 75);
+            VillagerTabButton.TabIndex = 7;
+            VillagerTabButton.Tag = "Villager";
+            VillagerTabButton.UseVisualStyleBackColor = false;
+            VillagerTabButton.Visible = false;
+            VillagerTabButton.Click += VillagerTabButton_Click;
+            VillagerTabButton.Paint += VillagerTabButton_Paint;
             // 
             // CritterTabButton
             // 
-            this.CritterTabButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.CritterTabButton.FlatAppearance.BorderSize = 0;
-            this.CritterTabButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CritterTabButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CritterTabButton.ForeColor = System.Drawing.Color.White;
-            this.CritterTabButton.Location = new System.Drawing.Point(1, 165);
-            this.CritterTabButton.Name = "CritterTabButton";
-            this.CritterTabButton.Size = new System.Drawing.Size(25, 75);
-            this.CritterTabButton.TabIndex = 6;
-            this.CritterTabButton.Tag = "Critter";
-            this.CritterTabButton.UseVisualStyleBackColor = false;
-            this.CritterTabButton.Visible = false;
-            this.CritterTabButton.Click += new System.EventHandler(this.CritterTabButton_Click);
-            this.CritterTabButton.Paint += new System.Windows.Forms.PaintEventHandler(this.CritterTabButton_Paint);
+            CritterTabButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            CritterTabButton.FlatAppearance.BorderSize = 0;
+            CritterTabButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CritterTabButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            CritterTabButton.ForeColor = System.Drawing.Color.White;
+            CritterTabButton.Location = new System.Drawing.Point(1, 165);
+            CritterTabButton.Name = "CritterTabButton";
+            CritterTabButton.Size = new System.Drawing.Size(25, 75);
+            CritterTabButton.TabIndex = 6;
+            CritterTabButton.Tag = "Critter";
+            CritterTabButton.UseVisualStyleBackColor = false;
+            CritterTabButton.Visible = false;
+            CritterTabButton.Click += CritterTabButton_Click;
+            CritterTabButton.Paint += CritterTabButton_Paint;
             // 
             // OtherTabButton
             // 
-            this.OtherTabButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.OtherTabButton.FlatAppearance.BorderSize = 0;
-            this.OtherTabButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OtherTabButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.OtherTabButton.ForeColor = System.Drawing.Color.White;
-            this.OtherTabButton.Location = new System.Drawing.Point(1, 84);
-            this.OtherTabButton.Name = "OtherTabButton";
-            this.OtherTabButton.Size = new System.Drawing.Size(25, 75);
-            this.OtherTabButton.TabIndex = 5;
-            this.OtherTabButton.Tag = "Other";
-            this.OtherTabButton.UseVisualStyleBackColor = false;
-            this.OtherTabButton.Visible = false;
-            this.OtherTabButton.Click += new System.EventHandler(this.OtherTabButton_Click);
-            this.OtherTabButton.Paint += new System.Windows.Forms.PaintEventHandler(this.OtherTabButton_Paint);
+            OtherTabButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            OtherTabButton.FlatAppearance.BorderSize = 0;
+            OtherTabButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            OtherTabButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            OtherTabButton.ForeColor = System.Drawing.Color.White;
+            OtherTabButton.Location = new System.Drawing.Point(1, 84);
+            OtherTabButton.Name = "OtherTabButton";
+            OtherTabButton.Size = new System.Drawing.Size(25, 75);
+            OtherTabButton.TabIndex = 5;
+            OtherTabButton.Tag = "Other";
+            OtherTabButton.UseVisualStyleBackColor = false;
+            OtherTabButton.Visible = false;
+            OtherTabButton.Click += OtherTabButton_Click;
+            OtherTabButton.Paint += OtherTabButton_Paint;
             // 
             // InventoryTabButton
             // 
-            this.InventoryTabButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-            this.InventoryTabButton.FlatAppearance.BorderSize = 0;
-            this.InventoryTabButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.InventoryTabButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.InventoryTabButton.ForeColor = System.Drawing.Color.White;
-            this.InventoryTabButton.Location = new System.Drawing.Point(1, 3);
-            this.InventoryTabButton.Name = "InventoryTabButton";
-            this.InventoryTabButton.Size = new System.Drawing.Size(25, 75);
-            this.InventoryTabButton.TabIndex = 4;
-            this.InventoryTabButton.Tag = "Inventory";
-            this.InventoryTabButton.UseVisualStyleBackColor = false;
-            this.InventoryTabButton.Click += new System.EventHandler(this.InventoryTabButton_Click);
-            this.InventoryTabButton.Paint += new System.Windows.Forms.PaintEventHandler(this.InventoryTabButton_Paint);
+            InventoryTabButton.BackColor = System.Drawing.Color.FromArgb(80, 80, 255);
+            InventoryTabButton.FlatAppearance.BorderSize = 0;
+            InventoryTabButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            InventoryTabButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            InventoryTabButton.ForeColor = System.Drawing.Color.White;
+            InventoryTabButton.Location = new System.Drawing.Point(1, 3);
+            InventoryTabButton.Name = "InventoryTabButton";
+            InventoryTabButton.Size = new System.Drawing.Size(25, 75);
+            InventoryTabButton.TabIndex = 4;
+            InventoryTabButton.Tag = "Inventory";
+            InventoryTabButton.UseVisualStyleBackColor = false;
+            InventoryTabButton.Click += InventoryTabButton_Click;
+            InventoryTabButton.Paint += InventoryTabButton_Paint;
             // 
             // InventoryLargePanel
             // 
-            this.InventoryLargePanel.Controls.Add(this.ChasingAddressLabel);
-            this.InventoryLargePanel.Controls.Add(this.ChaseBtn);
-            this.InventoryLargePanel.Controls.Add(this.StarFragmentToggle);
-            this.InventoryLargePanel.Controls.Add(this.AutoRefillLabel);
-            this.InventoryLargePanel.Controls.Add(this.AutoRefill);
-            this.InventoryLargePanel.Controls.Add(this.chatButton);
-            this.InventoryLargePanel.Controls.Add(this.RoadRollerButton);
-            this.InventoryLargePanel.Controls.Add(this.UnhideButton);
-            this.InventoryLargePanel.Controls.Add(this.ConvertToCheat);
-            this.InventoryLargePanel.Controls.Add(this.SelectedItemName);
-            this.InventoryLargePanel.Controls.Add(this.VersionButton);
-            this.InventoryLargePanel.Controls.Add(this.CheckStateButton);
-            this.InventoryLargePanel.Controls.Add(this.RetainNameToggle);
-            this.InventoryLargePanel.Controls.Add(this.RetainNameLabel);
-            this.InventoryLargePanel.Controls.Add(this.PaginationPanel);
-            this.InventoryLargePanel.Controls.Add(this.WrapSelector);
-            this.InventoryLargePanel.Controls.Add(this.ClearAllButton);
-            this.InventoryLargePanel.Controls.Add(this.WrappingLabel);
-            this.InventoryLargePanel.Controls.Add(this.selectedFlag2);
-            this.InventoryLargePanel.Controls.Add(this.selectedFlag1);
-            this.InventoryLargePanel.Controls.Add(this.selectedData);
-            this.InventoryLargePanel.Controls.Add(this.selectedID);
-            this.InventoryLargePanel.Controls.Add(this.LoadingPanel);
-            this.InventoryLargePanel.Controls.Add(this.ModeButtonPanel);
-            this.InventoryLargePanel.Controls.Add(this.SelectedItem);
-            this.InventoryLargePanel.Controls.Add(this.InventoryPanel);
-            this.InventoryLargePanel.Controls.Add(this.ItemGridView);
-            this.InventoryLargePanel.Controls.Add(this.LanguageSelector);
-            this.InventoryLargePanel.Controls.Add(this.MapDropperButton);
-            this.InventoryLargePanel.Controls.Add(this.ItemSearchBox);
-            this.InventoryLargePanel.Controls.Add(this.RegeneratorButton);
-            this.InventoryLargePanel.Controls.Add(this.InventoryAutoRefreshToggle);
-            this.InventoryLargePanel.Controls.Add(this.BulldozerButton);
-            this.InventoryLargePanel.Controls.Add(this.AutoRefreshLabel);
-            this.InventoryLargePanel.Controls.Add(this.FreezerButton);
-            this.InventoryLargePanel.Controls.Add(this.RefreshButton);
-            this.InventoryLargePanel.Controls.Add(this.DodoHelperButton);
-            this.InventoryLargePanel.Controls.Add(this.LoadNHIButton);
-            this.InventoryLargePanel.Controls.Add(this.PlayerInventorySelector);
-            this.InventoryLargePanel.Controls.Add(this.SaveNHIButton);
-            this.InventoryLargePanel.Controls.Add(this.FavGridView);
-            this.InventoryLargePanel.Controls.Add(this.RecipeGridView);
-            this.InventoryLargePanel.Controls.Add(this.FlowerGridView);
-            this.InventoryLargePanel.Controls.Add(this.ItemModePanel);
-            this.InventoryLargePanel.Controls.Add(this.FlowerModePanel);
-            this.InventoryLargePanel.Controls.Add(this.RecipeModePanel);
-            this.InventoryLargePanel.Location = new System.Drawing.Point(0, 0);
-            this.InventoryLargePanel.Name = "InventoryLargePanel";
-            this.InventoryLargePanel.Size = new System.Drawing.Size(1225, 550);
-            this.InventoryLargePanel.TabIndex = 18;
+            InventoryLargePanel.Controls.Add(webhookBtn);
+            InventoryLargePanel.Controls.Add(ChasingAddressLabel);
+            InventoryLargePanel.Controls.Add(ChaseBtn);
+            InventoryLargePanel.Controls.Add(StarFragmentToggle);
+            InventoryLargePanel.Controls.Add(AutoRefillLabel);
+            InventoryLargePanel.Controls.Add(AutoRefill);
+            InventoryLargePanel.Controls.Add(chatButton);
+            InventoryLargePanel.Controls.Add(RoadRollerButton);
+            InventoryLargePanel.Controls.Add(UnhideButton);
+            InventoryLargePanel.Controls.Add(ConvertToCheat);
+            InventoryLargePanel.Controls.Add(SelectedItemName);
+            InventoryLargePanel.Controls.Add(VersionButton);
+            InventoryLargePanel.Controls.Add(CheckStateButton);
+            InventoryLargePanel.Controls.Add(RetainNameToggle);
+            InventoryLargePanel.Controls.Add(RetainNameLabel);
+            InventoryLargePanel.Controls.Add(PaginationPanel);
+            InventoryLargePanel.Controls.Add(WrapSelector);
+            InventoryLargePanel.Controls.Add(ClearAllButton);
+            InventoryLargePanel.Controls.Add(WrappingLabel);
+            InventoryLargePanel.Controls.Add(selectedFlag1);
+            InventoryLargePanel.Controls.Add(selectedFlag0);
+            InventoryLargePanel.Controls.Add(selectedData);
+            InventoryLargePanel.Controls.Add(selectedID);
+            InventoryLargePanel.Controls.Add(LoadingPanel);
+            InventoryLargePanel.Controls.Add(ModeButtonPanel);
+            InventoryLargePanel.Controls.Add(SelectedItem);
+            InventoryLargePanel.Controls.Add(InventoryPanel);
+            InventoryLargePanel.Controls.Add(ItemGridView);
+            InventoryLargePanel.Controls.Add(LanguageSelector);
+            InventoryLargePanel.Controls.Add(MapDropperButton);
+            InventoryLargePanel.Controls.Add(ItemSearchBox);
+            InventoryLargePanel.Controls.Add(RegeneratorButton);
+            InventoryLargePanel.Controls.Add(InventoryAutoRefreshToggle);
+            InventoryLargePanel.Controls.Add(BulldozerButton);
+            InventoryLargePanel.Controls.Add(AutoRefreshLabel);
+            InventoryLargePanel.Controls.Add(FreezerButton);
+            InventoryLargePanel.Controls.Add(RefreshButton);
+            InventoryLargePanel.Controls.Add(DodoHelperButton);
+            InventoryLargePanel.Controls.Add(LoadNHIButton);
+            InventoryLargePanel.Controls.Add(PlayerInventorySelector);
+            InventoryLargePanel.Controls.Add(SaveNHIButton);
+            InventoryLargePanel.Controls.Add(FavGridView);
+            InventoryLargePanel.Controls.Add(RecipeGridView);
+            InventoryLargePanel.Controls.Add(FlowerGridView);
+            InventoryLargePanel.Controls.Add(ItemModePanel);
+            InventoryLargePanel.Controls.Add(FlowerModePanel);
+            InventoryLargePanel.Controls.Add(RecipeModePanel);
+            InventoryLargePanel.Location = new System.Drawing.Point(0, 0);
+            InventoryLargePanel.Name = "InventoryLargePanel";
+            InventoryLargePanel.Size = new System.Drawing.Size(1225, 550);
+            InventoryLargePanel.TabIndex = 18;
+            // 
+            // webhookBtn
+            // 
+            webhookBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            webhookBtn.FlatAppearance.BorderSize = 0;
+            webhookBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            webhookBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            webhookBtn.ForeColor = System.Drawing.Color.White;
+            webhookBtn.Location = new System.Drawing.Point(544, 524);
+            webhookBtn.Name = "webhookBtn";
+            webhookBtn.Size = new System.Drawing.Size(100, 23);
+            webhookBtn.TabIndex = 54;
+            webhookBtn.Tag = "";
+            webhookBtn.Text = "Webhook";
+            webhookBtn.UseVisualStyleBackColor = false;
+            webhookBtn.Click += WebhookBtn_Click;
             // 
             // ChasingAddressLabel
             // 
-            this.ChasingAddressLabel.AutoSize = true;
-            this.ChasingAddressLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ChasingAddressLabel.ForeColor = System.Drawing.Color.White;
-            this.ChasingAddressLabel.Location = new System.Drawing.Point(1076, 534);
-            this.ChasingAddressLabel.Name = "ChasingAddressLabel";
-            this.ChasingAddressLabel.Size = new System.Drawing.Size(0, 16);
-            this.ChasingAddressLabel.TabIndex = 53;
+            ChasingAddressLabel.AutoSize = true;
+            ChasingAddressLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            ChasingAddressLabel.ForeColor = System.Drawing.Color.White;
+            ChasingAddressLabel.Location = new System.Drawing.Point(1076, 534);
+            ChasingAddressLabel.Name = "ChasingAddressLabel";
+            ChasingAddressLabel.Size = new System.Drawing.Size(0, 16);
+            ChasingAddressLabel.TabIndex = 53;
             // 
             // ChaseBtn
             // 
-            this.ChaseBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.ChaseBtn.FlatAppearance.BorderSize = 0;
-            this.ChaseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ChaseBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ChaseBtn.ForeColor = System.Drawing.Color.White;
-            this.ChaseBtn.Location = new System.Drawing.Point(968, 524);
-            this.ChaseBtn.Name = "ChaseBtn";
-            this.ChaseBtn.Size = new System.Drawing.Size(100, 23);
-            this.ChaseBtn.TabIndex = 52;
-            this.ChaseBtn.Tag = "";
-            this.ChaseBtn.Text = "Chase";
-            this.ChaseBtn.UseVisualStyleBackColor = false;
-            this.ChaseBtn.Click += new System.EventHandler(this.ChaseBtn_Click);
+            ChaseBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            ChaseBtn.FlatAppearance.BorderSize = 0;
+            ChaseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ChaseBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            ChaseBtn.ForeColor = System.Drawing.Color.White;
+            ChaseBtn.Location = new System.Drawing.Point(968, 524);
+            ChaseBtn.Name = "ChaseBtn";
+            ChaseBtn.Size = new System.Drawing.Size(100, 23);
+            ChaseBtn.TabIndex = 52;
+            ChaseBtn.Tag = "";
+            ChaseBtn.Text = "Chase";
+            ChaseBtn.UseVisualStyleBackColor = false;
+            ChaseBtn.Click += ChaseBtn_Click;
             // 
             // StarFragmentToggle
             // 
-            this.StarFragmentToggle.Location = new System.Drawing.Point(1168, 531);
-            this.StarFragmentToggle.Name = "StarFragmentToggle";
-            this.StarFragmentToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.StarFragmentToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.StarFragmentToggle.Size = new System.Drawing.Size(35, 16);
-            this.StarFragmentToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
-            this.StarFragmentToggle.TabIndex = 51;
-            this.StarFragmentToggle.UseAnimation = false;
-            this.StarFragmentToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.StarFragmentToggle_CheckedChanged);
+            StarFragmentToggle.Location = new System.Drawing.Point(1168, 531);
+            StarFragmentToggle.Name = "StarFragmentToggle";
+            StarFragmentToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F);
+            StarFragmentToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F);
+            StarFragmentToggle.Size = new System.Drawing.Size(35, 16);
+            StarFragmentToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            StarFragmentToggle.TabIndex = 51;
+            StarFragmentToggle.UseAnimation = false;
+            StarFragmentToggle.CheckedChanged += StarFragmentToggle_CheckedChanged;
             // 
             // AutoRefillLabel
             // 
-            this.AutoRefillLabel.AutoSize = true;
-            this.AutoRefillLabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.AutoRefillLabel.ForeColor = System.Drawing.Color.White;
-            this.AutoRefillLabel.Location = new System.Drawing.Point(603, 30);
-            this.AutoRefillLabel.Name = "AutoRefillLabel";
-            this.AutoRefillLabel.Size = new System.Drawing.Size(65, 15);
-            this.AutoRefillLabel.TabIndex = 43;
-            this.AutoRefillLabel.Text = "Auto-Refill";
-            this.AutoRefillLabel.Visible = false;
+            AutoRefillLabel.AutoSize = true;
+            AutoRefillLabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            AutoRefillLabel.ForeColor = System.Drawing.Color.White;
+            AutoRefillLabel.Location = new System.Drawing.Point(603, 30);
+            AutoRefillLabel.Name = "AutoRefillLabel";
+            AutoRefillLabel.Size = new System.Drawing.Size(65, 15);
+            AutoRefillLabel.TabIndex = 43;
+            AutoRefillLabel.Text = "Auto-Refill";
+            AutoRefillLabel.Visible = false;
             // 
             // AutoRefill
             // 
-            this.AutoRefill.Location = new System.Drawing.Point(669, 30);
-            this.AutoRefill.Name = "AutoRefill";
-            this.AutoRefill.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.AutoRefill.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.AutoRefill.Size = new System.Drawing.Size(35, 16);
-            this.AutoRefill.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
-            this.AutoRefill.TabIndex = 42;
-            this.AutoRefill.UseAnimation = false;
-            this.AutoRefill.Visible = false;
-            this.AutoRefill.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.AutoRefill_CheckedChanged);
+            AutoRefill.Location = new System.Drawing.Point(669, 30);
+            AutoRefill.Name = "AutoRefill";
+            AutoRefill.OffFont = new System.Drawing.Font("Segoe UI", 9F);
+            AutoRefill.OnFont = new System.Drawing.Font("Segoe UI", 9F);
+            AutoRefill.Size = new System.Drawing.Size(35, 16);
+            AutoRefill.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            AutoRefill.TabIndex = 42;
+            AutoRefill.UseAnimation = false;
+            AutoRefill.Visible = false;
+            AutoRefill.CheckedChanged += AutoRefill_CheckedChanged;
             // 
             // chatButton
             // 
-            this.chatButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.chatButton.FlatAppearance.BorderSize = 0;
-            this.chatButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chatButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.chatButton.ForeColor = System.Drawing.Color.White;
-            this.chatButton.Location = new System.Drawing.Point(858, 492);
-            this.chatButton.Name = "chatButton";
-            this.chatButton.Size = new System.Drawing.Size(90, 22);
-            this.chatButton.TabIndex = 40;
-            this.chatButton.Tag = "";
-            this.chatButton.Text = "Chat";
-            this.chatButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.chatButton.UseVisualStyleBackColor = false;
-            this.chatButton.Visible = false;
-            this.chatButton.Click += new System.EventHandler(this.ChatButton_Click);
+            chatButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            chatButton.FlatAppearance.BorderSize = 0;
+            chatButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            chatButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            chatButton.ForeColor = System.Drawing.Color.White;
+            chatButton.Location = new System.Drawing.Point(858, 492);
+            chatButton.Name = "chatButton";
+            chatButton.Size = new System.Drawing.Size(90, 22);
+            chatButton.TabIndex = 40;
+            chatButton.Tag = "";
+            chatButton.Text = "Chat";
+            chatButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            chatButton.UseVisualStyleBackColor = false;
+            chatButton.Visible = false;
+            chatButton.Click += ChatButton_Click;
             // 
             // RoadRollerButton
             // 
-            this.RoadRollerButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.RoadRollerButton.FlatAppearance.BorderSize = 0;
-            this.RoadRollerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RoadRollerButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RoadRollerButton.ForeColor = System.Drawing.Color.White;
-            this.RoadRollerButton.Location = new System.Drawing.Point(473, 1);
-            this.RoadRollerButton.Name = "RoadRollerButton";
-            this.RoadRollerButton.Size = new System.Drawing.Size(100, 23);
-            this.RoadRollerButton.TabIndex = 39;
-            this.RoadRollerButton.Tag = "";
-            this.RoadRollerButton.Text = "Road Roller";
-            this.RoadRollerButton.UseVisualStyleBackColor = false;
-            this.RoadRollerButton.Visible = false;
-            this.RoadRollerButton.Click += new System.EventHandler(this.RoadRollerButton_Click);
+            RoadRollerButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            RoadRollerButton.FlatAppearance.BorderSize = 0;
+            RoadRollerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RoadRollerButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            RoadRollerButton.ForeColor = System.Drawing.Color.White;
+            RoadRollerButton.Location = new System.Drawing.Point(473, 1);
+            RoadRollerButton.Name = "RoadRollerButton";
+            RoadRollerButton.Size = new System.Drawing.Size(100, 23);
+            RoadRollerButton.TabIndex = 39;
+            RoadRollerButton.Tag = "";
+            RoadRollerButton.Text = "Road Roller";
+            RoadRollerButton.UseVisualStyleBackColor = false;
+            RoadRollerButton.Visible = false;
+            RoadRollerButton.Click += RoadRollerButton_Click;
             // 
             // UnhideButton
             // 
-            this.UnhideButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.UnhideButton.FlatAppearance.BorderSize = 0;
-            this.UnhideButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.UnhideButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.UnhideButton.ForeColor = System.Drawing.Color.White;
-            this.UnhideButton.Location = new System.Drawing.Point(862, 524);
-            this.UnhideButton.Name = "UnhideButton";
-            this.UnhideButton.Size = new System.Drawing.Size(100, 23);
-            this.UnhideButton.TabIndex = 38;
-            this.UnhideButton.Tag = "";
-            this.UnhideButton.Text = "Unhide";
-            this.UnhideButton.UseVisualStyleBackColor = false;
-            this.UnhideButton.Click += new System.EventHandler(this.UnhideButton_Click);
+            UnhideButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            UnhideButton.FlatAppearance.BorderSize = 0;
+            UnhideButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            UnhideButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            UnhideButton.ForeColor = System.Drawing.Color.White;
+            UnhideButton.Location = new System.Drawing.Point(862, 524);
+            UnhideButton.Name = "UnhideButton";
+            UnhideButton.Size = new System.Drawing.Size(100, 23);
+            UnhideButton.TabIndex = 38;
+            UnhideButton.Tag = "";
+            UnhideButton.Text = "Unhide";
+            UnhideButton.UseVisualStyleBackColor = false;
+            UnhideButton.Click += UnhideButton_Click;
             // 
             // ConvertToCheat
             // 
-            this.ConvertToCheat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.ConvertToCheat.FlatAppearance.BorderSize = 0;
-            this.ConvertToCheat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ConvertToCheat.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ConvertToCheat.ForeColor = System.Drawing.Color.White;
-            this.ConvertToCheat.Location = new System.Drawing.Point(1039, 492);
-            this.ConvertToCheat.Name = "ConvertToCheat";
-            this.ConvertToCheat.Size = new System.Drawing.Size(163, 22);
-            this.ConvertToCheat.TabIndex = 36;
-            this.ConvertToCheat.Tag = "";
-            this.ConvertToCheat.Text = "Convert to Cheat Txt";
-            this.ConvertToCheat.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.ConvertToCheat.UseVisualStyleBackColor = false;
-            this.ConvertToCheat.Click += new System.EventHandler(this.Converttocheat_Click);
+            ConvertToCheat.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            ConvertToCheat.FlatAppearance.BorderSize = 0;
+            ConvertToCheat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ConvertToCheat.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            ConvertToCheat.ForeColor = System.Drawing.Color.White;
+            ConvertToCheat.Location = new System.Drawing.Point(1039, 492);
+            ConvertToCheat.Name = "ConvertToCheat";
+            ConvertToCheat.Size = new System.Drawing.Size(163, 22);
+            ConvertToCheat.TabIndex = 36;
+            ConvertToCheat.Tag = "";
+            ConvertToCheat.Text = "Convert to Cheat Txt";
+            ConvertToCheat.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            ConvertToCheat.UseVisualStyleBackColor = false;
+            ConvertToCheat.Click += Converttocheat_Click;
             // 
             // SelectedItemName
             // 
-            this.SelectedItemName.AutoSize = true;
-            this.SelectedItemName.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SelectedItemName.ForeColor = System.Drawing.Color.White;
-            this.SelectedItemName.Location = new System.Drawing.Point(0, 491);
-            this.SelectedItemName.Name = "SelectedItemName";
-            this.SelectedItemName.Size = new System.Drawing.Size(80, 16);
-            this.SelectedItemName.TabIndex = 24;
-            this.SelectedItemName.Text = "Item Name";
+            SelectedItemName.AutoSize = true;
+            SelectedItemName.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            SelectedItemName.ForeColor = System.Drawing.Color.White;
+            SelectedItemName.Location = new System.Drawing.Point(0, 491);
+            SelectedItemName.Name = "SelectedItemName";
+            SelectedItemName.Size = new System.Drawing.Size(80, 16);
+            SelectedItemName.TabIndex = 24;
+            SelectedItemName.Text = "Item Name";
             // 
             // VersionButton
             // 
-            this.VersionButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.VersionButton.FlatAppearance.BorderSize = 0;
-            this.VersionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.VersionButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VersionButton.ForeColor = System.Drawing.Color.White;
-            this.VersionButton.Location = new System.Drawing.Point(756, 524);
-            this.VersionButton.Name = "VersionButton";
-            this.VersionButton.Size = new System.Drawing.Size(100, 23);
-            this.VersionButton.TabIndex = 37;
-            this.VersionButton.Tag = "";
-            this.VersionButton.Text = "Version";
-            this.VersionButton.UseVisualStyleBackColor = false;
-            this.VersionButton.Click += new System.EventHandler(this.VersionButton_Click);
+            VersionButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            VersionButton.FlatAppearance.BorderSize = 0;
+            VersionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            VersionButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            VersionButton.ForeColor = System.Drawing.Color.White;
+            VersionButton.Location = new System.Drawing.Point(756, 524);
+            VersionButton.Name = "VersionButton";
+            VersionButton.Size = new System.Drawing.Size(100, 23);
+            VersionButton.TabIndex = 37;
+            VersionButton.Tag = "";
+            VersionButton.Text = "Version";
+            VersionButton.UseVisualStyleBackColor = false;
+            VersionButton.Click += VersionButton_Click;
             // 
             // CheckStateButton
             // 
-            this.CheckStateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.CheckStateButton.FlatAppearance.BorderSize = 0;
-            this.CheckStateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CheckStateButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CheckStateButton.ForeColor = System.Drawing.Color.White;
-            this.CheckStateButton.Location = new System.Drawing.Point(650, 524);
-            this.CheckStateButton.Name = "CheckStateButton";
-            this.CheckStateButton.Size = new System.Drawing.Size(100, 23);
-            this.CheckStateButton.TabIndex = 36;
-            this.CheckStateButton.Tag = "";
-            this.CheckStateButton.Text = "State";
-            this.CheckStateButton.UseVisualStyleBackColor = false;
-            this.CheckStateButton.Click += new System.EventHandler(this.CheckStateButton_Click);
+            CheckStateButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            CheckStateButton.FlatAppearance.BorderSize = 0;
+            CheckStateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CheckStateButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            CheckStateButton.ForeColor = System.Drawing.Color.White;
+            CheckStateButton.Location = new System.Drawing.Point(650, 524);
+            CheckStateButton.Name = "CheckStateButton";
+            CheckStateButton.Size = new System.Drawing.Size(100, 23);
+            CheckStateButton.TabIndex = 36;
+            CheckStateButton.Tag = "";
+            CheckStateButton.Text = "State";
+            CheckStateButton.UseVisualStyleBackColor = false;
+            CheckStateButton.Click += CheckStateButton_Click;
             // 
             // RetainNameToggle
             // 
-            this.RetainNameToggle.Checked = true;
-            this.RetainNameToggle.Location = new System.Drawing.Point(718, 490);
-            this.RetainNameToggle.Name = "RetainNameToggle";
-            this.RetainNameToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.RetainNameToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.RetainNameToggle.Size = new System.Drawing.Size(35, 16);
-            this.RetainNameToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
-            this.RetainNameToggle.TabIndex = 34;
-            this.RetainNameToggle.UseAnimation = false;
+            RetainNameToggle.Checked = true;
+            RetainNameToggle.Location = new System.Drawing.Point(718, 490);
+            RetainNameToggle.Name = "RetainNameToggle";
+            RetainNameToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F);
+            RetainNameToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F);
+            RetainNameToggle.Size = new System.Drawing.Size(35, 16);
+            RetainNameToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            RetainNameToggle.TabIndex = 34;
+            RetainNameToggle.UseAnimation = false;
             // 
             // RetainNameLabel
             // 
-            this.RetainNameLabel.AutoSize = true;
-            this.RetainNameLabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RetainNameLabel.ForeColor = System.Drawing.Color.White;
-            this.RetainNameLabel.Location = new System.Drawing.Point(640, 490);
-            this.RetainNameLabel.Name = "RetainNameLabel";
-            this.RetainNameLabel.Size = new System.Drawing.Size(79, 15);
-            this.RetainNameLabel.TabIndex = 34;
-            this.RetainNameLabel.Text = "Retain Name";
+            RetainNameLabel.AutoSize = true;
+            RetainNameLabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            RetainNameLabel.ForeColor = System.Drawing.Color.White;
+            RetainNameLabel.Location = new System.Drawing.Point(640, 490);
+            RetainNameLabel.Name = "RetainNameLabel";
+            RetainNameLabel.Size = new System.Drawing.Size(79, 15);
+            RetainNameLabel.TabIndex = 34;
+            RetainNameLabel.Text = "Retain Name";
             // 
             // PaginationPanel
             // 
-            this.PaginationPanel.ColumnCount = 5;
-            this.PaginationPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.PaginationPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.PaginationPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.PaginationPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.PaginationPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.PaginationPanel.Controls.Add(this.NextButton, 0, 0);
-            this.PaginationPanel.Controls.Add(this.FastNextButton, 0, 0);
-            this.PaginationPanel.Controls.Add(this.PageLabel, 0, 0);
-            this.PaginationPanel.Controls.Add(this.FastBackButton, 0, 0);
-            this.PaginationPanel.Controls.Add(this.BackButton, 0, 0);
-            this.PaginationPanel.Location = new System.Drawing.Point(613, 379);
-            this.PaginationPanel.Name = "PaginationPanel";
-            this.PaginationPanel.RowCount = 1;
-            this.PaginationPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.PaginationPanel.Size = new System.Drawing.Size(244, 30);
-            this.PaginationPanel.TabIndex = 22;
-            this.PaginationPanel.Visible = false;
+            PaginationPanel.ColumnCount = 5;
+            PaginationPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            PaginationPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            PaginationPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            PaginationPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            PaginationPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            PaginationPanel.Controls.Add(NextButton, 0, 0);
+            PaginationPanel.Controls.Add(FastNextButton, 0, 0);
+            PaginationPanel.Controls.Add(PageLabel, 0, 0);
+            PaginationPanel.Controls.Add(FastBackButton, 0, 0);
+            PaginationPanel.Controls.Add(BackButton, 0, 0);
+            PaginationPanel.Location = new System.Drawing.Point(613, 379);
+            PaginationPanel.Name = "PaginationPanel";
+            PaginationPanel.RowCount = 1;
+            PaginationPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            PaginationPanel.Size = new System.Drawing.Size(244, 30);
+            PaginationPanel.TabIndex = 22;
+            PaginationPanel.Visible = false;
             // 
             // NextButton
             // 
-            this.NextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.NextButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.NextButton.FlatAppearance.BorderSize = 0;
-            this.NextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.NextButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.NextButton.ForeColor = System.Drawing.Color.White;
-            this.NextButton.Location = new System.Drawing.Point(165, 3);
-            this.NextButton.Name = "NextButton";
-            this.NextButton.Size = new System.Drawing.Size(35, 24);
-            this.NextButton.TabIndex = 39;
-            this.NextButton.Tag = "";
-            this.NextButton.Text = "▶";
-            this.NextButton.UseVisualStyleBackColor = false;
-            this.NextButton.Click += new System.EventHandler(this.NextButton_Click);
+            NextButton.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            NextButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            NextButton.FlatAppearance.BorderSize = 0;
+            NextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            NextButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            NextButton.ForeColor = System.Drawing.Color.White;
+            NextButton.Location = new System.Drawing.Point(165, 3);
+            NextButton.Name = "NextButton";
+            NextButton.Size = new System.Drawing.Size(35, 24);
+            NextButton.TabIndex = 39;
+            NextButton.Tag = "";
+            NextButton.Text = "▶";
+            NextButton.UseVisualStyleBackColor = false;
+            NextButton.Click += NextButton_Click;
             // 
             // FastNextButton
             // 
-            this.FastNextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.FastNextButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.FastNextButton.FlatAppearance.BorderSize = 0;
-            this.FastNextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.FastNextButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FastNextButton.ForeColor = System.Drawing.Color.White;
-            this.FastNextButton.Location = new System.Drawing.Point(206, 3);
-            this.FastNextButton.Name = "FastNextButton";
-            this.FastNextButton.Size = new System.Drawing.Size(35, 24);
-            this.FastNextButton.TabIndex = 38;
-            this.FastNextButton.Tag = "";
-            this.FastNextButton.Text = "▶▶";
-            this.FastNextButton.UseVisualStyleBackColor = false;
-            this.FastNextButton.Click += new System.EventHandler(this.FastNextButton_Click);
+            FastNextButton.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            FastNextButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            FastNextButton.FlatAppearance.BorderSize = 0;
+            FastNextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            FastNextButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            FastNextButton.ForeColor = System.Drawing.Color.White;
+            FastNextButton.Location = new System.Drawing.Point(206, 3);
+            FastNextButton.Name = "FastNextButton";
+            FastNextButton.Size = new System.Drawing.Size(35, 24);
+            FastNextButton.TabIndex = 38;
+            FastNextButton.Tag = "";
+            FastNextButton.Text = "▶▶";
+            FastNextButton.UseVisualStyleBackColor = false;
+            FastNextButton.Click += FastNextButton_Click;
             // 
             // PageLabel
             // 
-            this.PageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PageLabel.AutoSize = true;
-            this.PageLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.PageLabel.ForeColor = System.Drawing.Color.White;
-            this.PageLabel.Location = new System.Drawing.Point(82, 0);
-            this.PageLabel.Margin = new System.Windows.Forms.Padding(0);
-            this.PageLabel.Name = "PageLabel";
-            this.PageLabel.Size = new System.Drawing.Size(80, 30);
-            this.PageLabel.TabIndex = 37;
-            this.PageLabel.Text = "Page 1";
-            this.PageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            PageLabel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            PageLabel.AutoSize = true;
+            PageLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            PageLabel.ForeColor = System.Drawing.Color.White;
+            PageLabel.Location = new System.Drawing.Point(82, 0);
+            PageLabel.Margin = new System.Windows.Forms.Padding(0);
+            PageLabel.Name = "PageLabel";
+            PageLabel.Size = new System.Drawing.Size(80, 30);
+            PageLabel.TabIndex = 37;
+            PageLabel.Text = "Page 1";
+            PageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FastBackButton
             // 
-            this.FastBackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.FastBackButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.FastBackButton.FlatAppearance.BorderSize = 0;
-            this.FastBackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.FastBackButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FastBackButton.ForeColor = System.Drawing.Color.White;
-            this.FastBackButton.Location = new System.Drawing.Point(3, 3);
-            this.FastBackButton.Name = "FastBackButton";
-            this.FastBackButton.Size = new System.Drawing.Size(35, 24);
-            this.FastBackButton.TabIndex = 36;
-            this.FastBackButton.Tag = "";
-            this.FastBackButton.Text = "◀◀";
-            this.FastBackButton.UseVisualStyleBackColor = false;
-            this.FastBackButton.Click += new System.EventHandler(this.FastBackButton_Click);
+            FastBackButton.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            FastBackButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            FastBackButton.FlatAppearance.BorderSize = 0;
+            FastBackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            FastBackButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            FastBackButton.ForeColor = System.Drawing.Color.White;
+            FastBackButton.Location = new System.Drawing.Point(3, 3);
+            FastBackButton.Name = "FastBackButton";
+            FastBackButton.Size = new System.Drawing.Size(35, 24);
+            FastBackButton.TabIndex = 36;
+            FastBackButton.Tag = "";
+            FastBackButton.Text = "◀◀";
+            FastBackButton.UseVisualStyleBackColor = false;
+            FastBackButton.Click += FastBackButton_Click;
             // 
             // BackButton
             // 
-            this.BackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BackButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.BackButton.FlatAppearance.BorderSize = 0;
-            this.BackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BackButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.BackButton.ForeColor = System.Drawing.Color.White;
-            this.BackButton.Location = new System.Drawing.Point(44, 3);
-            this.BackButton.Name = "BackButton";
-            this.BackButton.Size = new System.Drawing.Size(35, 24);
-            this.BackButton.TabIndex = 35;
-            this.BackButton.Tag = "";
-            this.BackButton.Text = "◀";
-            this.BackButton.UseVisualStyleBackColor = false;
-            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
+            BackButton.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            BackButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            BackButton.FlatAppearance.BorderSize = 0;
+            BackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            BackButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            BackButton.ForeColor = System.Drawing.Color.White;
+            BackButton.Location = new System.Drawing.Point(44, 3);
+            BackButton.Name = "BackButton";
+            BackButton.Size = new System.Drawing.Size(35, 24);
+            BackButton.TabIndex = 35;
+            BackButton.Tag = "";
+            BackButton.Text = "◀";
+            BackButton.UseVisualStyleBackColor = false;
+            BackButton.Click += BackButton_Click;
             // 
             // WrapSelector
             // 
-            this.WrapSelector.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.WrapSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.WrapSelector.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.WrapSelector.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.WrapSelector.ForeColor = System.Drawing.Color.White;
-            this.WrapSelector.FormattingEnabled = true;
-            this.WrapSelector.Items.AddRange(new object[] {
-            "Yellow : 01",
-            "Pink : 05",
-            "Orange : 09",
-            "Chartreuse : 0D",
-            "Green : 11",
-            "Mint : 15",
-            "Light-blue : 19",
-            "Purple : 1D",
-            "Navy : 21",
-            "Blue : 25",
-            "White : 29",
-            "Red : 2D",
-            "Gold : 31",
-            "Brown : 35",
-            "Gray : 39",
-            "Black : 3D",
-            "Present : 02",
-            "Box : 03",
-            "Festive : 3F",
-            "Lucky money : 33",
-            "Sebaetdon : 37",
-            "otoshidama : 3B"});
-            this.WrapSelector.Location = new System.Drawing.Point(646, 466);
-            this.WrapSelector.Name = "WrapSelector";
-            this.WrapSelector.Size = new System.Drawing.Size(100, 23);
-            this.WrapSelector.TabIndex = 27;
+            WrapSelector.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            WrapSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            WrapSelector.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            WrapSelector.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            WrapSelector.ForeColor = System.Drawing.Color.White;
+            WrapSelector.FormattingEnabled = true;
+            WrapSelector.Items.AddRange(new object[] { "Yellow : 01", "Pink : 05", "Orange : 09", "Chartreuse : 0D", "Green : 11", "Mint : 15", "Light-blue : 19", "Purple : 1D", "Navy : 21", "Blue : 25", "White : 29", "Red : 2D", "Gold : 31", "Brown : 35", "Gray : 39", "Black : 3D", "Present : 02", "Box : 03", "Festive : 3F", "Lucky money : 33", "Sebaetdon : 37", "otoshidama : 3B" });
+            WrapSelector.Location = new System.Drawing.Point(646, 466);
+            WrapSelector.Name = "WrapSelector";
+            WrapSelector.Size = new System.Drawing.Size(100, 23);
+            WrapSelector.TabIndex = 27;
             // 
             // ClearAllButton
             // 
-            this.ClearAllButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.ClearAllButton.FlatAppearance.BorderSize = 0;
-            this.ClearAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ClearAllButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ClearAllButton.ForeColor = System.Drawing.Color.White;
-            this.ClearAllButton.Location = new System.Drawing.Point(752, 466);
-            this.ClearAllButton.Name = "ClearAllButton";
-            this.ClearAllButton.Size = new System.Drawing.Size(100, 23);
-            this.ClearAllButton.TabIndex = 34;
-            this.ClearAllButton.Tag = "";
-            this.ClearAllButton.Text = "Clear All";
-            this.ClearAllButton.UseVisualStyleBackColor = false;
-            this.ClearAllButton.Click += new System.EventHandler(this.ClearAllButton_Click);
+            ClearAllButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            ClearAllButton.FlatAppearance.BorderSize = 0;
+            ClearAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ClearAllButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            ClearAllButton.ForeColor = System.Drawing.Color.White;
+            ClearAllButton.Location = new System.Drawing.Point(752, 466);
+            ClearAllButton.Name = "ClearAllButton";
+            ClearAllButton.Size = new System.Drawing.Size(100, 23);
+            ClearAllButton.TabIndex = 34;
+            ClearAllButton.Tag = "";
+            ClearAllButton.Text = "Clear All";
+            ClearAllButton.UseVisualStyleBackColor = false;
+            ClearAllButton.Click += ClearAllButton_Click;
             // 
             // WrappingLabel
             // 
-            this.WrappingLabel.AutoSize = true;
-            this.WrappingLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.WrappingLabel.ForeColor = System.Drawing.Color.White;
-            this.WrappingLabel.Location = new System.Drawing.Point(660, 448);
-            this.WrappingLabel.Name = "WrappingLabel";
-            this.WrappingLabel.Size = new System.Drawing.Size(74, 16);
-            this.WrappingLabel.TabIndex = 33;
-            this.WrappingLabel.Text = "Wrapping";
-            // 
-            // selectedFlag2
-            // 
-            this.selectedFlag2.AutoSize = true;
-            this.selectedFlag2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.selectedFlag2.ForeColor = System.Drawing.Color.White;
-            this.selectedFlag2.Location = new System.Drawing.Point(388, 534);
-            this.selectedFlag2.Name = "selectedFlag2";
-            this.selectedFlag2.Size = new System.Drawing.Size(79, 16);
-            this.selectedFlag2.TabIndex = 30;
-            this.selectedFlag2.Text = "Item Flag2";
+            WrappingLabel.AutoSize = true;
+            WrappingLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            WrappingLabel.ForeColor = System.Drawing.Color.White;
+            WrappingLabel.Location = new System.Drawing.Point(660, 448);
+            WrappingLabel.Name = "WrappingLabel";
+            WrappingLabel.Size = new System.Drawing.Size(74, 16);
+            WrappingLabel.TabIndex = 33;
+            WrappingLabel.Text = "Wrapping";
             // 
             // selectedFlag1
             // 
-            this.selectedFlag1.AutoSize = true;
-            this.selectedFlag1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.selectedFlag1.ForeColor = System.Drawing.Color.White;
-            this.selectedFlag1.Location = new System.Drawing.Point(260, 534);
-            this.selectedFlag1.Name = "selectedFlag1";
-            this.selectedFlag1.Size = new System.Drawing.Size(79, 16);
-            this.selectedFlag1.TabIndex = 29;
-            this.selectedFlag1.Text = "Item Flag1";
+            selectedFlag1.AutoSize = true;
+            selectedFlag1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            selectedFlag1.ForeColor = System.Drawing.Color.White;
+            selectedFlag1.Location = new System.Drawing.Point(388, 534);
+            selectedFlag1.Name = "selectedFlag1";
+            selectedFlag1.Size = new System.Drawing.Size(79, 16);
+            selectedFlag1.TabIndex = 30;
+            selectedFlag1.Text = "Item Flag1";
+            // 
+            // selectedFlag0
+            // 
+            selectedFlag0.AutoSize = true;
+            selectedFlag0.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            selectedFlag0.ForeColor = System.Drawing.Color.White;
+            selectedFlag0.Location = new System.Drawing.Point(260, 534);
+            selectedFlag0.Name = "selectedFlag0";
+            selectedFlag0.Size = new System.Drawing.Size(79, 16);
+            selectedFlag0.TabIndex = 29;
+            selectedFlag0.Text = "Item Flag0";
             // 
             // selectedData
             // 
-            this.selectedData.AutoSize = true;
-            this.selectedData.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.selectedData.ForeColor = System.Drawing.Color.White;
-            this.selectedData.Location = new System.Drawing.Point(120, 534);
-            this.selectedData.Name = "selectedData";
-            this.selectedData.Size = new System.Drawing.Size(72, 16);
-            this.selectedData.TabIndex = 28;
-            this.selectedData.Text = "Item Data";
+            selectedData.AutoSize = true;
+            selectedData.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            selectedData.ForeColor = System.Drawing.Color.White;
+            selectedData.Location = new System.Drawing.Point(120, 534);
+            selectedData.Name = "selectedData";
+            selectedData.Size = new System.Drawing.Size(72, 16);
+            selectedData.TabIndex = 28;
+            selectedData.Text = "Item Data";
             // 
             // selectedID
             // 
-            this.selectedID.AutoSize = true;
-            this.selectedID.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.selectedID.ForeColor = System.Drawing.Color.White;
-            this.selectedID.Location = new System.Drawing.Point(0, 534);
-            this.selectedID.Name = "selectedID";
-            this.selectedID.Size = new System.Drawing.Size(55, 16);
-            this.selectedID.TabIndex = 27;
-            this.selectedID.Text = "Item ID";
+            selectedID.AutoSize = true;
+            selectedID.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            selectedID.ForeColor = System.Drawing.Color.White;
+            selectedID.Location = new System.Drawing.Point(0, 534);
+            selectedID.Name = "selectedID";
+            selectedID.Size = new System.Drawing.Size(55, 16);
+            selectedID.TabIndex = 27;
+            selectedID.Text = "Item ID";
             // 
             // LoadingPanel
             // 
-            this.LoadingPanel.Controls.Add(this.NowLoadingMessage);
-            this.LoadingPanel.Controls.Add(this.NowLoadingImage);
-            this.LoadingPanel.Location = new System.Drawing.Point(478, 379);
-            this.LoadingPanel.Name = "LoadingPanel";
-            this.LoadingPanel.Size = new System.Drawing.Size(140, 30);
-            this.LoadingPanel.TabIndex = 25;
-            this.LoadingPanel.Visible = false;
+            LoadingPanel.Controls.Add(NowLoadingMessage);
+            LoadingPanel.Controls.Add(NowLoadingImage);
+            LoadingPanel.Location = new System.Drawing.Point(478, 379);
+            LoadingPanel.Name = "LoadingPanel";
+            LoadingPanel.Size = new System.Drawing.Size(140, 30);
+            LoadingPanel.TabIndex = 25;
+            LoadingPanel.Visible = false;
             // 
             // NowLoadingMessage
             // 
-            this.NowLoadingMessage.AutoSize = true;
-            this.NowLoadingMessage.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.NowLoadingMessage.ForeColor = System.Drawing.Color.White;
-            this.NowLoadingMessage.Location = new System.Drawing.Point(28, 7);
-            this.NowLoadingMessage.Name = "NowLoadingMessage";
-            this.NowLoadingMessage.Size = new System.Drawing.Size(109, 16);
-            this.NowLoadingMessage.TabIndex = 33;
-            this.NowLoadingMessage.Text = "Now Loading...";
+            NowLoadingMessage.AutoSize = true;
+            NowLoadingMessage.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            NowLoadingMessage.ForeColor = System.Drawing.Color.White;
+            NowLoadingMessage.Location = new System.Drawing.Point(28, 7);
+            NowLoadingMessage.Name = "NowLoadingMessage";
+            NowLoadingMessage.Size = new System.Drawing.Size(109, 16);
+            NowLoadingMessage.TabIndex = 33;
+            NowLoadingMessage.Text = "Now Loading...";
             // 
             // NowLoadingImage
             // 
-            this.NowLoadingImage.Image = global::ACNHPokerCore.Properties.Resources.loading;
-            this.NowLoadingImage.Location = new System.Drawing.Point(2, 3);
-            this.NowLoadingImage.Name = "NowLoadingImage";
-            this.NowLoadingImage.Size = new System.Drawing.Size(24, 24);
-            this.NowLoadingImage.TabIndex = 0;
-            this.NowLoadingImage.TabStop = false;
+            NowLoadingImage.Image = Properties.Resources.loading;
+            NowLoadingImage.Location = new System.Drawing.Point(2, 3);
+            NowLoadingImage.Name = "NowLoadingImage";
+            NowLoadingImage.Size = new System.Drawing.Size(24, 24);
+            NowLoadingImage.TabIndex = 0;
+            NowLoadingImage.TabStop = false;
             // 
             // ModeButtonPanel
             // 
-            this.ModeButtonPanel.ColumnCount = 5;
-            this.ModeButtonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.ModeButtonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.ModeButtonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.ModeButtonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.ModeButtonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.ModeButtonPanel.Controls.Add(this.FavoriteModeButton, 3, 0);
-            this.ModeButtonPanel.Controls.Add(this.FlowerModeButton, 2, 0);
-            this.ModeButtonPanel.Controls.Add(this.RecipeModeButton, 1, 0);
-            this.ModeButtonPanel.Controls.Add(this.ItemModeButton, 0, 0);
-            this.ModeButtonPanel.Controls.Add(this.VariationButton, 4, 0);
-            this.ModeButtonPanel.Location = new System.Drawing.Point(112, 379);
-            this.ModeButtonPanel.Name = "ModeButtonPanel";
-            this.ModeButtonPanel.RowCount = 1;
-            this.ModeButtonPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.ModeButtonPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.ModeButtonPanel.Size = new System.Drawing.Size(370, 30);
-            this.ModeButtonPanel.TabIndex = 23;
+            ModeButtonPanel.ColumnCount = 5;
+            ModeButtonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            ModeButtonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            ModeButtonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            ModeButtonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            ModeButtonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            ModeButtonPanel.Controls.Add(FavoriteModeButton, 3, 0);
+            ModeButtonPanel.Controls.Add(FlowerModeButton, 2, 0);
+            ModeButtonPanel.Controls.Add(RecipeModeButton, 1, 0);
+            ModeButtonPanel.Controls.Add(ItemModeButton, 0, 0);
+            ModeButtonPanel.Controls.Add(VariationButton, 4, 0);
+            ModeButtonPanel.Location = new System.Drawing.Point(112, 379);
+            ModeButtonPanel.Name = "ModeButtonPanel";
+            ModeButtonPanel.RowCount = 1;
+            ModeButtonPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            ModeButtonPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            ModeButtonPanel.Size = new System.Drawing.Size(370, 30);
+            ModeButtonPanel.TabIndex = 23;
             // 
             // FavoriteModeButton
             // 
-            this.FavoriteModeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.FavoriteModeButton.FlatAppearance.BorderSize = 0;
-            this.FavoriteModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.FavoriteModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FavoriteModeButton.ForeColor = System.Drawing.Color.White;
-            this.FavoriteModeButton.Location = new System.Drawing.Point(201, 3);
-            this.FavoriteModeButton.Name = "FavoriteModeButton";
-            this.FavoriteModeButton.Size = new System.Drawing.Size(80, 23);
-            this.FavoriteModeButton.TabIndex = 28;
-            this.FavoriteModeButton.Tag = "";
-            this.FavoriteModeButton.Text = "Favorite";
-            this.FavoriteModeButton.UseVisualStyleBackColor = false;
-            this.FavoriteModeButton.Click += new System.EventHandler(this.FavoriteModeButton_Click);
+            FavoriteModeButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            FavoriteModeButton.FlatAppearance.BorderSize = 0;
+            FavoriteModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            FavoriteModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            FavoriteModeButton.ForeColor = System.Drawing.Color.White;
+            FavoriteModeButton.Location = new System.Drawing.Point(201, 3);
+            FavoriteModeButton.Name = "FavoriteModeButton";
+            FavoriteModeButton.Size = new System.Drawing.Size(80, 23);
+            FavoriteModeButton.TabIndex = 28;
+            FavoriteModeButton.Tag = "";
+            FavoriteModeButton.Text = "Favorite";
+            FavoriteModeButton.UseVisualStyleBackColor = false;
+            FavoriteModeButton.Click += FavoriteModeButton_Click;
             // 
             // FlowerModeButton
             // 
-            this.FlowerModeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.FlowerModeButton.FlatAppearance.BorderSize = 0;
-            this.FlowerModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.FlowerModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FlowerModeButton.ForeColor = System.Drawing.Color.White;
-            this.FlowerModeButton.Location = new System.Drawing.Point(135, 3);
-            this.FlowerModeButton.Name = "FlowerModeButton";
-            this.FlowerModeButton.Size = new System.Drawing.Size(60, 23);
-            this.FlowerModeButton.TabIndex = 27;
-            this.FlowerModeButton.Tag = "";
-            this.FlowerModeButton.Text = "Flower";
-            this.FlowerModeButton.UseVisualStyleBackColor = false;
-            this.FlowerModeButton.Click += new System.EventHandler(this.FlowerModeButton_Click);
+            FlowerModeButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            FlowerModeButton.FlatAppearance.BorderSize = 0;
+            FlowerModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            FlowerModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            FlowerModeButton.ForeColor = System.Drawing.Color.White;
+            FlowerModeButton.Location = new System.Drawing.Point(135, 3);
+            FlowerModeButton.Name = "FlowerModeButton";
+            FlowerModeButton.Size = new System.Drawing.Size(60, 23);
+            FlowerModeButton.TabIndex = 27;
+            FlowerModeButton.Tag = "";
+            FlowerModeButton.Text = "Flower";
+            FlowerModeButton.UseVisualStyleBackColor = false;
+            FlowerModeButton.Click += FlowerModeButton_Click;
             // 
             // RecipeModeButton
             // 
-            this.RecipeModeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.RecipeModeButton.FlatAppearance.BorderSize = 0;
-            this.RecipeModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RecipeModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RecipeModeButton.ForeColor = System.Drawing.Color.White;
-            this.RecipeModeButton.Location = new System.Drawing.Point(69, 3);
-            this.RecipeModeButton.Name = "RecipeModeButton";
-            this.RecipeModeButton.Size = new System.Drawing.Size(60, 23);
-            this.RecipeModeButton.TabIndex = 26;
-            this.RecipeModeButton.Tag = "";
-            this.RecipeModeButton.Text = "Recipe";
-            this.RecipeModeButton.UseVisualStyleBackColor = false;
-            this.RecipeModeButton.Click += new System.EventHandler(this.RecipeModeButton_Click);
+            RecipeModeButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            RecipeModeButton.FlatAppearance.BorderSize = 0;
+            RecipeModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RecipeModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            RecipeModeButton.ForeColor = System.Drawing.Color.White;
+            RecipeModeButton.Location = new System.Drawing.Point(69, 3);
+            RecipeModeButton.Name = "RecipeModeButton";
+            RecipeModeButton.Size = new System.Drawing.Size(60, 23);
+            RecipeModeButton.TabIndex = 26;
+            RecipeModeButton.Tag = "";
+            RecipeModeButton.Text = "Recipe";
+            RecipeModeButton.UseVisualStyleBackColor = false;
+            RecipeModeButton.Click += RecipeModeButton_Click;
             // 
             // ItemModeButton
             // 
-            this.ItemModeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-            this.ItemModeButton.FlatAppearance.BorderSize = 0;
-            this.ItemModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ItemModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ItemModeButton.ForeColor = System.Drawing.Color.White;
-            this.ItemModeButton.Location = new System.Drawing.Point(3, 3);
-            this.ItemModeButton.Name = "ItemModeButton";
-            this.ItemModeButton.Size = new System.Drawing.Size(60, 23);
-            this.ItemModeButton.TabIndex = 25;
-            this.ItemModeButton.Tag = "";
-            this.ItemModeButton.Text = "Item";
-            this.ItemModeButton.UseVisualStyleBackColor = false;
-            this.ItemModeButton.Click += new System.EventHandler(this.ItemModeButton_Click);
+            ItemModeButton.BackColor = System.Drawing.Color.FromArgb(80, 80, 255);
+            ItemModeButton.FlatAppearance.BorderSize = 0;
+            ItemModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ItemModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            ItemModeButton.ForeColor = System.Drawing.Color.White;
+            ItemModeButton.Location = new System.Drawing.Point(3, 3);
+            ItemModeButton.Name = "ItemModeButton";
+            ItemModeButton.Size = new System.Drawing.Size(60, 23);
+            ItemModeButton.TabIndex = 25;
+            ItemModeButton.Tag = "";
+            ItemModeButton.Text = "Item";
+            ItemModeButton.UseVisualStyleBackColor = false;
+            ItemModeButton.Click += ItemModeButton_Click;
             // 
             // VariationButton
             // 
-            this.VariationButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.VariationButton.FlatAppearance.BorderSize = 0;
-            this.VariationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.VariationButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VariationButton.ForeColor = System.Drawing.Color.White;
-            this.VariationButton.Location = new System.Drawing.Point(287, 3);
-            this.VariationButton.Name = "VariationButton";
-            this.VariationButton.Size = new System.Drawing.Size(80, 23);
-            this.VariationButton.TabIndex = 24;
-            this.VariationButton.Tag = "";
-            this.VariationButton.Text = "Variation";
-            this.VariationButton.UseVisualStyleBackColor = false;
-            this.VariationButton.Click += new System.EventHandler(this.VariationButton_Click);
+            VariationButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            VariationButton.FlatAppearance.BorderSize = 0;
+            VariationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            VariationButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            VariationButton.ForeColor = System.Drawing.Color.White;
+            VariationButton.Location = new System.Drawing.Point(287, 3);
+            VariationButton.Name = "VariationButton";
+            VariationButton.Size = new System.Drawing.Size(80, 23);
+            VariationButton.TabIndex = 24;
+            VariationButton.Tag = "";
+            VariationButton.Text = "Variation";
+            VariationButton.UseVisualStyleBackColor = false;
+            VariationButton.Click += VariationButton_Click;
             // 
             // SelectedItem
             // 
-            this.SelectedItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.SelectedItem.FlatAppearance.BorderSize = 0;
-            this.SelectedItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SelectedItem.flowerQuantity = ((ushort)(0));
-            this.SelectedItem.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SelectedItem.ForeColor = System.Drawing.Color.White;
-            this.SelectedItem.itemDurability = ((ushort)(0));
-            this.SelectedItem.itemQuantity = ((ushort)(0));
-            this.SelectedItem.Location = new System.Drawing.Point(1, 379);
-            this.SelectedItem.Name = "SelectedItem";
-            this.SelectedItem.Size = new System.Drawing.Size(110, 110);
-            this.SelectedItem.TabIndex = 22;
-            this.SelectedItem.Tag = "";
-            this.SelectedItem.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.SelectedItem.UseVisualStyleBackColor = false;
-            this.SelectedItem.Click += new System.EventHandler(this.SelectedItem_Click);
+            SelectedItem.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            SelectedItem.FlatAppearance.BorderSize = 0;
+            SelectedItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            SelectedItem.FlowerQuantity = (ushort)0;
+            SelectedItem.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            SelectedItem.ForeColor = System.Drawing.Color.White;
+            SelectedItem.ItemDurability = (ushort)0;
+            SelectedItem.ItemQuantity = (ushort)0;
+            SelectedItem.Location = new System.Drawing.Point(1, 379);
+            SelectedItem.Name = "SelectedItem";
+            SelectedItem.Size = new System.Drawing.Size(110, 110);
+            SelectedItem.TabIndex = 22;
+            SelectedItem.Tag = "";
+            SelectedItem.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            SelectedItem.UseVisualStyleBackColor = false;
+            SelectedItem.Click += SelectedItem_Click;
             // 
             // InventoryPanel
             // 
-            this.InventoryPanel.AutoSize = true;
-            this.InventoryPanel.ColumnCount = 10;
-            this.InventoryPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.InventoryPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.InventoryPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.InventoryPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.InventoryPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.InventoryPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.InventoryPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.InventoryPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.InventoryPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.InventoryPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.InventoryPanel.Controls.Add(this.inventorySlot40, 9, 3);
-            this.InventoryPanel.Controls.Add(this.inventorySlot39, 8, 3);
-            this.InventoryPanel.Controls.Add(this.inventorySlot38, 7, 3);
-            this.InventoryPanel.Controls.Add(this.inventorySlot37, 6, 3);
-            this.InventoryPanel.Controls.Add(this.inventorySlot36, 5, 3);
-            this.InventoryPanel.Controls.Add(this.inventorySlot35, 4, 3);
-            this.InventoryPanel.Controls.Add(this.inventorySlot34, 3, 3);
-            this.InventoryPanel.Controls.Add(this.inventorySlot33, 2, 3);
-            this.InventoryPanel.Controls.Add(this.inventorySlot32, 1, 3);
-            this.InventoryPanel.Controls.Add(this.inventorySlot31, 0, 3);
-            this.InventoryPanel.Controls.Add(this.inventorySlot30, 9, 2);
-            this.InventoryPanel.Controls.Add(this.inventorySlot29, 8, 2);
-            this.InventoryPanel.Controls.Add(this.inventorySlot28, 7, 2);
-            this.InventoryPanel.Controls.Add(this.inventorySlot27, 6, 2);
-            this.InventoryPanel.Controls.Add(this.inventorySlot26, 5, 2);
-            this.InventoryPanel.Controls.Add(this.inventorySlot25, 4, 2);
-            this.InventoryPanel.Controls.Add(this.inventorySlot24, 3, 2);
-            this.InventoryPanel.Controls.Add(this.inventorySlot23, 2, 2);
-            this.InventoryPanel.Controls.Add(this.inventorySlot22, 1, 2);
-            this.InventoryPanel.Controls.Add(this.inventorySlot21, 0, 2);
-            this.InventoryPanel.Controls.Add(this.inventorySlot20, 9, 1);
-            this.InventoryPanel.Controls.Add(this.inventorySlot19, 8, 1);
-            this.InventoryPanel.Controls.Add(this.inventorySlot18, 7, 1);
-            this.InventoryPanel.Controls.Add(this.inventorySlot17, 6, 1);
-            this.InventoryPanel.Controls.Add(this.inventorySlot16, 5, 1);
-            this.InventoryPanel.Controls.Add(this.inventorySlot15, 4, 1);
-            this.InventoryPanel.Controls.Add(this.inventorySlot14, 3, 1);
-            this.InventoryPanel.Controls.Add(this.inventorySlot13, 2, 1);
-            this.InventoryPanel.Controls.Add(this.inventorySlot12, 1, 1);
-            this.InventoryPanel.Controls.Add(this.inventorySlot11, 0, 1);
-            this.InventoryPanel.Controls.Add(this.inventorySlot10, 9, 0);
-            this.InventoryPanel.Controls.Add(this.inventorySlot9, 8, 0);
-            this.InventoryPanel.Controls.Add(this.inventorySlot8, 7, 0);
-            this.InventoryPanel.Controls.Add(this.inventorySlot7, 6, 0);
-            this.InventoryPanel.Controls.Add(this.inventorySlot6, 5, 0);
-            this.InventoryPanel.Controls.Add(this.inventorySlot5, 4, 0);
-            this.InventoryPanel.Controls.Add(this.inventorySlot4, 3, 0);
-            this.InventoryPanel.Controls.Add(this.inventorySlot3, 2, 0);
-            this.InventoryPanel.Controls.Add(this.inventorySlot2, 1, 0);
-            this.InventoryPanel.Controls.Add(this.inventorySlot1, 0, 0);
-            this.InventoryPanel.Location = new System.Drawing.Point(33, 52);
-            this.InventoryPanel.Name = "InventoryPanel";
-            this.InventoryPanel.RowCount = 4;
-            this.InventoryPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.InventoryPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.InventoryPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.InventoryPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.InventoryPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.InventoryPanel.Size = new System.Drawing.Size(810, 324);
-            this.InventoryPanel.TabIndex = 21;
+            InventoryPanel.AutoSize = true;
+            InventoryPanel.ColumnCount = 10;
+            InventoryPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            InventoryPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            InventoryPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            InventoryPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            InventoryPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            InventoryPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            InventoryPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            InventoryPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            InventoryPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            InventoryPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            InventoryPanel.Controls.Add(inventorySlot40, 9, 3);
+            InventoryPanel.Controls.Add(inventorySlot39, 8, 3);
+            InventoryPanel.Controls.Add(inventorySlot38, 7, 3);
+            InventoryPanel.Controls.Add(inventorySlot37, 6, 3);
+            InventoryPanel.Controls.Add(inventorySlot36, 5, 3);
+            InventoryPanel.Controls.Add(inventorySlot35, 4, 3);
+            InventoryPanel.Controls.Add(inventorySlot34, 3, 3);
+            InventoryPanel.Controls.Add(inventorySlot33, 2, 3);
+            InventoryPanel.Controls.Add(inventorySlot32, 1, 3);
+            InventoryPanel.Controls.Add(inventorySlot31, 0, 3);
+            InventoryPanel.Controls.Add(inventorySlot30, 9, 2);
+            InventoryPanel.Controls.Add(inventorySlot29, 8, 2);
+            InventoryPanel.Controls.Add(inventorySlot28, 7, 2);
+            InventoryPanel.Controls.Add(inventorySlot27, 6, 2);
+            InventoryPanel.Controls.Add(inventorySlot26, 5, 2);
+            InventoryPanel.Controls.Add(inventorySlot25, 4, 2);
+            InventoryPanel.Controls.Add(inventorySlot24, 3, 2);
+            InventoryPanel.Controls.Add(inventorySlot23, 2, 2);
+            InventoryPanel.Controls.Add(inventorySlot22, 1, 2);
+            InventoryPanel.Controls.Add(inventorySlot21, 0, 2);
+            InventoryPanel.Controls.Add(inventorySlot20, 9, 1);
+            InventoryPanel.Controls.Add(inventorySlot19, 8, 1);
+            InventoryPanel.Controls.Add(inventorySlot18, 7, 1);
+            InventoryPanel.Controls.Add(inventorySlot17, 6, 1);
+            InventoryPanel.Controls.Add(inventorySlot16, 5, 1);
+            InventoryPanel.Controls.Add(inventorySlot15, 4, 1);
+            InventoryPanel.Controls.Add(inventorySlot14, 3, 1);
+            InventoryPanel.Controls.Add(inventorySlot13, 2, 1);
+            InventoryPanel.Controls.Add(inventorySlot12, 1, 1);
+            InventoryPanel.Controls.Add(inventorySlot11, 0, 1);
+            InventoryPanel.Controls.Add(inventorySlot10, 9, 0);
+            InventoryPanel.Controls.Add(inventorySlot9, 8, 0);
+            InventoryPanel.Controls.Add(inventorySlot8, 7, 0);
+            InventoryPanel.Controls.Add(inventorySlot7, 6, 0);
+            InventoryPanel.Controls.Add(inventorySlot6, 5, 0);
+            InventoryPanel.Controls.Add(inventorySlot5, 4, 0);
+            InventoryPanel.Controls.Add(inventorySlot4, 3, 0);
+            InventoryPanel.Controls.Add(inventorySlot3, 2, 0);
+            InventoryPanel.Controls.Add(inventorySlot2, 1, 0);
+            InventoryPanel.Controls.Add(inventorySlot1, 0, 0);
+            InventoryPanel.Location = new System.Drawing.Point(33, 52);
+            InventoryPanel.Name = "InventoryPanel";
+            InventoryPanel.RowCount = 4;
+            InventoryPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            InventoryPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            InventoryPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            InventoryPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            InventoryPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            InventoryPanel.Size = new System.Drawing.Size(810, 324);
+            InventoryPanel.TabIndex = 21;
             // 
             // inventorySlot40
             // 
-            this.inventorySlot40.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot40.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot40.FlatAppearance.BorderSize = 0;
-            this.inventorySlot40.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot40.flowerQuantity = ((ushort)(0));
-            this.inventorySlot40.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot40.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot40.itemDurability = ((ushort)(0));
-            this.inventorySlot40.itemQuantity = ((ushort)(0));
-            this.inventorySlot40.Location = new System.Drawing.Point(732, 246);
-            this.inventorySlot40.Name = "inventorySlot40";
-            this.inventorySlot40.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot40.TabIndex = 58;
-            this.inventorySlot40.Tag = "40";
-            this.inventorySlot40.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot40.UseVisualStyleBackColor = false;
-            this.inventorySlot40.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot40.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot40.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot40.ContextMenuStrip = ItemRightClick;
+            inventorySlot40.FlatAppearance.BorderSize = 0;
+            inventorySlot40.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot40.FlowerQuantity = (ushort)0;
+            inventorySlot40.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot40.ForeColor = System.Drawing.Color.White;
+            inventorySlot40.ItemDurability = (ushort)0;
+            inventorySlot40.ItemQuantity = (ushort)0;
+            inventorySlot40.Location = new System.Drawing.Point(732, 246);
+            inventorySlot40.Name = "inventorySlot40";
+            inventorySlot40.Size = new System.Drawing.Size(75, 75);
+            inventorySlot40.TabIndex = 58;
+            inventorySlot40.Tag = "40";
+            inventorySlot40.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot40.UseVisualStyleBackColor = false;
+            inventorySlot40.Click += InventorySlot_Click;
+            inventorySlot40.MouseHover += InventorySlot_MouseHover;
             // 
             // ItemRightClick
             // 
-            this.ItemRightClick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.ItemRightClick.ImageScalingSize = new System.Drawing.Size(0, 0);
-            this.ItemRightClick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copyItemToolStripMenuItem,
-            this.deleteItemToolStripMenuItem,
-            this.wrapItemToolStripMenuItem,
-            this.wrapAllItemsToolStripMenuItem,
-            this.addToFavoriteToolStripMenuItem,
-            this.unwrapAllItemsToolStripMenuItem});
-            this.ItemRightClick.Name = "ItemRightClick";
-            this.ItemRightClick.ShowImageMargin = false;
-            this.ItemRightClick.Size = new System.Drawing.Size(167, 136);
+            ItemRightClick.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            ItemRightClick.ImageScalingSize = new System.Drawing.Size(0, 0);
+            ItemRightClick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { copyItemToolStripMenuItem, deleteItemToolStripMenuItem, wrapItemToolStripMenuItem, wrapAllItemsToolStripMenuItem, addToFavoriteToolStripMenuItem, unwrapAllItemsToolStripMenuItem });
+            ItemRightClick.Name = "ItemRightClick";
+            ItemRightClick.ShowImageMargin = false;
+            ItemRightClick.Size = new System.Drawing.Size(167, 136);
             // 
             // copyItemToolStripMenuItem
             // 
-            this.copyItemToolStripMenuItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.copyItemToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.copyItemToolStripMenuItem.Name = "copyItemToolStripMenuItem";
-            this.copyItemToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.copyItemToolStripMenuItem.Text = "Copy Item";
-            this.copyItemToolStripMenuItem.Click += new System.EventHandler(this.CopyItemToolStripMenuItem_Click);
+            copyItemToolStripMenuItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            copyItemToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            copyItemToolStripMenuItem.Name = "copyItemToolStripMenuItem";
+            copyItemToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            copyItemToolStripMenuItem.Text = "Copy Item";
+            copyItemToolStripMenuItem.Click += CopyItemToolStripMenuItem_Click;
             // 
             // deleteItemToolStripMenuItem
             // 
-            this.deleteItemToolStripMenuItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.deleteItemToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.deleteItemToolStripMenuItem.Name = "deleteItemToolStripMenuItem";
-            this.deleteItemToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.deleteItemToolStripMenuItem.Text = "Delete Item";
-            this.deleteItemToolStripMenuItem.Click += new System.EventHandler(this.DeleteItemToolStripMenuItem_Click);
+            deleteItemToolStripMenuItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            deleteItemToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            deleteItemToolStripMenuItem.Name = "deleteItemToolStripMenuItem";
+            deleteItemToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            deleteItemToolStripMenuItem.Text = "Delete Item";
+            deleteItemToolStripMenuItem.Click += DeleteItemToolStripMenuItem_Click;
             // 
             // wrapItemToolStripMenuItem
             // 
-            this.wrapItemToolStripMenuItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.wrapItemToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.wrapItemToolStripMenuItem.Name = "wrapItemToolStripMenuItem";
-            this.wrapItemToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.wrapItemToolStripMenuItem.Text = "Wrap Item [ ! ]";
-            this.wrapItemToolStripMenuItem.Click += new System.EventHandler(this.WrapItemToolStripMenuItem_Click);
+            wrapItemToolStripMenuItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            wrapItemToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            wrapItemToolStripMenuItem.Name = "wrapItemToolStripMenuItem";
+            wrapItemToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            wrapItemToolStripMenuItem.Text = "Wrap Item [ ! ]";
+            wrapItemToolStripMenuItem.Click += WrapItemToolStripMenuItem_Click;
             // 
             // wrapAllItemsToolStripMenuItem
             // 
-            this.wrapAllItemsToolStripMenuItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.wrapAllItemsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.wrapAllItemsToolStripMenuItem.Name = "wrapAllItemsToolStripMenuItem";
-            this.wrapAllItemsToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.wrapAllItemsToolStripMenuItem.Text = "Wrap All Items [ ! ]";
-            this.wrapAllItemsToolStripMenuItem.Click += new System.EventHandler(this.WrapAllItemsToolStripMenuItem_Click);
+            wrapAllItemsToolStripMenuItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            wrapAllItemsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            wrapAllItemsToolStripMenuItem.Name = "wrapAllItemsToolStripMenuItem";
+            wrapAllItemsToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            wrapAllItemsToolStripMenuItem.Text = "Wrap All Items [ ! ]";
+            wrapAllItemsToolStripMenuItem.Click += WrapAllItemsToolStripMenuItem_Click;
             // 
             // addToFavoriteToolStripMenuItem
             // 
-            this.addToFavoriteToolStripMenuItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.addToFavoriteToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.addToFavoriteToolStripMenuItem.Name = "addToFavoriteToolStripMenuItem";
-            this.addToFavoriteToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.addToFavoriteToolStripMenuItem.Text = "Add To Favorite";
-            this.addToFavoriteToolStripMenuItem.Click += new System.EventHandler(this.AddToFavoriteToolStripMenuItem_Click);
+            addToFavoriteToolStripMenuItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            addToFavoriteToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            addToFavoriteToolStripMenuItem.Name = "addToFavoriteToolStripMenuItem";
+            addToFavoriteToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            addToFavoriteToolStripMenuItem.Text = "Add To Favorite";
+            addToFavoriteToolStripMenuItem.Click += AddToFavoriteToolStripMenuItem_Click;
             // 
             // unwrapAllItemsToolStripMenuItem
             // 
-            this.unwrapAllItemsToolStripMenuItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.unwrapAllItemsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.unwrapAllItemsToolStripMenuItem.Name = "unwrapAllItemsToolStripMenuItem";
-            this.unwrapAllItemsToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.unwrapAllItemsToolStripMenuItem.Text = "Unwrap All Items";
-            this.unwrapAllItemsToolStripMenuItem.Click += new System.EventHandler(this.UnwrapAllItemsToolStripMenuItem_Click);
+            unwrapAllItemsToolStripMenuItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            unwrapAllItemsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            unwrapAllItemsToolStripMenuItem.Name = "unwrapAllItemsToolStripMenuItem";
+            unwrapAllItemsToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            unwrapAllItemsToolStripMenuItem.Text = "Unwrap All Items";
+            unwrapAllItemsToolStripMenuItem.Click += UnwrapAllItemsToolStripMenuItem_Click;
             // 
             // inventorySlot39
             // 
-            this.inventorySlot39.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot39.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot39.FlatAppearance.BorderSize = 0;
-            this.inventorySlot39.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot39.flowerQuantity = ((ushort)(0));
-            this.inventorySlot39.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot39.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot39.itemDurability = ((ushort)(0));
-            this.inventorySlot39.itemQuantity = ((ushort)(0));
-            this.inventorySlot39.Location = new System.Drawing.Point(651, 246);
-            this.inventorySlot39.Name = "inventorySlot39";
-            this.inventorySlot39.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot39.TabIndex = 57;
-            this.inventorySlot39.Tag = "39";
-            this.inventorySlot39.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot39.UseVisualStyleBackColor = false;
-            this.inventorySlot39.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot39.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot39.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot39.ContextMenuStrip = ItemRightClick;
+            inventorySlot39.FlatAppearance.BorderSize = 0;
+            inventorySlot39.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot39.FlowerQuantity = (ushort)0;
+            inventorySlot39.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot39.ForeColor = System.Drawing.Color.White;
+            inventorySlot39.ItemDurability = (ushort)0;
+            inventorySlot39.ItemQuantity = (ushort)0;
+            inventorySlot39.Location = new System.Drawing.Point(651, 246);
+            inventorySlot39.Name = "inventorySlot39";
+            inventorySlot39.Size = new System.Drawing.Size(75, 75);
+            inventorySlot39.TabIndex = 57;
+            inventorySlot39.Tag = "39";
+            inventorySlot39.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot39.UseVisualStyleBackColor = false;
+            inventorySlot39.Click += InventorySlot_Click;
+            inventorySlot39.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot38
             // 
-            this.inventorySlot38.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot38.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot38.FlatAppearance.BorderSize = 0;
-            this.inventorySlot38.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot38.flowerQuantity = ((ushort)(0));
-            this.inventorySlot38.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot38.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot38.itemDurability = ((ushort)(0));
-            this.inventorySlot38.itemQuantity = ((ushort)(0));
-            this.inventorySlot38.Location = new System.Drawing.Point(570, 246);
-            this.inventorySlot38.Name = "inventorySlot38";
-            this.inventorySlot38.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot38.TabIndex = 56;
-            this.inventorySlot38.Tag = "38";
-            this.inventorySlot38.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot38.UseVisualStyleBackColor = false;
-            this.inventorySlot38.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot38.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot38.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot38.ContextMenuStrip = ItemRightClick;
+            inventorySlot38.FlatAppearance.BorderSize = 0;
+            inventorySlot38.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot38.FlowerQuantity = (ushort)0;
+            inventorySlot38.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot38.ForeColor = System.Drawing.Color.White;
+            inventorySlot38.ItemDurability = (ushort)0;
+            inventorySlot38.ItemQuantity = (ushort)0;
+            inventorySlot38.Location = new System.Drawing.Point(570, 246);
+            inventorySlot38.Name = "inventorySlot38";
+            inventorySlot38.Size = new System.Drawing.Size(75, 75);
+            inventorySlot38.TabIndex = 56;
+            inventorySlot38.Tag = "38";
+            inventorySlot38.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot38.UseVisualStyleBackColor = false;
+            inventorySlot38.Click += InventorySlot_Click;
+            inventorySlot38.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot37
             // 
-            this.inventorySlot37.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot37.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot37.FlatAppearance.BorderSize = 0;
-            this.inventorySlot37.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot37.flowerQuantity = ((ushort)(0));
-            this.inventorySlot37.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot37.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot37.itemDurability = ((ushort)(0));
-            this.inventorySlot37.itemQuantity = ((ushort)(0));
-            this.inventorySlot37.Location = new System.Drawing.Point(489, 246);
-            this.inventorySlot37.Name = "inventorySlot37";
-            this.inventorySlot37.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot37.TabIndex = 55;
-            this.inventorySlot37.Tag = "37";
-            this.inventorySlot37.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot37.UseVisualStyleBackColor = false;
-            this.inventorySlot37.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot37.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot37.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot37.ContextMenuStrip = ItemRightClick;
+            inventorySlot37.FlatAppearance.BorderSize = 0;
+            inventorySlot37.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot37.FlowerQuantity = (ushort)0;
+            inventorySlot37.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot37.ForeColor = System.Drawing.Color.White;
+            inventorySlot37.ItemDurability = (ushort)0;
+            inventorySlot37.ItemQuantity = (ushort)0;
+            inventorySlot37.Location = new System.Drawing.Point(489, 246);
+            inventorySlot37.Name = "inventorySlot37";
+            inventorySlot37.Size = new System.Drawing.Size(75, 75);
+            inventorySlot37.TabIndex = 55;
+            inventorySlot37.Tag = "37";
+            inventorySlot37.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot37.UseVisualStyleBackColor = false;
+            inventorySlot37.Click += InventorySlot_Click;
+            inventorySlot37.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot36
             // 
-            this.inventorySlot36.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot36.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot36.FlatAppearance.BorderSize = 0;
-            this.inventorySlot36.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot36.flowerQuantity = ((ushort)(0));
-            this.inventorySlot36.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot36.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot36.itemDurability = ((ushort)(0));
-            this.inventorySlot36.itemQuantity = ((ushort)(0));
-            this.inventorySlot36.Location = new System.Drawing.Point(408, 246);
-            this.inventorySlot36.Name = "inventorySlot36";
-            this.inventorySlot36.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot36.TabIndex = 54;
-            this.inventorySlot36.Tag = "36";
-            this.inventorySlot36.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot36.UseVisualStyleBackColor = false;
-            this.inventorySlot36.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot36.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot36.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot36.ContextMenuStrip = ItemRightClick;
+            inventorySlot36.FlatAppearance.BorderSize = 0;
+            inventorySlot36.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot36.FlowerQuantity = (ushort)0;
+            inventorySlot36.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot36.ForeColor = System.Drawing.Color.White;
+            inventorySlot36.ItemDurability = (ushort)0;
+            inventorySlot36.ItemQuantity = (ushort)0;
+            inventorySlot36.Location = new System.Drawing.Point(408, 246);
+            inventorySlot36.Name = "inventorySlot36";
+            inventorySlot36.Size = new System.Drawing.Size(75, 75);
+            inventorySlot36.TabIndex = 54;
+            inventorySlot36.Tag = "36";
+            inventorySlot36.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot36.UseVisualStyleBackColor = false;
+            inventorySlot36.Click += InventorySlot_Click;
+            inventorySlot36.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot35
             // 
-            this.inventorySlot35.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot35.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot35.FlatAppearance.BorderSize = 0;
-            this.inventorySlot35.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot35.flowerQuantity = ((ushort)(0));
-            this.inventorySlot35.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot35.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot35.itemDurability = ((ushort)(0));
-            this.inventorySlot35.itemQuantity = ((ushort)(0));
-            this.inventorySlot35.Location = new System.Drawing.Point(327, 246);
-            this.inventorySlot35.Name = "inventorySlot35";
-            this.inventorySlot35.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot35.TabIndex = 53;
-            this.inventorySlot35.Tag = "35";
-            this.inventorySlot35.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot35.UseVisualStyleBackColor = false;
-            this.inventorySlot35.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot35.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot35.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot35.ContextMenuStrip = ItemRightClick;
+            inventorySlot35.FlatAppearance.BorderSize = 0;
+            inventorySlot35.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot35.FlowerQuantity = (ushort)0;
+            inventorySlot35.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot35.ForeColor = System.Drawing.Color.White;
+            inventorySlot35.ItemDurability = (ushort)0;
+            inventorySlot35.ItemQuantity = (ushort)0;
+            inventorySlot35.Location = new System.Drawing.Point(327, 246);
+            inventorySlot35.Name = "inventorySlot35";
+            inventorySlot35.Size = new System.Drawing.Size(75, 75);
+            inventorySlot35.TabIndex = 53;
+            inventorySlot35.Tag = "35";
+            inventorySlot35.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot35.UseVisualStyleBackColor = false;
+            inventorySlot35.Click += InventorySlot_Click;
+            inventorySlot35.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot34
             // 
-            this.inventorySlot34.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot34.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot34.FlatAppearance.BorderSize = 0;
-            this.inventorySlot34.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot34.flowerQuantity = ((ushort)(0));
-            this.inventorySlot34.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot34.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot34.itemDurability = ((ushort)(0));
-            this.inventorySlot34.itemQuantity = ((ushort)(0));
-            this.inventorySlot34.Location = new System.Drawing.Point(246, 246);
-            this.inventorySlot34.Name = "inventorySlot34";
-            this.inventorySlot34.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot34.TabIndex = 52;
-            this.inventorySlot34.Tag = "34";
-            this.inventorySlot34.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot34.UseVisualStyleBackColor = false;
-            this.inventorySlot34.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot34.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot34.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot34.ContextMenuStrip = ItemRightClick;
+            inventorySlot34.FlatAppearance.BorderSize = 0;
+            inventorySlot34.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot34.FlowerQuantity = (ushort)0;
+            inventorySlot34.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot34.ForeColor = System.Drawing.Color.White;
+            inventorySlot34.ItemDurability = (ushort)0;
+            inventorySlot34.ItemQuantity = (ushort)0;
+            inventorySlot34.Location = new System.Drawing.Point(246, 246);
+            inventorySlot34.Name = "inventorySlot34";
+            inventorySlot34.Size = new System.Drawing.Size(75, 75);
+            inventorySlot34.TabIndex = 52;
+            inventorySlot34.Tag = "34";
+            inventorySlot34.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot34.UseVisualStyleBackColor = false;
+            inventorySlot34.Click += InventorySlot_Click;
+            inventorySlot34.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot33
             // 
-            this.inventorySlot33.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot33.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot33.FlatAppearance.BorderSize = 0;
-            this.inventorySlot33.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot33.flowerQuantity = ((ushort)(0));
-            this.inventorySlot33.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot33.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot33.itemDurability = ((ushort)(0));
-            this.inventorySlot33.itemQuantity = ((ushort)(0));
-            this.inventorySlot33.Location = new System.Drawing.Point(165, 246);
-            this.inventorySlot33.Name = "inventorySlot33";
-            this.inventorySlot33.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot33.TabIndex = 51;
-            this.inventorySlot33.Tag = "33";
-            this.inventorySlot33.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot33.UseVisualStyleBackColor = false;
-            this.inventorySlot33.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot33.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot33.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot33.ContextMenuStrip = ItemRightClick;
+            inventorySlot33.FlatAppearance.BorderSize = 0;
+            inventorySlot33.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot33.FlowerQuantity = (ushort)0;
+            inventorySlot33.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot33.ForeColor = System.Drawing.Color.White;
+            inventorySlot33.ItemDurability = (ushort)0;
+            inventorySlot33.ItemQuantity = (ushort)0;
+            inventorySlot33.Location = new System.Drawing.Point(165, 246);
+            inventorySlot33.Name = "inventorySlot33";
+            inventorySlot33.Size = new System.Drawing.Size(75, 75);
+            inventorySlot33.TabIndex = 51;
+            inventorySlot33.Tag = "33";
+            inventorySlot33.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot33.UseVisualStyleBackColor = false;
+            inventorySlot33.Click += InventorySlot_Click;
+            inventorySlot33.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot32
             // 
-            this.inventorySlot32.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot32.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot32.FlatAppearance.BorderSize = 0;
-            this.inventorySlot32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot32.flowerQuantity = ((ushort)(0));
-            this.inventorySlot32.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot32.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot32.itemDurability = ((ushort)(0));
-            this.inventorySlot32.itemQuantity = ((ushort)(0));
-            this.inventorySlot32.Location = new System.Drawing.Point(84, 246);
-            this.inventorySlot32.Name = "inventorySlot32";
-            this.inventorySlot32.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot32.TabIndex = 50;
-            this.inventorySlot32.Tag = "32";
-            this.inventorySlot32.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot32.UseVisualStyleBackColor = false;
-            this.inventorySlot32.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot32.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot32.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot32.ContextMenuStrip = ItemRightClick;
+            inventorySlot32.FlatAppearance.BorderSize = 0;
+            inventorySlot32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot32.FlowerQuantity = (ushort)0;
+            inventorySlot32.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot32.ForeColor = System.Drawing.Color.White;
+            inventorySlot32.ItemDurability = (ushort)0;
+            inventorySlot32.ItemQuantity = (ushort)0;
+            inventorySlot32.Location = new System.Drawing.Point(84, 246);
+            inventorySlot32.Name = "inventorySlot32";
+            inventorySlot32.Size = new System.Drawing.Size(75, 75);
+            inventorySlot32.TabIndex = 50;
+            inventorySlot32.Tag = "32";
+            inventorySlot32.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot32.UseVisualStyleBackColor = false;
+            inventorySlot32.Click += InventorySlot_Click;
+            inventorySlot32.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot31
             // 
-            this.inventorySlot31.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot31.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot31.FlatAppearance.BorderSize = 0;
-            this.inventorySlot31.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot31.flowerQuantity = ((ushort)(0));
-            this.inventorySlot31.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot31.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot31.itemDurability = ((ushort)(0));
-            this.inventorySlot31.itemQuantity = ((ushort)(0));
-            this.inventorySlot31.Location = new System.Drawing.Point(3, 246);
-            this.inventorySlot31.Name = "inventorySlot31";
-            this.inventorySlot31.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot31.TabIndex = 49;
-            this.inventorySlot31.Tag = "31";
-            this.inventorySlot31.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot31.UseVisualStyleBackColor = false;
-            this.inventorySlot31.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot31.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot31.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot31.ContextMenuStrip = ItemRightClick;
+            inventorySlot31.FlatAppearance.BorderSize = 0;
+            inventorySlot31.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot31.FlowerQuantity = (ushort)0;
+            inventorySlot31.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot31.ForeColor = System.Drawing.Color.White;
+            inventorySlot31.ItemDurability = (ushort)0;
+            inventorySlot31.ItemQuantity = (ushort)0;
+            inventorySlot31.Location = new System.Drawing.Point(3, 246);
+            inventorySlot31.Name = "inventorySlot31";
+            inventorySlot31.Size = new System.Drawing.Size(75, 75);
+            inventorySlot31.TabIndex = 49;
+            inventorySlot31.Tag = "31";
+            inventorySlot31.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot31.UseVisualStyleBackColor = false;
+            inventorySlot31.Click += InventorySlot_Click;
+            inventorySlot31.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot30
             // 
-            this.inventorySlot30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot30.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot30.FlatAppearance.BorderSize = 0;
-            this.inventorySlot30.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot30.flowerQuantity = ((ushort)(0));
-            this.inventorySlot30.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot30.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot30.itemDurability = ((ushort)(0));
-            this.inventorySlot30.itemQuantity = ((ushort)(0));
-            this.inventorySlot30.Location = new System.Drawing.Point(732, 165);
-            this.inventorySlot30.Name = "inventorySlot30";
-            this.inventorySlot30.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot30.TabIndex = 48;
-            this.inventorySlot30.Tag = "30";
-            this.inventorySlot30.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot30.UseVisualStyleBackColor = false;
-            this.inventorySlot30.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot30.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot30.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot30.ContextMenuStrip = ItemRightClick;
+            inventorySlot30.FlatAppearance.BorderSize = 0;
+            inventorySlot30.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot30.FlowerQuantity = (ushort)0;
+            inventorySlot30.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot30.ForeColor = System.Drawing.Color.White;
+            inventorySlot30.ItemDurability = (ushort)0;
+            inventorySlot30.ItemQuantity = (ushort)0;
+            inventorySlot30.Location = new System.Drawing.Point(732, 165);
+            inventorySlot30.Name = "inventorySlot30";
+            inventorySlot30.Size = new System.Drawing.Size(75, 75);
+            inventorySlot30.TabIndex = 48;
+            inventorySlot30.Tag = "30";
+            inventorySlot30.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot30.UseVisualStyleBackColor = false;
+            inventorySlot30.Click += InventorySlot_Click;
+            inventorySlot30.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot29
             // 
-            this.inventorySlot29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot29.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot29.FlatAppearance.BorderSize = 0;
-            this.inventorySlot29.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot29.flowerQuantity = ((ushort)(0));
-            this.inventorySlot29.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot29.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot29.itemDurability = ((ushort)(0));
-            this.inventorySlot29.itemQuantity = ((ushort)(0));
-            this.inventorySlot29.Location = new System.Drawing.Point(651, 165);
-            this.inventorySlot29.Name = "inventorySlot29";
-            this.inventorySlot29.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot29.TabIndex = 47;
-            this.inventorySlot29.Tag = "29";
-            this.inventorySlot29.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot29.UseVisualStyleBackColor = false;
-            this.inventorySlot29.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot29.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot29.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot29.ContextMenuStrip = ItemRightClick;
+            inventorySlot29.FlatAppearance.BorderSize = 0;
+            inventorySlot29.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot29.FlowerQuantity = (ushort)0;
+            inventorySlot29.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot29.ForeColor = System.Drawing.Color.White;
+            inventorySlot29.ItemDurability = (ushort)0;
+            inventorySlot29.ItemQuantity = (ushort)0;
+            inventorySlot29.Location = new System.Drawing.Point(651, 165);
+            inventorySlot29.Name = "inventorySlot29";
+            inventorySlot29.Size = new System.Drawing.Size(75, 75);
+            inventorySlot29.TabIndex = 47;
+            inventorySlot29.Tag = "29";
+            inventorySlot29.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot29.UseVisualStyleBackColor = false;
+            inventorySlot29.Click += InventorySlot_Click;
+            inventorySlot29.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot28
             // 
-            this.inventorySlot28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot28.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot28.FlatAppearance.BorderSize = 0;
-            this.inventorySlot28.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot28.flowerQuantity = ((ushort)(0));
-            this.inventorySlot28.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot28.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot28.itemDurability = ((ushort)(0));
-            this.inventorySlot28.itemQuantity = ((ushort)(0));
-            this.inventorySlot28.Location = new System.Drawing.Point(570, 165);
-            this.inventorySlot28.Name = "inventorySlot28";
-            this.inventorySlot28.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot28.TabIndex = 46;
-            this.inventorySlot28.Tag = "28";
-            this.inventorySlot28.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot28.UseVisualStyleBackColor = false;
-            this.inventorySlot28.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot28.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot28.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot28.ContextMenuStrip = ItemRightClick;
+            inventorySlot28.FlatAppearance.BorderSize = 0;
+            inventorySlot28.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot28.FlowerQuantity = (ushort)0;
+            inventorySlot28.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot28.ForeColor = System.Drawing.Color.White;
+            inventorySlot28.ItemDurability = (ushort)0;
+            inventorySlot28.ItemQuantity = (ushort)0;
+            inventorySlot28.Location = new System.Drawing.Point(570, 165);
+            inventorySlot28.Name = "inventorySlot28";
+            inventorySlot28.Size = new System.Drawing.Size(75, 75);
+            inventorySlot28.TabIndex = 46;
+            inventorySlot28.Tag = "28";
+            inventorySlot28.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot28.UseVisualStyleBackColor = false;
+            inventorySlot28.Click += InventorySlot_Click;
+            inventorySlot28.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot27
             // 
-            this.inventorySlot27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot27.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot27.FlatAppearance.BorderSize = 0;
-            this.inventorySlot27.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot27.flowerQuantity = ((ushort)(0));
-            this.inventorySlot27.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot27.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot27.itemDurability = ((ushort)(0));
-            this.inventorySlot27.itemQuantity = ((ushort)(0));
-            this.inventorySlot27.Location = new System.Drawing.Point(489, 165);
-            this.inventorySlot27.Name = "inventorySlot27";
-            this.inventorySlot27.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot27.TabIndex = 45;
-            this.inventorySlot27.Tag = "27";
-            this.inventorySlot27.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot27.UseVisualStyleBackColor = false;
-            this.inventorySlot27.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot27.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot27.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot27.ContextMenuStrip = ItemRightClick;
+            inventorySlot27.FlatAppearance.BorderSize = 0;
+            inventorySlot27.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot27.FlowerQuantity = (ushort)0;
+            inventorySlot27.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot27.ForeColor = System.Drawing.Color.White;
+            inventorySlot27.ItemDurability = (ushort)0;
+            inventorySlot27.ItemQuantity = (ushort)0;
+            inventorySlot27.Location = new System.Drawing.Point(489, 165);
+            inventorySlot27.Name = "inventorySlot27";
+            inventorySlot27.Size = new System.Drawing.Size(75, 75);
+            inventorySlot27.TabIndex = 45;
+            inventorySlot27.Tag = "27";
+            inventorySlot27.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot27.UseVisualStyleBackColor = false;
+            inventorySlot27.Click += InventorySlot_Click;
+            inventorySlot27.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot26
             // 
-            this.inventorySlot26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot26.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot26.FlatAppearance.BorderSize = 0;
-            this.inventorySlot26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot26.flowerQuantity = ((ushort)(0));
-            this.inventorySlot26.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot26.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot26.itemDurability = ((ushort)(0));
-            this.inventorySlot26.itemQuantity = ((ushort)(0));
-            this.inventorySlot26.Location = new System.Drawing.Point(408, 165);
-            this.inventorySlot26.Name = "inventorySlot26";
-            this.inventorySlot26.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot26.TabIndex = 44;
-            this.inventorySlot26.Tag = "26";
-            this.inventorySlot26.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot26.UseVisualStyleBackColor = false;
-            this.inventorySlot26.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot26.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot26.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot26.ContextMenuStrip = ItemRightClick;
+            inventorySlot26.FlatAppearance.BorderSize = 0;
+            inventorySlot26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot26.FlowerQuantity = (ushort)0;
+            inventorySlot26.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot26.ForeColor = System.Drawing.Color.White;
+            inventorySlot26.ItemDurability = (ushort)0;
+            inventorySlot26.ItemQuantity = (ushort)0;
+            inventorySlot26.Location = new System.Drawing.Point(408, 165);
+            inventorySlot26.Name = "inventorySlot26";
+            inventorySlot26.Size = new System.Drawing.Size(75, 75);
+            inventorySlot26.TabIndex = 44;
+            inventorySlot26.Tag = "26";
+            inventorySlot26.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot26.UseVisualStyleBackColor = false;
+            inventorySlot26.Click += InventorySlot_Click;
+            inventorySlot26.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot25
             // 
-            this.inventorySlot25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot25.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot25.FlatAppearance.BorderSize = 0;
-            this.inventorySlot25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot25.flowerQuantity = ((ushort)(0));
-            this.inventorySlot25.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot25.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot25.itemDurability = ((ushort)(0));
-            this.inventorySlot25.itemQuantity = ((ushort)(0));
-            this.inventorySlot25.Location = new System.Drawing.Point(327, 165);
-            this.inventorySlot25.Name = "inventorySlot25";
-            this.inventorySlot25.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot25.TabIndex = 43;
-            this.inventorySlot25.Tag = "25";
-            this.inventorySlot25.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot25.UseVisualStyleBackColor = false;
-            this.inventorySlot25.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot25.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot25.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot25.ContextMenuStrip = ItemRightClick;
+            inventorySlot25.FlatAppearance.BorderSize = 0;
+            inventorySlot25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot25.FlowerQuantity = (ushort)0;
+            inventorySlot25.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot25.ForeColor = System.Drawing.Color.White;
+            inventorySlot25.ItemDurability = (ushort)0;
+            inventorySlot25.ItemQuantity = (ushort)0;
+            inventorySlot25.Location = new System.Drawing.Point(327, 165);
+            inventorySlot25.Name = "inventorySlot25";
+            inventorySlot25.Size = new System.Drawing.Size(75, 75);
+            inventorySlot25.TabIndex = 43;
+            inventorySlot25.Tag = "25";
+            inventorySlot25.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot25.UseVisualStyleBackColor = false;
+            inventorySlot25.Click += InventorySlot_Click;
+            inventorySlot25.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot24
             // 
-            this.inventorySlot24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot24.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot24.FlatAppearance.BorderSize = 0;
-            this.inventorySlot24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot24.flowerQuantity = ((ushort)(0));
-            this.inventorySlot24.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot24.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot24.itemDurability = ((ushort)(0));
-            this.inventorySlot24.itemQuantity = ((ushort)(0));
-            this.inventorySlot24.Location = new System.Drawing.Point(246, 165);
-            this.inventorySlot24.Name = "inventorySlot24";
-            this.inventorySlot24.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot24.TabIndex = 42;
-            this.inventorySlot24.Tag = "24";
-            this.inventorySlot24.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot24.UseVisualStyleBackColor = false;
-            this.inventorySlot24.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot24.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot24.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot24.ContextMenuStrip = ItemRightClick;
+            inventorySlot24.FlatAppearance.BorderSize = 0;
+            inventorySlot24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot24.FlowerQuantity = (ushort)0;
+            inventorySlot24.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot24.ForeColor = System.Drawing.Color.White;
+            inventorySlot24.ItemDurability = (ushort)0;
+            inventorySlot24.ItemQuantity = (ushort)0;
+            inventorySlot24.Location = new System.Drawing.Point(246, 165);
+            inventorySlot24.Name = "inventorySlot24";
+            inventorySlot24.Size = new System.Drawing.Size(75, 75);
+            inventorySlot24.TabIndex = 42;
+            inventorySlot24.Tag = "24";
+            inventorySlot24.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot24.UseVisualStyleBackColor = false;
+            inventorySlot24.Click += InventorySlot_Click;
+            inventorySlot24.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot23
             // 
-            this.inventorySlot23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot23.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot23.FlatAppearance.BorderSize = 0;
-            this.inventorySlot23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot23.flowerQuantity = ((ushort)(0));
-            this.inventorySlot23.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot23.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot23.itemDurability = ((ushort)(0));
-            this.inventorySlot23.itemQuantity = ((ushort)(0));
-            this.inventorySlot23.Location = new System.Drawing.Point(165, 165);
-            this.inventorySlot23.Name = "inventorySlot23";
-            this.inventorySlot23.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot23.TabIndex = 41;
-            this.inventorySlot23.Tag = "23";
-            this.inventorySlot23.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot23.UseVisualStyleBackColor = false;
-            this.inventorySlot23.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot23.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot23.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot23.ContextMenuStrip = ItemRightClick;
+            inventorySlot23.FlatAppearance.BorderSize = 0;
+            inventorySlot23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot23.FlowerQuantity = (ushort)0;
+            inventorySlot23.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot23.ForeColor = System.Drawing.Color.White;
+            inventorySlot23.ItemDurability = (ushort)0;
+            inventorySlot23.ItemQuantity = (ushort)0;
+            inventorySlot23.Location = new System.Drawing.Point(165, 165);
+            inventorySlot23.Name = "inventorySlot23";
+            inventorySlot23.Size = new System.Drawing.Size(75, 75);
+            inventorySlot23.TabIndex = 41;
+            inventorySlot23.Tag = "23";
+            inventorySlot23.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot23.UseVisualStyleBackColor = false;
+            inventorySlot23.Click += InventorySlot_Click;
+            inventorySlot23.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot22
             // 
-            this.inventorySlot22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot22.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot22.FlatAppearance.BorderSize = 0;
-            this.inventorySlot22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot22.flowerQuantity = ((ushort)(0));
-            this.inventorySlot22.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot22.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot22.itemDurability = ((ushort)(0));
-            this.inventorySlot22.itemQuantity = ((ushort)(0));
-            this.inventorySlot22.Location = new System.Drawing.Point(84, 165);
-            this.inventorySlot22.Name = "inventorySlot22";
-            this.inventorySlot22.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot22.TabIndex = 40;
-            this.inventorySlot22.Tag = "22";
-            this.inventorySlot22.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot22.UseVisualStyleBackColor = false;
-            this.inventorySlot22.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot22.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot22.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot22.ContextMenuStrip = ItemRightClick;
+            inventorySlot22.FlatAppearance.BorderSize = 0;
+            inventorySlot22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot22.FlowerQuantity = (ushort)0;
+            inventorySlot22.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot22.ForeColor = System.Drawing.Color.White;
+            inventorySlot22.ItemDurability = (ushort)0;
+            inventorySlot22.ItemQuantity = (ushort)0;
+            inventorySlot22.Location = new System.Drawing.Point(84, 165);
+            inventorySlot22.Name = "inventorySlot22";
+            inventorySlot22.Size = new System.Drawing.Size(75, 75);
+            inventorySlot22.TabIndex = 40;
+            inventorySlot22.Tag = "22";
+            inventorySlot22.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot22.UseVisualStyleBackColor = false;
+            inventorySlot22.Click += InventorySlot_Click;
+            inventorySlot22.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot21
             // 
-            this.inventorySlot21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot21.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot21.FlatAppearance.BorderSize = 0;
-            this.inventorySlot21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot21.flowerQuantity = ((ushort)(0));
-            this.inventorySlot21.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot21.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot21.itemDurability = ((ushort)(0));
-            this.inventorySlot21.itemQuantity = ((ushort)(0));
-            this.inventorySlot21.Location = new System.Drawing.Point(3, 165);
-            this.inventorySlot21.Name = "inventorySlot21";
-            this.inventorySlot21.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot21.TabIndex = 39;
-            this.inventorySlot21.Tag = "21";
-            this.inventorySlot21.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot21.UseVisualStyleBackColor = false;
-            this.inventorySlot21.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot21.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot21.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot21.ContextMenuStrip = ItemRightClick;
+            inventorySlot21.FlatAppearance.BorderSize = 0;
+            inventorySlot21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot21.FlowerQuantity = (ushort)0;
+            inventorySlot21.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot21.ForeColor = System.Drawing.Color.White;
+            inventorySlot21.ItemDurability = (ushort)0;
+            inventorySlot21.ItemQuantity = (ushort)0;
+            inventorySlot21.Location = new System.Drawing.Point(3, 165);
+            inventorySlot21.Name = "inventorySlot21";
+            inventorySlot21.Size = new System.Drawing.Size(75, 75);
+            inventorySlot21.TabIndex = 39;
+            inventorySlot21.Tag = "21";
+            inventorySlot21.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot21.UseVisualStyleBackColor = false;
+            inventorySlot21.Click += InventorySlot_Click;
+            inventorySlot21.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot20
             // 
-            this.inventorySlot20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot20.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot20.FlatAppearance.BorderSize = 0;
-            this.inventorySlot20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot20.flowerQuantity = ((ushort)(0));
-            this.inventorySlot20.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot20.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot20.itemDurability = ((ushort)(0));
-            this.inventorySlot20.itemQuantity = ((ushort)(0));
-            this.inventorySlot20.Location = new System.Drawing.Point(732, 84);
-            this.inventorySlot20.Name = "inventorySlot20";
-            this.inventorySlot20.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot20.TabIndex = 38;
-            this.inventorySlot20.Tag = "20";
-            this.inventorySlot20.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot20.UseVisualStyleBackColor = false;
-            this.inventorySlot20.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot20.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot20.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot20.ContextMenuStrip = ItemRightClick;
+            inventorySlot20.FlatAppearance.BorderSize = 0;
+            inventorySlot20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot20.FlowerQuantity = (ushort)0;
+            inventorySlot20.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot20.ForeColor = System.Drawing.Color.White;
+            inventorySlot20.ItemDurability = (ushort)0;
+            inventorySlot20.ItemQuantity = (ushort)0;
+            inventorySlot20.Location = new System.Drawing.Point(732, 84);
+            inventorySlot20.Name = "inventorySlot20";
+            inventorySlot20.Size = new System.Drawing.Size(75, 75);
+            inventorySlot20.TabIndex = 38;
+            inventorySlot20.Tag = "20";
+            inventorySlot20.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot20.UseVisualStyleBackColor = false;
+            inventorySlot20.Click += InventorySlot_Click;
+            inventorySlot20.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot19
             // 
-            this.inventorySlot19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot19.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot19.FlatAppearance.BorderSize = 0;
-            this.inventorySlot19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot19.flowerQuantity = ((ushort)(0));
-            this.inventorySlot19.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot19.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot19.itemDurability = ((ushort)(0));
-            this.inventorySlot19.itemQuantity = ((ushort)(0));
-            this.inventorySlot19.Location = new System.Drawing.Point(651, 84);
-            this.inventorySlot19.Name = "inventorySlot19";
-            this.inventorySlot19.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot19.TabIndex = 37;
-            this.inventorySlot19.Tag = "19";
-            this.inventorySlot19.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot19.UseVisualStyleBackColor = false;
-            this.inventorySlot19.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot19.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot19.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot19.ContextMenuStrip = ItemRightClick;
+            inventorySlot19.FlatAppearance.BorderSize = 0;
+            inventorySlot19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot19.FlowerQuantity = (ushort)0;
+            inventorySlot19.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot19.ForeColor = System.Drawing.Color.White;
+            inventorySlot19.ItemDurability = (ushort)0;
+            inventorySlot19.ItemQuantity = (ushort)0;
+            inventorySlot19.Location = new System.Drawing.Point(651, 84);
+            inventorySlot19.Name = "inventorySlot19";
+            inventorySlot19.Size = new System.Drawing.Size(75, 75);
+            inventorySlot19.TabIndex = 37;
+            inventorySlot19.Tag = "19";
+            inventorySlot19.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot19.UseVisualStyleBackColor = false;
+            inventorySlot19.Click += InventorySlot_Click;
+            inventorySlot19.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot18
             // 
-            this.inventorySlot18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot18.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot18.FlatAppearance.BorderSize = 0;
-            this.inventorySlot18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot18.flowerQuantity = ((ushort)(0));
-            this.inventorySlot18.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot18.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot18.itemDurability = ((ushort)(0));
-            this.inventorySlot18.itemQuantity = ((ushort)(0));
-            this.inventorySlot18.Location = new System.Drawing.Point(570, 84);
-            this.inventorySlot18.Name = "inventorySlot18";
-            this.inventorySlot18.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot18.TabIndex = 36;
-            this.inventorySlot18.Tag = "18";
-            this.inventorySlot18.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot18.UseVisualStyleBackColor = false;
-            this.inventorySlot18.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot18.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot18.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot18.ContextMenuStrip = ItemRightClick;
+            inventorySlot18.FlatAppearance.BorderSize = 0;
+            inventorySlot18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot18.FlowerQuantity = (ushort)0;
+            inventorySlot18.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot18.ForeColor = System.Drawing.Color.White;
+            inventorySlot18.ItemDurability = (ushort)0;
+            inventorySlot18.ItemQuantity = (ushort)0;
+            inventorySlot18.Location = new System.Drawing.Point(570, 84);
+            inventorySlot18.Name = "inventorySlot18";
+            inventorySlot18.Size = new System.Drawing.Size(75, 75);
+            inventorySlot18.TabIndex = 36;
+            inventorySlot18.Tag = "18";
+            inventorySlot18.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot18.UseVisualStyleBackColor = false;
+            inventorySlot18.Click += InventorySlot_Click;
+            inventorySlot18.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot17
             // 
-            this.inventorySlot17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot17.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot17.FlatAppearance.BorderSize = 0;
-            this.inventorySlot17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot17.flowerQuantity = ((ushort)(0));
-            this.inventorySlot17.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot17.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot17.itemDurability = ((ushort)(0));
-            this.inventorySlot17.itemQuantity = ((ushort)(0));
-            this.inventorySlot17.Location = new System.Drawing.Point(489, 84);
-            this.inventorySlot17.Name = "inventorySlot17";
-            this.inventorySlot17.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot17.TabIndex = 35;
-            this.inventorySlot17.Tag = "17";
-            this.inventorySlot17.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot17.UseVisualStyleBackColor = false;
-            this.inventorySlot17.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot17.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot17.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot17.ContextMenuStrip = ItemRightClick;
+            inventorySlot17.FlatAppearance.BorderSize = 0;
+            inventorySlot17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot17.FlowerQuantity = (ushort)0;
+            inventorySlot17.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot17.ForeColor = System.Drawing.Color.White;
+            inventorySlot17.ItemDurability = (ushort)0;
+            inventorySlot17.ItemQuantity = (ushort)0;
+            inventorySlot17.Location = new System.Drawing.Point(489, 84);
+            inventorySlot17.Name = "inventorySlot17";
+            inventorySlot17.Size = new System.Drawing.Size(75, 75);
+            inventorySlot17.TabIndex = 35;
+            inventorySlot17.Tag = "17";
+            inventorySlot17.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot17.UseVisualStyleBackColor = false;
+            inventorySlot17.Click += InventorySlot_Click;
+            inventorySlot17.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot16
             // 
-            this.inventorySlot16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot16.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot16.FlatAppearance.BorderSize = 0;
-            this.inventorySlot16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot16.flowerQuantity = ((ushort)(0));
-            this.inventorySlot16.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot16.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot16.itemDurability = ((ushort)(0));
-            this.inventorySlot16.itemQuantity = ((ushort)(0));
-            this.inventorySlot16.Location = new System.Drawing.Point(408, 84);
-            this.inventorySlot16.Name = "inventorySlot16";
-            this.inventorySlot16.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot16.TabIndex = 34;
-            this.inventorySlot16.Tag = "16";
-            this.inventorySlot16.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot16.UseVisualStyleBackColor = false;
-            this.inventorySlot16.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot16.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot16.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot16.ContextMenuStrip = ItemRightClick;
+            inventorySlot16.FlatAppearance.BorderSize = 0;
+            inventorySlot16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot16.FlowerQuantity = (ushort)0;
+            inventorySlot16.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot16.ForeColor = System.Drawing.Color.White;
+            inventorySlot16.ItemDurability = (ushort)0;
+            inventorySlot16.ItemQuantity = (ushort)0;
+            inventorySlot16.Location = new System.Drawing.Point(408, 84);
+            inventorySlot16.Name = "inventorySlot16";
+            inventorySlot16.Size = new System.Drawing.Size(75, 75);
+            inventorySlot16.TabIndex = 34;
+            inventorySlot16.Tag = "16";
+            inventorySlot16.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot16.UseVisualStyleBackColor = false;
+            inventorySlot16.Click += InventorySlot_Click;
+            inventorySlot16.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot15
             // 
-            this.inventorySlot15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot15.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot15.FlatAppearance.BorderSize = 0;
-            this.inventorySlot15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot15.flowerQuantity = ((ushort)(0));
-            this.inventorySlot15.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot15.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot15.itemDurability = ((ushort)(0));
-            this.inventorySlot15.itemQuantity = ((ushort)(0));
-            this.inventorySlot15.Location = new System.Drawing.Point(327, 84);
-            this.inventorySlot15.Name = "inventorySlot15";
-            this.inventorySlot15.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot15.TabIndex = 33;
-            this.inventorySlot15.Tag = "15";
-            this.inventorySlot15.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot15.UseVisualStyleBackColor = false;
-            this.inventorySlot15.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot15.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot15.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot15.ContextMenuStrip = ItemRightClick;
+            inventorySlot15.FlatAppearance.BorderSize = 0;
+            inventorySlot15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot15.FlowerQuantity = (ushort)0;
+            inventorySlot15.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot15.ForeColor = System.Drawing.Color.White;
+            inventorySlot15.ItemDurability = (ushort)0;
+            inventorySlot15.ItemQuantity = (ushort)0;
+            inventorySlot15.Location = new System.Drawing.Point(327, 84);
+            inventorySlot15.Name = "inventorySlot15";
+            inventorySlot15.Size = new System.Drawing.Size(75, 75);
+            inventorySlot15.TabIndex = 33;
+            inventorySlot15.Tag = "15";
+            inventorySlot15.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot15.UseVisualStyleBackColor = false;
+            inventorySlot15.Click += InventorySlot_Click;
+            inventorySlot15.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot14
             // 
-            this.inventorySlot14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot14.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot14.FlatAppearance.BorderSize = 0;
-            this.inventorySlot14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot14.flowerQuantity = ((ushort)(0));
-            this.inventorySlot14.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot14.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot14.itemDurability = ((ushort)(0));
-            this.inventorySlot14.itemQuantity = ((ushort)(0));
-            this.inventorySlot14.Location = new System.Drawing.Point(246, 84);
-            this.inventorySlot14.Name = "inventorySlot14";
-            this.inventorySlot14.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot14.TabIndex = 32;
-            this.inventorySlot14.Tag = "14";
-            this.inventorySlot14.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot14.UseVisualStyleBackColor = false;
-            this.inventorySlot14.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot14.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot14.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot14.ContextMenuStrip = ItemRightClick;
+            inventorySlot14.FlatAppearance.BorderSize = 0;
+            inventorySlot14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot14.FlowerQuantity = (ushort)0;
+            inventorySlot14.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot14.ForeColor = System.Drawing.Color.White;
+            inventorySlot14.ItemDurability = (ushort)0;
+            inventorySlot14.ItemQuantity = (ushort)0;
+            inventorySlot14.Location = new System.Drawing.Point(246, 84);
+            inventorySlot14.Name = "inventorySlot14";
+            inventorySlot14.Size = new System.Drawing.Size(75, 75);
+            inventorySlot14.TabIndex = 32;
+            inventorySlot14.Tag = "14";
+            inventorySlot14.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot14.UseVisualStyleBackColor = false;
+            inventorySlot14.Click += InventorySlot_Click;
+            inventorySlot14.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot13
             // 
-            this.inventorySlot13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot13.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot13.FlatAppearance.BorderSize = 0;
-            this.inventorySlot13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot13.flowerQuantity = ((ushort)(0));
-            this.inventorySlot13.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot13.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot13.itemDurability = ((ushort)(0));
-            this.inventorySlot13.itemQuantity = ((ushort)(0));
-            this.inventorySlot13.Location = new System.Drawing.Point(165, 84);
-            this.inventorySlot13.Name = "inventorySlot13";
-            this.inventorySlot13.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot13.TabIndex = 31;
-            this.inventorySlot13.Tag = "13";
-            this.inventorySlot13.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot13.UseVisualStyleBackColor = false;
-            this.inventorySlot13.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot13.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot13.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot13.ContextMenuStrip = ItemRightClick;
+            inventorySlot13.FlatAppearance.BorderSize = 0;
+            inventorySlot13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot13.FlowerQuantity = (ushort)0;
+            inventorySlot13.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot13.ForeColor = System.Drawing.Color.White;
+            inventorySlot13.ItemDurability = (ushort)0;
+            inventorySlot13.ItemQuantity = (ushort)0;
+            inventorySlot13.Location = new System.Drawing.Point(165, 84);
+            inventorySlot13.Name = "inventorySlot13";
+            inventorySlot13.Size = new System.Drawing.Size(75, 75);
+            inventorySlot13.TabIndex = 31;
+            inventorySlot13.Tag = "13";
+            inventorySlot13.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot13.UseVisualStyleBackColor = false;
+            inventorySlot13.Click += InventorySlot_Click;
+            inventorySlot13.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot12
             // 
-            this.inventorySlot12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot12.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot12.FlatAppearance.BorderSize = 0;
-            this.inventorySlot12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot12.flowerQuantity = ((ushort)(0));
-            this.inventorySlot12.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot12.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot12.itemDurability = ((ushort)(0));
-            this.inventorySlot12.itemQuantity = ((ushort)(0));
-            this.inventorySlot12.Location = new System.Drawing.Point(84, 84);
-            this.inventorySlot12.Name = "inventorySlot12";
-            this.inventorySlot12.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot12.TabIndex = 30;
-            this.inventorySlot12.Tag = "12";
-            this.inventorySlot12.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot12.UseVisualStyleBackColor = false;
-            this.inventorySlot12.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot12.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot12.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot12.ContextMenuStrip = ItemRightClick;
+            inventorySlot12.FlatAppearance.BorderSize = 0;
+            inventorySlot12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot12.FlowerQuantity = (ushort)0;
+            inventorySlot12.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot12.ForeColor = System.Drawing.Color.White;
+            inventorySlot12.ItemDurability = (ushort)0;
+            inventorySlot12.ItemQuantity = (ushort)0;
+            inventorySlot12.Location = new System.Drawing.Point(84, 84);
+            inventorySlot12.Name = "inventorySlot12";
+            inventorySlot12.Size = new System.Drawing.Size(75, 75);
+            inventorySlot12.TabIndex = 30;
+            inventorySlot12.Tag = "12";
+            inventorySlot12.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot12.UseVisualStyleBackColor = false;
+            inventorySlot12.Click += InventorySlot_Click;
+            inventorySlot12.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot11
             // 
-            this.inventorySlot11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot11.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot11.FlatAppearance.BorderSize = 0;
-            this.inventorySlot11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot11.flowerQuantity = ((ushort)(0));
-            this.inventorySlot11.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot11.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot11.itemDurability = ((ushort)(0));
-            this.inventorySlot11.itemQuantity = ((ushort)(0));
-            this.inventorySlot11.Location = new System.Drawing.Point(3, 84);
-            this.inventorySlot11.Name = "inventorySlot11";
-            this.inventorySlot11.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot11.TabIndex = 29;
-            this.inventorySlot11.Tag = "11";
-            this.inventorySlot11.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot11.UseVisualStyleBackColor = false;
-            this.inventorySlot11.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot11.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot11.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot11.ContextMenuStrip = ItemRightClick;
+            inventorySlot11.FlatAppearance.BorderSize = 0;
+            inventorySlot11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot11.FlowerQuantity = (ushort)0;
+            inventorySlot11.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot11.ForeColor = System.Drawing.Color.White;
+            inventorySlot11.ItemDurability = (ushort)0;
+            inventorySlot11.ItemQuantity = (ushort)0;
+            inventorySlot11.Location = new System.Drawing.Point(3, 84);
+            inventorySlot11.Name = "inventorySlot11";
+            inventorySlot11.Size = new System.Drawing.Size(75, 75);
+            inventorySlot11.TabIndex = 29;
+            inventorySlot11.Tag = "11";
+            inventorySlot11.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot11.UseVisualStyleBackColor = false;
+            inventorySlot11.Click += InventorySlot_Click;
+            inventorySlot11.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot10
             // 
-            this.inventorySlot10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot10.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot10.FlatAppearance.BorderSize = 0;
-            this.inventorySlot10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot10.flowerQuantity = ((ushort)(0));
-            this.inventorySlot10.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot10.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot10.itemDurability = ((ushort)(0));
-            this.inventorySlot10.itemQuantity = ((ushort)(0));
-            this.inventorySlot10.Location = new System.Drawing.Point(732, 3);
-            this.inventorySlot10.Name = "inventorySlot10";
-            this.inventorySlot10.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot10.TabIndex = 28;
-            this.inventorySlot10.Tag = "10";
-            this.inventorySlot10.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot10.UseVisualStyleBackColor = false;
-            this.inventorySlot10.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot10.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot10.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot10.ContextMenuStrip = ItemRightClick;
+            inventorySlot10.FlatAppearance.BorderSize = 0;
+            inventorySlot10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot10.FlowerQuantity = (ushort)0;
+            inventorySlot10.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot10.ForeColor = System.Drawing.Color.White;
+            inventorySlot10.ItemDurability = (ushort)0;
+            inventorySlot10.ItemQuantity = (ushort)0;
+            inventorySlot10.Location = new System.Drawing.Point(732, 3);
+            inventorySlot10.Name = "inventorySlot10";
+            inventorySlot10.Size = new System.Drawing.Size(75, 75);
+            inventorySlot10.TabIndex = 28;
+            inventorySlot10.Tag = "10";
+            inventorySlot10.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot10.UseVisualStyleBackColor = false;
+            inventorySlot10.Click += InventorySlot_Click;
+            inventorySlot10.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot9
             // 
-            this.inventorySlot9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot9.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot9.FlatAppearance.BorderSize = 0;
-            this.inventorySlot9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot9.flowerQuantity = ((ushort)(0));
-            this.inventorySlot9.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot9.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot9.itemDurability = ((ushort)(0));
-            this.inventorySlot9.itemQuantity = ((ushort)(0));
-            this.inventorySlot9.Location = new System.Drawing.Point(651, 3);
-            this.inventorySlot9.Name = "inventorySlot9";
-            this.inventorySlot9.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot9.TabIndex = 27;
-            this.inventorySlot9.Tag = "9";
-            this.inventorySlot9.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot9.UseVisualStyleBackColor = false;
-            this.inventorySlot9.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot9.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot9.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot9.ContextMenuStrip = ItemRightClick;
+            inventorySlot9.FlatAppearance.BorderSize = 0;
+            inventorySlot9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot9.FlowerQuantity = (ushort)0;
+            inventorySlot9.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot9.ForeColor = System.Drawing.Color.White;
+            inventorySlot9.ItemDurability = (ushort)0;
+            inventorySlot9.ItemQuantity = (ushort)0;
+            inventorySlot9.Location = new System.Drawing.Point(651, 3);
+            inventorySlot9.Name = "inventorySlot9";
+            inventorySlot9.Size = new System.Drawing.Size(75, 75);
+            inventorySlot9.TabIndex = 27;
+            inventorySlot9.Tag = "9";
+            inventorySlot9.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot9.UseVisualStyleBackColor = false;
+            inventorySlot9.Click += InventorySlot_Click;
+            inventorySlot9.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot8
             // 
-            this.inventorySlot8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot8.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot8.FlatAppearance.BorderSize = 0;
-            this.inventorySlot8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot8.flowerQuantity = ((ushort)(0));
-            this.inventorySlot8.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot8.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot8.itemDurability = ((ushort)(0));
-            this.inventorySlot8.itemQuantity = ((ushort)(0));
-            this.inventorySlot8.Location = new System.Drawing.Point(570, 3);
-            this.inventorySlot8.Name = "inventorySlot8";
-            this.inventorySlot8.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot8.TabIndex = 26;
-            this.inventorySlot8.Tag = "8";
-            this.inventorySlot8.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot8.UseVisualStyleBackColor = false;
-            this.inventorySlot8.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot8.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot8.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot8.ContextMenuStrip = ItemRightClick;
+            inventorySlot8.FlatAppearance.BorderSize = 0;
+            inventorySlot8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot8.FlowerQuantity = (ushort)0;
+            inventorySlot8.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot8.ForeColor = System.Drawing.Color.White;
+            inventorySlot8.ItemDurability = (ushort)0;
+            inventorySlot8.ItemQuantity = (ushort)0;
+            inventorySlot8.Location = new System.Drawing.Point(570, 3);
+            inventorySlot8.Name = "inventorySlot8";
+            inventorySlot8.Size = new System.Drawing.Size(75, 75);
+            inventorySlot8.TabIndex = 26;
+            inventorySlot8.Tag = "8";
+            inventorySlot8.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot8.UseVisualStyleBackColor = false;
+            inventorySlot8.Click += InventorySlot_Click;
+            inventorySlot8.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot7
             // 
-            this.inventorySlot7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot7.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot7.FlatAppearance.BorderSize = 0;
-            this.inventorySlot7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot7.flowerQuantity = ((ushort)(0));
-            this.inventorySlot7.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot7.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot7.itemDurability = ((ushort)(0));
-            this.inventorySlot7.itemQuantity = ((ushort)(0));
-            this.inventorySlot7.Location = new System.Drawing.Point(489, 3);
-            this.inventorySlot7.Name = "inventorySlot7";
-            this.inventorySlot7.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot7.TabIndex = 25;
-            this.inventorySlot7.Tag = "7";
-            this.inventorySlot7.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot7.UseVisualStyleBackColor = false;
-            this.inventorySlot7.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot7.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot7.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot7.ContextMenuStrip = ItemRightClick;
+            inventorySlot7.FlatAppearance.BorderSize = 0;
+            inventorySlot7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot7.FlowerQuantity = (ushort)0;
+            inventorySlot7.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot7.ForeColor = System.Drawing.Color.White;
+            inventorySlot7.ItemDurability = (ushort)0;
+            inventorySlot7.ItemQuantity = (ushort)0;
+            inventorySlot7.Location = new System.Drawing.Point(489, 3);
+            inventorySlot7.Name = "inventorySlot7";
+            inventorySlot7.Size = new System.Drawing.Size(75, 75);
+            inventorySlot7.TabIndex = 25;
+            inventorySlot7.Tag = "7";
+            inventorySlot7.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot7.UseVisualStyleBackColor = false;
+            inventorySlot7.Click += InventorySlot_Click;
+            inventorySlot7.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot6
             // 
-            this.inventorySlot6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot6.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot6.FlatAppearance.BorderSize = 0;
-            this.inventorySlot6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot6.flowerQuantity = ((ushort)(0));
-            this.inventorySlot6.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot6.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot6.itemDurability = ((ushort)(0));
-            this.inventorySlot6.itemQuantity = ((ushort)(0));
-            this.inventorySlot6.Location = new System.Drawing.Point(408, 3);
-            this.inventorySlot6.Name = "inventorySlot6";
-            this.inventorySlot6.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot6.TabIndex = 24;
-            this.inventorySlot6.Tag = "6";
-            this.inventorySlot6.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot6.UseVisualStyleBackColor = false;
-            this.inventorySlot6.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot6.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot6.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot6.ContextMenuStrip = ItemRightClick;
+            inventorySlot6.FlatAppearance.BorderSize = 0;
+            inventorySlot6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot6.FlowerQuantity = (ushort)0;
+            inventorySlot6.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot6.ForeColor = System.Drawing.Color.White;
+            inventorySlot6.ItemDurability = (ushort)0;
+            inventorySlot6.ItemQuantity = (ushort)0;
+            inventorySlot6.Location = new System.Drawing.Point(408, 3);
+            inventorySlot6.Name = "inventorySlot6";
+            inventorySlot6.Size = new System.Drawing.Size(75, 75);
+            inventorySlot6.TabIndex = 24;
+            inventorySlot6.Tag = "6";
+            inventorySlot6.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot6.UseVisualStyleBackColor = false;
+            inventorySlot6.Click += InventorySlot_Click;
+            inventorySlot6.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot5
             // 
-            this.inventorySlot5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot5.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot5.FlatAppearance.BorderSize = 0;
-            this.inventorySlot5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot5.flowerQuantity = ((ushort)(0));
-            this.inventorySlot5.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot5.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot5.itemDurability = ((ushort)(0));
-            this.inventorySlot5.itemQuantity = ((ushort)(0));
-            this.inventorySlot5.Location = new System.Drawing.Point(327, 3);
-            this.inventorySlot5.Name = "inventorySlot5";
-            this.inventorySlot5.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot5.TabIndex = 23;
-            this.inventorySlot5.Tag = "5";
-            this.inventorySlot5.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot5.UseVisualStyleBackColor = false;
-            this.inventorySlot5.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot5.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot5.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot5.ContextMenuStrip = ItemRightClick;
+            inventorySlot5.FlatAppearance.BorderSize = 0;
+            inventorySlot5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot5.FlowerQuantity = (ushort)0;
+            inventorySlot5.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot5.ForeColor = System.Drawing.Color.White;
+            inventorySlot5.ItemDurability = (ushort)0;
+            inventorySlot5.ItemQuantity = (ushort)0;
+            inventorySlot5.Location = new System.Drawing.Point(327, 3);
+            inventorySlot5.Name = "inventorySlot5";
+            inventorySlot5.Size = new System.Drawing.Size(75, 75);
+            inventorySlot5.TabIndex = 23;
+            inventorySlot5.Tag = "5";
+            inventorySlot5.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot5.UseVisualStyleBackColor = false;
+            inventorySlot5.Click += InventorySlot_Click;
+            inventorySlot5.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot4
             // 
-            this.inventorySlot4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot4.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot4.FlatAppearance.BorderSize = 0;
-            this.inventorySlot4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot4.flowerQuantity = ((ushort)(0));
-            this.inventorySlot4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot4.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot4.itemDurability = ((ushort)(0));
-            this.inventorySlot4.itemQuantity = ((ushort)(0));
-            this.inventorySlot4.Location = new System.Drawing.Point(246, 3);
-            this.inventorySlot4.Name = "inventorySlot4";
-            this.inventorySlot4.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot4.TabIndex = 22;
-            this.inventorySlot4.Tag = "4";
-            this.inventorySlot4.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot4.UseVisualStyleBackColor = false;
-            this.inventorySlot4.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot4.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot4.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot4.ContextMenuStrip = ItemRightClick;
+            inventorySlot4.FlatAppearance.BorderSize = 0;
+            inventorySlot4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot4.FlowerQuantity = (ushort)0;
+            inventorySlot4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot4.ForeColor = System.Drawing.Color.White;
+            inventorySlot4.ItemDurability = (ushort)0;
+            inventorySlot4.ItemQuantity = (ushort)0;
+            inventorySlot4.Location = new System.Drawing.Point(246, 3);
+            inventorySlot4.Name = "inventorySlot4";
+            inventorySlot4.Size = new System.Drawing.Size(75, 75);
+            inventorySlot4.TabIndex = 22;
+            inventorySlot4.Tag = "4";
+            inventorySlot4.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot4.UseVisualStyleBackColor = false;
+            inventorySlot4.Click += InventorySlot_Click;
+            inventorySlot4.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot3
             // 
-            this.inventorySlot3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot3.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot3.FlatAppearance.BorderSize = 0;
-            this.inventorySlot3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot3.flowerQuantity = ((ushort)(0));
-            this.inventorySlot3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot3.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot3.itemDurability = ((ushort)(0));
-            this.inventorySlot3.itemQuantity = ((ushort)(0));
-            this.inventorySlot3.Location = new System.Drawing.Point(165, 3);
-            this.inventorySlot3.Name = "inventorySlot3";
-            this.inventorySlot3.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot3.TabIndex = 21;
-            this.inventorySlot3.Tag = "3";
-            this.inventorySlot3.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot3.UseVisualStyleBackColor = false;
-            this.inventorySlot3.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot3.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot3.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot3.ContextMenuStrip = ItemRightClick;
+            inventorySlot3.FlatAppearance.BorderSize = 0;
+            inventorySlot3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot3.FlowerQuantity = (ushort)0;
+            inventorySlot3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot3.ForeColor = System.Drawing.Color.White;
+            inventorySlot3.ItemDurability = (ushort)0;
+            inventorySlot3.ItemQuantity = (ushort)0;
+            inventorySlot3.Location = new System.Drawing.Point(165, 3);
+            inventorySlot3.Name = "inventorySlot3";
+            inventorySlot3.Size = new System.Drawing.Size(75, 75);
+            inventorySlot3.TabIndex = 21;
+            inventorySlot3.Tag = "3";
+            inventorySlot3.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot3.UseVisualStyleBackColor = false;
+            inventorySlot3.Click += InventorySlot_Click;
+            inventorySlot3.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot2
             // 
-            this.inventorySlot2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot2.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot2.FlatAppearance.BorderSize = 0;
-            this.inventorySlot2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot2.flowerQuantity = ((ushort)(0));
-            this.inventorySlot2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot2.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot2.itemDurability = ((ushort)(0));
-            this.inventorySlot2.itemQuantity = ((ushort)(0));
-            this.inventorySlot2.Location = new System.Drawing.Point(84, 3);
-            this.inventorySlot2.Name = "inventorySlot2";
-            this.inventorySlot2.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot2.TabIndex = 20;
-            this.inventorySlot2.Tag = "2";
-            this.inventorySlot2.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot2.UseVisualStyleBackColor = false;
-            this.inventorySlot2.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot2.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot2.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot2.ContextMenuStrip = ItemRightClick;
+            inventorySlot2.FlatAppearance.BorderSize = 0;
+            inventorySlot2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot2.FlowerQuantity = (ushort)0;
+            inventorySlot2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot2.ForeColor = System.Drawing.Color.White;
+            inventorySlot2.ItemDurability = (ushort)0;
+            inventorySlot2.ItemQuantity = (ushort)0;
+            inventorySlot2.Location = new System.Drawing.Point(84, 3);
+            inventorySlot2.Name = "inventorySlot2";
+            inventorySlot2.Size = new System.Drawing.Size(75, 75);
+            inventorySlot2.TabIndex = 20;
+            inventorySlot2.Tag = "2";
+            inventorySlot2.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot2.UseVisualStyleBackColor = false;
+            inventorySlot2.Click += InventorySlot_Click;
+            inventorySlot2.MouseHover += InventorySlot_MouseHover;
             // 
             // inventorySlot1
             // 
-            this.inventorySlot1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.inventorySlot1.ContextMenuStrip = this.ItemRightClick;
-            this.inventorySlot1.FlatAppearance.BorderSize = 0;
-            this.inventorySlot1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inventorySlot1.flowerQuantity = ((ushort)(0));
-            this.inventorySlot1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.inventorySlot1.ForeColor = System.Drawing.Color.White;
-            this.inventorySlot1.itemDurability = ((ushort)(0));
-            this.inventorySlot1.itemQuantity = ((ushort)(0));
-            this.inventorySlot1.Location = new System.Drawing.Point(3, 3);
-            this.inventorySlot1.Name = "inventorySlot1";
-            this.inventorySlot1.Size = new System.Drawing.Size(75, 75);
-            this.inventorySlot1.TabIndex = 19;
-            this.inventorySlot1.Tag = "1";
-            this.inventorySlot1.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.inventorySlot1.UseVisualStyleBackColor = false;
-            this.inventorySlot1.Click += new System.EventHandler(this.InventorySlot_Click);
-            this.inventorySlot1.MouseHover += new System.EventHandler(this.InventorySlot_MouseHover);
+            inventorySlot1.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            inventorySlot1.ContextMenuStrip = ItemRightClick;
+            inventorySlot1.FlatAppearance.BorderSize = 0;
+            inventorySlot1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot1.FlowerQuantity = (ushort)0;
+            inventorySlot1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            inventorySlot1.ForeColor = System.Drawing.Color.White;
+            inventorySlot1.ItemDurability = (ushort)0;
+            inventorySlot1.ItemQuantity = (ushort)0;
+            inventorySlot1.Location = new System.Drawing.Point(3, 3);
+            inventorySlot1.Name = "inventorySlot1";
+            inventorySlot1.Size = new System.Drawing.Size(75, 75);
+            inventorySlot1.TabIndex = 19;
+            inventorySlot1.Tag = "1";
+            inventorySlot1.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            inventorySlot1.UseVisualStyleBackColor = false;
+            inventorySlot1.Click += InventorySlot_Click;
+            inventorySlot1.MouseHover += InventorySlot_MouseHover;
             // 
             // ItemGridView
             // 
-            this.ItemGridView.AllowUserToAddRows = false;
-            this.ItemGridView.AllowUserToDeleteRows = false;
-            this.ItemGridView.AllowUserToResizeRows = false;
-            this.ItemGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(54)))));
-            this.ItemGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ItemGridView.Location = new System.Drawing.Point(858, 26);
-            this.ItemGridView.MultiSelect = false;
-            this.ItemGridView.Name = "ItemGridView";
-            this.ItemGridView.ReadOnly = true;
-            this.ItemGridView.RowHeadersVisible = false;
-            this.ItemGridView.RowTemplate.Height = 25;
-            this.ItemGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.ItemGridView.Size = new System.Drawing.Size(345, 465);
-            this.ItemGridView.TabIndex = 18;
-            this.ItemGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.ItemGridView_CellFormatting);
-            this.ItemGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ItemGridView_CellMouseClick);
+            ItemGridView.AllowUserToAddRows = false;
+            ItemGridView.AllowUserToDeleteRows = false;
+            ItemGridView.AllowUserToResizeRows = false;
+            ItemGridView.BackgroundColor = System.Drawing.Color.FromArgb(47, 49, 54);
+            ItemGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ItemGridView.Location = new System.Drawing.Point(858, 26);
+            ItemGridView.MultiSelect = false;
+            ItemGridView.Name = "ItemGridView";
+            ItemGridView.ReadOnly = true;
+            ItemGridView.RowHeadersVisible = false;
+            ItemGridView.RowTemplate.Height = 25;
+            ItemGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            ItemGridView.Size = new System.Drawing.Size(345, 465);
+            ItemGridView.TabIndex = 18;
+            ItemGridView.CellFormatting += ItemGridView_CellFormatting;
+            ItemGridView.CellMouseClick += ItemGridView_CellMouseClick;
             // 
             // FavGridView
             // 
-            this.FavGridView.AllowUserToAddRows = false;
-            this.FavGridView.AllowUserToDeleteRows = false;
-            this.FavGridView.AllowUserToResizeRows = false;
-            this.FavGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(54)))));
-            this.FavGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.FavGridView.ContextMenuStrip = this.FavGridRightClick;
-            this.FavGridView.Location = new System.Drawing.Point(858, 26);
-            this.FavGridView.MultiSelect = false;
-            this.FavGridView.Name = "FavGridView";
-            this.FavGridView.ReadOnly = true;
-            this.FavGridView.RowHeadersVisible = false;
-            this.FavGridView.RowTemplate.Height = 25;
-            this.FavGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.FavGridView.Size = new System.Drawing.Size(345, 465);
-            this.FavGridView.TabIndex = 33;
-            this.FavGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.FavGridView_CellFormatting);
-            this.FavGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.FavGridView_CellMouseClick);
+            FavGridView.AllowUserToAddRows = false;
+            FavGridView.AllowUserToDeleteRows = false;
+            FavGridView.AllowUserToResizeRows = false;
+            FavGridView.BackgroundColor = System.Drawing.Color.FromArgb(47, 49, 54);
+            FavGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            FavGridView.ContextMenuStrip = FavGridRightClick;
+            FavGridView.Location = new System.Drawing.Point(858, 26);
+            FavGridView.MultiSelect = false;
+            FavGridView.Name = "FavGridView";
+            FavGridView.ReadOnly = true;
+            FavGridView.RowHeadersVisible = false;
+            FavGridView.RowTemplate.Height = 25;
+            FavGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            FavGridView.Size = new System.Drawing.Size(345, 465);
+            FavGridView.TabIndex = 33;
+            FavGridView.CellFormatting += FavGridView_CellFormatting;
+            FavGridView.CellMouseClick += FavGridView_CellMouseClick;
             // 
             // FavGridRightClick
             // 
-            this.FavGridRightClick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.FavGridRightClick.ImageScalingSize = new System.Drawing.Size(0, 0);
-            this.FavGridRightClick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deletedSelectedToolStripMenuItem});
-            this.FavGridRightClick.Name = "FavGridRightClick";
-            this.FavGridRightClick.ShowImageMargin = false;
-            this.FavGridRightClick.Size = new System.Drawing.Size(159, 26);
+            FavGridRightClick.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            FavGridRightClick.ImageScalingSize = new System.Drawing.Size(0, 0);
+            FavGridRightClick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { deletedSelectedToolStripMenuItem });
+            FavGridRightClick.Name = "FavGridRightClick";
+            FavGridRightClick.ShowImageMargin = false;
+            FavGridRightClick.Size = new System.Drawing.Size(159, 26);
             // 
             // deletedSelectedToolStripMenuItem
             // 
-            this.deletedSelectedToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.deletedSelectedToolStripMenuItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.deletedSelectedToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.deletedSelectedToolStripMenuItem.Name = "deletedSelectedToolStripMenuItem";
-            this.deletedSelectedToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.deletedSelectedToolStripMenuItem.Text = "Deleted Selected";
-            this.deletedSelectedToolStripMenuItem.Click += new System.EventHandler(this.DeletedSelectedToolStripMenuItem_Click);
+            deletedSelectedToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            deletedSelectedToolStripMenuItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            deletedSelectedToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            deletedSelectedToolStripMenuItem.Name = "deletedSelectedToolStripMenuItem";
+            deletedSelectedToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            deletedSelectedToolStripMenuItem.Text = "Deleted Selected";
+            deletedSelectedToolStripMenuItem.Click += DeletedSelectedToolStripMenuItem_Click;
             // 
             // RecipeGridView
             // 
-            this.RecipeGridView.AllowUserToAddRows = false;
-            this.RecipeGridView.AllowUserToDeleteRows = false;
-            this.RecipeGridView.AllowUserToResizeRows = false;
-            this.RecipeGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(54)))));
-            this.RecipeGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.RecipeGridView.Location = new System.Drawing.Point(858, 26);
-            this.RecipeGridView.MultiSelect = false;
-            this.RecipeGridView.Name = "RecipeGridView";
-            this.RecipeGridView.ReadOnly = true;
-            this.RecipeGridView.RowHeadersVisible = false;
-            this.RecipeGridView.RowTemplate.Height = 25;
-            this.RecipeGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.RecipeGridView.Size = new System.Drawing.Size(345, 465);
-            this.RecipeGridView.TabIndex = 31;
-            this.RecipeGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.RecipeGridView_CellFormatting);
-            this.RecipeGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RecipeGridView_CellMouseClick);
+            RecipeGridView.AllowUserToAddRows = false;
+            RecipeGridView.AllowUserToDeleteRows = false;
+            RecipeGridView.AllowUserToResizeRows = false;
+            RecipeGridView.BackgroundColor = System.Drawing.Color.FromArgb(47, 49, 54);
+            RecipeGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            RecipeGridView.Location = new System.Drawing.Point(858, 26);
+            RecipeGridView.MultiSelect = false;
+            RecipeGridView.Name = "RecipeGridView";
+            RecipeGridView.ReadOnly = true;
+            RecipeGridView.RowHeadersVisible = false;
+            RecipeGridView.RowTemplate.Height = 25;
+            RecipeGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            RecipeGridView.Size = new System.Drawing.Size(345, 465);
+            RecipeGridView.TabIndex = 31;
+            RecipeGridView.CellFormatting += RecipeGridView_CellFormatting;
+            RecipeGridView.CellMouseClick += RecipeGridView_CellMouseClick;
             // 
             // FlowerGridView
             // 
-            this.FlowerGridView.AllowUserToAddRows = false;
-            this.FlowerGridView.AllowUserToDeleteRows = false;
-            this.FlowerGridView.AllowUserToResizeRows = false;
-            this.FlowerGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(54)))));
-            this.FlowerGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.FlowerGridView.Location = new System.Drawing.Point(858, 26);
-            this.FlowerGridView.MultiSelect = false;
-            this.FlowerGridView.Name = "FlowerGridView";
-            this.FlowerGridView.ReadOnly = true;
-            this.FlowerGridView.RowHeadersVisible = false;
-            this.FlowerGridView.RowTemplate.Height = 25;
-            this.FlowerGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.FlowerGridView.Size = new System.Drawing.Size(345, 465);
-            this.FlowerGridView.TabIndex = 32;
-            this.FlowerGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.FlowerGridView_CellFormatting);
-            this.FlowerGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.FlowerGridView_CellMouseClick);
+            FlowerGridView.AllowUserToAddRows = false;
+            FlowerGridView.AllowUserToDeleteRows = false;
+            FlowerGridView.AllowUserToResizeRows = false;
+            FlowerGridView.BackgroundColor = System.Drawing.Color.FromArgb(47, 49, 54);
+            FlowerGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            FlowerGridView.Location = new System.Drawing.Point(858, 26);
+            FlowerGridView.MultiSelect = false;
+            FlowerGridView.Name = "FlowerGridView";
+            FlowerGridView.ReadOnly = true;
+            FlowerGridView.RowHeadersVisible = false;
+            FlowerGridView.RowTemplate.Height = 25;
+            FlowerGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            FlowerGridView.Size = new System.Drawing.Size(345, 465);
+            FlowerGridView.TabIndex = 32;
+            FlowerGridView.CellFormatting += FlowerGridView_CellFormatting;
+            FlowerGridView.CellMouseClick += FlowerGridView_CellMouseClick;
             // 
             // ItemModePanel
             // 
-            this.ItemModePanel.Controls.Add(this.WallMountMsg);
-            this.ItemModePanel.Controls.Add(this.GenePanel);
-            this.ItemModePanel.Controls.Add(this.SpawnAllButton);
-            this.ItemModePanel.Controls.Add(this.FillRemainButton);
-            this.ItemModePanel.Controls.Add(this.AmountOrCountTextbox);
-            this.ItemModePanel.Controls.Add(this.IDTextbox);
-            this.ItemModePanel.Controls.Add(this.AmountOrCountLabel);
-            this.ItemModePanel.Controls.Add(this.ItemIDLabel);
-            this.ItemModePanel.Controls.Add(this.HexModeButton);
-            this.ItemModePanel.Location = new System.Drawing.Point(112, 412);
-            this.ItemModePanel.Name = "ItemModePanel";
-            this.ItemModePanel.Size = new System.Drawing.Size(745, 100);
-            this.ItemModePanel.TabIndex = 26;
+            ItemModePanel.Controls.Add(WallMountMsg);
+            ItemModePanel.Controls.Add(GenePanel);
+            ItemModePanel.Controls.Add(SpawnAllButton);
+            ItemModePanel.Controls.Add(FillRemainButton);
+            ItemModePanel.Controls.Add(AmountOrCountTextbox);
+            ItemModePanel.Controls.Add(IDTextbox);
+            ItemModePanel.Controls.Add(AmountOrCountLabel);
+            ItemModePanel.Controls.Add(ItemIDLabel);
+            ItemModePanel.Controls.Add(HexModeButton);
+            ItemModePanel.Location = new System.Drawing.Point(112, 412);
+            ItemModePanel.Name = "ItemModePanel";
+            ItemModePanel.Size = new System.Drawing.Size(745, 100);
+            ItemModePanel.TabIndex = 26;
             // 
             // WallMountMsg
             // 
-            this.WallMountMsg.AutoSize = true;
-            this.WallMountMsg.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.WallMountMsg.ForeColor = System.Drawing.Color.White;
-            this.WallMountMsg.Location = new System.Drawing.Point(112, 79);
-            this.WallMountMsg.Name = "WallMountMsg";
-            this.WallMountMsg.Size = new System.Drawing.Size(349, 16);
-            this.WallMountMsg.TabIndex = 34;
-            this.WallMountMsg.Text = "[Right Click] an item to mount it on to the display.";
-            this.WallMountMsg.Visible = false;
+            WallMountMsg.AutoSize = true;
+            WallMountMsg.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            WallMountMsg.ForeColor = System.Drawing.Color.White;
+            WallMountMsg.Location = new System.Drawing.Point(112, 79);
+            WallMountMsg.Name = "WallMountMsg";
+            WallMountMsg.Size = new System.Drawing.Size(349, 16);
+            WallMountMsg.TabIndex = 34;
+            WallMountMsg.Text = "[Right Click] an item to mount it on to the display.";
+            WallMountMsg.Visible = false;
             // 
             // GenePanel
             // 
-            this.GenePanel.Controls.Add(this.FlowerGeneS);
-            this.GenePanel.Controls.Add(this.FlowerGeneW);
-            this.GenePanel.Controls.Add(this.FlowerGeneY);
-            this.GenePanel.Controls.Add(this.FlowerGeneR);
-            this.GenePanel.Location = new System.Drawing.Point(463, 0);
-            this.GenePanel.Name = "GenePanel";
-            this.GenePanel.Size = new System.Drawing.Size(65, 95);
-            this.GenePanel.TabIndex = 33;
-            this.GenePanel.Visible = false;
+            GenePanel.Controls.Add(FlowerGeneS);
+            GenePanel.Controls.Add(FlowerGeneW);
+            GenePanel.Controls.Add(FlowerGeneY);
+            GenePanel.Controls.Add(FlowerGeneR);
+            GenePanel.Location = new System.Drawing.Point(463, 0);
+            GenePanel.Name = "GenePanel";
+            GenePanel.Size = new System.Drawing.Size(65, 95);
+            GenePanel.TabIndex = 33;
+            GenePanel.Visible = false;
             // 
             // FlowerGeneS
             // 
-            this.FlowerGeneS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.FlowerGeneS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.FlowerGeneS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.FlowerGeneS.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FlowerGeneS.ForeColor = System.Drawing.Color.White;
-            this.FlowerGeneS.FormattingEnabled = true;
-            this.FlowerGeneS.Items.AddRange(new object[] {
-            "ss : 0",
-            "Ss : 1",
-            "SS : 2"});
-            this.FlowerGeneS.Location = new System.Drawing.Point(0, 69);
-            this.FlowerGeneS.Name = "FlowerGeneS";
-            this.FlowerGeneS.Size = new System.Drawing.Size(65, 23);
-            this.FlowerGeneS.TabIndex = 39;
-            this.FlowerGeneS.SelectionChangeCommitted += new System.EventHandler(this.GeneSelectionChangeCommitted);
+            FlowerGeneS.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            FlowerGeneS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            FlowerGeneS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            FlowerGeneS.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            FlowerGeneS.ForeColor = System.Drawing.Color.White;
+            FlowerGeneS.FormattingEnabled = true;
+            FlowerGeneS.Items.AddRange(new object[] { "ss : 0", "Ss : 1", "SS : 2" });
+            FlowerGeneS.Location = new System.Drawing.Point(0, 69);
+            FlowerGeneS.Name = "FlowerGeneS";
+            FlowerGeneS.Size = new System.Drawing.Size(65, 23);
+            FlowerGeneS.TabIndex = 39;
+            FlowerGeneS.SelectionChangeCommitted += GeneSelectionChangeCommitted;
             // 
             // FlowerGeneW
             // 
-            this.FlowerGeneW.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.FlowerGeneW.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.FlowerGeneW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.FlowerGeneW.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FlowerGeneW.ForeColor = System.Drawing.Color.White;
-            this.FlowerGeneW.FormattingEnabled = true;
-            this.FlowerGeneW.Items.AddRange(new object[] {
-            "ww : 0",
-            "Ww : 1",
-            "WW : 2"});
-            this.FlowerGeneW.Location = new System.Drawing.Point(0, 46);
-            this.FlowerGeneW.Name = "FlowerGeneW";
-            this.FlowerGeneW.Size = new System.Drawing.Size(65, 23);
-            this.FlowerGeneW.TabIndex = 38;
-            this.FlowerGeneW.SelectionChangeCommitted += new System.EventHandler(this.GeneSelectionChangeCommitted);
+            FlowerGeneW.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            FlowerGeneW.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            FlowerGeneW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            FlowerGeneW.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            FlowerGeneW.ForeColor = System.Drawing.Color.White;
+            FlowerGeneW.FormattingEnabled = true;
+            FlowerGeneW.Items.AddRange(new object[] { "WW : 0", "Ww : 1", "ww : 2" });
+            FlowerGeneW.Location = new System.Drawing.Point(0, 46);
+            FlowerGeneW.Name = "FlowerGeneW";
+            FlowerGeneW.Size = new System.Drawing.Size(65, 23);
+            FlowerGeneW.TabIndex = 38;
+            FlowerGeneW.SelectionChangeCommitted += GeneSelectionChangeCommitted;
             // 
             // FlowerGeneY
             // 
-            this.FlowerGeneY.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.FlowerGeneY.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.FlowerGeneY.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.FlowerGeneY.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FlowerGeneY.ForeColor = System.Drawing.Color.White;
-            this.FlowerGeneY.FormattingEnabled = true;
-            this.FlowerGeneY.Items.AddRange(new object[] {
-            "yy : 0",
-            "Yy : 1",
-            "YY : 2"});
-            this.FlowerGeneY.Location = new System.Drawing.Point(0, 23);
-            this.FlowerGeneY.Name = "FlowerGeneY";
-            this.FlowerGeneY.Size = new System.Drawing.Size(65, 23);
-            this.FlowerGeneY.TabIndex = 37;
-            this.FlowerGeneY.SelectionChangeCommitted += new System.EventHandler(this.GeneSelectionChangeCommitted);
+            FlowerGeneY.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            FlowerGeneY.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            FlowerGeneY.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            FlowerGeneY.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            FlowerGeneY.ForeColor = System.Drawing.Color.White;
+            FlowerGeneY.FormattingEnabled = true;
+            FlowerGeneY.Items.AddRange(new object[] { "yy : 0", "Yy : 1", "YY : 2" });
+            FlowerGeneY.Location = new System.Drawing.Point(0, 23);
+            FlowerGeneY.Name = "FlowerGeneY";
+            FlowerGeneY.Size = new System.Drawing.Size(65, 23);
+            FlowerGeneY.TabIndex = 37;
+            FlowerGeneY.SelectionChangeCommitted += GeneSelectionChangeCommitted;
             // 
             // FlowerGeneR
             // 
-            this.FlowerGeneR.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.FlowerGeneR.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.FlowerGeneR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.FlowerGeneR.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FlowerGeneR.ForeColor = System.Drawing.Color.White;
-            this.FlowerGeneR.FormattingEnabled = true;
-            this.FlowerGeneR.Items.AddRange(new object[] {
-            "rr : 0",
-            "Rr : 1",
-            "RR : 2"});
-            this.FlowerGeneR.Location = new System.Drawing.Point(0, 0);
-            this.FlowerGeneR.Name = "FlowerGeneR";
-            this.FlowerGeneR.Size = new System.Drawing.Size(65, 23);
-            this.FlowerGeneR.TabIndex = 36;
-            this.FlowerGeneR.SelectionChangeCommitted += new System.EventHandler(this.GeneSelectionChangeCommitted);
+            FlowerGeneR.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            FlowerGeneR.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            FlowerGeneR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            FlowerGeneR.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            FlowerGeneR.ForeColor = System.Drawing.Color.White;
+            FlowerGeneR.FormattingEnabled = true;
+            FlowerGeneR.Items.AddRange(new object[] { "rr : 0", "Rr : 1", "RR : 2" });
+            FlowerGeneR.Location = new System.Drawing.Point(0, 0);
+            FlowerGeneR.Name = "FlowerGeneR";
+            FlowerGeneR.Size = new System.Drawing.Size(65, 23);
+            FlowerGeneR.TabIndex = 36;
+            FlowerGeneR.SelectionChangeCommitted += GeneSelectionChangeCommitted;
             // 
             // SpawnAllButton
             // 
-            this.SpawnAllButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.SpawnAllButton.FlatAppearance.BorderSize = 0;
-            this.SpawnAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SpawnAllButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SpawnAllButton.ForeColor = System.Drawing.Color.White;
-            this.SpawnAllButton.Location = new System.Drawing.Point(640, 13);
-            this.SpawnAllButton.Name = "SpawnAllButton";
-            this.SpawnAllButton.Size = new System.Drawing.Size(100, 23);
-            this.SpawnAllButton.TabIndex = 32;
-            this.SpawnAllButton.Tag = "";
-            this.SpawnAllButton.Text = "Spawn All";
-            this.SpawnAllButton.UseVisualStyleBackColor = false;
-            this.SpawnAllButton.Click += new System.EventHandler(this.SpawnAllButton_Click);
+            SpawnAllButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            SpawnAllButton.FlatAppearance.BorderSize = 0;
+            SpawnAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            SpawnAllButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            SpawnAllButton.ForeColor = System.Drawing.Color.White;
+            SpawnAllButton.Location = new System.Drawing.Point(640, 13);
+            SpawnAllButton.Name = "SpawnAllButton";
+            SpawnAllButton.Size = new System.Drawing.Size(100, 23);
+            SpawnAllButton.TabIndex = 32;
+            SpawnAllButton.Tag = "";
+            SpawnAllButton.Text = "Spawn All";
+            SpawnAllButton.UseVisualStyleBackColor = false;
+            SpawnAllButton.Click += SpawnAllButton_Click;
             // 
             // FillRemainButton
             // 
-            this.FillRemainButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.FillRemainButton.FlatAppearance.BorderSize = 0;
-            this.FillRemainButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.FillRemainButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FillRemainButton.ForeColor = System.Drawing.Color.White;
-            this.FillRemainButton.Location = new System.Drawing.Point(534, 13);
-            this.FillRemainButton.Name = "FillRemainButton";
-            this.FillRemainButton.Size = new System.Drawing.Size(100, 23);
-            this.FillRemainButton.TabIndex = 31;
-            this.FillRemainButton.Tag = "";
-            this.FillRemainButton.Text = "Fill Remain";
-            this.FillRemainButton.UseVisualStyleBackColor = false;
-            this.FillRemainButton.Click += new System.EventHandler(this.FillRemainButton_Click);
+            FillRemainButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            FillRemainButton.FlatAppearance.BorderSize = 0;
+            FillRemainButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            FillRemainButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            FillRemainButton.ForeColor = System.Drawing.Color.White;
+            FillRemainButton.Location = new System.Drawing.Point(534, 13);
+            FillRemainButton.Name = "FillRemainButton";
+            FillRemainButton.Size = new System.Drawing.Size(100, 23);
+            FillRemainButton.TabIndex = 31;
+            FillRemainButton.Tag = "";
+            FillRemainButton.Text = "Fill Remain";
+            FillRemainButton.UseVisualStyleBackColor = false;
+            FillRemainButton.Click += FillRemainButton_Click;
             // 
             // AmountOrCountLabel
             // 
-            this.AmountOrCountLabel.AutoSize = true;
-            this.AmountOrCountLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.AmountOrCountLabel.ForeColor = System.Drawing.Color.White;
-            this.AmountOrCountLabel.Location = new System.Drawing.Point(167, 3);
-            this.AmountOrCountLabel.Name = "AmountOrCountLabel";
-            this.AmountOrCountLabel.Size = new System.Drawing.Size(60, 16);
-            this.AmountOrCountLabel.TabIndex = 28;
-            this.AmountOrCountLabel.Text = "Amount";
+            AmountOrCountLabel.AutoSize = true;
+            AmountOrCountLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            AmountOrCountLabel.ForeColor = System.Drawing.Color.White;
+            AmountOrCountLabel.Location = new System.Drawing.Point(167, 3);
+            AmountOrCountLabel.Name = "AmountOrCountLabel";
+            AmountOrCountLabel.Size = new System.Drawing.Size(60, 16);
+            AmountOrCountLabel.TabIndex = 28;
+            AmountOrCountLabel.Text = "Amount";
             // 
             // ItemIDLabel
             // 
-            this.ItemIDLabel.AutoSize = true;
-            this.ItemIDLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ItemIDLabel.ForeColor = System.Drawing.Color.White;
-            this.ItemIDLabel.Location = new System.Drawing.Point(3, 3);
-            this.ItemIDLabel.Name = "ItemIDLabel";
-            this.ItemIDLabel.Size = new System.Drawing.Size(55, 16);
-            this.ItemIDLabel.TabIndex = 27;
-            this.ItemIDLabel.Text = "Item ID";
+            ItemIDLabel.AutoSize = true;
+            ItemIDLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            ItemIDLabel.ForeColor = System.Drawing.Color.White;
+            ItemIDLabel.Location = new System.Drawing.Point(3, 3);
+            ItemIDLabel.Name = "ItemIDLabel";
+            ItemIDLabel.Size = new System.Drawing.Size(55, 16);
+            ItemIDLabel.TabIndex = 27;
+            ItemIDLabel.Text = "Item ID";
             // 
             // HexModeButton
             // 
-            this.HexModeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.HexModeButton.FlatAppearance.BorderSize = 0;
-            this.HexModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HexModeButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.HexModeButton.ForeColor = System.Drawing.Color.White;
-            this.HexModeButton.Location = new System.Drawing.Point(381, -1);
-            this.HexModeButton.Name = "HexModeButton";
-            this.HexModeButton.Size = new System.Drawing.Size(80, 26);
-            this.HexModeButton.TabIndex = 30;
-            this.HexModeButton.Tag = "Normal";
-            this.HexModeButton.Text = "Hex Mode";
-            this.HexModeButton.UseVisualStyleBackColor = false;
-            this.HexModeButton.Click += new System.EventHandler(this.HexModeButton_Click);
+            HexModeButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            HexModeButton.FlatAppearance.BorderSize = 0;
+            HexModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            HexModeButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            HexModeButton.ForeColor = System.Drawing.Color.White;
+            HexModeButton.Location = new System.Drawing.Point(381, -1);
+            HexModeButton.Name = "HexModeButton";
+            HexModeButton.Size = new System.Drawing.Size(80, 26);
+            HexModeButton.TabIndex = 30;
+            HexModeButton.Tag = "Normal";
+            HexModeButton.Text = "Hex Mode";
+            HexModeButton.UseVisualStyleBackColor = false;
+            HexModeButton.Click += HexModeButton_Click;
             // 
             // FlowerModePanel
             // 
-            this.FlowerModePanel.Controls.Add(this.FlowerValueTextbox);
-            this.FlowerModePanel.Controls.Add(this.FlowerIDTextbox);
-            this.FlowerModePanel.Controls.Add(this.FlowerIDLabel);
-            this.FlowerModePanel.Location = new System.Drawing.Point(112, 412);
-            this.FlowerModePanel.Name = "FlowerModePanel";
-            this.FlowerModePanel.Size = new System.Drawing.Size(745, 95);
-            this.FlowerModePanel.TabIndex = 34;
+            FlowerModePanel.Controls.Add(FlowerValueTextbox);
+            FlowerModePanel.Controls.Add(FlowerIDTextbox);
+            FlowerModePanel.Controls.Add(FlowerIDLabel);
+            FlowerModePanel.Location = new System.Drawing.Point(112, 412);
+            FlowerModePanel.Name = "FlowerModePanel";
+            FlowerModePanel.Size = new System.Drawing.Size(745, 95);
+            FlowerModePanel.TabIndex = 34;
             // 
             // FlowerIDLabel
             // 
-            this.FlowerIDLabel.AutoSize = true;
-            this.FlowerIDLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FlowerIDLabel.ForeColor = System.Drawing.Color.White;
-            this.FlowerIDLabel.Location = new System.Drawing.Point(3, 3);
-            this.FlowerIDLabel.Name = "FlowerIDLabel";
-            this.FlowerIDLabel.Size = new System.Drawing.Size(73, 16);
-            this.FlowerIDLabel.TabIndex = 27;
-            this.FlowerIDLabel.Text = "Flower ID";
+            FlowerIDLabel.AutoSize = true;
+            FlowerIDLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            FlowerIDLabel.ForeColor = System.Drawing.Color.White;
+            FlowerIDLabel.Location = new System.Drawing.Point(3, 3);
+            FlowerIDLabel.Name = "FlowerIDLabel";
+            FlowerIDLabel.Size = new System.Drawing.Size(73, 16);
+            FlowerIDLabel.TabIndex = 27;
+            FlowerIDLabel.Text = "Flower ID";
             // 
             // RecipeModePanel
             // 
-            this.RecipeModePanel.Controls.Add(this.RecipeIDTextbox);
-            this.RecipeModePanel.Controls.Add(this.RecipeIDLabel);
-            this.RecipeModePanel.Location = new System.Drawing.Point(112, 412);
-            this.RecipeModePanel.Name = "RecipeModePanel";
-            this.RecipeModePanel.Size = new System.Drawing.Size(745, 95);
-            this.RecipeModePanel.TabIndex = 35;
+            RecipeModePanel.Controls.Add(RecipeIDTextbox);
+            RecipeModePanel.Controls.Add(RecipeIDLabel);
+            RecipeModePanel.Location = new System.Drawing.Point(112, 412);
+            RecipeModePanel.Name = "RecipeModePanel";
+            RecipeModePanel.Size = new System.Drawing.Size(745, 95);
+            RecipeModePanel.TabIndex = 35;
             // 
             // RecipeIDLabel
             // 
-            this.RecipeIDLabel.AutoSize = true;
-            this.RecipeIDLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RecipeIDLabel.ForeColor = System.Drawing.Color.White;
-            this.RecipeIDLabel.Location = new System.Drawing.Point(3, 3);
-            this.RecipeIDLabel.Name = "RecipeIDLabel";
-            this.RecipeIDLabel.Size = new System.Drawing.Size(74, 16);
-            this.RecipeIDLabel.TabIndex = 27;
-            this.RecipeIDLabel.Text = "Recipe ID";
+            RecipeIDLabel.AutoSize = true;
+            RecipeIDLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            RecipeIDLabel.ForeColor = System.Drawing.Color.White;
+            RecipeIDLabel.Location = new System.Drawing.Point(3, 3);
+            RecipeIDLabel.Name = "RecipeIDLabel";
+            RecipeIDLabel.Size = new System.Drawing.Size(74, 16);
+            RecipeIDLabel.TabIndex = 27;
+            RecipeIDLabel.Text = "Recipe ID";
             // 
             // AlwaysOnTab
             // 
-            this.AlwaysOnTab.Controls.Add(this.InventoryTabButton);
-            this.AlwaysOnTab.Controls.Add(this.OtherTabButton);
-            this.AlwaysOnTab.Controls.Add(this.VillagerTabButton);
-            this.AlwaysOnTab.Controls.Add(this.CritterTabButton);
-            this.AlwaysOnTab.Location = new System.Drawing.Point(0, 52);
-            this.AlwaysOnTab.Name = "AlwaysOnTab";
-            this.AlwaysOnTab.Size = new System.Drawing.Size(26, 324);
-            this.AlwaysOnTab.TabIndex = 17;
+            AlwaysOnTab.Controls.Add(InventoryTabButton);
+            AlwaysOnTab.Controls.Add(OtherTabButton);
+            AlwaysOnTab.Controls.Add(VillagerTabButton);
+            AlwaysOnTab.Controls.Add(CritterTabButton);
+            AlwaysOnTab.Location = new System.Drawing.Point(0, 52);
+            AlwaysOnTab.Name = "AlwaysOnTab";
+            AlwaysOnTab.Size = new System.Drawing.Size(26, 324);
+            AlwaysOnTab.TabIndex = 17;
             // 
             // InventoryRefreshTimer
             // 
-            this.InventoryRefreshTimer.Interval = 3000;
-            this.InventoryRefreshTimer.Tick += new System.EventHandler(this.InventoryRefreshTimer_Tick);
+            InventoryRefreshTimer.Interval = 3000;
+            InventoryRefreshTimer.Tick += InventoryRefreshTimer_Tick;
             // 
             // ButtonToolTip
             // 
-            this.ButtonToolTip.AutomaticDelay = 0;
-            this.ButtonToolTip.IsBalloon = true;
-            this.ButtonToolTip.ShowAlways = true;
-            this.ButtonToolTip.UseAnimation = false;
-            this.ButtonToolTip.UseFading = false;
+            ButtonToolTip.AutomaticDelay = 0;
+            ButtonToolTip.IsBalloon = true;
+            ButtonToolTip.ShowAlways = true;
+            ButtonToolTip.UseAnimation = false;
+            ButtonToolTip.UseFading = false;
             // 
             // OtherLargePanel
             // 
-            this.OtherLargePanel.Controls.Add(this.TimeAndWeatherPanel);
-            this.OtherLargePanel.Controls.Add(this.CheatPanel);
-            this.OtherLargePanel.Controls.Add(this.ReactionPanel);
-            this.OtherLargePanel.Controls.Add(this.TurnipPanel);
-            this.OtherLargePanel.Location = new System.Drawing.Point(0, 0);
-            this.OtherLargePanel.Name = "OtherLargePanel";
-            this.OtherLargePanel.Size = new System.Drawing.Size(1225, 550);
-            this.OtherLargePanel.TabIndex = 19;
+            OtherLargePanel.Controls.Add(TimeAndWeatherPanel);
+            OtherLargePanel.Controls.Add(CheatPanel);
+            OtherLargePanel.Controls.Add(ReactionPanel);
+            OtherLargePanel.Controls.Add(TurnipPanel);
+            OtherLargePanel.Location = new System.Drawing.Point(0, 0);
+            OtherLargePanel.Name = "OtherLargePanel";
+            OtherLargePanel.Size = new System.Drawing.Size(1225, 550);
+            OtherLargePanel.TabIndex = 19;
             // 
             // TimeAndWeatherPanel
             // 
-            this.TimeAndWeatherPanel.Controls.Add(this.DateAndTimeControlPanel);
-            this.TimeAndWeatherPanel.Controls.Add(this.UnFreezeTimeButton);
-            this.TimeAndWeatherPanel.Controls.Add(this.FreezeTimeLabel);
-            this.TimeAndWeatherPanel.Controls.Add(this.FreezeTimeButton);
-            this.TimeAndWeatherPanel.Controls.Add(this.WeatherSeedTextbox);
-            this.TimeAndWeatherPanel.Controls.Add(this.WeatherSeedLabel);
-            this.TimeAndWeatherPanel.Location = new System.Drawing.Point(832, 251);
-            this.TimeAndWeatherPanel.Name = "TimeAndWeatherPanel";
-            this.TimeAndWeatherPanel.Size = new System.Drawing.Size(372, 253);
-            this.TimeAndWeatherPanel.TabIndex = 33;
+            TimeAndWeatherPanel.Controls.Add(SetAirportColorBtn);
+            TimeAndWeatherPanel.Controls.Add(AirportColor);
+            TimeAndWeatherPanel.Controls.Add(AirportColorLabel);
+            TimeAndWeatherPanel.Controls.Add(DateAndTimeControlPanel);
+            TimeAndWeatherPanel.Controls.Add(UnFreezeTimeButton);
+            TimeAndWeatherPanel.Controls.Add(FreezeTimeLabel);
+            TimeAndWeatherPanel.Controls.Add(FreezeTimeButton);
+            TimeAndWeatherPanel.Controls.Add(WeatherSeedTextbox);
+            TimeAndWeatherPanel.Controls.Add(WeatherSeedLabel);
+            TimeAndWeatherPanel.Location = new System.Drawing.Point(832, 251);
+            TimeAndWeatherPanel.Name = "TimeAndWeatherPanel";
+            TimeAndWeatherPanel.Size = new System.Drawing.Size(372, 253);
+            TimeAndWeatherPanel.TabIndex = 33;
+            // 
+            // SetAirportColorBtn
+            // 
+            SetAirportColorBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            SetAirportColorBtn.FlatAppearance.BorderSize = 0;
+            SetAirportColorBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            SetAirportColorBtn.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            SetAirportColorBtn.ForeColor = System.Drawing.Color.White;
+            SetAirportColorBtn.Location = new System.Drawing.Point(293, 35);
+            SetAirportColorBtn.Name = "SetAirportColorBtn";
+            SetAirportColorBtn.Size = new System.Drawing.Size(73, 23);
+            SetAirportColorBtn.TabIndex = 96;
+            SetAirportColorBtn.Tag = "";
+            SetAirportColorBtn.Text = "Set";
+            SetAirportColorBtn.UseVisualStyleBackColor = false;
+            SetAirportColorBtn.Click += SetAirportColorBtn_Click;
+            // 
+            // AirportColor
+            // 
+            AirportColor.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            AirportColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            AirportColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            AirportColor.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            AirportColor.ForeColor = System.Drawing.Color.White;
+            AirportColor.FormattingEnabled = true;
+            AirportColor.Items.AddRange(new object[] { "Blue", "Yellow", "Orange", "Green" });
+            AirportColor.Location = new System.Drawing.Point(161, 35);
+            AirportColor.Name = "AirportColor";
+            AirportColor.Size = new System.Drawing.Size(126, 23);
+            AirportColor.TabIndex = 95;
+            // 
+            // AirportColorLabel
+            // 
+            AirportColorLabel.AutoSize = true;
+            AirportColorLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            AirportColorLabel.ForeColor = System.Drawing.Color.White;
+            AirportColorLabel.Location = new System.Drawing.Point(10, 35);
+            AirportColorLabel.Name = "AirportColorLabel";
+            AirportColorLabel.Size = new System.Drawing.Size(142, 22);
+            AirportColorLabel.TabIndex = 97;
+            AirportColorLabel.Text = "Airport Color :";
             // 
             // DateAndTimeControlPanel
             // 
-            this.DateAndTimeControlPanel.Controls.Add(this.Minus1HourButton);
-            this.DateAndTimeControlPanel.Controls.Add(this.Add1HourButton);
-            this.DateAndTimeControlPanel.Controls.Add(this.MinuteTextbox);
-            this.DateAndTimeControlPanel.Controls.Add(this.HourTextbox);
-            this.DateAndTimeControlPanel.Controls.Add(this.DayTextbox);
-            this.DateAndTimeControlPanel.Controls.Add(this.MonthTextbox);
-            this.DateAndTimeControlPanel.Controls.Add(this.YearTextbox);
-            this.DateAndTimeControlPanel.Controls.Add(this.SetDateAndTimeButton);
-            this.DateAndTimeControlPanel.Controls.Add(this.MinuteLabel);
-            this.DateAndTimeControlPanel.Controls.Add(this.HourLabel);
-            this.DateAndTimeControlPanel.Controls.Add(this.DayLabel);
-            this.DateAndTimeControlPanel.Controls.Add(this.MonthLabel);
-            this.DateAndTimeControlPanel.Controls.Add(this.YearLabel);
-            this.DateAndTimeControlPanel.Location = new System.Drawing.Point(3, 126);
-            this.DateAndTimeControlPanel.Name = "DateAndTimeControlPanel";
-            this.DateAndTimeControlPanel.Size = new System.Drawing.Size(369, 124);
-            this.DateAndTimeControlPanel.TabIndex = 96;
-            this.DateAndTimeControlPanel.Visible = false;
+            DateAndTimeControlPanel.Controls.Add(Minus1HourButton);
+            DateAndTimeControlPanel.Controls.Add(Add1HourButton);
+            DateAndTimeControlPanel.Controls.Add(MinuteTextbox);
+            DateAndTimeControlPanel.Controls.Add(HourTextbox);
+            DateAndTimeControlPanel.Controls.Add(DayTextbox);
+            DateAndTimeControlPanel.Controls.Add(MonthTextbox);
+            DateAndTimeControlPanel.Controls.Add(YearTextbox);
+            DateAndTimeControlPanel.Controls.Add(SetDateAndTimeButton);
+            DateAndTimeControlPanel.Controls.Add(MinuteLabel);
+            DateAndTimeControlPanel.Controls.Add(HourLabel);
+            DateAndTimeControlPanel.Controls.Add(DayLabel);
+            DateAndTimeControlPanel.Controls.Add(MonthLabel);
+            DateAndTimeControlPanel.Controls.Add(YearLabel);
+            DateAndTimeControlPanel.Location = new System.Drawing.Point(3, 126);
+            DateAndTimeControlPanel.Name = "DateAndTimeControlPanel";
+            DateAndTimeControlPanel.Size = new System.Drawing.Size(369, 124);
+            DateAndTimeControlPanel.TabIndex = 96;
+            DateAndTimeControlPanel.Visible = false;
             // 
             // Minus1HourButton
             // 
-            this.Minus1HourButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.Minus1HourButton.FlatAppearance.BorderSize = 0;
-            this.Minus1HourButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Minus1HourButton.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Minus1HourButton.ForeColor = System.Drawing.Color.White;
-            this.Minus1HourButton.Location = new System.Drawing.Point(7, 98);
-            this.Minus1HourButton.Name = "Minus1HourButton";
-            this.Minus1HourButton.Size = new System.Drawing.Size(28, 22);
-            this.Minus1HourButton.TabIndex = 107;
-            this.Minus1HourButton.Tag = "";
-            this.Minus1HourButton.Text = "-1";
-            this.Minus1HourButton.UseVisualStyleBackColor = false;
-            this.Minus1HourButton.Click += new System.EventHandler(this.Minus1HourButton_Click);
+            Minus1HourButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            Minus1HourButton.FlatAppearance.BorderSize = 0;
+            Minus1HourButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            Minus1HourButton.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            Minus1HourButton.ForeColor = System.Drawing.Color.White;
+            Minus1HourButton.Location = new System.Drawing.Point(7, 98);
+            Minus1HourButton.Name = "Minus1HourButton";
+            Minus1HourButton.Size = new System.Drawing.Size(28, 22);
+            Minus1HourButton.TabIndex = 107;
+            Minus1HourButton.Tag = "";
+            Minus1HourButton.Text = "-1";
+            Minus1HourButton.UseVisualStyleBackColor = false;
+            Minus1HourButton.Click += Minus1HourButton_Click;
             // 
             // Add1HourButton
             // 
-            this.Add1HourButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.Add1HourButton.FlatAppearance.BorderSize = 0;
-            this.Add1HourButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Add1HourButton.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Add1HourButton.ForeColor = System.Drawing.Color.White;
-            this.Add1HourButton.Location = new System.Drawing.Point(37, 98);
-            this.Add1HourButton.Name = "Add1HourButton";
-            this.Add1HourButton.Size = new System.Drawing.Size(28, 22);
-            this.Add1HourButton.TabIndex = 106;
-            this.Add1HourButton.Tag = "";
-            this.Add1HourButton.Text = "+1";
-            this.Add1HourButton.UseVisualStyleBackColor = false;
-            this.Add1HourButton.Click += new System.EventHandler(this.Add1HourButton_Click);
+            Add1HourButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            Add1HourButton.FlatAppearance.BorderSize = 0;
+            Add1HourButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            Add1HourButton.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            Add1HourButton.ForeColor = System.Drawing.Color.White;
+            Add1HourButton.Location = new System.Drawing.Point(37, 98);
+            Add1HourButton.Name = "Add1HourButton";
+            Add1HourButton.Size = new System.Drawing.Size(28, 22);
+            Add1HourButton.TabIndex = 106;
+            Add1HourButton.Tag = "";
+            Add1HourButton.Text = "+1";
+            Add1HourButton.UseVisualStyleBackColor = false;
+            Add1HourButton.Click += Add1HourButton_Click;
             // 
             // SetDateAndTimeButton
             // 
-            this.SetDateAndTimeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.SetDateAndTimeButton.FlatAppearance.BorderSize = 0;
-            this.SetDateAndTimeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SetDateAndTimeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SetDateAndTimeButton.ForeColor = System.Drawing.Color.White;
-            this.SetDateAndTimeButton.Location = new System.Drawing.Point(188, 73);
-            this.SetDateAndTimeButton.Name = "SetDateAndTimeButton";
-            this.SetDateAndTimeButton.Size = new System.Drawing.Size(175, 23);
-            this.SetDateAndTimeButton.TabIndex = 94;
-            this.SetDateAndTimeButton.Tag = "";
-            this.SetDateAndTimeButton.Text = "Set Date && Time";
-            this.SetDateAndTimeButton.UseVisualStyleBackColor = false;
-            this.SetDateAndTimeButton.Click += new System.EventHandler(this.SetDateAndTimeButton_Click);
+            SetDateAndTimeButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            SetDateAndTimeButton.FlatAppearance.BorderSize = 0;
+            SetDateAndTimeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            SetDateAndTimeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            SetDateAndTimeButton.ForeColor = System.Drawing.Color.White;
+            SetDateAndTimeButton.Location = new System.Drawing.Point(188, 73);
+            SetDateAndTimeButton.Name = "SetDateAndTimeButton";
+            SetDateAndTimeButton.Size = new System.Drawing.Size(175, 23);
+            SetDateAndTimeButton.TabIndex = 94;
+            SetDateAndTimeButton.Tag = "";
+            SetDateAndTimeButton.Text = "Set Date && Time";
+            SetDateAndTimeButton.UseVisualStyleBackColor = false;
+            SetDateAndTimeButton.Click += SetDateAndTimeButton_Click;
             // 
             // MinuteLabel
             // 
-            this.MinuteLabel.AutoSize = true;
-            this.MinuteLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.MinuteLabel.ForeColor = System.Drawing.Color.White;
-            this.MinuteLabel.Location = new System.Drawing.Point(71, 55);
-            this.MinuteLabel.Name = "MinuteLabel";
-            this.MinuteLabel.Size = new System.Drawing.Size(56, 16);
-            this.MinuteLabel.TabIndex = 101;
-            this.MinuteLabel.Text = "Minute";
+            MinuteLabel.AutoSize = true;
+            MinuteLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            MinuteLabel.ForeColor = System.Drawing.Color.White;
+            MinuteLabel.Location = new System.Drawing.Point(71, 55);
+            MinuteLabel.Name = "MinuteLabel";
+            MinuteLabel.Size = new System.Drawing.Size(56, 16);
+            MinuteLabel.TabIndex = 101;
+            MinuteLabel.Text = "Minute";
             // 
             // HourLabel
             // 
-            this.HourLabel.AutoSize = true;
-            this.HourLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.HourLabel.ForeColor = System.Drawing.Color.White;
-            this.HourLabel.Location = new System.Drawing.Point(7, 55);
-            this.HourLabel.Name = "HourLabel";
-            this.HourLabel.Size = new System.Drawing.Size(41, 16);
-            this.HourLabel.TabIndex = 100;
-            this.HourLabel.Text = "Hour";
+            HourLabel.AutoSize = true;
+            HourLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            HourLabel.ForeColor = System.Drawing.Color.White;
+            HourLabel.Location = new System.Drawing.Point(7, 55);
+            HourLabel.Name = "HourLabel";
+            HourLabel.Size = new System.Drawing.Size(41, 16);
+            HourLabel.TabIndex = 100;
+            HourLabel.Text = "Hour";
             // 
             // DayLabel
             // 
-            this.DayLabel.AutoSize = true;
-            this.DayLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DayLabel.ForeColor = System.Drawing.Color.White;
-            this.DayLabel.Location = new System.Drawing.Point(135, 3);
-            this.DayLabel.Name = "DayLabel";
-            this.DayLabel.Size = new System.Drawing.Size(32, 16);
-            this.DayLabel.TabIndex = 99;
-            this.DayLabel.Text = "Day";
+            DayLabel.AutoSize = true;
+            DayLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            DayLabel.ForeColor = System.Drawing.Color.White;
+            DayLabel.Location = new System.Drawing.Point(135, 3);
+            DayLabel.Name = "DayLabel";
+            DayLabel.Size = new System.Drawing.Size(32, 16);
+            DayLabel.TabIndex = 99;
+            DayLabel.Text = "Day";
             // 
             // MonthLabel
             // 
-            this.MonthLabel.AutoSize = true;
-            this.MonthLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.MonthLabel.ForeColor = System.Drawing.Color.White;
-            this.MonthLabel.Location = new System.Drawing.Point(71, 3);
-            this.MonthLabel.Name = "MonthLabel";
-            this.MonthLabel.Size = new System.Drawing.Size(52, 16);
-            this.MonthLabel.TabIndex = 98;
-            this.MonthLabel.Text = "Month";
+            MonthLabel.AutoSize = true;
+            MonthLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            MonthLabel.ForeColor = System.Drawing.Color.White;
+            MonthLabel.Location = new System.Drawing.Point(71, 3);
+            MonthLabel.Name = "MonthLabel";
+            MonthLabel.Size = new System.Drawing.Size(52, 16);
+            MonthLabel.TabIndex = 98;
+            MonthLabel.Text = "Month";
             // 
             // YearLabel
             // 
-            this.YearLabel.AutoSize = true;
-            this.YearLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.YearLabel.ForeColor = System.Drawing.Color.White;
-            this.YearLabel.Location = new System.Drawing.Point(7, 3);
-            this.YearLabel.Name = "YearLabel";
-            this.YearLabel.Size = new System.Drawing.Size(39, 16);
-            this.YearLabel.TabIndex = 97;
-            this.YearLabel.Text = "Year";
+            YearLabel.AutoSize = true;
+            YearLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            YearLabel.ForeColor = System.Drawing.Color.White;
+            YearLabel.Location = new System.Drawing.Point(7, 3);
+            YearLabel.Name = "YearLabel";
+            YearLabel.Size = new System.Drawing.Size(39, 16);
+            YearLabel.TabIndex = 97;
+            YearLabel.Text = "Year";
             // 
             // UnFreezeTimeButton
             // 
-            this.UnFreezeTimeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.UnFreezeTimeButton.FlatAppearance.BorderSize = 0;
-            this.UnFreezeTimeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.UnFreezeTimeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.UnFreezeTimeButton.ForeColor = System.Drawing.Color.White;
-            this.UnFreezeTimeButton.Location = new System.Drawing.Point(191, 97);
-            this.UnFreezeTimeButton.Name = "UnFreezeTimeButton";
-            this.UnFreezeTimeButton.Size = new System.Drawing.Size(175, 23);
-            this.UnFreezeTimeButton.TabIndex = 95;
-            this.UnFreezeTimeButton.Tag = "";
-            this.UnFreezeTimeButton.Text = "10 Seconds Have Passed";
-            this.UnFreezeTimeButton.UseVisualStyleBackColor = false;
-            this.UnFreezeTimeButton.Click += new System.EventHandler(this.UnFreezeTimeButton_Click);
+            UnFreezeTimeButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            UnFreezeTimeButton.FlatAppearance.BorderSize = 0;
+            UnFreezeTimeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            UnFreezeTimeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            UnFreezeTimeButton.ForeColor = System.Drawing.Color.White;
+            UnFreezeTimeButton.Location = new System.Drawing.Point(191, 97);
+            UnFreezeTimeButton.Name = "UnFreezeTimeButton";
+            UnFreezeTimeButton.Size = new System.Drawing.Size(175, 23);
+            UnFreezeTimeButton.TabIndex = 95;
+            UnFreezeTimeButton.Tag = "";
+            UnFreezeTimeButton.Text = "10 Seconds Have Passed";
+            UnFreezeTimeButton.UseVisualStyleBackColor = false;
+            UnFreezeTimeButton.Click += UnFreezeTimeButton_Click;
             // 
             // FreezeTimeLabel
             // 
-            this.FreezeTimeLabel.AutoSize = true;
-            this.FreezeTimeLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FreezeTimeLabel.ForeColor = System.Drawing.Color.White;
-            this.FreezeTimeLabel.Location = new System.Drawing.Point(10, 71);
-            this.FreezeTimeLabel.Name = "FreezeTimeLabel";
-            this.FreezeTimeLabel.Size = new System.Drawing.Size(181, 22);
-            this.FreezeTimeLabel.TabIndex = 94;
-            this.FreezeTimeLabel.Text = "Freeze / Set Time :";
+            FreezeTimeLabel.AutoSize = true;
+            FreezeTimeLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            FreezeTimeLabel.ForeColor = System.Drawing.Color.White;
+            FreezeTimeLabel.Location = new System.Drawing.Point(10, 71);
+            FreezeTimeLabel.Name = "FreezeTimeLabel";
+            FreezeTimeLabel.Size = new System.Drawing.Size(181, 22);
+            FreezeTimeLabel.TabIndex = 94;
+            FreezeTimeLabel.Text = "Freeze / Set Time :";
             // 
             // FreezeTimeButton
             // 
-            this.FreezeTimeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.FreezeTimeButton.FlatAppearance.BorderSize = 0;
-            this.FreezeTimeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.FreezeTimeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FreezeTimeButton.ForeColor = System.Drawing.Color.White;
-            this.FreezeTimeButton.Location = new System.Drawing.Point(10, 97);
-            this.FreezeTimeButton.Name = "FreezeTimeButton";
-            this.FreezeTimeButton.Size = new System.Drawing.Size(175, 23);
-            this.FreezeTimeButton.TabIndex = 94;
-            this.FreezeTimeButton.Tag = "";
-            this.FreezeTimeButton.Text = "Za Wārudo";
-            this.FreezeTimeButton.UseVisualStyleBackColor = false;
-            this.FreezeTimeButton.Click += new System.EventHandler(this.FreezeTimeButton_Click);
+            FreezeTimeButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            FreezeTimeButton.FlatAppearance.BorderSize = 0;
+            FreezeTimeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            FreezeTimeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            FreezeTimeButton.ForeColor = System.Drawing.Color.White;
+            FreezeTimeButton.Location = new System.Drawing.Point(10, 97);
+            FreezeTimeButton.Name = "FreezeTimeButton";
+            FreezeTimeButton.Size = new System.Drawing.Size(175, 23);
+            FreezeTimeButton.TabIndex = 94;
+            FreezeTimeButton.Tag = "";
+            FreezeTimeButton.Text = "Za Wārudo";
+            FreezeTimeButton.UseVisualStyleBackColor = false;
+            FreezeTimeButton.Click += FreezeTimeButton_Click;
             // 
             // WeatherSeedLabel
             // 
-            this.WeatherSeedLabel.AutoSize = true;
-            this.WeatherSeedLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.WeatherSeedLabel.ForeColor = System.Drawing.Color.White;
-            this.WeatherSeedLabel.Location = new System.Drawing.Point(10, 3);
-            this.WeatherSeedLabel.Name = "WeatherSeedLabel";
-            this.WeatherSeedLabel.Size = new System.Drawing.Size(150, 22);
-            this.WeatherSeedLabel.TabIndex = 94;
-            this.WeatherSeedLabel.Text = "Weather Seed :";
+            WeatherSeedLabel.AutoSize = true;
+            WeatherSeedLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            WeatherSeedLabel.ForeColor = System.Drawing.Color.White;
+            WeatherSeedLabel.Location = new System.Drawing.Point(10, 3);
+            WeatherSeedLabel.Name = "WeatherSeedLabel";
+            WeatherSeedLabel.Size = new System.Drawing.Size(150, 22);
+            WeatherSeedLabel.TabIndex = 94;
+            WeatherSeedLabel.Text = "Weather Seed :";
             // 
             // CheatPanel
             // 
-            this.CheatPanel.Controls.Add(this.FastSwimToggle);
-            this.CheatPanel.Controls.Add(this.SwimClubModeLabel);
-            this.CheatPanel.Controls.Add(this.DisableCollisionToggle);
-            this.CheatPanel.Controls.Add(this.animationSpeedx1);
-            this.CheatPanel.Controls.Add(this.animationSpeedx0_1);
-            this.CheatPanel.Controls.Add(this.animationSpeedx2);
-            this.CheatPanel.Controls.Add(this.animationSpeedx5);
-            this.CheatPanel.Controls.Add(this.animationSpeedx50);
-            this.CheatPanel.Controls.Add(this.maxSpeedX1Btn);
-            this.CheatPanel.Controls.Add(this.maxSpeedX2Btn);
-            this.CheatPanel.Controls.Add(this.maxSpeedX3Btn);
-            this.CheatPanel.Controls.Add(this.maxSpeedX5Btn);
-            this.CheatPanel.Controls.Add(this.maxSpeedX100Btn);
-            this.CheatPanel.Controls.Add(this.PoopButton);
-            this.CheatPanel.Controls.Add(this.EatButton);
-            this.CheatPanel.Controls.Add(this.AnimationSpeedLabel);
-            this.CheatPanel.Controls.Add(this.DisableCollisionLabel);
-            this.CheatPanel.Controls.Add(this.MaxWalkSpeedLabel);
-            this.CheatPanel.Controls.Add(this.StaminaLabel);
-            this.CheatPanel.Location = new System.Drawing.Point(460, 251);
-            this.CheatPanel.Name = "CheatPanel";
-            this.CheatPanel.Size = new System.Drawing.Size(366, 253);
-            this.CheatPanel.TabIndex = 32;
+            CheatPanel.Controls.Add(FastSwimToggle);
+            CheatPanel.Controls.Add(SwimClubModeLabel);
+            CheatPanel.Controls.Add(DisableCollisionToggle);
+            CheatPanel.Controls.Add(animationSpeedx1);
+            CheatPanel.Controls.Add(animationSpeedx0_1);
+            CheatPanel.Controls.Add(animationSpeedx2);
+            CheatPanel.Controls.Add(animationSpeedx5);
+            CheatPanel.Controls.Add(animationSpeedx50);
+            CheatPanel.Controls.Add(maxSpeedX1Btn);
+            CheatPanel.Controls.Add(maxSpeedX2Btn);
+            CheatPanel.Controls.Add(maxSpeedX3Btn);
+            CheatPanel.Controls.Add(maxSpeedX5Btn);
+            CheatPanel.Controls.Add(maxSpeedX100Btn);
+            CheatPanel.Controls.Add(PoopButton);
+            CheatPanel.Controls.Add(EatButton);
+            CheatPanel.Controls.Add(AnimationSpeedLabel);
+            CheatPanel.Controls.Add(DisableCollisionLabel);
+            CheatPanel.Controls.Add(MaxWalkSpeedLabel);
+            CheatPanel.Controls.Add(StaminaLabel);
+            CheatPanel.Location = new System.Drawing.Point(460, 251);
+            CheatPanel.Name = "CheatPanel";
+            CheatPanel.Size = new System.Drawing.Size(366, 253);
+            CheatPanel.TabIndex = 32;
             // 
             // FastSwimToggle
             // 
-            this.FastSwimToggle.Location = new System.Drawing.Point(190, 220);
-            this.FastSwimToggle.Name = "FastSwimToggle";
-            this.FastSwimToggle.OffFont = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FastSwimToggle.OffForeColor = System.Drawing.Color.White;
-            this.FastSwimToggle.OffText = "Off";
-            this.FastSwimToggle.OnFont = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FastSwimToggle.OnForeColor = System.Drawing.Color.White;
-            this.FastSwimToggle.OnText = "On";
-            this.FastSwimToggle.Size = new System.Drawing.Size(71, 22);
-            this.FastSwimToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
-            this.FastSwimToggle.TabIndex = 95;
-            this.FastSwimToggle.UseAnimation = false;
-            this.FastSwimToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.FastSwimToggle_CheckedChanged);
+            FastSwimToggle.Location = new System.Drawing.Point(190, 220);
+            FastSwimToggle.Name = "FastSwimToggle";
+            FastSwimToggle.OffFont = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            FastSwimToggle.OffForeColor = System.Drawing.Color.White;
+            FastSwimToggle.OffText = "Off";
+            FastSwimToggle.OnFont = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            FastSwimToggle.OnForeColor = System.Drawing.Color.White;
+            FastSwimToggle.OnText = "On";
+            FastSwimToggle.Size = new System.Drawing.Size(71, 22);
+            FastSwimToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            FastSwimToggle.TabIndex = 95;
+            FastSwimToggle.UseAnimation = false;
+            FastSwimToggle.CheckedChanged += FastSwimToggle_CheckedChanged;
             // 
             // SwimClubModeLabel
             // 
-            this.SwimClubModeLabel.AutoSize = true;
-            this.SwimClubModeLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SwimClubModeLabel.ForeColor = System.Drawing.Color.White;
-            this.SwimClubModeLabel.Location = new System.Drawing.Point(12, 220);
-            this.SwimClubModeLabel.Name = "SwimClubModeLabel";
-            this.SwimClubModeLabel.Size = new System.Drawing.Size(177, 22);
-            this.SwimClubModeLabel.TabIndex = 94;
-            this.SwimClubModeLabel.Text = "Swim Club Mode :";
+            SwimClubModeLabel.AutoSize = true;
+            SwimClubModeLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            SwimClubModeLabel.ForeColor = System.Drawing.Color.White;
+            SwimClubModeLabel.Location = new System.Drawing.Point(12, 220);
+            SwimClubModeLabel.Name = "SwimClubModeLabel";
+            SwimClubModeLabel.Size = new System.Drawing.Size(177, 22);
+            SwimClubModeLabel.TabIndex = 94;
+            SwimClubModeLabel.Text = "Swim Club Mode :";
             // 
             // DisableCollisionToggle
             // 
-            this.DisableCollisionToggle.Location = new System.Drawing.Point(190, 188);
-            this.DisableCollisionToggle.Name = "DisableCollisionToggle";
-            this.DisableCollisionToggle.OffFont = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DisableCollisionToggle.OffForeColor = System.Drawing.Color.White;
-            this.DisableCollisionToggle.OffText = "Off";
-            this.DisableCollisionToggle.OnFont = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DisableCollisionToggle.OnForeColor = System.Drawing.Color.White;
-            this.DisableCollisionToggle.OnText = "On";
-            this.DisableCollisionToggle.Size = new System.Drawing.Size(71, 22);
-            this.DisableCollisionToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
-            this.DisableCollisionToggle.TabIndex = 93;
-            this.DisableCollisionToggle.UseAnimation = false;
-            this.DisableCollisionToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.DisableCollisionToggle_CheckedChanged);
+            DisableCollisionToggle.Location = new System.Drawing.Point(190, 188);
+            DisableCollisionToggle.Name = "DisableCollisionToggle";
+            DisableCollisionToggle.OffFont = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            DisableCollisionToggle.OffForeColor = System.Drawing.Color.White;
+            DisableCollisionToggle.OffText = "Off";
+            DisableCollisionToggle.OnFont = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            DisableCollisionToggle.OnForeColor = System.Drawing.Color.White;
+            DisableCollisionToggle.OnText = "On";
+            DisableCollisionToggle.Size = new System.Drawing.Size(71, 22);
+            DisableCollisionToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            DisableCollisionToggle.TabIndex = 93;
+            DisableCollisionToggle.UseAnimation = false;
+            DisableCollisionToggle.CheckedChanged += DisableCollisionToggle_CheckedChanged;
             // 
             // animationSpeedx1
             // 
-            this.animationSpeedx1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-            this.animationSpeedx1.FlatAppearance.BorderSize = 0;
-            this.animationSpeedx1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.animationSpeedx1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.animationSpeedx1.ForeColor = System.Drawing.Color.White;
-            this.animationSpeedx1.Location = new System.Drawing.Point(291, 155);
-            this.animationSpeedx1.Name = "animationSpeedx1";
-            this.animationSpeedx1.Size = new System.Drawing.Size(65, 23);
-            this.animationSpeedx1.TabIndex = 92;
-            this.animationSpeedx1.Tag = "";
-            this.animationSpeedx1.Text = "x1";
-            this.animationSpeedx1.UseVisualStyleBackColor = false;
-            this.animationSpeedx1.Click += new System.EventHandler(this.AnimationSpeedx1_Click);
+            animationSpeedx1.BackColor = System.Drawing.Color.FromArgb(80, 80, 255);
+            animationSpeedx1.FlatAppearance.BorderSize = 0;
+            animationSpeedx1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            animationSpeedx1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            animationSpeedx1.ForeColor = System.Drawing.Color.White;
+            animationSpeedx1.Location = new System.Drawing.Point(291, 155);
+            animationSpeedx1.Name = "animationSpeedx1";
+            animationSpeedx1.Size = new System.Drawing.Size(65, 23);
+            animationSpeedx1.TabIndex = 92;
+            animationSpeedx1.Tag = "";
+            animationSpeedx1.Text = "x1";
+            animationSpeedx1.UseVisualStyleBackColor = false;
+            animationSpeedx1.Click += AnimationSpeedx1_Click;
             // 
             // animationSpeedx0_1
             // 
-            this.animationSpeedx0_1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.animationSpeedx0_1.FlatAppearance.BorderSize = 0;
-            this.animationSpeedx0_1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.animationSpeedx0_1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.animationSpeedx0_1.ForeColor = System.Drawing.Color.White;
-            this.animationSpeedx0_1.Location = new System.Drawing.Point(220, 155);
-            this.animationSpeedx0_1.Name = "animationSpeedx0_1";
-            this.animationSpeedx0_1.Size = new System.Drawing.Size(65, 23);
-            this.animationSpeedx0_1.TabIndex = 91;
-            this.animationSpeedx0_1.Tag = "";
-            this.animationSpeedx0_1.Text = "x0.1";
-            this.animationSpeedx0_1.UseVisualStyleBackColor = false;
-            this.animationSpeedx0_1.Click += new System.EventHandler(this.AnimationSpeedx0_1_Click);
+            animationSpeedx0_1.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            animationSpeedx0_1.FlatAppearance.BorderSize = 0;
+            animationSpeedx0_1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            animationSpeedx0_1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            animationSpeedx0_1.ForeColor = System.Drawing.Color.White;
+            animationSpeedx0_1.Location = new System.Drawing.Point(220, 155);
+            animationSpeedx0_1.Name = "animationSpeedx0_1";
+            animationSpeedx0_1.Size = new System.Drawing.Size(65, 23);
+            animationSpeedx0_1.TabIndex = 91;
+            animationSpeedx0_1.Tag = "";
+            animationSpeedx0_1.Text = "x0.1";
+            animationSpeedx0_1.UseVisualStyleBackColor = false;
+            animationSpeedx0_1.Click += AnimationSpeedx0_1_Click;
             // 
             // animationSpeedx2
             // 
-            this.animationSpeedx2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.animationSpeedx2.FlatAppearance.BorderSize = 0;
-            this.animationSpeedx2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.animationSpeedx2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.animationSpeedx2.ForeColor = System.Drawing.Color.White;
-            this.animationSpeedx2.Location = new System.Drawing.Point(149, 155);
-            this.animationSpeedx2.Name = "animationSpeedx2";
-            this.animationSpeedx2.Size = new System.Drawing.Size(65, 23);
-            this.animationSpeedx2.TabIndex = 90;
-            this.animationSpeedx2.Tag = "";
-            this.animationSpeedx2.Text = "x2";
-            this.animationSpeedx2.UseVisualStyleBackColor = false;
-            this.animationSpeedx2.Click += new System.EventHandler(this.AnimationSpeedx2_Click);
+            animationSpeedx2.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            animationSpeedx2.FlatAppearance.BorderSize = 0;
+            animationSpeedx2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            animationSpeedx2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            animationSpeedx2.ForeColor = System.Drawing.Color.White;
+            animationSpeedx2.Location = new System.Drawing.Point(149, 155);
+            animationSpeedx2.Name = "animationSpeedx2";
+            animationSpeedx2.Size = new System.Drawing.Size(65, 23);
+            animationSpeedx2.TabIndex = 90;
+            animationSpeedx2.Tag = "";
+            animationSpeedx2.Text = "x2";
+            animationSpeedx2.UseVisualStyleBackColor = false;
+            animationSpeedx2.Click += AnimationSpeedx2_Click;
             // 
             // animationSpeedx5
             // 
-            this.animationSpeedx5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.animationSpeedx5.FlatAppearance.BorderSize = 0;
-            this.animationSpeedx5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.animationSpeedx5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.animationSpeedx5.ForeColor = System.Drawing.Color.White;
-            this.animationSpeedx5.Location = new System.Drawing.Point(78, 155);
-            this.animationSpeedx5.Name = "animationSpeedx5";
-            this.animationSpeedx5.Size = new System.Drawing.Size(65, 23);
-            this.animationSpeedx5.TabIndex = 89;
-            this.animationSpeedx5.Tag = "";
-            this.animationSpeedx5.Text = "x5";
-            this.animationSpeedx5.UseVisualStyleBackColor = false;
-            this.animationSpeedx5.Click += new System.EventHandler(this.AnimationSpeedx5_Click);
+            animationSpeedx5.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            animationSpeedx5.FlatAppearance.BorderSize = 0;
+            animationSpeedx5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            animationSpeedx5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            animationSpeedx5.ForeColor = System.Drawing.Color.White;
+            animationSpeedx5.Location = new System.Drawing.Point(78, 155);
+            animationSpeedx5.Name = "animationSpeedx5";
+            animationSpeedx5.Size = new System.Drawing.Size(65, 23);
+            animationSpeedx5.TabIndex = 89;
+            animationSpeedx5.Tag = "";
+            animationSpeedx5.Text = "x5";
+            animationSpeedx5.UseVisualStyleBackColor = false;
+            animationSpeedx5.Click += AnimationSpeedx5_Click;
             // 
             // animationSpeedx50
             // 
-            this.animationSpeedx50.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.animationSpeedx50.FlatAppearance.BorderSize = 0;
-            this.animationSpeedx50.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.animationSpeedx50.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.animationSpeedx50.ForeColor = System.Drawing.Color.White;
-            this.animationSpeedx50.Location = new System.Drawing.Point(8, 155);
-            this.animationSpeedx50.Name = "animationSpeedx50";
-            this.animationSpeedx50.Size = new System.Drawing.Size(65, 23);
-            this.animationSpeedx50.TabIndex = 88;
-            this.animationSpeedx50.Tag = "";
-            this.animationSpeedx50.Text = "x50";
-            this.animationSpeedx50.UseVisualStyleBackColor = false;
-            this.animationSpeedx50.Click += new System.EventHandler(this.AnimationSpeedx50_Click);
+            animationSpeedx50.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            animationSpeedx50.FlatAppearance.BorderSize = 0;
+            animationSpeedx50.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            animationSpeedx50.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            animationSpeedx50.ForeColor = System.Drawing.Color.White;
+            animationSpeedx50.Location = new System.Drawing.Point(8, 155);
+            animationSpeedx50.Name = "animationSpeedx50";
+            animationSpeedx50.Size = new System.Drawing.Size(65, 23);
+            animationSpeedx50.TabIndex = 88;
+            animationSpeedx50.Tag = "";
+            animationSpeedx50.Text = "x50";
+            animationSpeedx50.UseVisualStyleBackColor = false;
+            animationSpeedx50.Click += AnimationSpeedx50_Click;
             // 
             // maxSpeedX1Btn
             // 
-            this.maxSpeedX1Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-            this.maxSpeedX1Btn.FlatAppearance.BorderSize = 0;
-            this.maxSpeedX1Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.maxSpeedX1Btn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.maxSpeedX1Btn.ForeColor = System.Drawing.Color.White;
-            this.maxSpeedX1Btn.Location = new System.Drawing.Point(291, 96);
-            this.maxSpeedX1Btn.Name = "maxSpeedX1Btn";
-            this.maxSpeedX1Btn.Size = new System.Drawing.Size(65, 23);
-            this.maxSpeedX1Btn.TabIndex = 87;
-            this.maxSpeedX1Btn.Tag = "";
-            this.maxSpeedX1Btn.Text = "x1";
-            this.maxSpeedX1Btn.UseVisualStyleBackColor = false;
-            this.maxSpeedX1Btn.Click += new System.EventHandler(this.MaxSpeedX1Btn_Click);
+            maxSpeedX1Btn.BackColor = System.Drawing.Color.FromArgb(80, 80, 255);
+            maxSpeedX1Btn.FlatAppearance.BorderSize = 0;
+            maxSpeedX1Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            maxSpeedX1Btn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            maxSpeedX1Btn.ForeColor = System.Drawing.Color.White;
+            maxSpeedX1Btn.Location = new System.Drawing.Point(291, 96);
+            maxSpeedX1Btn.Name = "maxSpeedX1Btn";
+            maxSpeedX1Btn.Size = new System.Drawing.Size(65, 23);
+            maxSpeedX1Btn.TabIndex = 87;
+            maxSpeedX1Btn.Tag = "";
+            maxSpeedX1Btn.Text = "x1";
+            maxSpeedX1Btn.UseVisualStyleBackColor = false;
+            maxSpeedX1Btn.Click += MaxSpeedX1Btn_Click;
             // 
             // maxSpeedX2Btn
             // 
-            this.maxSpeedX2Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.maxSpeedX2Btn.FlatAppearance.BorderSize = 0;
-            this.maxSpeedX2Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.maxSpeedX2Btn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.maxSpeedX2Btn.ForeColor = System.Drawing.Color.White;
-            this.maxSpeedX2Btn.Location = new System.Drawing.Point(220, 96);
-            this.maxSpeedX2Btn.Name = "maxSpeedX2Btn";
-            this.maxSpeedX2Btn.Size = new System.Drawing.Size(65, 23);
-            this.maxSpeedX2Btn.TabIndex = 86;
-            this.maxSpeedX2Btn.Tag = "";
-            this.maxSpeedX2Btn.Text = "x2";
-            this.maxSpeedX2Btn.UseVisualStyleBackColor = false;
-            this.maxSpeedX2Btn.Click += new System.EventHandler(this.MaxSpeedX2Btn_Click);
+            maxSpeedX2Btn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            maxSpeedX2Btn.FlatAppearance.BorderSize = 0;
+            maxSpeedX2Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            maxSpeedX2Btn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            maxSpeedX2Btn.ForeColor = System.Drawing.Color.White;
+            maxSpeedX2Btn.Location = new System.Drawing.Point(220, 96);
+            maxSpeedX2Btn.Name = "maxSpeedX2Btn";
+            maxSpeedX2Btn.Size = new System.Drawing.Size(65, 23);
+            maxSpeedX2Btn.TabIndex = 86;
+            maxSpeedX2Btn.Tag = "";
+            maxSpeedX2Btn.Text = "x2";
+            maxSpeedX2Btn.UseVisualStyleBackColor = false;
+            maxSpeedX2Btn.Click += MaxSpeedX2Btn_Click;
             // 
             // maxSpeedX3Btn
             // 
-            this.maxSpeedX3Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.maxSpeedX3Btn.FlatAppearance.BorderSize = 0;
-            this.maxSpeedX3Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.maxSpeedX3Btn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.maxSpeedX3Btn.ForeColor = System.Drawing.Color.White;
-            this.maxSpeedX3Btn.Location = new System.Drawing.Point(149, 96);
-            this.maxSpeedX3Btn.Name = "maxSpeedX3Btn";
-            this.maxSpeedX3Btn.Size = new System.Drawing.Size(65, 23);
-            this.maxSpeedX3Btn.TabIndex = 85;
-            this.maxSpeedX3Btn.Tag = "";
-            this.maxSpeedX3Btn.Text = "x3";
-            this.maxSpeedX3Btn.UseVisualStyleBackColor = false;
-            this.maxSpeedX3Btn.Click += new System.EventHandler(this.MaxSpeedX3Btn_Click);
+            maxSpeedX3Btn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            maxSpeedX3Btn.FlatAppearance.BorderSize = 0;
+            maxSpeedX3Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            maxSpeedX3Btn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            maxSpeedX3Btn.ForeColor = System.Drawing.Color.White;
+            maxSpeedX3Btn.Location = new System.Drawing.Point(149, 96);
+            maxSpeedX3Btn.Name = "maxSpeedX3Btn";
+            maxSpeedX3Btn.Size = new System.Drawing.Size(65, 23);
+            maxSpeedX3Btn.TabIndex = 85;
+            maxSpeedX3Btn.Tag = "";
+            maxSpeedX3Btn.Text = "x3";
+            maxSpeedX3Btn.UseVisualStyleBackColor = false;
+            maxSpeedX3Btn.Click += MaxSpeedX3Btn_Click;
             // 
             // maxSpeedX5Btn
             // 
-            this.maxSpeedX5Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.maxSpeedX5Btn.FlatAppearance.BorderSize = 0;
-            this.maxSpeedX5Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.maxSpeedX5Btn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.maxSpeedX5Btn.ForeColor = System.Drawing.Color.White;
-            this.maxSpeedX5Btn.Location = new System.Drawing.Point(78, 96);
-            this.maxSpeedX5Btn.Name = "maxSpeedX5Btn";
-            this.maxSpeedX5Btn.Size = new System.Drawing.Size(65, 23);
-            this.maxSpeedX5Btn.TabIndex = 84;
-            this.maxSpeedX5Btn.Tag = "";
-            this.maxSpeedX5Btn.Text = "x5";
-            this.maxSpeedX5Btn.UseVisualStyleBackColor = false;
-            this.maxSpeedX5Btn.Click += new System.EventHandler(this.MaxSpeedX5Btn_Click);
+            maxSpeedX5Btn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            maxSpeedX5Btn.FlatAppearance.BorderSize = 0;
+            maxSpeedX5Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            maxSpeedX5Btn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            maxSpeedX5Btn.ForeColor = System.Drawing.Color.White;
+            maxSpeedX5Btn.Location = new System.Drawing.Point(78, 96);
+            maxSpeedX5Btn.Name = "maxSpeedX5Btn";
+            maxSpeedX5Btn.Size = new System.Drawing.Size(65, 23);
+            maxSpeedX5Btn.TabIndex = 84;
+            maxSpeedX5Btn.Tag = "";
+            maxSpeedX5Btn.Text = "x5";
+            maxSpeedX5Btn.UseVisualStyleBackColor = false;
+            maxSpeedX5Btn.Click += MaxSpeedX5Btn_Click;
             // 
             // maxSpeedX100Btn
             // 
-            this.maxSpeedX100Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.maxSpeedX100Btn.FlatAppearance.BorderSize = 0;
-            this.maxSpeedX100Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.maxSpeedX100Btn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.maxSpeedX100Btn.ForeColor = System.Drawing.Color.White;
-            this.maxSpeedX100Btn.Location = new System.Drawing.Point(8, 96);
-            this.maxSpeedX100Btn.Name = "maxSpeedX100Btn";
-            this.maxSpeedX100Btn.Size = new System.Drawing.Size(65, 23);
-            this.maxSpeedX100Btn.TabIndex = 83;
-            this.maxSpeedX100Btn.Tag = "";
-            this.maxSpeedX100Btn.Text = "x100";
-            this.maxSpeedX100Btn.UseVisualStyleBackColor = false;
-            this.maxSpeedX100Btn.Click += new System.EventHandler(this.MaxSpeedX100Btn_Click);
+            maxSpeedX100Btn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            maxSpeedX100Btn.FlatAppearance.BorderSize = 0;
+            maxSpeedX100Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            maxSpeedX100Btn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            maxSpeedX100Btn.ForeColor = System.Drawing.Color.White;
+            maxSpeedX100Btn.Location = new System.Drawing.Point(8, 96);
+            maxSpeedX100Btn.Name = "maxSpeedX100Btn";
+            maxSpeedX100Btn.Size = new System.Drawing.Size(65, 23);
+            maxSpeedX100Btn.TabIndex = 83;
+            maxSpeedX100Btn.Tag = "";
+            maxSpeedX100Btn.Text = "x100";
+            maxSpeedX100Btn.UseVisualStyleBackColor = false;
+            maxSpeedX100Btn.Click += MaxSpeedX100Btn_Click;
             // 
             // PoopButton
             // 
-            this.PoopButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.PoopButton.FlatAppearance.BorderSize = 0;
-            this.PoopButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PoopButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.PoopButton.ForeColor = System.Drawing.Color.White;
-            this.PoopButton.Location = new System.Drawing.Point(186, 28);
-            this.PoopButton.Name = "PoopButton";
-            this.PoopButton.Size = new System.Drawing.Size(170, 23);
-            this.PoopButton.TabIndex = 82;
-            this.PoopButton.Tag = "";
-            this.PoopButton.Text = "Phantom pooping";
-            this.PoopButton.UseVisualStyleBackColor = false;
-            this.PoopButton.Click += new System.EventHandler(this.PoopButton_Click);
+            PoopButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            PoopButton.FlatAppearance.BorderSize = 0;
+            PoopButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            PoopButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            PoopButton.ForeColor = System.Drawing.Color.White;
+            PoopButton.Location = new System.Drawing.Point(186, 28);
+            PoopButton.Name = "PoopButton";
+            PoopButton.Size = new System.Drawing.Size(170, 23);
+            PoopButton.TabIndex = 82;
+            PoopButton.Tag = "";
+            PoopButton.Text = "Phantom pooping";
+            PoopButton.UseVisualStyleBackColor = false;
+            PoopButton.Click += PoopButton_Click;
             // 
             // EatButton
             // 
-            this.EatButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.EatButton.FlatAppearance.BorderSize = 0;
-            this.EatButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.EatButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.EatButton.ForeColor = System.Drawing.Color.White;
-            this.EatButton.Location = new System.Drawing.Point(8, 28);
-            this.EatButton.Name = "EatButton";
-            this.EatButton.Size = new System.Drawing.Size(170, 23);
-            this.EatButton.TabIndex = 81;
-            this.EatButton.Tag = "";
-            this.EatButton.Text = "Eat";
-            this.EatButton.UseVisualStyleBackColor = false;
-            this.EatButton.Click += new System.EventHandler(this.EatButton_Click);
+            EatButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            EatButton.FlatAppearance.BorderSize = 0;
+            EatButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            EatButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            EatButton.ForeColor = System.Drawing.Color.White;
+            EatButton.Location = new System.Drawing.Point(8, 28);
+            EatButton.Name = "EatButton";
+            EatButton.Size = new System.Drawing.Size(170, 23);
+            EatButton.TabIndex = 81;
+            EatButton.Tag = "";
+            EatButton.Text = "Eat";
+            EatButton.UseVisualStyleBackColor = false;
+            EatButton.Click += EatButton_Click;
             // 
             // AnimationSpeedLabel
             // 
-            this.AnimationSpeedLabel.AutoSize = true;
-            this.AnimationSpeedLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.AnimationSpeedLabel.ForeColor = System.Drawing.Color.White;
-            this.AnimationSpeedLabel.Location = new System.Drawing.Point(11, 130);
-            this.AnimationSpeedLabel.Name = "AnimationSpeedLabel";
-            this.AnimationSpeedLabel.Size = new System.Drawing.Size(179, 22);
-            this.AnimationSpeedLabel.TabIndex = 80;
-            this.AnimationSpeedLabel.Text = "Animation Speed :";
+            AnimationSpeedLabel.AutoSize = true;
+            AnimationSpeedLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            AnimationSpeedLabel.ForeColor = System.Drawing.Color.White;
+            AnimationSpeedLabel.Location = new System.Drawing.Point(11, 130);
+            AnimationSpeedLabel.Name = "AnimationSpeedLabel";
+            AnimationSpeedLabel.Size = new System.Drawing.Size(179, 22);
+            AnimationSpeedLabel.TabIndex = 80;
+            AnimationSpeedLabel.Text = "Animation Speed :";
             // 
             // DisableCollisionLabel
             // 
-            this.DisableCollisionLabel.AutoSize = true;
-            this.DisableCollisionLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DisableCollisionLabel.ForeColor = System.Drawing.Color.White;
-            this.DisableCollisionLabel.Location = new System.Drawing.Point(11, 188);
-            this.DisableCollisionLabel.Name = "DisableCollisionLabel";
-            this.DisableCollisionLabel.Size = new System.Drawing.Size(177, 22);
-            this.DisableCollisionLabel.TabIndex = 79;
-            this.DisableCollisionLabel.Text = "Disable Collision :";
+            DisableCollisionLabel.AutoSize = true;
+            DisableCollisionLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            DisableCollisionLabel.ForeColor = System.Drawing.Color.White;
+            DisableCollisionLabel.Location = new System.Drawing.Point(11, 188);
+            DisableCollisionLabel.Name = "DisableCollisionLabel";
+            DisableCollisionLabel.Size = new System.Drawing.Size(177, 22);
+            DisableCollisionLabel.TabIndex = 79;
+            DisableCollisionLabel.Text = "Disable Collision :";
             // 
             // MaxWalkSpeedLabel
             // 
-            this.MaxWalkSpeedLabel.AutoSize = true;
-            this.MaxWalkSpeedLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.MaxWalkSpeedLabel.ForeColor = System.Drawing.Color.White;
-            this.MaxWalkSpeedLabel.Location = new System.Drawing.Point(11, 71);
-            this.MaxWalkSpeedLabel.Name = "MaxWalkSpeedLabel";
-            this.MaxWalkSpeedLabel.Size = new System.Drawing.Size(224, 22);
-            this.MaxWalkSpeedLabel.TabIndex = 78;
-            this.MaxWalkSpeedLabel.Text = "Maximum Walk Speed :";
+            MaxWalkSpeedLabel.AutoSize = true;
+            MaxWalkSpeedLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            MaxWalkSpeedLabel.ForeColor = System.Drawing.Color.White;
+            MaxWalkSpeedLabel.Location = new System.Drawing.Point(11, 71);
+            MaxWalkSpeedLabel.Name = "MaxWalkSpeedLabel";
+            MaxWalkSpeedLabel.Size = new System.Drawing.Size(224, 22);
+            MaxWalkSpeedLabel.TabIndex = 78;
+            MaxWalkSpeedLabel.Text = "Maximum Walk Speed :";
             // 
             // StaminaLabel
             // 
-            this.StaminaLabel.AutoSize = true;
-            this.StaminaLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.StaminaLabel.ForeColor = System.Drawing.Color.White;
-            this.StaminaLabel.Location = new System.Drawing.Point(11, 3);
-            this.StaminaLabel.Name = "StaminaLabel";
-            this.StaminaLabel.Size = new System.Drawing.Size(97, 22);
-            this.StaminaLabel.TabIndex = 77;
-            this.StaminaLabel.Text = "Stamina :";
+            StaminaLabel.AutoSize = true;
+            StaminaLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            StaminaLabel.ForeColor = System.Drawing.Color.White;
+            StaminaLabel.Location = new System.Drawing.Point(11, 3);
+            StaminaLabel.Name = "StaminaLabel";
+            StaminaLabel.Size = new System.Drawing.Size(97, 22);
+            StaminaLabel.TabIndex = 77;
+            StaminaLabel.Text = "Stamina :";
             // 
             // ReactionPanel
             // 
-            this.ReactionPanel.Controls.Add(this.SetReactionWheelButton);
-            this.ReactionPanel.Controls.Add(this.PlayerInventorySelectorOther);
-            this.ReactionPanel.Controls.Add(this.ReactionSlot8);
-            this.ReactionPanel.Controls.Add(this.ReactionSlot7);
-            this.ReactionPanel.Controls.Add(this.ReactionSlot6);
-            this.ReactionPanel.Controls.Add(this.ReactionSlot5);
-            this.ReactionPanel.Controls.Add(this.ReactionSlot4);
-            this.ReactionPanel.Controls.Add(this.ReactionSlot3);
-            this.ReactionPanel.Controls.Add(this.ReactionSlot2);
-            this.ReactionPanel.Controls.Add(this.ReactionSlot1);
-            this.ReactionPanel.Controls.Add(this.ReactionWheelLabel);
-            this.ReactionPanel.Location = new System.Drawing.Point(460, 3);
-            this.ReactionPanel.Name = "ReactionPanel";
-            this.ReactionPanel.Size = new System.Drawing.Size(744, 242);
-            this.ReactionPanel.TabIndex = 31;
+            ReactionPanel.Controls.Add(SetReactionWheelButton);
+            ReactionPanel.Controls.Add(PlayerInventorySelectorOther);
+            ReactionPanel.Controls.Add(ReactionSlot8);
+            ReactionPanel.Controls.Add(ReactionSlot7);
+            ReactionPanel.Controls.Add(ReactionSlot6);
+            ReactionPanel.Controls.Add(ReactionSlot5);
+            ReactionPanel.Controls.Add(ReactionSlot4);
+            ReactionPanel.Controls.Add(ReactionSlot3);
+            ReactionPanel.Controls.Add(ReactionSlot2);
+            ReactionPanel.Controls.Add(ReactionSlot1);
+            ReactionPanel.Controls.Add(ReactionWheelLabel);
+            ReactionPanel.Location = new System.Drawing.Point(460, 3);
+            ReactionPanel.Name = "ReactionPanel";
+            ReactionPanel.Size = new System.Drawing.Size(744, 242);
+            ReactionPanel.TabIndex = 31;
             // 
             // SetReactionWheelButton
             // 
-            this.SetReactionWheelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.SetReactionWheelButton.FlatAppearance.BorderSize = 0;
-            this.SetReactionWheelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SetReactionWheelButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SetReactionWheelButton.ForeColor = System.Drawing.Color.White;
-            this.SetReactionWheelButton.Location = new System.Drawing.Point(563, 202);
-            this.SetReactionWheelButton.Name = "SetReactionWheelButton";
-            this.SetReactionWheelButton.Size = new System.Drawing.Size(175, 23);
-            this.SetReactionWheelButton.TabIndex = 94;
-            this.SetReactionWheelButton.Tag = "";
-            this.SetReactionWheelButton.Text = "Set Reaction Wheel";
-            this.SetReactionWheelButton.UseVisualStyleBackColor = false;
-            this.SetReactionWheelButton.Click += new System.EventHandler(this.SetReactionWheelButton_Click);
+            SetReactionWheelButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            SetReactionWheelButton.FlatAppearance.BorderSize = 0;
+            SetReactionWheelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            SetReactionWheelButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            SetReactionWheelButton.ForeColor = System.Drawing.Color.White;
+            SetReactionWheelButton.Location = new System.Drawing.Point(563, 202);
+            SetReactionWheelButton.Name = "SetReactionWheelButton";
+            SetReactionWheelButton.Size = new System.Drawing.Size(175, 23);
+            SetReactionWheelButton.TabIndex = 94;
+            SetReactionWheelButton.Tag = "";
+            SetReactionWheelButton.Text = "Set Reaction Wheel";
+            SetReactionWheelButton.UseVisualStyleBackColor = false;
+            SetReactionWheelButton.Click += SetReactionWheelButton_Click;
             // 
             // PlayerInventorySelectorOther
             // 
-            this.PlayerInventorySelectorOther.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.PlayerInventorySelectorOther.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.PlayerInventorySelectorOther.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PlayerInventorySelectorOther.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.PlayerInventorySelectorOther.ForeColor = System.Drawing.Color.White;
-            this.PlayerInventorySelectorOther.FormattingEnabled = true;
-            this.PlayerInventorySelectorOther.Items.AddRange(new object[] {
-            "Player 1",
-            "Player 2",
-            "Player 3",
-            "Player 4",
-            "Player 5",
-            "Player 6",
-            "Player 7",
-            "Player 8"});
-            this.PlayerInventorySelectorOther.Location = new System.Drawing.Point(66, 29);
-            this.PlayerInventorySelectorOther.Name = "PlayerInventorySelectorOther";
-            this.PlayerInventorySelectorOther.Size = new System.Drawing.Size(126, 23);
-            this.PlayerInventorySelectorOther.TabIndex = 76;
-            this.PlayerInventorySelectorOther.SelectedIndexChanged += new System.EventHandler(this.PlayerInventorySelectorOther_SelectedIndexChanged);
+            PlayerInventorySelectorOther.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            PlayerInventorySelectorOther.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            PlayerInventorySelectorOther.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            PlayerInventorySelectorOther.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            PlayerInventorySelectorOther.ForeColor = System.Drawing.Color.White;
+            PlayerInventorySelectorOther.FormattingEnabled = true;
+            PlayerInventorySelectorOther.Items.AddRange(new object[] { "Player 1", "Player 2", "Player 3", "Player 4", "Player 5", "Player 6", "Player 7", "Player 8" });
+            PlayerInventorySelectorOther.Location = new System.Drawing.Point(66, 29);
+            PlayerInventorySelectorOther.Name = "PlayerInventorySelectorOther";
+            PlayerInventorySelectorOther.Size = new System.Drawing.Size(126, 23);
+            PlayerInventorySelectorOther.TabIndex = 76;
+            PlayerInventorySelectorOther.SelectedIndexChanged += PlayerInventorySelectorOther_SelectedIndexChanged;
             // 
             // ReactionSlot8
             // 
-            this.ReactionSlot8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.ReactionSlot8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ReactionSlot8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ReactionSlot8.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ReactionSlot8.ForeColor = System.Drawing.Color.White;
-            this.ReactionSlot8.FormattingEnabled = true;
-            this.ReactionSlot8.Items.AddRange(new object[] {
-            "01: Happiness",
-            "02: Laughter",
-            "03: Joy",
-            "04: Love",
-            "05: Glee",
-            "06: Anger (Unused)",
-            "07: Aggravation",
-            "08: Outrage (Unused)",
-            "09: Worry",
-            "0A: Sighing",
-            "0B: Thought",
-            "0C: Sadness",
-            "0D: Distress",
-            "0E: Sorrow",
-            "0F: Amazed",
-            "10: Surprise",
-            "11: Disbelief (Unused)",
-            "12: Shocked",
-            "13: Cold Chill",
-            "14: Fearful",
-            "15: Agreement",
-            "16: Inspiration",
-            "17: Curiosity",
-            "18: Heartbreak",
-            "19: Sleepy",
-            "1A: Bashfulness",
-            "1B: Resignation",
-            "1C: Mischief",
-            "1D: Delight",
-            "1E: Sneezing",
-            "1F: Encouraging",
-            "20: Greetings",
-            "21: Pride",
-            "22: Sweating (Unused)",
-            "23: Smirking",
-            "24: Sheepishness",
-            "25: Smile (Unused)",
-            "26: Sunniness (Unused)",
-            "27: Shyness",
-            "28: Disagreement",
-            "29: Mistaken",
-            "2A: Flourish",
-            "2B: Daydreaming",
-            "2C: Showmanship",
-            "2D: Dozing",
-            "2E: Shrunk Funk Shuffle (Unused)",
-            "2F: Intense",
-            "30: Pleased",
-            "31: Distress (Unused)",
-            "32: Wave (Unused)",
-            "33: Poking hands (Unused)",
-            "34: Nod (Unused)",
-            "35: Notice (Unused)",
-            "36: Apologetic",
-            "37: Confident",
-            "38: Talking (Unused)",
-            "39: Clapping (Unused)",
-            "3A: Bewilderment",
-            "3B: Greetings (Unused)",
-            "3C: Scare (Halloween)",
-            "3D: Haunt (Halloween)",
-            "3E: Sit Down",
-            "3F: Yoga",
-            "40: Here You Go",
-            "41: Work Out",
-            "42: Take a Picture",
-            "43: Sniff Sniff",
-            "44: Ta-da",
-            "45: Wave Goodbye",
-            "46: Excited",
-            "47: Confetti (Festivale)",
-            "48: Viva (Festivale)",
-            "49: Let\'s Go (Festivale)",
-            "4A: Feelin\' It (Festivale)",
-            "4B: Raised Fist (Unused) ",
-            "4C: Say Cheese ",
-            "4D: Eager ",
-            "4E: Posture Warm-Up ",
-            "4F: Arm Circles ",
-            "50: Side Bends ",
-            "51: Body Twists ",
-            "52: Wide Arm Stretch ",
-            "53: Upper-Body Circles ",
-            "54: Jump ",
-            "55: Hula ",
-            "56: Double Wave ",
-            "57: Listening Ears ",
-            "58: Flex ",
-            "59: Jammin\' ",
-            "5A: Stretch ",
-            "5B: Behold ",
-            "5C: Work It ",
-            "5D: Act Natural ",
-            "5E: Grooving Hop ",
-            "5F: Groove Right ",
-            "60: Groove Left ",
-            "61: Soak It In ",
-            "62: Shimmy ",
-            "63: Airplane ",
-            "64: Twisty Dance ",
-            "65: Arm-Swing Dance ",
-            "66: Island Stomp ",
-            "67: Side-To-Side ",
-            "68: Turnip Patch ",
-            "69: Laughing (Unused) ",
-            "6A: Content (Unused) ",
-            "6B: Gulliver (Unused)",
-            "6C: Wasp (Unused)",
-            "4D: Forehead (Unused)",
-            "4E: Orville (Unused)",
-            "6F: K.K. Slider Sitting (Unused)",
-            "70: K.K. nodding while sitting (Unused)",
-            "71: K.K. thinking while sitting (Unused)",
-            "72: Lottie Hooray (Unused)",
-            "73: Lottie Kawaii (Unused)",
-            "74: Niko Moon Jump (Unused)",
-            "75: Niko Smily Face (Unused)",
-            "76: Niko High Jump (Unused)"});
-            this.ReactionSlot8.Location = new System.Drawing.Point(136, 70);
-            this.ReactionSlot8.Name = "ReactionSlot8";
-            this.ReactionSlot8.Size = new System.Drawing.Size(230, 23);
-            this.ReactionSlot8.TabIndex = 75;
+            ReactionSlot8.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            ReactionSlot8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            ReactionSlot8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ReactionSlot8.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            ReactionSlot8.ForeColor = System.Drawing.Color.White;
+            ReactionSlot8.FormattingEnabled = true;
+            ReactionSlot8.Items.AddRange(new object[] { "01: Happiness", "02: Laughter", "03: Joy", "04: Love", "05: Glee", "06: Anger (Unused)", "07: Aggravation", "08: Outrage (Unused)", "09: Worry", "0A: Sighing", "0B: Thought", "0C: Sadness", "0D: Distress", "0E: Sorrow", "0F: Amazed", "10: Surprise", "11: Disbelief (Unused)", "12: Shocked", "13: Cold Chill", "14: Fearful", "15: Agreement", "16: Inspiration", "17: Curiosity", "18: Heartbreak", "19: Sleepy", "1A: Bashfulness", "1B: Resignation", "1C: Mischief", "1D: Delight", "1E: Sneezing", "1F: Encouraging", "20: Greetings", "21: Pride", "22: Sweating (Unused)", "23: Smirking", "24: Sheepishness", "25: Smile (Unused)", "26: Sunniness (Unused)", "27: Shyness", "28: Disagreement", "29: Mistaken", "2A: Flourish", "2B: Daydreaming", "2C: Showmanship", "2D: Dozing", "2E: Shrunk Funk Shuffle (Unused)", "2F: Intense", "30: Pleased", "31: Distress (Unused)", "32: Wave (Unused)", "33: Poking hands (Unused)", "34: Nod (Unused)", "35: Notice (Unused)", "36: Apologetic", "37: Confident", "38: Talking (Unused)", "39: Clapping (Unused)", "3A: Bewilderment", "3B: Greetings (Unused)", "3C: Scare (Halloween)", "3D: Haunt (Halloween)", "3E: Sit Down", "3F: Yoga", "40: Here You Go", "41: Work Out", "42: Take a Picture", "43: Sniff Sniff", "44: Ta-da", "45: Wave Goodbye", "46: Excited", "47: Confetti (Festivale)", "48: Viva (Festivale)", "49: Let's Go (Festivale)", "4A: Feelin' It (Festivale)", "4B: Raised Fist (Unused) ", "4C: Say Cheese ", "4D: Eager ", "4E: Posture Warm-Up ", "4F: Arm Circles ", "50: Side Bends ", "51: Body Twists ", "52: Wide Arm Stretch ", "53: Upper-Body Circles ", "54: Jump ", "55: Hula ", "56: Double Wave ", "57: Listening Ears ", "58: Flex ", "59: Jammin' ", "5A: Stretch ", "5B: Behold ", "5C: Work It ", "5D: Act Natural ", "5E: Grooving Hop ", "5F: Groove Right ", "60: Groove Left ", "61: Soak It In ", "62: Shimmy ", "63: Airplane ", "64: Twisty Dance ", "65: Arm-Swing Dance ", "66: Island Stomp ", "67: Side-To-Side ", "68: Turnip Patch ", "69: Laughing (Unused) ", "6A: Content (Unused) ", "6B: Gulliver (Unused)", "6C: Wasp (Unused)", "4D: Forehead (Unused)", "4E: Orville (Unused)", "6F: K.K. Slider Sitting (Unused)", "70: K.K. nodding while sitting (Unused)", "71: K.K. thinking while sitting (Unused)", "72: Lottie Hooray (Unused)", "73: Lottie Kawaii (Unused)", "74: Niko Moon Jump (Unused)", "75: Niko Smily Face (Unused)", "76: Niko High Jump (Unused)" });
+            ReactionSlot8.Location = new System.Drawing.Point(136, 70);
+            ReactionSlot8.Name = "ReactionSlot8";
+            ReactionSlot8.Size = new System.Drawing.Size(230, 23);
+            ReactionSlot8.TabIndex = 75;
             // 
             // ReactionSlot7
             // 
-            this.ReactionSlot7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.ReactionSlot7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ReactionSlot7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ReactionSlot7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ReactionSlot7.ForeColor = System.Drawing.Color.White;
-            this.ReactionSlot7.FormattingEnabled = true;
-            this.ReactionSlot7.Items.AddRange(new object[] {
-            "01: Happiness",
-            "02: Laughter",
-            "03: Joy",
-            "04: Love",
-            "05: Glee",
-            "06: Anger (Unused)",
-            "07: Aggravation",
-            "08: Outrage (Unused)",
-            "09: Worry",
-            "0A: Sighing",
-            "0B: Thought",
-            "0C: Sadness",
-            "0D: Distress",
-            "0E: Sorrow",
-            "0F: Amazed",
-            "10: Surprise",
-            "11: Disbelief (Unused)",
-            "12: Shocked",
-            "13: Cold Chill",
-            "14: Fearful",
-            "15: Agreement",
-            "16: Inspiration",
-            "17: Curiosity",
-            "18: Heartbreak",
-            "19: Sleepy",
-            "1A: Bashfulness",
-            "1B: Resignation",
-            "1C: Mischief",
-            "1D: Delight",
-            "1E: Sneezing",
-            "1F: Encouraging",
-            "20: Greetings",
-            "21: Pride",
-            "22: Sweating (Unused)",
-            "23: Smirking",
-            "24: Sheepishness",
-            "25: Smile (Unused)",
-            "26: Sunniness (Unused)",
-            "27: Shyness",
-            "28: Disagreement",
-            "29: Mistaken",
-            "2A: Flourish",
-            "2B: Daydreaming",
-            "2C: Showmanship",
-            "2D: Dozing",
-            "2E: Shrunk Funk Shuffle (Unused)",
-            "2F: Intense",
-            "30: Pleased",
-            "31: Distress (Unused)",
-            "32: Wave (Unused)",
-            "33: Poking hands (Unused)",
-            "34: Nod (Unused)",
-            "35: Notice (Unused)",
-            "36: Apologetic",
-            "37: Confident",
-            "38: Talking (Unused)",
-            "39: Clapping (Unused)",
-            "3A: Bewilderment",
-            "3B: Greetings (Unused)",
-            "3C: Scare (Halloween)",
-            "3D: Haunt (Halloween)",
-            "3E: Sit Down",
-            "3F: Yoga",
-            "40: Here You Go",
-            "41: Work Out",
-            "42: Take a Picture",
-            "43: Sniff Sniff",
-            "44: Ta-da",
-            "45: Wave Goodbye",
-            "46: Excited",
-            "47: Confetti (Festivale)",
-            "48: Viva (Festivale)",
-            "49: Let\'s Go (Festivale)",
-            "4A: Feelin\' It (Festivale)",
-            "4B: Raised Fist (Unused) ",
-            "4C: Say Cheese ",
-            "4D: Eager ",
-            "4E: Posture Warm-Up ",
-            "4F: Arm Circles ",
-            "50: Side Bends ",
-            "51: Body Twists ",
-            "52: Wide Arm Stretch ",
-            "53: Upper-Body Circles ",
-            "54: Jump ",
-            "55: Hula ",
-            "56: Double Wave ",
-            "57: Listening Ears ",
-            "58: Flex ",
-            "59: Jammin\' ",
-            "5A: Stretch ",
-            "5B: Behold ",
-            "5C: Work It ",
-            "5D: Act Natural ",
-            "5E: Grooving Hop ",
-            "5F: Groove Right ",
-            "60: Groove Left ",
-            "61: Soak It In ",
-            "62: Shimmy ",
-            "63: Airplane ",
-            "64: Twisty Dance ",
-            "65: Arm-Swing Dance ",
-            "66: Island Stomp ",
-            "67: Side-To-Side ",
-            "68: Turnip Patch ",
-            "69: Laughing (Unused) ",
-            "6A: Content (Unused) ",
-            "6B: Gulliver (Unused)",
-            "6C: Wasp (Unused)",
-            "4D: Forehead (Unused)",
-            "4E: Orville (Unused)",
-            "6F: K.K. Slider Sitting (Unused)",
-            "70: K.K. nodding while sitting (Unused)",
-            "71: K.K. thinking while sitting (Unused)",
-            "72: Lottie Hooray (Unused)",
-            "73: Lottie Kawaii (Unused)",
-            "74: Niko Moon Jump (Unused)",
-            "75: Niko Smily Face (Unused)",
-            "76: Niko High Jump (Unused)"});
-            this.ReactionSlot7.Location = new System.Drawing.Point(66, 115);
-            this.ReactionSlot7.Name = "ReactionSlot7";
-            this.ReactionSlot7.Size = new System.Drawing.Size(230, 23);
-            this.ReactionSlot7.TabIndex = 74;
+            ReactionSlot7.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            ReactionSlot7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            ReactionSlot7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ReactionSlot7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            ReactionSlot7.ForeColor = System.Drawing.Color.White;
+            ReactionSlot7.FormattingEnabled = true;
+            ReactionSlot7.Items.AddRange(new object[] { "01: Happiness", "02: Laughter", "03: Joy", "04: Love", "05: Glee", "06: Anger (Unused)", "07: Aggravation", "08: Outrage (Unused)", "09: Worry", "0A: Sighing", "0B: Thought", "0C: Sadness", "0D: Distress", "0E: Sorrow", "0F: Amazed", "10: Surprise", "11: Disbelief (Unused)", "12: Shocked", "13: Cold Chill", "14: Fearful", "15: Agreement", "16: Inspiration", "17: Curiosity", "18: Heartbreak", "19: Sleepy", "1A: Bashfulness", "1B: Resignation", "1C: Mischief", "1D: Delight", "1E: Sneezing", "1F: Encouraging", "20: Greetings", "21: Pride", "22: Sweating (Unused)", "23: Smirking", "24: Sheepishness", "25: Smile (Unused)", "26: Sunniness (Unused)", "27: Shyness", "28: Disagreement", "29: Mistaken", "2A: Flourish", "2B: Daydreaming", "2C: Showmanship", "2D: Dozing", "2E: Shrunk Funk Shuffle (Unused)", "2F: Intense", "30: Pleased", "31: Distress (Unused)", "32: Wave (Unused)", "33: Poking hands (Unused)", "34: Nod (Unused)", "35: Notice (Unused)", "36: Apologetic", "37: Confident", "38: Talking (Unused)", "39: Clapping (Unused)", "3A: Bewilderment", "3B: Greetings (Unused)", "3C: Scare (Halloween)", "3D: Haunt (Halloween)", "3E: Sit Down", "3F: Yoga", "40: Here You Go", "41: Work Out", "42: Take a Picture", "43: Sniff Sniff", "44: Ta-da", "45: Wave Goodbye", "46: Excited", "47: Confetti (Festivale)", "48: Viva (Festivale)", "49: Let's Go (Festivale)", "4A: Feelin' It (Festivale)", "4B: Raised Fist (Unused) ", "4C: Say Cheese ", "4D: Eager ", "4E: Posture Warm-Up ", "4F: Arm Circles ", "50: Side Bends ", "51: Body Twists ", "52: Wide Arm Stretch ", "53: Upper-Body Circles ", "54: Jump ", "55: Hula ", "56: Double Wave ", "57: Listening Ears ", "58: Flex ", "59: Jammin' ", "5A: Stretch ", "5B: Behold ", "5C: Work It ", "5D: Act Natural ", "5E: Grooving Hop ", "5F: Groove Right ", "60: Groove Left ", "61: Soak It In ", "62: Shimmy ", "63: Airplane ", "64: Twisty Dance ", "65: Arm-Swing Dance ", "66: Island Stomp ", "67: Side-To-Side ", "68: Turnip Patch ", "69: Laughing (Unused) ", "6A: Content (Unused) ", "6B: Gulliver (Unused)", "6C: Wasp (Unused)", "4D: Forehead (Unused)", "4E: Orville (Unused)", "6F: K.K. Slider Sitting (Unused)", "70: K.K. nodding while sitting (Unused)", "71: K.K. thinking while sitting (Unused)", "72: Lottie Hooray (Unused)", "73: Lottie Kawaii (Unused)", "74: Niko Moon Jump (Unused)", "75: Niko Smily Face (Unused)", "76: Niko High Jump (Unused)" });
+            ReactionSlot7.Location = new System.Drawing.Point(66, 115);
+            ReactionSlot7.Name = "ReactionSlot7";
+            ReactionSlot7.Size = new System.Drawing.Size(230, 23);
+            ReactionSlot7.TabIndex = 74;
             // 
             // ReactionSlot6
             // 
-            this.ReactionSlot6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.ReactionSlot6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ReactionSlot6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ReactionSlot6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ReactionSlot6.ForeColor = System.Drawing.Color.White;
-            this.ReactionSlot6.FormattingEnabled = true;
-            this.ReactionSlot6.Items.AddRange(new object[] {
-            "01: Happiness",
-            "02: Laughter",
-            "03: Joy",
-            "04: Love",
-            "05: Glee",
-            "06: Anger (Unused)",
-            "07: Aggravation",
-            "08: Outrage (Unused)",
-            "09: Worry",
-            "0A: Sighing",
-            "0B: Thought",
-            "0C: Sadness",
-            "0D: Distress",
-            "0E: Sorrow",
-            "0F: Amazed",
-            "10: Surprise",
-            "11: Disbelief (Unused)",
-            "12: Shocked",
-            "13: Cold Chill",
-            "14: Fearful",
-            "15: Agreement",
-            "16: Inspiration",
-            "17: Curiosity",
-            "18: Heartbreak",
-            "19: Sleepy",
-            "1A: Bashfulness",
-            "1B: Resignation",
-            "1C: Mischief",
-            "1D: Delight",
-            "1E: Sneezing",
-            "1F: Encouraging",
-            "20: Greetings",
-            "21: Pride",
-            "22: Sweating (Unused)",
-            "23: Smirking",
-            "24: Sheepishness",
-            "25: Smile (Unused)",
-            "26: Sunniness (Unused)",
-            "27: Shyness",
-            "28: Disagreement",
-            "29: Mistaken",
-            "2A: Flourish",
-            "2B: Daydreaming",
-            "2C: Showmanship",
-            "2D: Dozing",
-            "2E: Shrunk Funk Shuffle (Unused)",
-            "2F: Intense",
-            "30: Pleased",
-            "31: Distress (Unused)",
-            "32: Wave (Unused)",
-            "33: Poking hands (Unused)",
-            "34: Nod (Unused)",
-            "35: Notice (Unused)",
-            "36: Apologetic",
-            "37: Confident",
-            "38: Talking (Unused)",
-            "39: Clapping (Unused)",
-            "3A: Bewilderment",
-            "3B: Greetings (Unused)",
-            "3C: Scare (Halloween)",
-            "3D: Haunt (Halloween)",
-            "3E: Sit Down",
-            "3F: Yoga",
-            "40: Here You Go",
-            "41: Work Out",
-            "42: Take a Picture",
-            "43: Sniff Sniff",
-            "44: Ta-da",
-            "45: Wave Goodbye",
-            "46: Excited",
-            "47: Confetti (Festivale)",
-            "48: Viva (Festivale)",
-            "49: Let\'s Go (Festivale)",
-            "4A: Feelin\' It (Festivale)",
-            "4B: Raised Fist (Unused) ",
-            "4C: Say Cheese ",
-            "4D: Eager ",
-            "4E: Posture Warm-Up ",
-            "4F: Arm Circles ",
-            "50: Side Bends ",
-            "51: Body Twists ",
-            "52: Wide Arm Stretch ",
-            "53: Upper-Body Circles ",
-            "54: Jump ",
-            "55: Hula ",
-            "56: Double Wave ",
-            "57: Listening Ears ",
-            "58: Flex ",
-            "59: Jammin\' ",
-            "5A: Stretch ",
-            "5B: Behold ",
-            "5C: Work It ",
-            "5D: Act Natural ",
-            "5E: Grooving Hop ",
-            "5F: Groove Right ",
-            "60: Groove Left ",
-            "61: Soak It In ",
-            "62: Shimmy ",
-            "63: Airplane ",
-            "64: Twisty Dance ",
-            "65: Arm-Swing Dance ",
-            "66: Island Stomp ",
-            "67: Side-To-Side ",
-            "68: Turnip Patch ",
-            "69: Laughing (Unused) ",
-            "6A: Content (Unused) ",
-            "6B: Gulliver (Unused)",
-            "6C: Wasp (Unused)",
-            "4D: Forehead (Unused)",
-            "4E: Orville (Unused)",
-            "6F: K.K. Slider Sitting (Unused)",
-            "70: K.K. nodding while sitting (Unused)",
-            "71: K.K. thinking while sitting (Unused)",
-            "72: Lottie Hooray (Unused)",
-            "73: Lottie Kawaii (Unused)",
-            "74: Niko Moon Jump (Unused)",
-            "75: Niko Smily Face (Unused)",
-            "76: Niko High Jump (Unused)"});
-            this.ReactionSlot6.Location = new System.Drawing.Point(136, 161);
-            this.ReactionSlot6.Name = "ReactionSlot6";
-            this.ReactionSlot6.Size = new System.Drawing.Size(230, 23);
-            this.ReactionSlot6.TabIndex = 73;
+            ReactionSlot6.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            ReactionSlot6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            ReactionSlot6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ReactionSlot6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            ReactionSlot6.ForeColor = System.Drawing.Color.White;
+            ReactionSlot6.FormattingEnabled = true;
+            ReactionSlot6.Items.AddRange(new object[] { "01: Happiness", "02: Laughter", "03: Joy", "04: Love", "05: Glee", "06: Anger (Unused)", "07: Aggravation", "08: Outrage (Unused)", "09: Worry", "0A: Sighing", "0B: Thought", "0C: Sadness", "0D: Distress", "0E: Sorrow", "0F: Amazed", "10: Surprise", "11: Disbelief (Unused)", "12: Shocked", "13: Cold Chill", "14: Fearful", "15: Agreement", "16: Inspiration", "17: Curiosity", "18: Heartbreak", "19: Sleepy", "1A: Bashfulness", "1B: Resignation", "1C: Mischief", "1D: Delight", "1E: Sneezing", "1F: Encouraging", "20: Greetings", "21: Pride", "22: Sweating (Unused)", "23: Smirking", "24: Sheepishness", "25: Smile (Unused)", "26: Sunniness (Unused)", "27: Shyness", "28: Disagreement", "29: Mistaken", "2A: Flourish", "2B: Daydreaming", "2C: Showmanship", "2D: Dozing", "2E: Shrunk Funk Shuffle (Unused)", "2F: Intense", "30: Pleased", "31: Distress (Unused)", "32: Wave (Unused)", "33: Poking hands (Unused)", "34: Nod (Unused)", "35: Notice (Unused)", "36: Apologetic", "37: Confident", "38: Talking (Unused)", "39: Clapping (Unused)", "3A: Bewilderment", "3B: Greetings (Unused)", "3C: Scare (Halloween)", "3D: Haunt (Halloween)", "3E: Sit Down", "3F: Yoga", "40: Here You Go", "41: Work Out", "42: Take a Picture", "43: Sniff Sniff", "44: Ta-da", "45: Wave Goodbye", "46: Excited", "47: Confetti (Festivale)", "48: Viva (Festivale)", "49: Let's Go (Festivale)", "4A: Feelin' It (Festivale)", "4B: Raised Fist (Unused) ", "4C: Say Cheese ", "4D: Eager ", "4E: Posture Warm-Up ", "4F: Arm Circles ", "50: Side Bends ", "51: Body Twists ", "52: Wide Arm Stretch ", "53: Upper-Body Circles ", "54: Jump ", "55: Hula ", "56: Double Wave ", "57: Listening Ears ", "58: Flex ", "59: Jammin' ", "5A: Stretch ", "5B: Behold ", "5C: Work It ", "5D: Act Natural ", "5E: Grooving Hop ", "5F: Groove Right ", "60: Groove Left ", "61: Soak It In ", "62: Shimmy ", "63: Airplane ", "64: Twisty Dance ", "65: Arm-Swing Dance ", "66: Island Stomp ", "67: Side-To-Side ", "68: Turnip Patch ", "69: Laughing (Unused) ", "6A: Content (Unused) ", "6B: Gulliver (Unused)", "6C: Wasp (Unused)", "4D: Forehead (Unused)", "4E: Orville (Unused)", "6F: K.K. Slider Sitting (Unused)", "70: K.K. nodding while sitting (Unused)", "71: K.K. thinking while sitting (Unused)", "72: Lottie Hooray (Unused)", "73: Lottie Kawaii (Unused)", "74: Niko Moon Jump (Unused)", "75: Niko Smily Face (Unused)", "76: Niko High Jump (Unused)" });
+            ReactionSlot6.Location = new System.Drawing.Point(136, 161);
+            ReactionSlot6.Name = "ReactionSlot6";
+            ReactionSlot6.Size = new System.Drawing.Size(230, 23);
+            ReactionSlot6.TabIndex = 73;
             // 
             // ReactionSlot5
             // 
-            this.ReactionSlot5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.ReactionSlot5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ReactionSlot5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ReactionSlot5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ReactionSlot5.ForeColor = System.Drawing.Color.White;
-            this.ReactionSlot5.FormattingEnabled = true;
-            this.ReactionSlot5.Items.AddRange(new object[] {
-            "01: Happiness",
-            "02: Laughter",
-            "03: Joy",
-            "04: Love",
-            "05: Glee",
-            "06: Anger (Unused)",
-            "07: Aggravation",
-            "08: Outrage (Unused)",
-            "09: Worry",
-            "0A: Sighing",
-            "0B: Thought",
-            "0C: Sadness",
-            "0D: Distress",
-            "0E: Sorrow",
-            "0F: Amazed",
-            "10: Surprise",
-            "11: Disbelief (Unused)",
-            "12: Shocked",
-            "13: Cold Chill",
-            "14: Fearful",
-            "15: Agreement",
-            "16: Inspiration",
-            "17: Curiosity",
-            "18: Heartbreak",
-            "19: Sleepy",
-            "1A: Bashfulness",
-            "1B: Resignation",
-            "1C: Mischief",
-            "1D: Delight",
-            "1E: Sneezing",
-            "1F: Encouraging",
-            "20: Greetings",
-            "21: Pride",
-            "22: Sweating (Unused)",
-            "23: Smirking",
-            "24: Sheepishness",
-            "25: Smile (Unused)",
-            "26: Sunniness (Unused)",
-            "27: Shyness",
-            "28: Disagreement",
-            "29: Mistaken",
-            "2A: Flourish",
-            "2B: Daydreaming",
-            "2C: Showmanship",
-            "2D: Dozing",
-            "2E: Shrunk Funk Shuffle (Unused)",
-            "2F: Intense",
-            "30: Pleased",
-            "31: Distress (Unused)",
-            "32: Wave (Unused)",
-            "33: Poking hands (Unused)",
-            "34: Nod (Unused)",
-            "35: Notice (Unused)",
-            "36: Apologetic",
-            "37: Confident",
-            "38: Talking (Unused)",
-            "39: Clapping (Unused)",
-            "3A: Bewilderment",
-            "3B: Greetings (Unused)",
-            "3C: Scare (Halloween)",
-            "3D: Haunt (Halloween)",
-            "3E: Sit Down",
-            "3F: Yoga",
-            "40: Here You Go",
-            "41: Work Out",
-            "42: Take a Picture",
-            "43: Sniff Sniff",
-            "44: Ta-da",
-            "45: Wave Goodbye",
-            "46: Excited",
-            "47: Confetti (Festivale)",
-            "48: Viva (Festivale)",
-            "49: Let\'s Go (Festivale)",
-            "4A: Feelin\' It (Festivale)",
-            "4B: Raised Fist (Unused) ",
-            "4C: Say Cheese ",
-            "4D: Eager ",
-            "4E: Posture Warm-Up ",
-            "4F: Arm Circles ",
-            "50: Side Bends ",
-            "51: Body Twists ",
-            "52: Wide Arm Stretch ",
-            "53: Upper-Body Circles ",
-            "54: Jump ",
-            "55: Hula ",
-            "56: Double Wave ",
-            "57: Listening Ears ",
-            "58: Flex ",
-            "59: Jammin\' ",
-            "5A: Stretch ",
-            "5B: Behold ",
-            "5C: Work It ",
-            "5D: Act Natural ",
-            "5E: Grooving Hop ",
-            "5F: Groove Right ",
-            "60: Groove Left ",
-            "61: Soak It In ",
-            "62: Shimmy ",
-            "63: Airplane ",
-            "64: Twisty Dance ",
-            "65: Arm-Swing Dance ",
-            "66: Island Stomp ",
-            "67: Side-To-Side ",
-            "68: Turnip Patch ",
-            "69: Laughing (Unused) ",
-            "6A: Content (Unused) ",
-            "6B: Gulliver (Unused)",
-            "6C: Wasp (Unused)",
-            "4D: Forehead (Unused)",
-            "4E: Orville (Unused)",
-            "6F: K.K. Slider Sitting (Unused)",
-            "70: K.K. nodding while sitting (Unused)",
-            "71: K.K. thinking while sitting (Unused)",
-            "72: Lottie Hooray (Unused)",
-            "73: Lottie Kawaii (Unused)",
-            "74: Niko Moon Jump (Unused)",
-            "75: Niko Smily Face (Unused)",
-            "76: Niko High Jump (Unused)"});
-            this.ReactionSlot5.Location = new System.Drawing.Point(258, 202);
-            this.ReactionSlot5.Name = "ReactionSlot5";
-            this.ReactionSlot5.Size = new System.Drawing.Size(230, 23);
-            this.ReactionSlot5.TabIndex = 72;
+            ReactionSlot5.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            ReactionSlot5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            ReactionSlot5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ReactionSlot5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            ReactionSlot5.ForeColor = System.Drawing.Color.White;
+            ReactionSlot5.FormattingEnabled = true;
+            ReactionSlot5.Items.AddRange(new object[] { "01: Happiness", "02: Laughter", "03: Joy", "04: Love", "05: Glee", "06: Anger (Unused)", "07: Aggravation", "08: Outrage (Unused)", "09: Worry", "0A: Sighing", "0B: Thought", "0C: Sadness", "0D: Distress", "0E: Sorrow", "0F: Amazed", "10: Surprise", "11: Disbelief (Unused)", "12: Shocked", "13: Cold Chill", "14: Fearful", "15: Agreement", "16: Inspiration", "17: Curiosity", "18: Heartbreak", "19: Sleepy", "1A: Bashfulness", "1B: Resignation", "1C: Mischief", "1D: Delight", "1E: Sneezing", "1F: Encouraging", "20: Greetings", "21: Pride", "22: Sweating (Unused)", "23: Smirking", "24: Sheepishness", "25: Smile (Unused)", "26: Sunniness (Unused)", "27: Shyness", "28: Disagreement", "29: Mistaken", "2A: Flourish", "2B: Daydreaming", "2C: Showmanship", "2D: Dozing", "2E: Shrunk Funk Shuffle (Unused)", "2F: Intense", "30: Pleased", "31: Distress (Unused)", "32: Wave (Unused)", "33: Poking hands (Unused)", "34: Nod (Unused)", "35: Notice (Unused)", "36: Apologetic", "37: Confident", "38: Talking (Unused)", "39: Clapping (Unused)", "3A: Bewilderment", "3B: Greetings (Unused)", "3C: Scare (Halloween)", "3D: Haunt (Halloween)", "3E: Sit Down", "3F: Yoga", "40: Here You Go", "41: Work Out", "42: Take a Picture", "43: Sniff Sniff", "44: Ta-da", "45: Wave Goodbye", "46: Excited", "47: Confetti (Festivale)", "48: Viva (Festivale)", "49: Let's Go (Festivale)", "4A: Feelin' It (Festivale)", "4B: Raised Fist (Unused) ", "4C: Say Cheese ", "4D: Eager ", "4E: Posture Warm-Up ", "4F: Arm Circles ", "50: Side Bends ", "51: Body Twists ", "52: Wide Arm Stretch ", "53: Upper-Body Circles ", "54: Jump ", "55: Hula ", "56: Double Wave ", "57: Listening Ears ", "58: Flex ", "59: Jammin' ", "5A: Stretch ", "5B: Behold ", "5C: Work It ", "5D: Act Natural ", "5E: Grooving Hop ", "5F: Groove Right ", "60: Groove Left ", "61: Soak It In ", "62: Shimmy ", "63: Airplane ", "64: Twisty Dance ", "65: Arm-Swing Dance ", "66: Island Stomp ", "67: Side-To-Side ", "68: Turnip Patch ", "69: Laughing (Unused) ", "6A: Content (Unused) ", "6B: Gulliver (Unused)", "6C: Wasp (Unused)", "4D: Forehead (Unused)", "4E: Orville (Unused)", "6F: K.K. Slider Sitting (Unused)", "70: K.K. nodding while sitting (Unused)", "71: K.K. thinking while sitting (Unused)", "72: Lottie Hooray (Unused)", "73: Lottie Kawaii (Unused)", "74: Niko Moon Jump (Unused)", "75: Niko Smily Face (Unused)", "76: Niko High Jump (Unused)" });
+            ReactionSlot5.Location = new System.Drawing.Point(258, 202);
+            ReactionSlot5.Name = "ReactionSlot5";
+            ReactionSlot5.Size = new System.Drawing.Size(230, 23);
+            ReactionSlot5.TabIndex = 72;
             // 
             // ReactionSlot4
             // 
-            this.ReactionSlot4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.ReactionSlot4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ReactionSlot4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ReactionSlot4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ReactionSlot4.ForeColor = System.Drawing.Color.White;
-            this.ReactionSlot4.FormattingEnabled = true;
-            this.ReactionSlot4.Items.AddRange(new object[] {
-            "01: Happiness",
-            "02: Laughter",
-            "03: Joy",
-            "04: Love",
-            "05: Glee",
-            "06: Anger (Unused)",
-            "07: Aggravation",
-            "08: Outrage (Unused)",
-            "09: Worry",
-            "0A: Sighing",
-            "0B: Thought",
-            "0C: Sadness",
-            "0D: Distress",
-            "0E: Sorrow",
-            "0F: Amazed",
-            "10: Surprise",
-            "11: Disbelief (Unused)",
-            "12: Shocked",
-            "13: Cold Chill",
-            "14: Fearful",
-            "15: Agreement",
-            "16: Inspiration",
-            "17: Curiosity",
-            "18: Heartbreak",
-            "19: Sleepy",
-            "1A: Bashfulness",
-            "1B: Resignation",
-            "1C: Mischief",
-            "1D: Delight",
-            "1E: Sneezing",
-            "1F: Encouraging",
-            "20: Greetings",
-            "21: Pride",
-            "22: Sweating (Unused)",
-            "23: Smirking",
-            "24: Sheepishness",
-            "25: Smile (Unused)",
-            "26: Sunniness (Unused)",
-            "27: Shyness",
-            "28: Disagreement",
-            "29: Mistaken",
-            "2A: Flourish",
-            "2B: Daydreaming",
-            "2C: Showmanship",
-            "2D: Dozing",
-            "2E: Shrunk Funk Shuffle (Unused)",
-            "2F: Intense",
-            "30: Pleased",
-            "31: Distress (Unused)",
-            "32: Wave (Unused)",
-            "33: Poking hands (Unused)",
-            "34: Nod (Unused)",
-            "35: Notice (Unused)",
-            "36: Apologetic",
-            "37: Confident",
-            "38: Talking (Unused)",
-            "39: Clapping (Unused)",
-            "3A: Bewilderment",
-            "3B: Greetings (Unused)",
-            "3C: Scare (Halloween)",
-            "3D: Haunt (Halloween)",
-            "3E: Sit Down",
-            "3F: Yoga",
-            "40: Here You Go",
-            "41: Work Out",
-            "42: Take a Picture",
-            "43: Sniff Sniff",
-            "44: Ta-da",
-            "45: Wave Goodbye",
-            "46: Excited",
-            "47: Confetti (Festivale)",
-            "48: Viva (Festivale)",
-            "49: Let\'s Go (Festivale)",
-            "4A: Feelin\' It (Festivale)",
-            "4B: Raised Fist (Unused) ",
-            "4C: Say Cheese ",
-            "4D: Eager ",
-            "4E: Posture Warm-Up ",
-            "4F: Arm Circles ",
-            "50: Side Bends ",
-            "51: Body Twists ",
-            "52: Wide Arm Stretch ",
-            "53: Upper-Body Circles ",
-            "54: Jump ",
-            "55: Hula ",
-            "56: Double Wave ",
-            "57: Listening Ears ",
-            "58: Flex ",
-            "59: Jammin\' ",
-            "5A: Stretch ",
-            "5B: Behold ",
-            "5C: Work It ",
-            "5D: Act Natural ",
-            "5E: Grooving Hop ",
-            "5F: Groove Right ",
-            "60: Groove Left ",
-            "61: Soak It In ",
-            "62: Shimmy ",
-            "63: Airplane ",
-            "64: Twisty Dance ",
-            "65: Arm-Swing Dance ",
-            "66: Island Stomp ",
-            "67: Side-To-Side ",
-            "68: Turnip Patch ",
-            "69: Laughing (Unused) ",
-            "6A: Content (Unused) ",
-            "6B: Gulliver (Unused)",
-            "6C: Wasp (Unused)",
-            "4D: Forehead (Unused)",
-            "4E: Orville (Unused)",
-            "6F: K.K. Slider Sitting (Unused)",
-            "70: K.K. nodding while sitting (Unused)",
-            "71: K.K. thinking while sitting (Unused)",
-            "72: Lottie Hooray (Unused)",
-            "73: Lottie Kawaii (Unused)",
-            "74: Niko Moon Jump (Unused)",
-            "75: Niko Smily Face (Unused)",
-            "76: Niko High Jump (Unused)"});
-            this.ReactionSlot4.Location = new System.Drawing.Point(382, 161);
-            this.ReactionSlot4.Name = "ReactionSlot4";
-            this.ReactionSlot4.Size = new System.Drawing.Size(230, 23);
-            this.ReactionSlot4.TabIndex = 71;
+            ReactionSlot4.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            ReactionSlot4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            ReactionSlot4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ReactionSlot4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            ReactionSlot4.ForeColor = System.Drawing.Color.White;
+            ReactionSlot4.FormattingEnabled = true;
+            ReactionSlot4.Items.AddRange(new object[] { "01: Happiness", "02: Laughter", "03: Joy", "04: Love", "05: Glee", "06: Anger (Unused)", "07: Aggravation", "08: Outrage (Unused)", "09: Worry", "0A: Sighing", "0B: Thought", "0C: Sadness", "0D: Distress", "0E: Sorrow", "0F: Amazed", "10: Surprise", "11: Disbelief (Unused)", "12: Shocked", "13: Cold Chill", "14: Fearful", "15: Agreement", "16: Inspiration", "17: Curiosity", "18: Heartbreak", "19: Sleepy", "1A: Bashfulness", "1B: Resignation", "1C: Mischief", "1D: Delight", "1E: Sneezing", "1F: Encouraging", "20: Greetings", "21: Pride", "22: Sweating (Unused)", "23: Smirking", "24: Sheepishness", "25: Smile (Unused)", "26: Sunniness (Unused)", "27: Shyness", "28: Disagreement", "29: Mistaken", "2A: Flourish", "2B: Daydreaming", "2C: Showmanship", "2D: Dozing", "2E: Shrunk Funk Shuffle (Unused)", "2F: Intense", "30: Pleased", "31: Distress (Unused)", "32: Wave (Unused)", "33: Poking hands (Unused)", "34: Nod (Unused)", "35: Notice (Unused)", "36: Apologetic", "37: Confident", "38: Talking (Unused)", "39: Clapping (Unused)", "3A: Bewilderment", "3B: Greetings (Unused)", "3C: Scare (Halloween)", "3D: Haunt (Halloween)", "3E: Sit Down", "3F: Yoga", "40: Here You Go", "41: Work Out", "42: Take a Picture", "43: Sniff Sniff", "44: Ta-da", "45: Wave Goodbye", "46: Excited", "47: Confetti (Festivale)", "48: Viva (Festivale)", "49: Let's Go (Festivale)", "4A: Feelin' It (Festivale)", "4B: Raised Fist (Unused) ", "4C: Say Cheese ", "4D: Eager ", "4E: Posture Warm-Up ", "4F: Arm Circles ", "50: Side Bends ", "51: Body Twists ", "52: Wide Arm Stretch ", "53: Upper-Body Circles ", "54: Jump ", "55: Hula ", "56: Double Wave ", "57: Listening Ears ", "58: Flex ", "59: Jammin' ", "5A: Stretch ", "5B: Behold ", "5C: Work It ", "5D: Act Natural ", "5E: Grooving Hop ", "5F: Groove Right ", "60: Groove Left ", "61: Soak It In ", "62: Shimmy ", "63: Airplane ", "64: Twisty Dance ", "65: Arm-Swing Dance ", "66: Island Stomp ", "67: Side-To-Side ", "68: Turnip Patch ", "69: Laughing (Unused) ", "6A: Content (Unused) ", "6B: Gulliver (Unused)", "6C: Wasp (Unused)", "4D: Forehead (Unused)", "4E: Orville (Unused)", "6F: K.K. Slider Sitting (Unused)", "70: K.K. nodding while sitting (Unused)", "71: K.K. thinking while sitting (Unused)", "72: Lottie Hooray (Unused)", "73: Lottie Kawaii (Unused)", "74: Niko Moon Jump (Unused)", "75: Niko Smily Face (Unused)", "76: Niko High Jump (Unused)" });
+            ReactionSlot4.Location = new System.Drawing.Point(382, 161);
+            ReactionSlot4.Name = "ReactionSlot4";
+            ReactionSlot4.Size = new System.Drawing.Size(230, 23);
+            ReactionSlot4.TabIndex = 71;
             // 
             // ReactionSlot3
             // 
-            this.ReactionSlot3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.ReactionSlot3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ReactionSlot3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ReactionSlot3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ReactionSlot3.ForeColor = System.Drawing.Color.White;
-            this.ReactionSlot3.FormattingEnabled = true;
-            this.ReactionSlot3.Items.AddRange(new object[] {
-            "01: Happiness",
-            "02: Laughter",
-            "03: Joy",
-            "04: Love",
-            "05: Glee",
-            "06: Anger (Unused)",
-            "07: Aggravation",
-            "08: Outrage (Unused)",
-            "09: Worry",
-            "0A: Sighing",
-            "0B: Thought",
-            "0C: Sadness",
-            "0D: Distress",
-            "0E: Sorrow",
-            "0F: Amazed",
-            "10: Surprise",
-            "11: Disbelief (Unused)",
-            "12: Shocked",
-            "13: Cold Chill",
-            "14: Fearful",
-            "15: Agreement",
-            "16: Inspiration",
-            "17: Curiosity",
-            "18: Heartbreak",
-            "19: Sleepy",
-            "1A: Bashfulness",
-            "1B: Resignation",
-            "1C: Mischief",
-            "1D: Delight",
-            "1E: Sneezing",
-            "1F: Encouraging",
-            "20: Greetings",
-            "21: Pride",
-            "22: Sweating (Unused)",
-            "23: Smirking",
-            "24: Sheepishness",
-            "25: Smile (Unused)",
-            "26: Sunniness (Unused)",
-            "27: Shyness",
-            "28: Disagreement",
-            "29: Mistaken",
-            "2A: Flourish",
-            "2B: Daydreaming",
-            "2C: Showmanship",
-            "2D: Dozing",
-            "2E: Shrunk Funk Shuffle (Unused)",
-            "2F: Intense",
-            "30: Pleased",
-            "31: Distress (Unused)",
-            "32: Wave (Unused)",
-            "33: Poking hands (Unused)",
-            "34: Nod (Unused)",
-            "35: Notice (Unused)",
-            "36: Apologetic",
-            "37: Confident",
-            "38: Talking (Unused)",
-            "39: Clapping (Unused)",
-            "3A: Bewilderment",
-            "3B: Greetings (Unused)",
-            "3C: Scare (Halloween)",
-            "3D: Haunt (Halloween)",
-            "3E: Sit Down",
-            "3F: Yoga",
-            "40: Here You Go",
-            "41: Work Out",
-            "42: Take a Picture",
-            "43: Sniff Sniff",
-            "44: Ta-da",
-            "45: Wave Goodbye",
-            "46: Excited",
-            "47: Confetti (Festivale)",
-            "48: Viva (Festivale)",
-            "49: Let\'s Go (Festivale)",
-            "4A: Feelin\' It (Festivale)",
-            "4B: Raised Fist (Unused) ",
-            "4C: Say Cheese ",
-            "4D: Eager ",
-            "4E: Posture Warm-Up ",
-            "4F: Arm Circles ",
-            "50: Side Bends ",
-            "51: Body Twists ",
-            "52: Wide Arm Stretch ",
-            "53: Upper-Body Circles ",
-            "54: Jump ",
-            "55: Hula ",
-            "56: Double Wave ",
-            "57: Listening Ears ",
-            "58: Flex ",
-            "59: Jammin\' ",
-            "5A: Stretch ",
-            "5B: Behold ",
-            "5C: Work It ",
-            "5D: Act Natural ",
-            "5E: Grooving Hop ",
-            "5F: Groove Right ",
-            "60: Groove Left ",
-            "61: Soak It In ",
-            "62: Shimmy ",
-            "63: Airplane ",
-            "64: Twisty Dance ",
-            "65: Arm-Swing Dance ",
-            "66: Island Stomp ",
-            "67: Side-To-Side ",
-            "68: Turnip Patch ",
-            "69: Laughing (Unused) ",
-            "6A: Content (Unused) ",
-            "6B: Gulliver (Unused)",
-            "6C: Wasp (Unused)",
-            "4D: Forehead (Unused)",
-            "4E: Orville (Unused)",
-            "6F: K.K. Slider Sitting (Unused)",
-            "70: K.K. nodding while sitting (Unused)",
-            "71: K.K. thinking while sitting (Unused)",
-            "72: Lottie Hooray (Unused)",
-            "73: Lottie Kawaii (Unused)",
-            "74: Niko Moon Jump (Unused)",
-            "75: Niko Smily Face (Unused)",
-            "76: Niko High Jump (Unused)"});
-            this.ReactionSlot3.Location = new System.Drawing.Point(455, 115);
-            this.ReactionSlot3.Name = "ReactionSlot3";
-            this.ReactionSlot3.Size = new System.Drawing.Size(230, 23);
-            this.ReactionSlot3.TabIndex = 70;
+            ReactionSlot3.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            ReactionSlot3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            ReactionSlot3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ReactionSlot3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            ReactionSlot3.ForeColor = System.Drawing.Color.White;
+            ReactionSlot3.FormattingEnabled = true;
+            ReactionSlot3.Items.AddRange(new object[] { "01: Happiness", "02: Laughter", "03: Joy", "04: Love", "05: Glee", "06: Anger (Unused)", "07: Aggravation", "08: Outrage (Unused)", "09: Worry", "0A: Sighing", "0B: Thought", "0C: Sadness", "0D: Distress", "0E: Sorrow", "0F: Amazed", "10: Surprise", "11: Disbelief (Unused)", "12: Shocked", "13: Cold Chill", "14: Fearful", "15: Agreement", "16: Inspiration", "17: Curiosity", "18: Heartbreak", "19: Sleepy", "1A: Bashfulness", "1B: Resignation", "1C: Mischief", "1D: Delight", "1E: Sneezing", "1F: Encouraging", "20: Greetings", "21: Pride", "22: Sweating (Unused)", "23: Smirking", "24: Sheepishness", "25: Smile (Unused)", "26: Sunniness (Unused)", "27: Shyness", "28: Disagreement", "29: Mistaken", "2A: Flourish", "2B: Daydreaming", "2C: Showmanship", "2D: Dozing", "2E: Shrunk Funk Shuffle (Unused)", "2F: Intense", "30: Pleased", "31: Distress (Unused)", "32: Wave (Unused)", "33: Poking hands (Unused)", "34: Nod (Unused)", "35: Notice (Unused)", "36: Apologetic", "37: Confident", "38: Talking (Unused)", "39: Clapping (Unused)", "3A: Bewilderment", "3B: Greetings (Unused)", "3C: Scare (Halloween)", "3D: Haunt (Halloween)", "3E: Sit Down", "3F: Yoga", "40: Here You Go", "41: Work Out", "42: Take a Picture", "43: Sniff Sniff", "44: Ta-da", "45: Wave Goodbye", "46: Excited", "47: Confetti (Festivale)", "48: Viva (Festivale)", "49: Let's Go (Festivale)", "4A: Feelin' It (Festivale)", "4B: Raised Fist (Unused) ", "4C: Say Cheese ", "4D: Eager ", "4E: Posture Warm-Up ", "4F: Arm Circles ", "50: Side Bends ", "51: Body Twists ", "52: Wide Arm Stretch ", "53: Upper-Body Circles ", "54: Jump ", "55: Hula ", "56: Double Wave ", "57: Listening Ears ", "58: Flex ", "59: Jammin' ", "5A: Stretch ", "5B: Behold ", "5C: Work It ", "5D: Act Natural ", "5E: Grooving Hop ", "5F: Groove Right ", "60: Groove Left ", "61: Soak It In ", "62: Shimmy ", "63: Airplane ", "64: Twisty Dance ", "65: Arm-Swing Dance ", "66: Island Stomp ", "67: Side-To-Side ", "68: Turnip Patch ", "69: Laughing (Unused) ", "6A: Content (Unused) ", "6B: Gulliver (Unused)", "6C: Wasp (Unused)", "4D: Forehead (Unused)", "4E: Orville (Unused)", "6F: K.K. Slider Sitting (Unused)", "70: K.K. nodding while sitting (Unused)", "71: K.K. thinking while sitting (Unused)", "72: Lottie Hooray (Unused)", "73: Lottie Kawaii (Unused)", "74: Niko Moon Jump (Unused)", "75: Niko Smily Face (Unused)", "76: Niko High Jump (Unused)" });
+            ReactionSlot3.Location = new System.Drawing.Point(455, 115);
+            ReactionSlot3.Name = "ReactionSlot3";
+            ReactionSlot3.Size = new System.Drawing.Size(230, 23);
+            ReactionSlot3.TabIndex = 70;
             // 
             // ReactionSlot2
             // 
-            this.ReactionSlot2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.ReactionSlot2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ReactionSlot2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ReactionSlot2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ReactionSlot2.ForeColor = System.Drawing.Color.White;
-            this.ReactionSlot2.FormattingEnabled = true;
-            this.ReactionSlot2.Items.AddRange(new object[] {
-            "01: Happiness",
-            "02: Laughter",
-            "03: Joy",
-            "04: Love",
-            "05: Glee",
-            "06: Anger (Unused)",
-            "07: Aggravation",
-            "08: Outrage (Unused)",
-            "09: Worry",
-            "0A: Sighing",
-            "0B: Thought",
-            "0C: Sadness",
-            "0D: Distress",
-            "0E: Sorrow",
-            "0F: Amazed",
-            "10: Surprise",
-            "11: Disbelief (Unused)",
-            "12: Shocked",
-            "13: Cold Chill",
-            "14: Fearful",
-            "15: Agreement",
-            "16: Inspiration",
-            "17: Curiosity",
-            "18: Heartbreak",
-            "19: Sleepy",
-            "1A: Bashfulness",
-            "1B: Resignation",
-            "1C: Mischief",
-            "1D: Delight",
-            "1E: Sneezing",
-            "1F: Encouraging",
-            "20: Greetings",
-            "21: Pride",
-            "22: Sweating (Unused)",
-            "23: Smirking",
-            "24: Sheepishness",
-            "25: Smile (Unused)",
-            "26: Sunniness (Unused)",
-            "27: Shyness",
-            "28: Disagreement",
-            "29: Mistaken",
-            "2A: Flourish",
-            "2B: Daydreaming",
-            "2C: Showmanship",
-            "2D: Dozing",
-            "2E: Shrunk Funk Shuffle (Unused)",
-            "2F: Intense",
-            "30: Pleased",
-            "31: Distress (Unused)",
-            "32: Wave (Unused)",
-            "33: Poking hands (Unused)",
-            "34: Nod (Unused)",
-            "35: Notice (Unused)",
-            "36: Apologetic",
-            "37: Confident",
-            "38: Talking (Unused)",
-            "39: Clapping (Unused)",
-            "3A: Bewilderment",
-            "3B: Greetings (Unused)",
-            "3C: Scare (Halloween)",
-            "3D: Haunt (Halloween)",
-            "3E: Sit Down",
-            "3F: Yoga",
-            "40: Here You Go",
-            "41: Work Out",
-            "42: Take a Picture",
-            "43: Sniff Sniff",
-            "44: Ta-da",
-            "45: Wave Goodbye",
-            "46: Excited",
-            "47: Confetti (Festivale)",
-            "48: Viva (Festivale)",
-            "49: Let\'s Go (Festivale)",
-            "4A: Feelin\' It (Festivale)",
-            "4B: Raised Fist (Unused) ",
-            "4C: Say Cheese ",
-            "4D: Eager ",
-            "4E: Posture Warm-Up ",
-            "4F: Arm Circles ",
-            "50: Side Bends ",
-            "51: Body Twists ",
-            "52: Wide Arm Stretch ",
-            "53: Upper-Body Circles ",
-            "54: Jump ",
-            "55: Hula ",
-            "56: Double Wave ",
-            "57: Listening Ears ",
-            "58: Flex ",
-            "59: Jammin\' ",
-            "5A: Stretch ",
-            "5B: Behold ",
-            "5C: Work It ",
-            "5D: Act Natural ",
-            "5E: Grooving Hop ",
-            "5F: Groove Right ",
-            "60: Groove Left ",
-            "61: Soak It In ",
-            "62: Shimmy ",
-            "63: Airplane ",
-            "64: Twisty Dance ",
-            "65: Arm-Swing Dance ",
-            "66: Island Stomp ",
-            "67: Side-To-Side ",
-            "68: Turnip Patch ",
-            "69: Laughing (Unused) ",
-            "6A: Content (Unused) ",
-            "6B: Gulliver (Unused)",
-            "6C: Wasp (Unused)",
-            "4D: Forehead (Unused)",
-            "4E: Orville (Unused)",
-            "6F: K.K. Slider Sitting (Unused)",
-            "70: K.K. nodding while sitting (Unused)",
-            "71: K.K. thinking while sitting (Unused)",
-            "72: Lottie Hooray (Unused)",
-            "73: Lottie Kawaii (Unused)",
-            "74: Niko Moon Jump (Unused)",
-            "75: Niko Smily Face (Unused)",
-            "76: Niko High Jump (Unused)"});
-            this.ReactionSlot2.Location = new System.Drawing.Point(382, 70);
-            this.ReactionSlot2.Name = "ReactionSlot2";
-            this.ReactionSlot2.Size = new System.Drawing.Size(230, 23);
-            this.ReactionSlot2.TabIndex = 69;
+            ReactionSlot2.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            ReactionSlot2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            ReactionSlot2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ReactionSlot2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            ReactionSlot2.ForeColor = System.Drawing.Color.White;
+            ReactionSlot2.FormattingEnabled = true;
+            ReactionSlot2.Items.AddRange(new object[] { "01: Happiness", "02: Laughter", "03: Joy", "04: Love", "05: Glee", "06: Anger (Unused)", "07: Aggravation", "08: Outrage (Unused)", "09: Worry", "0A: Sighing", "0B: Thought", "0C: Sadness", "0D: Distress", "0E: Sorrow", "0F: Amazed", "10: Surprise", "11: Disbelief (Unused)", "12: Shocked", "13: Cold Chill", "14: Fearful", "15: Agreement", "16: Inspiration", "17: Curiosity", "18: Heartbreak", "19: Sleepy", "1A: Bashfulness", "1B: Resignation", "1C: Mischief", "1D: Delight", "1E: Sneezing", "1F: Encouraging", "20: Greetings", "21: Pride", "22: Sweating (Unused)", "23: Smirking", "24: Sheepishness", "25: Smile (Unused)", "26: Sunniness (Unused)", "27: Shyness", "28: Disagreement", "29: Mistaken", "2A: Flourish", "2B: Daydreaming", "2C: Showmanship", "2D: Dozing", "2E: Shrunk Funk Shuffle (Unused)", "2F: Intense", "30: Pleased", "31: Distress (Unused)", "32: Wave (Unused)", "33: Poking hands (Unused)", "34: Nod (Unused)", "35: Notice (Unused)", "36: Apologetic", "37: Confident", "38: Talking (Unused)", "39: Clapping (Unused)", "3A: Bewilderment", "3B: Greetings (Unused)", "3C: Scare (Halloween)", "3D: Haunt (Halloween)", "3E: Sit Down", "3F: Yoga", "40: Here You Go", "41: Work Out", "42: Take a Picture", "43: Sniff Sniff", "44: Ta-da", "45: Wave Goodbye", "46: Excited", "47: Confetti (Festivale)", "48: Viva (Festivale)", "49: Let's Go (Festivale)", "4A: Feelin' It (Festivale)", "4B: Raised Fist (Unused) ", "4C: Say Cheese ", "4D: Eager ", "4E: Posture Warm-Up ", "4F: Arm Circles ", "50: Side Bends ", "51: Body Twists ", "52: Wide Arm Stretch ", "53: Upper-Body Circles ", "54: Jump ", "55: Hula ", "56: Double Wave ", "57: Listening Ears ", "58: Flex ", "59: Jammin' ", "5A: Stretch ", "5B: Behold ", "5C: Work It ", "5D: Act Natural ", "5E: Grooving Hop ", "5F: Groove Right ", "60: Groove Left ", "61: Soak It In ", "62: Shimmy ", "63: Airplane ", "64: Twisty Dance ", "65: Arm-Swing Dance ", "66: Island Stomp ", "67: Side-To-Side ", "68: Turnip Patch ", "69: Laughing (Unused) ", "6A: Content (Unused) ", "6B: Gulliver (Unused)", "6C: Wasp (Unused)", "4D: Forehead (Unused)", "4E: Orville (Unused)", "6F: K.K. Slider Sitting (Unused)", "70: K.K. nodding while sitting (Unused)", "71: K.K. thinking while sitting (Unused)", "72: Lottie Hooray (Unused)", "73: Lottie Kawaii (Unused)", "74: Niko Moon Jump (Unused)", "75: Niko Smily Face (Unused)", "76: Niko High Jump (Unused)" });
+            ReactionSlot2.Location = new System.Drawing.Point(382, 70);
+            ReactionSlot2.Name = "ReactionSlot2";
+            ReactionSlot2.Size = new System.Drawing.Size(230, 23);
+            ReactionSlot2.TabIndex = 69;
             // 
             // ReactionSlot1
             // 
-            this.ReactionSlot1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.ReactionSlot1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ReactionSlot1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ReactionSlot1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ReactionSlot1.ForeColor = System.Drawing.Color.White;
-            this.ReactionSlot1.FormattingEnabled = true;
-            this.ReactionSlot1.Items.AddRange(new object[] {
-            "01: Happiness",
-            "02: Laughter",
-            "03: Joy",
-            "04: Love",
-            "05: Glee",
-            "06: Anger (Unused)",
-            "07: Aggravation",
-            "08: Outrage (Unused)",
-            "09: Worry",
-            "0A: Sighing",
-            "0B: Thought",
-            "0C: Sadness",
-            "0D: Distress",
-            "0E: Sorrow",
-            "0F: Amazed",
-            "10: Surprise",
-            "11: Disbelief (Unused)",
-            "12: Shocked",
-            "13: Cold Chill",
-            "14: Fearful",
-            "15: Agreement",
-            "16: Inspiration",
-            "17: Curiosity",
-            "18: Heartbreak",
-            "19: Sleepy",
-            "1A: Bashfulness",
-            "1B: Resignation",
-            "1C: Mischief",
-            "1D: Delight",
-            "1E: Sneezing",
-            "1F: Encouraging",
-            "20: Greetings",
-            "21: Pride",
-            "22: Sweating (Unused)",
-            "23: Smirking",
-            "24: Sheepishness",
-            "25: Smile (Unused)",
-            "26: Sunniness (Unused)",
-            "27: Shyness",
-            "28: Disagreement",
-            "29: Mistaken",
-            "2A: Flourish",
-            "2B: Daydreaming",
-            "2C: Showmanship",
-            "2D: Dozing",
-            "2E: Shrunk Funk Shuffle (Unused)",
-            "2F: Intense",
-            "30: Pleased",
-            "31: Distress (Unused)",
-            "32: Wave (Unused)",
-            "33: Poking hands (Unused)",
-            "34: Nod (Unused)",
-            "35: Notice (Unused)",
-            "36: Apologetic",
-            "37: Confident",
-            "38: Talking (Unused)",
-            "39: Clapping (Unused)",
-            "3A: Bewilderment",
-            "3B: Greetings (Unused)",
-            "3C: Scare (Halloween)",
-            "3D: Haunt (Halloween)",
-            "3E: Sit Down",
-            "3F: Yoga",
-            "40: Here You Go",
-            "41: Work Out",
-            "42: Take a Picture",
-            "43: Sniff Sniff",
-            "44: Ta-da",
-            "45: Wave Goodbye",
-            "46: Excited",
-            "47: Confetti (Festivale)",
-            "48: Viva (Festivale)",
-            "49: Let\'s Go (Festivale)",
-            "4A: Feelin\' It (Festivale)",
-            "4B: Raised Fist (Unused) ",
-            "4C: Say Cheese ",
-            "4D: Eager ",
-            "4E: Posture Warm-Up ",
-            "4F: Arm Circles ",
-            "50: Side Bends ",
-            "51: Body Twists ",
-            "52: Wide Arm Stretch ",
-            "53: Upper-Body Circles ",
-            "54: Jump ",
-            "55: Hula ",
-            "56: Double Wave ",
-            "57: Listening Ears ",
-            "58: Flex ",
-            "59: Jammin\' ",
-            "5A: Stretch ",
-            "5B: Behold ",
-            "5C: Work It ",
-            "5D: Act Natural ",
-            "5E: Grooving Hop ",
-            "5F: Groove Right ",
-            "60: Groove Left ",
-            "61: Soak It In ",
-            "62: Shimmy ",
-            "63: Airplane ",
-            "64: Twisty Dance ",
-            "65: Arm-Swing Dance ",
-            "66: Island Stomp ",
-            "67: Side-To-Side ",
-            "68: Turnip Patch ",
-            "69: Laughing (Unused) ",
-            "6A: Content (Unused) ",
-            "6B: Gulliver (Unused)",
-            "6C: Wasp (Unused)",
-            "4D: Forehead (Unused)",
-            "4E: Orville (Unused)",
-            "6F: K.K. Slider Sitting (Unused)",
-            "70: K.K. nodding while sitting (Unused)",
-            "71: K.K. thinking while sitting (Unused)",
-            "72: Lottie Hooray (Unused)",
-            "73: Lottie Kawaii (Unused)",
-            "74: Niko Moon Jump (Unused)",
-            "75: Niko Smily Face (Unused)",
-            "76: Niko High Jump (Unused)"});
-            this.ReactionSlot1.Location = new System.Drawing.Point(258, 29);
-            this.ReactionSlot1.Name = "ReactionSlot1";
-            this.ReactionSlot1.Size = new System.Drawing.Size(230, 23);
-            this.ReactionSlot1.TabIndex = 68;
+            ReactionSlot1.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            ReactionSlot1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            ReactionSlot1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ReactionSlot1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            ReactionSlot1.ForeColor = System.Drawing.Color.White;
+            ReactionSlot1.FormattingEnabled = true;
+            ReactionSlot1.Items.AddRange(new object[] { "01: Happiness", "02: Laughter", "03: Joy", "04: Love", "05: Glee", "06: Anger (Unused)", "07: Aggravation", "08: Outrage (Unused)", "09: Worry", "0A: Sighing", "0B: Thought", "0C: Sadness", "0D: Distress", "0E: Sorrow", "0F: Amazed", "10: Surprise", "11: Disbelief (Unused)", "12: Shocked", "13: Cold Chill", "14: Fearful", "15: Agreement", "16: Inspiration", "17: Curiosity", "18: Heartbreak", "19: Sleepy", "1A: Bashfulness", "1B: Resignation", "1C: Mischief", "1D: Delight", "1E: Sneezing", "1F: Encouraging", "20: Greetings", "21: Pride", "22: Sweating (Unused)", "23: Smirking", "24: Sheepishness", "25: Smile (Unused)", "26: Sunniness (Unused)", "27: Shyness", "28: Disagreement", "29: Mistaken", "2A: Flourish", "2B: Daydreaming", "2C: Showmanship", "2D: Dozing", "2E: Shrunk Funk Shuffle (Unused)", "2F: Intense", "30: Pleased", "31: Distress (Unused)", "32: Wave (Unused)", "33: Poking hands (Unused)", "34: Nod (Unused)", "35: Notice (Unused)", "36: Apologetic", "37: Confident", "38: Talking (Unused)", "39: Clapping (Unused)", "3A: Bewilderment", "3B: Greetings (Unused)", "3C: Scare (Halloween)", "3D: Haunt (Halloween)", "3E: Sit Down", "3F: Yoga", "40: Here You Go", "41: Work Out", "42: Take a Picture", "43: Sniff Sniff", "44: Ta-da", "45: Wave Goodbye", "46: Excited", "47: Confetti (Festivale)", "48: Viva (Festivale)", "49: Let's Go (Festivale)", "4A: Feelin' It (Festivale)", "4B: Raised Fist (Unused) ", "4C: Say Cheese ", "4D: Eager ", "4E: Posture Warm-Up ", "4F: Arm Circles ", "50: Side Bends ", "51: Body Twists ", "52: Wide Arm Stretch ", "53: Upper-Body Circles ", "54: Jump ", "55: Hula ", "56: Double Wave ", "57: Listening Ears ", "58: Flex ", "59: Jammin' ", "5A: Stretch ", "5B: Behold ", "5C: Work It ", "5D: Act Natural ", "5E: Grooving Hop ", "5F: Groove Right ", "60: Groove Left ", "61: Soak It In ", "62: Shimmy ", "63: Airplane ", "64: Twisty Dance ", "65: Arm-Swing Dance ", "66: Island Stomp ", "67: Side-To-Side ", "68: Turnip Patch ", "69: Laughing (Unused) ", "6A: Content (Unused) ", "6B: Gulliver (Unused)", "6C: Wasp (Unused)", "4D: Forehead (Unused)", "4E: Orville (Unused)", "6F: K.K. Slider Sitting (Unused)", "70: K.K. nodding while sitting (Unused)", "71: K.K. thinking while sitting (Unused)", "72: Lottie Hooray (Unused)", "73: Lottie Kawaii (Unused)", "74: Niko Moon Jump (Unused)", "75: Niko Smily Face (Unused)", "76: Niko High Jump (Unused)" });
+            ReactionSlot1.Location = new System.Drawing.Point(258, 29);
+            ReactionSlot1.Name = "ReactionSlot1";
+            ReactionSlot1.Size = new System.Drawing.Size(230, 23);
+            ReactionSlot1.TabIndex = 68;
             // 
             // ReactionWheelLabel
             // 
-            this.ReactionWheelLabel.AutoSize = true;
-            this.ReactionWheelLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ReactionWheelLabel.ForeColor = System.Drawing.Color.White;
-            this.ReactionWheelLabel.Location = new System.Drawing.Point(3, 3);
-            this.ReactionWheelLabel.Name = "ReactionWheelLabel";
-            this.ReactionWheelLabel.Size = new System.Drawing.Size(164, 22);
-            this.ReactionWheelLabel.TabIndex = 67;
-            this.ReactionWheelLabel.Text = "Reaction Wheel :";
+            ReactionWheelLabel.AutoSize = true;
+            ReactionWheelLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            ReactionWheelLabel.ForeColor = System.Drawing.Color.White;
+            ReactionWheelLabel.Location = new System.Drawing.Point(3, 3);
+            ReactionWheelLabel.Name = "ReactionWheelLabel";
+            ReactionWheelLabel.Size = new System.Drawing.Size(164, 22);
+            ReactionWheelLabel.TabIndex = 67;
+            ReactionWheelLabel.Text = "Reaction Wheel :";
             // 
             // TurnipPanel
             // 
-            this.TurnipPanel.Controls.Add(this.SetTurnipPriceButton);
-            this.TurnipPanel.Controls.Add(this.SetTurnipPriceMaxButton);
-            this.TurnipPanel.Controls.Add(this.SaturdayPMLabel);
-            this.TurnipPanel.Controls.Add(this.turnipSell6PM);
-            this.TurnipPanel.Controls.Add(this.FridayPMLabel);
-            this.TurnipPanel.Controls.Add(this.turnipSell5PM);
-            this.TurnipPanel.Controls.Add(this.ThursdayPMLabel);
-            this.TurnipPanel.Controls.Add(this.turnipSell4PM);
-            this.TurnipPanel.Controls.Add(this.WednesdayPMLabel);
-            this.TurnipPanel.Controls.Add(this.turnipSell3PM);
-            this.TurnipPanel.Controls.Add(this.TuesdayPMLabel);
-            this.TurnipPanel.Controls.Add(this.turnipSell2PM);
-            this.TurnipPanel.Controls.Add(this.MondayPMLabel);
-            this.TurnipPanel.Controls.Add(this.turnipSell1PM);
-            this.TurnipPanel.Controls.Add(this.SaturdayAMLabel);
-            this.TurnipPanel.Controls.Add(this.turnipSell6AM);
-            this.TurnipPanel.Controls.Add(this.FridayAMLabel);
-            this.TurnipPanel.Controls.Add(this.turnipSell5AM);
-            this.TurnipPanel.Controls.Add(this.ThursdayAMLabel);
-            this.TurnipPanel.Controls.Add(this.turnipSell4AM);
-            this.TurnipPanel.Controls.Add(this.WednesdayAMLabel);
-            this.TurnipPanel.Controls.Add(this.turnipSell3AM);
-            this.TurnipPanel.Controls.Add(this.TuesdayAMLabel);
-            this.TurnipPanel.Controls.Add(this.turnipSell2AM);
-            this.TurnipPanel.Controls.Add(this.turnipBuyPrice);
-            this.TurnipPanel.Controls.Add(this.MondayAMLabel);
-            this.TurnipPanel.Controls.Add(this.turnipSell1AM);
-            this.TurnipPanel.Controls.Add(this.TurnipBuyPriceLabel);
-            this.TurnipPanel.Controls.Add(this.saturdayPMStar);
-            this.TurnipPanel.Controls.Add(this.fridayPMStar);
-            this.TurnipPanel.Controls.Add(this.thursdayPMStar);
-            this.TurnipPanel.Controls.Add(this.wednesdayPMStar);
-            this.TurnipPanel.Controls.Add(this.tuesdayPMStar);
-            this.TurnipPanel.Controls.Add(this.saturdayAMStar);
-            this.TurnipPanel.Controls.Add(this.fridayAMStar);
-            this.TurnipPanel.Controls.Add(this.thursdayAMStar);
-            this.TurnipPanel.Controls.Add(this.wednesdayAMStar);
-            this.TurnipPanel.Controls.Add(this.mondayPMStar);
-            this.TurnipPanel.Controls.Add(this.mondayAMStar);
-            this.TurnipPanel.Controls.Add(this.tuesdayAMStar);
-            this.TurnipPanel.Location = new System.Drawing.Point(32, 54);
-            this.TurnipPanel.Name = "TurnipPanel";
-            this.TurnipPanel.Size = new System.Drawing.Size(422, 450);
-            this.TurnipPanel.TabIndex = 30;
+            TurnipPanel.Controls.Add(SetTurnipPriceButton);
+            TurnipPanel.Controls.Add(SetTurnipPriceMaxButton);
+            TurnipPanel.Controls.Add(SaturdayPMLabel);
+            TurnipPanel.Controls.Add(turnipSell6PM);
+            TurnipPanel.Controls.Add(FridayPMLabel);
+            TurnipPanel.Controls.Add(turnipSell5PM);
+            TurnipPanel.Controls.Add(ThursdayPMLabel);
+            TurnipPanel.Controls.Add(turnipSell4PM);
+            TurnipPanel.Controls.Add(WednesdayPMLabel);
+            TurnipPanel.Controls.Add(turnipSell3PM);
+            TurnipPanel.Controls.Add(TuesdayPMLabel);
+            TurnipPanel.Controls.Add(turnipSell2PM);
+            TurnipPanel.Controls.Add(MondayPMLabel);
+            TurnipPanel.Controls.Add(turnipSell1PM);
+            TurnipPanel.Controls.Add(SaturdayAMLabel);
+            TurnipPanel.Controls.Add(turnipSell6AM);
+            TurnipPanel.Controls.Add(FridayAMLabel);
+            TurnipPanel.Controls.Add(turnipSell5AM);
+            TurnipPanel.Controls.Add(ThursdayAMLabel);
+            TurnipPanel.Controls.Add(turnipSell4AM);
+            TurnipPanel.Controls.Add(WednesdayAMLabel);
+            TurnipPanel.Controls.Add(turnipSell3AM);
+            TurnipPanel.Controls.Add(TuesdayAMLabel);
+            TurnipPanel.Controls.Add(turnipSell2AM);
+            TurnipPanel.Controls.Add(turnipBuyPrice);
+            TurnipPanel.Controls.Add(MondayAMLabel);
+            TurnipPanel.Controls.Add(turnipSell1AM);
+            TurnipPanel.Controls.Add(TurnipBuyPriceLabel);
+            TurnipPanel.Controls.Add(saturdayPMStar);
+            TurnipPanel.Controls.Add(fridayPMStar);
+            TurnipPanel.Controls.Add(thursdayPMStar);
+            TurnipPanel.Controls.Add(wednesdayPMStar);
+            TurnipPanel.Controls.Add(tuesdayPMStar);
+            TurnipPanel.Controls.Add(saturdayAMStar);
+            TurnipPanel.Controls.Add(fridayAMStar);
+            TurnipPanel.Controls.Add(thursdayAMStar);
+            TurnipPanel.Controls.Add(wednesdayAMStar);
+            TurnipPanel.Controls.Add(mondayPMStar);
+            TurnipPanel.Controls.Add(mondayAMStar);
+            TurnipPanel.Controls.Add(tuesdayAMStar);
+            TurnipPanel.Location = new System.Drawing.Point(32, 54);
+            TurnipPanel.Name = "TurnipPanel";
+            TurnipPanel.Size = new System.Drawing.Size(422, 450);
+            TurnipPanel.TabIndex = 30;
             // 
             // SetTurnipPriceButton
             // 
-            this.SetTurnipPriceButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.SetTurnipPriceButton.FlatAppearance.BorderSize = 0;
-            this.SetTurnipPriceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SetTurnipPriceButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SetTurnipPriceButton.ForeColor = System.Drawing.Color.White;
-            this.SetTurnipPriceButton.Location = new System.Drawing.Point(259, 41);
-            this.SetTurnipPriceButton.Name = "SetTurnipPriceButton";
-            this.SetTurnipPriceButton.Size = new System.Drawing.Size(155, 23);
-            this.SetTurnipPriceButton.TabIndex = 83;
-            this.SetTurnipPriceButton.Tag = "";
-            this.SetTurnipPriceButton.Text = "Set Turnip Price";
-            this.SetTurnipPriceButton.UseVisualStyleBackColor = false;
-            this.SetTurnipPriceButton.Click += new System.EventHandler(this.SetTurnipPriceButton_Click);
+            SetTurnipPriceButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            SetTurnipPriceButton.FlatAppearance.BorderSize = 0;
+            SetTurnipPriceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            SetTurnipPriceButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            SetTurnipPriceButton.ForeColor = System.Drawing.Color.White;
+            SetTurnipPriceButton.Location = new System.Drawing.Point(259, 41);
+            SetTurnipPriceButton.Name = "SetTurnipPriceButton";
+            SetTurnipPriceButton.Size = new System.Drawing.Size(155, 23);
+            SetTurnipPriceButton.TabIndex = 83;
+            SetTurnipPriceButton.Tag = "";
+            SetTurnipPriceButton.Text = "Set Turnip Price";
+            SetTurnipPriceButton.UseVisualStyleBackColor = false;
+            SetTurnipPriceButton.Click += SetTurnipPriceButton_Click;
             // 
             // SetTurnipPriceMaxButton
             // 
-            this.SetTurnipPriceMaxButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.SetTurnipPriceMaxButton.FlatAppearance.BorderSize = 0;
-            this.SetTurnipPriceMaxButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SetTurnipPriceMaxButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SetTurnipPriceMaxButton.ForeColor = System.Drawing.Color.White;
-            this.SetTurnipPriceMaxButton.Location = new System.Drawing.Point(259, 12);
-            this.SetTurnipPriceMaxButton.Name = "SetTurnipPriceMaxButton";
-            this.SetTurnipPriceMaxButton.Size = new System.Drawing.Size(155, 23);
-            this.SetTurnipPriceMaxButton.TabIndex = 82;
-            this.SetTurnipPriceMaxButton.Tag = "";
-            this.SetTurnipPriceMaxButton.Text = "Set All to MAX";
-            this.SetTurnipPriceMaxButton.UseVisualStyleBackColor = false;
-            this.SetTurnipPriceMaxButton.Click += new System.EventHandler(this.SetTurnipPriceMaxButton_Click);
+            SetTurnipPriceMaxButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            SetTurnipPriceMaxButton.FlatAppearance.BorderSize = 0;
+            SetTurnipPriceMaxButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            SetTurnipPriceMaxButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            SetTurnipPriceMaxButton.ForeColor = System.Drawing.Color.White;
+            SetTurnipPriceMaxButton.Location = new System.Drawing.Point(259, 12);
+            SetTurnipPriceMaxButton.Name = "SetTurnipPriceMaxButton";
+            SetTurnipPriceMaxButton.Size = new System.Drawing.Size(155, 23);
+            SetTurnipPriceMaxButton.TabIndex = 82;
+            SetTurnipPriceMaxButton.Tag = "";
+            SetTurnipPriceMaxButton.Text = "Set All to MAX";
+            SetTurnipPriceMaxButton.UseVisualStyleBackColor = false;
+            SetTurnipPriceMaxButton.Click += SetTurnipPriceMaxButton_Click;
             // 
             // SaturdayPMLabel
             // 
-            this.SaturdayPMLabel.AutoSize = true;
-            this.SaturdayPMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SaturdayPMLabel.ForeColor = System.Drawing.Color.White;
-            this.SaturdayPMLabel.Location = new System.Drawing.Point(209, 382);
-            this.SaturdayPMLabel.Name = "SaturdayPMLabel";
-            this.SaturdayPMLabel.Size = new System.Drawing.Size(106, 19);
-            this.SaturdayPMLabel.TabIndex = 54;
-            this.SaturdayPMLabel.Text = "Saturday PM";
+            SaturdayPMLabel.AutoSize = true;
+            SaturdayPMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            SaturdayPMLabel.ForeColor = System.Drawing.Color.White;
+            SaturdayPMLabel.Location = new System.Drawing.Point(209, 382);
+            SaturdayPMLabel.Name = "SaturdayPMLabel";
+            SaturdayPMLabel.Size = new System.Drawing.Size(106, 19);
+            SaturdayPMLabel.TabIndex = 54;
+            SaturdayPMLabel.Text = "Saturday PM";
             // 
             // FridayPMLabel
             // 
-            this.FridayPMLabel.AutoSize = true;
-            this.FridayPMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FridayPMLabel.ForeColor = System.Drawing.Color.White;
-            this.FridayPMLabel.Location = new System.Drawing.Point(209, 319);
-            this.FridayPMLabel.Name = "FridayPMLabel";
-            this.FridayPMLabel.Size = new System.Drawing.Size(85, 19);
-            this.FridayPMLabel.TabIndex = 52;
-            this.FridayPMLabel.Text = "Friday PM";
+            FridayPMLabel.AutoSize = true;
+            FridayPMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            FridayPMLabel.ForeColor = System.Drawing.Color.White;
+            FridayPMLabel.Location = new System.Drawing.Point(209, 319);
+            FridayPMLabel.Name = "FridayPMLabel";
+            FridayPMLabel.Size = new System.Drawing.Size(85, 19);
+            FridayPMLabel.TabIndex = 52;
+            FridayPMLabel.Text = "Friday PM";
             // 
             // ThursdayPMLabel
             // 
-            this.ThursdayPMLabel.AutoSize = true;
-            this.ThursdayPMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ThursdayPMLabel.ForeColor = System.Drawing.Color.White;
-            this.ThursdayPMLabel.Location = new System.Drawing.Point(209, 256);
-            this.ThursdayPMLabel.Name = "ThursdayPMLabel";
-            this.ThursdayPMLabel.Size = new System.Drawing.Size(110, 19);
-            this.ThursdayPMLabel.TabIndex = 50;
-            this.ThursdayPMLabel.Text = "Thursday PM";
+            ThursdayPMLabel.AutoSize = true;
+            ThursdayPMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            ThursdayPMLabel.ForeColor = System.Drawing.Color.White;
+            ThursdayPMLabel.Location = new System.Drawing.Point(209, 256);
+            ThursdayPMLabel.Name = "ThursdayPMLabel";
+            ThursdayPMLabel.Size = new System.Drawing.Size(110, 19);
+            ThursdayPMLabel.TabIndex = 50;
+            ThursdayPMLabel.Text = "Thursday PM";
             // 
             // WednesdayPMLabel
             // 
-            this.WednesdayPMLabel.AutoSize = true;
-            this.WednesdayPMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.WednesdayPMLabel.ForeColor = System.Drawing.Color.White;
-            this.WednesdayPMLabel.Location = new System.Drawing.Point(209, 193);
-            this.WednesdayPMLabel.Name = "WednesdayPMLabel";
-            this.WednesdayPMLabel.Size = new System.Drawing.Size(127, 19);
-            this.WednesdayPMLabel.TabIndex = 48;
-            this.WednesdayPMLabel.Text = "Wednesday PM";
+            WednesdayPMLabel.AutoSize = true;
+            WednesdayPMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            WednesdayPMLabel.ForeColor = System.Drawing.Color.White;
+            WednesdayPMLabel.Location = new System.Drawing.Point(209, 193);
+            WednesdayPMLabel.Name = "WednesdayPMLabel";
+            WednesdayPMLabel.Size = new System.Drawing.Size(127, 19);
+            WednesdayPMLabel.TabIndex = 48;
+            WednesdayPMLabel.Text = "Wednesday PM";
             // 
             // TuesdayPMLabel
             // 
-            this.TuesdayPMLabel.AutoSize = true;
-            this.TuesdayPMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.TuesdayPMLabel.ForeColor = System.Drawing.Color.White;
-            this.TuesdayPMLabel.Location = new System.Drawing.Point(209, 130);
-            this.TuesdayPMLabel.Name = "TuesdayPMLabel";
-            this.TuesdayPMLabel.Size = new System.Drawing.Size(102, 19);
-            this.TuesdayPMLabel.TabIndex = 46;
-            this.TuesdayPMLabel.Text = "Tuesday PM";
+            TuesdayPMLabel.AutoSize = true;
+            TuesdayPMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            TuesdayPMLabel.ForeColor = System.Drawing.Color.White;
+            TuesdayPMLabel.Location = new System.Drawing.Point(209, 130);
+            TuesdayPMLabel.Name = "TuesdayPMLabel";
+            TuesdayPMLabel.Size = new System.Drawing.Size(102, 19);
+            TuesdayPMLabel.TabIndex = 46;
+            TuesdayPMLabel.Text = "Tuesday PM";
             // 
             // MondayPMLabel
             // 
-            this.MondayPMLabel.AutoSize = true;
-            this.MondayPMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.MondayPMLabel.ForeColor = System.Drawing.Color.White;
-            this.MondayPMLabel.Location = new System.Drawing.Point(209, 67);
-            this.MondayPMLabel.Name = "MondayPMLabel";
-            this.MondayPMLabel.Size = new System.Drawing.Size(98, 19);
-            this.MondayPMLabel.TabIndex = 44;
-            this.MondayPMLabel.Text = "Monday PM";
+            MondayPMLabel.AutoSize = true;
+            MondayPMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            MondayPMLabel.ForeColor = System.Drawing.Color.White;
+            MondayPMLabel.Location = new System.Drawing.Point(209, 67);
+            MondayPMLabel.Name = "MondayPMLabel";
+            MondayPMLabel.Size = new System.Drawing.Size(98, 19);
+            MondayPMLabel.TabIndex = 44;
+            MondayPMLabel.Text = "Monday PM";
             // 
             // SaturdayAMLabel
             // 
-            this.SaturdayAMLabel.AutoSize = true;
-            this.SaturdayAMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SaturdayAMLabel.ForeColor = System.Drawing.Color.White;
-            this.SaturdayAMLabel.Location = new System.Drawing.Point(1, 382);
-            this.SaturdayAMLabel.Name = "SaturdayAMLabel";
-            this.SaturdayAMLabel.Size = new System.Drawing.Size(105, 19);
-            this.SaturdayAMLabel.TabIndex = 42;
-            this.SaturdayAMLabel.Text = "Saturday AM";
+            SaturdayAMLabel.AutoSize = true;
+            SaturdayAMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            SaturdayAMLabel.ForeColor = System.Drawing.Color.White;
+            SaturdayAMLabel.Location = new System.Drawing.Point(1, 382);
+            SaturdayAMLabel.Name = "SaturdayAMLabel";
+            SaturdayAMLabel.Size = new System.Drawing.Size(105, 19);
+            SaturdayAMLabel.TabIndex = 42;
+            SaturdayAMLabel.Text = "Saturday AM";
             // 
             // FridayAMLabel
             // 
-            this.FridayAMLabel.AutoSize = true;
-            this.FridayAMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FridayAMLabel.ForeColor = System.Drawing.Color.White;
-            this.FridayAMLabel.Location = new System.Drawing.Point(1, 319);
-            this.FridayAMLabel.Name = "FridayAMLabel";
-            this.FridayAMLabel.Size = new System.Drawing.Size(84, 19);
-            this.FridayAMLabel.TabIndex = 40;
-            this.FridayAMLabel.Text = "Friday AM";
+            FridayAMLabel.AutoSize = true;
+            FridayAMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            FridayAMLabel.ForeColor = System.Drawing.Color.White;
+            FridayAMLabel.Location = new System.Drawing.Point(1, 319);
+            FridayAMLabel.Name = "FridayAMLabel";
+            FridayAMLabel.Size = new System.Drawing.Size(84, 19);
+            FridayAMLabel.TabIndex = 40;
+            FridayAMLabel.Text = "Friday AM";
             // 
             // ThursdayAMLabel
             // 
-            this.ThursdayAMLabel.AutoSize = true;
-            this.ThursdayAMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ThursdayAMLabel.ForeColor = System.Drawing.Color.White;
-            this.ThursdayAMLabel.Location = new System.Drawing.Point(1, 256);
-            this.ThursdayAMLabel.Name = "ThursdayAMLabel";
-            this.ThursdayAMLabel.Size = new System.Drawing.Size(109, 19);
-            this.ThursdayAMLabel.TabIndex = 38;
-            this.ThursdayAMLabel.Text = "Thursday AM";
+            ThursdayAMLabel.AutoSize = true;
+            ThursdayAMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            ThursdayAMLabel.ForeColor = System.Drawing.Color.White;
+            ThursdayAMLabel.Location = new System.Drawing.Point(1, 256);
+            ThursdayAMLabel.Name = "ThursdayAMLabel";
+            ThursdayAMLabel.Size = new System.Drawing.Size(109, 19);
+            ThursdayAMLabel.TabIndex = 38;
+            ThursdayAMLabel.Text = "Thursday AM";
             // 
             // WednesdayAMLabel
             // 
-            this.WednesdayAMLabel.AutoSize = true;
-            this.WednesdayAMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.WednesdayAMLabel.ForeColor = System.Drawing.Color.White;
-            this.WednesdayAMLabel.Location = new System.Drawing.Point(1, 193);
-            this.WednesdayAMLabel.Name = "WednesdayAMLabel";
-            this.WednesdayAMLabel.Size = new System.Drawing.Size(126, 19);
-            this.WednesdayAMLabel.TabIndex = 36;
-            this.WednesdayAMLabel.Text = "Wednesday AM";
+            WednesdayAMLabel.AutoSize = true;
+            WednesdayAMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            WednesdayAMLabel.ForeColor = System.Drawing.Color.White;
+            WednesdayAMLabel.Location = new System.Drawing.Point(1, 193);
+            WednesdayAMLabel.Name = "WednesdayAMLabel";
+            WednesdayAMLabel.Size = new System.Drawing.Size(126, 19);
+            WednesdayAMLabel.TabIndex = 36;
+            WednesdayAMLabel.Text = "Wednesday AM";
             // 
             // TuesdayAMLabel
             // 
-            this.TuesdayAMLabel.AutoSize = true;
-            this.TuesdayAMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.TuesdayAMLabel.ForeColor = System.Drawing.Color.White;
-            this.TuesdayAMLabel.Location = new System.Drawing.Point(1, 130);
-            this.TuesdayAMLabel.Name = "TuesdayAMLabel";
-            this.TuesdayAMLabel.Size = new System.Drawing.Size(101, 19);
-            this.TuesdayAMLabel.TabIndex = 34;
-            this.TuesdayAMLabel.Text = "Tuesday AM";
+            TuesdayAMLabel.AutoSize = true;
+            TuesdayAMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            TuesdayAMLabel.ForeColor = System.Drawing.Color.White;
+            TuesdayAMLabel.Location = new System.Drawing.Point(1, 130);
+            TuesdayAMLabel.Name = "TuesdayAMLabel";
+            TuesdayAMLabel.Size = new System.Drawing.Size(101, 19);
+            TuesdayAMLabel.TabIndex = 34;
+            TuesdayAMLabel.Text = "Tuesday AM";
             // 
             // MondayAMLabel
             // 
-            this.MondayAMLabel.AutoSize = true;
-            this.MondayAMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.MondayAMLabel.ForeColor = System.Drawing.Color.White;
-            this.MondayAMLabel.Location = new System.Drawing.Point(1, 67);
-            this.MondayAMLabel.Name = "MondayAMLabel";
-            this.MondayAMLabel.Size = new System.Drawing.Size(97, 19);
-            this.MondayAMLabel.TabIndex = 31;
-            this.MondayAMLabel.Text = "Monday AM";
+            MondayAMLabel.AutoSize = true;
+            MondayAMLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            MondayAMLabel.ForeColor = System.Drawing.Color.White;
+            MondayAMLabel.Location = new System.Drawing.Point(1, 67);
+            MondayAMLabel.Name = "MondayAMLabel";
+            MondayAMLabel.Size = new System.Drawing.Size(97, 19);
+            MondayAMLabel.TabIndex = 31;
+            MondayAMLabel.Text = "Monday AM";
             // 
             // TurnipBuyPriceLabel
             // 
-            this.TurnipBuyPriceLabel.AutoSize = true;
-            this.TurnipBuyPriceLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.TurnipBuyPriceLabel.ForeColor = System.Drawing.Color.White;
-            this.TurnipBuyPriceLabel.Location = new System.Drawing.Point(1, 1);
-            this.TurnipBuyPriceLabel.Name = "TurnipBuyPriceLabel";
-            this.TurnipBuyPriceLabel.Size = new System.Drawing.Size(178, 22);
-            this.TurnipBuyPriceLabel.TabIndex = 29;
-            this.TurnipBuyPriceLabel.Text = "Turnip Buy Price :";
+            TurnipBuyPriceLabel.AutoSize = true;
+            TurnipBuyPriceLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            TurnipBuyPriceLabel.ForeColor = System.Drawing.Color.White;
+            TurnipBuyPriceLabel.Location = new System.Drawing.Point(1, 1);
+            TurnipBuyPriceLabel.Name = "TurnipBuyPriceLabel";
+            TurnipBuyPriceLabel.Size = new System.Drawing.Size(178, 22);
+            TurnipBuyPriceLabel.TabIndex = 29;
+            TurnipBuyPriceLabel.Text = "Turnip Buy Price :";
             // 
             // saturdayPMStar
             // 
-            this.saturdayPMStar.AutoSize = true;
-            this.saturdayPMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.saturdayPMStar.ForeColor = System.Drawing.Color.Orange;
-            this.saturdayPMStar.Location = new System.Drawing.Point(219, 397);
-            this.saturdayPMStar.Name = "saturdayPMStar";
-            this.saturdayPMStar.Size = new System.Drawing.Size(48, 46);
-            this.saturdayPMStar.TabIndex = 66;
-            this.saturdayPMStar.Text = "★";
+            saturdayPMStar.AutoSize = true;
+            saturdayPMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold);
+            saturdayPMStar.ForeColor = System.Drawing.Color.Orange;
+            saturdayPMStar.Location = new System.Drawing.Point(219, 397);
+            saturdayPMStar.Name = "saturdayPMStar";
+            saturdayPMStar.Size = new System.Drawing.Size(48, 46);
+            saturdayPMStar.TabIndex = 66;
+            saturdayPMStar.Text = "★";
             // 
             // fridayPMStar
             // 
-            this.fridayPMStar.AutoSize = true;
-            this.fridayPMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.fridayPMStar.ForeColor = System.Drawing.Color.Orange;
-            this.fridayPMStar.Location = new System.Drawing.Point(219, 332);
-            this.fridayPMStar.Name = "fridayPMStar";
-            this.fridayPMStar.Size = new System.Drawing.Size(48, 46);
-            this.fridayPMStar.TabIndex = 65;
-            this.fridayPMStar.Text = "★";
+            fridayPMStar.AutoSize = true;
+            fridayPMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold);
+            fridayPMStar.ForeColor = System.Drawing.Color.Orange;
+            fridayPMStar.Location = new System.Drawing.Point(219, 332);
+            fridayPMStar.Name = "fridayPMStar";
+            fridayPMStar.Size = new System.Drawing.Size(48, 46);
+            fridayPMStar.TabIndex = 65;
+            fridayPMStar.Text = "★";
             // 
             // thursdayPMStar
             // 
-            this.thursdayPMStar.AutoSize = true;
-            this.thursdayPMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.thursdayPMStar.ForeColor = System.Drawing.Color.Orange;
-            this.thursdayPMStar.Location = new System.Drawing.Point(219, 271);
-            this.thursdayPMStar.Name = "thursdayPMStar";
-            this.thursdayPMStar.Size = new System.Drawing.Size(48, 46);
-            this.thursdayPMStar.TabIndex = 64;
-            this.thursdayPMStar.Text = "★";
+            thursdayPMStar.AutoSize = true;
+            thursdayPMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold);
+            thursdayPMStar.ForeColor = System.Drawing.Color.Orange;
+            thursdayPMStar.Location = new System.Drawing.Point(219, 271);
+            thursdayPMStar.Name = "thursdayPMStar";
+            thursdayPMStar.Size = new System.Drawing.Size(48, 46);
+            thursdayPMStar.TabIndex = 64;
+            thursdayPMStar.Text = "★";
             // 
             // wednesdayPMStar
             // 
-            this.wednesdayPMStar.AutoSize = true;
-            this.wednesdayPMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.wednesdayPMStar.ForeColor = System.Drawing.Color.Orange;
-            this.wednesdayPMStar.Location = new System.Drawing.Point(219, 208);
-            this.wednesdayPMStar.Name = "wednesdayPMStar";
-            this.wednesdayPMStar.Size = new System.Drawing.Size(48, 46);
-            this.wednesdayPMStar.TabIndex = 63;
-            this.wednesdayPMStar.Text = "★";
+            wednesdayPMStar.AutoSize = true;
+            wednesdayPMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold);
+            wednesdayPMStar.ForeColor = System.Drawing.Color.Orange;
+            wednesdayPMStar.Location = new System.Drawing.Point(219, 208);
+            wednesdayPMStar.Name = "wednesdayPMStar";
+            wednesdayPMStar.Size = new System.Drawing.Size(48, 46);
+            wednesdayPMStar.TabIndex = 63;
+            wednesdayPMStar.Text = "★";
             // 
             // tuesdayPMStar
             // 
-            this.tuesdayPMStar.AutoSize = true;
-            this.tuesdayPMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.tuesdayPMStar.ForeColor = System.Drawing.Color.Orange;
-            this.tuesdayPMStar.Location = new System.Drawing.Point(219, 145);
-            this.tuesdayPMStar.Name = "tuesdayPMStar";
-            this.tuesdayPMStar.Size = new System.Drawing.Size(48, 46);
-            this.tuesdayPMStar.TabIndex = 62;
-            this.tuesdayPMStar.Text = "★";
+            tuesdayPMStar.AutoSize = true;
+            tuesdayPMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold);
+            tuesdayPMStar.ForeColor = System.Drawing.Color.Orange;
+            tuesdayPMStar.Location = new System.Drawing.Point(219, 145);
+            tuesdayPMStar.Name = "tuesdayPMStar";
+            tuesdayPMStar.Size = new System.Drawing.Size(48, 46);
+            tuesdayPMStar.TabIndex = 62;
+            tuesdayPMStar.Text = "★";
             // 
             // saturdayAMStar
             // 
-            this.saturdayAMStar.AutoSize = true;
-            this.saturdayAMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.saturdayAMStar.ForeColor = System.Drawing.Color.Orange;
-            this.saturdayAMStar.Location = new System.Drawing.Point(11, 397);
-            this.saturdayAMStar.Name = "saturdayAMStar";
-            this.saturdayAMStar.Size = new System.Drawing.Size(48, 46);
-            this.saturdayAMStar.TabIndex = 61;
-            this.saturdayAMStar.Text = "★";
+            saturdayAMStar.AutoSize = true;
+            saturdayAMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold);
+            saturdayAMStar.ForeColor = System.Drawing.Color.Orange;
+            saturdayAMStar.Location = new System.Drawing.Point(11, 397);
+            saturdayAMStar.Name = "saturdayAMStar";
+            saturdayAMStar.Size = new System.Drawing.Size(48, 46);
+            saturdayAMStar.TabIndex = 61;
+            saturdayAMStar.Text = "★";
             // 
             // fridayAMStar
             // 
-            this.fridayAMStar.AutoSize = true;
-            this.fridayAMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.fridayAMStar.ForeColor = System.Drawing.Color.Orange;
-            this.fridayAMStar.Location = new System.Drawing.Point(11, 332);
-            this.fridayAMStar.Name = "fridayAMStar";
-            this.fridayAMStar.Size = new System.Drawing.Size(48, 46);
-            this.fridayAMStar.TabIndex = 60;
-            this.fridayAMStar.Text = "★";
+            fridayAMStar.AutoSize = true;
+            fridayAMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold);
+            fridayAMStar.ForeColor = System.Drawing.Color.Orange;
+            fridayAMStar.Location = new System.Drawing.Point(11, 332);
+            fridayAMStar.Name = "fridayAMStar";
+            fridayAMStar.Size = new System.Drawing.Size(48, 46);
+            fridayAMStar.TabIndex = 60;
+            fridayAMStar.Text = "★";
             // 
             // thursdayAMStar
             // 
-            this.thursdayAMStar.AutoSize = true;
-            this.thursdayAMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.thursdayAMStar.ForeColor = System.Drawing.Color.Orange;
-            this.thursdayAMStar.Location = new System.Drawing.Point(11, 271);
-            this.thursdayAMStar.Name = "thursdayAMStar";
-            this.thursdayAMStar.Size = new System.Drawing.Size(48, 46);
-            this.thursdayAMStar.TabIndex = 59;
-            this.thursdayAMStar.Text = "★";
+            thursdayAMStar.AutoSize = true;
+            thursdayAMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold);
+            thursdayAMStar.ForeColor = System.Drawing.Color.Orange;
+            thursdayAMStar.Location = new System.Drawing.Point(11, 271);
+            thursdayAMStar.Name = "thursdayAMStar";
+            thursdayAMStar.Size = new System.Drawing.Size(48, 46);
+            thursdayAMStar.TabIndex = 59;
+            thursdayAMStar.Text = "★";
             // 
             // wednesdayAMStar
             // 
-            this.wednesdayAMStar.AutoSize = true;
-            this.wednesdayAMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.wednesdayAMStar.ForeColor = System.Drawing.Color.Orange;
-            this.wednesdayAMStar.Location = new System.Drawing.Point(11, 208);
-            this.wednesdayAMStar.Name = "wednesdayAMStar";
-            this.wednesdayAMStar.Size = new System.Drawing.Size(48, 46);
-            this.wednesdayAMStar.TabIndex = 58;
-            this.wednesdayAMStar.Text = "★";
+            wednesdayAMStar.AutoSize = true;
+            wednesdayAMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold);
+            wednesdayAMStar.ForeColor = System.Drawing.Color.Orange;
+            wednesdayAMStar.Location = new System.Drawing.Point(11, 208);
+            wednesdayAMStar.Name = "wednesdayAMStar";
+            wednesdayAMStar.Size = new System.Drawing.Size(48, 46);
+            wednesdayAMStar.TabIndex = 58;
+            wednesdayAMStar.Text = "★";
             // 
             // mondayPMStar
             // 
-            this.mondayPMStar.AutoSize = true;
-            this.mondayPMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.mondayPMStar.ForeColor = System.Drawing.Color.Orange;
-            this.mondayPMStar.Location = new System.Drawing.Point(219, 82);
-            this.mondayPMStar.Name = "mondayPMStar";
-            this.mondayPMStar.Size = new System.Drawing.Size(48, 46);
-            this.mondayPMStar.TabIndex = 56;
-            this.mondayPMStar.Text = "★";
+            mondayPMStar.AutoSize = true;
+            mondayPMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold);
+            mondayPMStar.ForeColor = System.Drawing.Color.Orange;
+            mondayPMStar.Location = new System.Drawing.Point(219, 82);
+            mondayPMStar.Name = "mondayPMStar";
+            mondayPMStar.Size = new System.Drawing.Size(48, 46);
+            mondayPMStar.TabIndex = 56;
+            mondayPMStar.Text = "★";
             // 
             // mondayAMStar
             // 
-            this.mondayAMStar.AutoSize = true;
-            this.mondayAMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.mondayAMStar.ForeColor = System.Drawing.Color.Orange;
-            this.mondayAMStar.Location = new System.Drawing.Point(11, 82);
-            this.mondayAMStar.Name = "mondayAMStar";
-            this.mondayAMStar.Size = new System.Drawing.Size(48, 46);
-            this.mondayAMStar.TabIndex = 55;
-            this.mondayAMStar.Text = "★";
+            mondayAMStar.AutoSize = true;
+            mondayAMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold);
+            mondayAMStar.ForeColor = System.Drawing.Color.Orange;
+            mondayAMStar.Location = new System.Drawing.Point(11, 82);
+            mondayAMStar.Name = "mondayAMStar";
+            mondayAMStar.Size = new System.Drawing.Size(48, 46);
+            mondayAMStar.TabIndex = 55;
+            mondayAMStar.Text = "★";
             // 
             // tuesdayAMStar
             // 
-            this.tuesdayAMStar.AutoSize = true;
-            this.tuesdayAMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.tuesdayAMStar.ForeColor = System.Drawing.Color.Orange;
-            this.tuesdayAMStar.Location = new System.Drawing.Point(11, 145);
-            this.tuesdayAMStar.Name = "tuesdayAMStar";
-            this.tuesdayAMStar.Size = new System.Drawing.Size(48, 46);
-            this.tuesdayAMStar.TabIndex = 57;
-            this.tuesdayAMStar.Text = "★";
+            tuesdayAMStar.AutoSize = true;
+            tuesdayAMStar.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold);
+            tuesdayAMStar.ForeColor = System.Drawing.Color.Orange;
+            tuesdayAMStar.Location = new System.Drawing.Point(11, 145);
+            tuesdayAMStar.Name = "tuesdayAMStar";
+            tuesdayAMStar.Size = new System.Drawing.Size(48, 46);
+            tuesdayAMStar.TabIndex = 57;
+            tuesdayAMStar.Text = "★";
             // 
             // CritterLargePanel
             // 
-            this.CritterLargePanel.Controls.Add(this.ResetAllButton);
-            this.CritterLargePanel.Controls.Add(this.DisableAllButton);
-            this.CritterLargePanel.Controls.Add(this.tableLayoutPanel1);
-            this.CritterLargePanel.Controls.Add(this.CritterNowLoadingPanel);
-            this.CritterLargePanel.Controls.Add(this.ReadCritterDataButton);
-            this.CritterLargePanel.Controls.Add(this.CritterSearchBox);
-            this.CritterLargePanel.Controls.Add(this.InsectGridView);
-            this.CritterLargePanel.Controls.Add(this.RiverFishGridView);
-            this.CritterLargePanel.Controls.Add(this.SeaFishGridView);
-            this.CritterLargePanel.Controls.Add(this.SeaCreatureGridView);
-            this.CritterLargePanel.Location = new System.Drawing.Point(0, 0);
-            this.CritterLargePanel.Name = "CritterLargePanel";
-            this.CritterLargePanel.Size = new System.Drawing.Size(1225, 550);
-            this.CritterLargePanel.TabIndex = 20;
+            CritterLargePanel.Controls.Add(ResetAllButton);
+            CritterLargePanel.Controls.Add(DisableAllButton);
+            CritterLargePanel.Controls.Add(tableLayoutPanel1);
+            CritterLargePanel.Controls.Add(CritterNowLoadingPanel);
+            CritterLargePanel.Controls.Add(ReadCritterDataButton);
+            CritterLargePanel.Controls.Add(CritterSearchBox);
+            CritterLargePanel.Controls.Add(InsectGridView);
+            CritterLargePanel.Controls.Add(RiverFishGridView);
+            CritterLargePanel.Controls.Add(SeaFishGridView);
+            CritterLargePanel.Controls.Add(SeaCreatureGridView);
+            CritterLargePanel.Location = new System.Drawing.Point(0, 0);
+            CritterLargePanel.Name = "CritterLargePanel";
+            CritterLargePanel.Size = new System.Drawing.Size(1225, 550);
+            CritterLargePanel.TabIndex = 20;
             // 
             // ResetAllButton
             // 
-            this.ResetAllButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.ResetAllButton.FlatAppearance.BorderSize = 0;
-            this.ResetAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ResetAllButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ResetAllButton.ForeColor = System.Drawing.Color.White;
-            this.ResetAllButton.Location = new System.Drawing.Point(922, 64);
-            this.ResetAllButton.Name = "ResetAllButton";
-            this.ResetAllButton.Size = new System.Drawing.Size(100, 24);
-            this.ResetAllButton.TabIndex = 32;
-            this.ResetAllButton.Tag = "";
-            this.ResetAllButton.Text = "Reset All";
-            this.ResetAllButton.UseVisualStyleBackColor = false;
-            this.ResetAllButton.Click += new System.EventHandler(this.ResetAllButton_Click);
+            ResetAllButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            ResetAllButton.FlatAppearance.BorderSize = 0;
+            ResetAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ResetAllButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            ResetAllButton.ForeColor = System.Drawing.Color.White;
+            ResetAllButton.Location = new System.Drawing.Point(922, 64);
+            ResetAllButton.Name = "ResetAllButton";
+            ResetAllButton.Size = new System.Drawing.Size(100, 24);
+            ResetAllButton.TabIndex = 32;
+            ResetAllButton.Tag = "";
+            ResetAllButton.Text = "Reset All";
+            ResetAllButton.UseVisualStyleBackColor = false;
+            ResetAllButton.Click += ResetAllButton_Click;
             // 
             // DisableAllButton
             // 
-            this.DisableAllButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.DisableAllButton.FlatAppearance.BorderSize = 0;
-            this.DisableAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DisableAllButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DisableAllButton.ForeColor = System.Drawing.Color.White;
-            this.DisableAllButton.Location = new System.Drawing.Point(812, 64);
-            this.DisableAllButton.Name = "DisableAllButton";
-            this.DisableAllButton.Size = new System.Drawing.Size(100, 24);
-            this.DisableAllButton.TabIndex = 31;
-            this.DisableAllButton.Tag = "";
-            this.DisableAllButton.Text = "Disable All";
-            this.DisableAllButton.UseVisualStyleBackColor = false;
-            this.DisableAllButton.Click += new System.EventHandler(this.DisableAllButton_Click);
+            DisableAllButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            DisableAllButton.FlatAppearance.BorderSize = 0;
+            DisableAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            DisableAllButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            DisableAllButton.ForeColor = System.Drawing.Color.White;
+            DisableAllButton.Location = new System.Drawing.Point(812, 64);
+            DisableAllButton.Name = "DisableAllButton";
+            DisableAllButton.Size = new System.Drawing.Size(100, 24);
+            DisableAllButton.TabIndex = 31;
+            DisableAllButton.Tag = "";
+            DisableAllButton.Text = "Disable All";
+            DisableAllButton.UseVisualStyleBackColor = false;
+            DisableAllButton.Click += DisableAllButton_Click;
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.SeaFishButton, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.SeaCreatureButton, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.InsectButton, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.RiverFishButton, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(325, 12);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(545, 30);
-            this.tableLayoutPanel1.TabIndex = 30;
+            tableLayoutPanel1.ColumnCount = 4;
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            tableLayoutPanel1.Controls.Add(SeaFishButton, 0, 0);
+            tableLayoutPanel1.Controls.Add(SeaCreatureButton, 0, 0);
+            tableLayoutPanel1.Controls.Add(InsectButton, 0, 0);
+            tableLayoutPanel1.Controls.Add(RiverFishButton, 0, 0);
+            tableLayoutPanel1.Location = new System.Drawing.Point(325, 12);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tableLayoutPanel1.Size = new System.Drawing.Size(545, 30);
+            tableLayoutPanel1.TabIndex = 30;
             // 
             // SeaFishButton
             // 
-            this.SeaFishButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.SeaFishButton.FlatAppearance.BorderSize = 0;
-            this.SeaFishButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SeaFishButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SeaFishButton.ForeColor = System.Drawing.Color.White;
-            this.SeaFishButton.Location = new System.Drawing.Point(275, 3);
-            this.SeaFishButton.Name = "SeaFishButton";
-            this.SeaFishButton.Size = new System.Drawing.Size(130, 24);
-            this.SeaFishButton.TabIndex = 30;
-            this.SeaFishButton.Tag = "";
-            this.SeaFishButton.Text = "Sea Fish";
-            this.SeaFishButton.UseVisualStyleBackColor = false;
-            this.SeaFishButton.Click += new System.EventHandler(this.SeaFishButton_Click);
+            SeaFishButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            SeaFishButton.FlatAppearance.BorderSize = 0;
+            SeaFishButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            SeaFishButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            SeaFishButton.ForeColor = System.Drawing.Color.White;
+            SeaFishButton.Location = new System.Drawing.Point(275, 3);
+            SeaFishButton.Name = "SeaFishButton";
+            SeaFishButton.Size = new System.Drawing.Size(130, 24);
+            SeaFishButton.TabIndex = 30;
+            SeaFishButton.Tag = "";
+            SeaFishButton.Text = "Sea Fish";
+            SeaFishButton.UseVisualStyleBackColor = false;
+            SeaFishButton.Click += SeaFishButton_Click;
             // 
             // SeaCreatureButton
             // 
-            this.SeaCreatureButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.SeaCreatureButton.FlatAppearance.BorderSize = 0;
-            this.SeaCreatureButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SeaCreatureButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SeaCreatureButton.ForeColor = System.Drawing.Color.White;
-            this.SeaCreatureButton.Location = new System.Drawing.Point(411, 3);
-            this.SeaCreatureButton.Name = "SeaCreatureButton";
-            this.SeaCreatureButton.Size = new System.Drawing.Size(130, 24);
-            this.SeaCreatureButton.TabIndex = 29;
-            this.SeaCreatureButton.Tag = "";
-            this.SeaCreatureButton.Text = "Sea Creature";
-            this.SeaCreatureButton.UseVisualStyleBackColor = false;
-            this.SeaCreatureButton.Click += new System.EventHandler(this.SeaCreatureButton_Click);
+            SeaCreatureButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            SeaCreatureButton.FlatAppearance.BorderSize = 0;
+            SeaCreatureButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            SeaCreatureButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            SeaCreatureButton.ForeColor = System.Drawing.Color.White;
+            SeaCreatureButton.Location = new System.Drawing.Point(411, 3);
+            SeaCreatureButton.Name = "SeaCreatureButton";
+            SeaCreatureButton.Size = new System.Drawing.Size(130, 24);
+            SeaCreatureButton.TabIndex = 29;
+            SeaCreatureButton.Tag = "";
+            SeaCreatureButton.Text = "Sea Creature";
+            SeaCreatureButton.UseVisualStyleBackColor = false;
+            SeaCreatureButton.Click += SeaCreatureButton_Click;
             // 
             // InsectButton
             // 
-            this.InsectButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-            this.InsectButton.FlatAppearance.BorderSize = 0;
-            this.InsectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.InsectButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.InsectButton.ForeColor = System.Drawing.Color.White;
-            this.InsectButton.Location = new System.Drawing.Point(3, 3);
-            this.InsectButton.Name = "InsectButton";
-            this.InsectButton.Size = new System.Drawing.Size(130, 24);
-            this.InsectButton.TabIndex = 28;
-            this.InsectButton.Tag = "";
-            this.InsectButton.Text = "Insect";
-            this.InsectButton.UseVisualStyleBackColor = false;
-            this.InsectButton.Click += new System.EventHandler(this.InsectButton_Click);
+            InsectButton.BackColor = System.Drawing.Color.FromArgb(80, 80, 255);
+            InsectButton.FlatAppearance.BorderSize = 0;
+            InsectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            InsectButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            InsectButton.ForeColor = System.Drawing.Color.White;
+            InsectButton.Location = new System.Drawing.Point(3, 3);
+            InsectButton.Name = "InsectButton";
+            InsectButton.Size = new System.Drawing.Size(130, 24);
+            InsectButton.TabIndex = 28;
+            InsectButton.Tag = "";
+            InsectButton.Text = "Insect";
+            InsectButton.UseVisualStyleBackColor = false;
+            InsectButton.Click += InsectButton_Click;
             // 
             // RiverFishButton
             // 
-            this.RiverFishButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.RiverFishButton.FlatAppearance.BorderSize = 0;
-            this.RiverFishButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverFishButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverFishButton.ForeColor = System.Drawing.Color.White;
-            this.RiverFishButton.Location = new System.Drawing.Point(139, 3);
-            this.RiverFishButton.Name = "RiverFishButton";
-            this.RiverFishButton.Size = new System.Drawing.Size(130, 24);
-            this.RiverFishButton.TabIndex = 27;
-            this.RiverFishButton.Tag = "";
-            this.RiverFishButton.Text = "River Fish";
-            this.RiverFishButton.UseVisualStyleBackColor = false;
-            this.RiverFishButton.Click += new System.EventHandler(this.RiverFishButton_Click);
+            RiverFishButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            RiverFishButton.FlatAppearance.BorderSize = 0;
+            RiverFishButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RiverFishButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            RiverFishButton.ForeColor = System.Drawing.Color.White;
+            RiverFishButton.Location = new System.Drawing.Point(139, 3);
+            RiverFishButton.Name = "RiverFishButton";
+            RiverFishButton.Size = new System.Drawing.Size(130, 24);
+            RiverFishButton.TabIndex = 27;
+            RiverFishButton.Tag = "";
+            RiverFishButton.Text = "River Fish";
+            RiverFishButton.UseVisualStyleBackColor = false;
+            RiverFishButton.Click += RiverFishButton_Click;
             // 
             // CritterNowLoadingPanel
             // 
-            this.CritterNowLoadingPanel.Controls.Add(this.CritterNowLoadingMessage);
-            this.CritterNowLoadingPanel.Controls.Add(this.CritterNowLoadingImage);
-            this.CritterNowLoadingPanel.Location = new System.Drawing.Point(1031, 61);
-            this.CritterNowLoadingPanel.Name = "CritterNowLoadingPanel";
-            this.CritterNowLoadingPanel.Size = new System.Drawing.Size(140, 30);
-            this.CritterNowLoadingPanel.TabIndex = 28;
-            this.CritterNowLoadingPanel.Visible = false;
+            CritterNowLoadingPanel.Controls.Add(CritterNowLoadingMessage);
+            CritterNowLoadingPanel.Controls.Add(CritterNowLoadingImage);
+            CritterNowLoadingPanel.Location = new System.Drawing.Point(1031, 61);
+            CritterNowLoadingPanel.Name = "CritterNowLoadingPanel";
+            CritterNowLoadingPanel.Size = new System.Drawing.Size(140, 30);
+            CritterNowLoadingPanel.TabIndex = 28;
+            CritterNowLoadingPanel.Visible = false;
             // 
             // CritterNowLoadingMessage
             // 
-            this.CritterNowLoadingMessage.AutoSize = true;
-            this.CritterNowLoadingMessage.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CritterNowLoadingMessage.ForeColor = System.Drawing.Color.White;
-            this.CritterNowLoadingMessage.Location = new System.Drawing.Point(28, 7);
-            this.CritterNowLoadingMessage.Name = "CritterNowLoadingMessage";
-            this.CritterNowLoadingMessage.Size = new System.Drawing.Size(109, 16);
-            this.CritterNowLoadingMessage.TabIndex = 33;
-            this.CritterNowLoadingMessage.Text = "Now Loading...";
+            CritterNowLoadingMessage.AutoSize = true;
+            CritterNowLoadingMessage.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            CritterNowLoadingMessage.ForeColor = System.Drawing.Color.White;
+            CritterNowLoadingMessage.Location = new System.Drawing.Point(28, 7);
+            CritterNowLoadingMessage.Name = "CritterNowLoadingMessage";
+            CritterNowLoadingMessage.Size = new System.Drawing.Size(109, 16);
+            CritterNowLoadingMessage.TabIndex = 33;
+            CritterNowLoadingMessage.Text = "Now Loading...";
             // 
             // CritterNowLoadingImage
             // 
-            this.CritterNowLoadingImage.Image = global::ACNHPokerCore.Properties.Resources.loading;
-            this.CritterNowLoadingImage.Location = new System.Drawing.Point(2, 3);
-            this.CritterNowLoadingImage.Name = "CritterNowLoadingImage";
-            this.CritterNowLoadingImage.Size = new System.Drawing.Size(24, 24);
-            this.CritterNowLoadingImage.TabIndex = 0;
-            this.CritterNowLoadingImage.TabStop = false;
+            CritterNowLoadingImage.Image = Properties.Resources.loading;
+            CritterNowLoadingImage.Location = new System.Drawing.Point(2, 3);
+            CritterNowLoadingImage.Name = "CritterNowLoadingImage";
+            CritterNowLoadingImage.Size = new System.Drawing.Size(24, 24);
+            CritterNowLoadingImage.TabIndex = 0;
+            CritterNowLoadingImage.TabStop = false;
             // 
             // ReadCritterDataButton
             // 
-            this.ReadCritterDataButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.ReadCritterDataButton.FlatAppearance.BorderSize = 0;
-            this.ReadCritterDataButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ReadCritterDataButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ReadCritterDataButton.ForeColor = System.Drawing.Color.White;
-            this.ReadCritterDataButton.Location = new System.Drawing.Point(32, 64);
-            this.ReadCritterDataButton.Name = "ReadCritterDataButton";
-            this.ReadCritterDataButton.Size = new System.Drawing.Size(136, 24);
-            this.ReadCritterDataButton.TabIndex = 26;
-            this.ReadCritterDataButton.Tag = "";
-            this.ReadCritterDataButton.Text = "Read Critter Data";
-            this.ReadCritterDataButton.UseVisualStyleBackColor = false;
-            this.ReadCritterDataButton.Click += new System.EventHandler(this.ReadCritterDataButton_Click);
+            ReadCritterDataButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            ReadCritterDataButton.FlatAppearance.BorderSize = 0;
+            ReadCritterDataButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ReadCritterDataButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            ReadCritterDataButton.ForeColor = System.Drawing.Color.White;
+            ReadCritterDataButton.Location = new System.Drawing.Point(32, 64);
+            ReadCritterDataButton.Name = "ReadCritterDataButton";
+            ReadCritterDataButton.Size = new System.Drawing.Size(136, 24);
+            ReadCritterDataButton.TabIndex = 26;
+            ReadCritterDataButton.Tag = "";
+            ReadCritterDataButton.Text = "Read Critter Data";
+            ReadCritterDataButton.UseVisualStyleBackColor = false;
+            ReadCritterDataButton.Click += ReadCritterDataButton_Click;
             // 
             // InsectGridView
             // 
-            this.InsectGridView.AllowUserToAddRows = false;
-            this.InsectGridView.AllowUserToDeleteRows = false;
-            this.InsectGridView.AllowUserToResizeColumns = false;
-            this.InsectGridView.AllowUserToResizeRows = false;
-            this.InsectGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(54)))));
-            this.InsectGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.InsectGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.InsectGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.InsectGridView.Location = new System.Drawing.Point(32, 94);
-            this.InsectGridView.MultiSelect = false;
-            this.InsectGridView.Name = "InsectGridView";
-            this.InsectGridView.ReadOnly = true;
-            this.InsectGridView.RowHeadersVisible = false;
-            this.InsectGridView.RowTemplate.Height = 50;
-            this.InsectGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.InsectGridView.Size = new System.Drawing.Size(1169, 418);
-            this.InsectGridView.TabIndex = 29;
-            this.InsectGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
-            this.InsectGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridView_CellFormatting);
-            this.InsectGridView.SelectionChanged += new System.EventHandler(this.GridView_SelectionChanged);
+            InsectGridView.AllowUserToAddRows = false;
+            InsectGridView.AllowUserToDeleteRows = false;
+            InsectGridView.AllowUserToResizeColumns = false;
+            InsectGridView.AllowUserToResizeRows = false;
+            InsectGridView.BackgroundColor = System.Drawing.Color.FromArgb(47, 49, 54);
+            InsectGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            InsectGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            InsectGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            InsectGridView.Location = new System.Drawing.Point(32, 94);
+            InsectGridView.MultiSelect = false;
+            InsectGridView.Name = "InsectGridView";
+            InsectGridView.ReadOnly = true;
+            InsectGridView.RowHeadersVisible = false;
+            InsectGridView.RowTemplate.Height = 50;
+            InsectGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            InsectGridView.Size = new System.Drawing.Size(1169, 418);
+            InsectGridView.TabIndex = 29;
+            InsectGridView.CellContentClick += GridView_CellContentClick;
+            InsectGridView.CellFormatting += GridView_CellFormatting;
+            InsectGridView.SelectionChanged += GridView_SelectionChanged;
             // 
             // RiverFishGridView
             // 
-            this.RiverFishGridView.AllowUserToAddRows = false;
-            this.RiverFishGridView.AllowUserToDeleteRows = false;
-            this.RiverFishGridView.AllowUserToResizeColumns = false;
-            this.RiverFishGridView.AllowUserToResizeRows = false;
-            this.RiverFishGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(54)))));
-            this.RiverFishGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.RiverFishGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.RiverFishGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.RiverFishGridView.Location = new System.Drawing.Point(32, 94);
-            this.RiverFishGridView.MultiSelect = false;
-            this.RiverFishGridView.Name = "RiverFishGridView";
-            this.RiverFishGridView.ReadOnly = true;
-            this.RiverFishGridView.RowHeadersVisible = false;
-            this.RiverFishGridView.RowTemplate.Height = 50;
-            this.RiverFishGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.RiverFishGridView.Size = new System.Drawing.Size(1169, 418);
-            this.RiverFishGridView.TabIndex = 33;
-            this.RiverFishGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
-            this.RiverFishGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridView_CellFormatting);
-            this.RiverFishGridView.SelectionChanged += new System.EventHandler(this.GridView_SelectionChanged);
+            RiverFishGridView.AllowUserToAddRows = false;
+            RiverFishGridView.AllowUserToDeleteRows = false;
+            RiverFishGridView.AllowUserToResizeColumns = false;
+            RiverFishGridView.AllowUserToResizeRows = false;
+            RiverFishGridView.BackgroundColor = System.Drawing.Color.FromArgb(47, 49, 54);
+            RiverFishGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            RiverFishGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            RiverFishGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            RiverFishGridView.Location = new System.Drawing.Point(32, 94);
+            RiverFishGridView.MultiSelect = false;
+            RiverFishGridView.Name = "RiverFishGridView";
+            RiverFishGridView.ReadOnly = true;
+            RiverFishGridView.RowHeadersVisible = false;
+            RiverFishGridView.RowTemplate.Height = 50;
+            RiverFishGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            RiverFishGridView.Size = new System.Drawing.Size(1169, 418);
+            RiverFishGridView.TabIndex = 33;
+            RiverFishGridView.CellContentClick += GridView_CellContentClick;
+            RiverFishGridView.CellFormatting += GridView_CellFormatting;
+            RiverFishGridView.SelectionChanged += GridView_SelectionChanged;
             // 
             // SeaFishGridView
             // 
-            this.SeaFishGridView.AllowUserToAddRows = false;
-            this.SeaFishGridView.AllowUserToDeleteRows = false;
-            this.SeaFishGridView.AllowUserToResizeColumns = false;
-            this.SeaFishGridView.AllowUserToResizeRows = false;
-            this.SeaFishGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(54)))));
-            this.SeaFishGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.SeaFishGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.SeaFishGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SeaFishGridView.Location = new System.Drawing.Point(32, 94);
-            this.SeaFishGridView.MultiSelect = false;
-            this.SeaFishGridView.Name = "SeaFishGridView";
-            this.SeaFishGridView.ReadOnly = true;
-            this.SeaFishGridView.RowHeadersVisible = false;
-            this.SeaFishGridView.RowTemplate.Height = 50;
-            this.SeaFishGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.SeaFishGridView.Size = new System.Drawing.Size(1169, 418);
-            this.SeaFishGridView.TabIndex = 34;
-            this.SeaFishGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
-            this.SeaFishGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridView_CellFormatting);
-            this.SeaFishGridView.SelectionChanged += new System.EventHandler(this.GridView_SelectionChanged);
+            SeaFishGridView.AllowUserToAddRows = false;
+            SeaFishGridView.AllowUserToDeleteRows = false;
+            SeaFishGridView.AllowUserToResizeColumns = false;
+            SeaFishGridView.AllowUserToResizeRows = false;
+            SeaFishGridView.BackgroundColor = System.Drawing.Color.FromArgb(47, 49, 54);
+            SeaFishGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            SeaFishGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            SeaFishGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            SeaFishGridView.Location = new System.Drawing.Point(32, 94);
+            SeaFishGridView.MultiSelect = false;
+            SeaFishGridView.Name = "SeaFishGridView";
+            SeaFishGridView.ReadOnly = true;
+            SeaFishGridView.RowHeadersVisible = false;
+            SeaFishGridView.RowTemplate.Height = 50;
+            SeaFishGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            SeaFishGridView.Size = new System.Drawing.Size(1169, 418);
+            SeaFishGridView.TabIndex = 34;
+            SeaFishGridView.CellContentClick += GridView_CellContentClick;
+            SeaFishGridView.CellFormatting += GridView_CellFormatting;
+            SeaFishGridView.SelectionChanged += GridView_SelectionChanged;
             // 
             // SeaCreatureGridView
             // 
-            this.SeaCreatureGridView.AllowUserToAddRows = false;
-            this.SeaCreatureGridView.AllowUserToDeleteRows = false;
-            this.SeaCreatureGridView.AllowUserToResizeColumns = false;
-            this.SeaCreatureGridView.AllowUserToResizeRows = false;
-            this.SeaCreatureGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(54)))));
-            this.SeaCreatureGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.SeaCreatureGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.SeaCreatureGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SeaCreatureGridView.Location = new System.Drawing.Point(32, 94);
-            this.SeaCreatureGridView.MultiSelect = false;
-            this.SeaCreatureGridView.Name = "SeaCreatureGridView";
-            this.SeaCreatureGridView.ReadOnly = true;
-            this.SeaCreatureGridView.RowHeadersVisible = false;
-            this.SeaCreatureGridView.RowTemplate.Height = 50;
-            this.SeaCreatureGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.SeaCreatureGridView.Size = new System.Drawing.Size(1169, 418);
-            this.SeaCreatureGridView.TabIndex = 35;
-            this.SeaCreatureGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
-            this.SeaCreatureGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridView_CellFormatting);
-            this.SeaCreatureGridView.SelectionChanged += new System.EventHandler(this.GridView_SelectionChanged);
+            SeaCreatureGridView.AllowUserToAddRows = false;
+            SeaCreatureGridView.AllowUserToDeleteRows = false;
+            SeaCreatureGridView.AllowUserToResizeColumns = false;
+            SeaCreatureGridView.AllowUserToResizeRows = false;
+            SeaCreatureGridView.BackgroundColor = System.Drawing.Color.FromArgb(47, 49, 54);
+            SeaCreatureGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            SeaCreatureGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            SeaCreatureGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            SeaCreatureGridView.Location = new System.Drawing.Point(32, 94);
+            SeaCreatureGridView.MultiSelect = false;
+            SeaCreatureGridView.Name = "SeaCreatureGridView";
+            SeaCreatureGridView.ReadOnly = true;
+            SeaCreatureGridView.RowHeadersVisible = false;
+            SeaCreatureGridView.RowTemplate.Height = 50;
+            SeaCreatureGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            SeaCreatureGridView.Size = new System.Drawing.Size(1169, 418);
+            SeaCreatureGridView.TabIndex = 35;
+            SeaCreatureGridView.CellContentClick += GridView_CellContentClick;
+            SeaCreatureGridView.CellFormatting += GridView_CellFormatting;
+            SeaCreatureGridView.SelectionChanged += GridView_SelectionChanged;
             // 
             // VillagerLargePanel
             // 
-            this.VillagerLargePanel.Controls.Add(this.VillagerNowLoadingPanel);
-            this.VillagerLargePanel.Controls.Add(this.VillagerMysIslandLabel);
-            this.VillagerLargePanel.Controls.Add(this.VillagerCatchphraseLabel);
-            this.VillagerLargePanel.Controls.Add(this.VillagerHouseIndex);
-            this.VillagerLargePanel.Controls.Add(this.VillagerHeaderIgnore);
-            this.VillagerLargePanel.Controls.Add(this.VillagerFriendship);
-            this.VillagerLargePanel.Controls.Add(this.VillagerIndex);
-            this.VillagerLargePanel.Controls.Add(this.VillagerPersonality);
-            this.VillagerLargePanel.Controls.Add(this.VillagerIName);
-            this.VillagerLargePanel.Controls.Add(this.VillagerHouseIndexLabel);
-            this.VillagerLargePanel.Controls.Add(this.VillagerFriendshipLabel);
-            this.VillagerLargePanel.Controls.Add(this.VillagerIndexLabel);
-            this.VillagerLargePanel.Controls.Add(this.VillagerPersonalityLabel);
-            this.VillagerLargePanel.Controls.Add(this.VillagerINameLabel);
-            this.VillagerLargePanel.Controls.Add(this.VillagerName);
-            this.VillagerLargePanel.Controls.Add(this.VillagerNameLabel);
-            this.VillagerLargePanel.Controls.Add(this.VillagerControlPanel);
-            this.VillagerLargePanel.Location = new System.Drawing.Point(0, 0);
-            this.VillagerLargePanel.Name = "VillagerLargePanel";
-            this.VillagerLargePanel.Size = new System.Drawing.Size(1225, 550);
-            this.VillagerLargePanel.TabIndex = 21;
+            VillagerLargePanel.Controls.Add(VillagerNowLoadingPanel);
+            VillagerLargePanel.Controls.Add(VillagerMysIslandLabel);
+            VillagerLargePanel.Controls.Add(VillagerCatchphraseLabel);
+            VillagerLargePanel.Controls.Add(VillagerHouseIndex);
+            VillagerLargePanel.Controls.Add(VillagerHeaderIgnore);
+            VillagerLargePanel.Controls.Add(VillagerFriendship);
+            VillagerLargePanel.Controls.Add(VillagerIndex);
+            VillagerLargePanel.Controls.Add(VillagerPersonality);
+            VillagerLargePanel.Controls.Add(VillagerIName);
+            VillagerLargePanel.Controls.Add(VillagerHouseIndexLabel);
+            VillagerLargePanel.Controls.Add(VillagerFriendshipLabel);
+            VillagerLargePanel.Controls.Add(VillagerIndexLabel);
+            VillagerLargePanel.Controls.Add(VillagerPersonalityLabel);
+            VillagerLargePanel.Controls.Add(VillagerINameLabel);
+            VillagerLargePanel.Controls.Add(VillagerName);
+            VillagerLargePanel.Controls.Add(VillagerNameLabel);
+            VillagerLargePanel.Controls.Add(VillagerControlPanel);
+            VillagerLargePanel.Location = new System.Drawing.Point(0, 0);
+            VillagerLargePanel.Name = "VillagerLargePanel";
+            VillagerLargePanel.Size = new System.Drawing.Size(1225, 550);
+            VillagerLargePanel.TabIndex = 21;
             // 
             // VillagerNowLoadingPanel
             // 
-            this.VillagerNowLoadingPanel.Controls.Add(this.VillagerNowLoadingLongMessage);
-            this.VillagerNowLoadingPanel.Controls.Add(this.VillagerNowLoadingProgressBar);
-            this.VillagerNowLoadingPanel.Controls.Add(this.VillagerNowLoadingMessage);
-            this.VillagerNowLoadingPanel.Controls.Add(this.VillagerNowLoadingImage);
-            this.VillagerNowLoadingPanel.Location = new System.Drawing.Point(170, 150);
-            this.VillagerNowLoadingPanel.Name = "VillagerNowLoadingPanel";
-            this.VillagerNowLoadingPanel.Size = new System.Drawing.Size(397, 59);
-            this.VillagerNowLoadingPanel.TabIndex = 26;
-            this.VillagerNowLoadingPanel.Visible = false;
+            VillagerNowLoadingPanel.Controls.Add(VillagerNowLoadingLongMessage);
+            VillagerNowLoadingPanel.Controls.Add(VillagerNowLoadingProgressBar);
+            VillagerNowLoadingPanel.Controls.Add(VillagerNowLoadingMessage);
+            VillagerNowLoadingPanel.Controls.Add(VillagerNowLoadingImage);
+            VillagerNowLoadingPanel.Location = new System.Drawing.Point(170, 150);
+            VillagerNowLoadingPanel.Name = "VillagerNowLoadingPanel";
+            VillagerNowLoadingPanel.Size = new System.Drawing.Size(397, 59);
+            VillagerNowLoadingPanel.TabIndex = 26;
+            VillagerNowLoadingPanel.Visible = false;
             // 
             // VillagerNowLoadingProgressBar
             // 
-            this.VillagerNowLoadingProgressBar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.VillagerNowLoadingProgressBar.Location = new System.Drawing.Point(2, 29);
-            this.VillagerNowLoadingProgressBar.Maximum = 260;
-            this.VillagerNowLoadingProgressBar.Name = "VillagerNowLoadingProgressBar";
-            this.VillagerNowLoadingProgressBar.Size = new System.Drawing.Size(390, 3);
-            this.VillagerNowLoadingProgressBar.TabIndex = 34;
+            VillagerNowLoadingProgressBar.ForeColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            VillagerNowLoadingProgressBar.Location = new System.Drawing.Point(2, 29);
+            VillagerNowLoadingProgressBar.Maximum = 260;
+            VillagerNowLoadingProgressBar.Name = "VillagerNowLoadingProgressBar";
+            VillagerNowLoadingProgressBar.Size = new System.Drawing.Size(390, 3);
+            VillagerNowLoadingProgressBar.TabIndex = 34;
             // 
             // VillagerNowLoadingMessage
             // 
-            this.VillagerNowLoadingMessage.AutoSize = true;
-            this.VillagerNowLoadingMessage.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerNowLoadingMessage.ForeColor = System.Drawing.Color.White;
-            this.VillagerNowLoadingMessage.Location = new System.Drawing.Point(157, 7);
-            this.VillagerNowLoadingMessage.Name = "VillagerNowLoadingMessage";
-            this.VillagerNowLoadingMessage.Size = new System.Drawing.Size(109, 16);
-            this.VillagerNowLoadingMessage.TabIndex = 33;
-            this.VillagerNowLoadingMessage.Text = "Now Loading...";
+            VillagerNowLoadingMessage.AutoSize = true;
+            VillagerNowLoadingMessage.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            VillagerNowLoadingMessage.ForeColor = System.Drawing.Color.White;
+            VillagerNowLoadingMessage.Location = new System.Drawing.Point(157, 7);
+            VillagerNowLoadingMessage.Name = "VillagerNowLoadingMessage";
+            VillagerNowLoadingMessage.Size = new System.Drawing.Size(109, 16);
+            VillagerNowLoadingMessage.TabIndex = 33;
+            VillagerNowLoadingMessage.Text = "Now Loading...";
             // 
             // VillagerNowLoadingImage
             // 
-            this.VillagerNowLoadingImage.Image = global::ACNHPokerCore.Properties.Resources.loading;
-            this.VillagerNowLoadingImage.Location = new System.Drawing.Point(131, 3);
-            this.VillagerNowLoadingImage.Name = "VillagerNowLoadingImage";
-            this.VillagerNowLoadingImage.Size = new System.Drawing.Size(24, 24);
-            this.VillagerNowLoadingImage.TabIndex = 0;
-            this.VillagerNowLoadingImage.TabStop = false;
+            VillagerNowLoadingImage.Image = Properties.Resources.loading;
+            VillagerNowLoadingImage.Location = new System.Drawing.Point(131, 3);
+            VillagerNowLoadingImage.Name = "VillagerNowLoadingImage";
+            VillagerNowLoadingImage.Size = new System.Drawing.Size(24, 24);
+            VillagerNowLoadingImage.TabIndex = 0;
+            VillagerNowLoadingImage.TabStop = false;
             // 
             // VillagerMysIslandLabel
             // 
-            this.VillagerMysIslandLabel.AutoSize = true;
-            this.VillagerMysIslandLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerMysIslandLabel.ForeColor = System.Drawing.Color.White;
-            this.VillagerMysIslandLabel.Location = new System.Drawing.Point(950, 3);
-            this.VillagerMysIslandLabel.Name = "VillagerMysIslandLabel";
-            this.VillagerMysIslandLabel.Size = new System.Drawing.Size(218, 22);
-            this.VillagerMysIslandLabel.TabIndex = 125;
-            this.VillagerMysIslandLabel.Text = "Mystery Island Tours :";
+            VillagerMysIslandLabel.AutoSize = true;
+            VillagerMysIslandLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            VillagerMysIslandLabel.ForeColor = System.Drawing.Color.White;
+            VillagerMysIslandLabel.Location = new System.Drawing.Point(950, 3);
+            VillagerMysIslandLabel.Name = "VillagerMysIslandLabel";
+            VillagerMysIslandLabel.Size = new System.Drawing.Size(218, 22);
+            VillagerMysIslandLabel.TabIndex = 125;
+            VillagerMysIslandLabel.Text = "Mystery Island Tours :";
             // 
             // VillagerCatchphraseLabel
             // 
-            this.VillagerCatchphraseLabel.AutoSize = true;
-            this.VillagerCatchphraseLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerCatchphraseLabel.ForeColor = System.Drawing.Color.White;
-            this.VillagerCatchphraseLabel.Location = new System.Drawing.Point(331, 404);
-            this.VillagerCatchphraseLabel.Name = "VillagerCatchphraseLabel";
-            this.VillagerCatchphraseLabel.Size = new System.Drawing.Size(141, 22);
-            this.VillagerCatchphraseLabel.TabIndex = 107;
-            this.VillagerCatchphraseLabel.Text = "Catchphrase :";
+            VillagerCatchphraseLabel.AutoSize = true;
+            VillagerCatchphraseLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            VillagerCatchphraseLabel.ForeColor = System.Drawing.Color.White;
+            VillagerCatchphraseLabel.Location = new System.Drawing.Point(331, 404);
+            VillagerCatchphraseLabel.Name = "VillagerCatchphraseLabel";
+            VillagerCatchphraseLabel.Size = new System.Drawing.Size(141, 22);
+            VillagerCatchphraseLabel.TabIndex = 107;
+            VillagerCatchphraseLabel.Text = "Catchphrase :";
             // 
             // VillagerHeaderIgnore
             // 
-            this.VillagerHeaderIgnore.Location = new System.Drawing.Point(854, 518);
-            this.VillagerHeaderIgnore.Name = "VillagerHeaderIgnore";
-            this.VillagerHeaderIgnore.OffFont = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerHeaderIgnore.OffForeColor = System.Drawing.Color.White;
-            this.VillagerHeaderIgnore.OffText = "Off";
-            this.VillagerHeaderIgnore.OnFont = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerHeaderIgnore.OnForeColor = System.Drawing.Color.White;
-            this.VillagerHeaderIgnore.OnText = "On";
-            this.VillagerHeaderIgnore.Size = new System.Drawing.Size(71, 22);
-            this.VillagerHeaderIgnore.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
-            this.VillagerHeaderIgnore.TabIndex = 126;
-            this.VillagerHeaderIgnore.UseAnimation = false;
-            this.VillagerHeaderIgnore.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.VillagerHeaderIgnore_CheckedChanged);
+            VillagerHeaderIgnore.Location = new System.Drawing.Point(854, 518);
+            VillagerHeaderIgnore.Name = "VillagerHeaderIgnore";
+            VillagerHeaderIgnore.OffFont = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            VillagerHeaderIgnore.OffForeColor = System.Drawing.Color.White;
+            VillagerHeaderIgnore.OffText = "Off";
+            VillagerHeaderIgnore.OnFont = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            VillagerHeaderIgnore.OnForeColor = System.Drawing.Color.White;
+            VillagerHeaderIgnore.OnText = "On";
+            VillagerHeaderIgnore.Size = new System.Drawing.Size(71, 22);
+            VillagerHeaderIgnore.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            VillagerHeaderIgnore.TabIndex = 126;
+            VillagerHeaderIgnore.UseAnimation = false;
+            VillagerHeaderIgnore.CheckedChanged += VillagerHeaderIgnore_CheckedChanged;
             // 
             // VillagerHouseIndexLabel
             // 
-            this.VillagerHouseIndexLabel.AutoSize = true;
-            this.VillagerHouseIndexLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerHouseIndexLabel.ForeColor = System.Drawing.Color.White;
-            this.VillagerHouseIndexLabel.Location = new System.Drawing.Point(547, 336);
-            this.VillagerHouseIndexLabel.Name = "VillagerHouseIndexLabel";
-            this.VillagerHouseIndexLabel.Size = new System.Drawing.Size(137, 22);
-            this.VillagerHouseIndexLabel.TabIndex = 101;
-            this.VillagerHouseIndexLabel.Text = "House Index :";
+            VillagerHouseIndexLabel.AutoSize = true;
+            VillagerHouseIndexLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            VillagerHouseIndexLabel.ForeColor = System.Drawing.Color.White;
+            VillagerHouseIndexLabel.Location = new System.Drawing.Point(547, 336);
+            VillagerHouseIndexLabel.Name = "VillagerHouseIndexLabel";
+            VillagerHouseIndexLabel.Size = new System.Drawing.Size(137, 22);
+            VillagerHouseIndexLabel.TabIndex = 101;
+            VillagerHouseIndexLabel.Text = "House Index :";
             // 
             // VillagerFriendshipLabel
             // 
-            this.VillagerFriendshipLabel.AutoSize = true;
-            this.VillagerFriendshipLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerFriendshipLabel.ForeColor = System.Drawing.Color.White;
-            this.VillagerFriendshipLabel.Location = new System.Drawing.Point(331, 369);
-            this.VillagerFriendshipLabel.Name = "VillagerFriendshipLabel";
-            this.VillagerFriendshipLabel.Size = new System.Drawing.Size(122, 22);
-            this.VillagerFriendshipLabel.TabIndex = 100;
-            this.VillagerFriendshipLabel.Text = "Friendship :";
+            VillagerFriendshipLabel.AutoSize = true;
+            VillagerFriendshipLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            VillagerFriendshipLabel.ForeColor = System.Drawing.Color.White;
+            VillagerFriendshipLabel.Location = new System.Drawing.Point(331, 369);
+            VillagerFriendshipLabel.Name = "VillagerFriendshipLabel";
+            VillagerFriendshipLabel.Size = new System.Drawing.Size(122, 22);
+            VillagerFriendshipLabel.TabIndex = 100;
+            VillagerFriendshipLabel.Text = "Friendship :";
             // 
             // VillagerIndexLabel
             // 
-            this.VillagerIndexLabel.AutoSize = true;
-            this.VillagerIndexLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerIndexLabel.ForeColor = System.Drawing.Color.White;
-            this.VillagerIndexLabel.Location = new System.Drawing.Point(331, 336);
-            this.VillagerIndexLabel.Name = "VillagerIndexLabel";
-            this.VillagerIndexLabel.Size = new System.Drawing.Size(148, 22);
-            this.VillagerIndexLabel.TabIndex = 99;
-            this.VillagerIndexLabel.Text = "Villager Index :";
+            VillagerIndexLabel.AutoSize = true;
+            VillagerIndexLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            VillagerIndexLabel.ForeColor = System.Drawing.Color.White;
+            VillagerIndexLabel.Location = new System.Drawing.Point(331, 336);
+            VillagerIndexLabel.Name = "VillagerIndexLabel";
+            VillagerIndexLabel.Size = new System.Drawing.Size(148, 22);
+            VillagerIndexLabel.TabIndex = 99;
+            VillagerIndexLabel.Text = "Villager Index :";
             // 
             // VillagerPersonalityLabel
             // 
-            this.VillagerPersonalityLabel.AutoSize = true;
-            this.VillagerPersonalityLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerPersonalityLabel.ForeColor = System.Drawing.Color.White;
-            this.VillagerPersonalityLabel.Location = new System.Drawing.Point(48, 404);
-            this.VillagerPersonalityLabel.Name = "VillagerPersonalityLabel";
-            this.VillagerPersonalityLabel.Size = new System.Drawing.Size(127, 22);
-            this.VillagerPersonalityLabel.TabIndex = 98;
-            this.VillagerPersonalityLabel.Text = "Personality :";
+            VillagerPersonalityLabel.AutoSize = true;
+            VillagerPersonalityLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            VillagerPersonalityLabel.ForeColor = System.Drawing.Color.White;
+            VillagerPersonalityLabel.Location = new System.Drawing.Point(48, 404);
+            VillagerPersonalityLabel.Name = "VillagerPersonalityLabel";
+            VillagerPersonalityLabel.Size = new System.Drawing.Size(127, 22);
+            VillagerPersonalityLabel.TabIndex = 98;
+            VillagerPersonalityLabel.Text = "Personality :";
             // 
             // VillagerINameLabel
             // 
-            this.VillagerINameLabel.AutoSize = true;
-            this.VillagerINameLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerINameLabel.ForeColor = System.Drawing.Color.White;
-            this.VillagerINameLabel.Location = new System.Drawing.Point(48, 369);
-            this.VillagerINameLabel.Name = "VillagerINameLabel";
-            this.VillagerINameLabel.Size = new System.Drawing.Size(149, 22);
-            this.VillagerINameLabel.TabIndex = 97;
-            this.VillagerINameLabel.Text = "Internal Name :";
+            VillagerINameLabel.AutoSize = true;
+            VillagerINameLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            VillagerINameLabel.ForeColor = System.Drawing.Color.White;
+            VillagerINameLabel.Location = new System.Drawing.Point(48, 369);
+            VillagerINameLabel.Name = "VillagerINameLabel";
+            VillagerINameLabel.Size = new System.Drawing.Size(149, 22);
+            VillagerINameLabel.TabIndex = 97;
+            VillagerINameLabel.Text = "Internal Name :";
             // 
             // VillagerNameLabel
             // 
-            this.VillagerNameLabel.AutoSize = true;
-            this.VillagerNameLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerNameLabel.ForeColor = System.Drawing.Color.White;
-            this.VillagerNameLabel.Location = new System.Drawing.Point(48, 336);
-            this.VillagerNameLabel.Name = "VillagerNameLabel";
-            this.VillagerNameLabel.Size = new System.Drawing.Size(74, 22);
-            this.VillagerNameLabel.TabIndex = 78;
-            this.VillagerNameLabel.Text = "Name :";
+            VillagerNameLabel.AutoSize = true;
+            VillagerNameLabel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
+            VillagerNameLabel.ForeColor = System.Drawing.Color.White;
+            VillagerNameLabel.Location = new System.Drawing.Point(48, 336);
+            VillagerNameLabel.Name = "VillagerNameLabel";
+            VillagerNameLabel.Size = new System.Drawing.Size(74, 22);
+            VillagerNameLabel.TabIndex = 78;
+            VillagerNameLabel.Text = "Name :";
             // 
             // VillagerControlPanel
             // 
-            this.VillagerControlPanel.Controls.Add(this.VillagerHeader);
-            this.VillagerControlPanel.Controls.Add(this.VillagerForceMoveoutFlag);
-            this.VillagerControlPanel.Controls.Add(this.VillagerAbandonedHouseFlag);
-            this.VillagerControlPanel.Controls.Add(this.VillagerMoveInFlag);
-            this.VillagerControlPanel.Controls.Add(this.ReplaceMysVilllagerSearchBox);
-            this.VillagerControlPanel.Controls.Add(this.VillagerRefreshButton);
-            this.VillagerControlPanel.Controls.Add(this.ReplaceMysVillagerButton);
-            this.VillagerControlPanel.Controls.Add(this.VillagerCatchphrase);
-            this.VillagerControlPanel.Controls.Add(this.MysVillagerReplaceSelector);
-            this.VillagerControlPanel.Controls.Add(this.VillagerReplaceSelector);
-            this.VillagerControlPanel.Controls.Add(this.MysVillagerDisplay);
-            this.VillagerControlPanel.Controls.Add(this.ReplaceVillagerButton);
-            this.VillagerControlPanel.Controls.Add(this.ReadMysVillagerButton);
-            this.VillagerControlPanel.Controls.Add(this.ReplaceVilllagerSearchBox);
-            this.VillagerControlPanel.Controls.Add(this.ForcedMoveoutButton);
-            this.VillagerControlPanel.Controls.Add(this.LoadHouseButton);
-            this.VillagerControlPanel.Controls.Add(this.IrregularMoveoutButton);
-            this.VillagerControlPanel.Controls.Add(this.LoadVillagerButton);
-            this.VillagerControlPanel.Controls.Add(this.CancelMoveoutButton);
-            this.VillagerControlPanel.Controls.Add(this.SaveHouseButton);
-            this.VillagerControlPanel.Controls.Add(this.ForcedMoveoutAllButton);
-            this.VillagerControlPanel.Controls.Add(this.SaveVillagerButton);
-            this.VillagerControlPanel.Controls.Add(this.IrregularMoveoutAllButton);
-            this.VillagerControlPanel.Controls.Add(this.VillagerCatchphraseClearButton);
-            this.VillagerControlPanel.Controls.Add(this.CancelMoveoutAllButton);
-            this.VillagerControlPanel.Controls.Add(this.VillagerCatchphraseSetButton);
-            this.VillagerControlPanel.Controls.Add(this.FriendshipButton);
-            this.VillagerControlPanel.Location = new System.Drawing.Point(0, 0);
-            this.VillagerControlPanel.Name = "VillagerControlPanel";
-            this.VillagerControlPanel.Size = new System.Drawing.Size(1195, 550);
-            this.VillagerControlPanel.TabIndex = 131;
+            VillagerControlPanel.Controls.Add(VillagerHeader);
+            VillagerControlPanel.Controls.Add(VillagerForceMoveoutFlag);
+            VillagerControlPanel.Controls.Add(VillagerAbandonedHouseFlag);
+            VillagerControlPanel.Controls.Add(VillagerMoveInFlag);
+            VillagerControlPanel.Controls.Add(ReplaceMysVilllagerSearchBox);
+            VillagerControlPanel.Controls.Add(VillagerRefreshButton);
+            VillagerControlPanel.Controls.Add(ReplaceMysVillagerButton);
+            VillagerControlPanel.Controls.Add(VillagerCatchphrase);
+            VillagerControlPanel.Controls.Add(MysVillagerReplaceSelector);
+            VillagerControlPanel.Controls.Add(VillagerReplaceSelector);
+            VillagerControlPanel.Controls.Add(MysVillagerDisplay);
+            VillagerControlPanel.Controls.Add(ReplaceVillagerButton);
+            VillagerControlPanel.Controls.Add(ReadMysVillagerButton);
+            VillagerControlPanel.Controls.Add(ReplaceVilllagerSearchBox);
+            VillagerControlPanel.Controls.Add(ForcedMoveoutButton);
+            VillagerControlPanel.Controls.Add(LoadHouseButton);
+            VillagerControlPanel.Controls.Add(IrregularMoveoutButton);
+            VillagerControlPanel.Controls.Add(LoadVillagerButton);
+            VillagerControlPanel.Controls.Add(CancelMoveoutButton);
+            VillagerControlPanel.Controls.Add(SaveHouseButton);
+            VillagerControlPanel.Controls.Add(ForcedMoveoutAllButton);
+            VillagerControlPanel.Controls.Add(SaveVillagerButton);
+            VillagerControlPanel.Controls.Add(IrregularMoveoutAllButton);
+            VillagerControlPanel.Controls.Add(VillagerCatchphraseClearButton);
+            VillagerControlPanel.Controls.Add(CancelMoveoutAllButton);
+            VillagerControlPanel.Controls.Add(VillagerCatchphraseSetButton);
+            VillagerControlPanel.Controls.Add(FriendshipButton);
+            VillagerControlPanel.Location = new System.Drawing.Point(0, 0);
+            VillagerControlPanel.Name = "VillagerControlPanel";
+            VillagerControlPanel.Size = new System.Drawing.Size(1195, 550);
+            VillagerControlPanel.TabIndex = 131;
             // 
             // VillagerRefreshButton
             // 
-            this.VillagerRefreshButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.VillagerRefreshButton.FlatAppearance.BorderSize = 0;
-            this.VillagerRefreshButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.VillagerRefreshButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerRefreshButton.ForeColor = System.Drawing.Color.White;
-            this.VillagerRefreshButton.Location = new System.Drawing.Point(649, 26);
-            this.VillagerRefreshButton.Name = "VillagerRefreshButton";
-            this.VillagerRefreshButton.Size = new System.Drawing.Size(80, 23);
-            this.VillagerRefreshButton.TabIndex = 79;
-            this.VillagerRefreshButton.Tag = "";
-            this.VillagerRefreshButton.Text = "Refresh";
-            this.VillagerRefreshButton.UseVisualStyleBackColor = false;
-            this.VillagerRefreshButton.Click += new System.EventHandler(this.VillagerRefreshButton_Click);
+            VillagerRefreshButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            VillagerRefreshButton.FlatAppearance.BorderSize = 0;
+            VillagerRefreshButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            VillagerRefreshButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            VillagerRefreshButton.ForeColor = System.Drawing.Color.White;
+            VillagerRefreshButton.Location = new System.Drawing.Point(649, 26);
+            VillagerRefreshButton.Name = "VillagerRefreshButton";
+            VillagerRefreshButton.Size = new System.Drawing.Size(80, 23);
+            VillagerRefreshButton.TabIndex = 79;
+            VillagerRefreshButton.Tag = "";
+            VillagerRefreshButton.Text = "Refresh";
+            VillagerRefreshButton.UseVisualStyleBackColor = false;
+            VillagerRefreshButton.Click += VillagerRefreshButton_Click;
             // 
             // ReplaceMysVillagerButton
             // 
-            this.ReplaceMysVillagerButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.ReplaceMysVillagerButton.FlatAppearance.BorderSize = 0;
-            this.ReplaceMysVillagerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ReplaceMysVillagerButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ReplaceMysVillagerButton.ForeColor = System.Drawing.Color.White;
-            this.ReplaceMysVillagerButton.Location = new System.Drawing.Point(955, 231);
-            this.ReplaceMysVillagerButton.Name = "ReplaceMysVillagerButton";
-            this.ReplaceMysVillagerButton.Size = new System.Drawing.Size(237, 23);
-            this.ReplaceMysVillagerButton.TabIndex = 129;
-            this.ReplaceMysVillagerButton.Tag = "";
-            this.ReplaceMysVillagerButton.Text = "Replace Villager";
-            this.ReplaceMysVillagerButton.UseVisualStyleBackColor = false;
-            this.ReplaceMysVillagerButton.Click += new System.EventHandler(this.ReplaceMysVillagerButton_Click);
+            ReplaceMysVillagerButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            ReplaceMysVillagerButton.FlatAppearance.BorderSize = 0;
+            ReplaceMysVillagerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ReplaceMysVillagerButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            ReplaceMysVillagerButton.ForeColor = System.Drawing.Color.White;
+            ReplaceMysVillagerButton.Location = new System.Drawing.Point(955, 231);
+            ReplaceMysVillagerButton.Name = "ReplaceMysVillagerButton";
+            ReplaceMysVillagerButton.Size = new System.Drawing.Size(237, 23);
+            ReplaceMysVillagerButton.TabIndex = 129;
+            ReplaceMysVillagerButton.Tag = "";
+            ReplaceMysVillagerButton.Text = "Replace Villager";
+            ReplaceMysVillagerButton.UseVisualStyleBackColor = false;
+            ReplaceMysVillagerButton.Click += ReplaceMysVillagerButton_Click;
             // 
             // MysVillagerReplaceSelector
             // 
-            this.MysVillagerReplaceSelector.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.MysVillagerReplaceSelector.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.MysVillagerReplaceSelector.DropDownHeight = 362;
-            this.MysVillagerReplaceSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.MysVillagerReplaceSelector.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MysVillagerReplaceSelector.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.MysVillagerReplaceSelector.ForeColor = System.Drawing.Color.White;
-            this.MysVillagerReplaceSelector.FormattingEnabled = true;
-            this.MysVillagerReplaceSelector.IntegralHeight = false;
-            this.MysVillagerReplaceSelector.ItemHeight = 60;
-            this.MysVillagerReplaceSelector.Items.AddRange(new object[] {
-            "Ace : brd09",
-            "Admiral : brd06",
-            "Agent S : squ05",
-            "Agnes : pig17",
-            "Al : gor08",
-            "Alfonso : crd00",
-            "Alice : kal01",
-            "Alli : crd01",
-            "Amelia : pbr01",
-            "Anabelle : ant03",
-            "Anchovy : brd02",
-            "Angus : bul00",
-            "Anicotti : mus10",
-            "Ankha : cat19",
-            "Annalisa : ant08",
-            "Annalise : hrs09",
-            "Antonio : ant01",
-            "Apollo : pbr00",
-            "Apple : ham01",
-            "Astrid : kgr05",
-            "Audie : wol12",
-            "Aurora : pgn00",
-            "Ava : chn05",
-            "Avery : pbr05",
-            "Axel : elp06",
-            "Azalea : rhn05",
-            "Baabara : shp01",
-            "Bam : der01",
-            "Bangle : tig03",
-            "Barold : cbr16",
-            "Bea : dog10",
-            "Beardo : bea13",
-            "Beau : der07",
-            "Becky : chn09",
-            "Bella : mus02",
-            "Benedict : chn01",
-            "Benjamin : dog16",
-            "Bertha : hip03",
-            "Bettina : mus15",
-            "Bianca : tig06",
-            "Biff : hip04",
-            "Big Top : elp02",
-            "Bill : duk00",
-            "Billy : goa02",
-            "Biskit : dog03",
-            "Bitty : hip05",
-            "Blaire : squ01",
-            "Blanche : ost08",
-            "Bluebear : cbr00",
-            "Bob : cat00",
-            "Bonbon : rbt17",
-            "Bones : dog04",
-            "Boomer : pgn10",
-            "Boone : gor02",
-            "Boots : crd02",
-            "Boris : pig09",
-            "Boyd : gor05",
-            "Bree : mus03",
-            "Broccolo : mus12",
-            "Broffina : chn12",
-            "Bruce : der03",
-            "Bubbles : hip02",
-            "Buck : hrs00",
-            "Bud : lon00",
-            "Bunnie : rbt00",
-            "Butch : dog01",
-            "Buzz : pbr03",
-            "Cally : squ11",
-            "Camofrog : flg03",
-            "Canberra : kal08",
-            "Candi : mus08",
-            "Carmen : rbt16",
-            "Caroline : squ06",
-            "Carrie : kgr02",
-            "Cashmere : shp04",
-            "Celia : pbr09",
-            "Cephalobot : ocp04",
-            "Cesar : gor00",
-            "Chabwick : pgn07",
-            "Chadder : mus18",
-            "Chai : elp11",
-            "Charlise : bea12",
-            "Chelsea : der10",
-            "Cheri : cbr10",
-            "Cherry : dog17",
-            "Chester : cbr15",
-            "Chevre : goa00",
-            "Chief : wol00",
-            "Chops : pig14",
-            "Chow : bea03",
-            "Chrissy : rbt13",
-            "Claude : rbt11",
-            "Claudia : tig05",
-            "Clay : ham05",
-            "Cleo : hrs07",
-            "Clyde : hrs10",
-            "Coach : bul07",
-            "Cobb : pig08",
-            "Coco : rbt02",
-            "Cole : rbt18",
-            "Colton : hrs11",
-            "Cookie : dog08",
-            "Cousteau : flg10",
-            "Cranston : ost06",
-            "Croque : flg17",
-            "Cube : pgn02",
-            "Curlos : shp08",
-            "Curly : pig00",
-            "Curt : bea02",
-            "Cyd : elp12",
-            "Cyrano : ant00",
-            "Daisy : dog07",
-            "Deena : duk04",
-            "Deirdre : der04",
-            "Del : crd04",
-            "Deli : mnk08",
-            "Derwin : duk08",
-            "Diana : der08",
-            "Diva : flg18",
-            "Dizzy : elp01",
-            "Dobie : wol04",
-            "Doc : rbt10",
-            "Dom : shp15",
-            "Dora : mus00",
-            "Dotty : rbt01",
-            "Drago : crd08",
-            "Drake : duk09",
-            "Drift : flg04",
-            "Ed : hrs06",
-            "Egbert : chn02",
-            "Elise : mnk05",
-            "Ellie : elp07",
-            "Elmer : hrs03",
-            "Eloise : elp03",
-            "Elvis : lon01",
-            "Erik : der09",
-            "Étoile : shp14",
-            "Eugene : kal10",
-            "Eunice : shp02",
-            "Faith : kal07",
-            "Fang : wol06",
-            "Fauna : der00",
-            "Felicity : cat17",
-            "Filbert : squ02",
-            "Flip : mnk06",
-            "Flo : pgn13",
-            "Flora : ost09",
-            "Flurry : ham06",
-            "Francine : rbt12",
-            "Frank : pbr06",
-            "Freckles : duk07",
-            "Frett : dog11",
-            "Freya : wol05",
-            "Friga : pgn04",
-            "Frita : shp11",
-            "Frobert : flg02",
-            "Fuchsia : der06",
-            "Gabi : rbt05",
-            "Gala : pig13",
-            "Gaston : rbt04",
-            "Gayle : crd07",
-            "Genji : rbt08",
-            "Gigi : flg16",
-            "Gladys : ost01",
-            "Gloria : duk15",
-            "Goldie : dog00",
-            "Gonzo : kal04",
-            "Goose : chn00",
-            "Graham : ham02",
-            "Greta : mus16",
-            "Grizzly : bea09",
-            "Groucho : bea06",
-            "Gruff : goa04",
-            "Gwen : pgn05",
-            "Hamlet : ham00",
-            "Hamphrey : ham07",
-            "Hans : gor10",
-            "Harry : hip08",
-            "Hazel : squ18",
-            "Henry : flg19",
-            "Hippeux : hip09",
-            "Hopkins : rbt14",
-            "Hopper : pgn03",
-            "Hornsby : rhn04",
-            "Huck : flg11",
-            "Hugh : pig03",
-            "Iggly : pgn11",
-            "Ike : bea11",
-            "Ione : squ21",
-            "Jacob : brd11",
-            "Jacques : brd16",
-            "Jambette : flg13",
-            "Jay : brd00",
-            "Jeremiah : flg07",
-            "Jitters : brd04",
-            "Joey : duk01",
-            "Judy : cbr19",
-            "Julia : ost05",
-            "Julian : hrs13",
-            "June : cbr13",
-            "Kabuki : cat09",
-            "Katt : cat21",
-            "Keaton : pbr08",
-            "Ken : chn13",
-            "Ketchup : duk13",
-            "Kevin : pig15",
-            "Kid Cat : cat10",
-            "Kidd : goa07",
-            "Kiki : cat04",
-            "Kitt : kgr00",
-            "Kitty : cat14",
-            "Klaus : bea14",
-            "Knox : chn11",
-            "Kody : cbr04",
-            "Kyle : wol10",
-            "Leonardo : tig04",
-            "Leopold : lon04",
-            "Lily : flg00",
-            "Limberg : mus01",
-            "Lionel : lon08",
-            "Lobo : wol01",
-            "Lolly : cat18",
-            "Lopez : der05",
-            "Louie : gor04",
-            "Lucha : brd15",
-            "Lucky : dog02",
-            "Lucy : pig04",
-            "Lyman : kal09",
-            "Mac : dog14",
-            "Maddie : dog09",
-            "Maelle : duk03",
-            "Maggie : pig10",
-            "Mallary : duk06",
-            "Maple : cbr01",
-            "Marcel : dog15",
-            "Marcie : kgr10",
-            "Margie : elp04",
-            "Marina : ocp01",
-            "Marlo : ham09",
-            "Marshal : squ17",
-            "Marty : cbr18",
-            "Mathilda : kgr01",
-            "Megan : bea15",
-            "Melba : kal02",
-            "Merengue : rhn07",
-            "Merry : cat16",
-            "Midge : brd08",
-            "Mint : squ09",
-            "Mira : rbt19",
-            "Miranda : duk12",
-            "Mitzi : cat01",
-            "Moe : cat08",
-            "Molly : duk16",
-            "Monique : cat11",
-            "Monty : mnk04",
-            "Moose : mus14",
-            "Mott : lon06",
-            "Muffy : shp12",
-            "Murphy : cbr07",
-            "Nan : goa01",
-            "Nana : mnk01",
-            "Naomi : cow07",
-            "Nate : bea05",
-            "Nibbles : squ04",
-            "Norma : cow06",
-            "O\'Hare : rbt15",
-            "Octavian : ocp00",
-            "Olaf : ant09",
-            "Olive : cbr09",
-            "Olivia : cat03",
-            "Opal : elp00",
-            "Ozzie : kal05",
-            "Pancetti : pig16",
-            "Pango : ant02",
-            "Paolo : elp05",
-            "Papi : hrs12",
-            "Pashmina : goa08",
-            "Pate : duk02",
-            "Patty : cow00",
-            "Paula : bea10",
-            "Peaches : hrs08",
-            "Peanut : squ00",
-            "Pecan : squ03",
-            "Peck : brd17",
-            "Peewee : gor01",
-            "Peggy : pig11",
-            "Pekoe : cbr14",
-            "Penelope : mus17",
-            "Petri : mus19",
-            "Phil : ost07",
-            "Phoebe : ost10",
-            "Pierce : pbr02",
-            "Pietro : shp13",
-            "Pinky : bea01",
-            "Piper : brd05",
-            "Pippy : rbt06",
-            "Plucky : chn10",
-            "Pompom : duk05",
-            "Poncho : cbr02",
-            "Poppy : squ15",
-            "Portia : dog05",
-            "Prince : flg12",
-            "Puck : pgn06",
-            "Puddles : flg06",
-            "Pudge : cbr03",
-            "Punchy : cat06",
-            "Purrl : cat07",
-            "Queenie : ost00",
-            "Quillson : duk17",
-            "Quinn : pbr10",
-            "Raddle : flg15",
-            "Rasher : pig02",
-            "Raymond : cat23",
-            "Renée : rhn08",
-            "Reneigh : hrs16",
-            "Rex : lon02",
-            "Rhonda : rhn01",
-            "Ribbot : flg01",
-            "Ricky : squ10",
-            "Rilla : gor11",
-            "Rio : ost04",
-            "Rizzo : mus09",
-            "Roald : pgn01",
-            "Robin : brd01",
-            "Rocco : hip00",
-            "Rocket : gor09",
-            "Rod : mus05",
-            "Rodeo : bul01",
-            "Rodney : ham03",
-            "Rolf : tig00",
-            "Rooney : kgr09",
-            "Rory : lon07",
-            "Roscoe : hrs04",
-            "Rosie : cat02",
-            "Roswell : crd05",
-            "Rowan : tig01",
-            "Ruby : rbt09",
-            "Rudy : cat20",
-            "Sally : squ07",
-            "Samson : mus04",
-            "Sandy : ost02",
-            "Sasha : rbt21",
-            "Savannah : hrs02",
-            "Scoot : duk10",
-            "Shari : mnk07",
-            "Sheldon : squ16",
-            "Shep : dog18",
-            "Sherb : goa09",
-            "Shino : der11",
-            "Simon : mnk02",
-            "Skye : wol09",
-            "Sly : crd06",
-            "Snake : rbt03",
-            "Snooty : ant06",
-            "Soleil : ham04",
-            "Sparro : brd18",
-            "Spike : rhn02",
-            "Spork : pig05",
-            "Sprinkle : pgn14",
-            "Sprocket : ost03",
-            "Static : squ08",
-            "Stella : shp03",
-            "Sterling : pbr07",
-            "Stinky : cat13",
-            "Stitches : cbr05",
-            "Stu : bul03",
-            "Sydney : kal03",
-            "Sylvana : squ14",
-            "Sylvia : kgr06",
-            "T-Bone : bul05",
-            "Tabby : cat12",
-            "Tad : flg09",
-            "Tammi : mnk03",
-            "Tammy : cbr17",
-            "Tangy : cat05",
-            "Tank : rhn00",
-            "Tasha : squ13",
-            "Teddy : bea00",
-            "Tex : pgn12",
-            "Tia : elp10",
-            "Tiansheng : mnk09",
-            "Tiffany : rbt07",
-            "Timbra : shp10",
-            "Tipper : cow01",
-            "Toby : rbt20",
-            "Tom : cat15",
-            "Truffles : pig01",
-            "Tucker : elp09",
-            "Tutu : bea07",
-            "Twiggy : brd03",
-            "Tybalt : tig02",
-            "Ursala : bea08",
-            "Velma : goa06",
-            "Vesta : shp00",
-            "Vic : bul08",
-            "Victoria : hrs01",
-            "Violet : gor07",
-            "Vivian : wol08",
-            "Vladimir : cbr06",
-            "Wade : pgn09",
-            "Walker : dog06",
-            "Walt : kgr08",
-            "Wart Jr. : flg05",
-            "Weber : duk11",
-            "Wendy : shp09",
-            "Whitney : wol03",
-            "Willow : shp07",
-            "Winnie : hrs05",
-            "Wolfgang : wol02",
-            "Yuka : kal00",
-            "Zell : der02",
-            "Zoe : ant05",
-            "Zucker : ocp02"});
-            this.MysVillagerReplaceSelector.Location = new System.Drawing.Point(955, 159);
-            this.MysVillagerReplaceSelector.Name = "MysVillagerReplaceSelector";
-            this.MysVillagerReplaceSelector.Size = new System.Drawing.Size(237, 66);
-            this.MysVillagerReplaceSelector.TabIndex = 128;
+            MysVillagerReplaceSelector.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            MysVillagerReplaceSelector.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            MysVillagerReplaceSelector.DropDownHeight = 362;
+            MysVillagerReplaceSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            MysVillagerReplaceSelector.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            MysVillagerReplaceSelector.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            MysVillagerReplaceSelector.ForeColor = System.Drawing.Color.White;
+            MysVillagerReplaceSelector.FormattingEnabled = true;
+            MysVillagerReplaceSelector.IntegralHeight = false;
+            MysVillagerReplaceSelector.ItemHeight = 60;
+            MysVillagerReplaceSelector.Items.AddRange(new object[] { "Ace : brd09", "Admiral : brd06", "Agent S : squ05", "Agnes : pig17", "Al : gor08", "Alfonso : crd00", "Alice : kal01", "Alli : crd01", "Amelia : pbr01", "Anabelle : ant03", "Anchovy : brd02", "Angus : bul00", "Anicotti : mus10", "Ankha : cat19", "Annalisa : ant08", "Annalise : hrs09", "Antonio : ant01", "Apollo : pbr00", "Apple : ham01", "Astrid : kgr05", "Audie : wol12", "Aurora : pgn00", "Ava : chn05", "Avery : pbr05", "Axel : elp06", "Azalea : rhn05", "Baabara : shp01", "Bam : der01", "Bangle : tig03", "Barold : cbr16", "Bea : dog10", "Beardo : bea13", "Beau : der07", "Becky : chn09", "Bella : mus02", "Benedict : chn01", "Benjamin : dog16", "Bertha : hip03", "Bettina : mus15", "Bianca : tig06", "Biff : hip04", "Big Top : elp02", "Bill : duk00", "Billy : goa02", "Biskit : dog03", "Bitty : hip05", "Blaire : squ01", "Blanche : ost08", "Bluebear : cbr00", "Bob : cat00", "Bonbon : rbt17", "Bones : dog04", "Boomer : pgn10", "Boone : gor02", "Boots : crd02", "Boris : pig09", "Boyd : gor05", "Bree : mus03", "Broccolo : mus12", "Broffina : chn12", "Bruce : der03", "Bubbles : hip02", "Buck : hrs00", "Bud : lon00", "Bunnie : rbt00", "Butch : dog01", "Buzz : pbr03", "Cally : squ11", "Camofrog : flg03", "Canberra : kal08", "Candi : mus08", "Carmen : rbt16", "Caroline : squ06", "Carrie : kgr02", "Cashmere : shp04", "Celia : pbr09", "Cephalobot : ocp04", "Cesar : gor00", "Chabwick : pgn07", "Chadder : mus18", "Chai : elp11", "Charlise : bea12", "Chelsea : der10", "Cheri : cbr10", "Cherry : dog17", "Chester : cbr15", "Chevre : goa00", "Chief : wol00", "Chops : pig14", "Chow : bea03", "Chrissy : rbt13", "Claude : rbt11", "Claudia : tig05", "Clay : ham05", "Cleo : hrs07", "Clyde : hrs10", "Coach : bul07", "Cobb : pig08", "Coco : rbt02", "Cole : rbt18", "Colton : hrs11", "Cookie : dog08", "Cousteau : flg10", "Cranston : ost06", "Croque : flg17", "Cube : pgn02", "Curlos : shp08", "Curly : pig00", "Curt : bea02", "Cyd : elp12", "Cyrano : ant00", "Daisy : dog07", "Deena : duk04", "Deirdre : der04", "Del : crd04", "Deli : mnk08", "Derwin : duk08", "Diana : der08", "Diva : flg18", "Dizzy : elp01", "Dobie : wol04", "Doc : rbt10", "Dom : shp15", "Dora : mus00", "Dotty : rbt01", "Drago : crd08", "Drake : duk09", "Drift : flg04", "Ed : hrs06", "Egbert : chn02", "Elise : mnk05", "Ellie : elp07", "Elmer : hrs03", "Eloise : elp03", "Elvis : lon01", "Erik : der09", "Étoile : shp14", "Eugene : kal10", "Eunice : shp02", "Faith : kal07", "Fang : wol06", "Fauna : der00", "Felicity : cat17", "Filbert : squ02", "Flip : mnk06", "Flo : pgn13", "Flora : ost09", "Flurry : ham06", "Francine : rbt12", "Frank : pbr06", "Freckles : duk07", "Frett : dog11", "Freya : wol05", "Friga : pgn04", "Frita : shp11", "Frobert : flg02", "Fuchsia : der06", "Gabi : rbt05", "Gala : pig13", "Gaston : rbt04", "Gayle : crd07", "Genji : rbt08", "Gigi : flg16", "Gladys : ost01", "Gloria : duk15", "Goldie : dog00", "Gonzo : kal04", "Goose : chn00", "Graham : ham02", "Greta : mus16", "Grizzly : bea09", "Groucho : bea06", "Gruff : goa04", "Gwen : pgn05", "Hamlet : ham00", "Hamphrey : ham07", "Hans : gor10", "Harry : hip08", "Hazel : squ18", "Henry : flg19", "Hippeux : hip09", "Hopkins : rbt14", "Hopper : pgn03", "Hornsby : rhn04", "Huck : flg11", "Hugh : pig03", "Iggly : pgn11", "Ike : bea11", "Ione : squ21", "Jacob : brd11", "Jacques : brd16", "Jambette : flg13", "Jay : brd00", "Jeremiah : flg07", "Jitters : brd04", "Joey : duk01", "Judy : cbr19", "Julia : ost05", "Julian : hrs13", "June : cbr13", "Kabuki : cat09", "Katt : cat21", "Keaton : pbr08", "Ken : chn13", "Ketchup : duk13", "Kevin : pig15", "Kid Cat : cat10", "Kidd : goa07", "Kiki : cat04", "Kitt : kgr00", "Kitty : cat14", "Klaus : bea14", "Knox : chn11", "Kody : cbr04", "Kyle : wol10", "Leonardo : tig04", "Leopold : lon04", "Lily : flg00", "Limberg : mus01", "Lionel : lon08", "Lobo : wol01", "Lolly : cat18", "Lopez : der05", "Louie : gor04", "Lucha : brd15", "Lucky : dog02", "Lucy : pig04", "Lyman : kal09", "Mac : dog14", "Maddie : dog09", "Maelle : duk03", "Maggie : pig10", "Mallary : duk06", "Maple : cbr01", "Marcel : dog15", "Marcie : kgr10", "Margie : elp04", "Marina : ocp01", "Marlo : ham09", "Marshal : squ17", "Marty : cbr18", "Mathilda : kgr01", "Megan : bea15", "Melba : kal02", "Merengue : rhn07", "Merry : cat16", "Midge : brd08", "Mint : squ09", "Mira : rbt19", "Miranda : duk12", "Mitzi : cat01", "Moe : cat08", "Molly : duk16", "Monique : cat11", "Monty : mnk04", "Moose : mus14", "Mott : lon06", "Muffy : shp12", "Murphy : cbr07", "Nan : goa01", "Nana : mnk01", "Naomi : cow07", "Nate : bea05", "Nibbles : squ04", "Norma : cow06", "O'Hare : rbt15", "Octavian : ocp00", "Olaf : ant09", "Olive : cbr09", "Olivia : cat03", "Opal : elp00", "Ozzie : kal05", "Pancetti : pig16", "Pango : ant02", "Paolo : elp05", "Papi : hrs12", "Pashmina : goa08", "Pate : duk02", "Patty : cow00", "Paula : bea10", "Peaches : hrs08", "Peanut : squ00", "Pecan : squ03", "Peck : brd17", "Peewee : gor01", "Peggy : pig11", "Pekoe : cbr14", "Penelope : mus17", "Petri : mus19", "Phil : ost07", "Phoebe : ost10", "Pierce : pbr02", "Pietro : shp13", "Pinky : bea01", "Piper : brd05", "Pippy : rbt06", "Plucky : chn10", "Pompom : duk05", "Poncho : cbr02", "Poppy : squ15", "Portia : dog05", "Prince : flg12", "Puck : pgn06", "Puddles : flg06", "Pudge : cbr03", "Punchy : cat06", "Purrl : cat07", "Queenie : ost00", "Quillson : duk17", "Quinn : pbr10", "Raddle : flg15", "Rasher : pig02", "Raymond : cat23", "Renée : rhn08", "Reneigh : hrs16", "Rex : lon02", "Rhonda : rhn01", "Ribbot : flg01", "Ricky : squ10", "Rilla : gor11", "Rio : ost04", "Rizzo : mus09", "Roald : pgn01", "Robin : brd01", "Rocco : hip00", "Rocket : gor09", "Rod : mus05", "Rodeo : bul01", "Rodney : ham03", "Rolf : tig00", "Rooney : kgr09", "Rory : lon07", "Roscoe : hrs04", "Rosie : cat02", "Roswell : crd05", "Rowan : tig01", "Ruby : rbt09", "Rudy : cat20", "Sally : squ07", "Samson : mus04", "Sandy : ost02", "Sasha : rbt21", "Savannah : hrs02", "Scoot : duk10", "Shari : mnk07", "Sheldon : squ16", "Shep : dog18", "Sherb : goa09", "Shino : der11", "Simon : mnk02", "Skye : wol09", "Sly : crd06", "Snake : rbt03", "Snooty : ant06", "Soleil : ham04", "Sparro : brd18", "Spike : rhn02", "Spork : pig05", "Sprinkle : pgn14", "Sprocket : ost03", "Static : squ08", "Stella : shp03", "Sterling : pbr07", "Stinky : cat13", "Stitches : cbr05", "Stu : bul03", "Sydney : kal03", "Sylvana : squ14", "Sylvia : kgr06", "T-Bone : bul05", "Tabby : cat12", "Tad : flg09", "Tammi : mnk03", "Tammy : cbr17", "Tangy : cat05", "Tank : rhn00", "Tasha : squ13", "Teddy : bea00", "Tex : pgn12", "Tia : elp10", "Tiansheng : mnk09", "Tiffany : rbt07", "Timbra : shp10", "Tipper : cow01", "Toby : rbt20", "Tom : cat15", "Truffles : pig01", "Tucker : elp09", "Tutu : bea07", "Twiggy : brd03", "Tybalt : tig02", "Ursala : bea08", "Velma : goa06", "Vesta : shp00", "Vic : bul08", "Victoria : hrs01", "Violet : gor07", "Vivian : wol08", "Vladimir : cbr06", "Wade : pgn09", "Walker : dog06", "Walt : kgr08", "Wart Jr. : flg05", "Weber : duk11", "Wendy : shp09", "Whitney : wol03", "Willow : shp07", "Winnie : hrs05", "Wolfgang : wol02", "Yuka : kal00", "Zell : der02", "Zoe : ant05", "Zucker : ocp02" });
+            MysVillagerReplaceSelector.Location = new System.Drawing.Point(955, 159);
+            MysVillagerReplaceSelector.Name = "MysVillagerReplaceSelector";
+            MysVillagerReplaceSelector.Size = new System.Drawing.Size(237, 66);
+            MysVillagerReplaceSelector.TabIndex = 128;
             // 
             // VillagerReplaceSelector
             // 
-            this.VillagerReplaceSelector.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.VillagerReplaceSelector.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.VillagerReplaceSelector.DropDownHeight = 362;
-            this.VillagerReplaceSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.VillagerReplaceSelector.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.VillagerReplaceSelector.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerReplaceSelector.ForeColor = System.Drawing.Color.White;
-            this.VillagerReplaceSelector.FormattingEnabled = true;
-            this.VillagerReplaceSelector.IntegralHeight = false;
-            this.VillagerReplaceSelector.ItemHeight = 60;
-            this.VillagerReplaceSelector.Items.AddRange(new object[] {
-            "Ace : brd09",
-            "Admiral : brd06",
-            "Agent S : squ05",
-            "Agnes : pig17",
-            "Al : gor08",
-            "Alfonso : crd00",
-            "Alice : kal01",
-            "Alli : crd01",
-            "Amelia : pbr01",
-            "Anabelle : ant03",
-            "Anchovy : brd02",
-            "Angus : bul00",
-            "Anicotti : mus10",
-            "Ankha : cat19",
-            "Annalisa : ant08",
-            "Annalise : hrs09",
-            "Antonio : ant01",
-            "Apollo : pbr00",
-            "Apple : ham01",
-            "Astrid : kgr05",
-            "Audie : wol12",
-            "Aurora : pgn00",
-            "Ava : chn05",
-            "Avery : pbr05",
-            "Axel : elp06",
-            "Azalea : rhn05",
-            "Baabara : shp01",
-            "Bam : der01",
-            "Bangle : tig03",
-            "Barold : cbr16",
-            "Bea : dog10",
-            "Beardo : bea13",
-            "Beau : der07",
-            "Becky : chn09",
-            "Bella : mus02",
-            "Benedict : chn01",
-            "Benjamin : dog16",
-            "Bertha : hip03",
-            "Bettina : mus15",
-            "Bianca : tig06",
-            "Biff : hip04",
-            "Big Top : elp02",
-            "Bill : duk00",
-            "Billy : goa02",
-            "Biskit : dog03",
-            "Bitty : hip05",
-            "Blaire : squ01",
-            "Blanche : ost08",
-            "Bluebear : cbr00",
-            "Bob : cat00",
-            "Bonbon : rbt17",
-            "Bones : dog04",
-            "Boomer : pgn10",
-            "Boone : gor02",
-            "Boots : crd02",
-            "Boris : pig09",
-            "Boyd : gor05",
-            "Bree : mus03",
-            "Broccolo : mus12",
-            "Broffina : chn12",
-            "Bruce : der03",
-            "Bubbles : hip02",
-            "Buck : hrs00",
-            "Bud : lon00",
-            "Bunnie : rbt00",
-            "Butch : dog01",
-            "Buzz : pbr03",
-            "Cally : squ11",
-            "Camofrog : flg03",
-            "Canberra : kal08",
-            "Candi : mus08",
-            "Carmen : rbt16",
-            "Caroline : squ06",
-            "Carrie : kgr02",
-            "Cashmere : shp04",
-            "Celia : pbr09",
-            "Cephalobot : ocp04",
-            "Cesar : gor00",
-            "Chabwick : pgn07",
-            "Chadder : mus18",
-            "Chai : elp11",
-            "Charlise : bea12",
-            "Chelsea : der10",
-            "Cheri : cbr10",
-            "Cherry : dog17",
-            "Chester : cbr15",
-            "Chevre : goa00",
-            "Chief : wol00",
-            "Chops : pig14",
-            "Chow : bea03",
-            "Chrissy : rbt13",
-            "Claude : rbt11",
-            "Claudia : tig05",
-            "Clay : ham05",
-            "Cleo : hrs07",
-            "Clyde : hrs10",
-            "Coach : bul07",
-            "Cobb : pig08",
-            "Coco : rbt02",
-            "Cole : rbt18",
-            "Colton : hrs11",
-            "Cookie : dog08",
-            "Cousteau : flg10",
-            "Cranston : ost06",
-            "Croque : flg17",
-            "Cube : pgn02",
-            "Curlos : shp08",
-            "Curly : pig00",
-            "Curt : bea02",
-            "Cyd : elp12",
-            "Cyrano : ant00",
-            "Daisy : dog07",
-            "Deena : duk04",
-            "Deirdre : der04",
-            "Del : crd04",
-            "Deli : mnk08",
-            "Derwin : duk08",
-            "Diana : der08",
-            "Diva : flg18",
-            "Dizzy : elp01",
-            "Dobie : wol04",
-            "Doc : rbt10",
-            "Dom : shp15",
-            "Dora : mus00",
-            "Dotty : rbt01",
-            "Drago : crd08",
-            "Drake : duk09",
-            "Drift : flg04",
-            "Ed : hrs06",
-            "Egbert : chn02",
-            "Elise : mnk05",
-            "Ellie : elp07",
-            "Elmer : hrs03",
-            "Eloise : elp03",
-            "Elvis : lon01",
-            "Erik : der09",
-            "Étoile : shp14",
-            "Eugene : kal10",
-            "Eunice : shp02",
-            "Faith : kal07",
-            "Fang : wol06",
-            "Fauna : der00",
-            "Felicity : cat17",
-            "Filbert : squ02",
-            "Flip : mnk06",
-            "Flo : pgn13",
-            "Flora : ost09",
-            "Flurry : ham06",
-            "Francine : rbt12",
-            "Frank : pbr06",
-            "Freckles : duk07",
-            "Frett : dog11",
-            "Freya : wol05",
-            "Friga : pgn04",
-            "Frita : shp11",
-            "Frobert : flg02",
-            "Fuchsia : der06",
-            "Gabi : rbt05",
-            "Gala : pig13",
-            "Gaston : rbt04",
-            "Gayle : crd07",
-            "Genji : rbt08",
-            "Gigi : flg16",
-            "Gladys : ost01",
-            "Gloria : duk15",
-            "Goldie : dog00",
-            "Gonzo : kal04",
-            "Goose : chn00",
-            "Graham : ham02",
-            "Greta : mus16",
-            "Grizzly : bea09",
-            "Groucho : bea06",
-            "Gruff : goa04",
-            "Gwen : pgn05",
-            "Hamlet : ham00",
-            "Hamphrey : ham07",
-            "Hans : gor10",
-            "Harry : hip08",
-            "Hazel : squ18",
-            "Henry : flg19",
-            "Hippeux : hip09",
-            "Hopkins : rbt14",
-            "Hopper : pgn03",
-            "Hornsby : rhn04",
-            "Huck : flg11",
-            "Hugh : pig03",
-            "Iggly : pgn11",
-            "Ike : bea11",
-            "Ione : squ21",
-            "Jacob : brd11",
-            "Jacques : brd16",
-            "Jambette : flg13",
-            "Jay : brd00",
-            "Jeremiah : flg07",
-            "Jitters : brd04",
-            "Joey : duk01",
-            "Judy : cbr19",
-            "Julia : ost05",
-            "Julian : hrs13",
-            "June : cbr13",
-            "Kabuki : cat09",
-            "Katt : cat21",
-            "Keaton : pbr08",
-            "Ken : chn13",
-            "Ketchup : duk13",
-            "Kevin : pig15",
-            "Kid Cat : cat10",
-            "Kidd : goa07",
-            "Kiki : cat04",
-            "Kitt : kgr00",
-            "Kitty : cat14",
-            "Klaus : bea14",
-            "Knox : chn11",
-            "Kody : cbr04",
-            "Kyle : wol10",
-            "Leonardo : tig04",
-            "Leopold : lon04",
-            "Lily : flg00",
-            "Limberg : mus01",
-            "Lionel : lon08",
-            "Lobo : wol01",
-            "Lolly : cat18",
-            "Lopez : der05",
-            "Louie : gor04",
-            "Lucha : brd15",
-            "Lucky : dog02",
-            "Lucy : pig04",
-            "Lyman : kal09",
-            "Mac : dog14",
-            "Maddie : dog09",
-            "Maelle : duk03",
-            "Maggie : pig10",
-            "Mallary : duk06",
-            "Maple : cbr01",
-            "Marcel : dog15",
-            "Marcie : kgr10",
-            "Margie : elp04",
-            "Marina : ocp01",
-            "Marlo : ham09",
-            "Marshal : squ17",
-            "Marty : cbr18",
-            "Mathilda : kgr01",
-            "Megan : bea15",
-            "Melba : kal02",
-            "Merengue : rhn07",
-            "Merry : cat16",
-            "Midge : brd08",
-            "Mint : squ09",
-            "Mira : rbt19",
-            "Miranda : duk12",
-            "Mitzi : cat01",
-            "Moe : cat08",
-            "Molly : duk16",
-            "Monique : cat11",
-            "Monty : mnk04",
-            "Moose : mus14",
-            "Mott : lon06",
-            "Muffy : shp12",
-            "Murphy : cbr07",
-            "Nan : goa01",
-            "Nana : mnk01",
-            "Naomi : cow07",
-            "Nate : bea05",
-            "Nibbles : squ04",
-            "Norma : cow06",
-            "O\'Hare : rbt15",
-            "Octavian : ocp00",
-            "Olaf : ant09",
-            "Olive : cbr09",
-            "Olivia : cat03",
-            "Opal : elp00",
-            "Ozzie : kal05",
-            "Pancetti : pig16",
-            "Pango : ant02",
-            "Paolo : elp05",
-            "Papi : hrs12",
-            "Pashmina : goa08",
-            "Pate : duk02",
-            "Patty : cow00",
-            "Paula : bea10",
-            "Peaches : hrs08",
-            "Peanut : squ00",
-            "Pecan : squ03",
-            "Peck : brd17",
-            "Peewee : gor01",
-            "Peggy : pig11",
-            "Pekoe : cbr14",
-            "Penelope : mus17",
-            "Petri : mus19",
-            "Phil : ost07",
-            "Phoebe : ost10",
-            "Pierce : pbr02",
-            "Pietro : shp13",
-            "Pinky : bea01",
-            "Piper : brd05",
-            "Pippy : rbt06",
-            "Plucky : chn10",
-            "Pompom : duk05",
-            "Poncho : cbr02",
-            "Poppy : squ15",
-            "Portia : dog05",
-            "Prince : flg12",
-            "Puck : pgn06",
-            "Puddles : flg06",
-            "Pudge : cbr03",
-            "Punchy : cat06",
-            "Purrl : cat07",
-            "Queenie : ost00",
-            "Quillson : duk17",
-            "Quinn : pbr10",
-            "Raddle : flg15",
-            "Rasher : pig02",
-            "Raymond : cat23",
-            "Renée : rhn08",
-            "Reneigh : hrs16",
-            "Rex : lon02",
-            "Rhonda : rhn01",
-            "Ribbot : flg01",
-            "Ricky : squ10",
-            "Rilla : gor11",
-            "Rio : ost04",
-            "Rizzo : mus09",
-            "Roald : pgn01",
-            "Robin : brd01",
-            "Rocco : hip00",
-            "Rocket : gor09",
-            "Rod : mus05",
-            "Rodeo : bul01",
-            "Rodney : ham03",
-            "Rolf : tig00",
-            "Rooney : kgr09",
-            "Rory : lon07",
-            "Roscoe : hrs04",
-            "Rosie : cat02",
-            "Roswell : crd05",
-            "Rowan : tig01",
-            "Ruby : rbt09",
-            "Rudy : cat20",
-            "Sally : squ07",
-            "Samson : mus04",
-            "Sandy : ost02",
-            "Sasha : rbt21",
-            "Savannah : hrs02",
-            "Scoot : duk10",
-            "Shari : mnk07",
-            "Sheldon : squ16",
-            "Shep : dog18",
-            "Sherb : goa09",
-            "Shino : der11",
-            "Simon : mnk02",
-            "Skye : wol09",
-            "Sly : crd06",
-            "Snake : rbt03",
-            "Snooty : ant06",
-            "Soleil : ham04",
-            "Sparro : brd18",
-            "Spike : rhn02",
-            "Spork : pig05",
-            "Sprinkle : pgn14",
-            "Sprocket : ost03",
-            "Static : squ08",
-            "Stella : shp03",
-            "Sterling : pbr07",
-            "Stinky : cat13",
-            "Stitches : cbr05",
-            "Stu : bul03",
-            "Sydney : kal03",
-            "Sylvana : squ14",
-            "Sylvia : kgr06",
-            "T-Bone : bul05",
-            "Tabby : cat12",
-            "Tad : flg09",
-            "Tammi : mnk03",
-            "Tammy : cbr17",
-            "Tangy : cat05",
-            "Tank : rhn00",
-            "Tasha : squ13",
-            "Teddy : bea00",
-            "Tex : pgn12",
-            "Tia : elp10",
-            "Tiansheng : mnk09",
-            "Tiffany : rbt07",
-            "Timbra : shp10",
-            "Tipper : cow01",
-            "Toby : rbt20",
-            "Tom : cat15",
-            "Truffles : pig01",
-            "Tucker : elp09",
-            "Tutu : bea07",
-            "Twiggy : brd03",
-            "Tybalt : tig02",
-            "Ursala : bea08",
-            "Velma : goa06",
-            "Vesta : shp00",
-            "Vic : bul08",
-            "Victoria : hrs01",
-            "Violet : gor07",
-            "Vivian : wol08",
-            "Vladimir : cbr06",
-            "Wade : pgn09",
-            "Walker : dog06",
-            "Walt : kgr08",
-            "Wart Jr. : flg05",
-            "Weber : duk11",
-            "Wendy : shp09",
-            "Whitney : wol03",
-            "Willow : shp07",
-            "Winnie : hrs05",
-            "Wolfgang : wol02",
-            "Yuka : kal00",
-            "Zell : der02",
-            "Zoe : ant05",
-            "Zucker : ocp02"});
-            this.VillagerReplaceSelector.Location = new System.Drawing.Point(48, 439);
-            this.VillagerReplaceSelector.Name = "VillagerReplaceSelector";
-            this.VillagerReplaceSelector.Size = new System.Drawing.Size(200, 66);
-            this.VillagerReplaceSelector.TabIndex = 109;
+            VillagerReplaceSelector.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            VillagerReplaceSelector.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            VillagerReplaceSelector.DropDownHeight = 362;
+            VillagerReplaceSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            VillagerReplaceSelector.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            VillagerReplaceSelector.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            VillagerReplaceSelector.ForeColor = System.Drawing.Color.White;
+            VillagerReplaceSelector.FormattingEnabled = true;
+            VillagerReplaceSelector.IntegralHeight = false;
+            VillagerReplaceSelector.ItemHeight = 60;
+            VillagerReplaceSelector.Items.AddRange(new object[] { "Ace : brd09", "Admiral : brd06", "Agent S : squ05", "Agnes : pig17", "Al : gor08", "Alfonso : crd00", "Alice : kal01", "Alli : crd01", "Amelia : pbr01", "Anabelle : ant03", "Anchovy : brd02", "Angus : bul00", "Anicotti : mus10", "Ankha : cat19", "Annalisa : ant08", "Annalise : hrs09", "Antonio : ant01", "Apollo : pbr00", "Apple : ham01", "Astrid : kgr05", "Audie : wol12", "Aurora : pgn00", "Ava : chn05", "Avery : pbr05", "Axel : elp06", "Azalea : rhn05", "Baabara : shp01", "Bam : der01", "Bangle : tig03", "Barold : cbr16", "Bea : dog10", "Beardo : bea13", "Beau : der07", "Becky : chn09", "Bella : mus02", "Benedict : chn01", "Benjamin : dog16", "Bertha : hip03", "Bettina : mus15", "Bianca : tig06", "Biff : hip04", "Big Top : elp02", "Bill : duk00", "Billy : goa02", "Biskit : dog03", "Bitty : hip05", "Blaire : squ01", "Blanche : ost08", "Bluebear : cbr00", "Bob : cat00", "Bonbon : rbt17", "Bones : dog04", "Boomer : pgn10", "Boone : gor02", "Boots : crd02", "Boris : pig09", "Boyd : gor05", "Bree : mus03", "Broccolo : mus12", "Broffina : chn12", "Bruce : der03", "Bubbles : hip02", "Buck : hrs00", "Bud : lon00", "Bunnie : rbt00", "Butch : dog01", "Buzz : pbr03", "Cally : squ11", "Camofrog : flg03", "Canberra : kal08", "Candi : mus08", "Carmen : rbt16", "Caroline : squ06", "Carrie : kgr02", "Cashmere : shp04", "Celia : pbr09", "Cephalobot : ocp04", "Cesar : gor00", "Chabwick : pgn07", "Chadder : mus18", "Chai : elp11", "Charlise : bea12", "Chelsea : der10", "Cheri : cbr10", "Cherry : dog17", "Chester : cbr15", "Chevre : goa00", "Chief : wol00", "Chops : pig14", "Chow : bea03", "Chrissy : rbt13", "Claude : rbt11", "Claudia : tig05", "Clay : ham05", "Cleo : hrs07", "Clyde : hrs10", "Coach : bul07", "Cobb : pig08", "Coco : rbt02", "Cole : rbt18", "Colton : hrs11", "Cookie : dog08", "Cousteau : flg10", "Cranston : ost06", "Croque : flg17", "Cube : pgn02", "Curlos : shp08", "Curly : pig00", "Curt : bea02", "Cyd : elp12", "Cyrano : ant00", "Daisy : dog07", "Deena : duk04", "Deirdre : der04", "Del : crd04", "Deli : mnk08", "Derwin : duk08", "Diana : der08", "Diva : flg18", "Dizzy : elp01", "Dobie : wol04", "Doc : rbt10", "Dom : shp15", "Dora : mus00", "Dotty : rbt01", "Drago : crd08", "Drake : duk09", "Drift : flg04", "Ed : hrs06", "Egbert : chn02", "Elise : mnk05", "Ellie : elp07", "Elmer : hrs03", "Eloise : elp03", "Elvis : lon01", "Erik : der09", "Étoile : shp14", "Eugene : kal10", "Eunice : shp02", "Faith : kal07", "Fang : wol06", "Fauna : der00", "Felicity : cat17", "Filbert : squ02", "Flip : mnk06", "Flo : pgn13", "Flora : ost09", "Flurry : ham06", "Francine : rbt12", "Frank : pbr06", "Freckles : duk07", "Frett : dog11", "Freya : wol05", "Friga : pgn04", "Frita : shp11", "Frobert : flg02", "Fuchsia : der06", "Gabi : rbt05", "Gala : pig13", "Gaston : rbt04", "Gayle : crd07", "Genji : rbt08", "Gigi : flg16", "Gladys : ost01", "Gloria : duk15", "Goldie : dog00", "Gonzo : kal04", "Goose : chn00", "Graham : ham02", "Greta : mus16", "Grizzly : bea09", "Groucho : bea06", "Gruff : goa04", "Gwen : pgn05", "Hamlet : ham00", "Hamphrey : ham07", "Hans : gor10", "Harry : hip08", "Hazel : squ18", "Henry : flg19", "Hippeux : hip09", "Hopkins : rbt14", "Hopper : pgn03", "Hornsby : rhn04", "Huck : flg11", "Hugh : pig03", "Iggly : pgn11", "Ike : bea11", "Ione : squ21", "Jacob : brd11", "Jacques : brd16", "Jambette : flg13", "Jay : brd00", "Jeremiah : flg07", "Jitters : brd04", "Joey : duk01", "Judy : cbr19", "Julia : ost05", "Julian : hrs13", "June : cbr13", "Kabuki : cat09", "Katt : cat21", "Keaton : pbr08", "Ken : chn13", "Ketchup : duk13", "Kevin : pig15", "Kid Cat : cat10", "Kidd : goa07", "Kiki : cat04", "Kitt : kgr00", "Kitty : cat14", "Klaus : bea14", "Knox : chn11", "Kody : cbr04", "Kyle : wol10", "Leonardo : tig04", "Leopold : lon04", "Lily : flg00", "Limberg : mus01", "Lionel : lon08", "Lobo : wol01", "Lolly : cat18", "Lopez : der05", "Louie : gor04", "Lucha : brd15", "Lucky : dog02", "Lucy : pig04", "Lyman : kal09", "Mac : dog14", "Maddie : dog09", "Maelle : duk03", "Maggie : pig10", "Mallary : duk06", "Maple : cbr01", "Marcel : dog15", "Marcie : kgr10", "Margie : elp04", "Marina : ocp01", "Marlo : ham09", "Marshal : squ17", "Marty : cbr18", "Mathilda : kgr01", "Megan : bea15", "Melba : kal02", "Merengue : rhn07", "Merry : cat16", "Midge : brd08", "Mint : squ09", "Mira : rbt19", "Miranda : duk12", "Mitzi : cat01", "Moe : cat08", "Molly : duk16", "Monique : cat11", "Monty : mnk04", "Moose : mus14", "Mott : lon06", "Muffy : shp12", "Murphy : cbr07", "Nan : goa01", "Nana : mnk01", "Naomi : cow07", "Nate : bea05", "Nibbles : squ04", "Norma : cow06", "O'Hare : rbt15", "Octavian : ocp00", "Olaf : ant09", "Olive : cbr09", "Olivia : cat03", "Opal : elp00", "Ozzie : kal05", "Pancetti : pig16", "Pango : ant02", "Paolo : elp05", "Papi : hrs12", "Pashmina : goa08", "Pate : duk02", "Patty : cow00", "Paula : bea10", "Peaches : hrs08", "Peanut : squ00", "Pecan : squ03", "Peck : brd17", "Peewee : gor01", "Peggy : pig11", "Pekoe : cbr14", "Penelope : mus17", "Petri : mus19", "Phil : ost07", "Phoebe : ost10", "Pierce : pbr02", "Pietro : shp13", "Pinky : bea01", "Piper : brd05", "Pippy : rbt06", "Plucky : chn10", "Pompom : duk05", "Poncho : cbr02", "Poppy : squ15", "Portia : dog05", "Prince : flg12", "Puck : pgn06", "Puddles : flg06", "Pudge : cbr03", "Punchy : cat06", "Purrl : cat07", "Queenie : ost00", "Quillson : duk17", "Quinn : pbr10", "Raddle : flg15", "Rasher : pig02", "Raymond : cat23", "Renée : rhn08", "Reneigh : hrs16", "Rex : lon02", "Rhonda : rhn01", "Ribbot : flg01", "Ricky : squ10", "Rilla : gor11", "Rio : ost04", "Rizzo : mus09", "Roald : pgn01", "Robin : brd01", "Rocco : hip00", "Rocket : gor09", "Rod : mus05", "Rodeo : bul01", "Rodney : ham03", "Rolf : tig00", "Rooney : kgr09", "Rory : lon07", "Roscoe : hrs04", "Rosie : cat02", "Roswell : crd05", "Rowan : tig01", "Ruby : rbt09", "Rudy : cat20", "Sally : squ07", "Samson : mus04", "Sandy : ost02", "Sasha : rbt21", "Savannah : hrs02", "Scoot : duk10", "Shari : mnk07", "Sheldon : squ16", "Shep : dog18", "Sherb : goa09", "Shino : der11", "Simon : mnk02", "Skye : wol09", "Sly : crd06", "Snake : rbt03", "Snooty : ant06", "Soleil : ham04", "Sparro : brd18", "Spike : rhn02", "Spork : pig05", "Sprinkle : pgn14", "Sprocket : ost03", "Static : squ08", "Stella : shp03", "Sterling : pbr07", "Stinky : cat13", "Stitches : cbr05", "Stu : bul03", "Sydney : kal03", "Sylvana : squ14", "Sylvia : kgr06", "T-Bone : bul05", "Tabby : cat12", "Tad : flg09", "Tammi : mnk03", "Tammy : cbr17", "Tangy : cat05", "Tank : rhn00", "Tasha : squ13", "Teddy : bea00", "Tex : pgn12", "Tia : elp10", "Tiansheng : mnk09", "Tiffany : rbt07", "Timbra : shp10", "Tipper : cow01", "Toby : rbt20", "Tom : cat15", "Truffles : pig01", "Tucker : elp09", "Tutu : bea07", "Twiggy : brd03", "Tybalt : tig02", "Ursala : bea08", "Velma : goa06", "Vesta : shp00", "Vic : bul08", "Victoria : hrs01", "Violet : gor07", "Vivian : wol08", "Vladimir : cbr06", "Wade : pgn09", "Walker : dog06", "Walt : kgr08", "Wart Jr. : flg05", "Weber : duk11", "Wendy : shp09", "Whitney : wol03", "Willow : shp07", "Winnie : hrs05", "Wolfgang : wol02", "Yuka : kal00", "Zell : der02", "Zoe : ant05", "Zucker : ocp02" });
+            VillagerReplaceSelector.Location = new System.Drawing.Point(48, 439);
+            VillagerReplaceSelector.Name = "VillagerReplaceSelector";
+            VillagerReplaceSelector.Size = new System.Drawing.Size(200, 66);
+            VillagerReplaceSelector.TabIndex = 109;
             // 
             // MysVillagerDisplay
             // 
-            this.MysVillagerDisplay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.MysVillagerDisplay.FlatAppearance.BorderSize = 0;
-            this.MysVillagerDisplay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MysVillagerDisplay.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.MysVillagerDisplay.ForeColor = System.Drawing.Color.White;
-            this.MysVillagerDisplay.Location = new System.Drawing.Point(955, 28);
-            this.MysVillagerDisplay.Name = "MysVillagerDisplay";
-            this.MysVillagerDisplay.Size = new System.Drawing.Size(125, 125);
-            this.MysVillagerDisplay.TabIndex = 127;
-            this.MysVillagerDisplay.Tag = "";
-            this.MysVillagerDisplay.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.MysVillagerDisplay.UseVisualStyleBackColor = false;
+            MysVillagerDisplay.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            MysVillagerDisplay.FlatAppearance.BorderSize = 0;
+            MysVillagerDisplay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            MysVillagerDisplay.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            MysVillagerDisplay.ForeColor = System.Drawing.Color.White;
+            MysVillagerDisplay.Location = new System.Drawing.Point(955, 28);
+            MysVillagerDisplay.Name = "MysVillagerDisplay";
+            MysVillagerDisplay.Size = new System.Drawing.Size(125, 125);
+            MysVillagerDisplay.TabIndex = 127;
+            MysVillagerDisplay.Tag = "";
+            MysVillagerDisplay.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            MysVillagerDisplay.UseVisualStyleBackColor = false;
             // 
             // ReplaceVillagerButton
             // 
-            this.ReplaceVillagerButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.ReplaceVillagerButton.FlatAppearance.BorderSize = 0;
-            this.ReplaceVillagerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ReplaceVillagerButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ReplaceVillagerButton.ForeColor = System.Drawing.Color.White;
-            this.ReplaceVillagerButton.Location = new System.Drawing.Point(254, 439);
-            this.ReplaceVillagerButton.Name = "ReplaceVillagerButton";
-            this.ReplaceVillagerButton.Size = new System.Drawing.Size(80, 66);
-            this.ReplaceVillagerButton.TabIndex = 110;
-            this.ReplaceVillagerButton.Tag = "";
-            this.ReplaceVillagerButton.Text = "Replace Villager";
-            this.ReplaceVillagerButton.UseVisualStyleBackColor = false;
-            this.ReplaceVillagerButton.Click += new System.EventHandler(this.ReplaceVillagerButton_Click);
+            ReplaceVillagerButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            ReplaceVillagerButton.FlatAppearance.BorderSize = 0;
+            ReplaceVillagerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ReplaceVillagerButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            ReplaceVillagerButton.ForeColor = System.Drawing.Color.White;
+            ReplaceVillagerButton.Location = new System.Drawing.Point(254, 439);
+            ReplaceVillagerButton.Name = "ReplaceVillagerButton";
+            ReplaceVillagerButton.Size = new System.Drawing.Size(80, 66);
+            ReplaceVillagerButton.TabIndex = 110;
+            ReplaceVillagerButton.Tag = "";
+            ReplaceVillagerButton.Text = "Replace Villager";
+            ReplaceVillagerButton.UseVisualStyleBackColor = false;
+            ReplaceVillagerButton.Click += ReplaceVillagerButton_Click;
             // 
             // ReadMysVillagerButton
             // 
-            this.ReadMysVillagerButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.ReadMysVillagerButton.FlatAppearance.BorderSize = 0;
-            this.ReadMysVillagerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ReadMysVillagerButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ReadMysVillagerButton.ForeColor = System.Drawing.Color.White;
-            this.ReadMysVillagerButton.Location = new System.Drawing.Point(1086, 28);
-            this.ReadMysVillagerButton.Name = "ReadMysVillagerButton";
-            this.ReadMysVillagerButton.Size = new System.Drawing.Size(106, 74);
-            this.ReadMysVillagerButton.TabIndex = 126;
-            this.ReadMysVillagerButton.Tag = "";
-            this.ReadMysVillagerButton.Text = "Read Mystery Island Villager";
-            this.ReadMysVillagerButton.UseVisualStyleBackColor = false;
-            this.ReadMysVillagerButton.Click += new System.EventHandler(this.ReadMysVillagerButton_Click);
+            ReadMysVillagerButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            ReadMysVillagerButton.FlatAppearance.BorderSize = 0;
+            ReadMysVillagerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ReadMysVillagerButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            ReadMysVillagerButton.ForeColor = System.Drawing.Color.White;
+            ReadMysVillagerButton.Location = new System.Drawing.Point(1086, 28);
+            ReadMysVillagerButton.Name = "ReadMysVillagerButton";
+            ReadMysVillagerButton.Size = new System.Drawing.Size(106, 74);
+            ReadMysVillagerButton.TabIndex = 126;
+            ReadMysVillagerButton.Tag = "";
+            ReadMysVillagerButton.Text = "Read Mystery Island Villager";
+            ReadMysVillagerButton.UseVisualStyleBackColor = false;
+            ReadMysVillagerButton.Click += ReadMysVillagerButton_Click;
             // 
             // ForcedMoveoutButton
             // 
-            this.ForcedMoveoutButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.ForcedMoveoutButton.FlatAppearance.BorderSize = 0;
-            this.ForcedMoveoutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ForcedMoveoutButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ForcedMoveoutButton.ForeColor = System.Drawing.Color.White;
-            this.ForcedMoveoutButton.Location = new System.Drawing.Point(544, 432);
-            this.ForcedMoveoutButton.Name = "ForcedMoveoutButton";
-            this.ForcedMoveoutButton.Size = new System.Drawing.Size(80, 41);
-            this.ForcedMoveoutButton.TabIndex = 112;
-            this.ForcedMoveoutButton.Tag = "";
-            this.ForcedMoveoutButton.Text = "Forced Move out";
-            this.ForcedMoveoutButton.UseVisualStyleBackColor = false;
-            this.ForcedMoveoutButton.Click += new System.EventHandler(this.ForcedMoveoutButton_Click);
+            ForcedMoveoutButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            ForcedMoveoutButton.FlatAppearance.BorderSize = 0;
+            ForcedMoveoutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ForcedMoveoutButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            ForcedMoveoutButton.ForeColor = System.Drawing.Color.White;
+            ForcedMoveoutButton.Location = new System.Drawing.Point(544, 432);
+            ForcedMoveoutButton.Name = "ForcedMoveoutButton";
+            ForcedMoveoutButton.Size = new System.Drawing.Size(80, 41);
+            ForcedMoveoutButton.TabIndex = 112;
+            ForcedMoveoutButton.Tag = "";
+            ForcedMoveoutButton.Text = "Forced Move out";
+            ForcedMoveoutButton.UseVisualStyleBackColor = false;
+            ForcedMoveoutButton.Click += ForcedMoveoutButton_Click;
             // 
             // LoadHouseButton
             // 
-            this.LoadHouseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.LoadHouseButton.FlatAppearance.BorderSize = 0;
-            this.LoadHouseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LoadHouseButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.LoadHouseButton.ForeColor = System.Drawing.Color.White;
-            this.LoadHouseButton.Location = new System.Drawing.Point(1112, 449);
-            this.LoadHouseButton.Name = "LoadHouseButton";
-            this.LoadHouseButton.Size = new System.Drawing.Size(80, 56);
-            this.LoadHouseButton.TabIndex = 124;
-            this.LoadHouseButton.Tag = "";
-            this.LoadHouseButton.Text = "Load House";
-            this.LoadHouseButton.UseVisualStyleBackColor = false;
-            this.LoadHouseButton.Click += new System.EventHandler(this.LoadHouseButton_Click);
+            LoadHouseButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            LoadHouseButton.FlatAppearance.BorderSize = 0;
+            LoadHouseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            LoadHouseButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            LoadHouseButton.ForeColor = System.Drawing.Color.White;
+            LoadHouseButton.Location = new System.Drawing.Point(1112, 449);
+            LoadHouseButton.Name = "LoadHouseButton";
+            LoadHouseButton.Size = new System.Drawing.Size(80, 56);
+            LoadHouseButton.TabIndex = 124;
+            LoadHouseButton.Tag = "";
+            LoadHouseButton.Text = "Load House";
+            LoadHouseButton.UseVisualStyleBackColor = false;
+            LoadHouseButton.Click += LoadHouseButton_Click;
             // 
             // IrregularMoveoutButton
             // 
-            this.IrregularMoveoutButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.IrregularMoveoutButton.FlatAppearance.BorderSize = 0;
-            this.IrregularMoveoutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.IrregularMoveoutButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.IrregularMoveoutButton.ForeColor = System.Drawing.Color.White;
-            this.IrregularMoveoutButton.Location = new System.Drawing.Point(630, 432);
-            this.IrregularMoveoutButton.Name = "IrregularMoveoutButton";
-            this.IrregularMoveoutButton.Size = new System.Drawing.Size(80, 41);
-            this.IrregularMoveoutButton.TabIndex = 113;
-            this.IrregularMoveoutButton.Tag = "";
-            this.IrregularMoveoutButton.Text = "Irregular Move out";
-            this.IrregularMoveoutButton.UseVisualStyleBackColor = false;
-            this.IrregularMoveoutButton.Click += new System.EventHandler(this.IrregularMoveoutButton_Click);
+            IrregularMoveoutButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            IrregularMoveoutButton.FlatAppearance.BorderSize = 0;
+            IrregularMoveoutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            IrregularMoveoutButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            IrregularMoveoutButton.ForeColor = System.Drawing.Color.White;
+            IrregularMoveoutButton.Location = new System.Drawing.Point(630, 432);
+            IrregularMoveoutButton.Name = "IrregularMoveoutButton";
+            IrregularMoveoutButton.Size = new System.Drawing.Size(80, 41);
+            IrregularMoveoutButton.TabIndex = 113;
+            IrregularMoveoutButton.Tag = "";
+            IrregularMoveoutButton.Text = "Irregular Move out";
+            IrregularMoveoutButton.UseVisualStyleBackColor = false;
+            IrregularMoveoutButton.Click += IrregularMoveoutButton_Click;
             // 
             // LoadVillagerButton
             // 
-            this.LoadVillagerButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.LoadVillagerButton.FlatAppearance.BorderSize = 0;
-            this.LoadVillagerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LoadVillagerButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.LoadVillagerButton.ForeColor = System.Drawing.Color.White;
-            this.LoadVillagerButton.Location = new System.Drawing.Point(1026, 449);
-            this.LoadVillagerButton.Name = "LoadVillagerButton";
-            this.LoadVillagerButton.Size = new System.Drawing.Size(80, 56);
-            this.LoadVillagerButton.TabIndex = 123;
-            this.LoadVillagerButton.Tag = "";
-            this.LoadVillagerButton.Text = "Load Villager";
-            this.LoadVillagerButton.UseVisualStyleBackColor = false;
-            this.LoadVillagerButton.Click += new System.EventHandler(this.LoadVillagerButton_Click);
+            LoadVillagerButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            LoadVillagerButton.FlatAppearance.BorderSize = 0;
+            LoadVillagerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            LoadVillagerButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            LoadVillagerButton.ForeColor = System.Drawing.Color.White;
+            LoadVillagerButton.Location = new System.Drawing.Point(1026, 449);
+            LoadVillagerButton.Name = "LoadVillagerButton";
+            LoadVillagerButton.Size = new System.Drawing.Size(80, 56);
+            LoadVillagerButton.TabIndex = 123;
+            LoadVillagerButton.Tag = "";
+            LoadVillagerButton.Text = "Load Villager";
+            LoadVillagerButton.UseVisualStyleBackColor = false;
+            LoadVillagerButton.Click += LoadVillagerButton_Click;
             // 
             // CancelMoveoutButton
             // 
-            this.CancelMoveoutButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.CancelMoveoutButton.FlatAppearance.BorderSize = 0;
-            this.CancelMoveoutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CancelMoveoutButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CancelMoveoutButton.ForeColor = System.Drawing.Color.White;
-            this.CancelMoveoutButton.Location = new System.Drawing.Point(716, 432);
-            this.CancelMoveoutButton.Name = "CancelMoveoutButton";
-            this.CancelMoveoutButton.Size = new System.Drawing.Size(80, 41);
-            this.CancelMoveoutButton.TabIndex = 114;
-            this.CancelMoveoutButton.Tag = "";
-            this.CancelMoveoutButton.Text = "Cancel Move out";
-            this.CancelMoveoutButton.UseVisualStyleBackColor = false;
-            this.CancelMoveoutButton.Click += new System.EventHandler(this.CancelMoveoutButton_Click);
+            CancelMoveoutButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            CancelMoveoutButton.FlatAppearance.BorderSize = 0;
+            CancelMoveoutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CancelMoveoutButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            CancelMoveoutButton.ForeColor = System.Drawing.Color.White;
+            CancelMoveoutButton.Location = new System.Drawing.Point(716, 432);
+            CancelMoveoutButton.Name = "CancelMoveoutButton";
+            CancelMoveoutButton.Size = new System.Drawing.Size(80, 41);
+            CancelMoveoutButton.TabIndex = 114;
+            CancelMoveoutButton.Tag = "";
+            CancelMoveoutButton.Text = "Cancel Move out";
+            CancelMoveoutButton.UseVisualStyleBackColor = false;
+            CancelMoveoutButton.Click += CancelMoveoutButton_Click;
             // 
             // SaveHouseButton
             // 
-            this.SaveHouseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.SaveHouseButton.FlatAppearance.BorderSize = 0;
-            this.SaveHouseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SaveHouseButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SaveHouseButton.ForeColor = System.Drawing.Color.White;
-            this.SaveHouseButton.Location = new System.Drawing.Point(940, 449);
-            this.SaveHouseButton.Name = "SaveHouseButton";
-            this.SaveHouseButton.Size = new System.Drawing.Size(80, 56);
-            this.SaveHouseButton.TabIndex = 122;
-            this.SaveHouseButton.Tag = "";
-            this.SaveHouseButton.Text = "Save House";
-            this.SaveHouseButton.UseVisualStyleBackColor = false;
-            this.SaveHouseButton.Click += new System.EventHandler(this.SaveHouseButton_Click);
+            SaveHouseButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            SaveHouseButton.FlatAppearance.BorderSize = 0;
+            SaveHouseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            SaveHouseButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            SaveHouseButton.ForeColor = System.Drawing.Color.White;
+            SaveHouseButton.Location = new System.Drawing.Point(940, 449);
+            SaveHouseButton.Name = "SaveHouseButton";
+            SaveHouseButton.Size = new System.Drawing.Size(80, 56);
+            SaveHouseButton.TabIndex = 122;
+            SaveHouseButton.Tag = "";
+            SaveHouseButton.Text = "Save House";
+            SaveHouseButton.UseVisualStyleBackColor = false;
+            SaveHouseButton.Click += SaveHouseButton_Click;
             // 
             // ForcedMoveoutAllButton
             // 
-            this.ForcedMoveoutAllButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.ForcedMoveoutAllButton.FlatAppearance.BorderSize = 0;
-            this.ForcedMoveoutAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ForcedMoveoutAllButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ForcedMoveoutAllButton.ForeColor = System.Drawing.Color.White;
-            this.ForcedMoveoutAllButton.Location = new System.Drawing.Point(544, 479);
-            this.ForcedMoveoutAllButton.Name = "ForcedMoveoutAllButton";
-            this.ForcedMoveoutAllButton.Size = new System.Drawing.Size(80, 26);
-            this.ForcedMoveoutAllButton.TabIndex = 115;
-            this.ForcedMoveoutAllButton.Tag = "";
-            this.ForcedMoveoutAllButton.Text = "All";
-            this.ForcedMoveoutAllButton.UseVisualStyleBackColor = false;
-            this.ForcedMoveoutAllButton.Click += new System.EventHandler(this.ForcedMoveoutAllButton_Click);
+            ForcedMoveoutAllButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            ForcedMoveoutAllButton.FlatAppearance.BorderSize = 0;
+            ForcedMoveoutAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ForcedMoveoutAllButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            ForcedMoveoutAllButton.ForeColor = System.Drawing.Color.White;
+            ForcedMoveoutAllButton.Location = new System.Drawing.Point(544, 479);
+            ForcedMoveoutAllButton.Name = "ForcedMoveoutAllButton";
+            ForcedMoveoutAllButton.Size = new System.Drawing.Size(80, 26);
+            ForcedMoveoutAllButton.TabIndex = 115;
+            ForcedMoveoutAllButton.Tag = "";
+            ForcedMoveoutAllButton.Text = "All";
+            ForcedMoveoutAllButton.UseVisualStyleBackColor = false;
+            ForcedMoveoutAllButton.Click += ForcedMoveoutAllButton_Click;
             // 
             // SaveVillagerButton
             // 
-            this.SaveVillagerButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.SaveVillagerButton.FlatAppearance.BorderSize = 0;
-            this.SaveVillagerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SaveVillagerButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SaveVillagerButton.ForeColor = System.Drawing.Color.White;
-            this.SaveVillagerButton.Location = new System.Drawing.Point(854, 449);
-            this.SaveVillagerButton.Name = "SaveVillagerButton";
-            this.SaveVillagerButton.Size = new System.Drawing.Size(80, 56);
-            this.SaveVillagerButton.TabIndex = 121;
-            this.SaveVillagerButton.Tag = "";
-            this.SaveVillagerButton.Text = "Save Villager";
-            this.SaveVillagerButton.UseVisualStyleBackColor = false;
-            this.SaveVillagerButton.Click += new System.EventHandler(this.SaveVillagerButton_Click);
+            SaveVillagerButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            SaveVillagerButton.FlatAppearance.BorderSize = 0;
+            SaveVillagerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            SaveVillagerButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            SaveVillagerButton.ForeColor = System.Drawing.Color.White;
+            SaveVillagerButton.Location = new System.Drawing.Point(854, 449);
+            SaveVillagerButton.Name = "SaveVillagerButton";
+            SaveVillagerButton.Size = new System.Drawing.Size(80, 56);
+            SaveVillagerButton.TabIndex = 121;
+            SaveVillagerButton.Tag = "";
+            SaveVillagerButton.Text = "Save Villager";
+            SaveVillagerButton.UseVisualStyleBackColor = false;
+            SaveVillagerButton.Click += SaveVillagerButton_Click;
             // 
             // IrregularMoveoutAllButton
             // 
-            this.IrregularMoveoutAllButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.IrregularMoveoutAllButton.FlatAppearance.BorderSize = 0;
-            this.IrregularMoveoutAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.IrregularMoveoutAllButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.IrregularMoveoutAllButton.ForeColor = System.Drawing.Color.White;
-            this.IrregularMoveoutAllButton.Location = new System.Drawing.Point(630, 479);
-            this.IrregularMoveoutAllButton.Name = "IrregularMoveoutAllButton";
-            this.IrregularMoveoutAllButton.Size = new System.Drawing.Size(80, 26);
-            this.IrregularMoveoutAllButton.TabIndex = 116;
-            this.IrregularMoveoutAllButton.Tag = "";
-            this.IrregularMoveoutAllButton.Text = "All";
-            this.IrregularMoveoutAllButton.UseVisualStyleBackColor = false;
-            this.IrregularMoveoutAllButton.Click += new System.EventHandler(this.IrregularMoveoutAllButton_Click);
+            IrregularMoveoutAllButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            IrregularMoveoutAllButton.FlatAppearance.BorderSize = 0;
+            IrregularMoveoutAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            IrregularMoveoutAllButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            IrregularMoveoutAllButton.ForeColor = System.Drawing.Color.White;
+            IrregularMoveoutAllButton.Location = new System.Drawing.Point(630, 479);
+            IrregularMoveoutAllButton.Name = "IrregularMoveoutAllButton";
+            IrregularMoveoutAllButton.Size = new System.Drawing.Size(80, 26);
+            IrregularMoveoutAllButton.TabIndex = 116;
+            IrregularMoveoutAllButton.Tag = "";
+            IrregularMoveoutAllButton.Text = "All";
+            IrregularMoveoutAllButton.UseVisualStyleBackColor = false;
+            IrregularMoveoutAllButton.Click += IrregularMoveoutAllButton_Click;
             // 
             // VillagerCatchphraseClearButton
             // 
-            this.VillagerCatchphraseClearButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.VillagerCatchphraseClearButton.FlatAppearance.BorderSize = 0;
-            this.VillagerCatchphraseClearButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.VillagerCatchphraseClearButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerCatchphraseClearButton.ForeColor = System.Drawing.Color.White;
-            this.VillagerCatchphraseClearButton.Location = new System.Drawing.Point(1137, 399);
-            this.VillagerCatchphraseClearButton.Name = "VillagerCatchphraseClearButton";
-            this.VillagerCatchphraseClearButton.Size = new System.Drawing.Size(55, 28);
-            this.VillagerCatchphraseClearButton.TabIndex = 120;
-            this.VillagerCatchphraseClearButton.Tag = "";
-            this.VillagerCatchphraseClearButton.Text = "Clear";
-            this.VillagerCatchphraseClearButton.UseVisualStyleBackColor = false;
-            this.VillagerCatchphraseClearButton.Click += new System.EventHandler(this.VillagerCatchphraseClearButton_Click);
+            VillagerCatchphraseClearButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            VillagerCatchphraseClearButton.FlatAppearance.BorderSize = 0;
+            VillagerCatchphraseClearButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            VillagerCatchphraseClearButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            VillagerCatchphraseClearButton.ForeColor = System.Drawing.Color.White;
+            VillagerCatchphraseClearButton.Location = new System.Drawing.Point(1137, 399);
+            VillagerCatchphraseClearButton.Name = "VillagerCatchphraseClearButton";
+            VillagerCatchphraseClearButton.Size = new System.Drawing.Size(55, 28);
+            VillagerCatchphraseClearButton.TabIndex = 120;
+            VillagerCatchphraseClearButton.Tag = "";
+            VillagerCatchphraseClearButton.Text = "Clear";
+            VillagerCatchphraseClearButton.UseVisualStyleBackColor = false;
+            VillagerCatchphraseClearButton.Click += VillagerCatchphraseClearButton_Click;
             // 
             // CancelMoveoutAllButton
             // 
-            this.CancelMoveoutAllButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.CancelMoveoutAllButton.FlatAppearance.BorderSize = 0;
-            this.CancelMoveoutAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CancelMoveoutAllButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CancelMoveoutAllButton.ForeColor = System.Drawing.Color.White;
-            this.CancelMoveoutAllButton.Location = new System.Drawing.Point(716, 479);
-            this.CancelMoveoutAllButton.Name = "CancelMoveoutAllButton";
-            this.CancelMoveoutAllButton.Size = new System.Drawing.Size(80, 26);
-            this.CancelMoveoutAllButton.TabIndex = 117;
-            this.CancelMoveoutAllButton.Tag = "";
-            this.CancelMoveoutAllButton.Text = "All";
-            this.CancelMoveoutAllButton.UseVisualStyleBackColor = false;
-            this.CancelMoveoutAllButton.Click += new System.EventHandler(this.CancelMoveoutAllButton_Click);
+            CancelMoveoutAllButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            CancelMoveoutAllButton.FlatAppearance.BorderSize = 0;
+            CancelMoveoutAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CancelMoveoutAllButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            CancelMoveoutAllButton.ForeColor = System.Drawing.Color.White;
+            CancelMoveoutAllButton.Location = new System.Drawing.Point(716, 479);
+            CancelMoveoutAllButton.Name = "CancelMoveoutAllButton";
+            CancelMoveoutAllButton.Size = new System.Drawing.Size(80, 26);
+            CancelMoveoutAllButton.TabIndex = 117;
+            CancelMoveoutAllButton.Tag = "";
+            CancelMoveoutAllButton.Text = "All";
+            CancelMoveoutAllButton.UseVisualStyleBackColor = false;
+            CancelMoveoutAllButton.Click += CancelMoveoutAllButton_Click;
             // 
             // VillagerCatchphraseSetButton
             // 
-            this.VillagerCatchphraseSetButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.VillagerCatchphraseSetButton.FlatAppearance.BorderSize = 0;
-            this.VillagerCatchphraseSetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.VillagerCatchphraseSetButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerCatchphraseSetButton.ForeColor = System.Drawing.Color.White;
-            this.VillagerCatchphraseSetButton.Location = new System.Drawing.Point(1076, 399);
-            this.VillagerCatchphraseSetButton.Name = "VillagerCatchphraseSetButton";
-            this.VillagerCatchphraseSetButton.Size = new System.Drawing.Size(55, 28);
-            this.VillagerCatchphraseSetButton.TabIndex = 119;
-            this.VillagerCatchphraseSetButton.Tag = "";
-            this.VillagerCatchphraseSetButton.Text = "Set";
-            this.VillagerCatchphraseSetButton.UseVisualStyleBackColor = false;
-            this.VillagerCatchphraseSetButton.Click += new System.EventHandler(this.VillagerCatchphraseSetButton_Click);
+            VillagerCatchphraseSetButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            VillagerCatchphraseSetButton.FlatAppearance.BorderSize = 0;
+            VillagerCatchphraseSetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            VillagerCatchphraseSetButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            VillagerCatchphraseSetButton.ForeColor = System.Drawing.Color.White;
+            VillagerCatchphraseSetButton.Location = new System.Drawing.Point(1076, 399);
+            VillagerCatchphraseSetButton.Name = "VillagerCatchphraseSetButton";
+            VillagerCatchphraseSetButton.Size = new System.Drawing.Size(55, 28);
+            VillagerCatchphraseSetButton.TabIndex = 119;
+            VillagerCatchphraseSetButton.Tag = "";
+            VillagerCatchphraseSetButton.Text = "Set";
+            VillagerCatchphraseSetButton.UseVisualStyleBackColor = false;
+            VillagerCatchphraseSetButton.Click += VillagerCatchphraseSetButton_Click;
             // 
             // FriendshipButton
             // 
-            this.FriendshipButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.FriendshipButton.FlatAppearance.BorderSize = 0;
-            this.FriendshipButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.FriendshipButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FriendshipButton.ForeColor = System.Drawing.Color.White;
-            this.FriendshipButton.Location = new System.Drawing.Point(550, 365);
-            this.FriendshipButton.Name = "FriendshipButton";
-            this.FriendshipButton.Size = new System.Drawing.Size(102, 28);
-            this.FriendshipButton.TabIndex = 118;
-            this.FriendshipButton.Tag = "";
-            this.FriendshipButton.Text = "Friendship ...";
-            this.FriendshipButton.UseVisualStyleBackColor = false;
-            this.FriendshipButton.Click += new System.EventHandler(this.FriendshipButton_Click);
+            FriendshipButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            FriendshipButton.FlatAppearance.BorderSize = 0;
+            FriendshipButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            FriendshipButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            FriendshipButton.ForeColor = System.Drawing.Color.White;
+            FriendshipButton.Location = new System.Drawing.Point(550, 365);
+            FriendshipButton.Name = "FriendshipButton";
+            FriendshipButton.Size = new System.Drawing.Size(102, 28);
+            FriendshipButton.TabIndex = 118;
+            FriendshipButton.Tag = "";
+            FriendshipButton.Text = "Friendship ...";
+            FriendshipButton.UseVisualStyleBackColor = false;
+            FriendshipButton.Click += FriendshipButton_Click;
             // 
             // VillagerProgressTimer
             // 
-            this.VillagerProgressTimer.Interval = 1000;
-            this.VillagerProgressTimer.Tick += new System.EventHandler(this.VillagerProgressTimer_Tick);
+            VillagerProgressTimer.Interval = 1000;
+            VillagerProgressTimer.Tick += VillagerProgressTimer_Tick;
             // 
             // PeekButton
             // 
-            this.PeekButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.PeekButton.FlatAppearance.BorderSize = 0;
-            this.PeekButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PeekButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.PeekButton.ForeColor = System.Drawing.Color.White;
-            this.PeekButton.Location = new System.Drawing.Point(1, 556);
-            this.PeekButton.Name = "PeekButton";
-            this.PeekButton.Size = new System.Drawing.Size(79, 55);
-            this.PeekButton.TabIndex = 38;
-            this.PeekButton.Tag = "";
-            this.PeekButton.Text = "Peek";
-            this.PeekButton.UseVisualStyleBackColor = false;
-            this.PeekButton.Click += new System.EventHandler(this.PeekButton_Click);
+            PeekButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            PeekButton.FlatAppearance.BorderSize = 0;
+            PeekButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            PeekButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            PeekButton.ForeColor = System.Drawing.Color.White;
+            PeekButton.Location = new System.Drawing.Point(1, 556);
+            PeekButton.Name = "PeekButton";
+            PeekButton.Size = new System.Drawing.Size(79, 55);
+            PeekButton.TabIndex = 38;
+            PeekButton.Tag = "";
+            PeekButton.Text = "Peek";
+            PeekButton.UseVisualStyleBackColor = false;
+            PeekButton.Click += PeekButton_Click;
             // 
             // PokeButton
             // 
-            this.PokeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.PokeButton.FlatAppearance.BorderSize = 0;
-            this.PokeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PokeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.PokeButton.ForeColor = System.Drawing.Color.White;
-            this.PokeButton.Location = new System.Drawing.Point(1, 617);
-            this.PokeButton.Name = "PokeButton";
-            this.PokeButton.Size = new System.Drawing.Size(79, 55);
-            this.PokeButton.TabIndex = 39;
-            this.PokeButton.Tag = "";
-            this.PokeButton.Text = "Poke";
-            this.PokeButton.UseVisualStyleBackColor = false;
-            this.PokeButton.Click += new System.EventHandler(this.PokeButton_Click);
+            PokeButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            PokeButton.FlatAppearance.BorderSize = 0;
+            PokeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            PokeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            PokeButton.ForeColor = System.Drawing.Color.White;
+            PokeButton.Location = new System.Drawing.Point(1, 617);
+            PokeButton.Name = "PokeButton";
+            PokeButton.Size = new System.Drawing.Size(79, 55);
+            PokeButton.TabIndex = 39;
+            PokeButton.Tag = "";
+            PokeButton.Text = "Poke";
+            PokeButton.UseVisualStyleBackColor = false;
+            PokeButton.Click += PokeButton_Click;
             // 
             // FillButton
             // 
-            this.FillButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.FillButton.FlatAppearance.BorderSize = 0;
-            this.FillButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.FillButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FillButton.ForeColor = System.Drawing.Color.White;
-            this.FillButton.Location = new System.Drawing.Point(1059, 556);
-            this.FillButton.Name = "FillButton";
-            this.FillButton.Size = new System.Drawing.Size(79, 55);
-            this.FillButton.TabIndex = 50;
-            this.FillButton.Tag = "";
-            this.FillButton.Text = "Fill";
-            this.FillButton.UseVisualStyleBackColor = false;
-            this.FillButton.Click += new System.EventHandler(this.FillButton_Click);
+            FillButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            FillButton.FlatAppearance.BorderSize = 0;
+            FillButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            FillButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            FillButton.ForeColor = System.Drawing.Color.White;
+            FillButton.Location = new System.Drawing.Point(1059, 556);
+            FillButton.Name = "FillButton";
+            FillButton.Size = new System.Drawing.Size(79, 55);
+            FillButton.TabIndex = 50;
+            FillButton.Tag = "";
+            FillButton.Text = "Fill";
+            FillButton.UseVisualStyleBackColor = false;
+            FillButton.Click += FillButton_Click;
             // 
             // ChaseTimer
             // 
-            this.ChaseTimer.Interval = 1000;
-            this.ChaseTimer.Tick += new System.EventHandler(this.ChaseTimer_Tick);
+            ChaseTimer.Interval = 1000;
+            ChaseTimer.Tick += ChaseTimer_Tick;
             // 
             // Main
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.ClientSize = new System.Drawing.Size(1204, 516);
-            this.Controls.Add(this.FillButton);
-            this.Controls.Add(this.FullPeekResult5);
-            this.Controls.Add(this.FullPeekResult4);
-            this.Controls.Add(this.FullPeekResult3);
-            this.Controls.Add(this.FullPeekResult2);
-            this.Controls.Add(this.FullPeekResult1);
-            this.Controls.Add(this.PeekResult4);
-            this.Controls.Add(this.PeekResult3);
-            this.Controls.Add(this.PeekResult2);
-            this.Controls.Add(this.PeekResult1);
-            this.Controls.Add(this.DebugValue);
-            this.Controls.Add(this.DebugAddress);
-            this.Controls.Add(this.PokeButton);
-            this.Controls.Add(this.PeekButton);
-            this.Controls.Add(this.AlwaysOnTab);
-            this.Controls.Add(this.AlwaysOnControl);
-            this.Controls.Add(this.InventoryLargePanel);
-            this.Controls.Add(this.OtherLargePanel);
-            this.Controls.Add(this.CritterLargePanel);
-            this.Controls.Add(this.VillagerLargePanel);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1500, 1000);
-            this.MinimumSize = new System.Drawing.Size(1220, 555);
-            this.Name = "Main";
-            this.Opacity = 0.97D;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ACNHPokerCore";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
-            this.Load += new System.EventHandler(this.Main_Load);
-            this.LocationChanged += new System.EventHandler(this.Main_LocationChanged);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyboardKeyDown);
-            this.AlwaysOnControl.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.IPAddressInputBackground)).EndInit();
-            this.InventoryLargePanel.ResumeLayout(false);
-            this.InventoryLargePanel.PerformLayout();
-            this.PaginationPanel.ResumeLayout(false);
-            this.PaginationPanel.PerformLayout();
-            this.LoadingPanel.ResumeLayout(false);
-            this.LoadingPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NowLoadingImage)).EndInit();
-            this.ModeButtonPanel.ResumeLayout(false);
-            this.InventoryPanel.ResumeLayout(false);
-            this.ItemRightClick.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ItemGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FavGridView)).EndInit();
-            this.FavGridRightClick.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.RecipeGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FlowerGridView)).EndInit();
-            this.ItemModePanel.ResumeLayout(false);
-            this.ItemModePanel.PerformLayout();
-            this.GenePanel.ResumeLayout(false);
-            this.FlowerModePanel.ResumeLayout(false);
-            this.FlowerModePanel.PerformLayout();
-            this.RecipeModePanel.ResumeLayout(false);
-            this.RecipeModePanel.PerformLayout();
-            this.AlwaysOnTab.ResumeLayout(false);
-            this.OtherLargePanel.ResumeLayout(false);
-            this.TimeAndWeatherPanel.ResumeLayout(false);
-            this.TimeAndWeatherPanel.PerformLayout();
-            this.DateAndTimeControlPanel.ResumeLayout(false);
-            this.DateAndTimeControlPanel.PerformLayout();
-            this.CheatPanel.ResumeLayout(false);
-            this.CheatPanel.PerformLayout();
-            this.ReactionPanel.ResumeLayout(false);
-            this.ReactionPanel.PerformLayout();
-            this.TurnipPanel.ResumeLayout(false);
-            this.TurnipPanel.PerformLayout();
-            this.CritterLargePanel.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.CritterNowLoadingPanel.ResumeLayout(false);
-            this.CritterNowLoadingPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CritterNowLoadingImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.InsectGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RiverFishGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SeaFishGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SeaCreatureGridView)).EndInit();
-            this.VillagerLargePanel.ResumeLayout(false);
-            this.VillagerLargePanel.PerformLayout();
-            this.VillagerNowLoadingPanel.ResumeLayout(false);
-            this.VillagerNowLoadingPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.VillagerNowLoadingImage)).EndInit();
-            this.VillagerControlPanel.ResumeLayout(false);
-            this.ResumeLayout(false);
-
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            ClientSize = new System.Drawing.Size(1204, 516);
+            Controls.Add(FillButton);
+            Controls.Add(FullPeekResult5);
+            Controls.Add(FullPeekResult4);
+            Controls.Add(FullPeekResult3);
+            Controls.Add(FullPeekResult2);
+            Controls.Add(FullPeekResult1);
+            Controls.Add(PeekResult4);
+            Controls.Add(PeekResult3);
+            Controls.Add(PeekResult2);
+            Controls.Add(PeekResult1);
+            Controls.Add(DebugValue);
+            Controls.Add(DebugAddress);
+            Controls.Add(PokeButton);
+            Controls.Add(PeekButton);
+            Controls.Add(AlwaysOnTab);
+            Controls.Add(AlwaysOnControl);
+            Controls.Add(InventoryLargePanel);
+            Controls.Add(CritterLargePanel);
+            Controls.Add(VillagerLargePanel);
+            Controls.Add(OtherLargePanel);
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MaximumSize = new System.Drawing.Size(1500, 1000);
+            MinimumSize = new System.Drawing.Size(1220, 555);
+            Name = "Main";
+            Opacity = 0.97D;
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "ACNHPokerCore";
+            FormClosed += Main_FormClosed;
+            Load += Main_Load;
+            LocationChanged += Main_LocationChanged;
+            KeyDown += KeyboardKeyDown;
+            AlwaysOnControl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)IPAddressInputBackground).EndInit();
+            InventoryLargePanel.ResumeLayout(false);
+            InventoryLargePanel.PerformLayout();
+            PaginationPanel.ResumeLayout(false);
+            PaginationPanel.PerformLayout();
+            LoadingPanel.ResumeLayout(false);
+            LoadingPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)NowLoadingImage).EndInit();
+            ModeButtonPanel.ResumeLayout(false);
+            InventoryPanel.ResumeLayout(false);
+            ItemRightClick.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)ItemGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)FavGridView).EndInit();
+            FavGridRightClick.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)RecipeGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)FlowerGridView).EndInit();
+            ItemModePanel.ResumeLayout(false);
+            ItemModePanel.PerformLayout();
+            GenePanel.ResumeLayout(false);
+            FlowerModePanel.ResumeLayout(false);
+            FlowerModePanel.PerformLayout();
+            RecipeModePanel.ResumeLayout(false);
+            RecipeModePanel.PerformLayout();
+            AlwaysOnTab.ResumeLayout(false);
+            OtherLargePanel.ResumeLayout(false);
+            TimeAndWeatherPanel.ResumeLayout(false);
+            TimeAndWeatherPanel.PerformLayout();
+            DateAndTimeControlPanel.ResumeLayout(false);
+            DateAndTimeControlPanel.PerformLayout();
+            CheatPanel.ResumeLayout(false);
+            CheatPanel.PerformLayout();
+            ReactionPanel.ResumeLayout(false);
+            ReactionPanel.PerformLayout();
+            TurnipPanel.ResumeLayout(false);
+            TurnipPanel.PerformLayout();
+            CritterLargePanel.ResumeLayout(false);
+            tableLayoutPanel1.ResumeLayout(false);
+            CritterNowLoadingPanel.ResumeLayout(false);
+            CritterNowLoadingPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)CritterNowLoadingImage).EndInit();
+            ((System.ComponentModel.ISupportInitialize)InsectGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)RiverFishGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)SeaFishGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)SeaCreatureGridView).EndInit();
+            VillagerLargePanel.ResumeLayout(false);
+            VillagerLargePanel.PerformLayout();
+            VillagerNowLoadingPanel.ResumeLayout(false);
+            VillagerNowLoadingPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)VillagerNowLoadingImage).EndInit();
+            VillagerControlPanel.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion
@@ -7724,46 +5518,46 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Panel AlwaysOnTab;
         private System.Windows.Forms.DataGridView ItemGridView;
         private System.Windows.Forms.TableLayoutPanel InventoryPanel;
-        private inventorySlot inventorySlot40;
-        private inventorySlot inventorySlot39;
-        private inventorySlot inventorySlot38;
-        private inventorySlot inventorySlot37;
-        private inventorySlot inventorySlot36;
-        private inventorySlot inventorySlot35;
-        private inventorySlot inventorySlot34;
-        private inventorySlot inventorySlot33;
-        private inventorySlot inventorySlot32;
-        private inventorySlot inventorySlot31;
-        private inventorySlot inventorySlot30;
-        private inventorySlot inventorySlot29;
-        private inventorySlot inventorySlot28;
-        private inventorySlot inventorySlot27;
-        private inventorySlot inventorySlot26;
-        private inventorySlot inventorySlot25;
-        private inventorySlot inventorySlot24;
-        private inventorySlot inventorySlot23;
-        private inventorySlot inventorySlot22;
-        private inventorySlot inventorySlot21;
-        private inventorySlot inventorySlot20;
-        private inventorySlot inventorySlot19;
-        private inventorySlot inventorySlot18;
-        private inventorySlot inventorySlot17;
-        private inventorySlot inventorySlot16;
-        private inventorySlot inventorySlot15;
-        private inventorySlot inventorySlot14;
-        private inventorySlot inventorySlot13;
-        private inventorySlot inventorySlot12;
-        private inventorySlot inventorySlot11;
-        private inventorySlot inventorySlot10;
-        private inventorySlot inventorySlot9;
-        private inventorySlot inventorySlot8;
-        private inventorySlot inventorySlot7;
-        private inventorySlot inventorySlot6;
-        private inventorySlot inventorySlot5;
-        private inventorySlot inventorySlot4;
-        private inventorySlot inventorySlot3;
-        private inventorySlot inventorySlot2;
-        private inventorySlot inventorySlot1;
+        private InventorySlot inventorySlot40;
+        private InventorySlot inventorySlot39;
+        private InventorySlot inventorySlot38;
+        private InventorySlot inventorySlot37;
+        private InventorySlot inventorySlot36;
+        private InventorySlot inventorySlot35;
+        private InventorySlot inventorySlot34;
+        private InventorySlot inventorySlot33;
+        private InventorySlot inventorySlot32;
+        private InventorySlot inventorySlot31;
+        private InventorySlot inventorySlot30;
+        private InventorySlot inventorySlot29;
+        private InventorySlot inventorySlot28;
+        private InventorySlot inventorySlot27;
+        private InventorySlot inventorySlot26;
+        private InventorySlot inventorySlot25;
+        private InventorySlot inventorySlot24;
+        private InventorySlot inventorySlot23;
+        private InventorySlot inventorySlot22;
+        private InventorySlot inventorySlot21;
+        private InventorySlot inventorySlot20;
+        private InventorySlot inventorySlot19;
+        private InventorySlot inventorySlot18;
+        private InventorySlot inventorySlot17;
+        private InventorySlot inventorySlot16;
+        private InventorySlot inventorySlot15;
+        private InventorySlot inventorySlot14;
+        private InventorySlot inventorySlot13;
+        private InventorySlot inventorySlot12;
+        private InventorySlot inventorySlot11;
+        private InventorySlot inventorySlot10;
+        private InventorySlot inventorySlot9;
+        private InventorySlot inventorySlot8;
+        private InventorySlot inventorySlot7;
+        private InventorySlot inventorySlot6;
+        private InventorySlot inventorySlot5;
+        private InventorySlot inventorySlot4;
+        private InventorySlot inventorySlot3;
+        private InventorySlot inventorySlot2;
+        private InventorySlot inventorySlot1;
         private System.Windows.Forms.Label SelectedItemName;
         private System.Windows.Forms.TableLayoutPanel ModeButtonPanel;
         private System.Windows.Forms.Button FavoriteModeButton;
@@ -7771,7 +5565,7 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Button RecipeModeButton;
         private System.Windows.Forms.Button ItemModeButton;
         private System.Windows.Forms.Button VariationButton;
-        private inventorySlot SelectedItem;
+        private InventorySlot SelectedItem;
         private System.Windows.Forms.Panel ItemModePanel;
         private System.Windows.Forms.ComboBox WrapSelector;
         private System.Windows.Forms.Button ClearAllButton;
@@ -7785,15 +5579,15 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Button HexModeButton;
         private System.Windows.Forms.Panel LoadingPanel;
         private System.Windows.Forms.Button EasterEggButton;
-        private System.Windows.Forms.Label selectedFlag2;
         private System.Windows.Forms.Label selectedFlag1;
+        private System.Windows.Forms.Label selectedFlag0;
         private System.Windows.Forms.Label selectedData;
         private System.Windows.Forms.Label selectedID;
         private System.Windows.Forms.DataGridView RecipeGridView;
         private System.Windows.Forms.DataGridView FavGridView;
         private System.Windows.Forms.DataGridView FlowerGridView;
         private System.Windows.Forms.Timer InventoryRefreshTimer;
-        private System.Windows.Forms.Timer AutoRefillTimer;		
+        private System.Windows.Forms.Timer AutoRefillTimer;
         private System.Windows.Forms.ContextMenuStrip FavGridRightClick;
         private System.Windows.Forms.ToolStripMenuItem deletedSelectedToolStripMenuItem;
         private System.Windows.Forms.Label RetainNameLabel;
@@ -8015,5 +5809,9 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Button ChaseBtn;
         private System.Windows.Forms.Label ChasingAddressLabel;
         private System.Windows.Forms.Timer ChaseTimer;
+        private System.Windows.Forms.Button webhookBtn;
+        private System.Windows.Forms.Label AirportColorLabel;
+        private System.Windows.Forms.ComboBox AirportColor;
+        private System.Windows.Forms.Button SetAirportColorBtn;
     }
 }

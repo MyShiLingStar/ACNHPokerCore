@@ -12,18 +12,18 @@ namespace ACNHPokerCore
         readonly Socket socket;
         readonly bool sound;
         readonly MiniMap map;
-        public MyWarning(Socket S, Boolean Sound, MiniMap Map)
+        public MyWarning(Socket S, bool Sound, MiniMap Map)
         {
             socket = S;
             sound = Sound;
             map = Map;
             InitializeComponent();
-            this.KeyPreview = true;
+            KeyPreview = true;
         }
 
         private void AnswerBox_TextChanged(object sender, EventArgs e)
         {
-            if (answerBox.Text.ToString().ToLower().Equals(sampleBox.Text.ToString().ToLower()))
+            if (answerBox.Text.ToLower().Equals(sampleBox.Text.ToLower()))
                 confirmBtn.Visible = true;
             else
                 confirmBtn.Visible = false;
@@ -43,7 +43,7 @@ namespace ACNHPokerCore
         {
             SaveFileDialog file = new();
 
-            byte[] CurrentTerrainData = Utilities.getTerrain(socket, null);
+            byte[] CurrentTerrainData = Utilities.GetTerrain(socket, null);
 
             DateTime localDate = DateTime.Now;
             var culture = new CultureInfo("en-US");
@@ -71,20 +71,20 @@ namespace ACNHPokerCore
 
             map.UpdateTerrain(EmptyTerrainData);
 
-            Utilities.sendTerrain(socket, null, EmptyTerrainData, ref counter);
+            Utilities.SendTerrain(socket, null, EmptyTerrainData, ref counter);
 
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
 
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
-                this.Close();
+                Close();
             });
         }
 
         private void MyWarning_KeyDown(object sender, KeyEventArgs e)
         {
-            if (Control.ModifierKeys == Keys.Control)
+            if (ModifierKeys == Keys.Control)
             {
                 if (e.KeyCode.ToString() == "C" || e.KeyCode.ToString() == "V")
                 {

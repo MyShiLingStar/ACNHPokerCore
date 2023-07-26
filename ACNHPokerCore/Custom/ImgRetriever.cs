@@ -2,8 +2,8 @@
 using System;
 using System.Configuration;
 using System.IO;
-using System.Net;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ACNHPokerCore
@@ -20,66 +20,91 @@ namespace ACNHPokerCore
             Configuration Config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
             Config.AppSettings.Settings["RestartRequired"].Value = "false";
             Config.Save(ConfigurationSaveMode.Minimal);
-            this.Close();
+            Close();
         }
 
-        private void YesBtn_Click(object sender, EventArgs e)
+        private async void YesBtn_Click(object sender, EventArgs e)
         {
             yesBtn.Visible = false;
             noBtn.Visible = false;
-            progressBar.Visible = true;
+            NowLoadingImage.Visible = true;
+            waitmsg.Visible = true;
 
-            string path = Path.Combine(Application.StartupPath, "img.zip");
+            await Task.Factory.StartNew(OldFileCleanup);
+            await StartArchiveDownload();
 
             if (File.Exists(@"img.zip"))
             {
-                File.Delete(@"img.zip");
-            }
+                waitmsg.Text = "Archive Download Complete! \r\nProceed to extract images...";
+                waitmsg.Location = new System.Drawing.Point(122, 87);
 
-            WebClient webClient = new()
-            {
-                Proxy = null
-            };
-
-            webClient.DownloadProgressChanged += (s, ez) =>
-            {
-                progressBar.Value = ez.ProgressPercentage;
-            };
-
-            webClient.DownloadFileCompleted += (s, ez) =>
-            {
-                waitmsg.Visible = true;
-                progressBar.Visible = false;
-
-                Thread unzipThread = new(delegate () { ExtractHere(); });
+                Thread unzipThread = new(ExtractHere);
                 unzipThread.Start();
-            };
+            }
+            else
+            {
+                MessageBox.Show("Downloaded archive seems to be mssing/corrupted");
+            }
+        }
 
-            webClient.DownloadFileAsync(new Uri("https://github.com/MyShiLingStar/ACNHPokerCore/releases/download/ImgPack8/img.zip"), "img.zip");
+        private void OldFileCleanup()
+        {
+            if (Directory.Exists(@"img"))
+                Directory.Delete(@"img", true);
 
+            if (File.Exists(@"img.zip"))
+                File.Delete(@"img.zip");
+        }
+
+        private async Task StartArchiveDownload()
+        {
+            string downloadFileUrl = "https://github.com/MyShiLingStar/ACNHPokerCore/releases/download/ImgPack8/img.zip";
+            string destinationFilePath = Path.GetFullPath("img.zip");
+
+            using (var client = new HttpClientDownloadWithProgress(downloadFileUrl, destinationFilePath))
+            {
+                client.ProgressChanged += (_, _, progressPercentage) =>
+                {
+                    if (progressPercentage != null) progressBar.Value = (int)progressPercentage;
+                };
+
+                await client.StartDownload();
+            }
         }
 
         private void ExtractHere()
         {
+            //Thread.Sleep(10000);
+
             Configuration Config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
             Config.AppSettings.Settings["RestartRequired"].Value = "true";
             Config.Save(ConfigurationSaveMode.Minimal);
 
+            string path = @"" + Environment.CurrentDirectory + "\\img.zip";
+
             try
             {
-                using ZipFile archive = new(@"" + System.Environment.CurrentDirectory + "\\img.zip");
-                archive.ExtractAll(@"" + System.Environment.CurrentDirectory, ExtractExistingFileAction.OverwriteSilently);
-            }
-            catch
-            {
+                using (ZipFile imgZip = ZipFile.Read(path))
+                {
+                    imgZip.ExtractProgress += ZipExtractProgress;
 
+                    imgZip.ExtractAll(@"" + Environment.CurrentDirectory, ExtractExistingFileAction.OverwriteSilently);
+                }
+            }
+            catch (ZipException e)
+            {
+                MessageBox.Show("Downloaded archive seems to be corrupted: " + e.Message);
             }
 
-            this.Invoke((MethodInvoker)delegate
-            {
-                this.Close();
-            });
+            Invoke((MethodInvoker)delegate { Close(); });
         }
 
+        private void ZipExtractProgress(object sender, ExtractProgressEventArgs e)
+        {
+            if (e.EventType == ZipProgressEventType.Extracting_AfterExtractEntry)
+            {
+                Invoke((MethodInvoker)delegate { { progressBar.Value = e.EntriesExtracted * 100 / e.EntriesTotal; } });
+            }
+        }
     }
 }

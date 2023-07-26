@@ -28,2179 +28,2166 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RoadRoller));
-            this.MainDivider = new System.Windows.Forms.TableLayoutPanel();
-            this.SubDivider = new System.Windows.Forms.TableLayoutPanel();
-            this.MiddlePanel = new System.Windows.Forms.Panel();
-            this.MainMap = new System.Windows.Forms.PictureBox();
-            this.TopMenuPanel = new System.Windows.Forms.Panel();
-            this.DisplayCustomDesignToggle = new JCS.ToggleSwitch();
-            this.DisplayCustomDesignLabel = new System.Windows.Forms.Label();
-            this.DisplayBuildingLabel = new System.Windows.Forms.Label();
-            this.DisplayBuildingToggle = new JCS.ToggleSwitch();
-            this.HighlightCornerLabel = new System.Windows.Forms.Label();
-            this.HighlightCornerToggle = new JCS.ToggleSwitch();
-            this.DisplayInfoToggle = new JCS.ToggleSwitch();
-            this.DisplayInfoLabel = new System.Windows.Forms.Label();
-            this.DisplayRoadLabel = new System.Windows.Forms.Label();
-            this.DisplayRoadToggle = new JCS.ToggleSwitch();
-            this.LeftMenuPanel = new System.Windows.Forms.Panel();
-            this.CustomModeButton = new System.Windows.Forms.Button();
-            this.ConfirmBtn = new System.Windows.Forms.Button();
-            this.ManualModeButton = new System.Windows.Forms.Button();
-            this.AutoModeButton = new System.Windows.Forms.Button();
-            this.miniMapBox = new System.Windows.Forms.PictureBox();
-            this.AutoButtonPanel = new System.Windows.Forms.Panel();
-            this.fixRiverMouthToggle = new JCS.ToggleSwitch();
-            this.FixRiverMouthLabel = new System.Windows.Forms.Label();
-            this.ArchBtn = new System.Windows.Forms.Button();
-            this.Elevation0Label = new System.Windows.Forms.Label();
-            this.StoneBtn = new System.Windows.Forms.Button();
-            this.ElevationLabel = new System.Windows.Forms.Label();
-            this.Elevation2Label = new System.Windows.Forms.Label();
-            this.Elevation1Label = new System.Windows.Forms.Label();
-            this.ElevationBar = new System.Windows.Forms.TrackBar();
-            this.CliffBtn = new System.Windows.Forms.Button();
-            this.CornerBtn = new System.Windows.Forms.Button();
-            this.RiverBtn = new System.Windows.Forms.Button();
-            this.DirtBtn = new System.Windows.Forms.Button();
-            this.WoodBtn = new System.Windows.Forms.Button();
-            this.TileBtn = new System.Windows.Forms.Button();
-            this.BrickBtn = new System.Windows.Forms.Button();
-            this.SandBtn = new System.Windows.Forms.Button();
-            this.DarkDirtBtn = new System.Windows.Forms.Button();
-            this.ManualButtonPanel = new System.Windows.Forms.Panel();
-            this.RoadDropdownBox = new ACNHPokerCore.RoadSelector();
-            this.ManualRoadModeButton = new System.Windows.Forms.Button();
-            this.ManualRiverModeButton = new System.Windows.Forms.Button();
-            this.ManualCliffModeButton = new System.Windows.Forms.Button();
-            this.ManualRoadPanel = new System.Windows.Forms.Panel();
-            this.RotateRoadButton = new System.Windows.Forms.Button();
-            this.RoadButton8A = new System.Windows.Forms.Button();
-            this.RoadButton0A = new System.Windows.Forms.Button();
-            this.RoadButton3B = new System.Windows.Forms.Button();
-            this.RoadButton7A = new System.Windows.Forms.Button();
-            this.RoadButton3A = new System.Windows.Forms.Button();
-            this.RoadButton3C = new System.Windows.Forms.Button();
-            this.RoadButton6B = new System.Windows.Forms.Button();
-            this.RoadButton2C = new System.Windows.Forms.Button();
-            this.RoadButton0B = new System.Windows.Forms.Button();
-            this.RoadButton4A = new System.Windows.Forms.Button();
-            this.RoadButton6A = new System.Windows.Forms.Button();
-            this.RoadButton2B = new System.Windows.Forms.Button();
-            this.RoadButton1A = new System.Windows.Forms.Button();
-            this.RoadButton4B = new System.Windows.Forms.Button();
-            this.RoadButton5B = new System.Windows.Forms.Button();
-            this.RoadButton2A = new System.Windows.Forms.Button();
-            this.RoadButton1B = new System.Windows.Forms.Button();
-            this.RoadButton4C = new System.Windows.Forms.Button();
-            this.RoadButton5A = new System.Windows.Forms.Button();
-            this.RoadButton1C = new System.Windows.Forms.Button();
-            this.ManualCliffPanel = new System.Windows.Forms.Panel();
-            this.CliffButton8A = new System.Windows.Forms.Button();
-            this.ManualTerrainElevation3Label = new System.Windows.Forms.Label();
-            this.ManualTerrainElevationLabel = new System.Windows.Forms.Label();
-            this.ManualTerrainElevation2Label = new System.Windows.Forms.Label();
-            this.ManualTerrainElevation1Label = new System.Windows.Forms.Label();
-            this.ManualCliffElevationBar = new System.Windows.Forms.TrackBar();
-            this.RotateCliffButton = new System.Windows.Forms.Button();
-            this.CliffButton8 = new System.Windows.Forms.Button();
-            this.CliffButton0A = new System.Windows.Forms.Button();
-            this.CliffButton3B = new System.Windows.Forms.Button();
-            this.CliffButton7A = new System.Windows.Forms.Button();
-            this.CliffButton3A = new System.Windows.Forms.Button();
-            this.CliffButton3C = new System.Windows.Forms.Button();
-            this.CliffButton6B = new System.Windows.Forms.Button();
-            this.CliffButton2C = new System.Windows.Forms.Button();
-            this.CliffButton4A = new System.Windows.Forms.Button();
-            this.CliffButton6A = new System.Windows.Forms.Button();
-            this.CliffButton2B = new System.Windows.Forms.Button();
-            this.CliffButton1A = new System.Windows.Forms.Button();
-            this.CliffButton4B = new System.Windows.Forms.Button();
-            this.CliffButton5B = new System.Windows.Forms.Button();
-            this.CliffButton2A = new System.Windows.Forms.Button();
-            this.CliffButton4C = new System.Windows.Forms.Button();
-            this.CliffButton5A = new System.Windows.Forms.Button();
-            this.ManualRiverPanel = new System.Windows.Forms.Panel();
-            this.ManualRiverElevation3Label = new System.Windows.Forms.Label();
-            this.ManualRiverElevation2Label = new System.Windows.Forms.Label();
-            this.ManualRiverElevation1Label = new System.Windows.Forms.Label();
-            this.ManualRiverElevation0Label = new System.Windows.Forms.Label();
-            this.ManualRiverElevationLabel = new System.Windows.Forms.Label();
-            this.ManualRiverElevationBar = new System.Windows.Forms.TrackBar();
-            this.RotateRiverButton = new System.Windows.Forms.Button();
-            this.RiverButton8A = new System.Windows.Forms.Button();
-            this.RiverButton0A = new System.Windows.Forms.Button();
-            this.RiverButton3B = new System.Windows.Forms.Button();
-            this.RiverButton7A = new System.Windows.Forms.Button();
-            this.RiverButton3A = new System.Windows.Forms.Button();
-            this.RiverButton3C = new System.Windows.Forms.Button();
-            this.RiverButton6B = new System.Windows.Forms.Button();
-            this.RiverButton2C = new System.Windows.Forms.Button();
-            this.RiverButton4A = new System.Windows.Forms.Button();
-            this.RiverButton6A = new System.Windows.Forms.Button();
-            this.RiverButton2B = new System.Windows.Forms.Button();
-            this.RiverButton1A = new System.Windows.Forms.Button();
-            this.RiverButton4B = new System.Windows.Forms.Button();
-            this.RiverButton5B = new System.Windows.Forms.Button();
-            this.RiverButton2A = new System.Windows.Forms.Button();
-            this.RiverButton4C = new System.Windows.Forms.Button();
-            this.RiverButton5A = new System.Windows.Forms.Button();
-            this.CustomDesignList = new System.Windows.Forms.ListView();
-            this.CornerPanel = new System.Windows.Forms.Panel();
-            this.PleaseWaitPanel = new System.Windows.Forms.Panel();
-            this.MapProgressBar = new System.Windows.Forms.ProgressBar();
-            this.NowLoading = new System.Windows.Forms.PictureBox();
-            this.PleaseWaitLabel = new System.Windows.Forms.Label();
-            this.ProgressTimer = new System.Windows.Forms.Timer(this.components);
-            this.MapToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.ButtonToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.MainDivider.SuspendLayout();
-            this.SubDivider.SuspendLayout();
-            this.MiddlePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MainMap)).BeginInit();
-            this.TopMenuPanel.SuspendLayout();
-            this.LeftMenuPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.miniMapBox)).BeginInit();
-            this.AutoButtonPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ElevationBar)).BeginInit();
-            this.ManualButtonPanel.SuspendLayout();
-            this.ManualRoadPanel.SuspendLayout();
-            this.ManualCliffPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ManualCliffElevationBar)).BeginInit();
-            this.ManualRiverPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ManualRiverElevationBar)).BeginInit();
-            this.CornerPanel.SuspendLayout();
-            this.PleaseWaitPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NowLoading)).BeginInit();
-            this.SuspendLayout();
+            MainDivider = new System.Windows.Forms.TableLayoutPanel();
+            SubDivider = new System.Windows.Forms.TableLayoutPanel();
+            MiddlePanel = new System.Windows.Forms.Panel();
+            MainMap = new System.Windows.Forms.PictureBox();
+            TopMenuPanel = new System.Windows.Forms.Panel();
+            DisplayCustomDesignToggle = new JCS.ToggleSwitch();
+            DisplayCustomDesignLabel = new System.Windows.Forms.Label();
+            DisplayBuildingLabel = new System.Windows.Forms.Label();
+            DisplayBuildingToggle = new JCS.ToggleSwitch();
+            HighlightCornerLabel = new System.Windows.Forms.Label();
+            HighlightCornerToggle = new JCS.ToggleSwitch();
+            DisplayInfoToggle = new JCS.ToggleSwitch();
+            DisplayInfoLabel = new System.Windows.Forms.Label();
+            DisplayRoadLabel = new System.Windows.Forms.Label();
+            DisplayRoadToggle = new JCS.ToggleSwitch();
+            LeftMenuPanel = new System.Windows.Forms.Panel();
+            CustomModeButton = new System.Windows.Forms.Button();
+            ConfirmBtn = new System.Windows.Forms.Button();
+            ManualModeButton = new System.Windows.Forms.Button();
+            AutoModeButton = new System.Windows.Forms.Button();
+            miniMapBox = new System.Windows.Forms.PictureBox();
+            AutoButtonPanel = new System.Windows.Forms.Panel();
+            fixRiverMouthToggle = new JCS.ToggleSwitch();
+            FixRiverMouthLabel = new System.Windows.Forms.Label();
+            ArchBtn = new System.Windows.Forms.Button();
+            Elevation0Label = new System.Windows.Forms.Label();
+            StoneBtn = new System.Windows.Forms.Button();
+            ElevationLabel = new System.Windows.Forms.Label();
+            Elevation2Label = new System.Windows.Forms.Label();
+            Elevation1Label = new System.Windows.Forms.Label();
+            ElevationBar = new System.Windows.Forms.TrackBar();
+            CliffBtn = new System.Windows.Forms.Button();
+            CornerBtn = new System.Windows.Forms.Button();
+            RiverBtn = new System.Windows.Forms.Button();
+            DirtBtn = new System.Windows.Forms.Button();
+            WoodBtn = new System.Windows.Forms.Button();
+            TileBtn = new System.Windows.Forms.Button();
+            BrickBtn = new System.Windows.Forms.Button();
+            SandBtn = new System.Windows.Forms.Button();
+            DarkDirtBtn = new System.Windows.Forms.Button();
+            ManualButtonPanel = new System.Windows.Forms.Panel();
+            RoadDropdownBox = new RoadSelector();
+            ManualRoadModeButton = new System.Windows.Forms.Button();
+            ManualRiverModeButton = new System.Windows.Forms.Button();
+            ManualCliffModeButton = new System.Windows.Forms.Button();
+            ManualRoadPanel = new System.Windows.Forms.Panel();
+            RotateRoadButton = new System.Windows.Forms.Button();
+            RoadButton8A = new System.Windows.Forms.Button();
+            RoadButton0A = new System.Windows.Forms.Button();
+            RoadButton3B = new System.Windows.Forms.Button();
+            RoadButton7A = new System.Windows.Forms.Button();
+            RoadButton3A = new System.Windows.Forms.Button();
+            RoadButton3C = new System.Windows.Forms.Button();
+            RoadButton6B = new System.Windows.Forms.Button();
+            RoadButton2C = new System.Windows.Forms.Button();
+            RoadButton0B = new System.Windows.Forms.Button();
+            RoadButton4A = new System.Windows.Forms.Button();
+            RoadButton6A = new System.Windows.Forms.Button();
+            RoadButton2B = new System.Windows.Forms.Button();
+            RoadButton1A = new System.Windows.Forms.Button();
+            RoadButton4B = new System.Windows.Forms.Button();
+            RoadButton5B = new System.Windows.Forms.Button();
+            RoadButton2A = new System.Windows.Forms.Button();
+            RoadButton1B = new System.Windows.Forms.Button();
+            RoadButton4C = new System.Windows.Forms.Button();
+            RoadButton5A = new System.Windows.Forms.Button();
+            RoadButton1C = new System.Windows.Forms.Button();
+            ManualCliffPanel = new System.Windows.Forms.Panel();
+            CliffButton8A = new System.Windows.Forms.Button();
+            ManualTerrainElevation3Label = new System.Windows.Forms.Label();
+            ManualTerrainElevationLabel = new System.Windows.Forms.Label();
+            ManualTerrainElevation2Label = new System.Windows.Forms.Label();
+            ManualTerrainElevation1Label = new System.Windows.Forms.Label();
+            ManualCliffElevationBar = new System.Windows.Forms.TrackBar();
+            RotateCliffButton = new System.Windows.Forms.Button();
+            CliffButton8 = new System.Windows.Forms.Button();
+            CliffButton0A = new System.Windows.Forms.Button();
+            CliffButton3B = new System.Windows.Forms.Button();
+            CliffButton7A = new System.Windows.Forms.Button();
+            CliffButton3A = new System.Windows.Forms.Button();
+            CliffButton3C = new System.Windows.Forms.Button();
+            CliffButton6B = new System.Windows.Forms.Button();
+            CliffButton2C = new System.Windows.Forms.Button();
+            CliffButton4A = new System.Windows.Forms.Button();
+            CliffButton6A = new System.Windows.Forms.Button();
+            CliffButton2B = new System.Windows.Forms.Button();
+            CliffButton1A = new System.Windows.Forms.Button();
+            CliffButton4B = new System.Windows.Forms.Button();
+            CliffButton5B = new System.Windows.Forms.Button();
+            CliffButton2A = new System.Windows.Forms.Button();
+            CliffButton4C = new System.Windows.Forms.Button();
+            CliffButton5A = new System.Windows.Forms.Button();
+            ManualRiverPanel = new System.Windows.Forms.Panel();
+            ManualRiverElevation3Label = new System.Windows.Forms.Label();
+            ManualRiverElevation2Label = new System.Windows.Forms.Label();
+            ManualRiverElevation1Label = new System.Windows.Forms.Label();
+            ManualRiverElevation0Label = new System.Windows.Forms.Label();
+            ManualRiverElevationLabel = new System.Windows.Forms.Label();
+            ManualRiverElevationBar = new System.Windows.Forms.TrackBar();
+            RotateRiverButton = new System.Windows.Forms.Button();
+            RiverButton8A = new System.Windows.Forms.Button();
+            RiverButton0A = new System.Windows.Forms.Button();
+            RiverButton3B = new System.Windows.Forms.Button();
+            RiverButton7A = new System.Windows.Forms.Button();
+            RiverButton3A = new System.Windows.Forms.Button();
+            RiverButton3C = new System.Windows.Forms.Button();
+            RiverButton6B = new System.Windows.Forms.Button();
+            RiverButton2C = new System.Windows.Forms.Button();
+            RiverButton4A = new System.Windows.Forms.Button();
+            RiverButton6A = new System.Windows.Forms.Button();
+            RiverButton2B = new System.Windows.Forms.Button();
+            RiverButton1A = new System.Windows.Forms.Button();
+            RiverButton4B = new System.Windows.Forms.Button();
+            RiverButton5B = new System.Windows.Forms.Button();
+            RiverButton2A = new System.Windows.Forms.Button();
+            RiverButton4C = new System.Windows.Forms.Button();
+            RiverButton5A = new System.Windows.Forms.Button();
+            CustomDesignList = new System.Windows.Forms.ListView();
+            CornerPanel = new System.Windows.Forms.Panel();
+            PleaseWaitPanel = new System.Windows.Forms.Panel();
+            MapProgressBar = new System.Windows.Forms.ProgressBar();
+            NowLoading = new System.Windows.Forms.PictureBox();
+            PleaseWaitLabel = new System.Windows.Forms.Label();
+            ProgressTimer = new System.Windows.Forms.Timer(components);
+            MapToolTip = new System.Windows.Forms.ToolTip(components);
+            ButtonToolTip = new System.Windows.Forms.ToolTip(components);
+            MainDivider.SuspendLayout();
+            SubDivider.SuspendLayout();
+            MiddlePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)MainMap).BeginInit();
+            TopMenuPanel.SuspendLayout();
+            LeftMenuPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)miniMapBox).BeginInit();
+            AutoButtonPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ElevationBar).BeginInit();
+            ManualButtonPanel.SuspendLayout();
+            ManualRoadPanel.SuspendLayout();
+            ManualCliffPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ManualCliffElevationBar).BeginInit();
+            ManualRiverPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ManualRiverElevationBar).BeginInit();
+            CornerPanel.SuspendLayout();
+            PleaseWaitPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)NowLoading).BeginInit();
+            SuspendLayout();
             // 
             // MainDivider
             // 
-            this.MainDivider.ColumnCount = 2;
-            this.MainDivider.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.MainDivider.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
-            this.MainDivider.Controls.Add(this.SubDivider, 1, 1);
-            this.MainDivider.Controls.Add(this.TopMenuPanel, 1, 0);
-            this.MainDivider.Controls.Add(this.LeftMenuPanel, 0, 1);
-            this.MainDivider.Controls.Add(this.CornerPanel, 0, 0);
-            this.MainDivider.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainDivider.Location = new System.Drawing.Point(0, 0);
-            this.MainDivider.Name = "MainDivider";
-            this.MainDivider.RowCount = 2;
-            this.MainDivider.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.MainDivider.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.MainDivider.Size = new System.Drawing.Size(984, 661);
-            this.MainDivider.TabIndex = 0;
+            MainDivider.ColumnCount = 2;
+            MainDivider.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            MainDivider.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
+            MainDivider.Controls.Add(SubDivider, 1, 1);
+            MainDivider.Controls.Add(TopMenuPanel, 1, 0);
+            MainDivider.Controls.Add(LeftMenuPanel, 0, 1);
+            MainDivider.Controls.Add(CornerPanel, 0, 0);
+            MainDivider.Dock = System.Windows.Forms.DockStyle.Fill;
+            MainDivider.Location = new System.Drawing.Point(0, 0);
+            MainDivider.Name = "MainDivider";
+            MainDivider.RowCount = 2;
+            MainDivider.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            MainDivider.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            MainDivider.Size = new System.Drawing.Size(984, 661);
+            MainDivider.TabIndex = 0;
             // 
             // SubDivider
             // 
-            this.SubDivider.ColumnCount = 3;
-            this.SubDivider.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 0F));
-            this.SubDivider.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.SubDivider.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 0F));
-            this.SubDivider.Controls.Add(this.MiddlePanel, 1, 1);
-            this.SubDivider.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SubDivider.Location = new System.Drawing.Point(249, 53);
-            this.SubDivider.Name = "SubDivider";
-            this.SubDivider.RowCount = 3;
-            this.SubDivider.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 0F));
-            this.SubDivider.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.SubDivider.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 0F));
-            this.SubDivider.Size = new System.Drawing.Size(732, 605);
-            this.SubDivider.TabIndex = 0;
+            SubDivider.ColumnCount = 3;
+            SubDivider.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 0F));
+            SubDivider.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            SubDivider.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 0F));
+            SubDivider.Controls.Add(MiddlePanel, 1, 1);
+            SubDivider.Dock = System.Windows.Forms.DockStyle.Fill;
+            SubDivider.Location = new System.Drawing.Point(249, 53);
+            SubDivider.Name = "SubDivider";
+            SubDivider.RowCount = 3;
+            SubDivider.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 0F));
+            SubDivider.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            SubDivider.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 0F));
+            SubDivider.Size = new System.Drawing.Size(732, 605);
+            SubDivider.TabIndex = 0;
             // 
             // MiddlePanel
             // 
-            this.MiddlePanel.BackColor = System.Drawing.Color.Transparent;
-            this.MiddlePanel.Controls.Add(this.MainMap);
-            this.MiddlePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MiddlePanel.Location = new System.Drawing.Point(3, 3);
-            this.MiddlePanel.Name = "MiddlePanel";
-            this.MiddlePanel.Size = new System.Drawing.Size(726, 599);
-            this.MiddlePanel.TabIndex = 0;
+            MiddlePanel.BackColor = System.Drawing.Color.Transparent;
+            MiddlePanel.Controls.Add(MainMap);
+            MiddlePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            MiddlePanel.Location = new System.Drawing.Point(3, 3);
+            MiddlePanel.Name = "MiddlePanel";
+            MiddlePanel.Size = new System.Drawing.Size(726, 599);
+            MiddlePanel.TabIndex = 0;
             // 
             // MainMap
             // 
-            this.MainMap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MainMap.BackColor = System.Drawing.Color.White;
-            this.MainMap.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.MainMap.Location = new System.Drawing.Point(0, 0);
-            this.MainMap.Name = "MainMap";
-            this.MainMap.Size = new System.Drawing.Size(54, 50);
-            this.MainMap.TabIndex = 0;
-            this.MainMap.TabStop = false;
-            this.MainMap.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainMap_MouseDown);
-            this.MainMap.MouseLeave += new System.EventHandler(this.MainMap_MouseLeave);
-            this.MainMap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainMap_MouseMove);
-            this.MainMap.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainMap_MouseUp);
+            MainMap.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            MainMap.BackColor = System.Drawing.Color.White;
+            MainMap.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            MainMap.Location = new System.Drawing.Point(0, 0);
+            MainMap.Name = "MainMap";
+            MainMap.Size = new System.Drawing.Size(54, 50);
+            MainMap.TabIndex = 0;
+            MainMap.TabStop = false;
+            MainMap.MouseDown += MainMap_MouseDown;
+            MainMap.MouseLeave += MainMap_MouseLeave;
+            MainMap.MouseMove += MainMap_MouseMove;
+            MainMap.MouseUp += MainMap_MouseUp;
             // 
             // TopMenuPanel
             // 
-            this.TopMenuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.TopMenuPanel.Controls.Add(this.DisplayCustomDesignToggle);
-            this.TopMenuPanel.Controls.Add(this.DisplayCustomDesignLabel);
-            this.TopMenuPanel.Controls.Add(this.DisplayBuildingLabel);
-            this.TopMenuPanel.Controls.Add(this.DisplayBuildingToggle);
-            this.TopMenuPanel.Controls.Add(this.HighlightCornerLabel);
-            this.TopMenuPanel.Controls.Add(this.HighlightCornerToggle);
-            this.TopMenuPanel.Controls.Add(this.DisplayInfoToggle);
-            this.TopMenuPanel.Controls.Add(this.DisplayInfoLabel);
-            this.TopMenuPanel.Controls.Add(this.DisplayRoadLabel);
-            this.TopMenuPanel.Controls.Add(this.DisplayRoadToggle);
-            this.TopMenuPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TopMenuPanel.Location = new System.Drawing.Point(249, 3);
-            this.TopMenuPanel.Name = "TopMenuPanel";
-            this.TopMenuPanel.Size = new System.Drawing.Size(732, 44);
-            this.TopMenuPanel.TabIndex = 1;
+            TopMenuPanel.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            TopMenuPanel.Controls.Add(DisplayCustomDesignToggle);
+            TopMenuPanel.Controls.Add(DisplayCustomDesignLabel);
+            TopMenuPanel.Controls.Add(DisplayBuildingLabel);
+            TopMenuPanel.Controls.Add(DisplayBuildingToggle);
+            TopMenuPanel.Controls.Add(HighlightCornerLabel);
+            TopMenuPanel.Controls.Add(HighlightCornerToggle);
+            TopMenuPanel.Controls.Add(DisplayInfoToggle);
+            TopMenuPanel.Controls.Add(DisplayInfoLabel);
+            TopMenuPanel.Controls.Add(DisplayRoadLabel);
+            TopMenuPanel.Controls.Add(DisplayRoadToggle);
+            TopMenuPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            TopMenuPanel.Location = new System.Drawing.Point(249, 3);
+            TopMenuPanel.Name = "TopMenuPanel";
+            TopMenuPanel.Size = new System.Drawing.Size(732, 44);
+            TopMenuPanel.TabIndex = 1;
             // 
             // DisplayCustomDesignToggle
             // 
-            this.DisplayCustomDesignToggle.Checked = true;
-            this.DisplayCustomDesignToggle.Location = new System.Drawing.Point(403, 3);
-            this.DisplayCustomDesignToggle.Name = "DisplayCustomDesignToggle";
-            this.DisplayCustomDesignToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.DisplayCustomDesignToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.DisplayCustomDesignToggle.Size = new System.Drawing.Size(35, 16);
-            this.DisplayCustomDesignToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
-            this.DisplayCustomDesignToggle.TabIndex = 244;
-            this.DisplayCustomDesignToggle.UseAnimation = false;
-            this.DisplayCustomDesignToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.DisplayCustomDesignToggle_CheckedChanged);
+            DisplayCustomDesignToggle.Checked = true;
+            DisplayCustomDesignToggle.Location = new System.Drawing.Point(403, 3);
+            DisplayCustomDesignToggle.Name = "DisplayCustomDesignToggle";
+            DisplayCustomDesignToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            DisplayCustomDesignToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            DisplayCustomDesignToggle.Size = new System.Drawing.Size(35, 16);
+            DisplayCustomDesignToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            DisplayCustomDesignToggle.TabIndex = 244;
+            DisplayCustomDesignToggle.UseAnimation = false;
+            DisplayCustomDesignToggle.CheckedChanged += DisplayCustomDesignToggle_CheckedChanged;
             // 
             // DisplayCustomDesignLabel
             // 
-            this.DisplayCustomDesignLabel.AutoSize = true;
-            this.DisplayCustomDesignLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DisplayCustomDesignLabel.ForeColor = System.Drawing.Color.White;
-            this.DisplayCustomDesignLabel.Location = new System.Drawing.Point(222, 3);
-            this.DisplayCustomDesignLabel.Name = "DisplayCustomDesignLabel";
-            this.DisplayCustomDesignLabel.Size = new System.Drawing.Size(179, 16);
-            this.DisplayCustomDesignLabel.TabIndex = 243;
-            this.DisplayCustomDesignLabel.Text = "Display Custom Design : ";
-            this.DisplayCustomDesignLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            DisplayCustomDesignLabel.AutoSize = true;
+            DisplayCustomDesignLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            DisplayCustomDesignLabel.ForeColor = System.Drawing.Color.White;
+            DisplayCustomDesignLabel.Location = new System.Drawing.Point(222, 3);
+            DisplayCustomDesignLabel.Name = "DisplayCustomDesignLabel";
+            DisplayCustomDesignLabel.Size = new System.Drawing.Size(179, 16);
+            DisplayCustomDesignLabel.TabIndex = 243;
+            DisplayCustomDesignLabel.Text = "Display Custom Design : ";
+            DisplayCustomDesignLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DisplayBuildingLabel
             // 
-            this.DisplayBuildingLabel.AutoSize = true;
-            this.DisplayBuildingLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DisplayBuildingLabel.ForeColor = System.Drawing.Color.White;
-            this.DisplayBuildingLabel.Location = new System.Drawing.Point(28, 22);
-            this.DisplayBuildingLabel.Name = "DisplayBuildingLabel";
-            this.DisplayBuildingLabel.Size = new System.Drawing.Size(131, 16);
-            this.DisplayBuildingLabel.TabIndex = 242;
-            this.DisplayBuildingLabel.Text = "Display Building : ";
-            this.DisplayBuildingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            DisplayBuildingLabel.AutoSize = true;
+            DisplayBuildingLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            DisplayBuildingLabel.ForeColor = System.Drawing.Color.White;
+            DisplayBuildingLabel.Location = new System.Drawing.Point(28, 22);
+            DisplayBuildingLabel.Name = "DisplayBuildingLabel";
+            DisplayBuildingLabel.Size = new System.Drawing.Size(131, 16);
+            DisplayBuildingLabel.TabIndex = 242;
+            DisplayBuildingLabel.Text = "Display Building : ";
+            DisplayBuildingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DisplayBuildingToggle
             // 
-            this.DisplayBuildingToggle.Checked = true;
-            this.DisplayBuildingToggle.Location = new System.Drawing.Point(165, 22);
-            this.DisplayBuildingToggle.Name = "DisplayBuildingToggle";
-            this.DisplayBuildingToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.DisplayBuildingToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.DisplayBuildingToggle.Size = new System.Drawing.Size(35, 16);
-            this.DisplayBuildingToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
-            this.DisplayBuildingToggle.TabIndex = 241;
-            this.DisplayBuildingToggle.UseAnimation = false;
-            this.DisplayBuildingToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.DisplayBuildingToggle_CheckedChanged);
+            DisplayBuildingToggle.Checked = true;
+            DisplayBuildingToggle.Location = new System.Drawing.Point(165, 22);
+            DisplayBuildingToggle.Name = "DisplayBuildingToggle";
+            DisplayBuildingToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            DisplayBuildingToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            DisplayBuildingToggle.Size = new System.Drawing.Size(35, 16);
+            DisplayBuildingToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            DisplayBuildingToggle.TabIndex = 241;
+            DisplayBuildingToggle.UseAnimation = false;
+            DisplayBuildingToggle.CheckedChanged += DisplayBuildingToggle_CheckedChanged;
             // 
             // HighlightCornerLabel
             // 
-            this.HighlightCornerLabel.AutoSize = true;
-            this.HighlightCornerLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.HighlightCornerLabel.ForeColor = System.Drawing.Color.White;
-            this.HighlightCornerLabel.Location = new System.Drawing.Point(464, 3);
-            this.HighlightCornerLabel.Name = "HighlightCornerLabel";
-            this.HighlightCornerLabel.Size = new System.Drawing.Size(131, 16);
-            this.HighlightCornerLabel.TabIndex = 240;
-            this.HighlightCornerLabel.Text = "Highlight Corner :";
-            this.HighlightCornerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            HighlightCornerLabel.AutoSize = true;
+            HighlightCornerLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            HighlightCornerLabel.ForeColor = System.Drawing.Color.White;
+            HighlightCornerLabel.Location = new System.Drawing.Point(464, 3);
+            HighlightCornerLabel.Name = "HighlightCornerLabel";
+            HighlightCornerLabel.Size = new System.Drawing.Size(131, 16);
+            HighlightCornerLabel.TabIndex = 240;
+            HighlightCornerLabel.Text = "Highlight Corner :";
+            HighlightCornerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // HighlightCornerToggle
             // 
-            this.HighlightCornerToggle.Location = new System.Drawing.Point(601, 3);
-            this.HighlightCornerToggle.Name = "HighlightCornerToggle";
-            this.HighlightCornerToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.HighlightCornerToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.HighlightCornerToggle.Size = new System.Drawing.Size(35, 16);
-            this.HighlightCornerToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
-            this.HighlightCornerToggle.TabIndex = 239;
-            this.HighlightCornerToggle.UseAnimation = false;
-            this.HighlightCornerToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.HighlightCornerToggle_CheckedChanged);
+            HighlightCornerToggle.Location = new System.Drawing.Point(601, 3);
+            HighlightCornerToggle.Name = "HighlightCornerToggle";
+            HighlightCornerToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            HighlightCornerToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            HighlightCornerToggle.Size = new System.Drawing.Size(35, 16);
+            HighlightCornerToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            HighlightCornerToggle.TabIndex = 239;
+            HighlightCornerToggle.UseAnimation = false;
+            HighlightCornerToggle.CheckedChanged += HighlightCornerToggle_CheckedChanged;
             // 
             // DisplayInfoToggle
             // 
-            this.DisplayInfoToggle.Location = new System.Drawing.Point(403, 22);
-            this.DisplayInfoToggle.Name = "DisplayInfoToggle";
-            this.DisplayInfoToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.DisplayInfoToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.DisplayInfoToggle.Size = new System.Drawing.Size(35, 16);
-            this.DisplayInfoToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
-            this.DisplayInfoToggle.TabIndex = 236;
-            this.DisplayInfoToggle.UseAnimation = false;
+            DisplayInfoToggle.Location = new System.Drawing.Point(403, 22);
+            DisplayInfoToggle.Name = "DisplayInfoToggle";
+            DisplayInfoToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            DisplayInfoToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            DisplayInfoToggle.Size = new System.Drawing.Size(35, 16);
+            DisplayInfoToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            DisplayInfoToggle.TabIndex = 236;
+            DisplayInfoToggle.UseAnimation = false;
             // 
             // DisplayInfoLabel
             // 
-            this.DisplayInfoLabel.AutoSize = true;
-            this.DisplayInfoLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DisplayInfoLabel.ForeColor = System.Drawing.Color.White;
-            this.DisplayInfoLabel.Location = new System.Drawing.Point(301, 22);
-            this.DisplayInfoLabel.Name = "DisplayInfoLabel";
-            this.DisplayInfoLabel.Size = new System.Drawing.Size(100, 16);
-            this.DisplayInfoLabel.TabIndex = 217;
-            this.DisplayInfoLabel.Text = "Display Info : ";
-            this.DisplayInfoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            DisplayInfoLabel.AutoSize = true;
+            DisplayInfoLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            DisplayInfoLabel.ForeColor = System.Drawing.Color.White;
+            DisplayInfoLabel.Location = new System.Drawing.Point(301, 22);
+            DisplayInfoLabel.Name = "DisplayInfoLabel";
+            DisplayInfoLabel.Size = new System.Drawing.Size(100, 16);
+            DisplayInfoLabel.TabIndex = 217;
+            DisplayInfoLabel.Text = "Display Info : ";
+            DisplayInfoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DisplayRoadLabel
             // 
-            this.DisplayRoadLabel.AutoSize = true;
-            this.DisplayRoadLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DisplayRoadLabel.ForeColor = System.Drawing.Color.White;
-            this.DisplayRoadLabel.Location = new System.Drawing.Point(50, 3);
-            this.DisplayRoadLabel.Name = "DisplayRoadLabel";
-            this.DisplayRoadLabel.Size = new System.Drawing.Size(109, 16);
-            this.DisplayRoadLabel.TabIndex = 238;
-            this.DisplayRoadLabel.Text = "Display Road : ";
-            this.DisplayRoadLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            DisplayRoadLabel.AutoSize = true;
+            DisplayRoadLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            DisplayRoadLabel.ForeColor = System.Drawing.Color.White;
+            DisplayRoadLabel.Location = new System.Drawing.Point(50, 3);
+            DisplayRoadLabel.Name = "DisplayRoadLabel";
+            DisplayRoadLabel.Size = new System.Drawing.Size(109, 16);
+            DisplayRoadLabel.TabIndex = 238;
+            DisplayRoadLabel.Text = "Display Road : ";
+            DisplayRoadLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DisplayRoadToggle
             // 
-            this.DisplayRoadToggle.Checked = true;
-            this.DisplayRoadToggle.Location = new System.Drawing.Point(165, 3);
-            this.DisplayRoadToggle.Name = "DisplayRoadToggle";
-            this.DisplayRoadToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.DisplayRoadToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.DisplayRoadToggle.Size = new System.Drawing.Size(35, 16);
-            this.DisplayRoadToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
-            this.DisplayRoadToggle.TabIndex = 237;
-            this.DisplayRoadToggle.UseAnimation = false;
-            this.DisplayRoadToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.DisplayRoadToggle_CheckedChanged);
+            DisplayRoadToggle.Checked = true;
+            DisplayRoadToggle.Location = new System.Drawing.Point(165, 3);
+            DisplayRoadToggle.Name = "DisplayRoadToggle";
+            DisplayRoadToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            DisplayRoadToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            DisplayRoadToggle.Size = new System.Drawing.Size(35, 16);
+            DisplayRoadToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            DisplayRoadToggle.TabIndex = 237;
+            DisplayRoadToggle.UseAnimation = false;
+            DisplayRoadToggle.CheckedChanged += DisplayRoadToggle_CheckedChanged;
             // 
             // LeftMenuPanel
             // 
-            this.LeftMenuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.LeftMenuPanel.Controls.Add(this.CustomModeButton);
-            this.LeftMenuPanel.Controls.Add(this.ConfirmBtn);
-            this.LeftMenuPanel.Controls.Add(this.ManualModeButton);
-            this.LeftMenuPanel.Controls.Add(this.AutoModeButton);
-            this.LeftMenuPanel.Controls.Add(this.miniMapBox);
-            this.LeftMenuPanel.Controls.Add(this.AutoButtonPanel);
-            this.LeftMenuPanel.Controls.Add(this.ManualButtonPanel);
-            this.LeftMenuPanel.Controls.Add(this.CustomDesignList);
-            this.LeftMenuPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LeftMenuPanel.Location = new System.Drawing.Point(3, 53);
-            this.LeftMenuPanel.Name = "LeftMenuPanel";
-            this.LeftMenuPanel.Size = new System.Drawing.Size(240, 605);
-            this.LeftMenuPanel.TabIndex = 2;
+            LeftMenuPanel.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            LeftMenuPanel.Controls.Add(CustomModeButton);
+            LeftMenuPanel.Controls.Add(ConfirmBtn);
+            LeftMenuPanel.Controls.Add(ManualModeButton);
+            LeftMenuPanel.Controls.Add(AutoModeButton);
+            LeftMenuPanel.Controls.Add(miniMapBox);
+            LeftMenuPanel.Controls.Add(AutoButtonPanel);
+            LeftMenuPanel.Controls.Add(ManualButtonPanel);
+            LeftMenuPanel.Controls.Add(CustomDesignList);
+            LeftMenuPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            LeftMenuPanel.Location = new System.Drawing.Point(3, 53);
+            LeftMenuPanel.Name = "LeftMenuPanel";
+            LeftMenuPanel.Size = new System.Drawing.Size(240, 605);
+            LeftMenuPanel.TabIndex = 2;
             // 
             // CustomModeButton
             // 
-            this.CustomModeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.CustomModeButton.FlatAppearance.BorderSize = 0;
-            this.CustomModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CustomModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CustomModeButton.ForeColor = System.Drawing.Color.White;
-            this.CustomModeButton.Location = new System.Drawing.Point(159, 200);
-            this.CustomModeButton.Name = "CustomModeButton";
-            this.CustomModeButton.Size = new System.Drawing.Size(70, 23);
-            this.CustomModeButton.TabIndex = 245;
-            this.CustomModeButton.Tag = "";
-            this.CustomModeButton.Text = "Custom";
-            this.CustomModeButton.UseVisualStyleBackColor = false;
-            this.CustomModeButton.Click += new System.EventHandler(this.CustomModeButton_Click);
+            CustomModeButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            CustomModeButton.FlatAppearance.BorderSize = 0;
+            CustomModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CustomModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CustomModeButton.ForeColor = System.Drawing.Color.White;
+            CustomModeButton.Location = new System.Drawing.Point(159, 200);
+            CustomModeButton.Name = "CustomModeButton";
+            CustomModeButton.Size = new System.Drawing.Size(70, 23);
+            CustomModeButton.TabIndex = 245;
+            CustomModeButton.Tag = "";
+            CustomModeButton.Text = "Custom";
+            CustomModeButton.UseVisualStyleBackColor = false;
+            CustomModeButton.Click += CustomModeButton_Click;
             // 
             // ConfirmBtn
             // 
-            this.ConfirmBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ConfirmBtn.BackColor = System.Drawing.Color.Orange;
-            this.ConfirmBtn.FlatAppearance.BorderSize = 0;
-            this.ConfirmBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ConfirmBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ConfirmBtn.ForeColor = System.Drawing.Color.White;
-            this.ConfirmBtn.Location = new System.Drawing.Point(9, 575);
-            this.ConfirmBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.ConfirmBtn.Name = "ConfirmBtn";
-            this.ConfirmBtn.Size = new System.Drawing.Size(217, 30);
-            this.ConfirmBtn.TabIndex = 243;
-            this.ConfirmBtn.Text = "Confirm";
-            this.ConfirmBtn.UseVisualStyleBackColor = false;
-            this.ConfirmBtn.Visible = false;
-            this.ConfirmBtn.Click += new System.EventHandler(this.ConfirmBtn_Click);
+            ConfirmBtn.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            ConfirmBtn.BackColor = System.Drawing.Color.Orange;
+            ConfirmBtn.FlatAppearance.BorderSize = 0;
+            ConfirmBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ConfirmBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ConfirmBtn.ForeColor = System.Drawing.Color.White;
+            ConfirmBtn.Location = new System.Drawing.Point(9, 575);
+            ConfirmBtn.Margin = new System.Windows.Forms.Padding(4);
+            ConfirmBtn.Name = "ConfirmBtn";
+            ConfirmBtn.Size = new System.Drawing.Size(217, 30);
+            ConfirmBtn.TabIndex = 243;
+            ConfirmBtn.Text = "Confirm";
+            ConfirmBtn.UseVisualStyleBackColor = false;
+            ConfirmBtn.Visible = false;
+            ConfirmBtn.Click += ConfirmBtn_Click;
             // 
             // ManualModeButton
             // 
-            this.ManualModeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.ManualModeButton.FlatAppearance.BorderSize = 0;
-            this.ManualModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ManualModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ManualModeButton.ForeColor = System.Drawing.Color.White;
-            this.ManualModeButton.Location = new System.Drawing.Point(83, 200);
-            this.ManualModeButton.Name = "ManualModeButton";
-            this.ManualModeButton.Size = new System.Drawing.Size(70, 23);
-            this.ManualModeButton.TabIndex = 239;
-            this.ManualModeButton.Tag = "";
-            this.ManualModeButton.Text = "Manual";
-            this.ManualModeButton.UseVisualStyleBackColor = false;
-            this.ManualModeButton.Click += new System.EventHandler(this.ManualModeButton_Click);
+            ManualModeButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            ManualModeButton.FlatAppearance.BorderSize = 0;
+            ManualModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ManualModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualModeButton.ForeColor = System.Drawing.Color.White;
+            ManualModeButton.Location = new System.Drawing.Point(83, 200);
+            ManualModeButton.Name = "ManualModeButton";
+            ManualModeButton.Size = new System.Drawing.Size(70, 23);
+            ManualModeButton.TabIndex = 239;
+            ManualModeButton.Tag = "";
+            ManualModeButton.Text = "Manual";
+            ManualModeButton.UseVisualStyleBackColor = false;
+            ManualModeButton.Click += ManualModeButton_Click;
             // 
             // AutoModeButton
             // 
-            this.AutoModeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-            this.AutoModeButton.FlatAppearance.BorderSize = 0;
-            this.AutoModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AutoModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.AutoModeButton.ForeColor = System.Drawing.Color.White;
-            this.AutoModeButton.Location = new System.Drawing.Point(7, 200);
-            this.AutoModeButton.Name = "AutoModeButton";
-            this.AutoModeButton.Size = new System.Drawing.Size(70, 23);
-            this.AutoModeButton.TabIndex = 238;
-            this.AutoModeButton.Tag = "";
-            this.AutoModeButton.Text = "Auto";
-            this.AutoModeButton.UseVisualStyleBackColor = false;
-            this.AutoModeButton.Click += new System.EventHandler(this.AutoModeButton_Click);
+            AutoModeButton.BackColor = System.Drawing.Color.FromArgb(80, 80, 255);
+            AutoModeButton.FlatAppearance.BorderSize = 0;
+            AutoModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            AutoModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            AutoModeButton.ForeColor = System.Drawing.Color.White;
+            AutoModeButton.Location = new System.Drawing.Point(7, 200);
+            AutoModeButton.Name = "AutoModeButton";
+            AutoModeButton.Size = new System.Drawing.Size(70, 23);
+            AutoModeButton.TabIndex = 238;
+            AutoModeButton.Tag = "";
+            AutoModeButton.Text = "Auto";
+            AutoModeButton.UseVisualStyleBackColor = false;
+            AutoModeButton.Click += AutoModeButton_Click;
             // 
             // miniMapBox
             // 
-            this.miniMapBox.BackColor = System.Drawing.Color.Transparent;
-            this.miniMapBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.miniMapBox.ErrorImage = null;
-            this.miniMapBox.InitialImage = null;
-            this.miniMapBox.Location = new System.Drawing.Point(6, 3);
-            this.miniMapBox.Margin = new System.Windows.Forms.Padding(0);
-            this.miniMapBox.MaximumSize = new System.Drawing.Size(224, 192);
-            this.miniMapBox.MinimumSize = new System.Drawing.Size(224, 192);
-            this.miniMapBox.Name = "miniMapBox";
-            this.miniMapBox.Size = new System.Drawing.Size(224, 192);
-            this.miniMapBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.miniMapBox.TabIndex = 236;
-            this.miniMapBox.TabStop = false;
-            this.miniMapBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MiniMapBox_MouseDown);
-            this.miniMapBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MiniMapBox_MouseMove);
+            miniMapBox.BackColor = System.Drawing.Color.Transparent;
+            miniMapBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            miniMapBox.ErrorImage = null;
+            miniMapBox.InitialImage = null;
+            miniMapBox.Location = new System.Drawing.Point(6, 3);
+            miniMapBox.Margin = new System.Windows.Forms.Padding(0);
+            miniMapBox.MaximumSize = new System.Drawing.Size(224, 192);
+            miniMapBox.MinimumSize = new System.Drawing.Size(224, 192);
+            miniMapBox.Name = "miniMapBox";
+            miniMapBox.Size = new System.Drawing.Size(224, 192);
+            miniMapBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            miniMapBox.TabIndex = 236;
+            miniMapBox.TabStop = false;
+            miniMapBox.MouseDown += MiniMapBox_MouseDown;
+            miniMapBox.MouseMove += MiniMapBox_MouseMove;
             // 
             // AutoButtonPanel
             // 
-            this.AutoButtonPanel.Controls.Add(this.fixRiverMouthToggle);
-            this.AutoButtonPanel.Controls.Add(this.FixRiverMouthLabel);
-            this.AutoButtonPanel.Controls.Add(this.ArchBtn);
-            this.AutoButtonPanel.Controls.Add(this.Elevation0Label);
-            this.AutoButtonPanel.Controls.Add(this.StoneBtn);
-            this.AutoButtonPanel.Controls.Add(this.ElevationLabel);
-            this.AutoButtonPanel.Controls.Add(this.Elevation2Label);
-            this.AutoButtonPanel.Controls.Add(this.Elevation1Label);
-            this.AutoButtonPanel.Controls.Add(this.ElevationBar);
-            this.AutoButtonPanel.Controls.Add(this.CliffBtn);
-            this.AutoButtonPanel.Controls.Add(this.CornerBtn);
-            this.AutoButtonPanel.Controls.Add(this.RiverBtn);
-            this.AutoButtonPanel.Controls.Add(this.DirtBtn);
-            this.AutoButtonPanel.Controls.Add(this.WoodBtn);
-            this.AutoButtonPanel.Controls.Add(this.TileBtn);
-            this.AutoButtonPanel.Controls.Add(this.BrickBtn);
-            this.AutoButtonPanel.Controls.Add(this.SandBtn);
-            this.AutoButtonPanel.Controls.Add(this.DarkDirtBtn);
-            this.AutoButtonPanel.Location = new System.Drawing.Point(6, 231);
-            this.AutoButtonPanel.Name = "AutoButtonPanel";
-            this.AutoButtonPanel.Size = new System.Drawing.Size(225, 340);
-            this.AutoButtonPanel.TabIndex = 237;
+            AutoButtonPanel.Controls.Add(fixRiverMouthToggle);
+            AutoButtonPanel.Controls.Add(FixRiverMouthLabel);
+            AutoButtonPanel.Controls.Add(ArchBtn);
+            AutoButtonPanel.Controls.Add(Elevation0Label);
+            AutoButtonPanel.Controls.Add(StoneBtn);
+            AutoButtonPanel.Controls.Add(ElevationLabel);
+            AutoButtonPanel.Controls.Add(Elevation2Label);
+            AutoButtonPanel.Controls.Add(Elevation1Label);
+            AutoButtonPanel.Controls.Add(ElevationBar);
+            AutoButtonPanel.Controls.Add(CliffBtn);
+            AutoButtonPanel.Controls.Add(CornerBtn);
+            AutoButtonPanel.Controls.Add(RiverBtn);
+            AutoButtonPanel.Controls.Add(DirtBtn);
+            AutoButtonPanel.Controls.Add(WoodBtn);
+            AutoButtonPanel.Controls.Add(TileBtn);
+            AutoButtonPanel.Controls.Add(BrickBtn);
+            AutoButtonPanel.Controls.Add(SandBtn);
+            AutoButtonPanel.Controls.Add(DarkDirtBtn);
+            AutoButtonPanel.Location = new System.Drawing.Point(6, 231);
+            AutoButtonPanel.Name = "AutoButtonPanel";
+            AutoButtonPanel.Size = new System.Drawing.Size(225, 340);
+            AutoButtonPanel.TabIndex = 237;
             // 
             // fixRiverMouthToggle
             // 
-            this.fixRiverMouthToggle.Location = new System.Drawing.Point(123, 84);
-            this.fixRiverMouthToggle.Name = "fixRiverMouthToggle";
-            this.fixRiverMouthToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.fixRiverMouthToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.fixRiverMouthToggle.Size = new System.Drawing.Size(38, 16);
-            this.fixRiverMouthToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
-            this.fixRiverMouthToggle.TabIndex = 243;
-            this.fixRiverMouthToggle.UseAnimation = false;
-            this.fixRiverMouthToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.FixRiverMouthToggle_CheckedChanged);
+            fixRiverMouthToggle.Location = new System.Drawing.Point(123, 84);
+            fixRiverMouthToggle.Name = "fixRiverMouthToggle";
+            fixRiverMouthToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            fixRiverMouthToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            fixRiverMouthToggle.Size = new System.Drawing.Size(38, 16);
+            fixRiverMouthToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            fixRiverMouthToggle.TabIndex = 243;
+            fixRiverMouthToggle.UseAnimation = false;
+            fixRiverMouthToggle.CheckedChanged += FixRiverMouthToggle_CheckedChanged;
             // 
             // FixRiverMouthLabel
             // 
-            this.FixRiverMouthLabel.AutoSize = true;
-            this.FixRiverMouthLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FixRiverMouthLabel.ForeColor = System.Drawing.Color.White;
-            this.FixRiverMouthLabel.Location = new System.Drawing.Point(69, 67);
-            this.FixRiverMouthLabel.Name = "FixRiverMouthLabel";
-            this.FixRiverMouthLabel.Size = new System.Drawing.Size(97, 14);
-            this.FixRiverMouthLabel.TabIndex = 243;
-            this.FixRiverMouthLabel.Text = "Fix River Mouth :";
-            this.FixRiverMouthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            FixRiverMouthLabel.AutoSize = true;
+            FixRiverMouthLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            FixRiverMouthLabel.ForeColor = System.Drawing.Color.White;
+            FixRiverMouthLabel.Location = new System.Drawing.Point(69, 67);
+            FixRiverMouthLabel.Name = "FixRiverMouthLabel";
+            FixRiverMouthLabel.Size = new System.Drawing.Size(97, 14);
+            FixRiverMouthLabel.TabIndex = 243;
+            FixRiverMouthLabel.Text = "Fix River Mouth :";
+            FixRiverMouthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ArchBtn
             // 
-            this.ArchBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.ArchBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ArchBtn.FlatAppearance.BorderSize = 0;
-            this.ArchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ArchBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ArchBtn.ForeColor = System.Drawing.Color.White;
-            this.ArchBtn.Image = global::ACNHPokerCore.Properties.Resources.pattern;
-            this.ArchBtn.Location = new System.Drawing.Point(69, 275);
-            this.ArchBtn.Name = "ArchBtn";
-            this.ArchBtn.Size = new System.Drawing.Size(60, 60);
-            this.ArchBtn.TabIndex = 230;
-            this.ArchBtn.Tag = "Other";
-            this.ArchBtn.UseVisualStyleBackColor = false;
-            this.ArchBtn.Click += new System.EventHandler(this.ArchBtn_Click);
+            ArchBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            ArchBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            ArchBtn.FlatAppearance.BorderSize = 0;
+            ArchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ArchBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ArchBtn.ForeColor = System.Drawing.Color.White;
+            ArchBtn.Image = Properties.Resources.pattern;
+            ArchBtn.Location = new System.Drawing.Point(69, 275);
+            ArchBtn.Name = "ArchBtn";
+            ArchBtn.Size = new System.Drawing.Size(60, 60);
+            ArchBtn.TabIndex = 230;
+            ArchBtn.Tag = "Other";
+            ArchBtn.UseVisualStyleBackColor = false;
+            ArchBtn.Click += ArchBtn_Click;
             // 
             // Elevation0Label
             // 
-            this.Elevation0Label.AutoSize = true;
-            this.Elevation0Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Elevation0Label.ForeColor = System.Drawing.Color.White;
-            this.Elevation0Label.Location = new System.Drawing.Point(126, 47);
-            this.Elevation0Label.Name = "Elevation0Label";
-            this.Elevation0Label.Size = new System.Drawing.Size(13, 14);
-            this.Elevation0Label.TabIndex = 242;
-            this.Elevation0Label.Text = "0";
-            this.Elevation0Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            Elevation0Label.AutoSize = true;
+            Elevation0Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            Elevation0Label.ForeColor = System.Drawing.Color.White;
+            Elevation0Label.Location = new System.Drawing.Point(126, 47);
+            Elevation0Label.Name = "Elevation0Label";
+            Elevation0Label.Size = new System.Drawing.Size(13, 14);
+            Elevation0Label.TabIndex = 242;
+            Elevation0Label.Text = "0";
+            Elevation0Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // StoneBtn
             // 
-            this.StoneBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.StoneBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.StoneBtn.FlatAppearance.BorderSize = 0;
-            this.StoneBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.StoneBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.StoneBtn.ForeColor = System.Drawing.Color.White;
-            this.StoneBtn.Image = global::ACNHPokerCore.Properties.Resources.stone;
-            this.StoneBtn.Location = new System.Drawing.Point(3, 275);
-            this.StoneBtn.Name = "StoneBtn";
-            this.StoneBtn.Size = new System.Drawing.Size(60, 60);
-            this.StoneBtn.TabIndex = 227;
-            this.StoneBtn.Tag = "Other";
-            this.StoneBtn.UseVisualStyleBackColor = false;
-            this.StoneBtn.Click += new System.EventHandler(this.StoneBtn_Click);
+            StoneBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            StoneBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            StoneBtn.FlatAppearance.BorderSize = 0;
+            StoneBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            StoneBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            StoneBtn.ForeColor = System.Drawing.Color.White;
+            StoneBtn.Image = Properties.Resources.stone;
+            StoneBtn.Location = new System.Drawing.Point(3, 275);
+            StoneBtn.Name = "StoneBtn";
+            StoneBtn.Size = new System.Drawing.Size(60, 60);
+            StoneBtn.TabIndex = 227;
+            StoneBtn.Tag = "Other";
+            StoneBtn.UseVisualStyleBackColor = false;
+            StoneBtn.Click += StoneBtn_Click;
             // 
             // ElevationLabel
             // 
-            this.ElevationLabel.AutoSize = true;
-            this.ElevationLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ElevationLabel.ForeColor = System.Drawing.Color.White;
-            this.ElevationLabel.Location = new System.Drawing.Point(67, 1);
-            this.ElevationLabel.Name = "ElevationLabel";
-            this.ElevationLabel.Size = new System.Drawing.Size(62, 14);
-            this.ElevationLabel.TabIndex = 239;
-            this.ElevationLabel.Text = "Elevation :";
-            this.ElevationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            ElevationLabel.AutoSize = true;
+            ElevationLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ElevationLabel.ForeColor = System.Drawing.Color.White;
+            ElevationLabel.Location = new System.Drawing.Point(67, 1);
+            ElevationLabel.Name = "ElevationLabel";
+            ElevationLabel.Size = new System.Drawing.Size(62, 14);
+            ElevationLabel.TabIndex = 239;
+            ElevationLabel.Text = "Elevation :";
+            ElevationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Elevation2Label
             // 
-            this.Elevation2Label.AutoSize = true;
-            this.Elevation2Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Elevation2Label.ForeColor = System.Drawing.Color.White;
-            this.Elevation2Label.Location = new System.Drawing.Point(126, 17);
-            this.Elevation2Label.Name = "Elevation2Label";
-            this.Elevation2Label.Size = new System.Drawing.Size(13, 14);
-            this.Elevation2Label.TabIndex = 241;
-            this.Elevation2Label.Text = "2";
-            this.Elevation2Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            Elevation2Label.AutoSize = true;
+            Elevation2Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            Elevation2Label.ForeColor = System.Drawing.Color.White;
+            Elevation2Label.Location = new System.Drawing.Point(126, 17);
+            Elevation2Label.Name = "Elevation2Label";
+            Elevation2Label.Size = new System.Drawing.Size(13, 14);
+            Elevation2Label.TabIndex = 241;
+            Elevation2Label.Text = "2";
+            Elevation2Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Elevation1Label
             // 
-            this.Elevation1Label.AutoSize = true;
-            this.Elevation1Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Elevation1Label.ForeColor = System.Drawing.Color.White;
-            this.Elevation1Label.Location = new System.Drawing.Point(126, 32);
-            this.Elevation1Label.Name = "Elevation1Label";
-            this.Elevation1Label.Size = new System.Drawing.Size(13, 14);
-            this.Elevation1Label.TabIndex = 240;
-            this.Elevation1Label.Text = "1";
-            this.Elevation1Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            Elevation1Label.AutoSize = true;
+            Elevation1Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            Elevation1Label.ForeColor = System.Drawing.Color.White;
+            Elevation1Label.Location = new System.Drawing.Point(126, 32);
+            Elevation1Label.Name = "Elevation1Label";
+            Elevation1Label.Size = new System.Drawing.Size(13, 14);
+            Elevation1Label.TabIndex = 240;
+            Elevation1Label.Text = "1";
+            Elevation1Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ElevationBar
             // 
-            this.ElevationBar.LargeChange = 1;
-            this.ElevationBar.Location = new System.Drawing.Point(99, 10);
-            this.ElevationBar.Maximum = 2;
-            this.ElevationBar.Name = "ElevationBar";
-            this.ElevationBar.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.ElevationBar.Size = new System.Drawing.Size(45, 57);
-            this.ElevationBar.TabIndex = 1;
-            this.ElevationBar.Value = 1;
-            this.ElevationBar.ValueChanged += new System.EventHandler(this.ElevationBar_ValueChanged);
+            ElevationBar.LargeChange = 1;
+            ElevationBar.Location = new System.Drawing.Point(99, 10);
+            ElevationBar.Maximum = 2;
+            ElevationBar.Name = "ElevationBar";
+            ElevationBar.Orientation = System.Windows.Forms.Orientation.Vertical;
+            ElevationBar.Size = new System.Drawing.Size(45, 57);
+            ElevationBar.TabIndex = 1;
+            ElevationBar.Value = 1;
+            ElevationBar.ValueChanged += ElevationBar_ValueChanged;
             // 
             // CliffBtn
             // 
-            this.CliffBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.CliffBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.CliffBtn.FlatAppearance.BorderSize = 0;
-            this.CliffBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CliffBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CliffBtn.ForeColor = System.Drawing.Color.White;
-            this.CliffBtn.Image = global::ACNHPokerCore.Properties.Resources.cliff;
-            this.CliffBtn.Location = new System.Drawing.Point(3, 1);
-            this.CliffBtn.Name = "CliffBtn";
-            this.CliffBtn.Size = new System.Drawing.Size(60, 60);
-            this.CliffBtn.TabIndex = 224;
-            this.CliffBtn.Tag = "Other";
-            this.CliffBtn.UseVisualStyleBackColor = false;
-            this.CliffBtn.Click += new System.EventHandler(this.CliffBtn_Click);
+            CliffBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            CliffBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            CliffBtn.FlatAppearance.BorderSize = 0;
+            CliffBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CliffBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffBtn.ForeColor = System.Drawing.Color.White;
+            CliffBtn.Image = Properties.Resources.cliff;
+            CliffBtn.Location = new System.Drawing.Point(3, 1);
+            CliffBtn.Name = "CliffBtn";
+            CliffBtn.Size = new System.Drawing.Size(60, 60);
+            CliffBtn.TabIndex = 224;
+            CliffBtn.Tag = "Other";
+            CliffBtn.UseVisualStyleBackColor = false;
+            CliffBtn.Click += CliffBtn_Click;
             // 
             // CornerBtn
             // 
-            this.CornerBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.CornerBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.CornerBtn.FlatAppearance.BorderSize = 0;
-            this.CornerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CornerBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CornerBtn.ForeColor = System.Drawing.Color.White;
-            this.CornerBtn.Image = global::ACNHPokerCore.Properties.Resources.corner;
-            this.CornerBtn.Location = new System.Drawing.Point(163, 1);
-            this.CornerBtn.Name = "CornerBtn";
-            this.CornerBtn.Size = new System.Drawing.Size(60, 60);
-            this.CornerBtn.TabIndex = 235;
-            this.CornerBtn.Tag = "Other";
-            this.CornerBtn.UseVisualStyleBackColor = false;
-            this.CornerBtn.Click += new System.EventHandler(this.CornerBtn_Click);
+            CornerBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            CornerBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            CornerBtn.FlatAppearance.BorderSize = 0;
+            CornerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CornerBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CornerBtn.ForeColor = System.Drawing.Color.White;
+            CornerBtn.Image = Properties.Resources.corner;
+            CornerBtn.Location = new System.Drawing.Point(163, 1);
+            CornerBtn.Name = "CornerBtn";
+            CornerBtn.Size = new System.Drawing.Size(60, 60);
+            CornerBtn.TabIndex = 235;
+            CornerBtn.Tag = "Other";
+            CornerBtn.UseVisualStyleBackColor = false;
+            CornerBtn.Click += CornerBtn_Click;
             // 
             // RiverBtn
             // 
-            this.RiverBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.RiverBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RiverBtn.FlatAppearance.BorderSize = 0;
-            this.RiverBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverBtn.ForeColor = System.Drawing.Color.White;
-            this.RiverBtn.Image = global::ACNHPokerCore.Properties.Resources.river;
-            this.RiverBtn.Location = new System.Drawing.Point(3, 67);
-            this.RiverBtn.Name = "RiverBtn";
-            this.RiverBtn.Size = new System.Drawing.Size(60, 60);
-            this.RiverBtn.TabIndex = 225;
-            this.RiverBtn.Tag = "Other";
-            this.RiverBtn.UseVisualStyleBackColor = false;
-            this.RiverBtn.Click += new System.EventHandler(this.RiverBtn_Click);
+            RiverBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            RiverBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            RiverBtn.FlatAppearance.BorderSize = 0;
+            RiverBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RiverBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverBtn.ForeColor = System.Drawing.Color.White;
+            RiverBtn.Image = Properties.Resources.river;
+            RiverBtn.Location = new System.Drawing.Point(3, 67);
+            RiverBtn.Name = "RiverBtn";
+            RiverBtn.Size = new System.Drawing.Size(60, 60);
+            RiverBtn.TabIndex = 225;
+            RiverBtn.Tag = "Other";
+            RiverBtn.UseVisualStyleBackColor = false;
+            RiverBtn.Click += RiverBtn_Click;
             // 
             // DirtBtn
             // 
-            this.DirtBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.DirtBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.DirtBtn.FlatAppearance.BorderSize = 0;
-            this.DirtBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DirtBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DirtBtn.ForeColor = System.Drawing.Color.White;
-            this.DirtBtn.Image = global::ACNHPokerCore.Properties.Resources.dirt;
-            this.DirtBtn.Location = new System.Drawing.Point(3, 143);
-            this.DirtBtn.Name = "DirtBtn";
-            this.DirtBtn.Size = new System.Drawing.Size(60, 60);
-            this.DirtBtn.TabIndex = 226;
-            this.DirtBtn.Tag = "Other";
-            this.DirtBtn.UseVisualStyleBackColor = false;
-            this.DirtBtn.Click += new System.EventHandler(this.DirtBtn_Click);
+            DirtBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            DirtBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            DirtBtn.FlatAppearance.BorderSize = 0;
+            DirtBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            DirtBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            DirtBtn.ForeColor = System.Drawing.Color.White;
+            DirtBtn.Image = Properties.Resources.dirt;
+            DirtBtn.Location = new System.Drawing.Point(3, 143);
+            DirtBtn.Name = "DirtBtn";
+            DirtBtn.Size = new System.Drawing.Size(60, 60);
+            DirtBtn.TabIndex = 226;
+            DirtBtn.Tag = "Other";
+            DirtBtn.UseVisualStyleBackColor = false;
+            DirtBtn.Click += DirtBtn_Click;
             // 
             // WoodBtn
             // 
-            this.WoodBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.WoodBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.WoodBtn.FlatAppearance.BorderSize = 0;
-            this.WoodBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.WoodBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.WoodBtn.ForeColor = System.Drawing.Color.White;
-            this.WoodBtn.Image = global::ACNHPokerCore.Properties.Resources.wood;
-            this.WoodBtn.Location = new System.Drawing.Point(69, 209);
-            this.WoodBtn.Name = "WoodBtn";
-            this.WoodBtn.Size = new System.Drawing.Size(60, 60);
-            this.WoodBtn.TabIndex = 233;
-            this.WoodBtn.Tag = "Other";
-            this.WoodBtn.UseVisualStyleBackColor = false;
-            this.WoodBtn.Click += new System.EventHandler(this.WoodBtn_Click);
+            WoodBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            WoodBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            WoodBtn.FlatAppearance.BorderSize = 0;
+            WoodBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            WoodBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            WoodBtn.ForeColor = System.Drawing.Color.White;
+            WoodBtn.Image = Properties.Resources.wood;
+            WoodBtn.Location = new System.Drawing.Point(69, 209);
+            WoodBtn.Name = "WoodBtn";
+            WoodBtn.Size = new System.Drawing.Size(60, 60);
+            WoodBtn.TabIndex = 233;
+            WoodBtn.Tag = "Other";
+            WoodBtn.UseVisualStyleBackColor = false;
+            WoodBtn.Click += WoodBtn_Click;
             // 
             // TileBtn
             // 
-            this.TileBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.TileBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.TileBtn.FlatAppearance.BorderSize = 0;
-            this.TileBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.TileBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.TileBtn.ForeColor = System.Drawing.Color.White;
-            this.TileBtn.Image = global::ACNHPokerCore.Properties.Resources.tile;
-            this.TileBtn.Location = new System.Drawing.Point(3, 209);
-            this.TileBtn.Name = "TileBtn";
-            this.TileBtn.Size = new System.Drawing.Size(60, 60);
-            this.TileBtn.TabIndex = 232;
-            this.TileBtn.Tag = "Other";
-            this.TileBtn.UseVisualStyleBackColor = false;
-            this.TileBtn.Click += new System.EventHandler(this.TileBtn_Click);
+            TileBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            TileBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            TileBtn.FlatAppearance.BorderSize = 0;
+            TileBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            TileBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            TileBtn.ForeColor = System.Drawing.Color.White;
+            TileBtn.Image = Properties.Resources.tile;
+            TileBtn.Location = new System.Drawing.Point(3, 209);
+            TileBtn.Name = "TileBtn";
+            TileBtn.Size = new System.Drawing.Size(60, 60);
+            TileBtn.TabIndex = 232;
+            TileBtn.Tag = "Other";
+            TileBtn.UseVisualStyleBackColor = false;
+            TileBtn.Click += TileBtn_Click;
             // 
             // BrickBtn
             // 
-            this.BrickBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.BrickBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.BrickBtn.FlatAppearance.BorderSize = 0;
-            this.BrickBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BrickBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.BrickBtn.ForeColor = System.Drawing.Color.White;
-            this.BrickBtn.Image = global::ACNHPokerCore.Properties.Resources.brick;
-            this.BrickBtn.Location = new System.Drawing.Point(135, 209);
-            this.BrickBtn.Name = "BrickBtn";
-            this.BrickBtn.Size = new System.Drawing.Size(60, 60);
-            this.BrickBtn.TabIndex = 228;
-            this.BrickBtn.Tag = "Other";
-            this.BrickBtn.UseVisualStyleBackColor = false;
-            this.BrickBtn.Click += new System.EventHandler(this.BrickBtn_Click);
+            BrickBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            BrickBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            BrickBtn.FlatAppearance.BorderSize = 0;
+            BrickBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            BrickBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            BrickBtn.ForeColor = System.Drawing.Color.White;
+            BrickBtn.Image = Properties.Resources.brick;
+            BrickBtn.Location = new System.Drawing.Point(135, 209);
+            BrickBtn.Name = "BrickBtn";
+            BrickBtn.Size = new System.Drawing.Size(60, 60);
+            BrickBtn.TabIndex = 228;
+            BrickBtn.Tag = "Other";
+            BrickBtn.UseVisualStyleBackColor = false;
+            BrickBtn.Click += BrickBtn_Click;
             // 
             // SandBtn
             // 
-            this.SandBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.SandBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.SandBtn.FlatAppearance.BorderSize = 0;
-            this.SandBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SandBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SandBtn.ForeColor = System.Drawing.Color.White;
-            this.SandBtn.Image = global::ACNHPokerCore.Properties.Resources.sand;
-            this.SandBtn.Location = new System.Drawing.Point(135, 143);
-            this.SandBtn.Name = "SandBtn";
-            this.SandBtn.Size = new System.Drawing.Size(60, 60);
-            this.SandBtn.TabIndex = 231;
-            this.SandBtn.Tag = "Other";
-            this.SandBtn.UseVisualStyleBackColor = false;
-            this.SandBtn.Click += new System.EventHandler(this.SandBtn_Click);
+            SandBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            SandBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            SandBtn.FlatAppearance.BorderSize = 0;
+            SandBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            SandBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            SandBtn.ForeColor = System.Drawing.Color.White;
+            SandBtn.Image = Properties.Resources.sand;
+            SandBtn.Location = new System.Drawing.Point(135, 143);
+            SandBtn.Name = "SandBtn";
+            SandBtn.Size = new System.Drawing.Size(60, 60);
+            SandBtn.TabIndex = 231;
+            SandBtn.Tag = "Other";
+            SandBtn.UseVisualStyleBackColor = false;
+            SandBtn.Click += SandBtn_Click;
             // 
             // DarkDirtBtn
             // 
-            this.DarkDirtBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.DarkDirtBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.DarkDirtBtn.FlatAppearance.BorderSize = 0;
-            this.DarkDirtBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DarkDirtBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DarkDirtBtn.ForeColor = System.Drawing.Color.White;
-            this.DarkDirtBtn.Image = global::ACNHPokerCore.Properties.Resources.darksoil;
-            this.DarkDirtBtn.Location = new System.Drawing.Point(69, 143);
-            this.DarkDirtBtn.Name = "DarkDirtBtn";
-            this.DarkDirtBtn.Size = new System.Drawing.Size(60, 60);
-            this.DarkDirtBtn.TabIndex = 229;
-            this.DarkDirtBtn.Tag = "Other";
-            this.DarkDirtBtn.UseVisualStyleBackColor = false;
-            this.DarkDirtBtn.Click += new System.EventHandler(this.DarkDirtBtn_Click);
+            DarkDirtBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            DarkDirtBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            DarkDirtBtn.FlatAppearance.BorderSize = 0;
+            DarkDirtBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            DarkDirtBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            DarkDirtBtn.ForeColor = System.Drawing.Color.White;
+            DarkDirtBtn.Image = Properties.Resources.darksoil;
+            DarkDirtBtn.Location = new System.Drawing.Point(69, 143);
+            DarkDirtBtn.Name = "DarkDirtBtn";
+            DarkDirtBtn.Size = new System.Drawing.Size(60, 60);
+            DarkDirtBtn.TabIndex = 229;
+            DarkDirtBtn.Tag = "Other";
+            DarkDirtBtn.UseVisualStyleBackColor = false;
+            DarkDirtBtn.Click += DarkDirtBtn_Click;
             // 
             // ManualButtonPanel
             // 
-            this.ManualButtonPanel.Controls.Add(this.RoadDropdownBox);
-            this.ManualButtonPanel.Controls.Add(this.ManualRoadModeButton);
-            this.ManualButtonPanel.Controls.Add(this.ManualRiverModeButton);
-            this.ManualButtonPanel.Controls.Add(this.ManualCliffModeButton);
-            this.ManualButtonPanel.Controls.Add(this.ManualRoadPanel);
-            this.ManualButtonPanel.Controls.Add(this.ManualCliffPanel);
-            this.ManualButtonPanel.Controls.Add(this.ManualRiverPanel);
-            this.ManualButtonPanel.Location = new System.Drawing.Point(6, 231);
-            this.ManualButtonPanel.Name = "ManualButtonPanel";
-            this.ManualButtonPanel.Size = new System.Drawing.Size(225, 340);
-            this.ManualButtonPanel.TabIndex = 244;
-            this.ManualButtonPanel.Visible = false;
+            ManualButtonPanel.Controls.Add(RoadDropdownBox);
+            ManualButtonPanel.Controls.Add(ManualRoadModeButton);
+            ManualButtonPanel.Controls.Add(ManualRiverModeButton);
+            ManualButtonPanel.Controls.Add(ManualCliffModeButton);
+            ManualButtonPanel.Controls.Add(ManualRoadPanel);
+            ManualButtonPanel.Controls.Add(ManualCliffPanel);
+            ManualButtonPanel.Controls.Add(ManualRiverPanel);
+            ManualButtonPanel.Location = new System.Drawing.Point(6, 231);
+            ManualButtonPanel.Name = "ManualButtonPanel";
+            ManualButtonPanel.Size = new System.Drawing.Size(225, 340);
+            ManualButtonPanel.TabIndex = 244;
+            ManualButtonPanel.Visible = false;
             // 
             // RoadDropdownBox
             // 
-            this.RoadDropdownBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.RoadDropdownBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.RoadDropdownBox.DropDownHeight = 250;
-            this.RoadDropdownBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.RoadDropdownBox.DropDownWidth = 120;
-            this.RoadDropdownBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RoadDropdownBox.ForeColor = System.Drawing.Color.White;
-            this.RoadDropdownBox.FormattingEnabled = true;
-            this.RoadDropdownBox.IntegralHeight = false;
-            this.RoadDropdownBox.ItemHeight = 30;
-            this.RoadDropdownBox.Items.AddRange(new object[] {
-            "Wooden",
-            "Terra-cotta tile",
-            "Sand",
-            "Arched tile",
-            "Dark dirt",
-            "Brick",
-            "Stone",
-            "Dirt"});
-            this.RoadDropdownBox.Location = new System.Drawing.Point(126, 3);
-            this.RoadDropdownBox.Name = "RoadDropdownBox";
-            this.RoadDropdownBox.Size = new System.Drawing.Size(94, 36);
-            this.RoadDropdownBox.TabIndex = 230;
-            this.RoadDropdownBox.SelectedIndexChanged += new System.EventHandler(this.RoadDropdownBox_SelectedIndexChanged);
+            RoadDropdownBox.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            RoadDropdownBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            RoadDropdownBox.DropDownHeight = 250;
+            RoadDropdownBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            RoadDropdownBox.DropDownWidth = 120;
+            RoadDropdownBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RoadDropdownBox.ForeColor = System.Drawing.Color.White;
+            RoadDropdownBox.FormattingEnabled = true;
+            RoadDropdownBox.IntegralHeight = false;
+            RoadDropdownBox.ItemHeight = 30;
+            RoadDropdownBox.Items.AddRange(new object[] { "Wooden", "Terra-cotta tile", "Sand", "Arched tile", "Dark dirt", "Brick", "Stone", "Dirt" });
+            RoadDropdownBox.Location = new System.Drawing.Point(126, 3);
+            RoadDropdownBox.Name = "RoadDropdownBox";
+            RoadDropdownBox.Size = new System.Drawing.Size(94, 36);
+            RoadDropdownBox.TabIndex = 230;
+            RoadDropdownBox.SelectedIndexChanged += RoadDropdownBox_SelectedIndexChanged;
             // 
             // ManualRoadModeButton
             // 
-            this.ManualRoadModeButton.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.ManualRoadModeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ManualRoadModeButton.FlatAppearance.BorderSize = 0;
-            this.ManualRoadModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ManualRoadModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ManualRoadModeButton.ForeColor = System.Drawing.Color.White;
-            this.ManualRoadModeButton.Location = new System.Drawing.Point(85, 3);
-            this.ManualRoadModeButton.Name = "ManualRoadModeButton";
-            this.ManualRoadModeButton.Size = new System.Drawing.Size(36, 36);
-            this.ManualRoadModeButton.TabIndex = 228;
-            this.ManualRoadModeButton.Tag = "Other";
-            this.ManualRoadModeButton.UseVisualStyleBackColor = false;
-            this.ManualRoadModeButton.Click += new System.EventHandler(this.ManualRoadModeButton_Click);
+            ManualRoadModeButton.BackColor = System.Drawing.Color.LightSeaGreen;
+            ManualRoadModeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            ManualRoadModeButton.FlatAppearance.BorderSize = 0;
+            ManualRoadModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ManualRoadModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualRoadModeButton.ForeColor = System.Drawing.Color.White;
+            ManualRoadModeButton.Location = new System.Drawing.Point(85, 3);
+            ManualRoadModeButton.Name = "ManualRoadModeButton";
+            ManualRoadModeButton.Size = new System.Drawing.Size(36, 36);
+            ManualRoadModeButton.TabIndex = 228;
+            ManualRoadModeButton.Tag = "Other";
+            ManualRoadModeButton.UseVisualStyleBackColor = false;
+            ManualRoadModeButton.Click += ManualRoadModeButton_Click;
             // 
             // ManualRiverModeButton
             // 
-            this.ManualRiverModeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.ManualRiverModeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ManualRiverModeButton.FlatAppearance.BorderSize = 0;
-            this.ManualRiverModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ManualRiverModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ManualRiverModeButton.ForeColor = System.Drawing.Color.White;
-            this.ManualRiverModeButton.Location = new System.Drawing.Point(44, 3);
-            this.ManualRiverModeButton.Name = "ManualRiverModeButton";
-            this.ManualRiverModeButton.Size = new System.Drawing.Size(36, 36);
-            this.ManualRiverModeButton.TabIndex = 227;
-            this.ManualRiverModeButton.Tag = "Other";
-            this.ManualRiverModeButton.UseVisualStyleBackColor = false;
-            this.ManualRiverModeButton.Click += new System.EventHandler(this.ManualRiverModeButton_Click);
+            ManualRiverModeButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            ManualRiverModeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            ManualRiverModeButton.FlatAppearance.BorderSize = 0;
+            ManualRiverModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ManualRiverModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualRiverModeButton.ForeColor = System.Drawing.Color.White;
+            ManualRiverModeButton.Location = new System.Drawing.Point(44, 3);
+            ManualRiverModeButton.Name = "ManualRiverModeButton";
+            ManualRiverModeButton.Size = new System.Drawing.Size(36, 36);
+            ManualRiverModeButton.TabIndex = 227;
+            ManualRiverModeButton.Tag = "Other";
+            ManualRiverModeButton.UseVisualStyleBackColor = false;
+            ManualRiverModeButton.Click += ManualRiverModeButton_Click;
             // 
             // ManualCliffModeButton
             // 
-            this.ManualCliffModeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.ManualCliffModeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ManualCliffModeButton.FlatAppearance.BorderSize = 0;
-            this.ManualCliffModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ManualCliffModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ManualCliffModeButton.ForeColor = System.Drawing.Color.White;
-            this.ManualCliffModeButton.Location = new System.Drawing.Point(3, 3);
-            this.ManualCliffModeButton.Name = "ManualCliffModeButton";
-            this.ManualCliffModeButton.Size = new System.Drawing.Size(36, 36);
-            this.ManualCliffModeButton.TabIndex = 226;
-            this.ManualCliffModeButton.Tag = "Other";
-            this.ManualCliffModeButton.UseVisualStyleBackColor = false;
-            this.ManualCliffModeButton.Click += new System.EventHandler(this.ManualCliffModeButton_Click);
+            ManualCliffModeButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            ManualCliffModeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            ManualCliffModeButton.FlatAppearance.BorderSize = 0;
+            ManualCliffModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ManualCliffModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualCliffModeButton.ForeColor = System.Drawing.Color.White;
+            ManualCliffModeButton.Location = new System.Drawing.Point(3, 3);
+            ManualCliffModeButton.Name = "ManualCliffModeButton";
+            ManualCliffModeButton.Size = new System.Drawing.Size(36, 36);
+            ManualCliffModeButton.TabIndex = 226;
+            ManualCliffModeButton.Tag = "Other";
+            ManualCliffModeButton.UseVisualStyleBackColor = false;
+            ManualCliffModeButton.Click += ManualCliffModeButton_Click;
             // 
             // ManualRoadPanel
             // 
-            this.ManualRoadPanel.Controls.Add(this.RotateRoadButton);
-            this.ManualRoadPanel.Controls.Add(this.RoadButton8A);
-            this.ManualRoadPanel.Controls.Add(this.RoadButton0A);
-            this.ManualRoadPanel.Controls.Add(this.RoadButton3B);
-            this.ManualRoadPanel.Controls.Add(this.RoadButton7A);
-            this.ManualRoadPanel.Controls.Add(this.RoadButton3A);
-            this.ManualRoadPanel.Controls.Add(this.RoadButton3C);
-            this.ManualRoadPanel.Controls.Add(this.RoadButton6B);
-            this.ManualRoadPanel.Controls.Add(this.RoadButton2C);
-            this.ManualRoadPanel.Controls.Add(this.RoadButton0B);
-            this.ManualRoadPanel.Controls.Add(this.RoadButton4A);
-            this.ManualRoadPanel.Controls.Add(this.RoadButton6A);
-            this.ManualRoadPanel.Controls.Add(this.RoadButton2B);
-            this.ManualRoadPanel.Controls.Add(this.RoadButton1A);
-            this.ManualRoadPanel.Controls.Add(this.RoadButton4B);
-            this.ManualRoadPanel.Controls.Add(this.RoadButton5B);
-            this.ManualRoadPanel.Controls.Add(this.RoadButton2A);
-            this.ManualRoadPanel.Controls.Add(this.RoadButton1B);
-            this.ManualRoadPanel.Controls.Add(this.RoadButton4C);
-            this.ManualRoadPanel.Controls.Add(this.RoadButton5A);
-            this.ManualRoadPanel.Controls.Add(this.RoadButton1C);
-            this.ManualRoadPanel.Location = new System.Drawing.Point(0, 44);
-            this.ManualRoadPanel.Name = "ManualRoadPanel";
-            this.ManualRoadPanel.Size = new System.Drawing.Size(225, 297);
-            this.ManualRoadPanel.TabIndex = 229;
+            ManualRoadPanel.Controls.Add(RotateRoadButton);
+            ManualRoadPanel.Controls.Add(RoadButton8A);
+            ManualRoadPanel.Controls.Add(RoadButton0A);
+            ManualRoadPanel.Controls.Add(RoadButton3B);
+            ManualRoadPanel.Controls.Add(RoadButton7A);
+            ManualRoadPanel.Controls.Add(RoadButton3A);
+            ManualRoadPanel.Controls.Add(RoadButton3C);
+            ManualRoadPanel.Controls.Add(RoadButton6B);
+            ManualRoadPanel.Controls.Add(RoadButton2C);
+            ManualRoadPanel.Controls.Add(RoadButton0B);
+            ManualRoadPanel.Controls.Add(RoadButton4A);
+            ManualRoadPanel.Controls.Add(RoadButton6A);
+            ManualRoadPanel.Controls.Add(RoadButton2B);
+            ManualRoadPanel.Controls.Add(RoadButton1A);
+            ManualRoadPanel.Controls.Add(RoadButton4B);
+            ManualRoadPanel.Controls.Add(RoadButton5B);
+            ManualRoadPanel.Controls.Add(RoadButton2A);
+            ManualRoadPanel.Controls.Add(RoadButton1B);
+            ManualRoadPanel.Controls.Add(RoadButton4C);
+            ManualRoadPanel.Controls.Add(RoadButton5A);
+            ManualRoadPanel.Controls.Add(RoadButton1C);
+            ManualRoadPanel.Location = new System.Drawing.Point(0, 44);
+            ManualRoadPanel.Name = "ManualRoadPanel";
+            ManualRoadPanel.Size = new System.Drawing.Size(225, 297);
+            ManualRoadPanel.TabIndex = 229;
             // 
             // RotateRoadButton
             // 
-            this.RotateRoadButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.RotateRoadButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RotateRoadButton.FlatAppearance.BorderSize = 0;
-            this.RotateRoadButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RotateRoadButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RotateRoadButton.ForeColor = System.Drawing.Color.White;
-            this.RotateRoadButton.Location = new System.Drawing.Point(167, 3);
-            this.RotateRoadButton.Name = "RotateRoadButton";
-            this.RotateRoadButton.Size = new System.Drawing.Size(36, 36);
-            this.RotateRoadButton.TabIndex = 247;
-            this.RotateRoadButton.Tag = "";
-            this.RotateRoadButton.UseVisualStyleBackColor = false;
-            this.RotateRoadButton.Click += new System.EventHandler(this.RotateRoadButton_Click);
+            RotateRoadButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            RotateRoadButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            RotateRoadButton.FlatAppearance.BorderSize = 0;
+            RotateRoadButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RotateRoadButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RotateRoadButton.ForeColor = System.Drawing.Color.White;
+            RotateRoadButton.Location = new System.Drawing.Point(167, 3);
+            RotateRoadButton.Name = "RotateRoadButton";
+            RotateRoadButton.Size = new System.Drawing.Size(36, 36);
+            RotateRoadButton.TabIndex = 247;
+            RotateRoadButton.Tag = "";
+            RotateRoadButton.UseVisualStyleBackColor = false;
+            RotateRoadButton.Click += RotateRoadButton_Click;
             // 
             // RoadButton8A
             // 
-            this.RoadButton8A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton8A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RoadButton8A.FlatAppearance.BorderSize = 0;
-            this.RoadButton8A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RoadButton8A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RoadButton8A.ForeColor = System.Drawing.Color.White;
-            this.RoadButton8A.Location = new System.Drawing.Point(44, 249);
-            this.RoadButton8A.Name = "RoadButton8A";
-            this.RoadButton8A.Size = new System.Drawing.Size(36, 36);
-            this.RoadButton8A.TabIndex = 246;
-            this.RoadButton8A.Tag = "8A";
-            this.ButtonToolTip.SetToolTip(this.RoadButton8A, "8A");
-            this.RoadButton8A.UseVisualStyleBackColor = false;
-            this.RoadButton8A.Click += new System.EventHandler(this.ManualRoadButton_Click);
+            RoadButton8A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RoadButton8A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RoadButton8A.FlatAppearance.BorderSize = 0;
+            RoadButton8A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RoadButton8A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton8A.ForeColor = System.Drawing.Color.White;
+            RoadButton8A.Location = new System.Drawing.Point(44, 249);
+            RoadButton8A.Name = "RoadButton8A";
+            RoadButton8A.Size = new System.Drawing.Size(36, 36);
+            RoadButton8A.TabIndex = 246;
+            RoadButton8A.Tag = "8A";
+            ButtonToolTip.SetToolTip(RoadButton8A, "8A");
+            RoadButton8A.UseVisualStyleBackColor = false;
+            RoadButton8A.Click += ManualRoadButton_Click;
             // 
             // RoadButton0A
             // 
-            this.RoadButton0A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton0A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RoadButton0A.FlatAppearance.BorderSize = 0;
-            this.RoadButton0A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RoadButton0A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RoadButton0A.ForeColor = System.Drawing.Color.White;
-            this.RoadButton0A.Location = new System.Drawing.Point(3, 3);
-            this.RoadButton0A.Name = "RoadButton0A";
-            this.RoadButton0A.Size = new System.Drawing.Size(36, 36);
-            this.RoadButton0A.TabIndex = 225;
-            this.RoadButton0A.Tag = "0A";
-            this.ButtonToolTip.SetToolTip(this.RoadButton0A, "0A");
-            this.RoadButton0A.UseVisualStyleBackColor = false;
-            this.RoadButton0A.Click += new System.EventHandler(this.ManualRoadButton_Click);
+            RoadButton0A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RoadButton0A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RoadButton0A.FlatAppearance.BorderSize = 0;
+            RoadButton0A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RoadButton0A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton0A.ForeColor = System.Drawing.Color.White;
+            RoadButton0A.Location = new System.Drawing.Point(3, 3);
+            RoadButton0A.Name = "RoadButton0A";
+            RoadButton0A.Size = new System.Drawing.Size(36, 36);
+            RoadButton0A.TabIndex = 225;
+            RoadButton0A.Tag = "0A";
+            ButtonToolTip.SetToolTip(RoadButton0A, "0A");
+            RoadButton0A.UseVisualStyleBackColor = false;
+            RoadButton0A.Click += ManualRoadButton_Click;
             // 
             // RoadButton3B
             // 
-            this.RoadButton3B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton3B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RoadButton3B.FlatAppearance.BorderSize = 0;
-            this.RoadButton3B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RoadButton3B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RoadButton3B.ForeColor = System.Drawing.Color.White;
-            this.RoadButton3B.Location = new System.Drawing.Point(44, 126);
-            this.RoadButton3B.Name = "RoadButton3B";
-            this.RoadButton3B.Size = new System.Drawing.Size(36, 36);
-            this.RoadButton3B.TabIndex = 234;
-            this.RoadButton3B.Tag = "3B";
-            this.ButtonToolTip.SetToolTip(this.RoadButton3B, "3B");
-            this.RoadButton3B.UseVisualStyleBackColor = false;
-            this.RoadButton3B.Click += new System.EventHandler(this.ManualRoadButton_Click);
+            RoadButton3B.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RoadButton3B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RoadButton3B.FlatAppearance.BorderSize = 0;
+            RoadButton3B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RoadButton3B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton3B.ForeColor = System.Drawing.Color.White;
+            RoadButton3B.Location = new System.Drawing.Point(44, 126);
+            RoadButton3B.Name = "RoadButton3B";
+            RoadButton3B.Size = new System.Drawing.Size(36, 36);
+            RoadButton3B.TabIndex = 234;
+            RoadButton3B.Tag = "3B";
+            ButtonToolTip.SetToolTip(RoadButton3B, "3B");
+            RoadButton3B.UseVisualStyleBackColor = false;
+            RoadButton3B.Click += ManualRoadButton_Click;
             // 
             // RoadButton7A
             // 
-            this.RoadButton7A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton7A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RoadButton7A.FlatAppearance.BorderSize = 0;
-            this.RoadButton7A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RoadButton7A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RoadButton7A.ForeColor = System.Drawing.Color.White;
-            this.RoadButton7A.Location = new System.Drawing.Point(3, 249);
-            this.RoadButton7A.Name = "RoadButton7A";
-            this.RoadButton7A.Size = new System.Drawing.Size(36, 36);
-            this.RoadButton7A.TabIndex = 245;
-            this.RoadButton7A.Tag = "7A";
-            this.ButtonToolTip.SetToolTip(this.RoadButton7A, "7A");
-            this.RoadButton7A.UseVisualStyleBackColor = false;
-            this.RoadButton7A.Click += new System.EventHandler(this.ManualRoadButton_Click);
+            RoadButton7A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RoadButton7A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RoadButton7A.FlatAppearance.BorderSize = 0;
+            RoadButton7A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RoadButton7A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton7A.ForeColor = System.Drawing.Color.White;
+            RoadButton7A.Location = new System.Drawing.Point(3, 249);
+            RoadButton7A.Name = "RoadButton7A";
+            RoadButton7A.Size = new System.Drawing.Size(36, 36);
+            RoadButton7A.TabIndex = 245;
+            RoadButton7A.Tag = "7A";
+            ButtonToolTip.SetToolTip(RoadButton7A, "7A");
+            RoadButton7A.UseVisualStyleBackColor = false;
+            RoadButton7A.Click += ManualRoadButton_Click;
             // 
             // RoadButton3A
             // 
-            this.RoadButton3A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton3A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RoadButton3A.FlatAppearance.BorderSize = 0;
-            this.RoadButton3A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RoadButton3A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RoadButton3A.ForeColor = System.Drawing.Color.White;
-            this.RoadButton3A.Location = new System.Drawing.Point(3, 126);
-            this.RoadButton3A.Name = "RoadButton3A";
-            this.RoadButton3A.Size = new System.Drawing.Size(36, 36);
-            this.RoadButton3A.TabIndex = 233;
-            this.RoadButton3A.Tag = "3A";
-            this.ButtonToolTip.SetToolTip(this.RoadButton3A, "3A");
-            this.RoadButton3A.UseVisualStyleBackColor = false;
-            this.RoadButton3A.Click += new System.EventHandler(this.ManualRoadButton_Click);
+            RoadButton3A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RoadButton3A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RoadButton3A.FlatAppearance.BorderSize = 0;
+            RoadButton3A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RoadButton3A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton3A.ForeColor = System.Drawing.Color.White;
+            RoadButton3A.Location = new System.Drawing.Point(3, 126);
+            RoadButton3A.Name = "RoadButton3A";
+            RoadButton3A.Size = new System.Drawing.Size(36, 36);
+            RoadButton3A.TabIndex = 233;
+            RoadButton3A.Tag = "3A";
+            ButtonToolTip.SetToolTip(RoadButton3A, "3A");
+            RoadButton3A.UseVisualStyleBackColor = false;
+            RoadButton3A.Click += ManualRoadButton_Click;
             // 
             // RoadButton3C
             // 
-            this.RoadButton3C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton3C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RoadButton3C.FlatAppearance.BorderSize = 0;
-            this.RoadButton3C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RoadButton3C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RoadButton3C.ForeColor = System.Drawing.Color.White;
-            this.RoadButton3C.Location = new System.Drawing.Point(85, 126);
-            this.RoadButton3C.Name = "RoadButton3C";
-            this.RoadButton3C.Size = new System.Drawing.Size(36, 36);
-            this.RoadButton3C.TabIndex = 235;
-            this.RoadButton3C.Tag = "3C";
-            this.ButtonToolTip.SetToolTip(this.RoadButton3C, "3C");
-            this.RoadButton3C.UseVisualStyleBackColor = false;
-            this.RoadButton3C.Click += new System.EventHandler(this.ManualRoadButton_Click);
+            RoadButton3C.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RoadButton3C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RoadButton3C.FlatAppearance.BorderSize = 0;
+            RoadButton3C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RoadButton3C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton3C.ForeColor = System.Drawing.Color.White;
+            RoadButton3C.Location = new System.Drawing.Point(85, 126);
+            RoadButton3C.Name = "RoadButton3C";
+            RoadButton3C.Size = new System.Drawing.Size(36, 36);
+            RoadButton3C.TabIndex = 235;
+            RoadButton3C.Tag = "3C";
+            ButtonToolTip.SetToolTip(RoadButton3C, "3C");
+            RoadButton3C.UseVisualStyleBackColor = false;
+            RoadButton3C.Click += ManualRoadButton_Click;
             // 
             // RoadButton6B
             // 
-            this.RoadButton6B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton6B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RoadButton6B.FlatAppearance.BorderSize = 0;
-            this.RoadButton6B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RoadButton6B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RoadButton6B.ForeColor = System.Drawing.Color.White;
-            this.RoadButton6B.Location = new System.Drawing.Point(126, 208);
-            this.RoadButton6B.Name = "RoadButton6B";
-            this.RoadButton6B.Size = new System.Drawing.Size(36, 36);
-            this.RoadButton6B.TabIndex = 243;
-            this.RoadButton6B.Tag = "6B";
-            this.ButtonToolTip.SetToolTip(this.RoadButton6B, "6B");
-            this.RoadButton6B.UseVisualStyleBackColor = false;
-            this.RoadButton6B.Click += new System.EventHandler(this.ManualRoadButton_Click);
+            RoadButton6B.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RoadButton6B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RoadButton6B.FlatAppearance.BorderSize = 0;
+            RoadButton6B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RoadButton6B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton6B.ForeColor = System.Drawing.Color.White;
+            RoadButton6B.Location = new System.Drawing.Point(126, 208);
+            RoadButton6B.Name = "RoadButton6B";
+            RoadButton6B.Size = new System.Drawing.Size(36, 36);
+            RoadButton6B.TabIndex = 243;
+            RoadButton6B.Tag = "6B";
+            ButtonToolTip.SetToolTip(RoadButton6B, "6B");
+            RoadButton6B.UseVisualStyleBackColor = false;
+            RoadButton6B.Click += ManualRoadButton_Click;
             // 
             // RoadButton2C
             // 
-            this.RoadButton2C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton2C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RoadButton2C.FlatAppearance.BorderSize = 0;
-            this.RoadButton2C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RoadButton2C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RoadButton2C.ForeColor = System.Drawing.Color.White;
-            this.RoadButton2C.Location = new System.Drawing.Point(85, 85);
-            this.RoadButton2C.Name = "RoadButton2C";
-            this.RoadButton2C.Size = new System.Drawing.Size(36, 36);
-            this.RoadButton2C.TabIndex = 232;
-            this.RoadButton2C.Tag = "2C";
-            this.ButtonToolTip.SetToolTip(this.RoadButton2C, "2C");
-            this.RoadButton2C.UseVisualStyleBackColor = false;
-            this.RoadButton2C.Click += new System.EventHandler(this.ManualRoadButton_Click);
+            RoadButton2C.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RoadButton2C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RoadButton2C.FlatAppearance.BorderSize = 0;
+            RoadButton2C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RoadButton2C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton2C.ForeColor = System.Drawing.Color.White;
+            RoadButton2C.Location = new System.Drawing.Point(85, 85);
+            RoadButton2C.Name = "RoadButton2C";
+            RoadButton2C.Size = new System.Drawing.Size(36, 36);
+            RoadButton2C.TabIndex = 232;
+            RoadButton2C.Tag = "2C";
+            ButtonToolTip.SetToolTip(RoadButton2C, "2C");
+            RoadButton2C.UseVisualStyleBackColor = false;
+            RoadButton2C.Click += ManualRoadButton_Click;
             // 
             // RoadButton0B
             // 
-            this.RoadButton0B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton0B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RoadButton0B.FlatAppearance.BorderSize = 0;
-            this.RoadButton0B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RoadButton0B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RoadButton0B.ForeColor = System.Drawing.Color.White;
-            this.RoadButton0B.Location = new System.Drawing.Point(44, 3);
-            this.RoadButton0B.Name = "RoadButton0B";
-            this.RoadButton0B.Size = new System.Drawing.Size(36, 36);
-            this.RoadButton0B.TabIndex = 226;
-            this.RoadButton0B.Tag = "0B";
-            this.ButtonToolTip.SetToolTip(this.RoadButton0B, "0B");
-            this.RoadButton0B.UseVisualStyleBackColor = false;
-            this.RoadButton0B.Click += new System.EventHandler(this.ManualRoadButton_Click);
+            RoadButton0B.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RoadButton0B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RoadButton0B.FlatAppearance.BorderSize = 0;
+            RoadButton0B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RoadButton0B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton0B.ForeColor = System.Drawing.Color.White;
+            RoadButton0B.Location = new System.Drawing.Point(44, 3);
+            RoadButton0B.Name = "RoadButton0B";
+            RoadButton0B.Size = new System.Drawing.Size(36, 36);
+            RoadButton0B.TabIndex = 226;
+            RoadButton0B.Tag = "0B";
+            ButtonToolTip.SetToolTip(RoadButton0B, "0B");
+            RoadButton0B.UseVisualStyleBackColor = false;
+            RoadButton0B.Click += ManualRoadButton_Click;
             // 
             // RoadButton4A
             // 
-            this.RoadButton4A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton4A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RoadButton4A.FlatAppearance.BorderSize = 0;
-            this.RoadButton4A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RoadButton4A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RoadButton4A.ForeColor = System.Drawing.Color.White;
-            this.RoadButton4A.Location = new System.Drawing.Point(3, 167);
-            this.RoadButton4A.Name = "RoadButton4A";
-            this.RoadButton4A.Size = new System.Drawing.Size(36, 36);
-            this.RoadButton4A.TabIndex = 236;
-            this.RoadButton4A.Tag = "4A";
-            this.ButtonToolTip.SetToolTip(this.RoadButton4A, "4A");
-            this.RoadButton4A.UseVisualStyleBackColor = false;
-            this.RoadButton4A.Click += new System.EventHandler(this.ManualRoadButton_Click);
+            RoadButton4A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RoadButton4A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RoadButton4A.FlatAppearance.BorderSize = 0;
+            RoadButton4A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RoadButton4A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton4A.ForeColor = System.Drawing.Color.White;
+            RoadButton4A.Location = new System.Drawing.Point(3, 167);
+            RoadButton4A.Name = "RoadButton4A";
+            RoadButton4A.Size = new System.Drawing.Size(36, 36);
+            RoadButton4A.TabIndex = 236;
+            RoadButton4A.Tag = "4A";
+            ButtonToolTip.SetToolTip(RoadButton4A, "4A");
+            RoadButton4A.UseVisualStyleBackColor = false;
+            RoadButton4A.Click += ManualRoadButton_Click;
             // 
             // RoadButton6A
             // 
-            this.RoadButton6A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton6A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RoadButton6A.FlatAppearance.BorderSize = 0;
-            this.RoadButton6A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RoadButton6A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RoadButton6A.ForeColor = System.Drawing.Color.White;
-            this.RoadButton6A.Location = new System.Drawing.Point(85, 208);
-            this.RoadButton6A.Name = "RoadButton6A";
-            this.RoadButton6A.Size = new System.Drawing.Size(36, 36);
-            this.RoadButton6A.TabIndex = 242;
-            this.RoadButton6A.Tag = "6A";
-            this.ButtonToolTip.SetToolTip(this.RoadButton6A, "6A");
-            this.RoadButton6A.UseVisualStyleBackColor = false;
-            this.RoadButton6A.Click += new System.EventHandler(this.ManualRoadButton_Click);
+            RoadButton6A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RoadButton6A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RoadButton6A.FlatAppearance.BorderSize = 0;
+            RoadButton6A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RoadButton6A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton6A.ForeColor = System.Drawing.Color.White;
+            RoadButton6A.Location = new System.Drawing.Point(85, 208);
+            RoadButton6A.Name = "RoadButton6A";
+            RoadButton6A.Size = new System.Drawing.Size(36, 36);
+            RoadButton6A.TabIndex = 242;
+            RoadButton6A.Tag = "6A";
+            ButtonToolTip.SetToolTip(RoadButton6A, "6A");
+            RoadButton6A.UseVisualStyleBackColor = false;
+            RoadButton6A.Click += ManualRoadButton_Click;
             // 
             // RoadButton2B
             // 
-            this.RoadButton2B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton2B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RoadButton2B.FlatAppearance.BorderSize = 0;
-            this.RoadButton2B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RoadButton2B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RoadButton2B.ForeColor = System.Drawing.Color.White;
-            this.RoadButton2B.Location = new System.Drawing.Point(44, 85);
-            this.RoadButton2B.Name = "RoadButton2B";
-            this.RoadButton2B.Size = new System.Drawing.Size(36, 36);
-            this.RoadButton2B.TabIndex = 231;
-            this.RoadButton2B.Tag = "2B";
-            this.ButtonToolTip.SetToolTip(this.RoadButton2B, "2B");
-            this.RoadButton2B.UseVisualStyleBackColor = false;
-            this.RoadButton2B.Click += new System.EventHandler(this.ManualRoadButton_Click);
+            RoadButton2B.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RoadButton2B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RoadButton2B.FlatAppearance.BorderSize = 0;
+            RoadButton2B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RoadButton2B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton2B.ForeColor = System.Drawing.Color.White;
+            RoadButton2B.Location = new System.Drawing.Point(44, 85);
+            RoadButton2B.Name = "RoadButton2B";
+            RoadButton2B.Size = new System.Drawing.Size(36, 36);
+            RoadButton2B.TabIndex = 231;
+            RoadButton2B.Tag = "2B";
+            ButtonToolTip.SetToolTip(RoadButton2B, "2B");
+            RoadButton2B.UseVisualStyleBackColor = false;
+            RoadButton2B.Click += ManualRoadButton_Click;
             // 
             // RoadButton1A
             // 
-            this.RoadButton1A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton1A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RoadButton1A.FlatAppearance.BorderSize = 0;
-            this.RoadButton1A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RoadButton1A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RoadButton1A.ForeColor = System.Drawing.Color.White;
-            this.RoadButton1A.Location = new System.Drawing.Point(3, 44);
-            this.RoadButton1A.Name = "RoadButton1A";
-            this.RoadButton1A.Size = new System.Drawing.Size(36, 36);
-            this.RoadButton1A.TabIndex = 227;
-            this.RoadButton1A.Tag = "1A";
-            this.ButtonToolTip.SetToolTip(this.RoadButton1A, "1A");
-            this.RoadButton1A.UseVisualStyleBackColor = false;
-            this.RoadButton1A.Click += new System.EventHandler(this.ManualRoadButton_Click);
+            RoadButton1A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RoadButton1A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RoadButton1A.FlatAppearance.BorderSize = 0;
+            RoadButton1A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RoadButton1A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton1A.ForeColor = System.Drawing.Color.White;
+            RoadButton1A.Location = new System.Drawing.Point(3, 44);
+            RoadButton1A.Name = "RoadButton1A";
+            RoadButton1A.Size = new System.Drawing.Size(36, 36);
+            RoadButton1A.TabIndex = 227;
+            RoadButton1A.Tag = "1A";
+            ButtonToolTip.SetToolTip(RoadButton1A, "1A");
+            RoadButton1A.UseVisualStyleBackColor = false;
+            RoadButton1A.Click += ManualRoadButton_Click;
             // 
             // RoadButton4B
             // 
-            this.RoadButton4B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton4B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RoadButton4B.FlatAppearance.BorderSize = 0;
-            this.RoadButton4B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RoadButton4B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RoadButton4B.ForeColor = System.Drawing.Color.White;
-            this.RoadButton4B.Location = new System.Drawing.Point(44, 167);
-            this.RoadButton4B.Name = "RoadButton4B";
-            this.RoadButton4B.Size = new System.Drawing.Size(36, 36);
-            this.RoadButton4B.TabIndex = 237;
-            this.RoadButton4B.Tag = "4B";
-            this.ButtonToolTip.SetToolTip(this.RoadButton4B, "4B");
-            this.RoadButton4B.UseVisualStyleBackColor = false;
-            this.RoadButton4B.Click += new System.EventHandler(this.ManualRoadButton_Click);
+            RoadButton4B.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RoadButton4B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RoadButton4B.FlatAppearance.BorderSize = 0;
+            RoadButton4B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RoadButton4B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton4B.ForeColor = System.Drawing.Color.White;
+            RoadButton4B.Location = new System.Drawing.Point(44, 167);
+            RoadButton4B.Name = "RoadButton4B";
+            RoadButton4B.Size = new System.Drawing.Size(36, 36);
+            RoadButton4B.TabIndex = 237;
+            RoadButton4B.Tag = "4B";
+            ButtonToolTip.SetToolTip(RoadButton4B, "4B");
+            RoadButton4B.UseVisualStyleBackColor = false;
+            RoadButton4B.Click += ManualRoadButton_Click;
             // 
             // RoadButton5B
             // 
-            this.RoadButton5B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton5B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RoadButton5B.FlatAppearance.BorderSize = 0;
-            this.RoadButton5B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RoadButton5B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RoadButton5B.ForeColor = System.Drawing.Color.White;
-            this.RoadButton5B.Location = new System.Drawing.Point(44, 208);
-            this.RoadButton5B.Name = "RoadButton5B";
-            this.RoadButton5B.Size = new System.Drawing.Size(36, 36);
-            this.RoadButton5B.TabIndex = 240;
-            this.RoadButton5B.Tag = "5B";
-            this.ButtonToolTip.SetToolTip(this.RoadButton5B, "5B");
-            this.RoadButton5B.UseVisualStyleBackColor = false;
-            this.RoadButton5B.Click += new System.EventHandler(this.ManualRoadButton_Click);
+            RoadButton5B.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RoadButton5B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RoadButton5B.FlatAppearance.BorderSize = 0;
+            RoadButton5B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RoadButton5B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton5B.ForeColor = System.Drawing.Color.White;
+            RoadButton5B.Location = new System.Drawing.Point(44, 208);
+            RoadButton5B.Name = "RoadButton5B";
+            RoadButton5B.Size = new System.Drawing.Size(36, 36);
+            RoadButton5B.TabIndex = 240;
+            RoadButton5B.Tag = "5B";
+            ButtonToolTip.SetToolTip(RoadButton5B, "5B");
+            RoadButton5B.UseVisualStyleBackColor = false;
+            RoadButton5B.Click += ManualRoadButton_Click;
             // 
             // RoadButton2A
             // 
-            this.RoadButton2A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton2A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RoadButton2A.FlatAppearance.BorderSize = 0;
-            this.RoadButton2A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RoadButton2A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RoadButton2A.ForeColor = System.Drawing.Color.White;
-            this.RoadButton2A.Location = new System.Drawing.Point(3, 85);
-            this.RoadButton2A.Name = "RoadButton2A";
-            this.RoadButton2A.Size = new System.Drawing.Size(36, 36);
-            this.RoadButton2A.TabIndex = 230;
-            this.RoadButton2A.Tag = "2A";
-            this.ButtonToolTip.SetToolTip(this.RoadButton2A, "2A");
-            this.RoadButton2A.UseVisualStyleBackColor = false;
-            this.RoadButton2A.Click += new System.EventHandler(this.ManualRoadButton_Click);
+            RoadButton2A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RoadButton2A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RoadButton2A.FlatAppearance.BorderSize = 0;
+            RoadButton2A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RoadButton2A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton2A.ForeColor = System.Drawing.Color.White;
+            RoadButton2A.Location = new System.Drawing.Point(3, 85);
+            RoadButton2A.Name = "RoadButton2A";
+            RoadButton2A.Size = new System.Drawing.Size(36, 36);
+            RoadButton2A.TabIndex = 230;
+            RoadButton2A.Tag = "2A";
+            ButtonToolTip.SetToolTip(RoadButton2A, "2A");
+            RoadButton2A.UseVisualStyleBackColor = false;
+            RoadButton2A.Click += ManualRoadButton_Click;
             // 
             // RoadButton1B
             // 
-            this.RoadButton1B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton1B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RoadButton1B.FlatAppearance.BorderSize = 0;
-            this.RoadButton1B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RoadButton1B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RoadButton1B.ForeColor = System.Drawing.Color.White;
-            this.RoadButton1B.Location = new System.Drawing.Point(44, 44);
-            this.RoadButton1B.Name = "RoadButton1B";
-            this.RoadButton1B.Size = new System.Drawing.Size(36, 36);
-            this.RoadButton1B.TabIndex = 228;
-            this.RoadButton1B.Tag = "1B";
-            this.ButtonToolTip.SetToolTip(this.RoadButton1B, "1B");
-            this.RoadButton1B.UseVisualStyleBackColor = false;
-            this.RoadButton1B.Click += new System.EventHandler(this.ManualRoadButton_Click);
+            RoadButton1B.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RoadButton1B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RoadButton1B.FlatAppearance.BorderSize = 0;
+            RoadButton1B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RoadButton1B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton1B.ForeColor = System.Drawing.Color.White;
+            RoadButton1B.Location = new System.Drawing.Point(44, 44);
+            RoadButton1B.Name = "RoadButton1B";
+            RoadButton1B.Size = new System.Drawing.Size(36, 36);
+            RoadButton1B.TabIndex = 228;
+            RoadButton1B.Tag = "1B";
+            ButtonToolTip.SetToolTip(RoadButton1B, "1B");
+            RoadButton1B.UseVisualStyleBackColor = false;
+            RoadButton1B.Click += ManualRoadButton_Click;
             // 
             // RoadButton4C
             // 
-            this.RoadButton4C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton4C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RoadButton4C.FlatAppearance.BorderSize = 0;
-            this.RoadButton4C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RoadButton4C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RoadButton4C.ForeColor = System.Drawing.Color.White;
-            this.RoadButton4C.Location = new System.Drawing.Point(85, 167);
-            this.RoadButton4C.Name = "RoadButton4C";
-            this.RoadButton4C.Size = new System.Drawing.Size(36, 36);
-            this.RoadButton4C.TabIndex = 238;
-            this.RoadButton4C.Tag = "4C";
-            this.ButtonToolTip.SetToolTip(this.RoadButton4C, "4C");
-            this.RoadButton4C.UseVisualStyleBackColor = false;
-            this.RoadButton4C.Click += new System.EventHandler(this.ManualRoadButton_Click);
+            RoadButton4C.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RoadButton4C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RoadButton4C.FlatAppearance.BorderSize = 0;
+            RoadButton4C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RoadButton4C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton4C.ForeColor = System.Drawing.Color.White;
+            RoadButton4C.Location = new System.Drawing.Point(85, 167);
+            RoadButton4C.Name = "RoadButton4C";
+            RoadButton4C.Size = new System.Drawing.Size(36, 36);
+            RoadButton4C.TabIndex = 238;
+            RoadButton4C.Tag = "4C";
+            ButtonToolTip.SetToolTip(RoadButton4C, "4C");
+            RoadButton4C.UseVisualStyleBackColor = false;
+            RoadButton4C.Click += ManualRoadButton_Click;
             // 
             // RoadButton5A
             // 
-            this.RoadButton5A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton5A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RoadButton5A.FlatAppearance.BorderSize = 0;
-            this.RoadButton5A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RoadButton5A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RoadButton5A.ForeColor = System.Drawing.Color.White;
-            this.RoadButton5A.Location = new System.Drawing.Point(3, 208);
-            this.RoadButton5A.Name = "RoadButton5A";
-            this.RoadButton5A.Size = new System.Drawing.Size(36, 36);
-            this.RoadButton5A.TabIndex = 239;
-            this.RoadButton5A.Tag = "5A";
-            this.ButtonToolTip.SetToolTip(this.RoadButton5A, "5A");
-            this.RoadButton5A.UseVisualStyleBackColor = false;
-            this.RoadButton5A.Click += new System.EventHandler(this.ManualRoadButton_Click);
+            RoadButton5A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RoadButton5A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RoadButton5A.FlatAppearance.BorderSize = 0;
+            RoadButton5A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RoadButton5A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton5A.ForeColor = System.Drawing.Color.White;
+            RoadButton5A.Location = new System.Drawing.Point(3, 208);
+            RoadButton5A.Name = "RoadButton5A";
+            RoadButton5A.Size = new System.Drawing.Size(36, 36);
+            RoadButton5A.TabIndex = 239;
+            RoadButton5A.Tag = "5A";
+            ButtonToolTip.SetToolTip(RoadButton5A, "5A");
+            RoadButton5A.UseVisualStyleBackColor = false;
+            RoadButton5A.Click += ManualRoadButton_Click;
             // 
             // RoadButton1C
             // 
-            this.RoadButton1C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RoadButton1C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RoadButton1C.FlatAppearance.BorderSize = 0;
-            this.RoadButton1C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RoadButton1C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RoadButton1C.ForeColor = System.Drawing.Color.White;
-            this.RoadButton1C.Location = new System.Drawing.Point(85, 44);
-            this.RoadButton1C.Name = "RoadButton1C";
-            this.RoadButton1C.Size = new System.Drawing.Size(36, 36);
-            this.RoadButton1C.TabIndex = 229;
-            this.RoadButton1C.Tag = "1C";
-            this.ButtonToolTip.SetToolTip(this.RoadButton1C, "1C");
-            this.RoadButton1C.UseVisualStyleBackColor = false;
-            this.RoadButton1C.Click += new System.EventHandler(this.ManualRoadButton_Click);
+            RoadButton1C.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RoadButton1C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RoadButton1C.FlatAppearance.BorderSize = 0;
+            RoadButton1C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RoadButton1C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton1C.ForeColor = System.Drawing.Color.White;
+            RoadButton1C.Location = new System.Drawing.Point(85, 44);
+            RoadButton1C.Name = "RoadButton1C";
+            RoadButton1C.Size = new System.Drawing.Size(36, 36);
+            RoadButton1C.TabIndex = 229;
+            RoadButton1C.Tag = "1C";
+            ButtonToolTip.SetToolTip(RoadButton1C, "1C");
+            RoadButton1C.UseVisualStyleBackColor = false;
+            RoadButton1C.Click += ManualRoadButton_Click;
             // 
             // ManualCliffPanel
             // 
-            this.ManualCliffPanel.Controls.Add(this.CliffButton8A);
-            this.ManualCliffPanel.Controls.Add(this.ManualTerrainElevation3Label);
-            this.ManualCliffPanel.Controls.Add(this.ManualTerrainElevationLabel);
-            this.ManualCliffPanel.Controls.Add(this.ManualTerrainElevation2Label);
-            this.ManualCliffPanel.Controls.Add(this.ManualTerrainElevation1Label);
-            this.ManualCliffPanel.Controls.Add(this.ManualCliffElevationBar);
-            this.ManualCliffPanel.Controls.Add(this.RotateCliffButton);
-            this.ManualCliffPanel.Controls.Add(this.CliffButton8);
-            this.ManualCliffPanel.Controls.Add(this.CliffButton0A);
-            this.ManualCliffPanel.Controls.Add(this.CliffButton3B);
-            this.ManualCliffPanel.Controls.Add(this.CliffButton7A);
-            this.ManualCliffPanel.Controls.Add(this.CliffButton3A);
-            this.ManualCliffPanel.Controls.Add(this.CliffButton3C);
-            this.ManualCliffPanel.Controls.Add(this.CliffButton6B);
-            this.ManualCliffPanel.Controls.Add(this.CliffButton2C);
-            this.ManualCliffPanel.Controls.Add(this.CliffButton4A);
-            this.ManualCliffPanel.Controls.Add(this.CliffButton6A);
-            this.ManualCliffPanel.Controls.Add(this.CliffButton2B);
-            this.ManualCliffPanel.Controls.Add(this.CliffButton1A);
-            this.ManualCliffPanel.Controls.Add(this.CliffButton4B);
-            this.ManualCliffPanel.Controls.Add(this.CliffButton5B);
-            this.ManualCliffPanel.Controls.Add(this.CliffButton2A);
-            this.ManualCliffPanel.Controls.Add(this.CliffButton4C);
-            this.ManualCliffPanel.Controls.Add(this.CliffButton5A);
-            this.ManualCliffPanel.Location = new System.Drawing.Point(0, 44);
-            this.ManualCliffPanel.Name = "ManualCliffPanel";
-            this.ManualCliffPanel.Size = new System.Drawing.Size(225, 297);
-            this.ManualCliffPanel.TabIndex = 1;
+            ManualCliffPanel.Controls.Add(CliffButton8A);
+            ManualCliffPanel.Controls.Add(ManualTerrainElevation3Label);
+            ManualCliffPanel.Controls.Add(ManualTerrainElevationLabel);
+            ManualCliffPanel.Controls.Add(ManualTerrainElevation2Label);
+            ManualCliffPanel.Controls.Add(ManualTerrainElevation1Label);
+            ManualCliffPanel.Controls.Add(ManualCliffElevationBar);
+            ManualCliffPanel.Controls.Add(RotateCliffButton);
+            ManualCliffPanel.Controls.Add(CliffButton8);
+            ManualCliffPanel.Controls.Add(CliffButton0A);
+            ManualCliffPanel.Controls.Add(CliffButton3B);
+            ManualCliffPanel.Controls.Add(CliffButton7A);
+            ManualCliffPanel.Controls.Add(CliffButton3A);
+            ManualCliffPanel.Controls.Add(CliffButton3C);
+            ManualCliffPanel.Controls.Add(CliffButton6B);
+            ManualCliffPanel.Controls.Add(CliffButton2C);
+            ManualCliffPanel.Controls.Add(CliffButton4A);
+            ManualCliffPanel.Controls.Add(CliffButton6A);
+            ManualCliffPanel.Controls.Add(CliffButton2B);
+            ManualCliffPanel.Controls.Add(CliffButton1A);
+            ManualCliffPanel.Controls.Add(CliffButton4B);
+            ManualCliffPanel.Controls.Add(CliffButton5B);
+            ManualCliffPanel.Controls.Add(CliffButton2A);
+            ManualCliffPanel.Controls.Add(CliffButton4C);
+            ManualCliffPanel.Controls.Add(CliffButton5A);
+            ManualCliffPanel.Location = new System.Drawing.Point(0, 44);
+            ManualCliffPanel.Name = "ManualCliffPanel";
+            ManualCliffPanel.Size = new System.Drawing.Size(225, 297);
+            ManualCliffPanel.TabIndex = 1;
             // 
             // CliffButton8A
             // 
-            this.CliffButton8A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton8A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.CliffButton8A.FlatAppearance.BorderSize = 0;
-            this.CliffButton8A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CliffButton8A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CliffButton8A.ForeColor = System.Drawing.Color.White;
-            this.CliffButton8A.Location = new System.Drawing.Point(167, 249);
-            this.CliffButton8A.Name = "CliffButton8A";
-            this.CliffButton8A.Size = new System.Drawing.Size(36, 36);
-            this.CliffButton8A.TabIndex = 274;
-            this.CliffButton8A.Tag = "8A";
-            this.ButtonToolTip.SetToolTip(this.CliffButton8A, "Invisible Support");
-            this.CliffButton8A.UseVisualStyleBackColor = false;
-            this.CliffButton8A.Click += new System.EventHandler(this.ManualCliffButton_Click);
+            CliffButton8A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            CliffButton8A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            CliffButton8A.FlatAppearance.BorderSize = 0;
+            CliffButton8A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CliffButton8A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton8A.ForeColor = System.Drawing.Color.White;
+            CliffButton8A.Location = new System.Drawing.Point(167, 249);
+            CliffButton8A.Name = "CliffButton8A";
+            CliffButton8A.Size = new System.Drawing.Size(36, 36);
+            CliffButton8A.TabIndex = 274;
+            CliffButton8A.Tag = "8A";
+            ButtonToolTip.SetToolTip(CliffButton8A, "Invisible Support");
+            CliffButton8A.UseVisualStyleBackColor = false;
+            CliffButton8A.Click += ManualCliffButton_Click;
             // 
             // ManualTerrainElevation3Label
             // 
-            this.ManualTerrainElevation3Label.AutoSize = true;
-            this.ManualTerrainElevation3Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ManualTerrainElevation3Label.ForeColor = System.Drawing.Color.White;
-            this.ManualTerrainElevation3Label.Location = new System.Drawing.Point(185, 70);
-            this.ManualTerrainElevation3Label.Name = "ManualTerrainElevation3Label";
-            this.ManualTerrainElevation3Label.Size = new System.Drawing.Size(13, 14);
-            this.ManualTerrainElevation3Label.TabIndex = 273;
-            this.ManualTerrainElevation3Label.Text = "3";
-            this.ManualTerrainElevation3Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            ManualTerrainElevation3Label.AutoSize = true;
+            ManualTerrainElevation3Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualTerrainElevation3Label.ForeColor = System.Drawing.Color.White;
+            ManualTerrainElevation3Label.Location = new System.Drawing.Point(185, 70);
+            ManualTerrainElevation3Label.Name = "ManualTerrainElevation3Label";
+            ManualTerrainElevation3Label.Size = new System.Drawing.Size(13, 14);
+            ManualTerrainElevation3Label.TabIndex = 273;
+            ManualTerrainElevation3Label.Text = "3";
+            ManualTerrainElevation3Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ManualTerrainElevationLabel
             // 
-            this.ManualTerrainElevationLabel.AutoSize = true;
-            this.ManualTerrainElevationLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ManualTerrainElevationLabel.ForeColor = System.Drawing.Color.White;
-            this.ManualTerrainElevationLabel.Location = new System.Drawing.Point(126, 55);
-            this.ManualTerrainElevationLabel.Name = "ManualTerrainElevationLabel";
-            this.ManualTerrainElevationLabel.Size = new System.Drawing.Size(62, 14);
-            this.ManualTerrainElevationLabel.TabIndex = 270;
-            this.ManualTerrainElevationLabel.Text = "Elevation :";
-            this.ManualTerrainElevationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            ManualTerrainElevationLabel.AutoSize = true;
+            ManualTerrainElevationLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualTerrainElevationLabel.ForeColor = System.Drawing.Color.White;
+            ManualTerrainElevationLabel.Location = new System.Drawing.Point(126, 55);
+            ManualTerrainElevationLabel.Name = "ManualTerrainElevationLabel";
+            ManualTerrainElevationLabel.Size = new System.Drawing.Size(62, 14);
+            ManualTerrainElevationLabel.TabIndex = 270;
+            ManualTerrainElevationLabel.Text = "Elevation :";
+            ManualTerrainElevationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ManualTerrainElevation2Label
             // 
-            this.ManualTerrainElevation2Label.AutoSize = true;
-            this.ManualTerrainElevation2Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ManualTerrainElevation2Label.ForeColor = System.Drawing.Color.White;
-            this.ManualTerrainElevation2Label.Location = new System.Drawing.Point(185, 94);
-            this.ManualTerrainElevation2Label.Name = "ManualTerrainElevation2Label";
-            this.ManualTerrainElevation2Label.Size = new System.Drawing.Size(13, 14);
-            this.ManualTerrainElevation2Label.TabIndex = 272;
-            this.ManualTerrainElevation2Label.Text = "2";
-            this.ManualTerrainElevation2Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            ManualTerrainElevation2Label.AutoSize = true;
+            ManualTerrainElevation2Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualTerrainElevation2Label.ForeColor = System.Drawing.Color.White;
+            ManualTerrainElevation2Label.Location = new System.Drawing.Point(185, 94);
+            ManualTerrainElevation2Label.Name = "ManualTerrainElevation2Label";
+            ManualTerrainElevation2Label.Size = new System.Drawing.Size(13, 14);
+            ManualTerrainElevation2Label.TabIndex = 272;
+            ManualTerrainElevation2Label.Text = "2";
+            ManualTerrainElevation2Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ManualTerrainElevation1Label
             // 
-            this.ManualTerrainElevation1Label.AutoSize = true;
-            this.ManualTerrainElevation1Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ManualTerrainElevation1Label.ForeColor = System.Drawing.Color.White;
-            this.ManualTerrainElevation1Label.Location = new System.Drawing.Point(185, 118);
-            this.ManualTerrainElevation1Label.Name = "ManualTerrainElevation1Label";
-            this.ManualTerrainElevation1Label.Size = new System.Drawing.Size(13, 14);
-            this.ManualTerrainElevation1Label.TabIndex = 271;
-            this.ManualTerrainElevation1Label.Text = "1";
-            this.ManualTerrainElevation1Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            ManualTerrainElevation1Label.AutoSize = true;
+            ManualTerrainElevation1Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualTerrainElevation1Label.ForeColor = System.Drawing.Color.White;
+            ManualTerrainElevation1Label.Location = new System.Drawing.Point(185, 118);
+            ManualTerrainElevation1Label.Name = "ManualTerrainElevation1Label";
+            ManualTerrainElevation1Label.Size = new System.Drawing.Size(13, 14);
+            ManualTerrainElevation1Label.TabIndex = 271;
+            ManualTerrainElevation1Label.Text = "1";
+            ManualTerrainElevation1Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ManualCliffElevationBar
             // 
-            this.ManualCliffElevationBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.ManualCliffElevationBar.LargeChange = 1;
-            this.ManualCliffElevationBar.Location = new System.Drawing.Point(158, 64);
-            this.ManualCliffElevationBar.Maximum = 3;
-            this.ManualCliffElevationBar.Minimum = 1;
-            this.ManualCliffElevationBar.Name = "ManualCliffElevationBar";
-            this.ManualCliffElevationBar.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.ManualCliffElevationBar.Size = new System.Drawing.Size(45, 75);
-            this.ManualCliffElevationBar.TabIndex = 269;
-            this.ManualCliffElevationBar.Value = 1;
-            this.ManualCliffElevationBar.ValueChanged += new System.EventHandler(this.ManualCliffElevationBar_ValueChanged);
+            ManualCliffElevationBar.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            ManualCliffElevationBar.LargeChange = 1;
+            ManualCliffElevationBar.Location = new System.Drawing.Point(158, 64);
+            ManualCliffElevationBar.Maximum = 3;
+            ManualCliffElevationBar.Minimum = 1;
+            ManualCliffElevationBar.Name = "ManualCliffElevationBar";
+            ManualCliffElevationBar.Orientation = System.Windows.Forms.Orientation.Vertical;
+            ManualCliffElevationBar.Size = new System.Drawing.Size(45, 75);
+            ManualCliffElevationBar.TabIndex = 269;
+            ManualCliffElevationBar.Value = 1;
+            ManualCliffElevationBar.ValueChanged += ManualCliffElevationBar_ValueChanged;
             // 
             // RotateCliffButton
             // 
-            this.RotateCliffButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.RotateCliffButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RotateCliffButton.FlatAppearance.BorderSize = 0;
-            this.RotateCliffButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RotateCliffButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RotateCliffButton.ForeColor = System.Drawing.Color.White;
-            this.RotateCliffButton.Location = new System.Drawing.Point(167, 3);
-            this.RotateCliffButton.Name = "RotateCliffButton";
-            this.RotateCliffButton.Size = new System.Drawing.Size(36, 36);
-            this.RotateCliffButton.TabIndex = 268;
-            this.RotateCliffButton.Tag = "";
-            this.RotateCliffButton.UseVisualStyleBackColor = false;
-            this.RotateCliffButton.Click += new System.EventHandler(this.RotateCliffButton_Click);
+            RotateCliffButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            RotateCliffButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            RotateCliffButton.FlatAppearance.BorderSize = 0;
+            RotateCliffButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RotateCliffButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RotateCliffButton.ForeColor = System.Drawing.Color.White;
+            RotateCliffButton.Location = new System.Drawing.Point(167, 3);
+            RotateCliffButton.Name = "RotateCliffButton";
+            RotateCliffButton.Size = new System.Drawing.Size(36, 36);
+            RotateCliffButton.TabIndex = 268;
+            RotateCliffButton.Tag = "";
+            RotateCliffButton.UseVisualStyleBackColor = false;
+            RotateCliffButton.Click += RotateCliffButton_Click;
             // 
             // CliffButton8
             // 
-            this.CliffButton8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.CliffButton8.FlatAppearance.BorderSize = 0;
-            this.CliffButton8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CliffButton8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CliffButton8.ForeColor = System.Drawing.Color.White;
-            this.CliffButton8.Location = new System.Drawing.Point(44, 249);
-            this.CliffButton8.Name = "CliffButton8";
-            this.CliffButton8.Size = new System.Drawing.Size(36, 36);
-            this.CliffButton8.TabIndex = 267;
-            this.CliffButton8.Tag = "8";
-            this.ButtonToolTip.SetToolTip(this.CliffButton8, "8");
-            this.CliffButton8.UseVisualStyleBackColor = false;
-            this.CliffButton8.Click += new System.EventHandler(this.ManualCliffButton_Click);
+            CliffButton8.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            CliffButton8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            CliffButton8.FlatAppearance.BorderSize = 0;
+            CliffButton8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CliffButton8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton8.ForeColor = System.Drawing.Color.White;
+            CliffButton8.Location = new System.Drawing.Point(44, 249);
+            CliffButton8.Name = "CliffButton8";
+            CliffButton8.Size = new System.Drawing.Size(36, 36);
+            CliffButton8.TabIndex = 267;
+            CliffButton8.Tag = "8";
+            ButtonToolTip.SetToolTip(CliffButton8, "8");
+            CliffButton8.UseVisualStyleBackColor = false;
+            CliffButton8.Click += ManualCliffButton_Click;
             // 
             // CliffButton0A
             // 
-            this.CliffButton0A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton0A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.CliffButton0A.FlatAppearance.BorderSize = 0;
-            this.CliffButton0A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CliffButton0A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CliffButton0A.ForeColor = System.Drawing.Color.White;
-            this.CliffButton0A.Location = new System.Drawing.Point(3, 3);
-            this.CliffButton0A.Name = "CliffButton0A";
-            this.CliffButton0A.Size = new System.Drawing.Size(36, 36);
-            this.CliffButton0A.TabIndex = 248;
-            this.CliffButton0A.Tag = "0A";
-            this.ButtonToolTip.SetToolTip(this.CliffButton0A, "0A");
-            this.CliffButton0A.UseVisualStyleBackColor = false;
-            this.CliffButton0A.Click += new System.EventHandler(this.ManualCliffButton_Click);
+            CliffButton0A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            CliffButton0A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            CliffButton0A.FlatAppearance.BorderSize = 0;
+            CliffButton0A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CliffButton0A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton0A.ForeColor = System.Drawing.Color.White;
+            CliffButton0A.Location = new System.Drawing.Point(3, 3);
+            CliffButton0A.Name = "CliffButton0A";
+            CliffButton0A.Size = new System.Drawing.Size(36, 36);
+            CliffButton0A.TabIndex = 248;
+            CliffButton0A.Tag = "0A";
+            ButtonToolTip.SetToolTip(CliffButton0A, "0A");
+            CliffButton0A.UseVisualStyleBackColor = false;
+            CliffButton0A.Click += ManualCliffButton_Click;
             // 
             // CliffButton3B
             // 
-            this.CliffButton3B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton3B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.CliffButton3B.FlatAppearance.BorderSize = 0;
-            this.CliffButton3B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CliffButton3B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CliffButton3B.ForeColor = System.Drawing.Color.White;
-            this.CliffButton3B.Location = new System.Drawing.Point(44, 126);
-            this.CliffButton3B.Name = "CliffButton3B";
-            this.CliffButton3B.Size = new System.Drawing.Size(36, 36);
-            this.CliffButton3B.TabIndex = 257;
-            this.CliffButton3B.Tag = "3B";
-            this.ButtonToolTip.SetToolTip(this.CliffButton3B, "3B");
-            this.CliffButton3B.UseVisualStyleBackColor = false;
-            this.CliffButton3B.Click += new System.EventHandler(this.ManualCliffButton_Click);
+            CliffButton3B.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            CliffButton3B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            CliffButton3B.FlatAppearance.BorderSize = 0;
+            CliffButton3B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CliffButton3B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton3B.ForeColor = System.Drawing.Color.White;
+            CliffButton3B.Location = new System.Drawing.Point(44, 126);
+            CliffButton3B.Name = "CliffButton3B";
+            CliffButton3B.Size = new System.Drawing.Size(36, 36);
+            CliffButton3B.TabIndex = 257;
+            CliffButton3B.Tag = "3B";
+            ButtonToolTip.SetToolTip(CliffButton3B, "3B");
+            CliffButton3B.UseVisualStyleBackColor = false;
+            CliffButton3B.Click += ManualCliffButton_Click;
             // 
             // CliffButton7A
             // 
-            this.CliffButton7A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton7A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.CliffButton7A.FlatAppearance.BorderSize = 0;
-            this.CliffButton7A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CliffButton7A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CliffButton7A.ForeColor = System.Drawing.Color.White;
-            this.CliffButton7A.Location = new System.Drawing.Point(3, 249);
-            this.CliffButton7A.Name = "CliffButton7A";
-            this.CliffButton7A.Size = new System.Drawing.Size(36, 36);
-            this.CliffButton7A.TabIndex = 266;
-            this.CliffButton7A.Tag = "7A";
-            this.ButtonToolTip.SetToolTip(this.CliffButton7A, "7A");
-            this.CliffButton7A.UseVisualStyleBackColor = false;
-            this.CliffButton7A.Click += new System.EventHandler(this.ManualCliffButton_Click);
+            CliffButton7A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            CliffButton7A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            CliffButton7A.FlatAppearance.BorderSize = 0;
+            CliffButton7A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CliffButton7A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton7A.ForeColor = System.Drawing.Color.White;
+            CliffButton7A.Location = new System.Drawing.Point(3, 249);
+            CliffButton7A.Name = "CliffButton7A";
+            CliffButton7A.Size = new System.Drawing.Size(36, 36);
+            CliffButton7A.TabIndex = 266;
+            CliffButton7A.Tag = "7A";
+            ButtonToolTip.SetToolTip(CliffButton7A, "7A");
+            CliffButton7A.UseVisualStyleBackColor = false;
+            CliffButton7A.Click += ManualCliffButton_Click;
             // 
             // CliffButton3A
             // 
-            this.CliffButton3A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton3A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.CliffButton3A.FlatAppearance.BorderSize = 0;
-            this.CliffButton3A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CliffButton3A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CliffButton3A.ForeColor = System.Drawing.Color.White;
-            this.CliffButton3A.Location = new System.Drawing.Point(3, 126);
-            this.CliffButton3A.Name = "CliffButton3A";
-            this.CliffButton3A.Size = new System.Drawing.Size(36, 36);
-            this.CliffButton3A.TabIndex = 256;
-            this.CliffButton3A.Tag = "3A";
-            this.ButtonToolTip.SetToolTip(this.CliffButton3A, "3A");
-            this.CliffButton3A.UseVisualStyleBackColor = false;
-            this.CliffButton3A.Click += new System.EventHandler(this.ManualCliffButton_Click);
+            CliffButton3A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            CliffButton3A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            CliffButton3A.FlatAppearance.BorderSize = 0;
+            CliffButton3A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CliffButton3A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton3A.ForeColor = System.Drawing.Color.White;
+            CliffButton3A.Location = new System.Drawing.Point(3, 126);
+            CliffButton3A.Name = "CliffButton3A";
+            CliffButton3A.Size = new System.Drawing.Size(36, 36);
+            CliffButton3A.TabIndex = 256;
+            CliffButton3A.Tag = "3A";
+            ButtonToolTip.SetToolTip(CliffButton3A, "3A");
+            CliffButton3A.UseVisualStyleBackColor = false;
+            CliffButton3A.Click += ManualCliffButton_Click;
             // 
             // CliffButton3C
             // 
-            this.CliffButton3C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton3C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.CliffButton3C.FlatAppearance.BorderSize = 0;
-            this.CliffButton3C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CliffButton3C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CliffButton3C.ForeColor = System.Drawing.Color.White;
-            this.CliffButton3C.Location = new System.Drawing.Point(85, 126);
-            this.CliffButton3C.Name = "CliffButton3C";
-            this.CliffButton3C.Size = new System.Drawing.Size(36, 36);
-            this.CliffButton3C.TabIndex = 258;
-            this.CliffButton3C.Tag = "3C";
-            this.ButtonToolTip.SetToolTip(this.CliffButton3C, "3C");
-            this.CliffButton3C.UseVisualStyleBackColor = false;
-            this.CliffButton3C.Click += new System.EventHandler(this.ManualCliffButton_Click);
+            CliffButton3C.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            CliffButton3C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            CliffButton3C.FlatAppearance.BorderSize = 0;
+            CliffButton3C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CliffButton3C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton3C.ForeColor = System.Drawing.Color.White;
+            CliffButton3C.Location = new System.Drawing.Point(85, 126);
+            CliffButton3C.Name = "CliffButton3C";
+            CliffButton3C.Size = new System.Drawing.Size(36, 36);
+            CliffButton3C.TabIndex = 258;
+            CliffButton3C.Tag = "3C";
+            ButtonToolTip.SetToolTip(CliffButton3C, "3C");
+            CliffButton3C.UseVisualStyleBackColor = false;
+            CliffButton3C.Click += ManualCliffButton_Click;
             // 
             // CliffButton6B
             // 
-            this.CliffButton6B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton6B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.CliffButton6B.FlatAppearance.BorderSize = 0;
-            this.CliffButton6B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CliffButton6B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CliffButton6B.ForeColor = System.Drawing.Color.White;
-            this.CliffButton6B.Location = new System.Drawing.Point(126, 208);
-            this.CliffButton6B.Name = "CliffButton6B";
-            this.CliffButton6B.Size = new System.Drawing.Size(36, 36);
-            this.CliffButton6B.TabIndex = 265;
-            this.CliffButton6B.Tag = "6B";
-            this.ButtonToolTip.SetToolTip(this.CliffButton6B, "6B");
-            this.CliffButton6B.UseVisualStyleBackColor = false;
-            this.CliffButton6B.Click += new System.EventHandler(this.ManualCliffButton_Click);
+            CliffButton6B.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            CliffButton6B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            CliffButton6B.FlatAppearance.BorderSize = 0;
+            CliffButton6B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CliffButton6B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton6B.ForeColor = System.Drawing.Color.White;
+            CliffButton6B.Location = new System.Drawing.Point(126, 208);
+            CliffButton6B.Name = "CliffButton6B";
+            CliffButton6B.Size = new System.Drawing.Size(36, 36);
+            CliffButton6B.TabIndex = 265;
+            CliffButton6B.Tag = "6B";
+            ButtonToolTip.SetToolTip(CliffButton6B, "6B");
+            CliffButton6B.UseVisualStyleBackColor = false;
+            CliffButton6B.Click += ManualCliffButton_Click;
             // 
             // CliffButton2C
             // 
-            this.CliffButton2C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton2C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.CliffButton2C.FlatAppearance.BorderSize = 0;
-            this.CliffButton2C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CliffButton2C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CliffButton2C.ForeColor = System.Drawing.Color.White;
-            this.CliffButton2C.Location = new System.Drawing.Point(85, 85);
-            this.CliffButton2C.Name = "CliffButton2C";
-            this.CliffButton2C.Size = new System.Drawing.Size(36, 36);
-            this.CliffButton2C.TabIndex = 255;
-            this.CliffButton2C.Tag = "2C";
-            this.ButtonToolTip.SetToolTip(this.CliffButton2C, "2C");
-            this.CliffButton2C.UseVisualStyleBackColor = false;
-            this.CliffButton2C.Click += new System.EventHandler(this.ManualCliffButton_Click);
+            CliffButton2C.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            CliffButton2C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            CliffButton2C.FlatAppearance.BorderSize = 0;
+            CliffButton2C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CliffButton2C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton2C.ForeColor = System.Drawing.Color.White;
+            CliffButton2C.Location = new System.Drawing.Point(85, 85);
+            CliffButton2C.Name = "CliffButton2C";
+            CliffButton2C.Size = new System.Drawing.Size(36, 36);
+            CliffButton2C.TabIndex = 255;
+            CliffButton2C.Tag = "2C";
+            ButtonToolTip.SetToolTip(CliffButton2C, "2C");
+            CliffButton2C.UseVisualStyleBackColor = false;
+            CliffButton2C.Click += ManualCliffButton_Click;
             // 
             // CliffButton4A
             // 
-            this.CliffButton4A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton4A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.CliffButton4A.FlatAppearance.BorderSize = 0;
-            this.CliffButton4A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CliffButton4A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CliffButton4A.ForeColor = System.Drawing.Color.White;
-            this.CliffButton4A.Location = new System.Drawing.Point(3, 167);
-            this.CliffButton4A.Name = "CliffButton4A";
-            this.CliffButton4A.Size = new System.Drawing.Size(36, 36);
-            this.CliffButton4A.TabIndex = 259;
-            this.CliffButton4A.Tag = "4A";
-            this.ButtonToolTip.SetToolTip(this.CliffButton4A, "4A");
-            this.CliffButton4A.UseVisualStyleBackColor = false;
-            this.CliffButton4A.Click += new System.EventHandler(this.ManualCliffButton_Click);
+            CliffButton4A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            CliffButton4A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            CliffButton4A.FlatAppearance.BorderSize = 0;
+            CliffButton4A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CliffButton4A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton4A.ForeColor = System.Drawing.Color.White;
+            CliffButton4A.Location = new System.Drawing.Point(3, 167);
+            CliffButton4A.Name = "CliffButton4A";
+            CliffButton4A.Size = new System.Drawing.Size(36, 36);
+            CliffButton4A.TabIndex = 259;
+            CliffButton4A.Tag = "4A";
+            ButtonToolTip.SetToolTip(CliffButton4A, "4A");
+            CliffButton4A.UseVisualStyleBackColor = false;
+            CliffButton4A.Click += ManualCliffButton_Click;
             // 
             // CliffButton6A
             // 
-            this.CliffButton6A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton6A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.CliffButton6A.FlatAppearance.BorderSize = 0;
-            this.CliffButton6A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CliffButton6A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CliffButton6A.ForeColor = System.Drawing.Color.White;
-            this.CliffButton6A.Location = new System.Drawing.Point(85, 208);
-            this.CliffButton6A.Name = "CliffButton6A";
-            this.CliffButton6A.Size = new System.Drawing.Size(36, 36);
-            this.CliffButton6A.TabIndex = 264;
-            this.CliffButton6A.Tag = "6A";
-            this.ButtonToolTip.SetToolTip(this.CliffButton6A, "6A");
-            this.CliffButton6A.UseVisualStyleBackColor = false;
-            this.CliffButton6A.Click += new System.EventHandler(this.ManualCliffButton_Click);
+            CliffButton6A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            CliffButton6A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            CliffButton6A.FlatAppearance.BorderSize = 0;
+            CliffButton6A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CliffButton6A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton6A.ForeColor = System.Drawing.Color.White;
+            CliffButton6A.Location = new System.Drawing.Point(85, 208);
+            CliffButton6A.Name = "CliffButton6A";
+            CliffButton6A.Size = new System.Drawing.Size(36, 36);
+            CliffButton6A.TabIndex = 264;
+            CliffButton6A.Tag = "6A";
+            ButtonToolTip.SetToolTip(CliffButton6A, "6A");
+            CliffButton6A.UseVisualStyleBackColor = false;
+            CliffButton6A.Click += ManualCliffButton_Click;
             // 
             // CliffButton2B
             // 
-            this.CliffButton2B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton2B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.CliffButton2B.FlatAppearance.BorderSize = 0;
-            this.CliffButton2B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CliffButton2B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CliffButton2B.ForeColor = System.Drawing.Color.White;
-            this.CliffButton2B.Location = new System.Drawing.Point(44, 85);
-            this.CliffButton2B.Name = "CliffButton2B";
-            this.CliffButton2B.Size = new System.Drawing.Size(36, 36);
-            this.CliffButton2B.TabIndex = 254;
-            this.CliffButton2B.Tag = "2B";
-            this.ButtonToolTip.SetToolTip(this.CliffButton2B, "2B");
-            this.CliffButton2B.UseVisualStyleBackColor = false;
-            this.CliffButton2B.Click += new System.EventHandler(this.ManualCliffButton_Click);
+            CliffButton2B.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            CliffButton2B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            CliffButton2B.FlatAppearance.BorderSize = 0;
+            CliffButton2B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CliffButton2B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton2B.ForeColor = System.Drawing.Color.White;
+            CliffButton2B.Location = new System.Drawing.Point(44, 85);
+            CliffButton2B.Name = "CliffButton2B";
+            CliffButton2B.Size = new System.Drawing.Size(36, 36);
+            CliffButton2B.TabIndex = 254;
+            CliffButton2B.Tag = "2B";
+            ButtonToolTip.SetToolTip(CliffButton2B, "2B");
+            CliffButton2B.UseVisualStyleBackColor = false;
+            CliffButton2B.Click += ManualCliffButton_Click;
             // 
             // CliffButton1A
             // 
-            this.CliffButton1A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton1A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.CliffButton1A.FlatAppearance.BorderSize = 0;
-            this.CliffButton1A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CliffButton1A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CliffButton1A.ForeColor = System.Drawing.Color.White;
-            this.CliffButton1A.Location = new System.Drawing.Point(3, 44);
-            this.CliffButton1A.Name = "CliffButton1A";
-            this.CliffButton1A.Size = new System.Drawing.Size(36, 36);
-            this.CliffButton1A.TabIndex = 250;
-            this.CliffButton1A.Tag = "1A";
-            this.ButtonToolTip.SetToolTip(this.CliffButton1A, "1A");
-            this.CliffButton1A.UseVisualStyleBackColor = false;
-            this.CliffButton1A.Click += new System.EventHandler(this.ManualCliffButton_Click);
+            CliffButton1A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            CliffButton1A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            CliffButton1A.FlatAppearance.BorderSize = 0;
+            CliffButton1A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CliffButton1A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton1A.ForeColor = System.Drawing.Color.White;
+            CliffButton1A.Location = new System.Drawing.Point(3, 44);
+            CliffButton1A.Name = "CliffButton1A";
+            CliffButton1A.Size = new System.Drawing.Size(36, 36);
+            CliffButton1A.TabIndex = 250;
+            CliffButton1A.Tag = "1A";
+            ButtonToolTip.SetToolTip(CliffButton1A, "1A");
+            CliffButton1A.UseVisualStyleBackColor = false;
+            CliffButton1A.Click += ManualCliffButton_Click;
             // 
             // CliffButton4B
             // 
-            this.CliffButton4B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton4B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.CliffButton4B.FlatAppearance.BorderSize = 0;
-            this.CliffButton4B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CliffButton4B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CliffButton4B.ForeColor = System.Drawing.Color.White;
-            this.CliffButton4B.Location = new System.Drawing.Point(44, 167);
-            this.CliffButton4B.Name = "CliffButton4B";
-            this.CliffButton4B.Size = new System.Drawing.Size(36, 36);
-            this.CliffButton4B.TabIndex = 260;
-            this.CliffButton4B.Tag = "4B";
-            this.ButtonToolTip.SetToolTip(this.CliffButton4B, "4B");
-            this.CliffButton4B.UseVisualStyleBackColor = false;
-            this.CliffButton4B.Click += new System.EventHandler(this.ManualCliffButton_Click);
+            CliffButton4B.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            CliffButton4B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            CliffButton4B.FlatAppearance.BorderSize = 0;
+            CliffButton4B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CliffButton4B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton4B.ForeColor = System.Drawing.Color.White;
+            CliffButton4B.Location = new System.Drawing.Point(44, 167);
+            CliffButton4B.Name = "CliffButton4B";
+            CliffButton4B.Size = new System.Drawing.Size(36, 36);
+            CliffButton4B.TabIndex = 260;
+            CliffButton4B.Tag = "4B";
+            ButtonToolTip.SetToolTip(CliffButton4B, "4B");
+            CliffButton4B.UseVisualStyleBackColor = false;
+            CliffButton4B.Click += ManualCliffButton_Click;
             // 
             // CliffButton5B
             // 
-            this.CliffButton5B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton5B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.CliffButton5B.FlatAppearance.BorderSize = 0;
-            this.CliffButton5B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CliffButton5B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CliffButton5B.ForeColor = System.Drawing.Color.White;
-            this.CliffButton5B.Location = new System.Drawing.Point(44, 208);
-            this.CliffButton5B.Name = "CliffButton5B";
-            this.CliffButton5B.Size = new System.Drawing.Size(36, 36);
-            this.CliffButton5B.TabIndex = 263;
-            this.CliffButton5B.Tag = "5B";
-            this.ButtonToolTip.SetToolTip(this.CliffButton5B, "5B");
-            this.CliffButton5B.UseVisualStyleBackColor = false;
-            this.CliffButton5B.Click += new System.EventHandler(this.ManualCliffButton_Click);
+            CliffButton5B.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            CliffButton5B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            CliffButton5B.FlatAppearance.BorderSize = 0;
+            CliffButton5B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CliffButton5B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton5B.ForeColor = System.Drawing.Color.White;
+            CliffButton5B.Location = new System.Drawing.Point(44, 208);
+            CliffButton5B.Name = "CliffButton5B";
+            CliffButton5B.Size = new System.Drawing.Size(36, 36);
+            CliffButton5B.TabIndex = 263;
+            CliffButton5B.Tag = "5B";
+            ButtonToolTip.SetToolTip(CliffButton5B, "5B");
+            CliffButton5B.UseVisualStyleBackColor = false;
+            CliffButton5B.Click += ManualCliffButton_Click;
             // 
             // CliffButton2A
             // 
-            this.CliffButton2A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton2A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.CliffButton2A.FlatAppearance.BorderSize = 0;
-            this.CliffButton2A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CliffButton2A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CliffButton2A.ForeColor = System.Drawing.Color.White;
-            this.CliffButton2A.Location = new System.Drawing.Point(3, 85);
-            this.CliffButton2A.Name = "CliffButton2A";
-            this.CliffButton2A.Size = new System.Drawing.Size(36, 36);
-            this.CliffButton2A.TabIndex = 253;
-            this.CliffButton2A.Tag = "2A";
-            this.ButtonToolTip.SetToolTip(this.CliffButton2A, "2A");
-            this.CliffButton2A.UseVisualStyleBackColor = false;
-            this.CliffButton2A.Click += new System.EventHandler(this.ManualCliffButton_Click);
+            CliffButton2A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            CliffButton2A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            CliffButton2A.FlatAppearance.BorderSize = 0;
+            CliffButton2A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CliffButton2A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton2A.ForeColor = System.Drawing.Color.White;
+            CliffButton2A.Location = new System.Drawing.Point(3, 85);
+            CliffButton2A.Name = "CliffButton2A";
+            CliffButton2A.Size = new System.Drawing.Size(36, 36);
+            CliffButton2A.TabIndex = 253;
+            CliffButton2A.Tag = "2A";
+            ButtonToolTip.SetToolTip(CliffButton2A, "2A");
+            CliffButton2A.UseVisualStyleBackColor = false;
+            CliffButton2A.Click += ManualCliffButton_Click;
             // 
             // CliffButton4C
             // 
-            this.CliffButton4C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton4C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.CliffButton4C.FlatAppearance.BorderSize = 0;
-            this.CliffButton4C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CliffButton4C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CliffButton4C.ForeColor = System.Drawing.Color.White;
-            this.CliffButton4C.Location = new System.Drawing.Point(85, 167);
-            this.CliffButton4C.Name = "CliffButton4C";
-            this.CliffButton4C.Size = new System.Drawing.Size(36, 36);
-            this.CliffButton4C.TabIndex = 261;
-            this.CliffButton4C.Tag = "4C";
-            this.ButtonToolTip.SetToolTip(this.CliffButton4C, "4C");
-            this.CliffButton4C.UseVisualStyleBackColor = false;
-            this.CliffButton4C.Click += new System.EventHandler(this.ManualCliffButton_Click);
+            CliffButton4C.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            CliffButton4C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            CliffButton4C.FlatAppearance.BorderSize = 0;
+            CliffButton4C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CliffButton4C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton4C.ForeColor = System.Drawing.Color.White;
+            CliffButton4C.Location = new System.Drawing.Point(85, 167);
+            CliffButton4C.Name = "CliffButton4C";
+            CliffButton4C.Size = new System.Drawing.Size(36, 36);
+            CliffButton4C.TabIndex = 261;
+            CliffButton4C.Tag = "4C";
+            ButtonToolTip.SetToolTip(CliffButton4C, "4C");
+            CliffButton4C.UseVisualStyleBackColor = false;
+            CliffButton4C.Click += ManualCliffButton_Click;
             // 
             // CliffButton5A
             // 
-            this.CliffButton5A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.CliffButton5A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.CliffButton5A.FlatAppearance.BorderSize = 0;
-            this.CliffButton5A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CliffButton5A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CliffButton5A.ForeColor = System.Drawing.Color.White;
-            this.CliffButton5A.Location = new System.Drawing.Point(3, 208);
-            this.CliffButton5A.Name = "CliffButton5A";
-            this.CliffButton5A.Size = new System.Drawing.Size(36, 36);
-            this.CliffButton5A.TabIndex = 262;
-            this.CliffButton5A.Tag = "5A";
-            this.ButtonToolTip.SetToolTip(this.CliffButton5A, "5A");
-            this.CliffButton5A.UseVisualStyleBackColor = false;
-            this.CliffButton5A.Click += new System.EventHandler(this.ManualCliffButton_Click);
+            CliffButton5A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            CliffButton5A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            CliffButton5A.FlatAppearance.BorderSize = 0;
+            CliffButton5A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CliffButton5A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton5A.ForeColor = System.Drawing.Color.White;
+            CliffButton5A.Location = new System.Drawing.Point(3, 208);
+            CliffButton5A.Name = "CliffButton5A";
+            CliffButton5A.Size = new System.Drawing.Size(36, 36);
+            CliffButton5A.TabIndex = 262;
+            CliffButton5A.Tag = "5A";
+            ButtonToolTip.SetToolTip(CliffButton5A, "5A");
+            CliffButton5A.UseVisualStyleBackColor = false;
+            CliffButton5A.Click += ManualCliffButton_Click;
             // 
             // ManualRiverPanel
             // 
-            this.ManualRiverPanel.Controls.Add(this.ManualRiverElevation3Label);
-            this.ManualRiverPanel.Controls.Add(this.ManualRiverElevation2Label);
-            this.ManualRiverPanel.Controls.Add(this.ManualRiverElevation1Label);
-            this.ManualRiverPanel.Controls.Add(this.ManualRiverElevation0Label);
-            this.ManualRiverPanel.Controls.Add(this.ManualRiverElevationLabel);
-            this.ManualRiverPanel.Controls.Add(this.ManualRiverElevationBar);
-            this.ManualRiverPanel.Controls.Add(this.RotateRiverButton);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton8A);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton0A);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton3B);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton7A);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton3A);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton3C);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton6B);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton2C);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton4A);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton6A);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton2B);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton1A);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton4B);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton5B);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton2A);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton4C);
-            this.ManualRiverPanel.Controls.Add(this.RiverButton5A);
-            this.ManualRiverPanel.Location = new System.Drawing.Point(0, 44);
-            this.ManualRiverPanel.Name = "ManualRiverPanel";
-            this.ManualRiverPanel.Size = new System.Drawing.Size(225, 297);
-            this.ManualRiverPanel.TabIndex = 2;
+            ManualRiverPanel.Controls.Add(ManualRiverElevation3Label);
+            ManualRiverPanel.Controls.Add(ManualRiverElevation2Label);
+            ManualRiverPanel.Controls.Add(ManualRiverElevation1Label);
+            ManualRiverPanel.Controls.Add(ManualRiverElevation0Label);
+            ManualRiverPanel.Controls.Add(ManualRiverElevationLabel);
+            ManualRiverPanel.Controls.Add(ManualRiverElevationBar);
+            ManualRiverPanel.Controls.Add(RotateRiverButton);
+            ManualRiverPanel.Controls.Add(RiverButton8A);
+            ManualRiverPanel.Controls.Add(RiverButton0A);
+            ManualRiverPanel.Controls.Add(RiverButton3B);
+            ManualRiverPanel.Controls.Add(RiverButton7A);
+            ManualRiverPanel.Controls.Add(RiverButton3A);
+            ManualRiverPanel.Controls.Add(RiverButton3C);
+            ManualRiverPanel.Controls.Add(RiverButton6B);
+            ManualRiverPanel.Controls.Add(RiverButton2C);
+            ManualRiverPanel.Controls.Add(RiverButton4A);
+            ManualRiverPanel.Controls.Add(RiverButton6A);
+            ManualRiverPanel.Controls.Add(RiverButton2B);
+            ManualRiverPanel.Controls.Add(RiverButton1A);
+            ManualRiverPanel.Controls.Add(RiverButton4B);
+            ManualRiverPanel.Controls.Add(RiverButton5B);
+            ManualRiverPanel.Controls.Add(RiverButton2A);
+            ManualRiverPanel.Controls.Add(RiverButton4C);
+            ManualRiverPanel.Controls.Add(RiverButton5A);
+            ManualRiverPanel.Location = new System.Drawing.Point(0, 44);
+            ManualRiverPanel.Name = "ManualRiverPanel";
+            ManualRiverPanel.Size = new System.Drawing.Size(225, 297);
+            ManualRiverPanel.TabIndex = 2;
             // 
             // ManualRiverElevation3Label
             // 
-            this.ManualRiverElevation3Label.AutoSize = true;
-            this.ManualRiverElevation3Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ManualRiverElevation3Label.ForeColor = System.Drawing.Color.White;
-            this.ManualRiverElevation3Label.Location = new System.Drawing.Point(185, 70);
-            this.ManualRiverElevation3Label.Name = "ManualRiverElevation3Label";
-            this.ManualRiverElevation3Label.Size = new System.Drawing.Size(13, 14);
-            this.ManualRiverElevation3Label.TabIndex = 296;
-            this.ManualRiverElevation3Label.Text = "3";
-            this.ManualRiverElevation3Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            ManualRiverElevation3Label.AutoSize = true;
+            ManualRiverElevation3Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualRiverElevation3Label.ForeColor = System.Drawing.Color.White;
+            ManualRiverElevation3Label.Location = new System.Drawing.Point(185, 70);
+            ManualRiverElevation3Label.Name = "ManualRiverElevation3Label";
+            ManualRiverElevation3Label.Size = new System.Drawing.Size(13, 14);
+            ManualRiverElevation3Label.TabIndex = 296;
+            ManualRiverElevation3Label.Text = "3";
+            ManualRiverElevation3Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ManualRiverElevation2Label
             // 
-            this.ManualRiverElevation2Label.AutoSize = true;
-            this.ManualRiverElevation2Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ManualRiverElevation2Label.ForeColor = System.Drawing.Color.White;
-            this.ManualRiverElevation2Label.Location = new System.Drawing.Point(185, 86);
-            this.ManualRiverElevation2Label.Name = "ManualRiverElevation2Label";
-            this.ManualRiverElevation2Label.Size = new System.Drawing.Size(13, 14);
-            this.ManualRiverElevation2Label.TabIndex = 294;
-            this.ManualRiverElevation2Label.Text = "2";
-            this.ManualRiverElevation2Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            ManualRiverElevation2Label.AutoSize = true;
+            ManualRiverElevation2Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualRiverElevation2Label.ForeColor = System.Drawing.Color.White;
+            ManualRiverElevation2Label.Location = new System.Drawing.Point(185, 86);
+            ManualRiverElevation2Label.Name = "ManualRiverElevation2Label";
+            ManualRiverElevation2Label.Size = new System.Drawing.Size(13, 14);
+            ManualRiverElevation2Label.TabIndex = 294;
+            ManualRiverElevation2Label.Text = "2";
+            ManualRiverElevation2Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ManualRiverElevation1Label
             // 
-            this.ManualRiverElevation1Label.AutoSize = true;
-            this.ManualRiverElevation1Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ManualRiverElevation1Label.ForeColor = System.Drawing.Color.White;
-            this.ManualRiverElevation1Label.Location = new System.Drawing.Point(185, 102);
-            this.ManualRiverElevation1Label.Name = "ManualRiverElevation1Label";
-            this.ManualRiverElevation1Label.Size = new System.Drawing.Size(13, 14);
-            this.ManualRiverElevation1Label.TabIndex = 293;
-            this.ManualRiverElevation1Label.Text = "1";
-            this.ManualRiverElevation1Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            ManualRiverElevation1Label.AutoSize = true;
+            ManualRiverElevation1Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualRiverElevation1Label.ForeColor = System.Drawing.Color.White;
+            ManualRiverElevation1Label.Location = new System.Drawing.Point(185, 102);
+            ManualRiverElevation1Label.Name = "ManualRiverElevation1Label";
+            ManualRiverElevation1Label.Size = new System.Drawing.Size(13, 14);
+            ManualRiverElevation1Label.TabIndex = 293;
+            ManualRiverElevation1Label.Text = "1";
+            ManualRiverElevation1Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ManualRiverElevation0Label
             // 
-            this.ManualRiverElevation0Label.AutoSize = true;
-            this.ManualRiverElevation0Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ManualRiverElevation0Label.ForeColor = System.Drawing.Color.White;
-            this.ManualRiverElevation0Label.Location = new System.Drawing.Point(185, 118);
-            this.ManualRiverElevation0Label.Name = "ManualRiverElevation0Label";
-            this.ManualRiverElevation0Label.Size = new System.Drawing.Size(13, 14);
-            this.ManualRiverElevation0Label.TabIndex = 295;
-            this.ManualRiverElevation0Label.Text = "0";
-            this.ManualRiverElevation0Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            ManualRiverElevation0Label.AutoSize = true;
+            ManualRiverElevation0Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualRiverElevation0Label.ForeColor = System.Drawing.Color.White;
+            ManualRiverElevation0Label.Location = new System.Drawing.Point(185, 118);
+            ManualRiverElevation0Label.Name = "ManualRiverElevation0Label";
+            ManualRiverElevation0Label.Size = new System.Drawing.Size(13, 14);
+            ManualRiverElevation0Label.TabIndex = 295;
+            ManualRiverElevation0Label.Text = "0";
+            ManualRiverElevation0Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ManualRiverElevationLabel
             // 
-            this.ManualRiverElevationLabel.AutoSize = true;
-            this.ManualRiverElevationLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ManualRiverElevationLabel.ForeColor = System.Drawing.Color.White;
-            this.ManualRiverElevationLabel.Location = new System.Drawing.Point(126, 55);
-            this.ManualRiverElevationLabel.Name = "ManualRiverElevationLabel";
-            this.ManualRiverElevationLabel.Size = new System.Drawing.Size(62, 14);
-            this.ManualRiverElevationLabel.TabIndex = 292;
-            this.ManualRiverElevationLabel.Text = "Elevation :";
-            this.ManualRiverElevationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            ManualRiverElevationLabel.AutoSize = true;
+            ManualRiverElevationLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualRiverElevationLabel.ForeColor = System.Drawing.Color.White;
+            ManualRiverElevationLabel.Location = new System.Drawing.Point(126, 55);
+            ManualRiverElevationLabel.Name = "ManualRiverElevationLabel";
+            ManualRiverElevationLabel.Size = new System.Drawing.Size(62, 14);
+            ManualRiverElevationLabel.TabIndex = 292;
+            ManualRiverElevationLabel.Text = "Elevation :";
+            ManualRiverElevationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ManualRiverElevationBar
             // 
-            this.ManualRiverElevationBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.ManualRiverElevationBar.LargeChange = 1;
-            this.ManualRiverElevationBar.Location = new System.Drawing.Point(158, 64);
-            this.ManualRiverElevationBar.Maximum = 3;
-            this.ManualRiverElevationBar.Name = "ManualRiverElevationBar";
-            this.ManualRiverElevationBar.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.ManualRiverElevationBar.Size = new System.Drawing.Size(45, 75);
-            this.ManualRiverElevationBar.TabIndex = 291;
-            this.ManualRiverElevationBar.ValueChanged += new System.EventHandler(this.ManualRiverElevationBar_ValueChanged);
+            ManualRiverElevationBar.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            ManualRiverElevationBar.LargeChange = 1;
+            ManualRiverElevationBar.Location = new System.Drawing.Point(158, 64);
+            ManualRiverElevationBar.Maximum = 3;
+            ManualRiverElevationBar.Name = "ManualRiverElevationBar";
+            ManualRiverElevationBar.Orientation = System.Windows.Forms.Orientation.Vertical;
+            ManualRiverElevationBar.Size = new System.Drawing.Size(45, 75);
+            ManualRiverElevationBar.TabIndex = 291;
+            ManualRiverElevationBar.ValueChanged += ManualRiverElevationBar_ValueChanged;
             // 
             // RotateRiverButton
             // 
-            this.RotateRiverButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.RotateRiverButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RotateRiverButton.FlatAppearance.BorderSize = 0;
-            this.RotateRiverButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RotateRiverButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RotateRiverButton.ForeColor = System.Drawing.Color.White;
-            this.RotateRiverButton.Location = new System.Drawing.Point(167, 3);
-            this.RotateRiverButton.Name = "RotateRiverButton";
-            this.RotateRiverButton.Size = new System.Drawing.Size(36, 36);
-            this.RotateRiverButton.TabIndex = 290;
-            this.RotateRiverButton.Tag = "";
-            this.RotateRiverButton.UseVisualStyleBackColor = false;
-            this.RotateRiverButton.Click += new System.EventHandler(this.RotateRiverButton_Click);
+            RotateRiverButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            RotateRiverButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            RotateRiverButton.FlatAppearance.BorderSize = 0;
+            RotateRiverButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RotateRiverButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RotateRiverButton.ForeColor = System.Drawing.Color.White;
+            RotateRiverButton.Location = new System.Drawing.Point(167, 3);
+            RotateRiverButton.Name = "RotateRiverButton";
+            RotateRiverButton.Size = new System.Drawing.Size(36, 36);
+            RotateRiverButton.TabIndex = 290;
+            RotateRiverButton.Tag = "";
+            RotateRiverButton.UseVisualStyleBackColor = false;
+            RotateRiverButton.Click += RotateRiverButton_Click;
             // 
             // RiverButton8A
             // 
-            this.RiverButton8A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton8A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RiverButton8A.FlatAppearance.BorderSize = 0;
-            this.RiverButton8A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton8A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton8A.ForeColor = System.Drawing.Color.White;
-            this.RiverButton8A.Location = new System.Drawing.Point(44, 249);
-            this.RiverButton8A.Name = "RiverButton8A";
-            this.RiverButton8A.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton8A.TabIndex = 289;
-            this.RiverButton8A.Tag = "8A";
-            this.ButtonToolTip.SetToolTip(this.RiverButton8A, "8A");
-            this.RiverButton8A.UseVisualStyleBackColor = false;
-            this.RiverButton8A.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            RiverButton8A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RiverButton8A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RiverButton8A.FlatAppearance.BorderSize = 0;
+            RiverButton8A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RiverButton8A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton8A.ForeColor = System.Drawing.Color.White;
+            RiverButton8A.Location = new System.Drawing.Point(44, 249);
+            RiverButton8A.Name = "RiverButton8A";
+            RiverButton8A.Size = new System.Drawing.Size(36, 36);
+            RiverButton8A.TabIndex = 289;
+            RiverButton8A.Tag = "8A";
+            ButtonToolTip.SetToolTip(RiverButton8A, "8A");
+            RiverButton8A.UseVisualStyleBackColor = false;
+            RiverButton8A.Click += ManualRiverButton_Click;
             // 
             // RiverButton0A
             // 
-            this.RiverButton0A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton0A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RiverButton0A.FlatAppearance.BorderSize = 0;
-            this.RiverButton0A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton0A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton0A.ForeColor = System.Drawing.Color.White;
-            this.RiverButton0A.Location = new System.Drawing.Point(3, 3);
-            this.RiverButton0A.Name = "RiverButton0A";
-            this.RiverButton0A.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton0A.TabIndex = 273;
-            this.RiverButton0A.Tag = "0A";
-            this.ButtonToolTip.SetToolTip(this.RiverButton0A, "0A");
-            this.RiverButton0A.UseVisualStyleBackColor = false;
-            this.RiverButton0A.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            RiverButton0A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RiverButton0A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RiverButton0A.FlatAppearance.BorderSize = 0;
+            RiverButton0A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RiverButton0A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton0A.ForeColor = System.Drawing.Color.White;
+            RiverButton0A.Location = new System.Drawing.Point(3, 3);
+            RiverButton0A.Name = "RiverButton0A";
+            RiverButton0A.Size = new System.Drawing.Size(36, 36);
+            RiverButton0A.TabIndex = 273;
+            RiverButton0A.Tag = "0A";
+            ButtonToolTip.SetToolTip(RiverButton0A, "0A");
+            RiverButton0A.UseVisualStyleBackColor = false;
+            RiverButton0A.Click += ManualRiverButton_Click;
             // 
             // RiverButton3B
             // 
-            this.RiverButton3B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton3B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RiverButton3B.FlatAppearance.BorderSize = 0;
-            this.RiverButton3B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton3B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton3B.ForeColor = System.Drawing.Color.White;
-            this.RiverButton3B.Location = new System.Drawing.Point(44, 126);
-            this.RiverButton3B.Name = "RiverButton3B";
-            this.RiverButton3B.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton3B.TabIndex = 279;
-            this.RiverButton3B.Tag = "3B";
-            this.ButtonToolTip.SetToolTip(this.RiverButton3B, "3B");
-            this.RiverButton3B.UseVisualStyleBackColor = false;
-            this.RiverButton3B.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            RiverButton3B.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RiverButton3B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RiverButton3B.FlatAppearance.BorderSize = 0;
+            RiverButton3B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RiverButton3B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton3B.ForeColor = System.Drawing.Color.White;
+            RiverButton3B.Location = new System.Drawing.Point(44, 126);
+            RiverButton3B.Name = "RiverButton3B";
+            RiverButton3B.Size = new System.Drawing.Size(36, 36);
+            RiverButton3B.TabIndex = 279;
+            RiverButton3B.Tag = "3B";
+            ButtonToolTip.SetToolTip(RiverButton3B, "3B");
+            RiverButton3B.UseVisualStyleBackColor = false;
+            RiverButton3B.Click += ManualRiverButton_Click;
             // 
             // RiverButton7A
             // 
-            this.RiverButton7A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton7A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RiverButton7A.FlatAppearance.BorderSize = 0;
-            this.RiverButton7A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton7A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton7A.ForeColor = System.Drawing.Color.White;
-            this.RiverButton7A.Location = new System.Drawing.Point(3, 249);
-            this.RiverButton7A.Name = "RiverButton7A";
-            this.RiverButton7A.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton7A.TabIndex = 288;
-            this.RiverButton7A.Tag = "7A";
-            this.ButtonToolTip.SetToolTip(this.RiverButton7A, "7A");
-            this.RiverButton7A.UseVisualStyleBackColor = false;
-            this.RiverButton7A.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            RiverButton7A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RiverButton7A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RiverButton7A.FlatAppearance.BorderSize = 0;
+            RiverButton7A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RiverButton7A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton7A.ForeColor = System.Drawing.Color.White;
+            RiverButton7A.Location = new System.Drawing.Point(3, 249);
+            RiverButton7A.Name = "RiverButton7A";
+            RiverButton7A.Size = new System.Drawing.Size(36, 36);
+            RiverButton7A.TabIndex = 288;
+            RiverButton7A.Tag = "7A";
+            ButtonToolTip.SetToolTip(RiverButton7A, "7A");
+            RiverButton7A.UseVisualStyleBackColor = false;
+            RiverButton7A.Click += ManualRiverButton_Click;
             // 
             // RiverButton3A
             // 
-            this.RiverButton3A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton3A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RiverButton3A.FlatAppearance.BorderSize = 0;
-            this.RiverButton3A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton3A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton3A.ForeColor = System.Drawing.Color.White;
-            this.RiverButton3A.Location = new System.Drawing.Point(3, 126);
-            this.RiverButton3A.Name = "RiverButton3A";
-            this.RiverButton3A.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton3A.TabIndex = 278;
-            this.RiverButton3A.Tag = "3A";
-            this.ButtonToolTip.SetToolTip(this.RiverButton3A, "3A");
-            this.RiverButton3A.UseVisualStyleBackColor = false;
-            this.RiverButton3A.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            RiverButton3A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RiverButton3A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RiverButton3A.FlatAppearance.BorderSize = 0;
+            RiverButton3A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RiverButton3A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton3A.ForeColor = System.Drawing.Color.White;
+            RiverButton3A.Location = new System.Drawing.Point(3, 126);
+            RiverButton3A.Name = "RiverButton3A";
+            RiverButton3A.Size = new System.Drawing.Size(36, 36);
+            RiverButton3A.TabIndex = 278;
+            RiverButton3A.Tag = "3A";
+            ButtonToolTip.SetToolTip(RiverButton3A, "3A");
+            RiverButton3A.UseVisualStyleBackColor = false;
+            RiverButton3A.Click += ManualRiverButton_Click;
             // 
             // RiverButton3C
             // 
-            this.RiverButton3C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton3C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RiverButton3C.FlatAppearance.BorderSize = 0;
-            this.RiverButton3C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton3C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton3C.ForeColor = System.Drawing.Color.White;
-            this.RiverButton3C.Location = new System.Drawing.Point(85, 126);
-            this.RiverButton3C.Name = "RiverButton3C";
-            this.RiverButton3C.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton3C.TabIndex = 280;
-            this.RiverButton3C.Tag = "3C";
-            this.ButtonToolTip.SetToolTip(this.RiverButton3C, "3C");
-            this.RiverButton3C.UseVisualStyleBackColor = false;
-            this.RiverButton3C.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            RiverButton3C.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RiverButton3C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RiverButton3C.FlatAppearance.BorderSize = 0;
+            RiverButton3C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RiverButton3C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton3C.ForeColor = System.Drawing.Color.White;
+            RiverButton3C.Location = new System.Drawing.Point(85, 126);
+            RiverButton3C.Name = "RiverButton3C";
+            RiverButton3C.Size = new System.Drawing.Size(36, 36);
+            RiverButton3C.TabIndex = 280;
+            RiverButton3C.Tag = "3C";
+            ButtonToolTip.SetToolTip(RiverButton3C, "3C");
+            RiverButton3C.UseVisualStyleBackColor = false;
+            RiverButton3C.Click += ManualRiverButton_Click;
             // 
             // RiverButton6B
             // 
-            this.RiverButton6B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton6B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RiverButton6B.FlatAppearance.BorderSize = 0;
-            this.RiverButton6B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton6B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton6B.ForeColor = System.Drawing.Color.White;
-            this.RiverButton6B.Location = new System.Drawing.Point(126, 208);
-            this.RiverButton6B.Name = "RiverButton6B";
-            this.RiverButton6B.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton6B.TabIndex = 287;
-            this.RiverButton6B.Tag = "6B";
-            this.ButtonToolTip.SetToolTip(this.RiverButton6B, "6B");
-            this.RiverButton6B.UseVisualStyleBackColor = false;
-            this.RiverButton6B.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            RiverButton6B.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RiverButton6B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RiverButton6B.FlatAppearance.BorderSize = 0;
+            RiverButton6B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RiverButton6B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton6B.ForeColor = System.Drawing.Color.White;
+            RiverButton6B.Location = new System.Drawing.Point(126, 208);
+            RiverButton6B.Name = "RiverButton6B";
+            RiverButton6B.Size = new System.Drawing.Size(36, 36);
+            RiverButton6B.TabIndex = 287;
+            RiverButton6B.Tag = "6B";
+            ButtonToolTip.SetToolTip(RiverButton6B, "6B");
+            RiverButton6B.UseVisualStyleBackColor = false;
+            RiverButton6B.Click += ManualRiverButton_Click;
             // 
             // RiverButton2C
             // 
-            this.RiverButton2C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton2C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RiverButton2C.FlatAppearance.BorderSize = 0;
-            this.RiverButton2C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton2C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton2C.ForeColor = System.Drawing.Color.White;
-            this.RiverButton2C.Location = new System.Drawing.Point(85, 85);
-            this.RiverButton2C.Name = "RiverButton2C";
-            this.RiverButton2C.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton2C.TabIndex = 277;
-            this.RiverButton2C.Tag = "2C";
-            this.ButtonToolTip.SetToolTip(this.RiverButton2C, "2C");
-            this.RiverButton2C.UseVisualStyleBackColor = false;
-            this.RiverButton2C.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            RiverButton2C.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RiverButton2C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RiverButton2C.FlatAppearance.BorderSize = 0;
+            RiverButton2C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RiverButton2C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton2C.ForeColor = System.Drawing.Color.White;
+            RiverButton2C.Location = new System.Drawing.Point(85, 85);
+            RiverButton2C.Name = "RiverButton2C";
+            RiverButton2C.Size = new System.Drawing.Size(36, 36);
+            RiverButton2C.TabIndex = 277;
+            RiverButton2C.Tag = "2C";
+            ButtonToolTip.SetToolTip(RiverButton2C, "2C");
+            RiverButton2C.UseVisualStyleBackColor = false;
+            RiverButton2C.Click += ManualRiverButton_Click;
             // 
             // RiverButton4A
             // 
-            this.RiverButton4A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton4A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RiverButton4A.FlatAppearance.BorderSize = 0;
-            this.RiverButton4A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton4A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton4A.ForeColor = System.Drawing.Color.White;
-            this.RiverButton4A.Location = new System.Drawing.Point(3, 167);
-            this.RiverButton4A.Name = "RiverButton4A";
-            this.RiverButton4A.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton4A.TabIndex = 281;
-            this.RiverButton4A.Tag = "4A";
-            this.ButtonToolTip.SetToolTip(this.RiverButton4A, "4A");
-            this.RiverButton4A.UseVisualStyleBackColor = false;
-            this.RiverButton4A.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            RiverButton4A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RiverButton4A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RiverButton4A.FlatAppearance.BorderSize = 0;
+            RiverButton4A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RiverButton4A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton4A.ForeColor = System.Drawing.Color.White;
+            RiverButton4A.Location = new System.Drawing.Point(3, 167);
+            RiverButton4A.Name = "RiverButton4A";
+            RiverButton4A.Size = new System.Drawing.Size(36, 36);
+            RiverButton4A.TabIndex = 281;
+            RiverButton4A.Tag = "4A";
+            ButtonToolTip.SetToolTip(RiverButton4A, "4A");
+            RiverButton4A.UseVisualStyleBackColor = false;
+            RiverButton4A.Click += ManualRiverButton_Click;
             // 
             // RiverButton6A
             // 
-            this.RiverButton6A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton6A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RiverButton6A.FlatAppearance.BorderSize = 0;
-            this.RiverButton6A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton6A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton6A.ForeColor = System.Drawing.Color.White;
-            this.RiverButton6A.Location = new System.Drawing.Point(85, 208);
-            this.RiverButton6A.Name = "RiverButton6A";
-            this.RiverButton6A.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton6A.TabIndex = 286;
-            this.RiverButton6A.Tag = "6A";
-            this.ButtonToolTip.SetToolTip(this.RiverButton6A, "6A");
-            this.RiverButton6A.UseVisualStyleBackColor = false;
-            this.RiverButton6A.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            RiverButton6A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RiverButton6A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RiverButton6A.FlatAppearance.BorderSize = 0;
+            RiverButton6A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RiverButton6A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton6A.ForeColor = System.Drawing.Color.White;
+            RiverButton6A.Location = new System.Drawing.Point(85, 208);
+            RiverButton6A.Name = "RiverButton6A";
+            RiverButton6A.Size = new System.Drawing.Size(36, 36);
+            RiverButton6A.TabIndex = 286;
+            RiverButton6A.Tag = "6A";
+            ButtonToolTip.SetToolTip(RiverButton6A, "6A");
+            RiverButton6A.UseVisualStyleBackColor = false;
+            RiverButton6A.Click += ManualRiverButton_Click;
             // 
             // RiverButton2B
             // 
-            this.RiverButton2B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton2B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RiverButton2B.FlatAppearance.BorderSize = 0;
-            this.RiverButton2B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton2B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton2B.ForeColor = System.Drawing.Color.White;
-            this.RiverButton2B.Location = new System.Drawing.Point(44, 85);
-            this.RiverButton2B.Name = "RiverButton2B";
-            this.RiverButton2B.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton2B.TabIndex = 276;
-            this.RiverButton2B.Tag = "2B";
-            this.ButtonToolTip.SetToolTip(this.RiverButton2B, "2B");
-            this.RiverButton2B.UseVisualStyleBackColor = false;
-            this.RiverButton2B.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            RiverButton2B.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RiverButton2B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RiverButton2B.FlatAppearance.BorderSize = 0;
+            RiverButton2B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RiverButton2B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton2B.ForeColor = System.Drawing.Color.White;
+            RiverButton2B.Location = new System.Drawing.Point(44, 85);
+            RiverButton2B.Name = "RiverButton2B";
+            RiverButton2B.Size = new System.Drawing.Size(36, 36);
+            RiverButton2B.TabIndex = 276;
+            RiverButton2B.Tag = "2B";
+            ButtonToolTip.SetToolTip(RiverButton2B, "2B");
+            RiverButton2B.UseVisualStyleBackColor = false;
+            RiverButton2B.Click += ManualRiverButton_Click;
             // 
             // RiverButton1A
             // 
-            this.RiverButton1A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton1A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RiverButton1A.FlatAppearance.BorderSize = 0;
-            this.RiverButton1A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton1A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton1A.ForeColor = System.Drawing.Color.White;
-            this.RiverButton1A.Location = new System.Drawing.Point(3, 44);
-            this.RiverButton1A.Name = "RiverButton1A";
-            this.RiverButton1A.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton1A.TabIndex = 274;
-            this.RiverButton1A.Tag = "1A";
-            this.ButtonToolTip.SetToolTip(this.RiverButton1A, "1A");
-            this.RiverButton1A.UseVisualStyleBackColor = false;
-            this.RiverButton1A.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            RiverButton1A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RiverButton1A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RiverButton1A.FlatAppearance.BorderSize = 0;
+            RiverButton1A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RiverButton1A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton1A.ForeColor = System.Drawing.Color.White;
+            RiverButton1A.Location = new System.Drawing.Point(3, 44);
+            RiverButton1A.Name = "RiverButton1A";
+            RiverButton1A.Size = new System.Drawing.Size(36, 36);
+            RiverButton1A.TabIndex = 274;
+            RiverButton1A.Tag = "1A";
+            ButtonToolTip.SetToolTip(RiverButton1A, "1A");
+            RiverButton1A.UseVisualStyleBackColor = false;
+            RiverButton1A.Click += ManualRiverButton_Click;
             // 
             // RiverButton4B
             // 
-            this.RiverButton4B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton4B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RiverButton4B.FlatAppearance.BorderSize = 0;
-            this.RiverButton4B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton4B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton4B.ForeColor = System.Drawing.Color.White;
-            this.RiverButton4B.Location = new System.Drawing.Point(44, 167);
-            this.RiverButton4B.Name = "RiverButton4B";
-            this.RiverButton4B.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton4B.TabIndex = 282;
-            this.RiverButton4B.Tag = "4B";
-            this.ButtonToolTip.SetToolTip(this.RiverButton4B, "4B");
-            this.RiverButton4B.UseVisualStyleBackColor = false;
-            this.RiverButton4B.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            RiverButton4B.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RiverButton4B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RiverButton4B.FlatAppearance.BorderSize = 0;
+            RiverButton4B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RiverButton4B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton4B.ForeColor = System.Drawing.Color.White;
+            RiverButton4B.Location = new System.Drawing.Point(44, 167);
+            RiverButton4B.Name = "RiverButton4B";
+            RiverButton4B.Size = new System.Drawing.Size(36, 36);
+            RiverButton4B.TabIndex = 282;
+            RiverButton4B.Tag = "4B";
+            ButtonToolTip.SetToolTip(RiverButton4B, "4B");
+            RiverButton4B.UseVisualStyleBackColor = false;
+            RiverButton4B.Click += ManualRiverButton_Click;
             // 
             // RiverButton5B
             // 
-            this.RiverButton5B.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton5B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RiverButton5B.FlatAppearance.BorderSize = 0;
-            this.RiverButton5B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton5B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton5B.ForeColor = System.Drawing.Color.White;
-            this.RiverButton5B.Location = new System.Drawing.Point(44, 208);
-            this.RiverButton5B.Name = "RiverButton5B";
-            this.RiverButton5B.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton5B.TabIndex = 285;
-            this.RiverButton5B.Tag = "5B";
-            this.ButtonToolTip.SetToolTip(this.RiverButton5B, "5B");
-            this.RiverButton5B.UseVisualStyleBackColor = false;
-            this.RiverButton5B.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            RiverButton5B.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RiverButton5B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RiverButton5B.FlatAppearance.BorderSize = 0;
+            RiverButton5B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RiverButton5B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton5B.ForeColor = System.Drawing.Color.White;
+            RiverButton5B.Location = new System.Drawing.Point(44, 208);
+            RiverButton5B.Name = "RiverButton5B";
+            RiverButton5B.Size = new System.Drawing.Size(36, 36);
+            RiverButton5B.TabIndex = 285;
+            RiverButton5B.Tag = "5B";
+            ButtonToolTip.SetToolTip(RiverButton5B, "5B");
+            RiverButton5B.UseVisualStyleBackColor = false;
+            RiverButton5B.Click += ManualRiverButton_Click;
             // 
             // RiverButton2A
             // 
-            this.RiverButton2A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton2A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RiverButton2A.FlatAppearance.BorderSize = 0;
-            this.RiverButton2A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton2A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton2A.ForeColor = System.Drawing.Color.White;
-            this.RiverButton2A.Location = new System.Drawing.Point(3, 85);
-            this.RiverButton2A.Name = "RiverButton2A";
-            this.RiverButton2A.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton2A.TabIndex = 275;
-            this.RiverButton2A.Tag = "2A";
-            this.ButtonToolTip.SetToolTip(this.RiverButton2A, "2A");
-            this.RiverButton2A.UseVisualStyleBackColor = false;
-            this.RiverButton2A.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            RiverButton2A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RiverButton2A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RiverButton2A.FlatAppearance.BorderSize = 0;
+            RiverButton2A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RiverButton2A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton2A.ForeColor = System.Drawing.Color.White;
+            RiverButton2A.Location = new System.Drawing.Point(3, 85);
+            RiverButton2A.Name = "RiverButton2A";
+            RiverButton2A.Size = new System.Drawing.Size(36, 36);
+            RiverButton2A.TabIndex = 275;
+            RiverButton2A.Tag = "2A";
+            ButtonToolTip.SetToolTip(RiverButton2A, "2A");
+            RiverButton2A.UseVisualStyleBackColor = false;
+            RiverButton2A.Click += ManualRiverButton_Click;
             // 
             // RiverButton4C
             // 
-            this.RiverButton4C.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton4C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RiverButton4C.FlatAppearance.BorderSize = 0;
-            this.RiverButton4C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton4C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton4C.ForeColor = System.Drawing.Color.White;
-            this.RiverButton4C.Location = new System.Drawing.Point(85, 167);
-            this.RiverButton4C.Name = "RiverButton4C";
-            this.RiverButton4C.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton4C.TabIndex = 283;
-            this.RiverButton4C.Tag = "4C";
-            this.ButtonToolTip.SetToolTip(this.RiverButton4C, "4C");
-            this.RiverButton4C.UseVisualStyleBackColor = false;
-            this.RiverButton4C.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            RiverButton4C.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RiverButton4C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RiverButton4C.FlatAppearance.BorderSize = 0;
+            RiverButton4C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RiverButton4C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton4C.ForeColor = System.Drawing.Color.White;
+            RiverButton4C.Location = new System.Drawing.Point(85, 167);
+            RiverButton4C.Name = "RiverButton4C";
+            RiverButton4C.Size = new System.Drawing.Size(36, 36);
+            RiverButton4C.TabIndex = 283;
+            RiverButton4C.Tag = "4C";
+            ButtonToolTip.SetToolTip(RiverButton4C, "4C");
+            RiverButton4C.UseVisualStyleBackColor = false;
+            RiverButton4C.Click += ManualRiverButton_Click;
             // 
             // RiverButton5A
             // 
-            this.RiverButton5A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(116)))), ((int)(((byte)(71)))));
-            this.RiverButton5A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RiverButton5A.FlatAppearance.BorderSize = 0;
-            this.RiverButton5A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RiverButton5A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RiverButton5A.ForeColor = System.Drawing.Color.White;
-            this.RiverButton5A.Location = new System.Drawing.Point(3, 208);
-            this.RiverButton5A.Name = "RiverButton5A";
-            this.RiverButton5A.Size = new System.Drawing.Size(36, 36);
-            this.RiverButton5A.TabIndex = 284;
-            this.RiverButton5A.Tag = "5A";
-            this.ButtonToolTip.SetToolTip(this.RiverButton5A, "5A");
-            this.RiverButton5A.UseVisualStyleBackColor = false;
-            this.RiverButton5A.Click += new System.EventHandler(this.ManualRiverButton_Click);
+            RiverButton5A.BackColor = System.Drawing.Color.FromArgb(70, 116, 71);
+            RiverButton5A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            RiverButton5A.FlatAppearance.BorderSize = 0;
+            RiverButton5A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            RiverButton5A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton5A.ForeColor = System.Drawing.Color.White;
+            RiverButton5A.Location = new System.Drawing.Point(3, 208);
+            RiverButton5A.Name = "RiverButton5A";
+            RiverButton5A.Size = new System.Drawing.Size(36, 36);
+            RiverButton5A.TabIndex = 284;
+            RiverButton5A.Tag = "5A";
+            ButtonToolTip.SetToolTip(RiverButton5A, "5A");
+            RiverButton5A.UseVisualStyleBackColor = false;
+            RiverButton5A.Click += ManualRiverButton_Click;
             // 
             // CustomDesignList
             // 
-            this.CustomDesignList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.CustomDesignList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.CustomDesignList.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CustomDesignList.ForeColor = System.Drawing.Color.White;
-            this.CustomDesignList.GridLines = true;
-            this.CustomDesignList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.CustomDesignList.HideSelection = false;
-            this.CustomDesignList.LabelWrap = false;
-            this.CustomDesignList.Location = new System.Drawing.Point(6, 231);
-            this.CustomDesignList.MultiSelect = false;
-            this.CustomDesignList.Name = "CustomDesignList";
-            this.CustomDesignList.ShowItemToolTips = true;
-            this.CustomDesignList.Size = new System.Drawing.Size(225, 340);
-            this.CustomDesignList.TabIndex = 232;
-            this.CustomDesignList.TileSize = new System.Drawing.Size(1, 1);
-            this.CustomDesignList.UseCompatibleStateImageBehavior = false;
-            this.CustomDesignList.View = System.Windows.Forms.View.Tile;
-            this.CustomDesignList.Visible = false;
-            this.CustomDesignList.Click += new System.EventHandler(this.CustomDesignList_Click);
+            CustomDesignList.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            CustomDesignList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            CustomDesignList.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CustomDesignList.ForeColor = System.Drawing.Color.White;
+            CustomDesignList.GridLines = true;
+            CustomDesignList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            CustomDesignList.LabelWrap = false;
+            CustomDesignList.Location = new System.Drawing.Point(6, 231);
+            CustomDesignList.MultiSelect = false;
+            CustomDesignList.Name = "CustomDesignList";
+            CustomDesignList.ShowItemToolTips = true;
+            CustomDesignList.Size = new System.Drawing.Size(225, 340);
+            CustomDesignList.TabIndex = 232;
+            CustomDesignList.TileSize = new System.Drawing.Size(1, 1);
+            CustomDesignList.UseCompatibleStateImageBehavior = false;
+            CustomDesignList.View = System.Windows.Forms.View.Tile;
+            CustomDesignList.Visible = false;
+            CustomDesignList.Click += CustomDesignList_Click;
             // 
             // CornerPanel
             // 
-            this.CornerPanel.Controls.Add(this.PleaseWaitPanel);
-            this.CornerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CornerPanel.Location = new System.Drawing.Point(3, 3);
-            this.CornerPanel.Name = "CornerPanel";
-            this.CornerPanel.Size = new System.Drawing.Size(240, 44);
-            this.CornerPanel.TabIndex = 3;
+            CornerPanel.Controls.Add(PleaseWaitPanel);
+            CornerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            CornerPanel.Location = new System.Drawing.Point(3, 3);
+            CornerPanel.Name = "CornerPanel";
+            CornerPanel.Size = new System.Drawing.Size(240, 44);
+            CornerPanel.TabIndex = 3;
             // 
             // PleaseWaitPanel
             // 
-            this.PleaseWaitPanel.Controls.Add(this.MapProgressBar);
-            this.PleaseWaitPanel.Controls.Add(this.NowLoading);
-            this.PleaseWaitPanel.Controls.Add(this.PleaseWaitLabel);
-            this.PleaseWaitPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PleaseWaitPanel.Location = new System.Drawing.Point(0, 0);
-            this.PleaseWaitPanel.Name = "PleaseWaitPanel";
-            this.PleaseWaitPanel.Size = new System.Drawing.Size(240, 44);
-            this.PleaseWaitPanel.TabIndex = 220;
-            this.PleaseWaitPanel.Visible = false;
+            PleaseWaitPanel.Controls.Add(MapProgressBar);
+            PleaseWaitPanel.Controls.Add(NowLoading);
+            PleaseWaitPanel.Controls.Add(PleaseWaitLabel);
+            PleaseWaitPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            PleaseWaitPanel.Location = new System.Drawing.Point(0, 0);
+            PleaseWaitPanel.Name = "PleaseWaitPanel";
+            PleaseWaitPanel.Size = new System.Drawing.Size(240, 44);
+            PleaseWaitPanel.TabIndex = 220;
+            PleaseWaitPanel.Visible = false;
             // 
             // MapProgressBar
             // 
-            this.MapProgressBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.MapProgressBar.ForeColor = System.Drawing.Color.LawnGreen;
-            this.MapProgressBar.Location = new System.Drawing.Point(12, 31);
-            this.MapProgressBar.Maximum = 260;
-            this.MapProgressBar.Name = "MapProgressBar";
-            this.MapProgressBar.Size = new System.Drawing.Size(217, 3);
-            this.MapProgressBar.TabIndex = 217;
+            MapProgressBar.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            MapProgressBar.ForeColor = System.Drawing.Color.LawnGreen;
+            MapProgressBar.Location = new System.Drawing.Point(12, 31);
+            MapProgressBar.Maximum = 260;
+            MapProgressBar.Name = "MapProgressBar";
+            MapProgressBar.Size = new System.Drawing.Size(217, 3);
+            MapProgressBar.TabIndex = 217;
             // 
             // NowLoading
             // 
-            this.NowLoading.Image = global::ACNHPokerCore.Properties.Resources.loading;
-            this.NowLoading.Location = new System.Drawing.Point(55, 3);
-            this.NowLoading.Name = "NowLoading";
-            this.NowLoading.Size = new System.Drawing.Size(24, 24);
-            this.NowLoading.TabIndex = 216;
-            this.NowLoading.TabStop = false;
+            NowLoading.Image = Properties.Resources.loading;
+            NowLoading.Location = new System.Drawing.Point(55, 3);
+            NowLoading.Name = "NowLoading";
+            NowLoading.Size = new System.Drawing.Size(24, 24);
+            NowLoading.TabIndex = 216;
+            NowLoading.TabStop = false;
             // 
             // PleaseWaitLabel
             // 
-            this.PleaseWaitLabel.AutoSize = true;
-            this.PleaseWaitLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.PleaseWaitLabel.ForeColor = System.Drawing.Color.White;
-            this.PleaseWaitLabel.Location = new System.Drawing.Point(81, 8);
-            this.PleaseWaitLabel.Name = "PleaseWaitLabel";
-            this.PleaseWaitLabel.Size = new System.Drawing.Size(99, 16);
-            this.PleaseWaitLabel.TabIndex = 215;
-            this.PleaseWaitLabel.Text = "Please Wait...";
-            this.PleaseWaitLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            PleaseWaitLabel.AutoSize = true;
+            PleaseWaitLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            PleaseWaitLabel.ForeColor = System.Drawing.Color.White;
+            PleaseWaitLabel.Location = new System.Drawing.Point(81, 8);
+            PleaseWaitLabel.Name = "PleaseWaitLabel";
+            PleaseWaitLabel.Size = new System.Drawing.Size(99, 16);
+            PleaseWaitLabel.TabIndex = 215;
+            PleaseWaitLabel.Text = "Please Wait...";
+            PleaseWaitLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ProgressTimer
             // 
-            this.ProgressTimer.Interval = 1000;
-            this.ProgressTimer.Tick += new System.EventHandler(this.ProgressTimer_Tick);
+            ProgressTimer.Interval = 1000;
+            ProgressTimer.Tick += ProgressTimer_Tick;
             // 
             // MapToolTip
             // 
-            this.MapToolTip.AutomaticDelay = 1000;
+            MapToolTip.AutomaticDelay = 1000;
             // 
             // ButtonToolTip
             // 
-            this.ButtonToolTip.AutomaticDelay = 1000;
+            ButtonToolTip.AutomaticDelay = 1000;
             // 
             // RoadRoller
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.ClientSize = new System.Drawing.Size(984, 661);
-            this.Controls.Add(this.MainDivider);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(1000, 700);
-            this.Name = "RoadRoller";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Road Roller";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.RoadRoller_FormClosed);
-            this.Resize += new System.EventHandler(this.RoadRoller_Resize);
-            this.MainDivider.ResumeLayout(false);
-            this.SubDivider.ResumeLayout(false);
-            this.MiddlePanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.MainMap)).EndInit();
-            this.TopMenuPanel.ResumeLayout(false);
-            this.TopMenuPanel.PerformLayout();
-            this.LeftMenuPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.miniMapBox)).EndInit();
-            this.AutoButtonPanel.ResumeLayout(false);
-            this.AutoButtonPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ElevationBar)).EndInit();
-            this.ManualButtonPanel.ResumeLayout(false);
-            this.ManualRoadPanel.ResumeLayout(false);
-            this.ManualCliffPanel.ResumeLayout(false);
-            this.ManualCliffPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ManualCliffElevationBar)).EndInit();
-            this.ManualRiverPanel.ResumeLayout(false);
-            this.ManualRiverPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ManualRiverElevationBar)).EndInit();
-            this.CornerPanel.ResumeLayout(false);
-            this.PleaseWaitPanel.ResumeLayout(false);
-            this.PleaseWaitPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NowLoading)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            ClientSize = new System.Drawing.Size(984, 661);
+            Controls.Add(MainDivider);
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimumSize = new System.Drawing.Size(1000, 700);
+            Name = "RoadRoller";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "Road Roller";
+            FormClosed += RoadRoller_FormClosed;
+            Resize += RoadRoller_Resize;
+            MainDivider.ResumeLayout(false);
+            SubDivider.ResumeLayout(false);
+            MiddlePanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)MainMap).EndInit();
+            TopMenuPanel.ResumeLayout(false);
+            TopMenuPanel.PerformLayout();
+            LeftMenuPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)miniMapBox).EndInit();
+            AutoButtonPanel.ResumeLayout(false);
+            AutoButtonPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)ElevationBar).EndInit();
+            ManualButtonPanel.ResumeLayout(false);
+            ManualRoadPanel.ResumeLayout(false);
+            ManualCliffPanel.ResumeLayout(false);
+            ManualCliffPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)ManualCliffElevationBar).EndInit();
+            ManualRiverPanel.ResumeLayout(false);
+            ManualRiverPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)ManualRiverElevationBar).EndInit();
+            CornerPanel.ResumeLayout(false);
+            PleaseWaitPanel.ResumeLayout(false);
+            PleaseWaitPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)NowLoading).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion

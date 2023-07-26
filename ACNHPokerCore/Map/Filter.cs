@@ -17,7 +17,7 @@ namespace ACNHPokerCore
 
         private void filter_Click(object sender, System.EventArgs e)
         {
-            foreach (Button button in this.Controls)
+            foreach (Button button in Controls)
             {
                 if (button != ClearBtn)
                     button.BackColor = Color.FromArgb(114, 137, 218);
@@ -25,17 +25,17 @@ namespace ACNHPokerCore
 
             Button b = (Button)sender;
             b.BackColor = Color.Orange;
-            applyFilter(b.Tag.ToString());
+            if (applyFilter != null) applyFilter(b.Tag.ToString());
         }
 
         private void Filter_FormClosed(object sender, FormClosedEventArgs e)
         {
-            closeFilter();
+            if (closeFilter != null) closeFilter();
         }
 
         private void ChangeLanguage(string lang)
         {
-            foreach (Control c in this.Controls)
+            foreach (Control c in Controls)
             {
                 ComponentResourceManager resources = new ComponentResourceManager(typeof(Filter));
                 resources.ApplyResources(c, c.Name, new CultureInfo(lang));

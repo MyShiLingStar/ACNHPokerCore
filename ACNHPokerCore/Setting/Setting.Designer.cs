@@ -29,769 +29,768 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Setting));
-            this.PlayerSlotLabel = new System.Windows.Forms.Label();
-            this.PlayerSlot = new System.Windows.Forms.TextBox();
-            this.Slot21Offset = new System.Windows.Forms.TextBox();
-            this.HomeOffset = new System.Windows.Forms.TextBox();
-            this.ReactionOffset = new System.Windows.Forms.TextBox();
-            this.PlayerOffset = new System.Windows.Forms.TextBox();
-            this.Villager = new System.Windows.Forms.TextBox();
-            this.VillagerOffset = new System.Windows.Forms.TextBox();
-            this.PlayerOffsetLabel = new System.Windows.Forms.Label();
-            this.Slot21OffsetLabel = new System.Windows.Forms.Label();
-            this.HomeOffsetLabel = new System.Windows.Forms.Label();
-            this.ReactionOffsetLabel = new System.Windows.Forms.Label();
-            this.VillagerLabel = new System.Windows.Forms.Label();
-            this.VillagerOffsetLabel = new System.Windows.Forms.Label();
-            this.VillagerHouse = new System.Windows.Forms.TextBox();
-            this.VillagerHouseLabel = new System.Windows.Forms.Label();
-            this.VillagerHouseOffsetLabel = new System.Windows.Forms.Label();
-            this.VillagerHouseOffset = new System.Windows.Forms.TextBox();
-            this.VillagerHouseBufferLabel = new System.Windows.Forms.Label();
-            this.VillagerHouseBuffer = new System.Windows.Forms.TextBox();
-            this.StaminaLabel = new System.Windows.Forms.Label();
-            this.Stamina = new System.Windows.Forms.TextBox();
-            this.WalkSpeedLabel = new System.Windows.Forms.Label();
-            this.AnimationSpeedLabel = new System.Windows.Forms.Label();
-            this.WalkSpeed = new System.Windows.Forms.TextBox();
-            this.AnimationSpeed = new System.Windows.Forms.TextBox();
-            this.CollisionLabel = new System.Windows.Forms.Label();
-            this.Collision = new System.Windows.Forms.TextBox();
-            this.FreezeTimeLabel = new System.Windows.Forms.Label();
-            this.FreezeTime = new System.Windows.Forms.TextBox();
-            this.ReadTimeLabel = new System.Windows.Forms.Label();
-            this.ReadTime = new System.Windows.Forms.TextBox();
-            this.RecyclingBinLabel = new System.Windows.Forms.Label();
-            this.TurnipLabel = new System.Windows.Forms.Label();
-            this.RecyclingBin = new System.Windows.Forms.TextBox();
-            this.Turnip = new System.Windows.Forms.TextBox();
-            this.WeatherSeedLabel = new System.Windows.Forms.Label();
-            this.WeatherSeed = new System.Windows.Forms.TextBox();
-            this.addresses = new System.Windows.Forms.Panel();
-            this.MapZeroLabel = new System.Windows.Forms.Label();
-            this.MapZero = new System.Windows.Forms.TextBox();
-            this.SaveBtn = new System.Windows.Forms.Button();
-            this.ImageBtn = new System.Windows.Forms.Button();
-            this.AddressOverrideToggle = new JCS.ToggleSwitch();
-            this.AddressOverrideLabel = new System.Windows.Forms.Label();
-            this.ValidationLabel = new System.Windows.Forms.Label();
-            this.ValidationToggle = new JCS.ToggleSwitch();
-            this.SoundToggle = new JCS.ToggleSwitch();
-            this.SoundLabel = new System.Windows.Forms.Label();
-            this.addresses.SuspendLayout();
-            this.SuspendLayout();
+            PlayerSlotLabel = new System.Windows.Forms.Label();
+            PlayerSlot = new System.Windows.Forms.TextBox();
+            Slot21Offset = new System.Windows.Forms.TextBox();
+            HomeOffset = new System.Windows.Forms.TextBox();
+            ReactionOffset = new System.Windows.Forms.TextBox();
+            PlayerOffset = new System.Windows.Forms.TextBox();
+            Villager = new System.Windows.Forms.TextBox();
+            VillagerOffset = new System.Windows.Forms.TextBox();
+            PlayerOffsetLabel = new System.Windows.Forms.Label();
+            Slot21OffsetLabel = new System.Windows.Forms.Label();
+            HomeOffsetLabel = new System.Windows.Forms.Label();
+            ReactionOffsetLabel = new System.Windows.Forms.Label();
+            VillagerLabel = new System.Windows.Forms.Label();
+            VillagerOffsetLabel = new System.Windows.Forms.Label();
+            VillagerHouse = new System.Windows.Forms.TextBox();
+            VillagerHouseLabel = new System.Windows.Forms.Label();
+            VillagerHouseOffsetLabel = new System.Windows.Forms.Label();
+            VillagerHouseOffset = new System.Windows.Forms.TextBox();
+            VillagerHouseBufferLabel = new System.Windows.Forms.Label();
+            VillagerHouseBuffer = new System.Windows.Forms.TextBox();
+            StaminaLabel = new System.Windows.Forms.Label();
+            Stamina = new System.Windows.Forms.TextBox();
+            WalkSpeedLabel = new System.Windows.Forms.Label();
+            AnimationSpeedLabel = new System.Windows.Forms.Label();
+            WalkSpeed = new System.Windows.Forms.TextBox();
+            AnimationSpeed = new System.Windows.Forms.TextBox();
+            CollisionLabel = new System.Windows.Forms.Label();
+            Collision = new System.Windows.Forms.TextBox();
+            FreezeTimeLabel = new System.Windows.Forms.Label();
+            FreezeTime = new System.Windows.Forms.TextBox();
+            ReadTimeLabel = new System.Windows.Forms.Label();
+            ReadTime = new System.Windows.Forms.TextBox();
+            RecyclingBinLabel = new System.Windows.Forms.Label();
+            TurnipLabel = new System.Windows.Forms.Label();
+            RecyclingBin = new System.Windows.Forms.TextBox();
+            Turnip = new System.Windows.Forms.TextBox();
+            WeatherSeedLabel = new System.Windows.Forms.Label();
+            WeatherSeed = new System.Windows.Forms.TextBox();
+            addresses = new System.Windows.Forms.Panel();
+            MapZeroLabel = new System.Windows.Forms.Label();
+            MapZero = new System.Windows.Forms.TextBox();
+            SaveBtn = new System.Windows.Forms.Button();
+            ImageBtn = new System.Windows.Forms.Button();
+            AddressOverrideToggle = new JCS.ToggleSwitch();
+            AddressOverrideLabel = new System.Windows.Forms.Label();
+            ValidationLabel = new System.Windows.Forms.Label();
+            ValidationToggle = new JCS.ToggleSwitch();
+            SoundToggle = new JCS.ToggleSwitch();
+            SoundLabel = new System.Windows.Forms.Label();
+            addresses.SuspendLayout();
+            SuspendLayout();
             // 
             // PlayerSlotLabel
             // 
-            this.PlayerSlotLabel.AutoSize = true;
-            this.PlayerSlotLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.PlayerSlotLabel.ForeColor = System.Drawing.Color.White;
-            this.PlayerSlotLabel.Location = new System.Drawing.Point(8, 11);
-            this.PlayerSlotLabel.Name = "PlayerSlotLabel";
-            this.PlayerSlotLabel.Size = new System.Drawing.Size(153, 19);
-            this.PlayerSlotLabel.TabIndex = 37;
-            this.PlayerSlotLabel.Text = "Player 1 Item Slot 1";
+            PlayerSlotLabel.AutoSize = true;
+            PlayerSlotLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            PlayerSlotLabel.ForeColor = System.Drawing.Color.White;
+            PlayerSlotLabel.Location = new System.Drawing.Point(8, 11);
+            PlayerSlotLabel.Name = "PlayerSlotLabel";
+            PlayerSlotLabel.Size = new System.Drawing.Size(153, 19);
+            PlayerSlotLabel.TabIndex = 37;
+            PlayerSlotLabel.Text = "Player 1 Item Slot 1";
             // 
             // PlayerSlot
             // 
-            this.PlayerSlot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.PlayerSlot.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.PlayerSlot.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.PlayerSlot.ForeColor = System.Drawing.Color.White;
-            this.PlayerSlot.Location = new System.Drawing.Point(306, 4);
-            this.PlayerSlot.MaxLength = 8;
-            this.PlayerSlot.Name = "PlayerSlot";
-            this.PlayerSlot.Size = new System.Drawing.Size(180, 31);
-            this.PlayerSlot.TabIndex = 38;
-            this.PlayerSlot.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.PlayerSlot.TextChanged += new System.EventHandler(this.BoxTextChanged);
-            this.PlayerSlot.Validating += new System.ComponentModel.CancelEventHandler(this.BoxValidating);
+            PlayerSlot.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            PlayerSlot.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            PlayerSlot.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            PlayerSlot.ForeColor = System.Drawing.Color.White;
+            PlayerSlot.Location = new System.Drawing.Point(306, 4);
+            PlayerSlot.MaxLength = 8;
+            PlayerSlot.Name = "PlayerSlot";
+            PlayerSlot.Size = new System.Drawing.Size(180, 31);
+            PlayerSlot.TabIndex = 38;
+            PlayerSlot.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            PlayerSlot.TextChanged += BoxTextChanged;
+            PlayerSlot.Validating += BoxValidating;
             // 
             // Slot21Offset
             // 
-            this.Slot21Offset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.Slot21Offset.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Slot21Offset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Slot21Offset.ForeColor = System.Drawing.Color.White;
-            this.Slot21Offset.Location = new System.Drawing.Point(306, 78);
-            this.Slot21Offset.MaxLength = 8;
-            this.Slot21Offset.Name = "Slot21Offset";
-            this.Slot21Offset.Size = new System.Drawing.Size(180, 31);
-            this.Slot21Offset.TabIndex = 39;
-            this.Slot21Offset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Slot21Offset.TextChanged += new System.EventHandler(this.BoxTextChanged);
-            this.Slot21Offset.Validating += new System.ComponentModel.CancelEventHandler(this.BoxValidating);
+            Slot21Offset.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            Slot21Offset.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            Slot21Offset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            Slot21Offset.ForeColor = System.Drawing.Color.White;
+            Slot21Offset.Location = new System.Drawing.Point(306, 78);
+            Slot21Offset.MaxLength = 8;
+            Slot21Offset.Name = "Slot21Offset";
+            Slot21Offset.Size = new System.Drawing.Size(180, 31);
+            Slot21Offset.TabIndex = 39;
+            Slot21Offset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            Slot21Offset.TextChanged += BoxTextChanged;
+            Slot21Offset.Validating += BoxValidating;
             // 
             // HomeOffset
             // 
-            this.HomeOffset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.HomeOffset.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.HomeOffset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.HomeOffset.ForeColor = System.Drawing.Color.White;
-            this.HomeOffset.Location = new System.Drawing.Point(306, 115);
-            this.HomeOffset.MaxLength = 8;
-            this.HomeOffset.Name = "HomeOffset";
-            this.HomeOffset.Size = new System.Drawing.Size(180, 31);
-            this.HomeOffset.TabIndex = 40;
-            this.HomeOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.HomeOffset.TextChanged += new System.EventHandler(this.BoxTextChanged);
-            this.HomeOffset.Validating += new System.ComponentModel.CancelEventHandler(this.BoxValidating);
+            HomeOffset.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            HomeOffset.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            HomeOffset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            HomeOffset.ForeColor = System.Drawing.Color.White;
+            HomeOffset.Location = new System.Drawing.Point(306, 115);
+            HomeOffset.MaxLength = 8;
+            HomeOffset.Name = "HomeOffset";
+            HomeOffset.Size = new System.Drawing.Size(180, 31);
+            HomeOffset.TabIndex = 40;
+            HomeOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            HomeOffset.TextChanged += BoxTextChanged;
+            HomeOffset.Validating += BoxValidating;
             // 
             // ReactionOffset
             // 
-            this.ReactionOffset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.ReactionOffset.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ReactionOffset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ReactionOffset.ForeColor = System.Drawing.Color.White;
-            this.ReactionOffset.Location = new System.Drawing.Point(306, 152);
-            this.ReactionOffset.MaxLength = 8;
-            this.ReactionOffset.Name = "ReactionOffset";
-            this.ReactionOffset.Size = new System.Drawing.Size(180, 31);
-            this.ReactionOffset.TabIndex = 41;
-            this.ReactionOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.ReactionOffset.TextChanged += new System.EventHandler(this.BoxTextChanged);
-            this.ReactionOffset.Validating += new System.ComponentModel.CancelEventHandler(this.BoxValidating);
+            ReactionOffset.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            ReactionOffset.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            ReactionOffset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ReactionOffset.ForeColor = System.Drawing.Color.White;
+            ReactionOffset.Location = new System.Drawing.Point(306, 152);
+            ReactionOffset.MaxLength = 8;
+            ReactionOffset.Name = "ReactionOffset";
+            ReactionOffset.Size = new System.Drawing.Size(180, 31);
+            ReactionOffset.TabIndex = 41;
+            ReactionOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            ReactionOffset.TextChanged += BoxTextChanged;
+            ReactionOffset.Validating += BoxValidating;
             // 
             // PlayerOffset
             // 
-            this.PlayerOffset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.PlayerOffset.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.PlayerOffset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.PlayerOffset.ForeColor = System.Drawing.Color.White;
-            this.PlayerOffset.Location = new System.Drawing.Point(306, 41);
-            this.PlayerOffset.MaxLength = 8;
-            this.PlayerOffset.Name = "PlayerOffset";
-            this.PlayerOffset.Size = new System.Drawing.Size(180, 31);
-            this.PlayerOffset.TabIndex = 42;
-            this.PlayerOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.PlayerOffset.TextChanged += new System.EventHandler(this.BoxTextChanged);
-            this.PlayerOffset.Validating += new System.ComponentModel.CancelEventHandler(this.BoxValidating);
+            PlayerOffset.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            PlayerOffset.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            PlayerOffset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            PlayerOffset.ForeColor = System.Drawing.Color.White;
+            PlayerOffset.Location = new System.Drawing.Point(306, 41);
+            PlayerOffset.MaxLength = 8;
+            PlayerOffset.Name = "PlayerOffset";
+            PlayerOffset.Size = new System.Drawing.Size(180, 31);
+            PlayerOffset.TabIndex = 42;
+            PlayerOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            PlayerOffset.TextChanged += BoxTextChanged;
+            PlayerOffset.Validating += BoxValidating;
             // 
             // Villager
             // 
-            this.Villager.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.Villager.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Villager.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Villager.ForeColor = System.Drawing.Color.White;
-            this.Villager.Location = new System.Drawing.Point(306, 198);
-            this.Villager.MaxLength = 8;
-            this.Villager.Name = "Villager";
-            this.Villager.Size = new System.Drawing.Size(180, 31);
-            this.Villager.TabIndex = 43;
-            this.Villager.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Villager.TextChanged += new System.EventHandler(this.BoxTextChanged);
-            this.Villager.Validating += new System.ComponentModel.CancelEventHandler(this.BoxValidating);
+            Villager.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            Villager.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            Villager.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            Villager.ForeColor = System.Drawing.Color.White;
+            Villager.Location = new System.Drawing.Point(306, 198);
+            Villager.MaxLength = 8;
+            Villager.Name = "Villager";
+            Villager.Size = new System.Drawing.Size(180, 31);
+            Villager.TabIndex = 43;
+            Villager.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            Villager.TextChanged += BoxTextChanged;
+            Villager.Validating += BoxValidating;
             // 
             // VillagerOffset
             // 
-            this.VillagerOffset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.VillagerOffset.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.VillagerOffset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerOffset.ForeColor = System.Drawing.Color.White;
-            this.VillagerOffset.Location = new System.Drawing.Point(306, 235);
-            this.VillagerOffset.MaxLength = 8;
-            this.VillagerOffset.Name = "VillagerOffset";
-            this.VillagerOffset.Size = new System.Drawing.Size(180, 31);
-            this.VillagerOffset.TabIndex = 44;
-            this.VillagerOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.VillagerOffset.TextChanged += new System.EventHandler(this.BoxTextChanged);
-            this.VillagerOffset.Validating += new System.ComponentModel.CancelEventHandler(this.BoxValidating);
+            VillagerOffset.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            VillagerOffset.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            VillagerOffset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            VillagerOffset.ForeColor = System.Drawing.Color.White;
+            VillagerOffset.Location = new System.Drawing.Point(306, 235);
+            VillagerOffset.MaxLength = 8;
+            VillagerOffset.Name = "VillagerOffset";
+            VillagerOffset.Size = new System.Drawing.Size(180, 31);
+            VillagerOffset.TabIndex = 44;
+            VillagerOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            VillagerOffset.TextChanged += BoxTextChanged;
+            VillagerOffset.Validating += BoxValidating;
             // 
             // PlayerOffsetLabel
             // 
-            this.PlayerOffsetLabel.AutoSize = true;
-            this.PlayerOffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.PlayerOffsetLabel.ForeColor = System.Drawing.Color.White;
-            this.PlayerOffsetLabel.Location = new System.Drawing.Point(8, 45);
-            this.PlayerOffsetLabel.Name = "PlayerOffsetLabel";
-            this.PlayerOffsetLabel.Size = new System.Drawing.Size(153, 19);
-            this.PlayerOffsetLabel.TabIndex = 45;
-            this.PlayerOffsetLabel.Text = "Player Offset (Size)";
+            PlayerOffsetLabel.AutoSize = true;
+            PlayerOffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            PlayerOffsetLabel.ForeColor = System.Drawing.Color.White;
+            PlayerOffsetLabel.Location = new System.Drawing.Point(8, 45);
+            PlayerOffsetLabel.Name = "PlayerOffsetLabel";
+            PlayerOffsetLabel.Size = new System.Drawing.Size(153, 19);
+            PlayerOffsetLabel.TabIndex = 45;
+            PlayerOffsetLabel.Text = "Player Offset (Size)";
             // 
             // Slot21OffsetLabel
             // 
-            this.Slot21OffsetLabel.AutoSize = true;
-            this.Slot21OffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Slot21OffsetLabel.ForeColor = System.Drawing.Color.White;
-            this.Slot21OffsetLabel.Location = new System.Drawing.Point(8, 82);
-            this.Slot21OffsetLabel.Name = "Slot21OffsetLabel";
-            this.Slot21OffsetLabel.Size = new System.Drawing.Size(211, 19);
-            this.Slot21OffsetLabel.TabIndex = 46;
-            this.Slot21OffsetLabel.Text = "Player 1 Item Slot 21 Offset";
+            Slot21OffsetLabel.AutoSize = true;
+            Slot21OffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            Slot21OffsetLabel.ForeColor = System.Drawing.Color.White;
+            Slot21OffsetLabel.Location = new System.Drawing.Point(8, 82);
+            Slot21OffsetLabel.Name = "Slot21OffsetLabel";
+            Slot21OffsetLabel.Size = new System.Drawing.Size(211, 19);
+            Slot21OffsetLabel.TabIndex = 46;
+            Slot21OffsetLabel.Text = "Player 1 Item Slot 21 Offset";
             // 
             // HomeOffsetLabel
             // 
-            this.HomeOffsetLabel.AutoSize = true;
-            this.HomeOffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.HomeOffsetLabel.ForeColor = System.Drawing.Color.White;
-            this.HomeOffsetLabel.Location = new System.Drawing.Point(8, 119);
-            this.HomeOffsetLabel.Name = "HomeOffsetLabel";
-            this.HomeOffsetLabel.Size = new System.Drawing.Size(232, 19);
-            this.HomeOffsetLabel.TabIndex = 47;
-            this.HomeOffsetLabel.Text = "Player 1 Home Storage Offset";
+            HomeOffsetLabel.AutoSize = true;
+            HomeOffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            HomeOffsetLabel.ForeColor = System.Drawing.Color.White;
+            HomeOffsetLabel.Location = new System.Drawing.Point(8, 119);
+            HomeOffsetLabel.Name = "HomeOffsetLabel";
+            HomeOffsetLabel.Size = new System.Drawing.Size(232, 19);
+            HomeOffsetLabel.TabIndex = 47;
+            HomeOffsetLabel.Text = "Player 1 Home Storage Offset";
             // 
             // ReactionOffsetLabel
             // 
-            this.ReactionOffsetLabel.AutoSize = true;
-            this.ReactionOffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ReactionOffsetLabel.ForeColor = System.Drawing.Color.White;
-            this.ReactionOffsetLabel.Location = new System.Drawing.Point(8, 156);
-            this.ReactionOffsetLabel.Name = "ReactionOffsetLabel";
-            this.ReactionOffsetLabel.Size = new System.Drawing.Size(242, 19);
-            this.ReactionOffsetLabel.TabIndex = 48;
-            this.ReactionOffsetLabel.Text = "Player 1 Reaction Wheel Offset";
-            this.ReactionOffsetLabel.TextChanged += new System.EventHandler(this.BoxTextChanged);
+            ReactionOffsetLabel.AutoSize = true;
+            ReactionOffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ReactionOffsetLabel.ForeColor = System.Drawing.Color.White;
+            ReactionOffsetLabel.Location = new System.Drawing.Point(8, 156);
+            ReactionOffsetLabel.Name = "ReactionOffsetLabel";
+            ReactionOffsetLabel.Size = new System.Drawing.Size(242, 19);
+            ReactionOffsetLabel.TabIndex = 48;
+            ReactionOffsetLabel.Text = "Player 1 Reaction Wheel Offset";
+            ReactionOffsetLabel.TextChanged += BoxTextChanged;
             // 
             // VillagerLabel
             // 
-            this.VillagerLabel.AutoSize = true;
-            this.VillagerLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerLabel.ForeColor = System.Drawing.Color.White;
-            this.VillagerLabel.Location = new System.Drawing.Point(8, 202);
-            this.VillagerLabel.Name = "VillagerLabel";
-            this.VillagerLabel.Size = new System.Drawing.Size(79, 19);
-            this.VillagerLabel.TabIndex = 49;
-            this.VillagerLabel.Text = "Villager 1";
+            VillagerLabel.AutoSize = true;
+            VillagerLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            VillagerLabel.ForeColor = System.Drawing.Color.White;
+            VillagerLabel.Location = new System.Drawing.Point(8, 202);
+            VillagerLabel.Name = "VillagerLabel";
+            VillagerLabel.Size = new System.Drawing.Size(79, 19);
+            VillagerLabel.TabIndex = 49;
+            VillagerLabel.Text = "Villager 1";
             // 
             // VillagerOffsetLabel
             // 
-            this.VillagerOffsetLabel.AutoSize = true;
-            this.VillagerOffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerOffsetLabel.ForeColor = System.Drawing.Color.White;
-            this.VillagerOffsetLabel.Location = new System.Drawing.Point(8, 239);
-            this.VillagerOffsetLabel.Name = "VillagerOffsetLabel";
-            this.VillagerOffsetLabel.Size = new System.Drawing.Size(162, 19);
-            this.VillagerOffsetLabel.TabIndex = 50;
-            this.VillagerOffsetLabel.Text = "Villager Offest (Size)";
+            VillagerOffsetLabel.AutoSize = true;
+            VillagerOffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            VillagerOffsetLabel.ForeColor = System.Drawing.Color.White;
+            VillagerOffsetLabel.Location = new System.Drawing.Point(8, 239);
+            VillagerOffsetLabel.Name = "VillagerOffsetLabel";
+            VillagerOffsetLabel.Size = new System.Drawing.Size(162, 19);
+            VillagerOffsetLabel.TabIndex = 50;
+            VillagerOffsetLabel.Text = "Villager Offest (Size)";
             // 
             // VillagerHouse
             // 
-            this.VillagerHouse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.VillagerHouse.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.VillagerHouse.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerHouse.ForeColor = System.Drawing.Color.White;
-            this.VillagerHouse.Location = new System.Drawing.Point(306, 272);
-            this.VillagerHouse.MaxLength = 8;
-            this.VillagerHouse.Name = "VillagerHouse";
-            this.VillagerHouse.Size = new System.Drawing.Size(180, 31);
-            this.VillagerHouse.TabIndex = 51;
-            this.VillagerHouse.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.VillagerHouse.TextChanged += new System.EventHandler(this.BoxTextChanged);
-            this.VillagerHouse.Validating += new System.ComponentModel.CancelEventHandler(this.BoxValidating);
+            VillagerHouse.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            VillagerHouse.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            VillagerHouse.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            VillagerHouse.ForeColor = System.Drawing.Color.White;
+            VillagerHouse.Location = new System.Drawing.Point(306, 272);
+            VillagerHouse.MaxLength = 8;
+            VillagerHouse.Name = "VillagerHouse";
+            VillagerHouse.Size = new System.Drawing.Size(180, 31);
+            VillagerHouse.TabIndex = 51;
+            VillagerHouse.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            VillagerHouse.TextChanged += BoxTextChanged;
+            VillagerHouse.Validating += BoxValidating;
             // 
             // VillagerHouseLabel
             // 
-            this.VillagerHouseLabel.AutoSize = true;
-            this.VillagerHouseLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerHouseLabel.ForeColor = System.Drawing.Color.White;
-            this.VillagerHouseLabel.Location = new System.Drawing.Point(8, 276);
-            this.VillagerHouseLabel.Name = "VillagerHouseLabel";
-            this.VillagerHouseLabel.Size = new System.Drawing.Size(133, 19);
-            this.VillagerHouseLabel.TabIndex = 52;
-            this.VillagerHouseLabel.Text = "Villager 1 House";
+            VillagerHouseLabel.AutoSize = true;
+            VillagerHouseLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            VillagerHouseLabel.ForeColor = System.Drawing.Color.White;
+            VillagerHouseLabel.Location = new System.Drawing.Point(8, 276);
+            VillagerHouseLabel.Name = "VillagerHouseLabel";
+            VillagerHouseLabel.Size = new System.Drawing.Size(133, 19);
+            VillagerHouseLabel.TabIndex = 52;
+            VillagerHouseLabel.Text = "Villager 1 House";
             // 
             // VillagerHouseOffsetLabel
             // 
-            this.VillagerHouseOffsetLabel.AutoSize = true;
-            this.VillagerHouseOffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerHouseOffsetLabel.ForeColor = System.Drawing.Color.White;
-            this.VillagerHouseOffsetLabel.Location = new System.Drawing.Point(8, 313);
-            this.VillagerHouseOffsetLabel.Name = "VillagerHouseOffsetLabel";
-            this.VillagerHouseOffsetLabel.Size = new System.Drawing.Size(216, 19);
-            this.VillagerHouseOffsetLabel.TabIndex = 53;
-            this.VillagerHouseOffsetLabel.Text = "Villager House Offest (Size)";
+            VillagerHouseOffsetLabel.AutoSize = true;
+            VillagerHouseOffsetLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            VillagerHouseOffsetLabel.ForeColor = System.Drawing.Color.White;
+            VillagerHouseOffsetLabel.Location = new System.Drawing.Point(8, 313);
+            VillagerHouseOffsetLabel.Name = "VillagerHouseOffsetLabel";
+            VillagerHouseOffsetLabel.Size = new System.Drawing.Size(216, 19);
+            VillagerHouseOffsetLabel.TabIndex = 53;
+            VillagerHouseOffsetLabel.Text = "Villager House Offest (Size)";
             // 
             // VillagerHouseOffset
             // 
-            this.VillagerHouseOffset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.VillagerHouseOffset.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.VillagerHouseOffset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerHouseOffset.ForeColor = System.Drawing.Color.White;
-            this.VillagerHouseOffset.Location = new System.Drawing.Point(306, 309);
-            this.VillagerHouseOffset.MaxLength = 8;
-            this.VillagerHouseOffset.Name = "VillagerHouseOffset";
-            this.VillagerHouseOffset.Size = new System.Drawing.Size(180, 31);
-            this.VillagerHouseOffset.TabIndex = 54;
-            this.VillagerHouseOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.VillagerHouseOffset.TextChanged += new System.EventHandler(this.BoxTextChanged);
-            this.VillagerHouseOffset.Validating += new System.ComponentModel.CancelEventHandler(this.BoxValidating);
+            VillagerHouseOffset.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            VillagerHouseOffset.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            VillagerHouseOffset.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            VillagerHouseOffset.ForeColor = System.Drawing.Color.White;
+            VillagerHouseOffset.Location = new System.Drawing.Point(306, 309);
+            VillagerHouseOffset.MaxLength = 8;
+            VillagerHouseOffset.Name = "VillagerHouseOffset";
+            VillagerHouseOffset.Size = new System.Drawing.Size(180, 31);
+            VillagerHouseOffset.TabIndex = 54;
+            VillagerHouseOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            VillagerHouseOffset.TextChanged += BoxTextChanged;
+            VillagerHouseOffset.Validating += BoxValidating;
             // 
             // VillagerHouseBufferLabel
             // 
-            this.VillagerHouseBufferLabel.AutoSize = true;
-            this.VillagerHouseBufferLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerHouseBufferLabel.ForeColor = System.Drawing.Color.White;
-            this.VillagerHouseBufferLabel.Location = new System.Drawing.Point(8, 350);
-            this.VillagerHouseBufferLabel.Name = "VillagerHouseBufferLabel";
-            this.VillagerHouseBufferLabel.Size = new System.Drawing.Size(220, 19);
-            this.VillagerHouseBufferLabel.TabIndex = 55;
-            this.VillagerHouseBufferLabel.Text = "Villager House Buffer Offest";
+            VillagerHouseBufferLabel.AutoSize = true;
+            VillagerHouseBufferLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            VillagerHouseBufferLabel.ForeColor = System.Drawing.Color.White;
+            VillagerHouseBufferLabel.Location = new System.Drawing.Point(8, 350);
+            VillagerHouseBufferLabel.Name = "VillagerHouseBufferLabel";
+            VillagerHouseBufferLabel.Size = new System.Drawing.Size(220, 19);
+            VillagerHouseBufferLabel.TabIndex = 55;
+            VillagerHouseBufferLabel.Text = "Villager House Buffer Offest";
             // 
             // VillagerHouseBuffer
             // 
-            this.VillagerHouseBuffer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.VillagerHouseBuffer.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.VillagerHouseBuffer.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.VillagerHouseBuffer.ForeColor = System.Drawing.Color.White;
-            this.VillagerHouseBuffer.Location = new System.Drawing.Point(306, 346);
-            this.VillagerHouseBuffer.MaxLength = 8;
-            this.VillagerHouseBuffer.Name = "VillagerHouseBuffer";
-            this.VillagerHouseBuffer.Size = new System.Drawing.Size(180, 31);
-            this.VillagerHouseBuffer.TabIndex = 56;
-            this.VillagerHouseBuffer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.VillagerHouseBuffer.TextChanged += new System.EventHandler(this.BoxTextChanged);
-            this.VillagerHouseBuffer.Validating += new System.ComponentModel.CancelEventHandler(this.BoxValidating);
+            VillagerHouseBuffer.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            VillagerHouseBuffer.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            VillagerHouseBuffer.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            VillagerHouseBuffer.ForeColor = System.Drawing.Color.White;
+            VillagerHouseBuffer.Location = new System.Drawing.Point(306, 346);
+            VillagerHouseBuffer.MaxLength = 8;
+            VillagerHouseBuffer.Name = "VillagerHouseBuffer";
+            VillagerHouseBuffer.Size = new System.Drawing.Size(180, 31);
+            VillagerHouseBuffer.TabIndex = 56;
+            VillagerHouseBuffer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            VillagerHouseBuffer.TextChanged += BoxTextChanged;
+            VillagerHouseBuffer.Validating += BoxValidating;
             // 
             // StaminaLabel
             // 
-            this.StaminaLabel.AutoSize = true;
-            this.StaminaLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.StaminaLabel.ForeColor = System.Drawing.Color.White;
-            this.StaminaLabel.Location = new System.Drawing.Point(597, 11);
-            this.StaminaLabel.Name = "StaminaLabel";
-            this.StaminaLabel.Size = new System.Drawing.Size(71, 19);
-            this.StaminaLabel.TabIndex = 57;
-            this.StaminaLabel.Text = "Stamina";
+            StaminaLabel.AutoSize = true;
+            StaminaLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            StaminaLabel.ForeColor = System.Drawing.Color.White;
+            StaminaLabel.Location = new System.Drawing.Point(597, 11);
+            StaminaLabel.Name = "StaminaLabel";
+            StaminaLabel.Size = new System.Drawing.Size(71, 19);
+            StaminaLabel.TabIndex = 57;
+            StaminaLabel.Text = "Stamina";
             // 
             // Stamina
             // 
-            this.Stamina.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.Stamina.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Stamina.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Stamina.ForeColor = System.Drawing.Color.White;
-            this.Stamina.Location = new System.Drawing.Point(774, 4);
-            this.Stamina.MaxLength = 8;
-            this.Stamina.Name = "Stamina";
-            this.Stamina.Size = new System.Drawing.Size(180, 31);
-            this.Stamina.TabIndex = 58;
-            this.Stamina.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Stamina.TextChanged += new System.EventHandler(this.BoxTextChanged);
-            this.Stamina.Validating += new System.ComponentModel.CancelEventHandler(this.BoxValidating);
+            Stamina.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            Stamina.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            Stamina.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            Stamina.ForeColor = System.Drawing.Color.White;
+            Stamina.Location = new System.Drawing.Point(774, 4);
+            Stamina.MaxLength = 8;
+            Stamina.Name = "Stamina";
+            Stamina.Size = new System.Drawing.Size(180, 31);
+            Stamina.TabIndex = 58;
+            Stamina.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            Stamina.TextChanged += BoxTextChanged;
+            Stamina.Validating += BoxValidating;
             // 
             // WalkSpeedLabel
             // 
-            this.WalkSpeedLabel.AutoSize = true;
-            this.WalkSpeedLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.WalkSpeedLabel.ForeColor = System.Drawing.Color.White;
-            this.WalkSpeedLabel.Location = new System.Drawing.Point(597, 48);
-            this.WalkSpeedLabel.Name = "WalkSpeedLabel";
-            this.WalkSpeedLabel.Size = new System.Drawing.Size(98, 19);
-            this.WalkSpeedLabel.TabIndex = 59;
-            this.WalkSpeedLabel.Text = "Walk Speed";
+            WalkSpeedLabel.AutoSize = true;
+            WalkSpeedLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            WalkSpeedLabel.ForeColor = System.Drawing.Color.White;
+            WalkSpeedLabel.Location = new System.Drawing.Point(597, 48);
+            WalkSpeedLabel.Name = "WalkSpeedLabel";
+            WalkSpeedLabel.Size = new System.Drawing.Size(98, 19);
+            WalkSpeedLabel.TabIndex = 59;
+            WalkSpeedLabel.Text = "Walk Speed";
             // 
             // AnimationSpeedLabel
             // 
-            this.AnimationSpeedLabel.AutoSize = true;
-            this.AnimationSpeedLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.AnimationSpeedLabel.ForeColor = System.Drawing.Color.White;
-            this.AnimationSpeedLabel.Location = new System.Drawing.Point(597, 85);
-            this.AnimationSpeedLabel.Name = "AnimationSpeedLabel";
-            this.AnimationSpeedLabel.Size = new System.Drawing.Size(139, 19);
-            this.AnimationSpeedLabel.TabIndex = 60;
-            this.AnimationSpeedLabel.Text = "Animation Speed";
+            AnimationSpeedLabel.AutoSize = true;
+            AnimationSpeedLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            AnimationSpeedLabel.ForeColor = System.Drawing.Color.White;
+            AnimationSpeedLabel.Location = new System.Drawing.Point(597, 85);
+            AnimationSpeedLabel.Name = "AnimationSpeedLabel";
+            AnimationSpeedLabel.Size = new System.Drawing.Size(139, 19);
+            AnimationSpeedLabel.TabIndex = 60;
+            AnimationSpeedLabel.Text = "Animation Speed";
             // 
             // WalkSpeed
             // 
-            this.WalkSpeed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.WalkSpeed.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.WalkSpeed.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.WalkSpeed.ForeColor = System.Drawing.Color.White;
-            this.WalkSpeed.Location = new System.Drawing.Point(774, 41);
-            this.WalkSpeed.MaxLength = 8;
-            this.WalkSpeed.Name = "WalkSpeed";
-            this.WalkSpeed.Size = new System.Drawing.Size(180, 31);
-            this.WalkSpeed.TabIndex = 61;
-            this.WalkSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.WalkSpeed.TextChanged += new System.EventHandler(this.BoxTextChanged);
-            this.WalkSpeed.Validating += new System.ComponentModel.CancelEventHandler(this.BoxValidating);
+            WalkSpeed.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            WalkSpeed.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            WalkSpeed.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            WalkSpeed.ForeColor = System.Drawing.Color.White;
+            WalkSpeed.Location = new System.Drawing.Point(774, 41);
+            WalkSpeed.MaxLength = 8;
+            WalkSpeed.Name = "WalkSpeed";
+            WalkSpeed.Size = new System.Drawing.Size(180, 31);
+            WalkSpeed.TabIndex = 61;
+            WalkSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            WalkSpeed.TextChanged += BoxTextChanged;
+            WalkSpeed.Validating += BoxValidating;
             // 
             // AnimationSpeed
             // 
-            this.AnimationSpeed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.AnimationSpeed.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.AnimationSpeed.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.AnimationSpeed.ForeColor = System.Drawing.Color.White;
-            this.AnimationSpeed.Location = new System.Drawing.Point(774, 78);
-            this.AnimationSpeed.MaxLength = 8;
-            this.AnimationSpeed.Name = "AnimationSpeed";
-            this.AnimationSpeed.Size = new System.Drawing.Size(180, 31);
-            this.AnimationSpeed.TabIndex = 62;
-            this.AnimationSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.AnimationSpeed.TextChanged += new System.EventHandler(this.BoxTextChanged);
-            this.AnimationSpeed.Validating += new System.ComponentModel.CancelEventHandler(this.BoxValidating);
+            AnimationSpeed.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            AnimationSpeed.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            AnimationSpeed.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            AnimationSpeed.ForeColor = System.Drawing.Color.White;
+            AnimationSpeed.Location = new System.Drawing.Point(774, 78);
+            AnimationSpeed.MaxLength = 8;
+            AnimationSpeed.Name = "AnimationSpeed";
+            AnimationSpeed.Size = new System.Drawing.Size(180, 31);
+            AnimationSpeed.TabIndex = 62;
+            AnimationSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            AnimationSpeed.TextChanged += BoxTextChanged;
+            AnimationSpeed.Validating += BoxValidating;
             // 
             // CollisionLabel
             // 
-            this.CollisionLabel.AutoSize = true;
-            this.CollisionLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CollisionLabel.ForeColor = System.Drawing.Color.White;
-            this.CollisionLabel.Location = new System.Drawing.Point(597, 122);
-            this.CollisionLabel.Name = "CollisionLabel";
-            this.CollisionLabel.Size = new System.Drawing.Size(76, 19);
-            this.CollisionLabel.TabIndex = 63;
-            this.CollisionLabel.Text = "Collision";
+            CollisionLabel.AutoSize = true;
+            CollisionLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CollisionLabel.ForeColor = System.Drawing.Color.White;
+            CollisionLabel.Location = new System.Drawing.Point(597, 122);
+            CollisionLabel.Name = "CollisionLabel";
+            CollisionLabel.Size = new System.Drawing.Size(76, 19);
+            CollisionLabel.TabIndex = 63;
+            CollisionLabel.Text = "Collision";
             // 
             // Collision
             // 
-            this.Collision.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.Collision.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Collision.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Collision.ForeColor = System.Drawing.Color.White;
-            this.Collision.Location = new System.Drawing.Point(774, 115);
-            this.Collision.MaxLength = 8;
-            this.Collision.Name = "Collision";
-            this.Collision.Size = new System.Drawing.Size(180, 31);
-            this.Collision.TabIndex = 64;
-            this.Collision.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Collision.TextChanged += new System.EventHandler(this.BoxTextChanged);
-            this.Collision.Validating += new System.ComponentModel.CancelEventHandler(this.BoxValidating);
+            Collision.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            Collision.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            Collision.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            Collision.ForeColor = System.Drawing.Color.White;
+            Collision.Location = new System.Drawing.Point(774, 115);
+            Collision.MaxLength = 8;
+            Collision.Name = "Collision";
+            Collision.Size = new System.Drawing.Size(180, 31);
+            Collision.TabIndex = 64;
+            Collision.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            Collision.TextChanged += BoxTextChanged;
+            Collision.Validating += BoxValidating;
             // 
             // FreezeTimeLabel
             // 
-            this.FreezeTimeLabel.AutoSize = true;
-            this.FreezeTimeLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FreezeTimeLabel.ForeColor = System.Drawing.Color.White;
-            this.FreezeTimeLabel.Location = new System.Drawing.Point(597, 176);
-            this.FreezeTimeLabel.Name = "FreezeTimeLabel";
-            this.FreezeTimeLabel.Size = new System.Drawing.Size(102, 19);
-            this.FreezeTimeLabel.TabIndex = 65;
-            this.FreezeTimeLabel.Text = "Freeze Time";
+            FreezeTimeLabel.AutoSize = true;
+            FreezeTimeLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            FreezeTimeLabel.ForeColor = System.Drawing.Color.White;
+            FreezeTimeLabel.Location = new System.Drawing.Point(597, 176);
+            FreezeTimeLabel.Name = "FreezeTimeLabel";
+            FreezeTimeLabel.Size = new System.Drawing.Size(102, 19);
+            FreezeTimeLabel.TabIndex = 65;
+            FreezeTimeLabel.Text = "Freeze Time";
             // 
             // FreezeTime
             // 
-            this.FreezeTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.FreezeTime.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.FreezeTime.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FreezeTime.ForeColor = System.Drawing.Color.White;
-            this.FreezeTime.Location = new System.Drawing.Point(774, 169);
-            this.FreezeTime.MaxLength = 8;
-            this.FreezeTime.Name = "FreezeTime";
-            this.FreezeTime.Size = new System.Drawing.Size(180, 31);
-            this.FreezeTime.TabIndex = 66;
-            this.FreezeTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.FreezeTime.TextChanged += new System.EventHandler(this.BoxTextChanged);
-            this.FreezeTime.Validating += new System.ComponentModel.CancelEventHandler(this.BoxValidating);
+            FreezeTime.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            FreezeTime.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            FreezeTime.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            FreezeTime.ForeColor = System.Drawing.Color.White;
+            FreezeTime.Location = new System.Drawing.Point(774, 169);
+            FreezeTime.MaxLength = 8;
+            FreezeTime.Name = "FreezeTime";
+            FreezeTime.Size = new System.Drawing.Size(180, 31);
+            FreezeTime.TabIndex = 66;
+            FreezeTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            FreezeTime.TextChanged += BoxTextChanged;
+            FreezeTime.Validating += BoxValidating;
             // 
             // ReadTimeLabel
             // 
-            this.ReadTimeLabel.AutoSize = true;
-            this.ReadTimeLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ReadTimeLabel.ForeColor = System.Drawing.Color.White;
-            this.ReadTimeLabel.Location = new System.Drawing.Point(597, 213);
-            this.ReadTimeLabel.Name = "ReadTimeLabel";
-            this.ReadTimeLabel.Size = new System.Drawing.Size(90, 19);
-            this.ReadTimeLabel.TabIndex = 67;
-            this.ReadTimeLabel.Text = "Read Time";
+            ReadTimeLabel.AutoSize = true;
+            ReadTimeLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ReadTimeLabel.ForeColor = System.Drawing.Color.White;
+            ReadTimeLabel.Location = new System.Drawing.Point(597, 213);
+            ReadTimeLabel.Name = "ReadTimeLabel";
+            ReadTimeLabel.Size = new System.Drawing.Size(90, 19);
+            ReadTimeLabel.TabIndex = 67;
+            ReadTimeLabel.Text = "Read Time";
             // 
             // ReadTime
             // 
-            this.ReadTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.ReadTime.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ReadTime.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ReadTime.ForeColor = System.Drawing.Color.White;
-            this.ReadTime.Location = new System.Drawing.Point(774, 206);
-            this.ReadTime.MaxLength = 8;
-            this.ReadTime.Name = "ReadTime";
-            this.ReadTime.Size = new System.Drawing.Size(180, 31);
-            this.ReadTime.TabIndex = 68;
-            this.ReadTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.ReadTime.TextChanged += new System.EventHandler(this.BoxTextChanged);
-            this.ReadTime.Validating += new System.ComponentModel.CancelEventHandler(this.BoxValidating);
+            ReadTime.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            ReadTime.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            ReadTime.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ReadTime.ForeColor = System.Drawing.Color.White;
+            ReadTime.Location = new System.Drawing.Point(774, 206);
+            ReadTime.MaxLength = 8;
+            ReadTime.Name = "ReadTime";
+            ReadTime.Size = new System.Drawing.Size(180, 31);
+            ReadTime.TabIndex = 68;
+            ReadTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            ReadTime.TextChanged += BoxTextChanged;
+            ReadTime.Validating += BoxValidating;
             // 
             // RecyclingBinLabel
             // 
-            this.RecyclingBinLabel.AutoSize = true;
-            this.RecyclingBinLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RecyclingBinLabel.ForeColor = System.Drawing.Color.White;
-            this.RecyclingBinLabel.Location = new System.Drawing.Point(8, 395);
-            this.RecyclingBinLabel.Name = "RecyclingBinLabel";
-            this.RecyclingBinLabel.Size = new System.Drawing.Size(115, 19);
-            this.RecyclingBinLabel.TabIndex = 71;
-            this.RecyclingBinLabel.Text = "Recycling Bin";
+            RecyclingBinLabel.AutoSize = true;
+            RecyclingBinLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RecyclingBinLabel.ForeColor = System.Drawing.Color.White;
+            RecyclingBinLabel.Location = new System.Drawing.Point(8, 395);
+            RecyclingBinLabel.Name = "RecyclingBinLabel";
+            RecyclingBinLabel.Size = new System.Drawing.Size(115, 19);
+            RecyclingBinLabel.TabIndex = 71;
+            RecyclingBinLabel.Text = "Recycling Bin";
             // 
             // TurnipLabel
             // 
-            this.TurnipLabel.AutoSize = true;
-            this.TurnipLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.TurnipLabel.ForeColor = System.Drawing.Color.White;
-            this.TurnipLabel.Location = new System.Drawing.Point(8, 432);
-            this.TurnipLabel.Name = "TurnipLabel";
-            this.TurnipLabel.Size = new System.Drawing.Size(178, 19);
-            this.TurnipLabel.TabIndex = 72;
-            this.TurnipLabel.Text = "Turnip Purchase Price";
+            TurnipLabel.AutoSize = true;
+            TurnipLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            TurnipLabel.ForeColor = System.Drawing.Color.White;
+            TurnipLabel.Location = new System.Drawing.Point(8, 432);
+            TurnipLabel.Name = "TurnipLabel";
+            TurnipLabel.Size = new System.Drawing.Size(178, 19);
+            TurnipLabel.TabIndex = 72;
+            TurnipLabel.Text = "Turnip Purchase Price";
             // 
             // RecyclingBin
             // 
-            this.RecyclingBin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.RecyclingBin.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.RecyclingBin.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.RecyclingBin.ForeColor = System.Drawing.Color.White;
-            this.RecyclingBin.Location = new System.Drawing.Point(306, 391);
-            this.RecyclingBin.MaxLength = 8;
-            this.RecyclingBin.Name = "RecyclingBin";
-            this.RecyclingBin.Size = new System.Drawing.Size(180, 31);
-            this.RecyclingBin.TabIndex = 73;
-            this.RecyclingBin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.RecyclingBin.TextChanged += new System.EventHandler(this.BoxTextChanged);
-            this.RecyclingBin.Validating += new System.ComponentModel.CancelEventHandler(this.BoxValidating);
+            RecyclingBin.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            RecyclingBin.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            RecyclingBin.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RecyclingBin.ForeColor = System.Drawing.Color.White;
+            RecyclingBin.Location = new System.Drawing.Point(306, 391);
+            RecyclingBin.MaxLength = 8;
+            RecyclingBin.Name = "RecyclingBin";
+            RecyclingBin.Size = new System.Drawing.Size(180, 31);
+            RecyclingBin.TabIndex = 73;
+            RecyclingBin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            RecyclingBin.TextChanged += BoxTextChanged;
+            RecyclingBin.Validating += BoxValidating;
             // 
             // Turnip
             // 
-            this.Turnip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.Turnip.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Turnip.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Turnip.ForeColor = System.Drawing.Color.White;
-            this.Turnip.Location = new System.Drawing.Point(306, 428);
-            this.Turnip.MaxLength = 8;
-            this.Turnip.Name = "Turnip";
-            this.Turnip.Size = new System.Drawing.Size(180, 31);
-            this.Turnip.TabIndex = 74;
-            this.Turnip.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Turnip.TextChanged += new System.EventHandler(this.BoxTextChanged);
-            this.Turnip.Validating += new System.ComponentModel.CancelEventHandler(this.BoxValidating);
+            Turnip.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            Turnip.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            Turnip.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            Turnip.ForeColor = System.Drawing.Color.White;
+            Turnip.Location = new System.Drawing.Point(306, 428);
+            Turnip.MaxLength = 8;
+            Turnip.Name = "Turnip";
+            Turnip.Size = new System.Drawing.Size(180, 31);
+            Turnip.TabIndex = 74;
+            Turnip.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            Turnip.TextChanged += BoxTextChanged;
+            Turnip.Validating += BoxValidating;
             // 
             // WeatherSeedLabel
             // 
-            this.WeatherSeedLabel.AutoSize = true;
-            this.WeatherSeedLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.WeatherSeedLabel.ForeColor = System.Drawing.Color.White;
-            this.WeatherSeedLabel.Location = new System.Drawing.Point(599, 316);
-            this.WeatherSeedLabel.Name = "WeatherSeedLabel";
-            this.WeatherSeedLabel.Size = new System.Drawing.Size(115, 19);
-            this.WeatherSeedLabel.TabIndex = 77;
-            this.WeatherSeedLabel.Text = "Weather Seed";
+            WeatherSeedLabel.AutoSize = true;
+            WeatherSeedLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            WeatherSeedLabel.ForeColor = System.Drawing.Color.White;
+            WeatherSeedLabel.Location = new System.Drawing.Point(599, 316);
+            WeatherSeedLabel.Name = "WeatherSeedLabel";
+            WeatherSeedLabel.Size = new System.Drawing.Size(115, 19);
+            WeatherSeedLabel.TabIndex = 77;
+            WeatherSeedLabel.Text = "Weather Seed";
             // 
             // WeatherSeed
             // 
-            this.WeatherSeed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.WeatherSeed.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.WeatherSeed.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.WeatherSeed.ForeColor = System.Drawing.Color.White;
-            this.WeatherSeed.Location = new System.Drawing.Point(776, 309);
-            this.WeatherSeed.MaxLength = 8;
-            this.WeatherSeed.Name = "WeatherSeed";
-            this.WeatherSeed.Size = new System.Drawing.Size(180, 31);
-            this.WeatherSeed.TabIndex = 78;
-            this.WeatherSeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.WeatherSeed.TextChanged += new System.EventHandler(this.BoxTextChanged);
-            this.WeatherSeed.Validating += new System.ComponentModel.CancelEventHandler(this.BoxValidating);
+            WeatherSeed.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            WeatherSeed.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            WeatherSeed.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            WeatherSeed.ForeColor = System.Drawing.Color.White;
+            WeatherSeed.Location = new System.Drawing.Point(774, 309);
+            WeatherSeed.MaxLength = 8;
+            WeatherSeed.Name = "WeatherSeed";
+            WeatherSeed.Size = new System.Drawing.Size(180, 31);
+            WeatherSeed.TabIndex = 78;
+            WeatherSeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            WeatherSeed.TextChanged += BoxTextChanged;
+            WeatherSeed.Validating += BoxValidating;
             // 
             // addresses
             // 
-            this.addresses.Controls.Add(this.MapZeroLabel);
-            this.addresses.Controls.Add(this.MapZero);
-            this.addresses.Controls.Add(this.SaveBtn);
-            this.addresses.Controls.Add(this.PlayerSlotLabel);
-            this.addresses.Controls.Add(this.PlayerSlot);
-            this.addresses.Controls.Add(this.Slot21Offset);
-            this.addresses.Controls.Add(this.WeatherSeed);
-            this.addresses.Controls.Add(this.HomeOffset);
-            this.addresses.Controls.Add(this.WeatherSeedLabel);
-            this.addresses.Controls.Add(this.ReactionOffset);
-            this.addresses.Controls.Add(this.PlayerOffset);
-            this.addresses.Controls.Add(this.Villager);
-            this.addresses.Controls.Add(this.Turnip);
-            this.addresses.Controls.Add(this.VillagerOffset);
-            this.addresses.Controls.Add(this.RecyclingBin);
-            this.addresses.Controls.Add(this.PlayerOffsetLabel);
-            this.addresses.Controls.Add(this.TurnipLabel);
-            this.addresses.Controls.Add(this.Slot21OffsetLabel);
-            this.addresses.Controls.Add(this.RecyclingBinLabel);
-            this.addresses.Controls.Add(this.HomeOffsetLabel);
-            this.addresses.Controls.Add(this.ReactionOffsetLabel);
-            this.addresses.Controls.Add(this.VillagerLabel);
-            this.addresses.Controls.Add(this.ReadTime);
-            this.addresses.Controls.Add(this.VillagerOffsetLabel);
-            this.addresses.Controls.Add(this.ReadTimeLabel);
-            this.addresses.Controls.Add(this.VillagerHouse);
-            this.addresses.Controls.Add(this.FreezeTime);
-            this.addresses.Controls.Add(this.VillagerHouseLabel);
-            this.addresses.Controls.Add(this.FreezeTimeLabel);
-            this.addresses.Controls.Add(this.VillagerHouseOffsetLabel);
-            this.addresses.Controls.Add(this.Collision);
-            this.addresses.Controls.Add(this.VillagerHouseOffset);
-            this.addresses.Controls.Add(this.CollisionLabel);
-            this.addresses.Controls.Add(this.VillagerHouseBufferLabel);
-            this.addresses.Controls.Add(this.AnimationSpeed);
-            this.addresses.Controls.Add(this.VillagerHouseBuffer);
-            this.addresses.Controls.Add(this.WalkSpeed);
-            this.addresses.Controls.Add(this.StaminaLabel);
-            this.addresses.Controls.Add(this.AnimationSpeedLabel);
-            this.addresses.Controls.Add(this.Stamina);
-            this.addresses.Controls.Add(this.WalkSpeedLabel);
-            this.addresses.Enabled = false;
-            this.addresses.Location = new System.Drawing.Point(0, 40);
-            this.addresses.Name = "addresses";
-            this.addresses.Size = new System.Drawing.Size(968, 466);
-            this.addresses.TabIndex = 98;
+            addresses.Controls.Add(MapZeroLabel);
+            addresses.Controls.Add(MapZero);
+            addresses.Controls.Add(SaveBtn);
+            addresses.Controls.Add(PlayerSlotLabel);
+            addresses.Controls.Add(PlayerSlot);
+            addresses.Controls.Add(Slot21Offset);
+            addresses.Controls.Add(WeatherSeed);
+            addresses.Controls.Add(HomeOffset);
+            addresses.Controls.Add(WeatherSeedLabel);
+            addresses.Controls.Add(ReactionOffset);
+            addresses.Controls.Add(PlayerOffset);
+            addresses.Controls.Add(Villager);
+            addresses.Controls.Add(Turnip);
+            addresses.Controls.Add(VillagerOffset);
+            addresses.Controls.Add(RecyclingBin);
+            addresses.Controls.Add(PlayerOffsetLabel);
+            addresses.Controls.Add(TurnipLabel);
+            addresses.Controls.Add(Slot21OffsetLabel);
+            addresses.Controls.Add(RecyclingBinLabel);
+            addresses.Controls.Add(HomeOffsetLabel);
+            addresses.Controls.Add(ReactionOffsetLabel);
+            addresses.Controls.Add(VillagerLabel);
+            addresses.Controls.Add(ReadTime);
+            addresses.Controls.Add(VillagerOffsetLabel);
+            addresses.Controls.Add(ReadTimeLabel);
+            addresses.Controls.Add(VillagerHouse);
+            addresses.Controls.Add(FreezeTime);
+            addresses.Controls.Add(VillagerHouseLabel);
+            addresses.Controls.Add(FreezeTimeLabel);
+            addresses.Controls.Add(VillagerHouseOffsetLabel);
+            addresses.Controls.Add(Collision);
+            addresses.Controls.Add(VillagerHouseOffset);
+            addresses.Controls.Add(CollisionLabel);
+            addresses.Controls.Add(VillagerHouseBufferLabel);
+            addresses.Controls.Add(AnimationSpeed);
+            addresses.Controls.Add(VillagerHouseBuffer);
+            addresses.Controls.Add(WalkSpeed);
+            addresses.Controls.Add(StaminaLabel);
+            addresses.Controls.Add(AnimationSpeedLabel);
+            addresses.Controls.Add(Stamina);
+            addresses.Controls.Add(WalkSpeedLabel);
+            addresses.Enabled = false;
+            addresses.Location = new System.Drawing.Point(0, 40);
+            addresses.Name = "addresses";
+            addresses.Size = new System.Drawing.Size(968, 466);
+            addresses.TabIndex = 98;
             // 
             // MapZeroLabel
             // 
-            this.MapZeroLabel.AutoSize = true;
-            this.MapZeroLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.MapZeroLabel.ForeColor = System.Drawing.Color.White;
-            this.MapZeroLabel.Location = new System.Drawing.Point(599, 353);
-            this.MapZeroLabel.Name = "MapZeroLabel";
-            this.MapZeroLabel.Size = new System.Drawing.Size(79, 19);
-            this.MapZeroLabel.TabIndex = 101;
-            this.MapZeroLabel.Text = "Map Zero";
+            MapZeroLabel.AutoSize = true;
+            MapZeroLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            MapZeroLabel.ForeColor = System.Drawing.Color.White;
+            MapZeroLabel.Location = new System.Drawing.Point(599, 353);
+            MapZeroLabel.Name = "MapZeroLabel";
+            MapZeroLabel.Size = new System.Drawing.Size(79, 19);
+            MapZeroLabel.TabIndex = 101;
+            MapZeroLabel.Text = "Map Zero";
             // 
             // MapZero
             // 
-            this.MapZero.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.MapZero.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.MapZero.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.MapZero.ForeColor = System.Drawing.Color.White;
-            this.MapZero.Location = new System.Drawing.Point(776, 346);
-            this.MapZero.MaxLength = 8;
-            this.MapZero.Name = "MapZero";
-            this.MapZero.Size = new System.Drawing.Size(180, 31);
-            this.MapZero.TabIndex = 100;
-            this.MapZero.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.MapZero.TextChanged += new System.EventHandler(this.BoxTextChanged);
-            this.MapZero.Validating += new System.ComponentModel.CancelEventHandler(this.BoxValidating);
+            MapZero.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            MapZero.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            MapZero.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            MapZero.ForeColor = System.Drawing.Color.White;
+            MapZero.Location = new System.Drawing.Point(774, 346);
+            MapZero.MaxLength = 8;
+            MapZero.Name = "MapZero";
+            MapZero.Size = new System.Drawing.Size(180, 31);
+            MapZero.TabIndex = 100;
+            MapZero.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            MapZero.TextChanged += BoxTextChanged;
+            MapZero.Validating += BoxValidating;
             // 
             // SaveBtn
             // 
-            this.SaveBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.SaveBtn.FlatAppearance.BorderSize = 0;
-            this.SaveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SaveBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SaveBtn.ForeColor = System.Drawing.Color.White;
-            this.SaveBtn.Location = new System.Drawing.Point(774, 423);
-            this.SaveBtn.Name = "SaveBtn";
-            this.SaveBtn.Size = new System.Drawing.Size(180, 30);
-            this.SaveBtn.TabIndex = 99;
-            this.SaveBtn.Text = "Save";
-            this.SaveBtn.UseVisualStyleBackColor = false;
-            this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
+            SaveBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            SaveBtn.FlatAppearance.BorderSize = 0;
+            SaveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            SaveBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            SaveBtn.ForeColor = System.Drawing.Color.White;
+            SaveBtn.Location = new System.Drawing.Point(774, 424);
+            SaveBtn.Name = "SaveBtn";
+            SaveBtn.Size = new System.Drawing.Size(180, 30);
+            SaveBtn.TabIndex = 99;
+            SaveBtn.Text = "Save";
+            SaveBtn.UseVisualStyleBackColor = false;
+            SaveBtn.Click += SaveBtn_Click;
             // 
             // ImageBtn
             // 
-            this.ImageBtn.BackColor = System.Drawing.Color.Orange;
-            this.ImageBtn.FlatAppearance.BorderSize = 0;
-            this.ImageBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ImageBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ImageBtn.ForeColor = System.Drawing.Color.White;
-            this.ImageBtn.Location = new System.Drawing.Point(780, 5);
-            this.ImageBtn.Name = "ImageBtn";
-            this.ImageBtn.Size = new System.Drawing.Size(180, 30);
-            this.ImageBtn.TabIndex = 100;
-            this.ImageBtn.Text = "Download Image";
-            this.ImageBtn.UseVisualStyleBackColor = false;
-            this.ImageBtn.Click += new System.EventHandler(this.ImageBtn_Click);
+            ImageBtn.BackColor = System.Drawing.Color.Orange;
+            ImageBtn.FlatAppearance.BorderSize = 0;
+            ImageBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ImageBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ImageBtn.ForeColor = System.Drawing.Color.White;
+            ImageBtn.Location = new System.Drawing.Point(774, 4);
+            ImageBtn.Name = "ImageBtn";
+            ImageBtn.Size = new System.Drawing.Size(180, 30);
+            ImageBtn.TabIndex = 100;
+            ImageBtn.Text = "Download Images";
+            ImageBtn.UseVisualStyleBackColor = false;
+            ImageBtn.Click += ImageBtn_Click;
             // 
             // AddressOverrideToggle
             // 
-            this.AddressOverrideToggle.Location = new System.Drawing.Point(143, 9);
-            this.AddressOverrideToggle.Name = "AddressOverrideToggle";
-            this.AddressOverrideToggle.OffFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.AddressOverrideToggle.OffForeColor = System.Drawing.Color.White;
-            this.AddressOverrideToggle.OffText = "Off";
-            this.AddressOverrideToggle.OnFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.AddressOverrideToggle.OnForeColor = System.Drawing.Color.White;
-            this.AddressOverrideToggle.OnText = "On";
-            this.AddressOverrideToggle.Size = new System.Drawing.Size(59, 19);
-            this.AddressOverrideToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
-            this.AddressOverrideToggle.TabIndex = 101;
-            this.AddressOverrideToggle.UseAnimation = false;
-            this.AddressOverrideToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.AddressOverrideToggle_CheckedChanged);
+            AddressOverrideToggle.Location = new System.Drawing.Point(143, 9);
+            AddressOverrideToggle.Name = "AddressOverrideToggle";
+            AddressOverrideToggle.OffFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            AddressOverrideToggle.OffForeColor = System.Drawing.Color.White;
+            AddressOverrideToggle.OffText = "Off";
+            AddressOverrideToggle.OnFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            AddressOverrideToggle.OnForeColor = System.Drawing.Color.White;
+            AddressOverrideToggle.OnText = "On";
+            AddressOverrideToggle.Size = new System.Drawing.Size(59, 19);
+            AddressOverrideToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            AddressOverrideToggle.TabIndex = 101;
+            AddressOverrideToggle.UseAnimation = false;
+            AddressOverrideToggle.CheckedChanged += AddressOverrideToggle_CheckedChanged;
             // 
             // AddressOverrideLabel
             // 
-            this.AddressOverrideLabel.AutoSize = true;
-            this.AddressOverrideLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.AddressOverrideLabel.ForeColor = System.Drawing.Color.White;
-            this.AddressOverrideLabel.Location = new System.Drawing.Point(10, 11);
-            this.AddressOverrideLabel.Name = "AddressOverrideLabel";
-            this.AddressOverrideLabel.Size = new System.Drawing.Size(132, 16);
-            this.AddressOverrideLabel.TabIndex = 102;
-            this.AddressOverrideLabel.Text = "Address Override";
+            AddressOverrideLabel.AutoSize = true;
+            AddressOverrideLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            AddressOverrideLabel.ForeColor = System.Drawing.Color.White;
+            AddressOverrideLabel.Location = new System.Drawing.Point(10, 11);
+            AddressOverrideLabel.Name = "AddressOverrideLabel";
+            AddressOverrideLabel.Size = new System.Drawing.Size(132, 16);
+            AddressOverrideLabel.TabIndex = 102;
+            AddressOverrideLabel.Text = "Address Override";
             // 
             // ValidationLabel
             // 
-            this.ValidationLabel.AutoSize = true;
-            this.ValidationLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ValidationLabel.ForeColor = System.Drawing.Color.White;
-            this.ValidationLabel.Location = new System.Drawing.Point(238, 11);
-            this.ValidationLabel.Name = "ValidationLabel";
-            this.ValidationLabel.Size = new System.Drawing.Size(75, 16);
-            this.ValidationLabel.TabIndex = 104;
-            this.ValidationLabel.Text = "Validation";
+            ValidationLabel.AutoSize = true;
+            ValidationLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ValidationLabel.ForeColor = System.Drawing.Color.White;
+            ValidationLabel.Location = new System.Drawing.Point(238, 11);
+            ValidationLabel.Name = "ValidationLabel";
+            ValidationLabel.Size = new System.Drawing.Size(75, 16);
+            ValidationLabel.TabIndex = 104;
+            ValidationLabel.Text = "Validation";
             // 
             // ValidationToggle
             // 
-            this.ValidationToggle.Location = new System.Drawing.Point(316, 9);
-            this.ValidationToggle.Name = "ValidationToggle";
-            this.ValidationToggle.OffFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ValidationToggle.OffForeColor = System.Drawing.Color.White;
-            this.ValidationToggle.OffText = "Off";
-            this.ValidationToggle.OnFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ValidationToggle.OnForeColor = System.Drawing.Color.White;
-            this.ValidationToggle.OnText = "On";
-            this.ValidationToggle.Size = new System.Drawing.Size(59, 19);
-            this.ValidationToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
-            this.ValidationToggle.TabIndex = 103;
-            this.ValidationToggle.UseAnimation = false;
-            this.ValidationToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.ValidationToggle_CheckedChanged);
+            ValidationToggle.Location = new System.Drawing.Point(316, 9);
+            ValidationToggle.Name = "ValidationToggle";
+            ValidationToggle.OffFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ValidationToggle.OffForeColor = System.Drawing.Color.White;
+            ValidationToggle.OffText = "Off";
+            ValidationToggle.OnFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ValidationToggle.OnForeColor = System.Drawing.Color.White;
+            ValidationToggle.OnText = "On";
+            ValidationToggle.Size = new System.Drawing.Size(59, 19);
+            ValidationToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            ValidationToggle.TabIndex = 103;
+            ValidationToggle.UseAnimation = false;
+            ValidationToggle.CheckedChanged += ValidationToggle_CheckedChanged;
             // 
             // SoundToggle
             // 
-            this.SoundToggle.Location = new System.Drawing.Point(469, 9);
-            this.SoundToggle.Name = "SoundToggle";
-            this.SoundToggle.OffFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SoundToggle.OffForeColor = System.Drawing.Color.White;
-            this.SoundToggle.OffText = "Off";
-            this.SoundToggle.OnFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SoundToggle.OnForeColor = System.Drawing.Color.White;
-            this.SoundToggle.OnText = "On";
-            this.SoundToggle.Size = new System.Drawing.Size(59, 19);
-            this.SoundToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
-            this.SoundToggle.TabIndex = 105;
-            this.SoundToggle.UseAnimation = false;
-            this.SoundToggle.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.SoundToggle_CheckedChanged);
+            SoundToggle.Location = new System.Drawing.Point(469, 9);
+            SoundToggle.Name = "SoundToggle";
+            SoundToggle.OffFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            SoundToggle.OffForeColor = System.Drawing.Color.White;
+            SoundToggle.OffText = "Off";
+            SoundToggle.OnFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            SoundToggle.OnForeColor = System.Drawing.Color.White;
+            SoundToggle.OnText = "On";
+            SoundToggle.Size = new System.Drawing.Size(59, 19);
+            SoundToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            SoundToggle.TabIndex = 105;
+            SoundToggle.UseAnimation = false;
+            SoundToggle.CheckedChanged += SoundToggle_CheckedChanged;
             // 
             // SoundLabel
             // 
-            this.SoundLabel.AutoSize = true;
-            this.SoundLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SoundLabel.ForeColor = System.Drawing.Color.White;
-            this.SoundLabel.Location = new System.Drawing.Point(414, 11);
-            this.SoundLabel.Name = "SoundLabel";
-            this.SoundLabel.Size = new System.Drawing.Size(52, 16);
-            this.SoundLabel.TabIndex = 106;
-            this.SoundLabel.Text = "Sound";
+            SoundLabel.AutoSize = true;
+            SoundLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            SoundLabel.ForeColor = System.Drawing.Color.White;
+            SoundLabel.Location = new System.Drawing.Point(414, 11);
+            SoundLabel.Name = "SoundLabel";
+            SoundLabel.Size = new System.Drawing.Size(52, 16);
+            SoundLabel.TabIndex = 106;
+            SoundLabel.Text = "Sound";
             // 
             // Setting
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.ClientSize = new System.Drawing.Size(964, 506);
-            this.Controls.Add(this.SoundToggle);
-            this.Controls.Add(this.SoundLabel);
-            this.Controls.Add(this.ValidationToggle);
-            this.Controls.Add(this.AddressOverrideToggle);
-            this.Controls.Add(this.ValidationLabel);
-            this.Controls.Add(this.AddressOverrideLabel);
-            this.Controls.Add(this.ImageBtn);
-            this.Controls.Add(this.addresses);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(980, 600);
-            this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(980, 545);
-            this.Name = "Setting";
-            this.Opacity = 0.95D;
-            this.ShowInTaskbar = false;
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Configuration";
-            this.Load += new System.EventHandler(this.Setting_Load);
-            this.addresses.ResumeLayout(false);
-            this.addresses.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            ClientSize = new System.Drawing.Size(964, 506);
+            Controls.Add(SoundToggle);
+            Controls.Add(SoundLabel);
+            Controls.Add(ValidationToggle);
+            Controls.Add(AddressOverrideToggle);
+            Controls.Add(ValidationLabel);
+            Controls.Add(AddressOverrideLabel);
+            Controls.Add(ImageBtn);
+            Controls.Add(addresses);
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MaximumSize = new System.Drawing.Size(980, 600);
+            MinimizeBox = false;
+            MinimumSize = new System.Drawing.Size(980, 545);
+            Name = "Setting";
+            Opacity = 0.95D;
+            ShowInTaskbar = false;
+            SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "Configuration";
+            Load += Setting_Load;
+            addresses.ResumeLayout(false);
+            addresses.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

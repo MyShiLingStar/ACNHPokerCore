@@ -6,10 +6,6 @@ namespace ACNHPokerCore
 
     class MyLog
     {
-        public MyLog()
-        {
-        }
-
         public static void LogEvent(string Location, string Message)
         {
             if (!File.Exists(Utilities.logPath))
@@ -29,7 +25,7 @@ namespace ACNHPokerCore
 
             DateTime localDate = DateTime.Now;
 
-            string newLog = localDate.ToString() + "," + Location + "," + Message;
+            string newLog = localDate + "," + Location + "," + Message;
 
             if (File.Exists(Utilities.logPath))
             {

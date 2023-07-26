@@ -1,6 +1,6 @@
-﻿using Discord;
-using Discord.Webhook;
+﻿using DiscordWebhook;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Drawing;
 using System.IO;
@@ -331,7 +331,7 @@ namespace ACNHPokerCore
         public static void Skip(int before = 900, int after = 500)
         {
             Thread.Sleep(before);
-            Utilities.SetTextSpeed(s, null, Utilities.isChinese(s));
+            Utilities.SetTextSpeed(s, null, Utilities.IsChinese(s));
             Thread.Sleep(after);
         }
 
@@ -578,10 +578,10 @@ namespace ACNHPokerCore
             try
             {
                 //string dodo = "12345";
-                string dodo = Utilities.getDodo(s).Replace("\0", "");
+                string dodo = Utilities.GetDodo(s).Replace("\0", "");
 
                 if (dodo == "") // Try again for Chinese
-                    dodo = Utilities.getDodo(s, true).Replace("\0", "");
+                    dodo = Utilities.GetDodo(s, true).Replace("\0", "");
 
                 if (File.Exists(Utilities.dodoPath))
                 {
@@ -624,26 +624,24 @@ namespace ACNHPokerCore
                     }
                     else
                     {
-                        SideColor = System.Drawing.ColorTranslator.FromHtml(color);
+                        SideColor = ColorTranslator.FromHtml(color);
                     }
                     if (imageURL == null)
                     {
                         imageURL = "";
                     }
 
-                    DiscordWebhook hook = new()
+                    DiscordWebhook.DiscordWebhook hook = new()
                     {
-                        Url = url
+                        Uri = new Uri(url)
                     };
 
-                    DiscordMessage message = new()
+                    DiscordMessage msg = new()
                     {
                         Content = content
                     };
-                    //message.TTS = true; //read message to everyone on the channel
-
-                    //embeds
-                    DiscordEmbed embed = new()
+                    msg.Embeds = new List<DiscordEmbed>();
+                    msg.Embeds.Add(new DiscordEmbed()
                     {
                         Title = "New Dodo Code for " + IslandName + " :",
                         Description = dodo,
@@ -651,25 +649,95 @@ namespace ACNHPokerCore
                         Color = SideColor, //alpha will be ignored, you can use any RGB color
                         Thumbnail = new EmbedMedia() { Url = imageURL },
                         Footer = new EmbedFooter() { Text = "Sent From ACNHPokerCore" }
-                    };
+                    });
 
-                    message.Embeds = new[] { embed };
-                    try
-                    {
-                        hook.Send(message);
-                    }
-                    catch
-                    {
+                    //message.TTS = true; //read message to everyone on the channel
 
-                    }
+                    _ = hook.SendAsync(msg);
                 }
 
                 return dodo;
             }
             catch (Exception ex)
             {
-                MyLog.LogEvent("Controller", "Dodo: " + ex.Message.ToString());
+                MyLog.LogEvent("Controller", "Dodo: " + ex.Message);
                 return "";
+            }
+        }
+
+        public static void testWebhook()
+        {
+            try
+            {
+                string dodo = "TEST";
+
+                using (StreamWriter sw = File.CreateText(Utilities.dodoPath))
+                {
+                    sw.WriteLine(dodo);
+                }
+
+                if (File.Exists(Utilities.webhookPath))
+                {
+                    string url;
+                    string content;
+                    string color;
+                    Color SideColor;
+                    string imageURL;
+                    using (StreamReader sr = new(Utilities.webhookPath))
+                    {
+                        url = sr.ReadLine();
+                        content = sr.ReadLine();
+                        color = sr.ReadLine();
+                        imageURL = sr.ReadLine();
+                    }
+
+                    if (content == null)
+                    {
+                        content = "";
+                    }
+
+                    if (color == null)
+                    {
+                        SideColor = Color.Pink;
+                    }
+                    else
+                    {
+                        SideColor = ColorTranslator.FromHtml(color);
+                    }
+
+                    if (imageURL == null)
+                    {
+                        imageURL = "";
+                    }
+
+                    DiscordWebhook.DiscordWebhook hook = new()
+                    {
+                        Uri = new Uri(url)
+                    };
+
+                    DiscordMessage msg = new()
+                    {
+                        Content = content
+                    };
+                    msg.Embeds = new List<DiscordEmbed>();
+                    msg.Embeds.Add(new DiscordEmbed()
+                    {
+                        Title = "New Dodo Code for " + IslandName + " :",
+                        Description = dodo,
+                        Timestamp = DateTime.Now,
+                        Color = SideColor, //alpha will be ignored, you can use any RGB color
+                        Thumbnail = new EmbedMedia() { Url = imageURL },
+                        Footer = new EmbedFooter() { Text = "Sent From ACNHPokerCore" }
+                    });
+
+                    //message.TTS = true; //read message to everyone on the channel
+
+                    _ = hook.SendAsync(msg);
+                }
+            }
+            catch (Exception ex)
+            {
+                MyLog.LogEvent("Controller", "Dodo: " + ex.Message);
             }
         }
 
@@ -684,7 +752,7 @@ namespace ACNHPokerCore
         {
             OpenFileDialog file = new()
             {
-                Filter = "Normal text file (*.txt)|*.txt",
+                Filter = @"Normal text file (*.txt)|*.txt",
             };
 
             Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));

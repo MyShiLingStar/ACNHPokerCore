@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <DebugType>none</DebugType>
     <NoWin32Manifest>true</NoWin32Manifest>
     <Platforms>AnyCPU;x86</Platforms>
@@ -24,10 +24,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AsyncAwaitBestPractices" Version="6.0.5" />
-    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
-    <PackageReference Include="TwitchLib.Communication" Version="1.0.4" />
-    <PackageReference Include="TwitchLib.PubSub" Version="3.2.5" />
+    <PackageReference Include="AsyncAwaitBestPractices" Version="6.0.6" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.0-preview.5.23280.5" />
+    <PackageReference Include="TwitchLib.Communication" Version="2.0.0-preview-d9bdf98197f77d62ae5d8774a3fef0c97ba71849" />
+    <PackageReference Include="TwitchLib.PubSub" Version="4.0.0-preview-338562750e3acbfd53424c32ae9de8f44ae4ef15" />
   </ItemGroup>
 
   <ItemGroup>

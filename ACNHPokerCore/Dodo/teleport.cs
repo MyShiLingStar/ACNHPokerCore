@@ -14,7 +14,7 @@ namespace ACNHPokerCore
     {
         private static Socket s;
 
-        private static byte[] teleportByte;
+        //private static byte[] teleportByte;
         private static byte[] anchorByte;
 
         private static readonly string offset = "[[[[main+4627088]+18]+178]+D0]+DA"; //"[[[[main+460ED68]+18]+178]+D0]+DA"; //"[[[[main+3A33980]+18]+178]+D0]+DA"; //"[[[[main+3A32980]+18]+178]+D0]+DA"; //"[[[[main+3A08B40]+18]+178]+D0]+DA"; //"[[[[main+39DC030]+18]+178]+D0]+DA";//"[[[[main+398C380]+18]+178]+D0]+DA";//"[[[[main+396F5A0]+18]+178]+D0]+DA";
@@ -69,8 +69,8 @@ namespace ACNHPokerCore
 
             if (!File.Exists(anchorPath))
             {
-                byte[] anchorByte = new byte[teleportSize * 5];
-                File.WriteAllBytes(anchorPath, anchorByte);
+                byte[] EmptyAnchorByte = new byte[teleportSize * 5];
+                File.WriteAllBytes(anchorPath, EmptyAnchorByte);
             }
 
             s = S;
@@ -112,7 +112,7 @@ namespace ACNHPokerCore
 
                 // Get first offset from pointer expression and read address at that offset from main start.	
                 var ofs = Convert.ToUInt64(match.Groups[2].Value, 16);
-                var address = BitConverter.ToUInt64(Utilities.peekMainAddress(s, ofs.ToString("X"), 0x8), 0);
+                var address = BitConverter.ToUInt64(Utilities.PeekMainAddress(s, ofs.ToString("X"), 0x8), 0);
                 match = match.NextMatch();
 
                 // Matches the rest of the operators and offsets in the pointer expression.	
@@ -137,7 +137,7 @@ namespace ACNHPokerCore
                     match = match.NextMatch();
                     if (match.Success)
                     {
-                        byte[] bytes = Utilities.peekAbsoluteAddress(s, address.ToString("X"), 0x8);
+                        byte[] bytes = Utilities.PeekAbsoluteAddress(s, address.ToString("X"), 0x8);
                         address = BitConverter.ToUInt64(bytes, 0);
                     }
                 }
@@ -146,6 +146,7 @@ namespace ACNHPokerCore
             }
         }
 
+        /*
         public static Boolean TeleportTo(int num)
         {
             byte[] coordinate = new byte[coordinateSize];
@@ -179,6 +180,7 @@ namespace ACNHPokerCore
 
             return true;
         }
+        */
 
         public static Boolean TeleportToAnchor(int num)
         {
@@ -198,8 +200,8 @@ namespace ACNHPokerCore
                 {
                     return false;
                 }
-                Utilities.pokeAbsoluteAddress(s, (address - 0x2).ToString("X"), Utilities.ByteToHexString(coordinate));
-                Utilities.pokeAbsoluteAddress(s, (address + 0x3A).ToString("X"), Utilities.ByteToHexString(turning));
+                Utilities.PokeAbsoluteAddress(s, (address - 0x2).ToString("X"), Utilities.ByteToHexString(coordinate));
+                Utilities.PokeAbsoluteAddress(s, (address + 0x3A).ToString("X"), Utilities.ByteToHexString(turning));
                 Thread.Sleep(500);
                 trials++;
             }
@@ -218,12 +220,12 @@ namespace ACNHPokerCore
 
             ulong address = GetCoordinateAddress(offset);
 
-            byte[] CurCoordinate = Utilities.peekAbsoluteAddress(s, (address - 0x2).ToString("X"), coordinateSize);
-            byte[] CurTurning = Utilities.peekAbsoluteAddress(s, (address + 0x3A).ToString("X"), turningSize);
+            byte[] CurCoordinate = Utilities.PeekAbsoluteAddress(s, (address - 0x2).ToString("X"), coordinateSize);
+            byte[] CurTurning = Utilities.PeekAbsoluteAddress(s, (address + 0x3A).ToString("X"), turningSize);
 
             //Debug.Print(Utilities.ByteToHexString(Utilities.add(CurCoordinate, CurTurning)));
 
-            if (Utilities.add(CurCoordinate, CurTurning).SequenceEqual(Utilities.add(coordinate, turning)))
+            if (Utilities.Add(CurCoordinate, CurTurning).SequenceEqual(Utilities.Add(coordinate, turning)))
                 return false;
             else
                 return true;
@@ -255,6 +257,7 @@ namespace ACNHPokerCore
             return true;
         }
 
+        /*
         public static void SetTeleport(int num)
         {
             ulong address = GetCoordinateAddress(offset);
@@ -267,13 +270,14 @@ namespace ACNHPokerCore
 
             File.WriteAllBytes(Utilities.teleportPath, teleportByte);
         }
+        */
 
         public static void SetAnchor(int num)
         {
             ulong address = GetCoordinateAddress(offset);
 
-            byte[] CurCoordinate = Utilities.peekAbsoluteAddress(s, (address - 0x2).ToString("X"), coordinateSize);
-            byte[] CurTurning = Utilities.peekAbsoluteAddress(s, (address + 0x3A).ToString("X"), turningSize);
+            byte[] CurCoordinate = Utilities.PeekAbsoluteAddress(s, (address - 0x2).ToString("X"), coordinateSize);
+            byte[] CurTurning = Utilities.PeekAbsoluteAddress(s, (address + 0x3A).ToString("X"), turningSize);
 
             Buffer.BlockCopy(CurCoordinate, 0, anchorByte, teleportSize * num, coordinateSize);
             Buffer.BlockCopy(CurTurning, 0, anchorByte, teleportSize * num + coordinateSize, turningSize);
@@ -293,7 +297,7 @@ namespace ACNHPokerCore
         public static OverworldState GetOverworldState()
         {
             ulong address = GetCoordinateAddress(offset);
-            uint value = BitConverter.ToUInt32(Utilities.peekAbsoluteAddress(s, (address + 0x1E).ToString("X"), 0x4), 0);
+            uint value = BitConverter.ToUInt32(Utilities.PeekAbsoluteAddress(s, (address + 0x1E).ToString("X"), 0x4), 0);
 
             return DecodeOverworldState(value);
         }
@@ -323,7 +327,6 @@ namespace ACNHPokerCore
                 0xBE200000 => OverworldState.UserArriveLeavingOrTitleScreen,
                 _ => OverworldState.Unknown,
             };
-            ;
         }
 
         public static void Dump()
@@ -332,7 +335,7 @@ namespace ACNHPokerCore
 
             SaveFileDialog file = new()
             {
-                Filter = "binbin (*.bin)|*.bin",
+                Filter = @"binbin (*.bin)|*.bin",
             };
 
             Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
@@ -356,7 +359,7 @@ namespace ACNHPokerCore
             if (file.ShowDialog() != DialogResult.OK)
                 return;
 
-            byte[] b = Utilities.peekAbsoluteAddress(s, (address).ToString("X"), 8192);
+            byte[] b = Utilities.PeekAbsoluteAddress(s, (address).ToString("X"), 8192);
 
             File.WriteAllBytes(file.FileName, b);
         }
@@ -383,7 +386,7 @@ namespace ACNHPokerCore
         public static LocationState GetLocationState()
         {
             ulong address = GetCoordinateAddress(offset);
-            uint value = BitConverter.ToUInt32(Utilities.peekAbsoluteAddress(s, (address + 0x6E).ToString("X"), 0x4), 0);
+            uint value = BitConverter.ToUInt32(Utilities.PeekAbsoluteAddress(s, (address + 0x6E).ToString("X"), 0x4), 0);
             Debug.Print("Location : " + value.ToString("X"));
             return value switch
             {
@@ -393,7 +396,6 @@ namespace ACNHPokerCore
                 0x0 or 0xFF => LocationState.Loading,
                 _ => LocationState.Unknown,
             };
-            ;
         }
     }
 }

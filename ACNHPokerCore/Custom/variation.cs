@@ -7,20 +7,20 @@ using System.Windows.Forms;
 
 namespace ACNHPokerCore
 {
-    public partial class variation : Form
+    public partial class Variation : Form
     {
         private static DataTable itemSource;
         private DataGridViewRow lastRow;
-        private inventorySlot[,] selection;
-        private int lengthX = 0;
-        private int lengthY = 0;
+        private InventorySlot[,] selection;
+        private int lengthX;
+        private int lengthY;
 
         public event ReceiveVariationHandler SendVariationData;
 
-        public variation(int height = 265)
+        public Variation(int height = 265)
         {
             InitializeComponent();
-            this.Size = new Size(this.Width, height);
+            Size = new Size(Width, height);
         }
 
         private static DataTable LoadItemCSV(string filePath)
@@ -38,7 +38,7 @@ namespace ACNHPokerCore
                 .ForEach(line => dt.Rows.Add(line));
 
             if (dt.Columns.Contains("id"))
-                dt.PrimaryKey = new DataColumn[1] { dt.Columns["id"] };
+                dt.PrimaryKey = new[] { dt.Columns["id"] };
 
             return dt;
         }
@@ -179,100 +179,100 @@ namespace ACNHPokerCore
                 //string iName = furnitureGridView.Rows[e.RowIndex].Cells[4].Value.ToString();
                 string path = GetImagePathFromID(idString, itemSource);
 
-                selectedItem.setup(name, id, data, path, true);
+                selectedItem.Setup(name, id, data, path, true);
                 //updateSelectedItemInfo(selectedItem.displayItemName(), selectedItem.displayItemID(), selectedItem.displayItemData());
             }
         }
 
         private void ShowVariation(string name, UInt16 id, int main, int sub, string iName, string value)
         {
-            selection = new inventorySlot[main + 1, sub + 1];
+            selection = new InventorySlot[main + 1, sub + 1];
 
             for (int j = 0; j <= main; j++)
             {
                 for (int k = 0; k <= sub; k++)
                 {
-                    string path = Utilities.imagePath + iName + "_Remake_" + j.ToString() + "_" + k.ToString() + ".png";
+                    string path = Utilities.imagePath + iName + "_Remake_" + j + "_" + k + ".png";
 
-                    selection[j, k] = new inventorySlot
+                    selection[j, k] = new InventorySlot
                     {
-                        BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))))
+                        BackColor = Color.FromArgb(114, 137, 218)
                     };
                     selection[j, k].FlatAppearance.BorderSize = 0;
-                    selection[j, k].FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                    selection[j, k].FlatStyle = FlatStyle.Flat;
                     if (sub > main)
                     {
-                        selection[j, k].Location = new System.Drawing.Point(5 + (k * 82), 5 + (j * 82));
+                        selection[j, k].Location = new Point(5 + (k * 82), 5 + (j * 82));
                     }
                     else
                     {
-                        selection[j, k].Location = new System.Drawing.Point(5 + (j * 82), 5 + (k * 82));
+                        selection[j, k].Location = new Point(5 + (j * 82), 5 + (k * 82));
                     }
-                    selection[j, k].Margin = new System.Windows.Forms.Padding(0);
-                    selection[j, k].Size = new System.Drawing.Size(80, 80);
-                    selection[j, k].Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+                    selection[j, k].Margin = new Padding(0);
+                    selection[j, k].Size = new Size(80, 80);
+                    selection[j, k].Font = new Font("Arial", 10F, FontStyle.Bold);
                     //selection[j, k].setHide(true);
 
                     if (ItemAttr.hasFenceWithVariation(id)) // Fence with Variation
                     {
-                        string front = Utilities.precedingZeros((j + (0x20 * k)).ToString("X"), 4);
-                        string back = Utilities.turn2bytes(value);
+                        string front = Utilities.PrecedingZeros((j + (0x20 * k)).ToString("X"), 4);
+                        string back = Utilities.Turn2bytes(value);
                         uint newValue = Convert.ToUInt32(front + back, 16);
-                        selection[j, k].setup(name, id, newValue, path, true);
+                        selection[j, k].Setup(name, id, newValue, path, true);
                     }
                     else
                     {
-                        selection[j, k].setup(name, id, (uint)(j + (0x20 * k)), path, true);
+                        selection[j, k].Setup(name, id, (uint)(j + (0x20 * k)), path, true);
                     }
-                    selection[j, k].MouseDown += new System.Windows.Forms.MouseEventHandler(this.Variation_MouseClick);
-                    this.Controls.Add(selection[j, k]);
+                    selection[j, k].MouseDown += Variation_MouseClick;
+                    Controls.Add(selection[j, k]);
 
                     //            this.selectedItem.MouseClick += new System.Windows.Forms.MouseEventHandler(this.selectedItem_MouseClick);
                 }
             }
             //Debug.Print(selection.GetLength(0).ToString());
             //Debug.Print(selection.GetLength(1).ToString());
-            this.lengthX = selection.GetLength(0);
-            this.lengthY = selection.GetLength(1);
+            lengthX = selection.GetLength(0);
+            lengthY = selection.GetLength(1);
         }
 
         private void Variation_MouseClick(object sender, MouseEventArgs e)
         {
-            var button = (inventorySlot)sender;
+            var button = (InventorySlot)sender;
 
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
 
-                foreach (inventorySlot btn in this.Controls.OfType<inventorySlot>())
+                foreach (InventorySlot btn in Controls.OfType<InventorySlot>())
                 {
-                    btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+                    btn.BackColor = Color.FromArgb(114, 137, 218);
                 }
 
-                button.BackColor = System.Drawing.Color.LightSeaGreen;
+                button.BackColor = Color.LightSeaGreen;
 
-                this.SendVariationData((inventorySlot)sender, 0);
+                SendVariationData?.Invoke((InventorySlot)sender, 0);
             }
             else
             {
-                foreach (inventorySlot btn in this.Controls.OfType<inventorySlot>())
+                foreach (InventorySlot btn in Controls.OfType<InventorySlot>())
                 {
-                    btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+                    btn.BackColor = Color.FromArgb(114, 137, 218);
                 }
 
-                button.BackColor = System.Drawing.Color.Orange;
+                button.BackColor = Color.Orange;
 
-                this.SendVariationData((inventorySlot)sender, 1);
+                SendVariationData?.Invoke((InventorySlot)sender, 1);
             }
 
         }
 
         private void RemoveVariation()
         {
-            for (int j = 0; j < this.lengthX; j++)
+            for (int j = 0; j < lengthX; j++)
             {
-                for (int k = 0; k < this.lengthY; k++)
+                for (int k = 0; k < lengthY; k++)
                 {
-                    this.Controls.Remove(selection[j, k]);
+                    Controls.Remove(selection[j, k]);
                 }
             }
         }
@@ -292,11 +292,11 @@ namespace ACNHPokerCore
             this.selectedItem.UseVisualStyleBackColor = false;
          */
 
-        private static int FindMaxVariation(string name)
+        public static int FindMaxVariation(string name)
         {
             for (int i = 9; i >= 0; i--)
             {
-                string path = Utilities.imagePath + name + "_Remake_" + i.ToString() + "_0" + ".png";
+                string path = Utilities.imagePath + name + "_Remake_" + i + "_0" + ".png";
                 if (File.Exists(path))
                 {
                     return i;
@@ -304,11 +304,11 @@ namespace ACNHPokerCore
             }
             return -1;
         }
-        private static int FindMaxSubVariation(string name)
+        public static int FindMaxSubVariation(string name)
         {
             for (int i = 9; i >= 0; i--)
             {
-                string path = Utilities.imagePath + name + "_Remake_0_" + i.ToString() + ".png";
+                string path = Utilities.imagePath + name + "_Remake_0_" + i + ".png";
                 if (File.Exists(path))
                 {
                     return i;
@@ -320,14 +320,14 @@ namespace ACNHPokerCore
         public void ReceiveID(string id, string language, string value = "00000000")
         {
             RemoveVariation();
-            this.itemIDLabel.Text = id;
+            itemIDLabel.Text = id;
             DataRow row = GetRowFromID(id);
             if (row != null)
             {
-                this.infoLabel.Text = "";
+                infoLabel.Text = "";
                 string name = row[language].ToString();
                 //string idString = row["id"].ToString();
-                UInt16 itemID = Convert.ToUInt16("0x" + row["id"].ToString(), 16);
+                UInt16 itemID = Convert.ToUInt16("0x" + row["id"], 16);
                 //UInt16 data = 0x0;
                 //string category = row[1].ToString();
                 string iName = row["iName"].ToString();
@@ -341,11 +341,11 @@ namespace ACNHPokerCore
                 if (MaxVariation >= 0 && MaxSubxVariation >= 0)
                     ShowVariation(name, itemID, FindMaxVariation(iName), FindMaxSubVariation(iName), iName, value);
                 else
-                    this.infoLabel.Text = "Did you forget the image pack?";
+                    infoLabel.Text = @"Did you forget the image pack?";
             }
             else
             {
-                this.infoLabel.Text = "No variation found.";
+                infoLabel.Text = @"No variation found.";
             }
         }
 
@@ -363,12 +363,12 @@ namespace ACNHPokerCore
             return row;
         }
 
-        public static inventorySlot[,] GetVariationList(string id, string flag1 = "00", string flag2 = "00", string value = "00000000", string language = "eng")
+        public static InventorySlot[,] GetVariationList(string id, string flag0 = "00", string flag1 = "00", string value = "00000000", string language = "eng")
         {
             DataRow row = GetRowFromID(id);
             if (row != null)
             {
-                UInt16 itemID = Convert.ToUInt16("0x" + row["id"].ToString(), 16);
+                UInt16 itemID = Convert.ToUInt16("0x" + row["id"], 16);
                 string iName = row["iName"].ToString();
 
                 string name = row[language].ToString();
@@ -377,26 +377,26 @@ namespace ACNHPokerCore
 
                 if (main >= 0 && sub >= 0)
                 {
-                    inventorySlot[,] variationList = new inventorySlot[main + 1, sub + 1];
+                    InventorySlot[,] variationList = new InventorySlot[main + 1, sub + 1];
 
                     for (int j = 0; j <= main; j++)
                     {
                         for (int k = 0; k <= sub; k++)
                         {
-                            variationList[j, k] = new inventorySlot();
+                            variationList[j, k] = new InventorySlot();
 
-                            string path = Utilities.imagePath + iName + "_Remake_" + j.ToString() + "_" + k.ToString() + ".png";
+                            string path = Utilities.imagePath + iName + "_Remake_" + j + "_" + k + ".png";
 
                             if (ItemAttr.hasFenceWithVariation(itemID)) // Fence with Variation
                             {
-                                string front = Utilities.precedingZeros((j + (0x20 * k)).ToString("X"), 4);
-                                string back = Utilities.turn2bytes(value);
+                                string front = Utilities.PrecedingZeros((j + (0x20 * k)).ToString("X"), 4);
+                                string back = Utilities.Turn2bytes(value);
                                 uint newValue = Convert.ToUInt32(front + back, 16);
-                                variationList[j, k].setup(name, itemID, newValue, path, true, "", flag1, flag2);
+                                variationList[j, k].Setup(name, itemID, newValue, path, true, "", flag0, flag1);
                             }
                             else
                             {
-                                variationList[j, k].setup(name, itemID, (uint)(j + (0x20 * k)), path, true, "", flag1, flag2);
+                                variationList[j, k].Setup(name, itemID, (uint)(j + (0x20 * k)), path, true, "", flag0, flag1);
                             }
                         }
                     }

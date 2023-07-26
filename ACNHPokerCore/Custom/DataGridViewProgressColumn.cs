@@ -11,6 +11,12 @@ namespace ACNHPokerCore
         {
             CellTemplate = new DataGridViewProgressCell();
         }
+
+        public sealed override DataGridViewCell CellTemplate
+        {
+            get { return base.CellTemplate; }
+            set { base.CellTemplate = value; }
+        }
     }
     class DataGridViewProgressCell : DataGridViewImageCell
     {
@@ -26,8 +32,15 @@ namespace ACNHPokerCore
         }
         public DataGridViewProgressCell()
         {
-            this.ValueType = typeof(int);
+            ValueType = typeof(int);
         }
+
+        public sealed override Type ValueType
+        {
+            get { return base.ValueType; }
+            set { base.ValueType = value; }
+        }
+
         // Method required to make the Progress Cell consistent with the default Image Cell.
         // The default Image Cell assumes an Image as a value, although the value of the Progress Cell is an int.
         protected override object GetFormattedValue(object value,
@@ -39,9 +52,9 @@ namespace ACNHPokerCore
             return emptyImage;
         }
 
-        protected override void Paint(System.Drawing.Graphics g, System.Drawing.Rectangle clipBounds, System.Drawing.Rectangle cellBounds, int rowIndex, DataGridViewElementStates cellState, object value, object formattedValue, string errorText, DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
+        protected override void Paint(Graphics g, Rectangle clipBounds, Rectangle cellBounds, int rowIndex, DataGridViewElementStates cellState, object value, object formattedValue, string errorText, DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
         {
-            float percentage = ((float)setValue / 255.0f);
+            float percentage = (setValue / 255.0f);
             Brush foreColorBrush = new SolidBrush(cellStyle.ForeColor);
             Brush BlackBrush = new SolidBrush(Color.Black);
             // Draws the cell grid

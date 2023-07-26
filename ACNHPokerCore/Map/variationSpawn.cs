@@ -6,21 +6,21 @@ namespace ACNHPokerCore
 {
     public partial class variationSpawn : Form
     {
-        readonly inventorySlot[,] mainSlot = new inventorySlot[1, 3];
-        readonly inventorySlot[,] subSlot = new inventorySlot[1, 3];
-        readonly inventorySlot[,] allSlot = new inventorySlot[2, 3];
-        readonly inventorySlot[,] mainHSlot = new inventorySlot[3, 1];
-        readonly inventorySlot[,] subHSlot = new inventorySlot[3, 1];
-        readonly inventorySlot[,] allHSlot = new inventorySlot[2, 3];
+        readonly InventorySlot[,] mainSlot = new InventorySlot[1, 3];
+        readonly InventorySlot[,] subSlot = new InventorySlot[1, 3];
+        readonly InventorySlot[,] allSlot = new InventorySlot[2, 3];
+        readonly InventorySlot[,] mainHSlot = new InventorySlot[3, 1];
+        readonly InventorySlot[,] subHSlot = new InventorySlot[3, 1];
+        readonly InventorySlot[,] allHSlot = new InventorySlot[2, 3];
 
-        private readonly MiniMap MiniMap = null;
-        private readonly byte[] Layer1 = null;
-        private readonly byte[] Acre = null;
-        private readonly byte[] Building = null;
-        private readonly byte[] Terrain = null;
-        private readonly byte[] Design = null;
+        private readonly MiniMap MiniMap;
+        private readonly byte[] Layer1;
+        private readonly byte[] Acre;
+        private readonly byte[] Building;
+        private readonly byte[] Terrain;
+        private readonly byte[] Design;
         private readonly string Flag;
-        private bool previewOn = false;
+        private bool previewOn;
 
         private readonly int main;
         private readonly int sub;
@@ -29,16 +29,16 @@ namespace ACNHPokerCore
 
         private double width;
         private double height;
-        private bool wallmount = false;
+        private bool wallmount;
         //private bool rug = false;
-        private bool ceiling = false;
+        private bool ceiling;
 
         private readonly bool init = true;
 
         public event ObeySizeHandler SendObeySizeEvent;
         public event UpdateRowAndColumnHandler SendRowAndColumnEvent;
 
-        public variationSpawn(inventorySlot[,] variationList, byte[] layer1, byte[] acre, byte[] building, byte[] terrain, byte[] design, int x, int y, string flag, string size)
+        public variationSpawn(InventorySlot[,] variationList, byte[] layer1, byte[] acre, byte[] building, byte[] terrain, byte[] design, int x, int y, string flag, string size)
         {
             Layer1 = layer1;
             Acre = acre;
@@ -129,8 +129,8 @@ namespace ACNHPokerCore
             {
                 if (i >= 3)
                     break;
-                mainSlot[0, i].setup(variationList[i, 0]);
-                mainHSlot[i, 0].setup(variationList[i, 0]);
+                mainSlot[0, i].Setup(variationList[i, 0]);
+                mainHSlot[i, 0].Setup(variationList[i, 0]);
             }
 
             //sub
@@ -138,8 +138,8 @@ namespace ACNHPokerCore
             {
                 if (j >= 3)
                     break;
-                subSlot[0, j].setup(variationList[0, j]);
-                subHSlot[j, 0].setup(variationList[0, j]);
+                subSlot[0, j].Setup(variationList[0, j]);
+                subHSlot[j, 0].Setup(variationList[0, j]);
             }
 
             for (int m = 0; m < main; m++)
@@ -150,7 +150,7 @@ namespace ACNHPokerCore
                 {
                     if (n >= 3)
                         continue;
-                    allSlot[m, n].setup(variationList[m, n]);
+                    allSlot[m, n].Setup(variationList[m, n]);
                 }
             }
 
@@ -162,7 +162,7 @@ namespace ACNHPokerCore
                 {
                     if (n >= 2)
                         continue;
-                    allHSlot[n, m].setup(variationList[m, n]);
+                    allHSlot[n, m].Setup(variationList[m, n]);
                 }
             }
 
@@ -220,14 +220,15 @@ namespace ACNHPokerCore
 
         private void ColumnBox_ValueChanged(object sender, EventArgs e)
         {
-            this.SendRowAndColumnEvent((int)rowBox.Value, (int)columnBox.Value);
+            if (SendRowAndColumnEvent != null) SendRowAndColumnEvent((int)rowBox.Value, (int)columnBox.Value);
             timesLabel1.Text = "× " + columnBox.Value;
             timesLabel2.Text = "× " + columnBox.Value;
             UpdateSize();
         }
         private void RowBox_ValueChanged(object sender, EventArgs e)
         {
-            this.SendRowAndColumnEvent((int)rowBox.Value, (int)columnBox.Value);
+            if (SendRowAndColumnEvent != null)
+                SendRowAndColumnEvent((int)rowBox.Value, (int)columnBox.Value);
             timesHLabel1.Text = "× " + rowBox.Value;
             timesHLabel2.Text = "× " + rowBox.Value;
             UpdateSize();
@@ -270,7 +271,7 @@ namespace ACNHPokerCore
                         extraWidth = totalWidth - column;
                     }
 
-                    size.Text = (main + extraHeight).ToString() + " × " + (column + extraWidth).ToString();
+                    size.Text = (main + extraHeight) + " × " + (column + extraWidth);
 
                     if (previewOn)
                         miniMapBox.Image = MiniMap.DrawPreview(main + extraHeight, column + extraWidth, X, Y, true);
@@ -293,7 +294,7 @@ namespace ACNHPokerCore
                         extraWidth = totalWidth - column;
                     }
 
-                    size.Text = (sub + extraHeight).ToString() + " × " + (column + extraWidth).ToString();
+                    size.Text = (sub + extraHeight) + " × " + (column + extraWidth);
 
                     if (previewOn)
                         miniMapBox.Image = MiniMap.DrawPreview(sub + extraHeight, column + extraWidth, X, Y, true);
@@ -316,7 +317,7 @@ namespace ACNHPokerCore
                         extraWidth = totalWidth - main;
                     }
 
-                    size.Text = (sub + extraHeight).ToString() + " × " + (main + extraWidth).ToString();
+                    size.Text = (sub + extraHeight) + " × " + (main + extraWidth);
 
                     if (previewOn)
                         miniMapBox.Image = MiniMap.DrawPreview(sub + extraHeight, main + extraWidth, X, Y, true);
@@ -344,7 +345,7 @@ namespace ACNHPokerCore
                         extraWidth = totalWidth - main;
                     }
 
-                    sizeH.Text = (row + extraHeight).ToString() + " × " + (main + extraWidth).ToString();
+                    sizeH.Text = (row + extraHeight) + " × " + (main + extraWidth);
 
                     if (previewOn)
                         miniMapBox.Image = MiniMap.DrawPreview(row + extraHeight, main + extraWidth, X, Y, true);
@@ -367,7 +368,7 @@ namespace ACNHPokerCore
                         extraWidth = totalWidth - sub;
                     }
 
-                    sizeH.Text = (row + extraHeight).ToString() + " × " + (sub + extraWidth).ToString();
+                    sizeH.Text = (row + extraHeight) + " × " + (sub + extraWidth);
 
                     if (previewOn)
                         miniMapBox.Image = MiniMap.DrawPreview(row + extraHeight, sub + extraWidth, X, Y, true);
@@ -390,7 +391,7 @@ namespace ACNHPokerCore
                         extraWidth = totalWidth - sub;
                     }
 
-                    sizeH.Text = (main + extraHeight).ToString() + " × " + (sub + extraWidth).ToString();
+                    sizeH.Text = (main + extraHeight) + " × " + (sub + extraWidth);
 
                     if (previewOn)
                         miniMapBox.Image = MiniMap.DrawPreview(main + extraHeight, sub + extraWidth, X, Y, true);
@@ -404,27 +405,27 @@ namespace ACNHPokerCore
                     if (PlaceHorizontal())
                     {
                         if (wallmount)
-                            this.SendObeySizeEvent(true, ((int)Math.Ceiling(height) + extraRow), ((int)Math.Ceiling(width) + extraColumn + wallMountExtra), totalHeight, totalWidth, true, false);
+                            SendObeySizeEvent(true, ((int)Math.Ceiling(height) + extraRow), ((int)Math.Ceiling(width) + extraColumn + wallMountExtra), totalHeight, totalWidth, true, false);
                         else if (ceiling)
-                            this.SendObeySizeEvent(true, ((int)Math.Ceiling(height) + extraRow), ((int)Math.Ceiling(width) + extraColumn), totalHeight, totalWidth, false, true);
+                            SendObeySizeEvent(true, ((int)Math.Ceiling(height) + extraRow), ((int)Math.Ceiling(width) + extraColumn), totalHeight, totalWidth, false, true);
                         else
-                            this.SendObeySizeEvent(true, ((int)Math.Ceiling(height) + extraRow), ((int)Math.Ceiling(width) + extraColumn), totalHeight, totalWidth, false, false);
+                            SendObeySizeEvent(true, ((int)Math.Ceiling(height) + extraRow), ((int)Math.Ceiling(width) + extraColumn), totalHeight, totalWidth, false, false);
                     }
                     else
                     {
                         if (wallmount)
-                            this.SendObeySizeEvent(true, ((int)Math.Ceiling(width) + extraRow + wallMountExtra), ((int)Math.Ceiling(height) + extraColumn), totalHeight, totalWidth, true, false);
+                            SendObeySizeEvent(true, ((int)Math.Ceiling(width) + extraRow + wallMountExtra), ((int)Math.Ceiling(height) + extraColumn), totalHeight, totalWidth, true, false);
                         else if (ceiling)
-                            this.SendObeySizeEvent(true, ((int)Math.Ceiling(width) + extraRow), ((int)Math.Ceiling(height) + extraColumn), totalHeight, totalWidth, false, true);
+                            SendObeySizeEvent(true, ((int)Math.Ceiling(width) + extraRow), ((int)Math.Ceiling(height) + extraColumn), totalHeight, totalWidth, false, true);
                         else
-                            this.SendObeySizeEvent(true, ((int)Math.Ceiling(width) + extraRow), ((int)Math.Ceiling(height) + extraColumn), totalHeight, totalWidth, false, false);
+                            SendObeySizeEvent(true, ((int)Math.Ceiling(width) + extraRow), ((int)Math.Ceiling(height) + extraColumn), totalHeight, totalWidth, false, false);
                     }
                 }
             }
             else
             {
                 if (SendObeySizeEvent != null)
-                    this.SendObeySizeEvent(false);
+                    SendObeySizeEvent(false);
             }
         }
 
@@ -443,7 +444,7 @@ namespace ACNHPokerCore
             {
                 toggleBtn.Tag = "Vertical";
                 toggleBtn.Text = "Vertical";
-                toggleBtn.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+                toggleBtn.BackColor = Color.FromArgb(114, 137, 218);
                 horiPanel.Visible = false;
                 vertPanel.Visible = true;
                 UpdateSize();
@@ -454,12 +455,12 @@ namespace ACNHPokerCore
         {
             if (previewOn)
             {
-                this.Width = 690;
+                Width = 690;
                 previewOn = false;
             }
             else
             {
-                this.Width = 1150;
+                Width = 1150;
                 previewOn = true;
                 UpdateSize();
             }
@@ -469,12 +470,12 @@ namespace ACNHPokerCore
         {
             if (previewOn)
             {
-                this.Width = 690;
+                Width = 690;
                 previewOn = false;
             }
             else
             {
-                this.Width = 1150;
+                Width = 1150;
                 previewOn = true;
                 UpdateSize();
             }

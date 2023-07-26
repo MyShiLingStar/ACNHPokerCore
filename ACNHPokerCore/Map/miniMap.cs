@@ -14,7 +14,7 @@ namespace ACNHPokerCore
 
         private readonly byte[] AcreMapByte;
         private readonly byte[] BuildingByte;
-        private byte[][] buildingList = null;
+        private byte[][] buildingList;
         private byte[] TerrainByte;
         private byte[] CustomDesignByte;
         private TerrainUnit[][] terrainUnits;
@@ -784,7 +784,7 @@ namespace ACNHPokerCore
                             {
                                 if (Counter >= isSpace.Length)
                                     previewtilesType[i][j] = 3;
-                                else if (isSpace[Counter] == true)
+                                else if (isSpace[Counter])
                                     previewtilesType[i][j] = 3;
                                 else
                                     previewtilesType[i][j] = 1;
@@ -819,7 +819,7 @@ namespace ACNHPokerCore
                             {
                                 if (Counter >= isSpace.Length)
                                     previewtilesType[i][j] = 3;
-                                else if (isSpace[Counter] == true)
+                                else if (isSpace[Counter])
                                     previewtilesType[i][j] = 3;
                                 else
                                     previewtilesType[i][j] = 1;
@@ -888,7 +888,7 @@ namespace ACNHPokerCore
                             {
                                 if (Counter >= isSpace.Length)
                                     previewtilesType[i][j] = 3;
-                                else if (isSpace[Counter] == true)
+                                else if (isSpace[Counter])
                                     previewtilesType[i][j] = 3;
                                 else
                                     previewtilesType[i][j] = 1;
@@ -923,7 +923,7 @@ namespace ACNHPokerCore
                             {
                                 if (Counter >= isSpace.Length)
                                     previewtilesType[i][j] = 3;
-                                else if (isSpace[Counter] == true)
+                                else if (isSpace[Counter])
                                     previewtilesType[i][j] = 3;
                                 else
                                     previewtilesType[i][j] = 1;
@@ -992,7 +992,7 @@ namespace ACNHPokerCore
                     string strPart2 = Utilities.ByteToHexString(tempPart2);
                     string strPart3 = Utilities.ByteToHexString(tempPart3);
                     string strPart4 = Utilities.ByteToHexString(tempPart4);
-                    ushort itemID = Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(IDByte)), 16);
+                    ushort itemID = Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(IDByte)), 16);
 
                     if (ItemAttr.isTree(itemID))
                     {
@@ -1617,6 +1617,8 @@ namespace ACNHPokerCore
             if (floorBackgroundColorLess == null)
                 return Color.White;
             else if (x < 0 || y < 0)
+                return Color.White;
+            else if (x >= 112 || y >= 96)
                 return Color.White;
             else if (Layer1)
                 return floorBackgroundColorLess[y][x];

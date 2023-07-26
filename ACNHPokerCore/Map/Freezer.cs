@@ -11,27 +11,32 @@ namespace ACNHPokerCore
     public partial class Freezer : Form
     {
         private static Socket s;
+        private bool debugging;
         private readonly bool sound;
-        private int counter = 0;
-        private MiniMap MiniMap = null;
+        private int counter;
+        private MiniMap MiniMap;
         private int anchorX = -1;
         private int anchorY = -1;
         private byte[] tempData;
         private static byte[][] villagerFlag;
         private static byte[][] villager;
-        private static Boolean[] haveVillager;
+        private static bool[] haveVillager;
 
         public event CloseHandler closeForm;
 
-        public Freezer(Socket S, bool Sound)
+        public Freezer(Socket S, bool Sound, bool Debugging)
         {
             s = S;
             sound = Sound;
+            debugging = Debugging;
 
             InitializeComponent();
 
-            int freezeCount = Utilities.GetFreezeCount(s);
-            updateFreezeCountLabel(freezeCount);
+            if (!debugging)
+            {
+                int freezeCount = Utilities.GetFreezeCount(s);
+                updateFreezeCountLabel(freezeCount);
+            }
 
             FinMsg.SelectionAlignment = HorizontalAlignment.Center;
 
@@ -76,7 +81,7 @@ namespace ACNHPokerCore
                 config.AppSettings.Settings["LastSave"].Value = path;
                 config.Save(ConfigurationSaveMode.Minimal);
 
-                UInt32 address = Utilities.mapZero;
+                uint address = Utilities.mapZero;
 
                 Thread LoadThread = new(delegate () { saveMapFloor(address, file); });
                 LoadThread.Start();
@@ -84,12 +89,11 @@ namespace ACNHPokerCore
             }
             catch (Exception ex)
             {
-                MyLog.LogEvent("Regen", "Save: " + ex.Message.ToString());
-                return;
+                MyLog.LogEvent("Regen", "Save: " + ex.Message);
             }
         }
 
-        private void saveMapFloor(UInt32 address, SaveFileDialog file)
+        private void saveMapFloor(uint address, SaveFileDialog file)
         {
             showMapWait(84, "Saving...");
 
@@ -106,7 +110,7 @@ namespace ACNHPokerCore
 
             unlockControl();
 
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Template Saved!";
@@ -115,7 +119,7 @@ namespace ACNHPokerCore
 
         private void showMapWait(int size, string msg = "")
         {
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
                 FinMsg.Visible = false;
                 WaitMessagebox.Text = msg;
@@ -129,7 +133,7 @@ namespace ACNHPokerCore
 
         private void hideMapWait()
         {
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
                 PleaseWaitPanel.Visible = false;
                 ProgressTimer.Stop();
@@ -155,7 +159,7 @@ namespace ACNHPokerCore
         private void CloseCleaning()
         {
             MyLog.LogEvent("Freeze", "Form Closed");
-            this.closeForm();
+            if (closeForm != null) closeForm();
         }
 
         private void UnFreezeAllBtn_Click(object sender, EventArgs e)
@@ -170,7 +174,7 @@ namespace ACNHPokerCore
                 System.Media.SystemSounds.Asterisk.Play();
             hideMapWait();
             unlockControl();
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Build a snowman?";
@@ -183,7 +187,7 @@ namespace ACNHPokerCore
 
         private void updateFreezeCountLabel(int value)
         {
-            FreezeCountLabel.Text = value.ToString() + " / 255";
+            FreezeCountLabel.Text = value + " / 255";
         }
 
         private void changeRateBtn_Click(object sender, EventArgs e)
@@ -191,7 +195,7 @@ namespace ACNHPokerCore
             string value = RateBar.Value.ToString();
             Utilities.SendString(s, Utilities.FreezeRate(value));
 
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Delay Updated! " + value + " ms";
@@ -203,11 +207,11 @@ namespace ACNHPokerCore
 
         private void EnableTextBtn_Click(object sender, EventArgs e)
         {
-            Utilities.SendString(s, Utilities.Freeze(Utilities.TextSpeedAddress, new byte[1] { 3 }));
+            Utilities.SendString(s, Utilities.Freeze(Utilities.TextSpeedAddress, new byte[] { 3 }));
 
             int freezeCount = Utilities.GetFreezeCount(s);
 
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Instant Text Activated!";
@@ -224,7 +228,7 @@ namespace ACNHPokerCore
 
             int freezeCount = Utilities.GetFreezeCount(s);
 
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Instant Text Deactivated!";
@@ -237,7 +241,7 @@ namespace ACNHPokerCore
 
         private void RateBar_ValueChanged(object sender, EventArgs e)
         {
-            RateValue.Text = RateBar.Value.ToString() + " ms";
+            RateValue.Text = RateBar.Value + " ms";
         }
 
         private void FreezeInvBtn_Click(object sender, EventArgs e)
@@ -250,7 +254,7 @@ namespace ACNHPokerCore
 
             int freezeCount = Utilities.GetFreezeCount(s);
 
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Inventory Freeze Activated!";
@@ -268,7 +272,7 @@ namespace ACNHPokerCore
 
             int freezeCount = Utilities.GetFreezeCount(s);
 
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Inventory Freeze Deactivated!";
@@ -323,7 +327,7 @@ namespace ACNHPokerCore
                 return;
             }
 
-            UInt32 address = Utilities.mapZero;
+            uint address = Utilities.mapZero;
 
             string[] name = file.FileName.Split('\\');
 
@@ -333,7 +337,7 @@ namespace ACNHPokerCore
             FreezeThread.Start();
         }
 
-        private void FreezeMapFloor(UInt32 address, byte[] data)
+        private void FreezeMapFloor(uint address, byte[] data)
         {
             showMapWait(84, "Casting...");
 
@@ -356,7 +360,7 @@ namespace ACNHPokerCore
 
             unlockControl();
 
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Let it go!";
@@ -371,13 +375,13 @@ namespace ACNHPokerCore
         {
             MyLog.LogEvent("Regen", "Regen3 Stopped");
 
-            UInt32 address = Utilities.mapZero;
+            uint address = Utilities.mapZero;
 
             Thread UnFreezeThread = new(delegate () { UnFreezeMapFloor(address); });
             UnFreezeThread.Start();
         }
 
-        private void UnFreezeMapFloor(UInt32 address)
+        private void UnFreezeMapFloor(uint address)
         {
             showMapWait(84, "Casting...");
 
@@ -396,7 +400,7 @@ namespace ACNHPokerCore
 
             unlockControl();
 
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Build a snowman?";
@@ -409,7 +413,7 @@ namespace ACNHPokerCore
 
         private void lockControl()
         {
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
                 mainPanel.Enabled = false;
             });
@@ -417,7 +421,7 @@ namespace ACNHPokerCore
 
         private void unlockControl()
         {
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
                 mainPanel.Enabled = true;
             });
@@ -467,21 +471,18 @@ namespace ACNHPokerCore
                 return;
             }
 
-            UInt32 address = Utilities.mapZero;
-
-            string[] name = file.FileName.Split('\\');
-
             tempData = data;
 
-            this.Width = 505;
+            Width = 505;
+
             if (MiniMap == null)
             {
                 counter = 0;
 
-                byte[] Acre = Utilities.getAcre(s, null);
-                byte[] Building = Utilities.getBuilding(s, null);
-                byte[] Terrain = Utilities.getTerrain(s, null);
-                byte[] MapCustomDesgin = Utilities.getCustomDesignMap(s, null, ref counter);
+                byte[] Acre = Utilities.GetAcre(s, null);
+                byte[] Building = Utilities.GetBuilding(s, null);
+                byte[] Terrain = Utilities.GetTerrain(s, null);
+                byte[] MapCustomDesgin = Utilities.GetCustomDesignMap(s, null, ref counter);
 
                 if (MiniMap == null)
                     MiniMap = new MiniMap(data, Acre, Building, Terrain, MapCustomDesgin);
@@ -492,7 +493,7 @@ namespace ACNHPokerCore
                 return;
             try
             {
-                byte[] Coordinate = Utilities.getCoordinate(s, null);
+                byte[] Coordinate = Utilities.GetCoordinate(s, null);
                 int x = BitConverter.ToInt32(Coordinate, 0);
                 int y = BitConverter.ToInt32(Coordinate, 4);
 
@@ -510,8 +511,8 @@ namespace ACNHPokerCore
             }
             catch (Exception ex)
             {
-                MyLog.LogEvent("Regen", "getCoordinate: " + ex.Message.ToString());
-                MyMessageBox.Show("Something doesn't feel right at all. You should restart the program...\n\n" + ex.Message.ToString(), "!!! THIS SHIT DOESN'T WORK!! WHY? HAS I EVER?", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MyLog.LogEvent("Regen", "getCoordinate: " + ex.Message);
+                MyMessageBox.Show("Something doesn't feel right at all. You should restart the program...\n\n" + ex.Message, "!!! THIS SHIT DOESN'T WORK!! WHY? HAS I EVER?", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
 
@@ -526,7 +527,7 @@ namespace ACNHPokerCore
 
         private void miniMapBox_MouseDown(object sender, MouseEventArgs e)
         {
-            Debug.Print(e.X.ToString() + " " + e.Y.ToString());
+            Debug.Print(e.X + " " + e.Y);
 
             int x;
             int y;
@@ -556,7 +557,7 @@ namespace ACNHPokerCore
 
         private void miniMapBox_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 int x;
                 int y;
@@ -593,13 +594,13 @@ namespace ACNHPokerCore
                 return;
             }
 
-            UInt32 address = Utilities.mapZero;
+            uint address = Utilities.mapZero;
 
             Thread FreezeThread = new(delegate () { FreezeMapFloor2(address, tempData, anchorX, anchorY); });
             FreezeThread.Start();
         }
 
-        private void FreezeMapFloor2(UInt32 address, byte[] data, int x, int y)
+        private void FreezeMapFloor2(uint address, byte[] data, int x, int y)
         {
             showMapWait(124, "Casting...");
 
@@ -641,7 +642,7 @@ namespace ACNHPokerCore
 
             unlockControl();
 
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Let it go!";
@@ -652,11 +653,11 @@ namespace ACNHPokerCore
                 System.Media.SystemSounds.Asterisk.Play();
         }
 
-        private void spliter(UInt32 address, byte[] first, byte[] second, int y, bool front)
+        private void spliter(uint address, byte[] first, byte[] second, int y, bool front)
         {
             int size = 0x10;
             byte[][] parts = new byte[13][];
-            Int32[] offsets = new Int32[13];
+            int[] offsets = new int[13];
             int topLength = y - 1;
             int bottomLength = 96 - 3 - topLength;
 
@@ -812,12 +813,12 @@ namespace ACNHPokerCore
         {
             villagerFlag = new byte[10][];
             villager = new byte[10][];
-            haveVillager = new Boolean[10];
+            haveVillager = new bool[10];
 
             for (int i = 0; i < 10; i++)
             {
                 villager[i] = Utilities.GetVillager(s, null, i, 0x3);
-                villagerFlag[i] = Utilities.GetMoveout(s, null, i, (int)0x33);
+                villagerFlag[i] = Utilities.GetMoveout(s, null, i, 0x33);
                 haveVillager[i] = MapRegenerator.CheckHaveVillager(villager[i]);
                 if (haveVillager[i])
                 {
@@ -828,7 +829,7 @@ namespace ACNHPokerCore
 
             int freezeCount = Utilities.GetFreezeCount(s);
 
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Stay!";
@@ -851,7 +852,7 @@ namespace ACNHPokerCore
 
             int freezeCount = Utilities.GetFreezeCount(s);
 
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Go!";
@@ -883,7 +884,7 @@ namespace ACNHPokerCore
             {
                 // Set every one to irregular move out
                 Utilities.SetMoveout(s, null, i, "2", "0");
-                villagerFlag[i] = Utilities.GetMoveout(s, null, i, (int)0x33);
+                villagerFlag[i] = Utilities.GetMoveout(s, null, i, 0x33);
                 if (i > 0) // Freeze all other 9 villagers' flag
                     Utilities.FreezeBig(s, (uint)(Utilities.VillagerAddress + (i * Utilities.VillagerSize) + Utilities.VillagerMoveoutOffset), villagerFlag[i], (uint)villagerFlag[i].Length);
             }
@@ -925,7 +926,7 @@ namespace ACNHPokerCore
 
             unlockControl();
 
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = V.GetRealName() + " is in Purgatory! " + V.HouseIndex;
@@ -944,8 +945,8 @@ namespace ACNHPokerCore
                     Utilities.SendString(s, Utilities.UnFreeze((uint)(Utilities.VillagerAddress + (i * Utilities.VillagerSize) + Utilities.VillagerMoveoutOffset)));
             }
 
-            Utilities.unFreezeBig(s, Utilities.VillagerAddress, 0x2F83);
-            Utilities.unFreezeBig(s, Utilities.VillagerAddress + 0x1267A, 0xBB6);
+            Utilities.UnFreezeBig(s, Utilities.VillagerAddress, 0x2F83);
+            Utilities.UnFreezeBig(s, Utilities.VillagerAddress + 0x1267A, 0xBB6);
 
             int[] HouseList = new int[10];
 
@@ -956,11 +957,11 @@ namespace ACNHPokerCore
             }
 
             int HouseIndex = Utilities.FindHouseIndex(0, HouseList);
-            Utilities.unFreezeBig(s, (uint)(Utilities.VillagerHouseAddress + (HouseIndex * (Utilities.VillagerHouseSize))), Utilities.VillagerHouseSize);
+            Utilities.UnFreezeBig(s, (uint)(Utilities.VillagerHouseAddress + (HouseIndex * (Utilities.VillagerHouseSize))), Utilities.VillagerHouseSize);
 
             int freezeCount = Utilities.GetFreezeCount(s);
 
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Limbo!";

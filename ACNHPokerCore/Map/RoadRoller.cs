@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -20,12 +21,12 @@ namespace ACNHPokerCore
         private readonly bool sound;
         private readonly bool debugging;
 
-        private byte[] Layer1 = null;
-        private byte[] Acre = null;
-        private byte[] Building = null;
-        private byte[] Terrain = null;
-        private byte[] MapCustomDesgin = null;
-        private byte[] MyDesign = null;
+        private byte[] Layer1;
+        private byte[] Acre;
+        private byte[] Building;
+        private byte[] Terrain;
+        private byte[] MapCustomDesgin;
+        private byte[] MyDesign;
 
         private DesignPattern[] designPatterns;
         private readonly int MyDesignIconSize = 36;
@@ -34,61 +35,68 @@ namespace ACNHPokerCore
         private const int numOfRow = 0x60;
         private const int TerrainSize = 0xE;
 
-        private int counter = 0;
-        private int GridSize = 0;
+        private int counter;
+        private int GridSize;
         private int LastX = -1;
         private int LastY = -1;
         private int LastChangedX = -1;
         private int LastChangedY = -1;
-        private bool wasPlacing = false;
-        private bool wasRemoving = false;
+        private bool wasPlacing;
+        private bool wasRemoving;
 
-        private TerrainUnit[][] terrainUnits = null;
-        private bool mapDrawReady = false;
-        private MiniMap MiniMap = null;
-        private int anchorX = 0;
-        private int anchorY = 0;
-        private bool mapDrawing = false;
-        private bool highlightRoadCorner = false;
-        private bool highlightCliffCorner = false;
-        private bool highlightRiverCorner = false;
-        private bool displayCustomDesign = false;
-        private bool cornerMode = false;
-        private bool displayBuilding = false;
+        private TerrainUnit[][] terrainUnits;
+        private bool mapDrawReady;
+        private MiniMap miniMap;
+        private int anchorX;
+        private int anchorY;
+        private bool mapDrawing;
+        private bool highlightRoadCorner;
+        private bool highlightCliffCorner;
+        private bool highlightRiverCorner;
+        private bool displayCustomDesign;
+        private bool cornerMode;
+        private bool displayBuilding;
         private bool displayRoad = true;
         private bool firstEdit = true;
         private bool firstCustomEdit = true;
-        private bool terrainSaving = false;
-        private bool haveCustomEdit = false;
+        private bool terrainSaving;
+        private bool haveCustomEdit;
 
         private ushort selectedRoad = 99;
-        private Button selectedButton = null;
+        private Button selectedButton;
 
         private Bitmap CurrentMainMap;
         private Bitmap CurrentMiniMap;
 
-        private bool manualModeActivated = false;
-        private bool customModeActivated = false;
+        private bool manualModeActivated;
+        private bool customModeActivated;
         private Panel selectedManualMode;
         private ushort manualSelectedRoad = 7;
-        private ushort manualSelectedRoadDirection = 0;
-        private Button manualSelectedRoadModel = null;
+        private ushort manualSelectedRoadDirection;
+        private Button manualSelectedRoadModel;
 
-        private ushort manualSelectedCliffDirection = 0;
+        private ushort manualSelectedCliffDirection;
         private ushort manualSelectedCliffElevation = 1;
-        private Button manualSelectedCliffModel = null;
+        private Button manualSelectedCliffModel;
 
-        private ushort manualSelectedRiverDirection = 0;
-        private ushort manualSelectedRiverElevation = 0;
-        private Button manualSelectedRiverModel = null;
+        private ushort manualSelectedRiverDirection;
+        private ushort manualSelectedRiverElevation;
+        private Button manualSelectedRiverModel;
 
-        private bool isBigControl = false;
+        private bool isBigControl;
         private readonly Dictionary<string, Size> ControlSize = new();
         private readonly Dictionary<string, Point> ControlLocation = new();
 
         public event CloseHandler CloseForm;
 
         private static readonly object lockObject = new();
+
+        private int currentSize;
+
+        private string debugTerrain = @"terrainAcres.nht";
+        private string debugAcres = @"acres.nha";
+        private string debugBuilding = @"buildings.nhb";
+
         public RoadRoller(Socket S, USBBot USB, bool Sound, bool Debugging)
         {
             socket = S;
@@ -129,6 +137,8 @@ namespace ACNHPokerCore
             RotateCliffButton.BackgroundImage = RotateImg;
             RotateRiverButton.BackgroundImage = RotateImg;
 
+            currentSize = 36;
+
             if (RoadDropdownBox.Items.Count > 0)
                 RoadDropdownBox.SelectedIndex = RoadDropdownBox.Items.Count - 1;
 
@@ -142,18 +152,100 @@ namespace ACNHPokerCore
 
             if (debugging)
             {
+                OpenFileDialog Acresfile = new()
+                {
+                    Filter = "New Horizons Acres (*.nha)|*.nha",
+                };
+
+                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
+
+                string savepath;
+
+                if (config.AppSettings.Settings["LastLoad"].Value.Equals(string.Empty))
+                    savepath = Directory.GetCurrentDirectory() + @"\save";
+                else
+                    savepath = config.AppSettings.Settings["LastLoad"].Value;
+
+                if (Directory.Exists(savepath))
+                {
+                    Acresfile.InitialDirectory = savepath;
+                }
+                else
+                {
+                    Acresfile.InitialDirectory = @"C:\";
+                }
+
+                byte[] emptyPlaza = new byte[12];
+
+                if (File.Exists(savepath + debugAcres))
+                {
+                    Acre = Utilities.Add(File.ReadAllBytes(savepath + debugAcres), emptyPlaza);
+
+                    if (File.Exists(savepath + debugTerrain))
+                    {
+                        Terrain = File.ReadAllBytes(savepath + debugTerrain);
+                    }
+                    else
+                    {
+                        Terrain = new byte[Utilities.AllTerrainSize];
+                    }
+
+                    if (File.Exists(savepath + debugBuilding))
+                    {
+                        Building = File.ReadAllBytes(savepath + debugBuilding);
+                    }
+                    else
+                    {
+                        Building = new byte[Utilities.AllBuildingSize];
+                    }
+                }
+                else
+                {
+                    if (Acresfile.ShowDialog() != DialogResult.OK)
+                    {
+                        Acre = new byte[Utilities.AcreAndPlaza];
+                        Terrain = new byte[Utilities.AllTerrainSize];
+                    }
+                    else
+                    {
+                        Acre = Utilities.Add(File.ReadAllBytes(Acresfile.FileName), emptyPlaza);
+
+                        OpenFileDialog Terrainfile = new()
+                        {
+                            Filter = "New Horizons Terrain (*.nht)|*.nht",
+                        };
+
+                        if (Directory.Exists(savepath))
+                        {
+                            Terrainfile.InitialDirectory = savepath;
+                        }
+                        else
+                        {
+                            Terrainfile.InitialDirectory = @"C:\";
+                        }
+
+                        if (Terrainfile.ShowDialog() != DialogResult.OK)
+                        {
+                            Terrain = new byte[Utilities.AllTerrainSize];
+                        }
+                        else
+                        {
+                            Terrain = File.ReadAllBytes(Terrainfile.FileName);
+                        }
+                    }
+
+                    Building = new byte[Utilities.AllBuildingSize];
+                }
+
                 Layer1 = new byte[Utilities.mapSize];
-                Acre = new byte[Utilities.AcreAndPlaza];
-                Building = new byte[Utilities.AllBuildingSize];
-                Terrain = new byte[Utilities.AllTerrainSize];
                 MapCustomDesgin = new byte[Utilities.MapTileCount16x16 * 2];
 
                 byte[] EmptyDesign = new byte[] { 0x00, 0xF8 };
                 for (int i = 0; i < Utilities.MapTileCount16x16; i++)
                     Buffer.BlockCopy(EmptyDesign, 0, MapCustomDesgin, i * 2, 2);
 
-                if (MiniMap == null)
-                    MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, MapCustomDesgin, 2);
+                if (miniMap == null)
+                    miniMap = new MiniMap(Layer1, Acre, Building, Terrain, MapCustomDesgin, 2);
 
                 int iterator = 0;
 
@@ -178,18 +270,18 @@ namespace ACNHPokerCore
                     }
                 }
 
-                CurrentMiniMap = MiniMap.DrawBackground();
+                CurrentMiniMap = miniMap.DrawBackground();
                 miniMapBox.BackgroundImage = CurrentMiniMap;
                 miniMapBox.Image = MiniMap.DrawSelectSquare16(8, 8);
                 DrawMainMap(anchorX, anchorY);
-                this.MaximizeBox = true;
-
+                MaximizeBox = true;
+                mapDrawReady = true;
             }
             else
             {
                 ShowMapWait(42);
 
-                Thread LoadThread = new(delegate () { FetchMap(); });
+                Thread LoadThread = new(FetchMap);
                 LoadThread.Start();
             }
         }
@@ -262,18 +354,20 @@ namespace ACNHPokerCore
 
         private void TurnBig()
         {
+            int newSize = 60;
+
             ManualButtonPanel.Width = 350;
             ManualButtonPanel.Height = 550;
 
-            ManualCliffModeButton.Width = 60;
-            ManualCliffModeButton.Height = 60;
+            ManualCliffModeButton.Width = newSize;
+            ManualCliffModeButton.Height = newSize;
 
-            ManualRiverModeButton.Width = 60;
-            ManualRiverModeButton.Height = 60;
+            ManualRiverModeButton.Width = newSize;
+            ManualRiverModeButton.Height = newSize;
             ManualRiverModeButton.Location = new Point(69, 3);
 
-            ManualRoadModeButton.Width = 60;
-            ManualRoadModeButton.Height = 60;
+            ManualRoadModeButton.Width = newSize;
+            ManualRoadModeButton.Height = newSize;
             ManualRoadModeButton.Location = new Point(135, 3);
 
             RoadDropdownBox.Width = 146;
@@ -283,48 +377,48 @@ namespace ACNHPokerCore
             ManualRoadPanel.Size = new Size(350, 486);
             ManualRoadPanel.Location = new Point(0, 65);
 
-            RoadButton0A.Size = new Size(60, 60);
+            RoadButton0A.Size = new Size(newSize, newSize);
 
-            RoadButton0B.Size = new Size(60, 60);
+            RoadButton0B.Size = new Size(newSize, newSize);
             RoadButton0B.Location = new Point(69, 3);
-            RoadButton1A.Size = new Size(60, 60);
+            RoadButton1A.Size = new Size(newSize, newSize);
             RoadButton1A.Location = new Point(3, 69);
-            RoadButton1B.Size = new Size(60, 60);
+            RoadButton1B.Size = new Size(newSize, newSize);
             RoadButton1B.Location = new Point(69, 69);
-            RoadButton1C.Size = new Size(60, 60);
+            RoadButton1C.Size = new Size(newSize, newSize);
             RoadButton1C.Location = new Point(135, 69);
-            RoadButton2A.Size = new Size(60, 60);
+            RoadButton2A.Size = new Size(newSize, newSize);
             RoadButton2A.Location = new Point(3, 135);
-            RoadButton2B.Size = new Size(60, 60);
+            RoadButton2B.Size = new Size(newSize, newSize);
             RoadButton2B.Location = new Point(69, 135);
-            RoadButton2C.Size = new Size(60, 60);
+            RoadButton2C.Size = new Size(newSize, newSize);
             RoadButton2C.Location = new Point(135, 135);
-            RoadButton3A.Size = new Size(60, 60);
+            RoadButton3A.Size = new Size(newSize, newSize);
             RoadButton3A.Location = new Point(3, 201);
-            RoadButton3B.Size = new Size(60, 60);
+            RoadButton3B.Size = new Size(newSize, newSize);
             RoadButton3B.Location = new Point(69, 201);
-            RoadButton3C.Size = new Size(60, 60);
+            RoadButton3C.Size = new Size(newSize, newSize);
             RoadButton3C.Location = new Point(135, 201);
-            RoadButton4A.Size = new Size(60, 60);
+            RoadButton4A.Size = new Size(newSize, newSize);
             RoadButton4A.Location = new Point(3, 267);
-            RoadButton4B.Size = new Size(60, 60);
+            RoadButton4B.Size = new Size(newSize, newSize);
             RoadButton4B.Location = new Point(69, 267);
-            RoadButton4C.Size = new Size(60, 60);
+            RoadButton4C.Size = new Size(newSize, newSize);
             RoadButton4C.Location = new Point(135, 267);
-            RoadButton5A.Size = new Size(60, 60);
+            RoadButton5A.Size = new Size(newSize, newSize);
             RoadButton5A.Location = new Point(3, 333);
-            RoadButton5B.Size = new Size(60, 60);
+            RoadButton5B.Size = new Size(newSize, newSize);
             RoadButton5B.Location = new Point(69, 333);
-            RoadButton6A.Size = new Size(60, 60);
+            RoadButton6A.Size = new Size(newSize, newSize);
             RoadButton6A.Location = new Point(135, 333);
-            RoadButton6B.Size = new Size(60, 60);
+            RoadButton6B.Size = new Size(newSize, newSize);
             RoadButton6B.Location = new Point(201, 333);
-            RoadButton7A.Size = new Size(60, 60);
+            RoadButton7A.Size = new Size(newSize, newSize);
             RoadButton7A.Location = new Point(3, 399);
-            RoadButton8A.Size = new Size(60, 60);
+            RoadButton8A.Size = new Size(newSize, newSize);
             RoadButton8A.Location = new Point(69, 399);
 
-            RotateRoadButton.Size = new Size(60, 60);
+            RotateRoadButton.Size = new Size(newSize, newSize);
             RotateRoadButton.Location = new Point(267, 3);
 
 
@@ -332,43 +426,43 @@ namespace ACNHPokerCore
             ManualCliffPanel.Size = new Size(350, 486);
             ManualCliffPanel.Location = new Point(0, 65);
 
-            CliffButton0A.Size = new Size(60, 60);
+            CliffButton0A.Size = new Size(newSize, newSize);
 
-            CliffButton1A.Size = new Size(60, 60);
+            CliffButton1A.Size = new Size(newSize, newSize);
             CliffButton1A.Location = new Point(3, 69);
-            CliffButton2A.Size = new Size(60, 60);
+            CliffButton2A.Size = new Size(newSize, newSize);
             CliffButton2A.Location = new Point(3, 135);
-            CliffButton2B.Size = new Size(60, 60);
+            CliffButton2B.Size = new Size(newSize, newSize);
             CliffButton2B.Location = new Point(69, 135);
-            CliffButton2C.Size = new Size(60, 60);
+            CliffButton2C.Size = new Size(newSize, newSize);
             CliffButton2C.Location = new Point(135, 135);
-            CliffButton3A.Size = new Size(60, 60);
+            CliffButton3A.Size = new Size(newSize, newSize);
             CliffButton3A.Location = new Point(3, 201);
-            CliffButton3B.Size = new Size(60, 60);
+            CliffButton3B.Size = new Size(newSize, newSize);
             CliffButton3B.Location = new Point(69, 201);
-            CliffButton3C.Size = new Size(60, 60);
+            CliffButton3C.Size = new Size(newSize, newSize);
             CliffButton3C.Location = new Point(135, 201);
-            CliffButton4A.Size = new Size(60, 60);
+            CliffButton4A.Size = new Size(newSize, newSize);
             CliffButton4A.Location = new Point(3, 267);
-            CliffButton4B.Size = new Size(60, 60);
+            CliffButton4B.Size = new Size(newSize, newSize);
             CliffButton4B.Location = new Point(69, 267);
-            CliffButton4C.Size = new Size(60, 60);
+            CliffButton4C.Size = new Size(newSize, newSize);
             CliffButton4C.Location = new Point(135, 267);
-            CliffButton5A.Size = new Size(60, 60);
+            CliffButton5A.Size = new Size(newSize, newSize);
             CliffButton5A.Location = new Point(3, 333);
-            CliffButton5B.Size = new Size(60, 60);
+            CliffButton5B.Size = new Size(newSize, newSize);
             CliffButton5B.Location = new Point(69, 333);
-            CliffButton6A.Size = new Size(60, 60);
+            CliffButton6A.Size = new Size(newSize, newSize);
             CliffButton6A.Location = new Point(135, 333);
-            CliffButton6B.Size = new Size(60, 60);
+            CliffButton6B.Size = new Size(newSize, newSize);
             CliffButton6B.Location = new Point(201, 333);
-            CliffButton7A.Size = new Size(60, 60);
+            CliffButton7A.Size = new Size(newSize, newSize);
             CliffButton7A.Location = new Point(3, 399);
-            CliffButton8.Size = new Size(60, 60);
+            CliffButton8.Size = new Size(newSize, newSize);
             CliffButton8.Location = new Point(69, 399);
-            CliffButton8A.Size = new Size(60, 60);
+            CliffButton8A.Size = new Size(newSize, newSize);
             CliffButton8A.Location = new Point(267, 399);
-            RotateCliffButton.Size = new Size(60, 60);
+            RotateCliffButton.Size = new Size(newSize, newSize);
             RotateCliffButton.Location = new Point(267, 3);
 
             ManualTerrainElevationLabel.Location = new Point(255, 85);
@@ -381,41 +475,41 @@ namespace ACNHPokerCore
             ManualRiverPanel.Size = new Size(350, 486);
             ManualRiverPanel.Location = new Point(0, 65);
 
-            RiverButton0A.Size = new Size(60, 60);
+            RiverButton0A.Size = new Size(newSize, newSize);
 
-            RiverButton1A.Size = new Size(60, 60);
+            RiverButton1A.Size = new Size(newSize, newSize);
             RiverButton1A.Location = new Point(3, 69);
-            RiverButton2A.Size = new Size(60, 60);
+            RiverButton2A.Size = new Size(newSize, newSize);
             RiverButton2A.Location = new Point(3, 135);
-            RiverButton2B.Size = new Size(60, 60);
+            RiverButton2B.Size = new Size(newSize, newSize);
             RiverButton2B.Location = new Point(69, 135);
-            RiverButton2C.Size = new Size(60, 60);
+            RiverButton2C.Size = new Size(newSize, newSize);
             RiverButton2C.Location = new Point(135, 135);
-            RiverButton3A.Size = new Size(60, 60);
+            RiverButton3A.Size = new Size(newSize, newSize);
             RiverButton3A.Location = new Point(3, 201);
-            RiverButton3B.Size = new Size(60, 60);
+            RiverButton3B.Size = new Size(newSize, newSize);
             RiverButton3B.Location = new Point(69, 201);
-            RiverButton3C.Size = new Size(60, 60);
+            RiverButton3C.Size = new Size(newSize, newSize);
             RiverButton3C.Location = new Point(135, 201);
-            RiverButton4A.Size = new Size(60, 60);
+            RiverButton4A.Size = new Size(newSize, newSize);
             RiverButton4A.Location = new Point(3, 267);
-            RiverButton4B.Size = new Size(60, 60);
+            RiverButton4B.Size = new Size(newSize, newSize);
             RiverButton4B.Location = new Point(69, 267);
-            RiverButton4C.Size = new Size(60, 60);
+            RiverButton4C.Size = new Size(newSize, newSize);
             RiverButton4C.Location = new Point(135, 267);
-            RiverButton5A.Size = new Size(60, 60);
+            RiverButton5A.Size = new Size(newSize, newSize);
             RiverButton5A.Location = new Point(3, 333);
-            RiverButton5B.Size = new Size(60, 60);
+            RiverButton5B.Size = new Size(newSize, newSize);
             RiverButton5B.Location = new Point(69, 333);
-            RiverButton6A.Size = new Size(60, 60);
+            RiverButton6A.Size = new Size(newSize, newSize);
             RiverButton6A.Location = new Point(135, 333);
-            RiverButton6B.Size = new Size(60, 60);
+            RiverButton6B.Size = new Size(newSize, newSize);
             RiverButton6B.Location = new Point(201, 333);
-            RiverButton7A.Size = new Size(60, 60);
+            RiverButton7A.Size = new Size(newSize, newSize);
             RiverButton7A.Location = new Point(3, 399);
-            RiverButton8A.Size = new Size(60, 60);
+            RiverButton8A.Size = new Size(newSize, newSize);
             RiverButton8A.Location = new Point(69, 399);
-            RotateRiverButton.Size = new Size(60, 60);
+            RotateRiverButton.Size = new Size(newSize, newSize);
             RotateRiverButton.Location = new Point(267, 3);
 
             ManualRiverElevationLabel.Location = new Point(255, 85);
@@ -425,20 +519,26 @@ namespace ACNHPokerCore
             ManualRiverElevation1Label.Location = new Point(314, 132);
             ManualRiverElevation0Label.Location = new Point(314, 148);
 
-            Bitmap MiniCliffImg = new(Properties.Resources.cliff, new Size(60, 60));
+            Bitmap MiniCliffImg = new(Properties.Resources.cliff, new Size(newSize, newSize));
             ManualCliffModeButton.BackgroundImage = MiniCliffImg;
-            Bitmap MiniRiverImg = new(Properties.Resources.river, new Size(60, 60));
+            Bitmap MiniRiverImg = new(Properties.Resources.river, new Size(newSize, newSize));
             ManualRiverModeButton.BackgroundImage = MiniRiverImg;
-            Bitmap RotateImg = new(Properties.Resources.rotate, new Size(60, 60));
+            Bitmap RotateImg = new(Properties.Resources.rotate, new Size(newSize, newSize));
             RotateRoadButton.BackgroundImage = RotateImg;
             RotateCliffButton.BackgroundImage = RotateImg;
             RotateRiverButton.BackgroundImage = RotateImg;
 
             UpdateSelectedRoad();
+            DrawRoadImages(manualSelectedRoadDirection, manualSelectedRoad, newSize);
+            DrawCliffImages(manualSelectedCliffDirection, manualSelectedCliffElevation, newSize);
+            DrawRiverImages(manualSelectedRiverDirection, manualSelectedRiverElevation, newSize);
+            currentSize = newSize;
         }
 
         private void TurnSmall()
         {
+            int oldSize = 36;
+
             ManualButtonPanel.Width = 225;
             ManualButtonPanel.Height = 340;
 
@@ -463,16 +563,20 @@ namespace ACNHPokerCore
                 ctrl.Location = ControlLocation[ctrl.Name];
             }
 
-            Bitmap MiniCliffImg = new(Properties.Resources.cliff, new Size(36, 36));
+            Bitmap MiniCliffImg = new(Properties.Resources.cliff, new Size(oldSize, oldSize));
             ManualCliffModeButton.BackgroundImage = MiniCliffImg;
-            Bitmap MiniRiverImg = new(Properties.Resources.river, new Size(36, 36));
+            Bitmap MiniRiverImg = new(Properties.Resources.river, new Size(oldSize, oldSize));
             ManualRiverModeButton.BackgroundImage = MiniRiverImg;
-            Bitmap RotateImg = new(Properties.Resources.rotate, new Size(36, 36));
+            Bitmap RotateImg = new(Properties.Resources.rotate, new Size(oldSize, oldSize));
             RotateRoadButton.BackgroundImage = RotateImg;
             RotateCliffButton.BackgroundImage = RotateImg;
             RotateRiverButton.BackgroundImage = RotateImg;
 
             UpdateSelectedRoad();
+            DrawRoadImages(manualSelectedRoadDirection, manualSelectedRoad, oldSize);
+            DrawCliffImages(manualSelectedCliffDirection, manualSelectedCliffElevation, oldSize);
+            DrawRiverImages(manualSelectedRiverDirection, manualSelectedRiverElevation, oldSize);
+            currentSize = oldSize;
         }
 
         private void SetSubDivider()
@@ -481,24 +585,24 @@ namespace ACNHPokerCore
             int h = SubDivider.Height;
             if (w - h > 0)
             {
-                this.SubDivider.ColumnStyles[0].Width = (w - h) / 2;
-                this.SubDivider.ColumnStyles[2].Width = (w - h) / 2;
-                this.SubDivider.RowStyles[0].Height = 0;
-                this.SubDivider.RowStyles[2].Height = 0;
+                SubDivider.ColumnStyles[0].Width = (w - h) / 2;
+                SubDivider.ColumnStyles[2].Width = (w - h) / 2;
+                SubDivider.RowStyles[0].Height = 0;
+                SubDivider.RowStyles[2].Height = 0;
             }
             else if (h - w > 0)
             {
-                this.SubDivider.ColumnStyles[0].Width = 0;
-                this.SubDivider.ColumnStyles[2].Width = 0;
-                this.SubDivider.RowStyles[0].Height = (h - w) / 2;
-                this.SubDivider.RowStyles[2].Height = (h - w) / 2;
+                SubDivider.ColumnStyles[0].Width = 0;
+                SubDivider.ColumnStyles[2].Width = 0;
+                SubDivider.RowStyles[0].Height = (h - w) / 2;
+                SubDivider.RowStyles[2].Height = (h - w) / 2;
             }
             else
             {
-                this.SubDivider.ColumnStyles[0].Width = 0;
-                this.SubDivider.ColumnStyles[2].Width = 0;
-                this.SubDivider.RowStyles[0].Height = 0;
-                this.SubDivider.RowStyles[2].Height = 0;
+                SubDivider.ColumnStyles[0].Width = 0;
+                SubDivider.ColumnStyles[2].Width = 0;
+                SubDivider.RowStyles[0].Height = 0;
+                SubDivider.RowStyles[2].Height = 0;
             }
         }
 
@@ -508,24 +612,24 @@ namespace ACNHPokerCore
             {
                 if (socket != null || usb != null)
                 {
-                    Layer1 = Utilities.getMapLayer(socket, usb, Utilities.mapZero, ref counter);
-                    Acre = Utilities.getAcre(socket, usb);
-                    Building = Utilities.getBuilding(socket, usb);
-                    Terrain = Utilities.getTerrain(socket, usb);
-                    MyDesign = Utilities.getMyDesign(socket, usb, ref counter);
-                    MapCustomDesgin = Utilities.getCustomDesignMap(socket, usb, ref counter);
+                    Layer1 = Utilities.GetMapLayer(socket, usb, Utilities.mapZero, ref counter);
+                    Acre = Utilities.GetAcre(socket, usb);
+                    Building = Utilities.GetBuilding(socket, usb);
+                    Terrain = Utilities.GetTerrain(socket, usb);
+                    MyDesign = Utilities.GetMyDesign(socket, usb, ref counter);
+                    MapCustomDesgin = Utilities.GetCustomDesignMap(socket, usb, ref counter);
 
                     if (Acre != null)
                     {
-                        if (MiniMap == null)
-                            MiniMap = new MiniMap(Layer1, Acre, Building, Terrain, MapCustomDesgin, 2);
+                        if (miniMap == null)
+                            miniMap = new MiniMap(Layer1, Acre, Building, Terrain, MapCustomDesgin, 2);
                     }
                     else
                         throw new NullReferenceException("Layer1/Layer2/Acre");
 
                     if (MyDesign != null || MapCustomDesgin != null)
                     {
-                        this.Invoke((MethodInvoker)delegate
+                        Invoke((MethodInvoker)delegate
                         {
                             var imageList = new ImageList
                             {
@@ -583,13 +687,16 @@ namespace ACNHPokerCore
                             }
                         }
 
-                        this.Invoke((MethodInvoker)delegate
+                        while (!this.IsHandleCreated)
+                            Thread.Sleep(100);
+
+                        Invoke((MethodInvoker)delegate
                         {
-                            CurrentMiniMap = MiniMap.DrawBackground();
+                            CurrentMiniMap = miniMap.DrawBackground();
                             miniMapBox.BackgroundImage = CurrentMiniMap;
                             miniMapBox.Image = MiniMap.DrawSelectSquare16(8, 8);
                             DrawMainMap(anchorX, anchorY);
-                            this.MaximizeBox = true;
+                            MaximizeBox = true;
                         });
                     }
                     else
@@ -603,8 +710,8 @@ namespace ACNHPokerCore
             }
             catch (Exception ex)
             {
-                MyLog.LogEvent("RoadRoller", "FetchMap: " + ex.Message.ToString());
-                MyMessageBox.Show(ex.Message.ToString(), "Oof");
+                MyLog.LogEvent("RoadRoller", "FetchMap: " + ex.Message);
+                MyMessageBox.Show(ex.Message, "Oof");
             }
         }
 
@@ -701,32 +808,27 @@ namespace ACNHPokerCore
         private Bitmap DrawTileWithCustomDesign(TerrainUnit currentUnit, int size)
         {
             Color borderColor = Color.Orange;
-            Bitmap Bottom;
-            Bottom = new Bitmap(size, size);
-            using (Graphics gr = Graphics.FromImage(Bottom))
-            {
-                gr.SmoothingMode = SmoothingMode.None;
-                gr.Clear(borderColor);
-            }
+            Bitmap BottomImage = new Bitmap(size, size);
+            using Graphics gr = Graphics.FromImage(BottomImage);
+            gr.SmoothingMode = SmoothingMode.None;
+            gr.Clear(borderColor);
 
-            Bitmap Top;
+            Bitmap TopImage;
             int DesignID = BitConverter.ToInt16(currentUnit.GetCustomDesign(), 0);
-            Top = designPatterns[DesignID].GetBitmap(size - 2);
+            TopImage = designPatterns[DesignID].GetBitmap(size - 2);
 
-            Bitmap Final = Bottom;
+            Bitmap Final = BottomImage;
 
-            using (Graphics graphics = Graphics.FromImage(Final))
+            using Graphics graphics = Graphics.FromImage(Final);
+            var cm = new ColorMatrix
             {
-                var cm = new ColorMatrix
-                {
-                    Matrix33 = 1
-                };
+                Matrix33 = 1
+            };
 
-                var ia = new ImageAttributes();
-                ia.SetColorMatrix(cm);
+            var ia = new ImageAttributes();
+            ia.SetColorMatrix(cm);
 
-                graphics.DrawImage(Top, new Rectangle(1, 1, Top.Width, Top.Height), 0, 0, Top.Width, Top.Height, GraphicsUnit.Pixel, ia);
-            }
+            graphics.DrawImage(TopImage, new Rectangle(1, 1, TopImage.Width, TopImage.Height), 0, 0, TopImage.Width, TopImage.Height, GraphicsUnit.Pixel, ia);
 
             return Final;
         }
@@ -813,7 +915,7 @@ namespace ACNHPokerCore
                     MainMap.Location = new Point((size - (GridSize * 16)) / 2 - 2, (size - (GridSize * 16)) / 2 - 2);
                     MainMap.BackgroundImage = myBitmap;
                     CurrentMainMap = myBitmap;
-                };
+                }
             });
 
             mapDrawing = false;
@@ -887,7 +989,7 @@ namespace ACNHPokerCore
 
                     MainMap.BackgroundImage = myBitmap;
                     CurrentMainMap = myBitmap;
-                };
+                }
             });
 
             mapDrawing = false;
@@ -905,7 +1007,7 @@ namespace ACNHPokerCore
 
         private void HideMapWait()
         {
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
                 PleaseWaitPanel.Visible = false;
                 ProgressTimer.Stop();
@@ -1181,6 +1283,19 @@ namespace ACNHPokerCore
             CurrentUnit.UpdateCliff(neighbour, elevation);
             bool[,] TerrainNeighbour = FindTerrainNeighbourForFix(x, y);
             FixNeighbourTerrain(x, y, TerrainNeighbour);
+
+            if (MainUpdateNeeded)
+                _ = UpdateMainMapAsync(x, y);
+            RemoveMiniMapPixel(x, y, elevation);
+        }
+
+        private void DeleteManualFall(int x, int y, bool MainUpdateNeeded = true)
+        {
+            TerrainUnit CurrentUnit = terrainUnits[x][y];
+            ushort elevation = CurrentUnit.GetElevation();
+
+            bool[,] neighbour = FindSameNeighbourCliff(elevation, x, y);
+            CurrentUnit.UpdateCliff(neighbour, elevation);
 
             if (MainUpdateNeeded)
                 _ = UpdateMainMapAsync(x, y);
@@ -1588,6 +1703,8 @@ namespace ACNHPokerCore
                                 sameNeighbour[i + 1, j + 1] = true;
                             else if (MiniMap.GetBackgroundColorLess(x + i, y + j) == MiniMap.Pixel[0x0C])
                                 sameNeighbour[i + 1, j + 1] = true;
+                            else if (MiniMap.GetBackgroundColorLess(x + i, y + j) == MiniMap.Pixel[0x2A])
+                                sameNeighbour[i + 1, j + 1] = true;
                             else
                                 sameNeighbour[i + 1, j + 1] = false;
                         }
@@ -1692,7 +1809,7 @@ namespace ACNHPokerCore
 
         private void MiniMapBox_MouseDown(object sender, MouseEventArgs e)
         {
-            if (MiniMap == null)
+            if (miniMap == null)
                 return;
 
             if (e.Button == MouseButtons.Left)
@@ -1727,7 +1844,7 @@ namespace ACNHPokerCore
 
         private void MiniMapBox_MouseMove(object sender, MouseEventArgs e)
         {
-            if (MiniMap == null)
+            if (miniMap == null)
                 return;
 
             if (mapDrawing)
@@ -1992,7 +2109,7 @@ namespace ACNHPokerCore
                         return;
 
                     byte[] CustomDesignBytes = BitConverter.GetBytes(CustomDesignList.FocusedItem.Index);
-                    byte[] Half = new byte[] { CustomDesignBytes[0], CustomDesignBytes[1] };
+                    byte[] Half = new[] { CustomDesignBytes[0], CustomDesignBytes[1] };
 
                     PlaceDesign(Half, Xcoordinate + anchorX, Ycoordinate + anchorY);
 
@@ -2104,7 +2221,9 @@ namespace ACNHPokerCore
                     }
                     else if (selectedManualMode == ManualRiverPanel)
                     {
-                        if (CurrentUnit.IsRiver())
+                        if (CurrentUnit.IsFall())
+                            DeleteManualFall(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                        else if (CurrentUnit.IsRiver())
                             DeleteManualRiver(Xcoordinate + anchorX, Ycoordinate + anchorY);
                     }
                     else if (selectedManualMode == ManualRoadPanel)
@@ -2265,7 +2384,7 @@ namespace ACNHPokerCore
                     if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
                         return;
                     byte[] CustomDesignBytes = BitConverter.GetBytes(CustomDesignList.FocusedItem.Index);
-                    byte[] Half = new byte[] { CustomDesignBytes[0], CustomDesignBytes[1] };
+                    byte[] Half = new[] { CustomDesignBytes[0], CustomDesignBytes[1] };
 
                     PlaceDesign(Half, Xcoordinate + anchorX, Ycoordinate + anchorY);
 
@@ -2378,7 +2497,9 @@ namespace ACNHPokerCore
                     }
                     else if (selectedManualMode == ManualRiverPanel)
                     {
-                        if (CurrentUnit.IsRiver())
+                        if (CurrentUnit.IsFall())
+                            DeleteManualFall(Xcoordinate + anchorX, Ycoordinate + anchorY);
+                        else if (CurrentUnit.IsRiver())
                             DeleteManualRiver(Xcoordinate + anchorX, Ycoordinate + anchorY);
                     }
                     else if (selectedManualMode == ManualRoadPanel)
@@ -2582,17 +2703,17 @@ namespace ACNHPokerCore
                 wait++;
             }
 
-            Utilities.sendTerrain(socket, null, newTerrain, ref counter);
+            Utilities.SendTerrain(socket, null, newTerrain, ref counter);
 
             if (newCustomMap != null)
             {
-                Utilities.sendCustomMap(socket, null, newCustomMap, ref counter);
+                Utilities.SendCustomMap(socket, null, newCustomMap, ref counter);
             }
 
-            this.Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker)delegate
             {
-                MiniMap.UpdateTerrain(newTerrain, newCustomMap);
-                CurrentMiniMap = MiniMap.DrawBackground();
+                miniMap.UpdateTerrain(newTerrain, newCustomMap);
+                CurrentMiniMap = miniMap.DrawBackground();
                 miniMapBox.BackgroundImage = CurrentMiniMap;
                 terrainSaving = false;
                 firstEdit = true;
@@ -2615,7 +2736,7 @@ namespace ACNHPokerCore
 
         private void RoadRoller_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.CloseForm();
+            if (CloseForm != null) CloseForm();
         }
 
         private void AutoModeButton_Click(object sender, EventArgs e)
@@ -3050,22 +3171,22 @@ namespace ACNHPokerCore
             }
             using (Graphics gr = Graphics.FromImage(Cliff2B))
             {
-                Point[] Terrain2B = new Point[] { new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                Point[] Terrain2B = new[] { new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
                 gr.FillPolygon(CliffBrush, Terrain2B);
             }
             using (Graphics gr = Graphics.FromImage(Cliff2C))
             {
-                Point[] Terrain2C = new Point[] { new Point(4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                Point[] Terrain2C = new[] { new Point(4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
                 gr.FillPolygon(CliffBrush, Terrain2C);
             }
             using (Graphics gr = Graphics.FromImage(Cliff3A))
             {
-                Point[] Terrain3A = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                Point[] Terrain3A = new[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
                 gr.FillPolygon(CliffBrush, Terrain3A);
             }
             using (Graphics gr = Graphics.FromImage(Cliff3B))
             {
-                Point[] Terrain3B = new Point[] { new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(4, size - 1) };
+                Point[] Terrain3B = new[] { new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(4, size - 1) };
                 gr.FillPolygon(CliffBrush, Terrain3B);
             }
             using (Graphics gr = Graphics.FromImage(Cliff3C))
@@ -3074,22 +3195,22 @@ namespace ACNHPokerCore
             }
             using (Graphics gr = Graphics.FromImage(Cliff4A))
             {
-                Point[] Terrain4A = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(4, size - 1) };
+                Point[] Terrain4A = new[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(4, size - 1) };
                 gr.FillPolygon(CliffBrush, Terrain4A);
             }
             using (Graphics gr = Graphics.FromImage(Cliff4B))
             {
-                Point[] Terrain4B = new Point[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                Point[] Terrain4B = new[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
                 gr.FillPolygon(CliffBrush, Terrain4B);
             }
             using (Graphics gr = Graphics.FromImage(Cliff4C))
             {
-                Point[] Terrain4C = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4), new Point(1, 4), new Point(4, 4) };
+                Point[] Terrain4C = new[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4), new Point(1, 4), new Point(4, 4) };
                 gr.FillPolygon(CliffBrush, Terrain4C);
             }
             using (Graphics gr = Graphics.FromImage(Cliff5A))
             {
-                Point[] Terrain5A = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4) };
+                Point[] Terrain5A = new[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4) };
                 gr.FillPolygon(CliffBrush, Terrain5A);
             }
             using (Graphics gr = Graphics.FromImage(Cliff5B))
@@ -3098,17 +3219,17 @@ namespace ACNHPokerCore
             }
             using (Graphics gr = Graphics.FromImage(Cliff6A))
             {
-                Point[] Terrain6A = new Point[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4) };
+                Point[] Terrain6A = new[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4) };
                 gr.FillPolygon(CliffBrush, Terrain6A);
             }
             using (Graphics gr = Graphics.FromImage(Cliff6B))
             {
-                Point[] Terrain6B = new Point[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
+                Point[] Terrain6B = new[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
                 gr.FillPolygon(CliffBrush, Terrain6B);
             }
             using (Graphics gr = Graphics.FromImage(Cliff7A))
             {
-                Point[] Terrain7A = new Point[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
+                Point[] Terrain7A = new[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
                 gr.FillPolygon(CliffBrush, Terrain7A);
             }
             using (Graphics gr = Graphics.FromImage(Cliff8))
@@ -3262,77 +3383,77 @@ namespace ACNHPokerCore
 
             using (Graphics gr = Graphics.FromImage(River0A))
             {
-                gr.FillRectangle(RiverBrush, 4, 4, size - 8, size - 8);
+                gr.FillRectangle(RiverBrush, 8, 8, size - 16, size - 16);
             }
             using (Graphics gr = Graphics.FromImage(River1A))
             {
-                gr.FillRectangle(RiverBrush, 4, 4, size - 8, size - 5);
+                gr.FillRectangle(RiverBrush, 8, 8, size - 16, size - 9);
             }
             using (Graphics gr = Graphics.FromImage(River2A))
             {
-                gr.FillRectangle(RiverBrush, 4, 1, size - 8, size - 2);
+                gr.FillRectangle(RiverBrush, 8, 1, size - 16, size - 2);
             }
             using (Graphics gr = Graphics.FromImage(River2B))
             {
-                Point[] Terrain2B = new Point[] { new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                Point[] Terrain2B = new[] { new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1) };
                 gr.FillPolygon(RiverBrush, Terrain2B);
             }
             using (Graphics gr = Graphics.FromImage(River2C))
             {
-                Point[] Terrain2C = new Point[] { new Point(4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                Point[] Terrain2C = new[] { new Point(8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1) };
                 gr.FillPolygon(RiverBrush, Terrain2C);
             }
             using (Graphics gr = Graphics.FromImage(River3A))
             {
-                Point[] Terrain3A = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                Point[] Terrain3A = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1) };
                 gr.FillPolygon(RiverBrush, Terrain3A);
             }
             using (Graphics gr = Graphics.FromImage(River3B))
             {
-                Point[] Terrain3B = new Point[] { new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(4, size - 1) };
+                Point[] Terrain3B = new[] { new Point(size - 1, 8), new Point(size - 1, size - 1), new Point(8, size - 1) };
                 gr.FillPolygon(RiverBrush, Terrain3B);
             }
             using (Graphics gr = Graphics.FromImage(River3C))
             {
-                gr.FillRectangle(RiverBrush, 4, 4, size - 5, size - 5);
+                gr.FillRectangle(RiverBrush, 8, 8, size - 9, size - 9);
             }
             using (Graphics gr = Graphics.FromImage(River4A))
             {
-                Point[] Terrain4A = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(4, size - 1) };
+                Point[] Terrain4A = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 1), new Point(8, size - 1) };
                 gr.FillPolygon(RiverBrush, Terrain4A);
             }
             using (Graphics gr = Graphics.FromImage(River4B))
             {
-                Point[] Terrain4B = new Point[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                Point[] Terrain4B = new[] { new Point(8, 1), new Point(size - 1, 1), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1) };
                 gr.FillPolygon(RiverBrush, Terrain4B);
             }
             using (Graphics gr = Graphics.FromImage(River4C))
             {
-                Point[] Terrain4C = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4), new Point(1, 4), new Point(4, 4) };
+                Point[] Terrain4C = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8), new Point(1, 8), new Point(8, 8) };
                 gr.FillPolygon(RiverBrush, Terrain4C);
             }
             using (Graphics gr = Graphics.FromImage(River5A))
             {
-                Point[] Terrain5A = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4) };
+                Point[] Terrain5A = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(1, size - 1), new Point(1, 8), new Point(8, 8) };
                 gr.FillPolygon(RiverBrush, Terrain5A);
             }
             using (Graphics gr = Graphics.FromImage(River5B))
             {
-                gr.FillRectangle(RiverBrush, 4, 1, size - 5, size - 2);
+                gr.FillRectangle(RiverBrush, 8, 1, size - 9, size - 2);
             }
             using (Graphics gr = Graphics.FromImage(River6A))
             {
-                Point[] Terrain6A = new Point[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4) };
+                Point[] Terrain6A = new[] { new Point(8, 1), new Point(size - 1, 1), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(1, size - 1), new Point(1, 8), new Point(8, 8) };
                 gr.FillPolygon(RiverBrush, Terrain6A);
             }
             using (Graphics gr = Graphics.FromImage(River6B))
             {
-                Point[] Terrain6B = new Point[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
+                Point[] Terrain6B = new[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8) };
                 gr.FillPolygon(RiverBrush, Terrain6B);
             }
             using (Graphics gr = Graphics.FromImage(River7A))
             {
-                Point[] Terrain7A = new Point[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
+                Point[] Terrain7A = new[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8) };
                 gr.FillPolygon(RiverBrush, Terrain7A);
             }
             using (Graphics gr = Graphics.FromImage(River8A))
@@ -3422,7 +3543,7 @@ namespace ACNHPokerCore
             if (manualSelectedRoadDirection > 3)
                 manualSelectedRoadDirection = 0;
 
-            DrawRoadImages(manualSelectedRoadDirection, manualSelectedRoad);
+            DrawRoadImages(manualSelectedRoadDirection, manualSelectedRoad, currentSize);
         }
 
         private void RotateCliffButton_Click(object sender, EventArgs e)
@@ -3434,7 +3555,7 @@ namespace ACNHPokerCore
             if (manualSelectedCliffDirection > 3)
                 manualSelectedCliffDirection = 0;
 
-            DrawCliffImages(manualSelectedCliffDirection, manualSelectedCliffElevation);
+            DrawCliffImages(manualSelectedCliffDirection, manualSelectedCliffElevation, currentSize);
         }
 
         private void RotateRiverButton_Click(object sender, EventArgs e)
@@ -3446,7 +3567,7 @@ namespace ACNHPokerCore
             if (manualSelectedRiverDirection > 3)
                 manualSelectedRiverDirection = 0;
 
-            DrawRiverImages(manualSelectedRiverDirection, manualSelectedRiverElevation);
+            DrawRiverImages(manualSelectedRiverDirection, manualSelectedRiverElevation, currentSize);
         }
 
         private void RoadDropdownBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -3477,7 +3598,7 @@ namespace ACNHPokerCore
             };
             ManualRoadModeButton.Image = MiniRoadImg;
 
-            DrawRoadImages(manualSelectedRoadDirection, manualSelectedRoad);
+            DrawRoadImages(manualSelectedRoadDirection, manualSelectedRoad, currentSize);
         }
 
         private void ManualRoadButton_Click(object sender, EventArgs e)
@@ -3597,7 +3718,7 @@ namespace ACNHPokerCore
 
             manualSelectedCliffElevation = (ushort)ManualCliffElevationBar.Value;
 
-            DrawCliffImages(manualSelectedCliffDirection, manualSelectedCliffElevation);
+            DrawCliffImages(manualSelectedCliffDirection, manualSelectedCliffElevation, currentSize);
         }
         private void ManualRiverElevationBar_ValueChanged(object sender, EventArgs e)
         {
@@ -3606,7 +3727,7 @@ namespace ACNHPokerCore
 
             manualSelectedRiverElevation = (ushort)ManualRiverElevationBar.Value;
 
-            DrawRiverImages(manualSelectedRiverDirection, manualSelectedRiverElevation);
+            DrawRiverImages(manualSelectedRiverDirection, manualSelectedRiverElevation, currentSize);
         }
         private void ManualCliffModeButton_Click(object sender, EventArgs e)
         {

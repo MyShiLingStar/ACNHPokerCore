@@ -17,7 +17,7 @@ namespace ACNHPokerCore
         public LoopStream(WaveStream sourceStream)
         {
             this.sourceStream = sourceStream;
-            this.EnableLooping = true;
+            EnableLooping = true;
         }
 
         /// <summary>

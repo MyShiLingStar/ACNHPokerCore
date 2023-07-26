@@ -5,11 +5,6 @@ namespace ACNHPokerCore
 {
     class RoadSelector : ComboBox
     {
-        public RoadSelector()
-        {
-
-        }
-
         protected override void OnDrawItem(DrawItemEventArgs e)
         {
             if (e.Index >= 0)
@@ -30,7 +25,7 @@ namespace ACNHPokerCore
                 };
                 e.Graphics.DrawImage(img, e.Bounds.Left, e.Bounds.Top + 3);
 
-                e.Graphics.DrawString(this.Items[e.Index].ToString(), e.Font, new SolidBrush(e.ForeColor), e.Bounds.Left + img.Width, e.Bounds.Top + 6);
+                e.Graphics.DrawString(Items[e.Index].ToString(), e.Font, new SolidBrush(e.ForeColor), e.Bounds.Left + img.Width, e.Bounds.Top + 6);
             }
             base.OnDrawItem(e);
         }

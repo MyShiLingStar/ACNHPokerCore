@@ -7,7 +7,7 @@ namespace ACNHPokerCore
     {
         public MyProgressBar()
         {
-            this.SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.UserPaint, true);
         }
 
         protected override void OnPaint(PaintEventArgs e)

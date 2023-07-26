@@ -10,9 +10,9 @@ namespace ACNHPokerCore
             {
                 case Keys.Enter:
                 case Keys.Escape:
-                    if (this.DroppedDown)
+                    if (DroppedDown)
                     {
-                        this.DroppedDown = false;
+                        DroppedDown = false;
                         return false;
                     }
                     break;

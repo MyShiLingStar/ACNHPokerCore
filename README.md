@@ -1,12 +1,12 @@
 ## You can find the latest version of ACNHPokerCore : [🢧 Here 🢦](https://myshilingstar.github.io/GetAzure/)
-## You can find the latest x64 .NET 5.0 Desktop Runtime [🢧 Here 🢦](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-5.0.17-windows-x64-installer/)
+## You can find the latest x64 .NET 7.0 Desktop Runtime [🢧 Here 🢦](https://aka.ms/dotnet-core-applaunch?framework=Microsoft.WindowsDesktop.App&framework_version=7.0.0&arch=x64&rid=win10-x64&gui=true)
 
 # ACNHPokerCore
 ![Release Image](https://user-images.githubusercontent.com/816502/189231022-02bfa2d8-1857-4b88-8edd-4a26a86a1c65.png)
 [![Video](https://img.youtube.com/vi/6RGZbiKzACg/maxresdefault.jpg)](https://youtu.be/6RGZbiKzACg)
 [![Video](https://img.youtube.com/vi/BPZ7Z1LlU94/maxresdefault.jpg)](https://youtu.be/BPZ7Z1LlU94)
 
-   1. Spawns items for you on  Animal Crossing™: New Horizons using [sys-botbase](https://github.com/olliz0r/sys-botbase)
+   1. Spawns items for you on Animal Crossing™: New Horizons using [sys-botbase](https://github.com/olliz0r/sys-botbase)
    2. Manipulate in-game critter spawn rate.
    3. Control turnip buying/selling price.
    4. Uncover your weather seed for [MeteoNook](https://wuffs.org/acnh/weather/)
@@ -20,13 +20,9 @@
 
 ## Installation
 
-   1. Download and install the x64 .NET 5.0 Desktop Runtime [Here](https://dotnet.microsoft.com/en-us/download/dotnet/5.0/runtime). 
+   1. Download and install the x64 .NET 7.0 Desktop Runtime at [Here](https://aka.ms/dotnet-core-applaunch?framework=Microsoft.WindowsDesktop.App&framework_version=7.0.0&arch=x64&rid=win10-x64&gui=true). 
 
-   ![Image](https://i.ibb.co/ZSbmjqg/runtime.png)
-   
-   Please select "Download x64" under "Run desktop apps".
-
-   2. Download and unzip the latest release of ACNHPokerCore at [Azure Pipelines](https://berichan.github.io/GetNHSE/?org=MyShiLingStar&proj=ACNHPokerCore&projurl=https://github.com/MyShiLingStar/ACNHPokerCore)
+   2. Download and unzip the latest release of ACNHPokerCore at [Here](https://myshilingstar.github.io/GetAzure/)
 
    3. Run "ACNHPokerCore.exe"
 
@@ -58,6 +54,20 @@
     * Added remove building to Bulldozer.
     * Added HHP acres to Bulldozer.	
     * Code cleanup and bug fixes
+* R23
+    * Update from .NET 5.0 to .NET 7.0.
+    * Added Item shifting and core-only mode to Map Dropper.
+	* Added custom design indicator on mini map.
+	* Added Item extension handling to Map Dropper.
+	* Added experimental RAM address shifting workaround.
+	* Added option to change Anchor files in Dodo Helper.
+	* Added more information to visitor log.
+	* Added Item filter to Map Dropper.
+	* Added Bulk Selector to Map Dropper.
+	* Added the option to change airport color.	
+	* Added Hotkeys and MultiSelect when operating Bulk Selector.
+	* Fixed a crash related to some "hacky"	code in Bulldozer.
+	* Update for Game version "Ver. 2.0.6"
 	
 ## Ely's Changes:   
 

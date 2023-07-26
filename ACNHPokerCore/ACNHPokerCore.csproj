@@ -2,35 +2,43 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
+	<RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>NewLeaf.ico</ApplicationIcon>
     <DebugType>embedded</DebugType>
     <Authors>MyShiLingStar</Authors>
     <Company>MyShiLingStar</Company>
-    <Copyright>Copyright © 2020-2022</Copyright>
+    <Copyright>Copyright © 2020-2023</Copyright>
     <PackageProjectUrl>https://github.com/MyShiLingStar/ACNHPokerCore</PackageProjectUrl>
     <RepositoryUrl>https://github.com/MyShiLingStar/ACNHPokerCore</RepositoryUrl>
     <PackageIcon>Leaf.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Platforms>AnyCPU;x86</Platforms>
+	<SatelliteResourceLanguages>none</SatelliteResourceLanguages>
+    <SelfContained>false</SelfContained>
+	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;NU1701;CS0169;IDE0057;IDE0074;IDE0056;NETSDK1138</NoWarn>
+    <DebugType>none</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <NoWarn>1701;1702;NU1701;CS0169;IDE0057;IDE0074;IDE0056;NETSDK1138</NoWarn>
+    <DebugType>none</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <NoWarn>1701;1702;NU1701;CS0169;IDE0057;IDE0074;IDE0056;NETSDK1138</NoWarn>
+    <DebugType>none</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <NoWarn>1701;1702;NU1701;CS0169;IDE0057;IDE0074;IDE0056;NETSDK1138</NoWarn>
+    <DebugType>none</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -44,25 +52,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AsyncAwaitBestPractices" Version="6.0.5" />
-    <PackageReference Include="AutoCompleteMenu-ScintillaNET" Version="1.6.2" />
+    <PackageReference Include="AutoCompleteMenu-ScintillaNET" Version="2.1.0" />
     <PackageReference Include="DotNetZip" Version="1.16.0" />
     <PackageReference Include="LibUsbDotNet" Version="2.2.29" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0-preview.5.23280.8" />
+    <PackageReference Include="Microsoft.NETCore.Platforms" Version="8.0.0-preview.5.23280.8" />
     <PackageReference Include="NAudio" Version="2.1.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="TwitchLib.Communication" Version="1.0.4" />
-    <PackageReference Include="TwitchLib.PubSub" Version="3.2.5" />
     <PackageReference Include="WinFormsToggleSwitch" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Custom\RoadSelector.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Update="Inventory\inventorySlot.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Update="Custom\RoadSelector.cs" />
+    <Compile Update="Inventory\inventorySlot.cs" />
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -94,7 +95,7 @@
 
   <ItemGroup>
     <None Update="App.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="BridgeImage\00.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

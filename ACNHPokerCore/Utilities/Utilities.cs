@@ -1,11 +1,10 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net;
+using System.Net.Http;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
@@ -63,6 +62,8 @@ namespace ACNHPokerCore
         public static UInt32 coordinate = 0x3E35A288; //0x3E33A288;
 
         public static UInt32 mapZero = 0xAE7E5298; //0xAE3E5298;
+
+        public static UInt32 AirportColor = mapZero + 0x3143D8;
 
         public static UInt32 mapOffset = 0x8F1BD0;
 
@@ -285,7 +286,7 @@ namespace ACNHPokerCore
 
         private static readonly Object botLock = new();
 
-        public static void buildDictionary()
+        public static void BuildDictionary()
         {
             if (File.Exists(kindPath))
             {
@@ -376,7 +377,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public static byte[] stringToByte(string Bank)
+        public static byte[] StringToByte(string Bank)
         {
             if (Bank.Length <= 1)
             {
@@ -465,17 +466,17 @@ namespace ACNHPokerCore
             {
                 if (usb == null)
                 {
-                    string msg = String.Format("poke {0:X8} 0x{1}\r\n", GetItemSlotAddress(slot), flip(precedingZeros(value, 8)));
+                    string msg = String.Format("poke {0:X8} 0x{1}\r\n", GetItemSlotAddress(slot), Flip(PrecedingZeros(value, 8)));
                     SendString(socket, Encoding.UTF8.GetBytes(msg));
 
-                    string countMsg = String.Format("poke {0:X8} 0x{1}\r\n", GetItemCountAddress(slot), flip(precedingZeros(amount, 8)));
+                    string countMsg = String.Format("poke {0:X8} 0x{1}\r\n", GetItemCountAddress(slot), Flip(PrecedingZeros(amount, 8)));
                     SendString(socket, Encoding.UTF8.GetBytes(countMsg));
                 }
                 else
                 {
-                    usb.WriteBytes(stringToByte(flip(precedingZeros(value, 8))), GetItemSlotUIntAddress(slot));
+                    usb.WriteBytes(StringToByte(Flip(PrecedingZeros(value, 8))), GetItemSlotUIntAddress(slot));
 
-                    usb.WriteBytes(stringToByte(flip(precedingZeros(amount, 8))), GetItemCountUIntAddress(slot));
+                    usb.WriteBytes(StringToByte(Flip(PrecedingZeros(amount, 8))), GetItemCountUIntAddress(slot));
                 }
 
                 //Debug.Print("Slot : " + slot + " | ID : " + value + " | Amount : " + amount);
@@ -491,17 +492,17 @@ namespace ACNHPokerCore
                 {
                     if (usb == null)
                     {
-                        string msg = String.Format("poke {0:X8} 0x{1}\r\n", GetItemSlotAddress(slot), flip(precedingZeros(value, 8)));
+                        string msg = String.Format("poke {0:X8} 0x{1}\r\n", GetItemSlotAddress(slot), Flip(PrecedingZeros(value, 8)));
                         SendString(socket, Encoding.UTF8.GetBytes(msg));
 
-                        string countMsg = String.Format("poke {0:X8} 0x{1}\r\n", GetItemCountAddress(slot), flip(precedingZeros(recipeValue, 8)));
+                        string countMsg = String.Format("poke {0:X8} 0x{1}\r\n", GetItemCountAddress(slot), Flip(PrecedingZeros(recipeValue, 8)));
                         SendString(socket, Encoding.UTF8.GetBytes(countMsg));
                     }
                     else
                     {
-                        usb.WriteBytes(stringToByte(flip(precedingZeros(value, 8))), GetItemSlotUIntAddress(slot));
+                        usb.WriteBytes(StringToByte(Flip(PrecedingZeros(value, 8))), GetItemSlotUIntAddress(slot));
 
-                        usb.WriteBytes(stringToByte(flip(precedingZeros(recipeValue, 8))), GetItemCountUIntAddress(slot));
+                        usb.WriteBytes(StringToByte(Flip(PrecedingZeros(recipeValue, 8))), GetItemCountUIntAddress(slot));
                     }
 
                     //Debug.Print("Slot : " + slot + " | ID : " + value + " | RecipeValue : " + recipeValue);
@@ -510,7 +511,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "SpawnRecipe");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"SpawnRecipe");
                 }
 
                 return false;
@@ -525,17 +526,17 @@ namespace ACNHPokerCore
                 {
                     if (usb == null)
                     {
-                        string msg = String.Format("poke {0:X8} 0x{1}\r\n", GetItemSlotAddress(slot), flip(precedingZeros(value, 8)));
+                        string msg = String.Format("poke {0:X8} 0x{1}\r\n", GetItemSlotAddress(slot), Flip(PrecedingZeros(value, 8)));
                         SendString(socket, Encoding.UTF8.GetBytes(msg));
 
-                        string countMsg = String.Format("poke {0:X8} 0x{1}\r\n", GetItemCountAddress(slot), flip(precedingZeros(flowerValue, 8)));
+                        string countMsg = String.Format("poke {0:X8} 0x{1}\r\n", GetItemCountAddress(slot), Flip(PrecedingZeros(flowerValue, 8)));
                         SendString(socket, Encoding.UTF8.GetBytes(countMsg));
                     }
                     else
                     {
-                        usb.WriteBytes(stringToByte(flip(precedingZeros(value, 8))), GetItemSlotUIntAddress(slot));
+                        usb.WriteBytes(StringToByte(Flip(PrecedingZeros(value, 8))), GetItemSlotUIntAddress(slot));
 
-                        usb.WriteBytes(stringToByte(flip(precedingZeros(flowerValue, 8))), GetItemCountUIntAddress(slot));
+                        usb.WriteBytes(StringToByte(Flip(PrecedingZeros(flowerValue, 8))), GetItemCountUIntAddress(slot));
                     }
 
                     //Debug.Print("Slot : " + slot + " | ID : " + value + " | FlowerValue : " + flowerValue);
@@ -544,14 +545,14 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "SpawnFlower");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"SpawnFlower");
                 }
 
                 return false;
             }
         }
 
-        public static string flip(string value)
+        public static string Flip(string value)
         {
             if (value.Length == 4)
             {
@@ -575,7 +576,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public static string precedingZeros(string value, int length)
+        public static string PrecedingZeros(string value, int length)
         {
             if (value.Length >= length)
                 return value;
@@ -584,10 +585,10 @@ namespace ACNHPokerCore
             return result;
         }
 
-        public static string turn2bytes(string value)
+        public static string Turn2bytes(string value)
         {
             if (value.Length < 4)
-                return precedingZeros(value, 4);
+                return PrecedingZeros(value, 4);
             else
                 return value.Substring(value.Length - 4, 4);
         }
@@ -676,21 +677,21 @@ namespace ACNHPokerCore
                 }
                 else
                 {
-                    byte[] BuyPrice = stringToByte(flip(precedingZeros(prices[12].ToString("X"), 8)));
+                    byte[] BuyPrice = StringToByte(Flip(PrecedingZeros(prices[12].ToString("X"), 8)));
                     usb.WriteBytes(BuyPrice, TurnipPurchasePriceAddr);
                     usb.WriteBytes(BuyPrice, TurnipPurchasePriceAddr + TurnipBuffer);
 
                     for (int i = 0; i < 12; i++)
                     {
-                        usb.WriteBytes(stringToByte(flip(precedingZeros(prices[i].ToString("X"), 8))), (uint)(TurnipSellPriceAddr + (4 * i)));
-                        usb.WriteBytes(stringToByte(flip(precedingZeros(prices[i].ToString("X"), 8))), (uint)(TurnipSellPriceAddr + (4 * i) + TurnipBuffer));
+                        usb.WriteBytes(StringToByte(Flip(PrecedingZeros(prices[i].ToString("X"), 8))), (uint)(TurnipSellPriceAddr + (4 * i)));
+                        usb.WriteBytes(StringToByte(Flip(PrecedingZeros(prices[i].ToString("X"), 8))), (uint)(TurnipSellPriceAddr + (4 * i) + TurnipBuffer));
                     }
                 }
                 return false;
             }
         }
 
-        public static void setAddress(int player)
+        public static void SetAddress(int player)
         {
             if (player == 1)
             {
@@ -779,13 +780,13 @@ namespace ACNHPokerCore
             }
         }
 
-        public static void gotoRecyclingPage(uint page)
+        public static void GotoRecyclingPage(uint page)
         {
             ItemSlotBase = MasterRecyclingBase + ((page - 1) * 0x140);
             ItemSlot21Base = MasterRecycling21Base + ((page - 1) * 0x140);
         }
 
-        public static void gotoHousePage(uint page, int player)
+        public static void GotoHousePage(uint page, int player)
         {
             switch (player)
             {
@@ -824,7 +825,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public static byte[] peekAddress(Socket socket, USBBot usb, UInt32 address, int size)
+        public static byte[] PeekAddress(Socket socket, USBBot usb, UInt32 address, int size)
         {
             lock (botLock)
             {
@@ -855,7 +856,7 @@ namespace ACNHPokerCore
                     {
                         Debug.Print("[Usb] Peek : Address " + address.ToString("X") + " " + size);
 
-                        byte[] b = usb.ReadBytes((uint)address, size);
+                        byte[] b = usb.ReadBytes(address, size);
 
                         if (b == null)
                         {
@@ -867,13 +868,13 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "peekAddress");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"peekAddress");
                     return null;
                 }
             }
         }
 
-        public static void pokeAddress(Socket socket, USBBot usb, string address, string value)
+        public static void PokeAddress(Socket socket, USBBot usb, string address, string value)
         {
             lock (botLock)
             {
@@ -887,17 +888,17 @@ namespace ACNHPokerCore
                     }
                     else
                     {
-                        usb.WriteBytes(stringToByte(value), Convert.ToUInt32(address, 16));
+                        usb.WriteBytes(StringToByte(value), Convert.ToUInt32(address, 16));
                     }
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "pokeAddress");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"pokeAddress");
                 }
             }
         }
 
-        public static void pokeMainAddress(Socket socket, USBBot usb, string address, string value)
+        public static void PokeMainAddress(Socket socket, USBBot usb, string address, string value)
         {
             lock (botLock)
             {
@@ -905,24 +906,24 @@ namespace ACNHPokerCore
                 {
                     if (usb == null)
                     {
-                        string msg = String.Format("pokeMain 0x{0:X8} 0x{1}\r\n", address, flip(value));
+                        string msg = String.Format("pokeMain 0x{0:X8} 0x{1}\r\n", address, Flip(value));
                         Debug.Print("PokeMain : " + msg);
                         SendString(socket, Encoding.UTF8.GetBytes(msg));
                     }
                     else
                     {
-                        usb.WriteBytesMain(stringToByte(flip(value)), Convert.ToUInt32(address, 16));
-                        Debug.Print("PokeMain [USB] : " + Convert.ToUInt32(address, 16).ToString() + " " + flip(value).ToString());
+                        usb.WriteBytesMain(StringToByte(Flip(value)), Convert.ToUInt32(address, 16));
+                        Debug.Print("PokeMain [USB] : " + Convert.ToUInt32(address, 16) + " " + Flip(value));
                     }
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "pokeMainAddress");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"pokeMainAddress");
                 }
             }
         }
 
-        public static byte[] peekMainAddress(Socket socket, string address, int size)
+        public static byte[] PeekMainAddress(Socket socket, string address, int size)
         {
             lock (botLock)
             {
@@ -936,10 +937,6 @@ namespace ACNHPokerCore
                 int first_rec = ReceiveString(socket, b);
                 string buffer = Encoding.ASCII.GetString(b, 0, size * 2);
 
-                if (buffer == null)
-                {
-                    return null;
-                }
                 for (int i = 0; i < size; i++)
                 {
                     result[i] = Convert.ToByte(buffer.Substring(i * 2, 2), 16);
@@ -949,7 +946,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public static byte[] peekAbsoluteAddress(Socket socket, string address, int size)
+        public static byte[] PeekAbsoluteAddress(Socket socket, string address, int size)
         {
             lock (botLock)
             {
@@ -961,10 +958,6 @@ namespace ACNHPokerCore
                 int first_rec = ReceiveString(socket, b);
                 string buffer = Encoding.ASCII.GetString(b, 0, size * 2);
 
-                if (buffer == null)
-                {
-                    return null;
-                }
                 for (int i = 0; i < size; i++)
                 {
                     result[i] = Convert.ToByte(buffer.Substring(i * 2, 2), 16);
@@ -974,7 +967,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public static void pokeAbsoluteAddress(Socket socket, string address, string value)
+        public static void PokeAbsoluteAddress(Socket socket, string address, string value)
         {
             lock (botLock)
             {
@@ -983,14 +976,20 @@ namespace ACNHPokerCore
             }
         }
 
-        public static void setStamina(Socket socket, USBBot usb, string value)
+        public static void SetStamina(Socket socket, USBBot usb, string value)
         {
-            pokeAddress(socket, usb, staminaAddress.ToString("X"), value);
+            PokeAddress(socket, usb, staminaAddress.ToString("X"), value);
         }
 
-        public static void setFlag1(Socket socket, USBBot usb, int slot, string flag)
+        public static void SetAirportColor(Socket socket, USBBot usb, string value)
         {
-            pokeAddress(socket, usb, GetItemFlag1Address(slot), flag);
+            PokeAddress(socket, usb, AirportColor.ToString("X"), value);
+            PokeAddress(socket, usb, (AirportColor + mapOffset).ToString("X"), value);
+        }
+
+        public static void SetFlag1(Socket socket, USBBot usb, int slot, string flag)
+        {
+            PokeAddress(socket, usb, GetItemFlag1Address(slot), flag);
         }
 
         public static byte[] ReadByteArray(Socket socket, long initAddr, int size)
@@ -1049,7 +1048,7 @@ namespace ACNHPokerCore
             }
             catch
             {
-                MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "ReadByteArray");
+                MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"ReadByteArray");
                 return null;
             }
         }
@@ -1140,17 +1139,17 @@ namespace ACNHPokerCore
                     string bufferRepr = ReadToIntermediateString(socket, initAddr + received, bytesToReceive);
                     for (int i = 0; i < (bytesToReceive / 4); i++)
                     {
-                        buffer[offset + (received / 4) + i] = Convert.ToUInt32(bufferRepr.Substring(i * 8 + 6, 2) +
-                                                    bufferRepr.Substring(i * 8 + 4, 2) +
-                                                    bufferRepr.Substring(i * 8 + 2, 2) +
-                                                    bufferRepr.Substring(i * 8, 2), 16);
+                        buffer[offset + (received / 4) + i] = Convert.ToUInt32(string.Concat(bufferRepr.AsSpan(i * 8 + 6, 2), 
+                                                                                            bufferRepr.AsSpan(i * 8 + 4, 2), 
+                                                                                            bufferRepr.AsSpan(i * 8 + 2, 2), 
+                                                                                            bufferRepr.AsSpan(i * 8, 2)), 16);
                     }
                     received += bytesToReceive;
                 }
             }
             catch
             {
-                MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "ReadUInt64Array");
+                MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"ReadUInt64Array");
             }
         }
 
@@ -1173,7 +1172,7 @@ namespace ACNHPokerCore
                         (buffer[offset + sent + i] & 0xFF), (buffer[offset + sent + i] & 0xFF00) >> 8,
                         (buffer[offset + sent + i] & 0xFF0000) >> 16, (buffer[offset + sent + i] & 0xFF000000) >> 24));
                 }
-                msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", initAddr + sent * 4, dataTemp.ToString());
+                msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", initAddr + sent * 4, dataTemp);
                 Debug.Print(msg);
                 SendString(socket, Encoding.UTF8.GetBytes(msg));
                 sent += UInt32ToSend;
@@ -1308,7 +1307,42 @@ namespace ACNHPokerCore
             }
         }
 
-        public static byte[] getReaction(Socket socket, USBBot usb, int player)
+        public static byte GetAirportColor(Socket socket, USBBot usb)
+        {
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    Debug.Print("[Sys] Peek : AirportColor " + AirportColor.ToString("X"));
+
+                    byte[] b = ReadByteArray(socket, AirportColor, 1);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show(@"Wait something is wrong here!? \n\n AirportColor");
+                        return 0xDD;
+                    }
+
+                    return b[0];
+                }
+                else
+                {
+                    Debug.Print("[Usb] Peek : AirportColor " + AirportColor.ToString("X"));
+
+                    byte[] b = ReadLargeBytes(usb, (uint)AirportColor, 1);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n AirportColor");
+                        return 0xDD;
+                    }
+
+                    return b[0];
+                }
+            }
+        }
+
+        public static byte[] GetReaction(Socket socket, USBBot usb, int player)
         {
             lock (botLock)
             {
@@ -1352,13 +1386,13 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "getReaction");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getReaction");
                     return null;
                 }
             }
         }
 
-        public static void setReaction(Socket socket, USBBot usb, int player, string reactionFirstHalf, string reactionSecondHalf)
+        public static void SetReaction(Socket socket, USBBot usb, int player, string reactionFirstHalf, string reactionSecondHalf)
         {
             lock (botLock)
             {
@@ -1376,14 +1410,14 @@ namespace ACNHPokerCore
                     }
                     else
                     {
-                        usb.WriteBytes(stringToByte(reactionFirstHalf), (uint)(playerReactionAddress + (player * playerOffset)));
+                        usb.WriteBytes(StringToByte(reactionFirstHalf), (uint)(playerReactionAddress + (player * playerOffset)));
 
-                        usb.WriteBytes(stringToByte(reactionSecondHalf), (uint)((playerReactionAddress + (player * playerOffset)) + 4));
+                        usb.WriteBytes(StringToByte(reactionSecondHalf), (uint)((playerReactionAddress + (player * playerOffset)) + 4));
                     }
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "setReaction");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"setReaction");
                 }
             }
         }
@@ -1783,7 +1817,7 @@ namespace ACNHPokerCore
 
                     if (b == null)
                     {
-                        MessageBox.Show("Wait something is wrong here!? \n\n HouseOwner");
+                        MessageBox.Show(@"Wait something is wrong here!? HouseOwner");
                         return 0xDD;
                     }
 
@@ -1897,7 +1931,7 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "SetCatchphrase");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"SetCatchphrase");
                 }
             }
         }
@@ -1914,7 +1948,7 @@ namespace ACNHPokerCore
 
                     if (b == null)
                     {
-                        MessageBox.Show("Wait something is wrong here!? \n\n VillagerFlag");
+                        MessageBox.Show(@"Wait something is wrong here!? VillagerFlag");
                     }
 
                     return b[0];
@@ -1927,7 +1961,7 @@ namespace ACNHPokerCore
 
                     if (b == null)
                     {
-                        MessageBox.Show("Wait something is wrong here!? \n\n VillagerFlag");
+                        MessageBox.Show(@"Wait something is wrong here!? VillagerFlag");
                     }
 
                     return b[0];
@@ -1947,7 +1981,7 @@ namespace ACNHPokerCore
 
                     if (b == null)
                     {
-                        MessageBox.Show("Wait something is wrong here!? \n\n VillagerHouseFlag");
+                        MessageBox.Show(@"Wait something is wrong here!? VillagerHouseFlag");
                     }
 
                     return b[0];
@@ -1960,7 +1994,7 @@ namespace ACNHPokerCore
 
                     if (b == null)
                     {
-                        MessageBox.Show("Wait something is wrong here!? \n\n VillagerHouseFlag");
+                        MessageBox.Show(@"Wait something is wrong here!? VillagerHouseFlag");
                     }
 
                     return b[0];
@@ -2014,22 +2048,22 @@ namespace ACNHPokerCore
                     }
                     else
                     {
-                        usb.WriteBytes(stringToByte(MoveoutFlag), (uint)(VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset));
+                        usb.WriteBytes(StringToByte(MoveoutFlag), (uint)(VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset));
 
                         //usb.WriteBytes(stringToByte(MoveoutFlag), (uint)(VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset + VillagerHouseBufferDiff));
 
-                        usb.WriteBytes(stringToByte(ForceMoveoutFlag), (uint)(VillagerAddress + (num * VillagerSize) + VillagerForceMoveoutOffset));
+                        usb.WriteBytes(StringToByte(ForceMoveoutFlag), (uint)(VillagerAddress + (num * VillagerSize) + VillagerForceMoveoutOffset));
 
                         //usb.WriteBytes(stringToByte(ForceMoveoutFlag), (uint)(VillagerAddress + (num * VillagerSize) + VillagerForceMoveoutOffset + VillagerHouseBufferDiff));
 
-                        usb.WriteBytes(stringToByte("0"), (uint)(VillagerAddress + (num * VillagerSize) + VillagerAbandonHouseOffset));
+                        usb.WriteBytes(StringToByte("0"), (uint)(VillagerAddress + (num * VillagerSize) + VillagerAbandonHouseOffset));
 
                         //usb.WriteBytes(stringToByte("0"), (uint)(VillagerAddress + (num * VillagerSize) + VillagerAbandonHouseOffset + VillagerHouseBufferDiff));
                     }
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "SetMoveout");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"SetMoveout");
                 }
             }
         }
@@ -2053,14 +2087,14 @@ namespace ACNHPokerCore
                     }
                     else
                     {
-                        usb.WriteBytes(stringToByte(FriendshipFlag), (uint)(VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset) + VillagerFriendshipOffset));
+                        usb.WriteBytes(StringToByte(FriendshipFlag), (uint)(VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset) + VillagerFriendshipOffset));
 
                         //usb.WriteBytes(stringToByte(FriendshipFlag), (uint)(VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset) + VillagerFriendshipOffset + VillagerHouseBufferDiff));
                     }
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "SetFriendship");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"SetFriendship");
                 }
             }
         }
@@ -2217,7 +2251,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public static void dropItem(Socket socket, USBBot usb, long address, string itemId, string count, string flag1, string flag2)
+        public static void DropItem(Socket socket, USBBot usb, long address, string itemId, string count, string flag0, string flag1)
         {
             lock (botLock)
             {
@@ -2225,13 +2259,13 @@ namespace ACNHPokerCore
                 {
                     if (usb == null)
                     {
-                        SendByteArray8(socket, address, stringToByte(buildDropStringLeft(itemId, count, flag1, flag2)), 16);
-                        SendByteArray8(socket, address + mapOffset, stringToByte(buildDropStringLeft(itemId, count, flag1, flag2)), 16);
+                        SendByteArray8(socket, address, StringToByte(BuildDropStringLeft(itemId, count, flag0, flag1)), 16);
+                        SendByteArray8(socket, address + mapOffset, StringToByte(BuildDropStringLeft(itemId, count, flag0, flag1)), 16);
 
-                        SendByteArray8(socket, address + 0x600, stringToByte(buildDropStringRight(itemId)), 16);
-                        SendByteArray8(socket, address + 0x600 + mapOffset, stringToByte(buildDropStringRight(itemId)), 16);
+                        SendByteArray8(socket, address + 0x600, StringToByte(BuildDropStringRight(itemId)), 16);
+                        SendByteArray8(socket, address + 0x600 + mapOffset, StringToByte(BuildDropStringRight(itemId)), 16);
 
-                        Debug.Print("Drop: " + address + " " + itemId + " " + count + " " + flag1 + " " + flag2);
+                        Debug.Print("Drop: " + address + " " + itemId + " " + count + " " + flag0 + " " + flag1);
                     }
                     else
                     {
@@ -2240,12 +2274,12 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "dropItem");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"dropItem");
                 }
             }
         }
 
-        public static void dropCore(Socket socket, USBBot usb, long address, string itemId, string count, string flag1, string flag2)
+        public static void DropCore(Socket socket, USBBot usb, long address, string itemId, string count, string flag0, string flag1)
         {
             lock (botLock)
             {
@@ -2253,10 +2287,10 @@ namespace ACNHPokerCore
                 {
                     if (usb == null)
                     {
-                        SendByteArray8(socket, address, stringToByte(buildDropCore(itemId, count, flag1, flag2)), 8);
-                        SendByteArray8(socket, address + mapOffset, stringToByte(buildDropCore(itemId, count, flag1, flag2)), 8);
+                        SendByteArray8(socket, address, StringToByte(BuildDropCore(itemId, count, flag0, flag1)), 8);
+                        SendByteArray8(socket, address + mapOffset, StringToByte(BuildDropCore(itemId, count, flag0, flag1)), 8);
 
-                        Debug.Print("DropCore: " + address + " " + itemId + " " + count + " " + flag1 + " " + flag2);
+                        Debug.Print("DropCore: " + address + " " + itemId + " " + count + " " + flag0 + " " + flag1);
                     }
                     else
                     {
@@ -2265,12 +2299,12 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "dropItem");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"dropItem");
                 }
             }
         }
 
-        public static void ExtDropItem(Socket socket, USBBot usb, long address, string itemId, string count, string flag1, string flag2)
+        public static void ExtDropItem(Socket socket, USBBot usb, long address, string itemId, string count, string flag0, string flag1)
         {
             lock (botLock)
             {
@@ -2278,13 +2312,13 @@ namespace ACNHPokerCore
                 {
                     if (usb == null)
                     {
-                        SendByteArray8(socket, address, stringToByte(ExtbuildDropStringLeft(itemId, count, flag1, flag2)), 16);
-                        SendByteArray8(socket, address + mapOffset, stringToByte(ExtbuildDropStringLeft(itemId, count, flag1, flag2)), 16);
+                        SendByteArray8(socket, address, StringToByte(ExtbuildDropStringLeft(itemId, count, flag0, flag1)), 16);
+                        SendByteArray8(socket, address + mapOffset, StringToByte(ExtbuildDropStringLeft(itemId, count, flag0, flag1)), 16);
 
-                        SendByteArray8(socket, address + 0x600, stringToByte(buildDropStringRight("FFFE", true)), 16);
-                        SendByteArray8(socket, address + 0x600 + mapOffset, stringToByte(buildDropStringRight("FFFE", true)), 16);
+                        SendByteArray8(socket, address + 0x600, StringToByte(BuildDropStringRight("FFFE", true)), 16);
+                        SendByteArray8(socket, address + 0x600 + mapOffset, StringToByte(BuildDropStringRight("FFFE", true)), 16);
 
-                        Debug.Print("Drop: " + address + " " + itemId + " " + count + " " + flag1 + " " + flag2);
+                        Debug.Print("Drop: " + address + " " + itemId + " " + count + " " + flag0 + " " + flag1);
                     }
                     else
                     {
@@ -2293,17 +2327,17 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "dropItem");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"dropItem");
                 }
             }
         }
 
-        public static string ExtbuildDropStringLeft(string itemId, string count, string flag1, string flag2)
+        public static string ExtbuildDropStringLeft(string itemId, string count, string flag0, string flag1)
         {
-            return flip(itemId) + flag2 + flag1 + flip(count) + flip("FFFE") + "0000" + "0000" + "00" + "00";
+            return Flip(itemId) + flag1 + flag0 + Flip(count) + Flip("FFFE") + "0000" + "0000" + "00" + "00";
         }
 
-        public static void deleteFloorItem(Socket socket, USBBot usb, long address)
+        public static void DeleteFloorItem(Socket socket, USBBot usb, long address)
         {
             lock (botLock)
             {
@@ -2311,11 +2345,11 @@ namespace ACNHPokerCore
                 {
                     if (usb == null)
                     {
-                        SendByteArray8(socket, address, stringToByte(buildDropStringLeft("FFFE", "00000000", "00", "00", true)), 16);
-                        SendByteArray8(socket, address + mapOffset, stringToByte(buildDropStringLeft("FFFE", "00000000", "00", "00", true)), 16);
+                        SendByteArray8(socket, address, StringToByte(BuildDropStringLeft("FFFE", "00000000", "00", "00", true)), 16);
+                        SendByteArray8(socket, address + mapOffset, StringToByte(BuildDropStringLeft("FFFE", "00000000", "00", "00", true)), 16);
 
-                        SendByteArray8(socket, address + 0x600, stringToByte(buildDropStringRight("FFFE", true)), 16);
-                        SendByteArray8(socket, address + 0x600 + mapOffset, stringToByte(buildDropStringRight("FFFE", true)), 16);
+                        SendByteArray8(socket, address + 0x600, StringToByte(BuildDropStringRight("FFFE", true)), 16);
+                        SendByteArray8(socket, address + 0x600 + mapOffset, StringToByte(BuildDropStringRight("FFFE", true)), 16);
 
                         Debug.Print("Delete: " + address);
                     }
@@ -2326,12 +2360,12 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "deleteFloorItem");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"deleteFloorItem");
                 }
             }
         }
 
-        public static byte[] getMapLayer(Socket socket, USBBot usb, long address, ref int counter)
+        public static byte[] GetMapLayer(Socket socket, USBBot usb, long address, ref int counter)
         {
             lock (botLock)
             {
@@ -2364,13 +2398,13 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "getMapLayer");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getMapLayer");
                     return null;
                 }
             }
         }
 
-        public static byte[] getAcre(Socket socket, USBBot usb)
+        public static byte[] GetAcre(Socket socket, USBBot usb)
         {
             lock (botLock)
             {
@@ -2403,13 +2437,13 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "getAcre");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getAcre");
                     return null;
                 }
             }
         }
 
-        public static void sendAcre(Socket socket, USBBot usb, byte[] acre, ref int counter)
+        public static void SendAcre(Socket socket, USBBot usb, byte[] acre, ref int counter)
         {
             lock (botLock)
             {
@@ -2432,12 +2466,12 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "sendAcre");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"sendAcre");
                 }
             }
         }
 
-        public static void sendPlaza(Socket socket, USBBot usb, byte[] plaza, ref int counter)
+        public static void SendPlaza(Socket socket, USBBot usb, byte[] plaza, ref int counter)
         {
             lock (botLock)
             {
@@ -2460,12 +2494,12 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "sendPlaza");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"sendPlaza");
                 }
             }
         }
 
-        public static void sendBuilding(Socket socket, USBBot usb, byte[] building, ref int counter)
+        public static void SendBuilding(Socket socket, USBBot usb, byte[] building, ref int counter)
         {
             lock (botLock)
             {
@@ -2488,12 +2522,12 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "sendBuilding");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"sendBuilding");
                 }
             }
         }
 
-        public static byte[] getBuilding(Socket socket, USBBot usb)
+        public static byte[] GetBuilding(Socket socket, USBBot usb)
         {
             lock (botLock)
             {
@@ -2526,13 +2560,13 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "getBuilding");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getBuilding");
                     return null;
                 }
             }
         }
 
-        public static void sendTerrain(Socket socket, USBBot usb, byte[] terrain, ref int counter)
+        public static void SendTerrain(Socket socket, USBBot usb, byte[] terrain, ref int counter)
         {
             lock (botLock)
             {
@@ -2555,12 +2589,12 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "sendTerrain");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"sendTerrain");
                 }
             }
         }
 
-        public static void sendCustomMap(Socket socket, USBBot usb, byte[] CustomMap, ref int counter)
+        public static void SendCustomMap(Socket socket, USBBot usb, byte[] CustomMap, ref int counter)
         {
             lock (botLock)
             {
@@ -2583,12 +2617,12 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "sendCustomMap");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"sendCustomMap");
                 }
             }
         }
 
-        public static byte[] getTerrain(Socket socket, USBBot usb)
+        public static byte[] GetTerrain(Socket socket, USBBot usb)
         {
             lock (botLock)
             {
@@ -2621,13 +2655,13 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "getTerrain");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getTerrain");
                     return null;
                 }
             }
         }
 
-        public static byte[] getActivate(Socket socket, USBBot usb, long address, ref int counter)
+        public static byte[] GetActivate(Socket socket, USBBot usb, long address, ref int counter)
         {
             lock (botLock)
             {
@@ -2660,13 +2694,13 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "getActivate");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getActivate");
                     return null;
                 }
             }
         }
 
-        public static byte[] getCustomDesignMap(Socket socket, USBBot usb, ref int counter)
+        public static byte[] GetCustomDesignMap(Socket socket, USBBot usb, ref int counter)
         {
             lock (botLock)
             {
@@ -2699,14 +2733,14 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "getCustomDesignMap");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getCustomDesignMap");
                     return null;
                 }
             }
         }
 
 
-        public static byte[] getMyDesign(Socket socket, USBBot usb, ref int counter)
+        public static byte[] GetMyDesign(Socket socket, USBBot usb, ref int counter)
         {
             lock (botLock)
             {
@@ -2739,13 +2773,13 @@ namespace ACNHPokerCore
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "getMyDesign");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getMyDesign");
                     return null;
                 }
             }
         }
 
-        public static byte[] getCoordinate(Socket socket, USBBot usb)
+        public static byte[] GetCoordinate(Socket socket, USBBot usb)
         {
             lock (botLock)
             {
@@ -2776,7 +2810,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public static byte[] getSaving(Socket socket, USBBot usb = null)
+        public static byte[] GetSaving(Socket socket, USBBot usb = null)
         {
             lock (botLock)
             {
@@ -2807,7 +2841,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public static void dropColumn(Socket socket, USBBot usb, uint address1, uint address2, byte[] buffer1, byte[] buffer2, ref int counter)
+        public static void DropColumn(Socket socket, USBBot usb, uint address1, uint address2, byte[] buffer1, byte[] buffer2, ref int counter)
         {
             lock (botLock)
             {
@@ -2828,7 +2862,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public static void dropColumn2(Socket socket, USBBot usb, uint address1, uint address2, byte[] buffer1, byte[] buffer2)
+        public static void DropColumn2(Socket socket, USBBot usb, uint address1, uint address2, byte[] buffer1, byte[] buffer2)
         {
             lock (botLock)
             {
@@ -2842,38 +2876,38 @@ namespace ACNHPokerCore
             }
         }
 
-        public static string buildDropStringLeft(string itemId, string count, string flag1, string flag2, Boolean empty = false)
+        public static string BuildDropStringLeft(string itemId, string count, string flag0, string flag1, Boolean empty = false)
         {
             string partID = "FDFF0000";
             if (empty || itemId == "FFFE")
-                return flip(itemId) + flag2 + flag1 + flip(count) + flip(itemId) + "0000" + "0000" + "00" + "00";
+                return Flip(itemId) + flag1 + flag0 + Flip(count) + Flip(itemId) + "0000" + "0000" + "00" + "00";
             else
-                return flip(itemId) + flag2 + flag1 + flip(count) + partID + flip(itemId) + "00" + "01";
+                return Flip(itemId) + flag1 + flag0 + Flip(count) + partID + Flip(itemId) + "00" + "01";
         }
-        public static string buildDropStringRight(string itemId, Boolean empty = false)
+        public static string BuildDropStringRight(string itemId, Boolean empty = false)
         {
             string partID = "FDFF0000";
             if (empty || itemId == "FFFE")
-                return flip(itemId) + "0000" + "0000" + "00" + "00" + flip(itemId) + "0000" + "0000" + "00" + "00";
+                return Flip(itemId) + "0000" + "0000" + "00" + "00" + Flip(itemId) + "0000" + "0000" + "00" + "00";
             else
-                return partID + flip(itemId) + "01" + "00" + partID + flip(itemId) + "01" + "01";
+                return partID + Flip(itemId) + "01" + "00" + partID + Flip(itemId) + "01" + "01";
         }
-        public static string buildLeftExtension(string itemId, string flag1, string flag2, int DiffX, int DiffY)
+        public static string BuildLeftExtension(string itemId, string flag0, string flag1, int DiffX, int DiffY)
         {
             string ExtensionID = "FFFD";
-            return flip(ExtensionID) + flag2 + flag1 + flip(itemId) + precedingZeros((DiffX * 2).ToString("X"), 2) + precedingZeros((DiffY * 2).ToString("X"), 2)
-                 + flip(ExtensionID) + flag2 + flag1 + flip(itemId) + precedingZeros((DiffX * 2).ToString("X"), 2) + precedingZeros((DiffY * 2 + 1).ToString("X"), 2);
+            return Flip(ExtensionID) + flag1 + flag0 + Flip(itemId) + PrecedingZeros((DiffX * 2).ToString("X"), 2) + PrecedingZeros((DiffY * 2).ToString("X"), 2)
+                 + Flip(ExtensionID) + flag1 + flag0 + Flip(itemId) + PrecedingZeros((DiffX * 2).ToString("X"), 2) + PrecedingZeros((DiffY * 2 + 1).ToString("X"), 2);
         }
-        public static string buildRightExtension(string itemId, string flag1, string flag2, int DiffX, int DiffY)
+        public static string BuildRightExtension(string itemId, string flag0, string flag1, int DiffX, int DiffY)
         {
             string ExtensionID = "FFFD";
-            return flip(ExtensionID) + flag2 + flag1 + flip(itemId) + precedingZeros((DiffX * 2 + 1).ToString("X"), 2) + precedingZeros((DiffY * 2).ToString("X"), 2)
-                 + flip(ExtensionID) + flag2 + flag1 + flip(itemId) + precedingZeros((DiffX * 2 + 1).ToString("X"), 2) + precedingZeros((DiffY * 2 + 1).ToString("X"), 2);
+            return Flip(ExtensionID) + flag1 + flag0 + Flip(itemId) + PrecedingZeros((DiffX * 2 + 1).ToString("X"), 2) + PrecedingZeros((DiffY * 2).ToString("X"), 2)
+                 + Flip(ExtensionID) + flag1 + flag0 + Flip(itemId) + PrecedingZeros((DiffX * 2 + 1).ToString("X"), 2) + PrecedingZeros((DiffY * 2 + 1).ToString("X"), 2);
         }
 
-        public static string buildDropCore(string itemId, string count, string flag1, string flag2)
+        public static string BuildDropCore(string itemId, string count, string flag0, string flag1)
         {
-            return flip(itemId) + flag2 + flag1 + flip(count);
+            return Flip(itemId) + flag1 + flag0 + Flip(count);
         }
 
         public static byte[] ReadByteArray8(Socket socket, long initAddr, int size, ref int counter)
@@ -2933,7 +2967,7 @@ namespace ACNHPokerCore
             {
                 const int maxBytesTosend = 8192;
                 int sent = 0;
-                int bytesToSend = 0;
+                int bytesToSend;
                 StringBuilder dataTemp = new();
                 string msg;
                 while (sent < size)
@@ -2944,7 +2978,7 @@ namespace ACNHPokerCore
                     {
                         dataTemp.Append(String.Format("{0:X2}", buffer[sent + i]));
                     }
-                    msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", initAddr + sent, dataTemp.ToString());
+                    msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", initAddr + sent, dataTemp);
                     //Debug.Print(msg);
                     SendString(socket, Encoding.UTF8.GetBytes(msg));
                     sent += bytesToSend;
@@ -2959,7 +2993,7 @@ namespace ACNHPokerCore
             {
                 const int maxBytesTosend = 8192;
                 int sent = 0;
-                int bytesToSend = 0;
+                int bytesToSend;
                 StringBuilder dataTemp = new();
                 string msg;
                 while (sent < size)
@@ -2970,7 +3004,7 @@ namespace ACNHPokerCore
                     {
                         dataTemp.Append(String.Format("{0:X2}", buffer[sent + i]));
                     }
-                    msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", initAddr + sent, dataTemp.ToString());
+                    msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", initAddr + sent, dataTemp);
                     //Debug.Print(msg);
                     SendString(socket, Encoding.UTF8.GetBytes(msg));
                     sent += bytesToSend;
@@ -2992,7 +3026,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public static byte[] getVisitorName(Socket socket)
+        public static byte[] GetVisitorName(Socket socket)
         {
             lock (botLock)
             {
@@ -3007,7 +3041,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public static byte[] getVisitorIslandName(Socket socket)
+        public static byte[] GetVisitorIslandName(Socket socket)
         {
             lock (botLock)
             {
@@ -3022,7 +3056,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public static string getDodo(Socket socket, bool chi = false, USBBot usb = null)
+        public static string GetDodo(Socket socket, bool chi = false, USBBot usb = null)
         {
             lock (botLock)
             {
@@ -3059,7 +3093,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public static void sendBlankName(Socket socket)
+        public static void SendBlankName(Socket socket)
         {
             lock (botLock)
             {
@@ -3096,17 +3130,17 @@ namespace ACNHPokerCore
                     {
                         if (chi)
                         {
-                            usb.WriteBytes(stringToByte("3"), TextSpeedAddress);
+                            usb.WriteBytes(StringToByte("3"), TextSpeedAddress);
                         }
                         else
                         {
-                            usb.WriteBytes(stringToByte("3"), TextSpeedAddress + ChineseLanguageOffset);
+                            usb.WriteBytes(StringToByte("3"), TextSpeedAddress + ChineseLanguageOffset);
                         }
                     }
                 }
                 catch
                 {
-                    MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.", "SetTextSpeed");
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"SetTextSpeed");
                 }
             }
         }
@@ -3117,17 +3151,17 @@ namespace ACNHPokerCore
             {
                 if (enable)
                 {
-                    pokeAddress(socket, usb, JumpDistance.ToString("X"), LongJumpDistance);
-                    pokeAddress(socket, usb, DiveTime.ToString("X"), LongDiveTime);
-                    pokeAddress(socket, usb, SwimSpeed.ToString("X"), FastSwimSpeed);
-                    pokeAddress(socket, usb, DiveSpeed.ToString("X"), FastDiveSpeed);
+                    PokeAddress(socket, usb, JumpDistance.ToString("X"), LongJumpDistance);
+                    PokeAddress(socket, usb, DiveTime.ToString("X"), LongDiveTime);
+                    PokeAddress(socket, usb, SwimSpeed.ToString("X"), FastSwimSpeed);
+                    PokeAddress(socket, usb, DiveSpeed.ToString("X"), FastDiveSpeed);
                 }
                 else
                 {
-                    pokeAddress(socket, usb, JumpDistance.ToString("X"), DefaultJumpDistance);
-                    pokeAddress(socket, usb, DiveTime.ToString("X"), DefaultDiveTime);
-                    pokeAddress(socket, usb, SwimSpeed.ToString("X"), DefaultSwimSpeed);
-                    pokeAddress(socket, usb, DiveSpeed.ToString("X"), DefaultDiveSpeed);
+                    PokeAddress(socket, usb, JumpDistance.ToString("X"), DefaultJumpDistance);
+                    PokeAddress(socket, usb, DiveTime.ToString("X"), DefaultDiveTime);
+                    PokeAddress(socket, usb, SwimSpeed.ToString("X"), DefaultSwimSpeed);
+                    PokeAddress(socket, usb, DiveSpeed.ToString("X"), DefaultDiveSpeed);
                 }
             }
         }
@@ -3163,7 +3197,7 @@ namespace ACNHPokerCore
             return data;
         }
 
-        public static byte[] add(byte[] a, byte[] b)
+        public static byte[] Add(byte[] a, byte[] b)
         {
             byte[] c = new byte[a.Length + b.Length];
             Buffer.BlockCopy(a, 0, c, 0, a.Length);
@@ -3172,7 +3206,7 @@ namespace ACNHPokerCore
             return c;
         }
 
-        public static void overrideAddresses(Dictionary<string, UInt32> config)
+        public static void OverrideAddresses(Dictionary<string, UInt32> config)
         {
             masterAddress = config["PlayerSlot"];
             player1SlotBase = config["PlayerSlot"];
@@ -3290,7 +3324,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public static void unFreezeBig(Socket socket, uint offset, uint size)
+        public static void UnFreezeBig(Socket socket, uint offset, uint size)
         {
             uint max = 0x2000;
 
@@ -3300,7 +3334,7 @@ namespace ACNHPokerCore
             {
                 SendString(socket, UnFreeze(offset));
 
-                unFreezeBig(socket, offset + max, size - max);
+                UnFreezeBig(socket, offset + max, size - max);
             }
         }
 
@@ -3429,37 +3463,22 @@ namespace ACNHPokerCore
                 return value.ToString();
         }
 
-        public static string getChannelId(string channelName)
+        public async static Task<string> GetChannelId(string channelName)
         {
             string client_id = "py5rhko7jo3f00ypq83he8oomz0adu";
             string client_secret = "d0685tl6iniqgszzpr4gdszhey27m1";
             string grant_type = "client_credentials";
             string scope = "user:read:email";
-            HttpWebRequest OAuthRq = (HttpWebRequest)WebRequest.Create("https://id.twitch.tv/oauth2/token?client_id=" + client_id +
+
+            string URL = "https://id.twitch.tv/oauth2/token?client_id=" + client_id +
                                                                         "&client_secret=" + client_secret +
                                                                         "&grant_type=" + grant_type +
-                                                                        "&scope=" + scope);
-            OAuthRq.Method = "POST";
-
-            string OAuthTarget = string.Empty;
-
-            HttpWebResponse OAuthresp = (HttpWebResponse)OAuthRq.GetResponse();
-            try
-            {
-                StreamReader streamReader = new(OAuthresp.GetResponseStream(), true);
-                try
-                {
-                    OAuthTarget = streamReader.ReadToEnd();
-                }
-                finally
-                {
-                    streamReader.Close();
-                }
-            }
-            finally
-            {
-                OAuthresp.Close();
-            }
+                                                                        "&scope=" + scope;
+            HttpClient client = new();
+            var pairs = new List<KeyValuePair<string, string>> { };
+            var content = new FormUrlEncodedContent(pairs);
+            using HttpResponseMessage response = await client.PostAsync(URL, content);
+            string OAuthTarget = await response.Content.ReadAsStringAsync();
 
             JObject o = JObject.Parse(OAuthTarget);
             var token = o.SelectToken("access_token");
@@ -3469,32 +3488,16 @@ namespace ACNHPokerCore
 
             string access_token = token.ToString();
 
+            string URL2 = "https://api.twitch.tv/helix/users?login=" + channelName;
 
+            HttpClient client2 = new();
 
-            HttpWebRequest rq = (HttpWebRequest)WebRequest.Create("https://api.twitch.tv/helix/users?login=" + channelName);
-            rq.Method = "GET";
-            rq.Headers["Authorization"] = "Bearer " + access_token;
-            rq.Headers["Client-ID"] = "py5rhko7jo3f00ypq83he8oomz0adu";
+            client2.DefaultRequestHeaders.Add("Authorization", "Bearer " + access_token);
+            client2.DefaultRequestHeaders.Add("Client-ID", "py5rhko7jo3f00ypq83he8oomz0adu");
 
-            string target = string.Empty;
-
-            HttpWebResponse resp = (HttpWebResponse)rq.GetResponse();
-            try
-            {
-                StreamReader streamReader = new(resp.GetResponseStream(), true);
-                try
-                {
-                    target = streamReader.ReadToEnd();
-                }
-                finally
-                {
-                    streamReader.Close();
-                }
-            }
-            finally
-            {
-                resp.Close();
-            }
+            using HttpResponseMessage response2 = await client2.GetAsync(URL2);
+            using HttpContent content2 = response2.Content;
+            string target = await content2.ReadAsStringAsync();
 
             JObject DataObject = JObject.Parse(target);
             var value = DataObject.SelectToken("data[0].id");
@@ -3504,7 +3507,7 @@ namespace ACNHPokerCore
                 return value.ToString();
         }
 
-        public static bool hasItemInFirstSlot(Socket socket, USBBot usb = null)
+        public static bool HasItemInFirstSlot(Socket socket, USBBot usb = null)
         {
             lock (botLock)
             {
@@ -3542,7 +3545,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public static async Task loadBoth(Socket socket, int villagerIndex, byte[] villager, int houseIndex, byte[] house)
+        public static async Task LoadBoth(Socket socket, int villagerIndex, byte[] villager, int houseIndex, byte[] house)
         {
             await Task.Run(() => SendByteArray8(socket, VillagerAddress + (villagerIndex * VillagerSize), villager, (int)VillagerSize));
             await Task.Run(() => SendByteArray8(socket, VillagerHouseAddress + (houseIndex * (VillagerHouseSize)), house, (int)VillagerHouseSize));
@@ -3564,14 +3567,14 @@ namespace ACNHPokerCore
             });
         }
 
-        public static bool isChinese(Socket socket, USBBot usb = null)
+        public static bool IsChinese(Socket socket, USBBot usb = null)
         {
-            byte[] b = peekAddress(socket, usb, readTimeAddress, 6);
+            byte[] b = PeekAddress(socket, usb, readTimeAddress, 6);
             string time = ByteToHexString(b);
 
             Debug.Print(time);
 
-            Int32 year = Convert.ToInt32(flip(time.Substring(0, 4)), 16);
+            Int32 year = Convert.ToInt32(Flip(time.Substring(0, 4)), 16);
             Int32 month = Convert.ToInt32((time.Substring(4, 2)), 16);
             Int32 day = Convert.ToInt32((time.Substring(6, 2)), 16);
             Int32 hour = Convert.ToInt32((time.Substring(8, 2)), 16);
@@ -3579,10 +3582,10 @@ namespace ACNHPokerCore
 
             if (year > 3000 || month > 12 || day > 31 || hour > 24 || min > 60) //Try for Chineses
             {
-                b = peekAddress(socket, usb, readTimeAddress + ChineseLanguageOffset, 6);
+                b = PeekAddress(socket, usb, readTimeAddress + ChineseLanguageOffset, 6);
                 time = ByteToHexString(b);
 
-                year = Convert.ToInt32(flip(time.Substring(0, 4)), 16);
+                year = Convert.ToInt32(Flip(time.Substring(0, 4)), 16);
                 month = Convert.ToInt32((time.Substring(4, 2)), 16);
                 day = Convert.ToInt32((time.Substring(6, 2)), 16);
                 hour = Convert.ToInt32((time.Substring(8, 2)), 16);
@@ -3597,7 +3600,7 @@ namespace ACNHPokerCore
                 return false;
         }
 
-        public static string translateVariationValue(string input)
+        public static string TranslateVariationValue(string input)
         {
             if (input.Length > 4)
                 return "0000";
@@ -3608,7 +3611,7 @@ namespace ACNHPokerCore
 
             if (hexValue <= 0x7)
             {
-                return precedingZeros(input, 4);
+                return PrecedingZeros(input, 4);
             }
             else if (hexValue <= 0x27)
             {
@@ -3646,11 +3649,11 @@ namespace ACNHPokerCore
                 secondHalf = (hexValue - 0xE0);
             }
 
-            output = precedingZeros((firstHalf + secondHalf).ToString("X"), 4);
+            output = PrecedingZeros((firstHalf + secondHalf).ToString("X"), 4);
             return output;
         }
 
-        public static string translateVariationValueBack(string input)
+        public static string TranslateVariationValueBack(string input)
         {
             if (input.Length > 4)
                 return "0000";
@@ -3659,35 +3662,35 @@ namespace ACNHPokerCore
 
             if (hexValue < 0x8)
             {
-                return precedingZeros(input, 4);
+                return PrecedingZeros(input, 4);
             }
             else if (hexValue < 0x10)
             {
-                return precedingZeros((hexValue + 0x20 - 0x8).ToString("X"), 4);
+                return PrecedingZeros((hexValue + 0x20 - 0x8).ToString("X"), 4);
             }
             else if (hexValue < 0x18)
             {
-                return precedingZeros((hexValue + 0x40 - 0x10).ToString("X"), 4);
+                return PrecedingZeros((hexValue + 0x40 - 0x10).ToString("X"), 4);
             }
             else if (hexValue < 0x20)
             {
-                return precedingZeros((hexValue + 0x60 - 0x18).ToString("X"), 4);
+                return PrecedingZeros((hexValue + 0x60 - 0x18).ToString("X"), 4);
             }
             else if (hexValue < 0x28)
             {
-                return precedingZeros((hexValue + 0x80 - 0x20).ToString("X"), 4);
+                return PrecedingZeros((hexValue + 0x80 - 0x20).ToString("X"), 4);
             }
             else if (hexValue < 0x30)
             {
-                return precedingZeros((hexValue + 0xA0 - 0x28).ToString("X"), 4);
+                return PrecedingZeros((hexValue + 0xA0 - 0x28).ToString("X"), 4);
             }
             else if (hexValue < 0x38)
             {
-                return precedingZeros((hexValue + 0xC0 - 0x30).ToString("X"), 4);
+                return PrecedingZeros((hexValue + 0xC0 - 0x30).ToString("X"), 4);
             }
             else if (hexValue < 0x40)
             {
-                return precedingZeros((hexValue + 0xE0 - 0x38).ToString("X"), 4);
+                return PrecedingZeros((hexValue + 0xE0 - 0x38).ToString("X"), 4);
             }
             else
                 return "0000";
@@ -3702,7 +3705,7 @@ namespace ACNHPokerCore
 
             try
             {
-                byte[] b = getSaving(socket, usb);
+                byte[] b = GetSaving(socket, usb);
 
                 if (b == null)
                     return true;
@@ -3715,8 +3718,8 @@ namespace ACNHPokerCore
                     Buffer.BlockCopy(b, 12, currentFrame, 0, 4);
                     Buffer.BlockCopy(b, 16, lastFrame, 0, 4);
 
-                    int currentFrameStr = Convert.ToInt32("0x" + flip(ByteToHexString(currentFrame)), 16);
-                    int lastFrameStr = Convert.ToInt32("0x" + flip(ByteToHexString(lastFrame)), 16);
+                    int currentFrameStr = Convert.ToInt32("0x" + Flip(ByteToHexString(currentFrame)), 16);
+                    int lastFrameStr = Convert.ToInt32("0x" + Flip(ByteToHexString(lastFrame)), 16);
                     int FrameRemain = ((0x1518 - (currentFrameStr - lastFrameStr)));
 
                     if (FrameRemain < 30 * second) // Not enough
@@ -3734,8 +3737,8 @@ namespace ACNHPokerCore
             }
             catch (Exception ex)
             {
-                MyLog.LogEvent("Utilities", "IsAboutToSave: " + ex.Message.ToString());
-                MyMessageBox.Show(ex.Message.ToString(), "This is utterly fucking retarded.");
+                MyLog.LogEvent("Utilities", "IsAboutToSave: " + ex.Message);
+                MyMessageBox.Show(ex.Message, "This is utterly fucking retarded.");
                 return false;
             }
         }

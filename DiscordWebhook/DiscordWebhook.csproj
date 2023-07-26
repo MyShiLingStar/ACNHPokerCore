@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <DebugType>none</DebugType>
     <NoWin32Manifest>true</NoWin32Manifest>
     <Platforms>AnyCPU;x86</Platforms>
@@ -22,9 +22,5 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <NoWarn>1701;1702;NETSDK1138</NoWarn>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-  </ItemGroup>
 
 </Project>

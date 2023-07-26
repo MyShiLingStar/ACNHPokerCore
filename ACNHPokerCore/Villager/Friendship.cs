@@ -23,7 +23,7 @@ namespace ACNHPokerCore
             sound = Sound;
             VillagerImage.Image = img;
 
-            this.Text = V.GetRealName();
+            Text = V.GetRealName();
 
             for (int p = 0; p < 8; p++)
             {
@@ -249,7 +249,7 @@ namespace ACNHPokerCore
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
 
-            this.Close();
+            Close();
         }
     }
 }

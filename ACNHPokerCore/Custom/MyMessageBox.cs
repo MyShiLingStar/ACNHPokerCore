@@ -184,7 +184,7 @@ namespace ACNHPokerCore
             /// <summary>
             /// Erforderliche Designervariable.
             /// </summary>
-            private System.ComponentModel.IContainer components = null;
+            private System.ComponentModel.IContainer components;
 
             /// <summary>
             /// Verwendete Ressourcen bereinigen.
@@ -205,135 +205,135 @@ namespace ACNHPokerCore
             /// </summary>
             private void InitializeComponent()
             {
-                this.components = new System.ComponentModel.Container();
-                this.button1 = new System.Windows.Forms.Button();
-                this.richTextBoxMessage = new System.Windows.Forms.RichTextBox();
-                this.FlexibleMessageBoxFormBindingSource = new System.Windows.Forms.BindingSource(this.components);
-                this.panel1 = new System.Windows.Forms.Panel();
-                this.pictureBoxForIcon = new System.Windows.Forms.PictureBox();
-                this.button2 = new System.Windows.Forms.Button();
-                this.button3 = new System.Windows.Forms.Button();
-                ((System.ComponentModel.ISupportInitialize)(this.FlexibleMessageBoxFormBindingSource)).BeginInit();
-                this.panel1.SuspendLayout();
-                ((System.ComponentModel.ISupportInitialize)(this.pictureBoxForIcon)).BeginInit();
-                this.SuspendLayout();
+                components = new System.ComponentModel.Container();
+                button1 = new Button();
+                richTextBoxMessage = new RichTextBox();
+                FlexibleMessageBoxFormBindingSource = new BindingSource(components);
+                panel1 = new Panel();
+                pictureBoxForIcon = new PictureBox();
+                button2 = new Button();
+                button3 = new Button();
+                ((System.ComponentModel.ISupportInitialize)(FlexibleMessageBoxFormBindingSource)).BeginInit();
+                panel1.SuspendLayout();
+                ((System.ComponentModel.ISupportInitialize)(pictureBoxForIcon)).BeginInit();
+                SuspendLayout();
                 // 
                 // button1
                 // 
-                this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                this.button1.AutoSize = true;
-                this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-                this.button1.Location = new System.Drawing.Point(11, 67);
-                this.button1.MinimumSize = new System.Drawing.Size(0, 24);
-                this.button1.Name = "button1";
-                this.button1.Size = new System.Drawing.Size(75, 24);
-                this.button1.TabIndex = 2;
-                this.button1.Text = "OK";
-                this.button1.UseVisualStyleBackColor = true;
-                this.button1.Visible = false;
+                button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+                button1.AutoSize = true;
+                button1.DialogResult = DialogResult.OK;
+                button1.Location = new Point(11, 67);
+                button1.MinimumSize = new Size(0, 24);
+                button1.Name = "button1";
+                button1.Size = new Size(75, 24);
+                button1.TabIndex = 2;
+                button1.Text = "OK";
+                button1.UseVisualStyleBackColor = true;
+                button1.Visible = false;
                 // 
                 // richTextBoxMessage
                 // 
-                this.richTextBoxMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                | System.Windows.Forms.AnchorStyles.Left)
-                | System.Windows.Forms.AnchorStyles.Right)));
-                this.richTextBoxMessage.BackColor = System.Drawing.Color.White;
-                this.richTextBoxMessage.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                this.richTextBoxMessage.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.FlexibleMessageBoxFormBindingSource, "MessageText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-                this.richTextBoxMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.richTextBoxMessage.Location = new System.Drawing.Point(50, 26);
-                this.richTextBoxMessage.Margin = new System.Windows.Forms.Padding(0);
-                this.richTextBoxMessage.Name = "richTextBoxMessage";
-                this.richTextBoxMessage.ReadOnly = true;
-                this.richTextBoxMessage.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-                this.richTextBoxMessage.Size = new System.Drawing.Size(200, 20);
-                this.richTextBoxMessage.TabIndex = 0;
-                this.richTextBoxMessage.TabStop = false;
-                this.richTextBoxMessage.Text = "<Message>";
-                this.richTextBoxMessage.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBoxMessage_LinkClicked);
+                richTextBoxMessage.Anchor = ((AnchorStyles.Top | AnchorStyles.Bottom)
+                                             | AnchorStyles.Left)
+                                            | AnchorStyles.Right;
+                richTextBoxMessage.BackColor = Color.White;
+                richTextBoxMessage.BorderStyle = BorderStyle.None;
+                richTextBoxMessage.DataBindings.Add(new Binding("Text", FlexibleMessageBoxFormBindingSource, "MessageText", true, DataSourceUpdateMode.OnPropertyChanged));
+                richTextBoxMessage.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+                richTextBoxMessage.Location = new Point(50, 26);
+                richTextBoxMessage.Margin = new Padding(0);
+                richTextBoxMessage.Name = "richTextBoxMessage";
+                richTextBoxMessage.ReadOnly = true;
+                richTextBoxMessage.ScrollBars = RichTextBoxScrollBars.Vertical;
+                richTextBoxMessage.Size = new Size(200, 20);
+                richTextBoxMessage.TabIndex = 0;
+                richTextBoxMessage.TabStop = false;
+                richTextBoxMessage.Text = "<Message>";
+                richTextBoxMessage.LinkClicked += richTextBoxMessage_LinkClicked;
                 // 
                 // panel1
                 // 
-                this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                | System.Windows.Forms.AnchorStyles.Left)
-                | System.Windows.Forms.AnchorStyles.Right)));
-                this.panel1.BackColor = System.Drawing.Color.White;
-                this.panel1.Controls.Add(this.pictureBoxForIcon);
-                this.panel1.Controls.Add(this.richTextBoxMessage);
-                this.panel1.Location = new System.Drawing.Point(-3, -4);
-                this.panel1.Name = "panel1";
-                this.panel1.Size = new System.Drawing.Size(268, 59);
-                this.panel1.TabIndex = 1;
+                panel1.Anchor = ((AnchorStyles.Top | AnchorStyles.Bottom)
+                                 | AnchorStyles.Left)
+                                | AnchorStyles.Right;
+                panel1.BackColor = Color.White;
+                panel1.Controls.Add(pictureBoxForIcon);
+                panel1.Controls.Add(richTextBoxMessage);
+                panel1.Location = new Point(-3, -4);
+                panel1.Name = "panel1";
+                panel1.Size = new Size(268, 59);
+                panel1.TabIndex = 1;
                 // 
                 // pictureBoxForIcon
                 // 
-                this.pictureBoxForIcon.BackColor = System.Drawing.Color.Transparent;
-                this.pictureBoxForIcon.Location = new System.Drawing.Point(15, 19);
-                this.pictureBoxForIcon.Name = "pictureBoxForIcon";
-                this.pictureBoxForIcon.Size = new System.Drawing.Size(32, 32);
-                this.pictureBoxForIcon.TabIndex = 8;
-                this.pictureBoxForIcon.TabStop = false;
+                pictureBoxForIcon.BackColor = Color.Transparent;
+                pictureBoxForIcon.Location = new Point(15, 19);
+                pictureBoxForIcon.Name = "pictureBoxForIcon";
+                pictureBoxForIcon.Size = new Size(32, 32);
+                pictureBoxForIcon.TabIndex = 8;
+                pictureBoxForIcon.TabStop = false;
                 // 
                 // button2
                 // 
-                this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                this.button2.DialogResult = System.Windows.Forms.DialogResult.OK;
-                this.button2.Location = new System.Drawing.Point(92, 67);
-                this.button2.MinimumSize = new System.Drawing.Size(0, 24);
-                this.button2.Name = "button2";
-                this.button2.Size = new System.Drawing.Size(75, 24);
-                this.button2.TabIndex = 3;
-                this.button2.Text = "OK";
-                this.button2.UseVisualStyleBackColor = true;
-                this.button2.Visible = false;
+                button2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+                button2.DialogResult = DialogResult.OK;
+                button2.Location = new Point(92, 67);
+                button2.MinimumSize = new Size(0, 24);
+                button2.Name = "button2";
+                button2.Size = new Size(75, 24);
+                button2.TabIndex = 3;
+                button2.Text = "OK";
+                button2.UseVisualStyleBackColor = true;
+                button2.Visible = false;
                 // 
                 // button3
                 // 
-                this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                this.button3.AutoSize = true;
-                this.button3.DialogResult = System.Windows.Forms.DialogResult.OK;
-                this.button3.Location = new System.Drawing.Point(173, 67);
-                this.button3.MinimumSize = new System.Drawing.Size(0, 24);
-                this.button3.Name = "button3";
-                this.button3.Size = new System.Drawing.Size(75, 24);
-                this.button3.TabIndex = 0;
-                this.button3.Text = "OK";
-                this.button3.UseVisualStyleBackColor = true;
-                this.button3.Visible = false;
+                button3.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+                button3.AutoSize = true;
+                button3.DialogResult = DialogResult.OK;
+                button3.Location = new Point(173, 67);
+                button3.MinimumSize = new Size(0, 24);
+                button3.Name = "button3";
+                button3.Size = new Size(75, 24);
+                button3.TabIndex = 0;
+                button3.Text = "OK";
+                button3.UseVisualStyleBackColor = true;
+                button3.Visible = false;
                 // 
                 // FlexibleMessageBoxForm
                 // 
-                this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-                this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                this.ClientSize = new System.Drawing.Size(260, 102);
-                this.Controls.Add(this.button3);
-                this.Controls.Add(this.button2);
-                this.Controls.Add(this.panel1);
-                this.Controls.Add(this.button1);
-                this.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.FlexibleMessageBoxFormBindingSource, "CaptionText", true));
-                this.MaximizeBox = false;
-                this.MinimizeBox = false;
-                this.MinimumSize = new System.Drawing.Size(276, 140);
-                this.Name = "FlexibleMessageBoxForm";
-                this.ShowIcon = false;
-                this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-                this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-                this.Text = "<Caption>";
-                this.Shown += new System.EventHandler(this.FlexibleMessageBoxForm_Shown);
-                ((System.ComponentModel.ISupportInitialize)(this.FlexibleMessageBoxFormBindingSource)).EndInit();
-                this.panel1.ResumeLayout(false);
-                ((System.ComponentModel.ISupportInitialize)(this.pictureBoxForIcon)).EndInit();
-                this.ResumeLayout(false);
-                this.PerformLayout();
+                AutoScaleDimensions = new SizeF(6F, 13F);
+                AutoScaleMode = AutoScaleMode.Font;
+                ClientSize = new Size(260, 102);
+                Controls.Add(button3);
+                Controls.Add(button2);
+                Controls.Add(panel1);
+                Controls.Add(button1);
+                DataBindings.Add(new Binding("Text", FlexibleMessageBoxFormBindingSource, "CaptionText", true));
+                MaximizeBox = false;
+                MinimizeBox = false;
+                MinimumSize = new Size(276, 140);
+                Name = "FlexibleMessageBoxForm";
+                ShowIcon = false;
+                SizeGripStyle = SizeGripStyle.Show;
+                StartPosition = FormStartPosition.CenterParent;
+                Text = "<Caption>";
+                Shown += FlexibleMessageBoxForm_Shown;
+                ((System.ComponentModel.ISupportInitialize)(FlexibleMessageBoxFormBindingSource)).EndInit();
+                panel1.ResumeLayout(false);
+                ((System.ComponentModel.ISupportInitialize)(pictureBoxForIcon)).EndInit();
+                ResumeLayout(false);
+                PerformLayout();
             }
 
-            private System.Windows.Forms.Button button1;
-            private System.Windows.Forms.BindingSource FlexibleMessageBoxFormBindingSource;
-            private System.Windows.Forms.RichTextBox richTextBoxMessage;
-            private System.Windows.Forms.Panel panel1;
-            private System.Windows.Forms.PictureBox pictureBoxForIcon;
-            private System.Windows.Forms.Button button2;
-            private System.Windows.Forms.Button button3;
+            private Button button1;
+            private BindingSource FlexibleMessageBoxFormBindingSource;
+            private RichTextBox richTextBoxMessage;
+            private Panel panel1;
+            private PictureBox pictureBoxForIcon;
+            private Button button2;
+            private Button button3;
 
             #endregion
 
@@ -360,7 +360,7 @@ namespace ACNHPokerCore
 
             private MessageBoxDefaultButton defaultButton;
             private int visibleButtonsCount;
-            private TwoLetterISOLanguageID languageID = TwoLetterISOLanguageID.en;
+            private TwoLetterISOLanguageID languageID;
 
             #endregion
 
@@ -374,10 +374,10 @@ namespace ACNHPokerCore
                 InitializeComponent();
 
                 //Try to evaluate the language. If this fails, the fallback language English will be used
-                Enum.TryParse<TwoLetterISOLanguageID>(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName, out this.languageID);
+                Enum.TryParse(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName, out languageID);
 
-                this.KeyPreview = true;
-                this.KeyUp += FlexibleMessageBoxForm_KeyUp;
+                KeyPreview = true;
+                KeyUp += FlexibleMessageBoxForm_KeyUp;
             }
 
             #endregion
@@ -393,7 +393,7 @@ namespace ACNHPokerCore
             {
                 if (string.IsNullOrEmpty(message)) return null;
 
-                var messageRows = message.Split(new char[] { '\n' }, StringSplitOptions.None);
+                var messageRows = message.Split(new[] { '\n' }, StringSplitOptions.None);
                 return messageRows;
             }
 
@@ -407,7 +407,7 @@ namespace ACNHPokerCore
             {
                 var buttonTextArrayIndex = Convert.ToInt32(buttonID);
 
-                switch (this.languageID)
+                switch (languageID)
                 {
                     case TwoLetterISOLanguageID.de: return BUTTON_TEXTS_GERMAN_DE[buttonTextArrayIndex];
                     case TwoLetterISOLanguageID.es: return BUTTON_TEXTS_SPANISH_ES[buttonTextArrayIndex];
@@ -464,8 +464,8 @@ namespace ACNHPokerCore
             private static void SetDialogSizes(FlexibleMessageBoxForm flexibleMessageBoxForm, string text, string caption)
             {
                 //First set the bounds for the maximum dialog size
-                flexibleMessageBoxForm.MaximumSize = new Size(Convert.ToInt32(SystemInformation.WorkingArea.Width * FlexibleMessageBoxForm.GetCorrectedWorkingAreaFactor(MAX_WIDTH_FACTOR)),
-                                                              Convert.ToInt32(SystemInformation.WorkingArea.Height * FlexibleMessageBoxForm.GetCorrectedWorkingAreaFactor(MAX_HEIGHT_FACTOR)));
+                flexibleMessageBoxForm.MaximumSize = new Size(Convert.ToInt32(SystemInformation.WorkingArea.Width * GetCorrectedWorkingAreaFactor(MAX_WIDTH_FACTOR)),
+                                                              Convert.ToInt32(SystemInformation.WorkingArea.Height * GetCorrectedWorkingAreaFactor(MAX_HEIGHT_FACTOR)));
 
                 //Get rows. Exit if there are no rows to render...
                 var stringRows = GetStringRows(text);
@@ -636,11 +636,11 @@ namespace ACNHPokerCore
             /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
             private void FlexibleMessageBoxForm_Shown(object sender, EventArgs e)
             {
-                int buttonIndexToFocus = 1;
+                int buttonIndexToFocus;
                 Button buttonToFocus;
 
                 //Set the default button...
-                switch (this.defaultButton)
+                switch (defaultButton)
                 {
                     case MessageBoxDefaultButton.Button1:
                     default:
@@ -654,19 +654,19 @@ namespace ACNHPokerCore
                         break;
                 }
 
-                if (buttonIndexToFocus > this.visibleButtonsCount) buttonIndexToFocus = this.visibleButtonsCount;
+                if (buttonIndexToFocus > visibleButtonsCount) buttonIndexToFocus = visibleButtonsCount;
 
                 if (buttonIndexToFocus == 3)
                 {
-                    buttonToFocus = this.button3;
+                    buttonToFocus = button3;
                 }
                 else if (buttonIndexToFocus == 2)
                 {
-                    buttonToFocus = this.button2;
+                    buttonToFocus = button2;
                 }
                 else
                 {
-                    buttonToFocus = this.button1;
+                    buttonToFocus = button1;
                 }
 
                 buttonToFocus.Focus();
@@ -682,13 +682,11 @@ namespace ACNHPokerCore
                 try
                 {
                     Cursor.Current = Cursors.WaitCursor;
-                    string url = e.LinkText.Replace("&", "^&");
-                    Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
-                }
-                catch (Exception)
-                {
-                    //Let the caller of FlexibleMessageBoxForm decide what to do with this exception...
-                    throw;
+                    if (e.LinkText != null)
+                    {
+                        string url = e.LinkText.Replace("&", "^&");
+                        Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
+                    }
                 }
                 finally
                 {
@@ -707,15 +705,15 @@ namespace ACNHPokerCore
                 //Handle standard key strikes for clipboard copy: "Ctrl + C" and "Ctrl + Insert"
                 if (e.Control && (e.KeyCode == Keys.C || e.KeyCode == Keys.Insert))
                 {
-                    var buttonsTextLine = (this.button1.Visible ? this.button1.Text + STANDARD_MESSAGEBOX_SEPARATOR_SPACES : string.Empty)
-                                        + (this.button2.Visible ? this.button2.Text + STANDARD_MESSAGEBOX_SEPARATOR_SPACES : string.Empty)
-                                        + (this.button3.Visible ? this.button3.Text + STANDARD_MESSAGEBOX_SEPARATOR_SPACES : string.Empty);
+                    var buttonsTextLine = (button1.Visible ? button1.Text + STANDARD_MESSAGEBOX_SEPARATOR_SPACES : string.Empty)
+                                        + (button2.Visible ? button2.Text + STANDARD_MESSAGEBOX_SEPARATOR_SPACES : string.Empty)
+                                        + (button3.Visible ? button3.Text + STANDARD_MESSAGEBOX_SEPARATOR_SPACES : string.Empty);
 
                     //Build same clipboard text like the standard .Net MessageBox
                     var textForClipboard = STANDARD_MESSAGEBOX_SEPARATOR_LINES
-                                         + this.Text + Environment.NewLine
+                                         + Text + Environment.NewLine
                                          + STANDARD_MESSAGEBOX_SEPARATOR_LINES
-                                         + this.richTextBoxMessage.Text + Environment.NewLine
+                                         + richTextBoxMessage.Text + Environment.NewLine
                                          + STANDARD_MESSAGEBOX_SEPARATOR_LINES
                                          + buttonsTextLine.Replace("&", string.Empty) + Environment.NewLine
                                          + STANDARD_MESSAGEBOX_SEPARATOR_LINES;

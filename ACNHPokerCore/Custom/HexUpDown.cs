@@ -8,24 +8,28 @@ namespace ACNHPokerCore
     {
         public HexUpDown()
         {
-            this.Hexadecimal = true;
+            Hexadecimal = true;
         }
 
         protected override void ValidateEditText()
         {
             try
             {
-                var txt = this.Text;
+                var txt = Text;
                 if (!string.IsNullOrEmpty(txt))
                 {
                     var value = Convert.ToDecimal(Convert.ToInt64(txt, 16));
-                    value = Math.Max(value, this.Minimum);
-                    value = Math.Min(value, this.Maximum);
-                    this.Value = value;
+                    value = Math.Max(value, Minimum);
+                    value = Math.Min(value, Maximum);
+                    Value = value;
                 }
             }
-            catch { }
-            base.UserEdit = false;
+            catch
+            {
+                // ignored
+            }
+
+            UserEdit = false;
             UpdateEditText();
         }
 
@@ -38,13 +42,13 @@ namespace ACNHPokerCore
 
         protected override void UpdateEditText()
         {
-            long value = Convert.ToInt64(this.Value);
+            long value = Convert.ToInt64(Value);
             string hexvalue = value.ToString("X");
 
             string n0 = String.Concat(Enumerable.Repeat("0", HexLength - hexvalue.Length));
             string result = String.Concat(n0, hexvalue);
 
-            this.Text = result;
+            Text = result;
         }
 
         private int length = 8;

@@ -10,7 +10,7 @@ namespace ACNHPokerCore
     public class TerrainUnit
     {
         private readonly byte[] TerrainData;
-        private byte[] CustomDesign = null;
+        private byte[] CustomDesign;
 
         public TerrainUnit(byte[] terrainData)
         {
@@ -65,61 +65,61 @@ namespace ACNHPokerCore
             string CustomDesignInfo = "";
             if (CustomDesign != null)
             {
-                CustomDesignInfo = "\n" + "CustomDesign: " + Utilities.flip(Utilities.ByteToHexString(CustomDesign));
+                CustomDesignInfo = "\n" + "CustomDesign: " + Utilities.Flip(Utilities.ByteToHexString(CustomDesign));
             }
 
-            return Utilities.flip(Utilities.ByteToHexString(terrainModel)) + " " +
-                   Utilities.flip(Utilities.ByteToHexString(terrainVariation)) + " " +
-                   Utilities.flip(Utilities.ByteToHexString(terrainAngle)) + " " +
-                   Utilities.flip(Utilities.ByteToHexString(roadModel)) + " " +
-                   Utilities.flip(Utilities.ByteToHexString(roadVariation)) + " " +
-                   Utilities.flip(Utilities.ByteToHexString(roadAngle)) + " " +
-                   Utilities.flip(Utilities.ByteToHexString(elevation)) + " " + "\n" +
-                   "terrainModel: " + TerrainName[Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(terrainModel)), 16)] + " " + "\n" +
-                   "roadModel: " + TerrainName[Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(roadModel)), 16)] + " " + "\n" +
-                   "elevation: " + Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(elevation)), 16).ToString() + CustomDesignInfo;
+            return Utilities.Flip(Utilities.ByteToHexString(terrainModel)) + " " +
+                   Utilities.Flip(Utilities.ByteToHexString(terrainVariation)) + " " +
+                   Utilities.Flip(Utilities.ByteToHexString(terrainAngle)) + " " +
+                   Utilities.Flip(Utilities.ByteToHexString(roadModel)) + " " +
+                   Utilities.Flip(Utilities.ByteToHexString(roadVariation)) + " " +
+                   Utilities.Flip(Utilities.ByteToHexString(roadAngle)) + " " +
+                   Utilities.Flip(Utilities.ByteToHexString(elevation)) + " " + "\n" +
+                   "terrainModel: " + TerrainName[Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(terrainModel)), 16)] + " " + "\n" +
+                   "roadModel: " + TerrainName[Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(roadModel)), 16)] + " " + "\n" +
+                   "elevation: " + Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(elevation)), 16) + CustomDesignInfo;
         }
         public ushort GetTerrainModel()
         {
             byte[] terrainModel = new byte[2];
             Buffer.BlockCopy(TerrainData, 0, terrainModel, 0, 2);
-            return Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(terrainModel)), 16);
+            return Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(terrainModel)), 16);
         }
         public ushort GetTerrainVariation()
         {
             byte[] terrainVariation = new byte[2];
             Buffer.BlockCopy(TerrainData, 2, terrainVariation, 0, 2);
-            return Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(terrainVariation)), 16);
+            return Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(terrainVariation)), 16);
         }
         public ushort GetTerrainAngle()
         {
             byte[] terrainAngle = new byte[2];
             Buffer.BlockCopy(TerrainData, 4, terrainAngle, 0, 2);
-            return Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(terrainAngle)), 16);
+            return Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(terrainAngle)), 16);
         }
         public ushort GetRoadModel()
         {
             byte[] roadModel = new byte[2];
             Buffer.BlockCopy(TerrainData, 6, roadModel, 0, 2);
-            return Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(roadModel)), 16);
+            return Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(roadModel)), 16);
         }
         public ushort GetRoadVariation()
         {
             byte[] roadVariation = new byte[2];
             Buffer.BlockCopy(TerrainData, 8, roadVariation, 0, 2);
-            return Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(roadVariation)), 16);
+            return Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(roadVariation)), 16);
         }
         public ushort GetRoadAngle()
         {
             byte[] roadAngle = new byte[2];
             Buffer.BlockCopy(TerrainData, 10, roadAngle, 0, 2);
-            return Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(roadAngle)), 16);
+            return Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(roadAngle)), 16);
         }
         public ushort GetElevation()
         {
             byte[] elevation = new byte[2];
             Buffer.BlockCopy(TerrainData, 12, elevation, 0, 2);
-            return Convert.ToUInt16(Utilities.flip(Utilities.ByteToHexString(elevation)), 16);
+            return Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(elevation)), 16);
         }
 
         public bool IsSameRoadAndElevation(ushort road, ushort elevation)
@@ -841,6 +841,7 @@ namespace ACNHPokerCore
             Color buildingColor = Color.Transparent;
             Color terrainColor = Color.Pink;
             Color roadColor = Color.Purple;
+            Color belowTerrainColor = Color.Yellow;
 
             bool drawBorder;
             bool drawBackground;
@@ -861,7 +862,7 @@ namespace ACNHPokerCore
                 backgroundColor = Color.Violet;
                 drawBackground = true;
             }
-            else if (IsCliff())
+            else if (IsCliff() || IsFall())
             {
                 drawBackground = true;
                 if (highlightCliffCorner && CanChangeCornerCliff())
@@ -876,12 +877,32 @@ namespace ACNHPokerCore
                 {
                     backgroundColor = TerrainColor[(int)TerrainType.Elevation1];
                 }
-                else if (elevation >= 3)
+                else if (elevation == 3)
                 {
                     backgroundColor = TerrainColor[(int)TerrainType.Elevation2];
                 }
+                else if (elevation == 4)
+                {
+                    backgroundColor = TerrainColor[(int)TerrainType.Elevation3];
+                }
+                else if (elevation == 5)
+                {
+                    backgroundColor = TerrainColor[(int)TerrainType.Elevation4];
+                }
+                else if (elevation == 6)
+                {
+                    backgroundColor = TerrainColor[(int)TerrainType.Elevation5];
+                }
+                else if (elevation == 7)
+                {
+                    backgroundColor = TerrainColor[(int)TerrainType.Elevation6];
+                }
+                else if (elevation >= 8)
+                {
+                    backgroundColor = TerrainColor[(int)TerrainType.Elevation7];
+                }
             }
-            else if (IsFall() || IsRiver())
+            else if (IsRiver())
             {
                 drawBackground = true;
                 if (highlightRiverCorner && CanChangeCornerRiver())
@@ -900,9 +921,29 @@ namespace ACNHPokerCore
                 {
                     backgroundColor = TerrainColor[(int)TerrainType.Elevation2];
                 }
-                else if (elevation >= 3)
+                else if (elevation == 3)
                 {
                     backgroundColor = TerrainColor[(int)TerrainType.Elevation3];
+                }
+                else if (elevation == 4)
+                {
+                    backgroundColor = TerrainColor[(int)TerrainType.Elevation4];
+                }
+                else if (elevation == 5)
+                {
+                    backgroundColor = TerrainColor[(int)TerrainType.Elevation5];
+                }
+                else if (elevation == 6)
+                {
+                    backgroundColor = TerrainColor[(int)TerrainType.Elevation6];
+                }
+                else if (elevation == 7)
+                {
+                    backgroundColor = TerrainColor[(int)TerrainType.Elevation7];
+                }
+                else if (elevation >= 8)
+                {
+                    backgroundColor = TerrainColor[(int)TerrainType.Elevation8];
                 }
             }
             else
@@ -927,7 +968,7 @@ namespace ACNHPokerCore
                 }
             }
 
-            if (IsCliff())
+            if (IsCliff() || IsFall())
             {
                 if (highlightRoadCorner && CanChangeCornerRoad())
                 {
@@ -944,16 +985,31 @@ namespace ACNHPokerCore
                     {
                         terrainColor = TerrainColor[(int)TerrainType.Elevation2];
                     }
-                    else if (elevation >= 3)
+                    else if (elevation == 3)
                     {
                         terrainColor = TerrainColor[(int)TerrainType.Elevation3];
                     }
+                    else if (elevation == 4)
+                    {
+                        terrainColor = TerrainColor[(int)TerrainType.Elevation4];
+                    }
+                    else if (elevation == 5)
+                    {
+                        terrainColor = TerrainColor[(int)TerrainType.Elevation5];
+                    }
+                    else if (elevation == 6)
+                    {
+                        terrainColor = TerrainColor[(int)TerrainType.Elevation6];
+                    }
+                    else if (elevation == 7)
+                    {
+                        terrainColor = TerrainColor[(int)TerrainType.Elevation7];
+                    }
+                    else if (elevation >= 8)
+                    {
+                        terrainColor = TerrainColor[(int)TerrainType.Elevation8];
+                    }
                 }
-            }
-            else if (IsFall())
-            {
-                terrainColor = TerrainColor[(int)TerrainType.Fall];
-                drawTerrain = true;
             }
             else if (IsRiver())
             {
@@ -978,10 +1034,35 @@ namespace ACNHPokerCore
                         drawTerrain = true;
                         terrainColor = TerrainColor[(int)TerrainType.Elevation2];
                     }
-                    else if (elevation >= 3)
+                    else if (elevation == 3)
                     {
                         drawTerrain = true;
                         terrainColor = TerrainColor[(int)TerrainType.Elevation3];
+                    }
+                    else if (elevation == 4)
+                    {
+                        drawTerrain = true;
+                        terrainColor = TerrainColor[(int)TerrainType.Elevation4];
+                    }
+                    else if (elevation == 5)
+                    {
+                        drawTerrain = true;
+                        terrainColor = TerrainColor[(int)TerrainType.Elevation5];
+                    }
+                    else if (elevation == 6)
+                    {
+                        drawTerrain = true;
+                        terrainColor = TerrainColor[(int)TerrainType.Elevation6];
+                    }
+                    else if (elevation == 7)
+                    {
+                        drawTerrain = true;
+                        terrainColor = TerrainColor[(int)TerrainType.Elevation7];
+                    }
+                    else if (elevation >= 8)
+                    {
+                        drawTerrain = true;
+                        terrainColor = TerrainColor[(int)TerrainType.Elevation8];
                     }
                 }
             }
@@ -1027,7 +1108,7 @@ namespace ACNHPokerCore
                 }
             }
 
-            return DrawImage(size, borderColor, backgroundColor, buildingColor, terrainColor, roadColor, drawBorder, drawBackground, drawBuilding, drawTerrain, drawRoad);
+            return DrawImage(size, borderColor, backgroundColor, buildingColor, terrainColor, roadColor, drawBorder, drawBackground, drawBuilding, drawTerrain, drawRoad, belowTerrainColor);
         }
 
         public void UpdateRoad(ushort road, bool[,] neighbour, bool roundCorner = false)
@@ -3217,10 +3298,6 @@ namespace ACNHPokerCore
                     MyMessageBox.Show("No Solution!", "Wait? WTF?", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
-            {
-                MyMessageBox.Show("No Solution!", "Wait? WTF?", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void SetFall(string type, ushort direction)
@@ -3438,7 +3515,7 @@ namespace ACNHPokerCore
             Buffer.BlockCopy(bytes, 0, TerrainData, 12, 2);
         }
 
-        private Bitmap DrawImage(int size, Color border, Color background, Color building, Color terrain, Color road, bool drawBorder, bool drawBackground, bool drawBuilding, bool drawTerrain, bool drawRoad)
+        private Bitmap DrawImage(int size, Color border, Color background, Color building, Color terrain, Color road, bool drawBorder, bool drawBackground, bool drawBuilding, bool drawTerrain, bool drawRoad, Color belowTerrain)
         {
             Bitmap Bottom;
             Bottom = new Bitmap(size, size);
@@ -3461,7 +3538,7 @@ namespace ACNHPokerCore
                     ushort CurrentTerrain = GetTerrainModel();
                     ushort CurrentElevation = GetElevation();
 
-                    if (IsCliff() || IsRiver() || IsFlat())
+                    if (IsCliff() || IsFlat() || IsFall())
                     {
                         SolidBrush terrainBrush = new(terrain);
 
@@ -3485,22 +3562,22 @@ namespace ACNHPokerCore
                                 break;
                             case (ushort)TerrainUnitModel.Cliff2B:
                             case (ushort)TerrainUnitModel.River2B:
-                                Point[] Terrain2B = new Point[] { new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                                Point[] Terrain2B = new[] { new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
                                 gr.FillPolygon(terrainBrush, Terrain2B);
                                 break;
                             case (ushort)TerrainUnitModel.Cliff2C:
                             case (ushort)TerrainUnitModel.River2C:
-                                Point[] Terrain2C = new Point[] { new Point(4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                                Point[] Terrain2C = new[] { new Point(4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
                                 gr.FillPolygon(terrainBrush, Terrain2C);
                                 break;
                             case (ushort)TerrainUnitModel.Cliff3A:
                             case (ushort)TerrainUnitModel.River3A:
-                                Point[] Terrain3A = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                                Point[] Terrain3A = new[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
                                 gr.FillPolygon(terrainBrush, Terrain3A);
                                 break;
                             case (ushort)TerrainUnitModel.Cliff3B:
                             case (ushort)TerrainUnitModel.River3B:
-                                Point[] Terrain3B = new Point[] { new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(4, size - 1) };
+                                Point[] Terrain3B = new[] { new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(4, size - 1) };
                                 gr.FillPolygon(terrainBrush, Terrain3B);
                                 break;
                             case (ushort)TerrainUnitModel.Cliff3C:
@@ -3509,22 +3586,22 @@ namespace ACNHPokerCore
                                 break;
                             case (ushort)TerrainUnitModel.Cliff4A:
                             case (ushort)TerrainUnitModel.River4A:
-                                Point[] Terrain4A = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(4, size - 1) };
+                                Point[] Terrain4A = new[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(4, size - 1) };
                                 gr.FillPolygon(terrainBrush, Terrain4A);
                                 break;
                             case (ushort)TerrainUnitModel.Cliff4B:
                             case (ushort)TerrainUnitModel.River4B:
-                                Point[] Terrain4B = new Point[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                                Point[] Terrain4B = new[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
                                 gr.FillPolygon(terrainBrush, Terrain4B);
                                 break;
                             case (ushort)TerrainUnitModel.Cliff4C:
                             case (ushort)TerrainUnitModel.River4C:
-                                Point[] Terrain4C = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4), new Point(1, 4), new Point(4, 4) };
+                                Point[] Terrain4C = new[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4), new Point(1, 4), new Point(4, 4) };
                                 gr.FillPolygon(terrainBrush, Terrain4C);
                                 break;
                             case (ushort)TerrainUnitModel.Cliff5A:
                             case (ushort)TerrainUnitModel.River5A:
-                                Point[] Terrain5A = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4) };
+                                Point[] Terrain5A = new[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4) };
                                 gr.FillPolygon(terrainBrush, Terrain5A);
                                 break;
                             case (ushort)TerrainUnitModel.Cliff5B:
@@ -3533,17 +3610,17 @@ namespace ACNHPokerCore
                                 break;
                             case (ushort)TerrainUnitModel.Cliff6A:
                             case (ushort)TerrainUnitModel.River6A:
-                                Point[] Terrain6A = new Point[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4) };
+                                Point[] Terrain6A = new[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4) };
                                 gr.FillPolygon(terrainBrush, Terrain6A);
                                 break;
                             case (ushort)TerrainUnitModel.Cliff6B:
                             case (ushort)TerrainUnitModel.River6B:
-                                Point[] Terrain6B = new Point[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
+                                Point[] Terrain6B = new[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
                                 gr.FillPolygon(terrainBrush, Terrain6B);
                                 break;
                             case (ushort)TerrainUnitModel.Cliff7A:
                             case (ushort)TerrainUnitModel.River7A:
-                                Point[] Terrain7A = new Point[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
+                                Point[] Terrain7A = new[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
                                 gr.FillPolygon(terrainBrush, Terrain7A);
                                 break;
                             case (ushort)TerrainUnitModel.Cliff8:
@@ -3557,196 +3634,315 @@ namespace ACNHPokerCore
                                 if (CurrentElevation != 0)
                                     gr.FillRectangle(terrainBrush, 1, 1, size - 2, size - 2);
                                 break;
+                            case (ushort)TerrainUnitModel.Fall100:
+                            case (ushort)TerrainUnitModel.Fall101:
+                            case (ushort)TerrainUnitModel.Fall102:
+                            case (ushort)TerrainUnitModel.Fall103:
+                            case (ushort)TerrainUnitModel.Fall200:
+                            case (ushort)TerrainUnitModel.Fall300:
+                            case (ushort)TerrainUnitModel.Fall201:
+                            case (ushort)TerrainUnitModel.Fall202:
+                            case (ushort)TerrainUnitModel.Fall203:
+                            case (ushort)TerrainUnitModel.Fall204:
+                            case (ushort)TerrainUnitModel.Fall205:
+                            case (ushort)TerrainUnitModel.Fall206:
+                            case (ushort)TerrainUnitModel.Fall207:
+                            case (ushort)TerrainUnitModel.Fall208:
+                            case (ushort)TerrainUnitModel.Fall301:
+                            case (ushort)TerrainUnitModel.Fall302:
+                            case (ushort)TerrainUnitModel.Fall303:
+                            case (ushort)TerrainUnitModel.Fall304:
+                            case (ushort)TerrainUnitModel.Fall305:
+                            case (ushort)TerrainUnitModel.Fall306:
+                            case (ushort)TerrainUnitModel.Fall307:
+                            case (ushort)TerrainUnitModel.Fall308:
+                            case (ushort)TerrainUnitModel.Fall400:
+                            case (ushort)TerrainUnitModel.Fall401:
+                            case (ushort)TerrainUnitModel.Fall402:
+                            case (ushort)TerrainUnitModel.Fall403:
+                            case (ushort)TerrainUnitModel.Fall404:
+                            case (ushort)TerrainUnitModel.Fall405:
+                            case (ushort)TerrainUnitModel.Fall406:
+                            case (ushort)TerrainUnitModel.Fall407:
+                            case (ushort)TerrainUnitModel.Fall408:
+                            case (ushort)TerrainUnitModel.Fall409:
+                            case (ushort)TerrainUnitModel.Fall410:
+                            case (ushort)TerrainUnitModel.Fall411:
+                            case (ushort)TerrainUnitModel.Fall412:
+                            case (ushort)TerrainUnitModel.Fall413:
+                            case (ushort)TerrainUnitModel.Fall414:
+                            case (ushort)TerrainUnitModel.Fall415:
+                            case (ushort)TerrainUnitModel.Fall416:
+                            case (ushort)TerrainUnitModel.Fall417:
+                            case (ushort)TerrainUnitModel.Fall418:
+                            case (ushort)TerrainUnitModel.Fall419:
+                            case (ushort)TerrainUnitModel.Fall420:
+                            case (ushort)TerrainUnitModel.Fall421:
+                            case (ushort)TerrainUnitModel.Fall422:
+                            case (ushort)TerrainUnitModel.Fall423:
+                            case (ushort)TerrainUnitModel.Fall424:
+                                gr.FillRectangle(terrainBrush, 1, 1, size - 2, size - 5);
+                                break;
                             default:
                                 gr.FillRectangle(terrainBrush, 4, 4, size - 8, size - 8);
                                 break;
                         }
                     }
-                    else
+                    else if (IsRiver())
                     {
                         SolidBrush terrainBrush = new(terrain);
+
+                        switch (CurrentTerrain)
+                        {
+                            case (ushort)TerrainUnitModel.River0A:
+                                gr.FillRectangle(terrainBrush, 8, 8, size - 16, size - 16);
+                                break;
+                            case (ushort)TerrainUnitModel.River1A:
+                                gr.FillRectangle(terrainBrush, 8, 8, size - 16, size - 9);
+                                break;
+                            case (ushort)TerrainUnitModel.River2A:
+                                gr.FillRectangle(terrainBrush, 8, 1, size - 16, size - 2);
+                                break;
+                            case (ushort)TerrainUnitModel.River2B:
+                                Point[] Terrain2B = new[] { new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1) };
+                                gr.FillPolygon(terrainBrush, Terrain2B);
+                                break;
+                            case (ushort)TerrainUnitModel.River2C:
+                                Point[] Terrain2C = new[] { new Point(8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1) };
+                                gr.FillPolygon(terrainBrush, Terrain2C);
+                                break;
+                            case (ushort)TerrainUnitModel.River3A:
+                                Point[] Terrain3A = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1) };
+                                gr.FillPolygon(terrainBrush, Terrain3A);
+                                break;
+                            case (ushort)TerrainUnitModel.River3B:
+                                Point[] Terrain3B = new[] { new Point(size - 1, 8), new Point(size - 1, size - 1), new Point(8, size - 1) };
+                                gr.FillPolygon(terrainBrush, Terrain3B);
+                                break;
+                            case (ushort)TerrainUnitModel.River3C:
+                                gr.FillRectangle(terrainBrush, 8, 8, size - 9, size - 9);
+                                break;
+                            case (ushort)TerrainUnitModel.River4A:
+                                Point[] Terrain4A = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 1), new Point(8, size - 1) };
+                                gr.FillPolygon(terrainBrush, Terrain4A);
+                                break;
+                            case (ushort)TerrainUnitModel.River4B:
+                                Point[] Terrain4B = new[] { new Point(8, 1), new Point(size - 1, 1), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1) };
+                                gr.FillPolygon(terrainBrush, Terrain4B);
+                                break;
+                            case (ushort)TerrainUnitModel.River4C:
+                                Point[] Terrain4C = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8), new Point(1, 8), new Point(8, 8) };
+                                gr.FillPolygon(terrainBrush, Terrain4C);
+                                break;
+                            case (ushort)TerrainUnitModel.River5A:
+                                Point[] Terrain5A = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(1, size - 1), new Point(1, 8), new Point(8, 8) };
+                                gr.FillPolygon(terrainBrush, Terrain5A);
+                                break;
+                            case (ushort)TerrainUnitModel.River5B:
+                                gr.FillRectangle(terrainBrush, 8, 1, size - 9, size - 2);
+                                break;
+                            case (ushort)TerrainUnitModel.River6A:
+                                Point[] Terrain6A = new[] { new Point(8, 1), new Point(size - 1, 1), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(1, size - 1), new Point(1, 8), new Point(8, 8) };
+                                gr.FillPolygon(terrainBrush, Terrain6A);
+                                break;
+                            case (ushort)TerrainUnitModel.River6B:
+                                Point[] Terrain6B = new[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8) };
+                                gr.FillPolygon(terrainBrush, Terrain6B);
+                                break;
+                            case (ushort)TerrainUnitModel.River7A:
+                                Point[] Terrain7A = new[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8) };
+                                gr.FillPolygon(terrainBrush, Terrain7A);
+                                break;
+                            case (ushort)TerrainUnitModel.River8A:
+                                gr.FillRectangle(terrainBrush, 1, 1, size - 2, size - 2);
+                                break;
+                            default:
+                                gr.FillRectangle(terrainBrush, 4, 4, size - 8, size - 8);
+                                break;
+                        }
+                    }
+
+                    if (IsFall())
+                    {
                         LinearGradientBrush linGrBrush = new(
-                           new Point(10, 0),
-                           new Point(10, size),
-                           TerrainColor[(int)TerrainType.Fall],
-                           TerrainColor[(int)TerrainType.River]);
+                           new Point(0, 0),
+                           new Point(0, size),
+                           TerrainColor[(int)TerrainType.River],
+                           TerrainColor[(int)TerrainType.Fall]);
 
                         switch (CurrentTerrain)
                         {
                             case (ushort)TerrainUnitModel.Fall100:
-                                gr.FillRectangle(linGrBrush, 4, 1, size - 8, size - 2);
+                                gr.FillRectangle(linGrBrush, 8, 1, size - 16, size - 2);
                                 break;
                             case (ushort)TerrainUnitModel.Fall101:
-                                gr.FillRectangle(linGrBrush, 4, 1, size - 8, size - 5);
+                                gr.FillRectangle(linGrBrush, 8, 1, size - 16, size - 9);
                                 break;
                             case (ushort)TerrainUnitModel.Fall102:
-                                gr.FillRectangle(linGrBrush, 4, 4, size - 8, size - 5);
+                                gr.FillRectangle(linGrBrush, 8, 8, size - 16, size - 9);
                                 break;
                             case (ushort)TerrainUnitModel.Fall103:
-                                gr.FillRectangle(linGrBrush, 4, 4, size - 8, size - 8);
+                                gr.FillRectangle(linGrBrush, 8, 8, size - 16, size - 16);
                                 break;
                             case (ushort)TerrainUnitModel.Fall200:
-                                gr.FillRectangle(linGrBrush, 1, 1, size - 5, size - 2);
+                                gr.FillRectangle(linGrBrush, 1, 1, size - 9, size - 2);
                                 break;
                             case (ushort)TerrainUnitModel.Fall201:
-                                Point[] Terrain201 = new Point[] { new Point(1, 1), new Point(size - 4, 1), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
+                                Point[] Terrain201 = new[] { new Point(1, 1), new Point(size - 8, 1), new Point(size - 8, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8) };
                                 gr.FillPolygon(linGrBrush, Terrain201);
                                 break;
                             case (ushort)TerrainUnitModel.Fall202:
-                                gr.FillRectangle(linGrBrush, 1, 1, size - 5, size - 5);
+                                gr.FillRectangle(linGrBrush, 1, 1, size - 9, size - 9);
                                 break;
                             case (ushort)TerrainUnitModel.Fall203:
-                                Point[] Terrain203 = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4) };
+                                Point[] Terrain203 = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, size - 1), new Point(1, size - 1), new Point(1, 8), new Point(8, 8) };
                                 gr.FillPolygon(linGrBrush, Terrain203);
                                 break;
                             case (ushort)TerrainUnitModel.Fall204:
-                                gr.FillRectangle(linGrBrush, 1, 4, size - 5, size - 5);
+                                gr.FillRectangle(linGrBrush, 1, 8, size - 9, size - 9);
                                 break;
                             case (ushort)TerrainUnitModel.Fall205:
-                                Point[] Terrain205 = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4), new Point(1, 4), new Point(4, 4) };
+                                Point[] Terrain205 = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8), new Point(1, 8), new Point(8, 8) };
                                 gr.FillPolygon(linGrBrush, Terrain205);
                                 break;
                             case (ushort)TerrainUnitModel.Fall206:
-                                Point[] Terrain206 = new Point[] { new Point(1, 4), new Point(size - 4, 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
+                                Point[] Terrain206 = new[] { new Point(1, 8), new Point(size - 8, 8), new Point(size - 8, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8) };
                                 gr.FillPolygon(linGrBrush, Terrain206);
                                 break;
                             case (ushort)TerrainUnitModel.Fall207:
-                                Point[] Terrain207 = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, size - 4), new Point(1, size - 4), new Point(1, 4), new Point(4, 4) };
+                                Point[] Terrain207 = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, size - 8), new Point(1, size - 8), new Point(1, 8), new Point(8, 8) };
                                 gr.FillPolygon(linGrBrush, Terrain207);
                                 break;
                             case (ushort)TerrainUnitModel.Fall208:
-                                gr.FillRectangle(linGrBrush, 1, 4, size - 5, size - 8);
+                                gr.FillRectangle(linGrBrush, 1, 8, size - 9, size - 16);
                                 break;
                             case (ushort)TerrainUnitModel.Fall300:
-                                gr.FillRectangle(linGrBrush, 4, 1, size - 5, size - 2);
+                                gr.FillRectangle(linGrBrush, 8, 1, size - 9, size - 2);
                                 break;
                             case (ushort)TerrainUnitModel.Fall301:
-                                Point[] Terrain301 = new Point[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                                Point[] Terrain301 = new[] { new Point(8, 1), new Point(size - 1, 1), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1) };
                                 gr.FillPolygon(linGrBrush, Terrain301);
                                 break;
                             case (ushort)TerrainUnitModel.Fall302:
-                                gr.FillRectangle(linGrBrush, 4, 1, size - 5, size - 5);
+                                gr.FillRectangle(linGrBrush, 8, 1, size - 9, size - 9);
                                 break;
                             case (ushort)TerrainUnitModel.Fall303:
-                                Point[] Terrain303 = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(4, size - 1) };
+                                Point[] Terrain303 = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 1), new Point(8, size - 1) };
                                 gr.FillPolygon(linGrBrush, Terrain303);
                                 break;
                             case (ushort)TerrainUnitModel.Fall304:
-                                gr.FillRectangle(linGrBrush, 4, 4, size - 5, size - 5);
+                                gr.FillRectangle(linGrBrush, 8, 8, size - 9, size - 9);
                                 break;
                             case (ushort)TerrainUnitModel.Fall305:
-                                Point[] Terrain305 = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                                Point[] Terrain305 = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1) };
                                 gr.FillPolygon(linGrBrush, Terrain305);
                                 break;
                             case (ushort)TerrainUnitModel.Fall306:
-                                Point[] Terrain306 = new Point[] { new Point(4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                                Point[] Terrain306 = new[] { new Point(8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1) };
                                 gr.FillPolygon(linGrBrush, Terrain306);
                                 break;
                             case (ushort)TerrainUnitModel.Fall307:
-                                Point[] Terrain307 = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(4, size - 4) };
+                                Point[] Terrain307 = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(8, size - 8) };
                                 gr.FillPolygon(linGrBrush, Terrain307);
                                 break;
                             case (ushort)TerrainUnitModel.Fall308:
-                                gr.FillRectangle(linGrBrush, 4, 4, size - 5, size - 8);
+                                gr.FillRectangle(linGrBrush, 8, 8, size - 9, size - 16);
                                 break;
                             case (ushort)TerrainUnitModel.Fall400:
                                 gr.FillRectangle(linGrBrush, 1, 1, size - 2, size - 2);
                                 break;
                             case (ushort)TerrainUnitModel.Fall401:
-                                Point[] Terrain401 = new Point[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1) };
+                                Point[] Terrain401 = new[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(1, size - 1) };
                                 gr.FillPolygon(linGrBrush, Terrain401);
                                 break;
                             case (ushort)TerrainUnitModel.Fall402:
-                                Point[] Terrain402 = new Point[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
+                                Point[] Terrain402 = new[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8) };
                                 gr.FillPolygon(linGrBrush, Terrain402);
                                 break;
                             case (ushort)TerrainUnitModel.Fall403:
-                                gr.FillRectangle(linGrBrush, 1, 1, size - 2, size - 5);
+                                gr.FillRectangle(linGrBrush, 1, 1, size - 2, size - 9);
                                 break;
                             case (ushort)TerrainUnitModel.Fall404:
-                                Point[] Terrain404 = new Point[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
+                                Point[] Terrain404 = new[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8) };
                                 gr.FillPolygon(linGrBrush, Terrain404);
                                 break;
                             case (ushort)TerrainUnitModel.Fall405:
-                                Point[] Terrain405 = new Point[] { new Point(1, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(1, size - 1) };
+                                Point[] Terrain405 = new[] { new Point(1, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 1), new Point(1, size - 1) };
                                 gr.FillPolygon(linGrBrush, Terrain405);
                                 break;
                             case (ushort)TerrainUnitModel.Fall406:
-                                Point[] Terrain406 = new Point[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4) };
+                                Point[] Terrain406 = new[] { new Point(8, 1), new Point(size - 1, 1), new Point(size - 1, size - 1), new Point(1, size - 1), new Point(1, 8), new Point(8, 8) };
                                 gr.FillPolygon(linGrBrush, Terrain406);
                                 break;
                             case (ushort)TerrainUnitModel.Fall407:
-                                Point[] Terrain407 = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4) };
+                                Point[] Terrain407 = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 1), new Point(1, size - 1), new Point(1, 8), new Point(8, 8) };
                                 gr.FillPolygon(linGrBrush, Terrain407);
                                 break;
                             case (ushort)TerrainUnitModel.Fall408:
-                                gr.FillRectangle(linGrBrush, 1, 4, size - 2, size - 5);
+                                gr.FillRectangle(linGrBrush, 1, 8, size - 2, size - 9);
                                 break;
                             case (ushort)TerrainUnitModel.Fall409:
-                                Point[] Terrain409 = new Point[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4), new Point(1, 4), new Point(4, 4) };
+                                Point[] Terrain409 = new[] { new Point(8, 1), new Point(size - 1, 1), new Point(size - 1, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8), new Point(1, 8), new Point(8, 8) };
                                 gr.FillPolygon(linGrBrush, Terrain409);
                                 break;
                             case (ushort)TerrainUnitModel.Fall410:
-                                Point[] Terrain410 = new Point[] { new Point(1, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
+                                Point[] Terrain410 = new[] { new Point(1, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8) };
                                 gr.FillPolygon(linGrBrush, Terrain410);
                                 break;
                             case (ushort)TerrainUnitModel.Fall411:
-                                Point[] Terrain411 = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4), new Point(1, 4), new Point(4, 4) };
+                                Point[] Terrain411 = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8), new Point(1, 8), new Point(8, 8) };
                                 gr.FillPolygon(linGrBrush, Terrain411);
                                 break;
                             case (ushort)TerrainUnitModel.Fall412:
-                                Point[] Terrain412 = new Point[] { new Point(1, 4), new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
+                                Point[] Terrain412 = new[] { new Point(1, 8), new Point(size - 1, 8), new Point(size - 1, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8) };
                                 gr.FillPolygon(linGrBrush, Terrain412);
                                 break;
                             case (ushort)TerrainUnitModel.Fall413:
-                                Point[] Terrain413 = new Point[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4) };
+                                Point[] Terrain413 = new[] { new Point(8, 1), new Point(size - 1, 1), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(1, size - 1), new Point(1, 8), new Point(8, 8) };
                                 gr.FillPolygon(linGrBrush, Terrain413);
                                 break;
                             case (ushort)TerrainUnitModel.Fall414:
-                                Point[] Terrain414 = new Point[] { new Point(1, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1) };
+                                Point[] Terrain414 = new[] { new Point(1, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(1, size - 1) };
                                 gr.FillPolygon(linGrBrush, Terrain414);
                                 break;
                             case (ushort)TerrainUnitModel.Fall415:
-                                Point[] Terrain415 = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4) };
+                                Point[] Terrain415 = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(1, size - 1), new Point(1, 8), new Point(8, 8) };
                                 gr.FillPolygon(linGrBrush, Terrain415);
                                 break;
                             case (ushort)TerrainUnitModel.Fall416:
-                                Point[] Terrain416 = new Point[] { new Point(1, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1) };
+                                Point[] Terrain416 = new[] { new Point(1, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(1, size - 1) };
                                 gr.FillPolygon(linGrBrush, Terrain416);
                                 break;
                             case (ushort)TerrainUnitModel.Fall417:
-                                Point[] Terrain417 = new Point[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4), new Point(1, 4), new Point(4, 4) };
+                                Point[] Terrain417 = new[] { new Point(8, 1), new Point(size - 1, 1), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8), new Point(1, 8), new Point(8, 8) };
                                 gr.FillPolygon(linGrBrush, Terrain417);
                                 break;
                             case (ushort)TerrainUnitModel.Fall418:
-                                Point[] Terrain418 = new Point[] { new Point(1, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
+                                Point[] Terrain418 = new[] { new Point(1, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8) };
                                 gr.FillPolygon(linGrBrush, Terrain418);
                                 break;
                             case (ushort)TerrainUnitModel.Fall419:
-                                Point[] Terrain419 = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4), new Point(1, 4), new Point(4, 4) };
+                                Point[] Terrain419 = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8), new Point(1, 8), new Point(8, 8) };
                                 gr.FillPolygon(linGrBrush, Terrain419);
                                 break;
                             case (ushort)TerrainUnitModel.Fall420:
-                                Point[] Terrain420 = new Point[] { new Point(1, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
+                                Point[] Terrain420 = new[] { new Point(1, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8) };
                                 gr.FillPolygon(linGrBrush, Terrain420);
                                 break;
                             case (ushort)TerrainUnitModel.Fall421:
-                                Point[] Terrain421 = new Point[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(1, size - 4), new Point(1, 4), new Point(4, 4) };
+                                Point[] Terrain421 = new[] { new Point(8, 1), new Point(size - 1, 1), new Point(size - 1, size - 8), new Point(1, size - 8), new Point(1, 8), new Point(8, 8) };
                                 gr.FillPolygon(linGrBrush, Terrain421);
                                 break;
                             case (ushort)TerrainUnitModel.Fall422:
-                                Point[] Terrain422 = new Point[] { new Point(1, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(1, size - 4) };
+                                Point[] Terrain422 = new[] { new Point(1, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(1, size - 8) };
                                 gr.FillPolygon(linGrBrush, Terrain422);
                                 break;
                             case (ushort)TerrainUnitModel.Fall423:
-                                Point[] Terrain423 = new Point[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(1, size - 4), new Point(1, 4), new Point(4, 4) };
+                                Point[] Terrain423 = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(1, size - 8), new Point(1, 8), new Point(8, 8) };
                                 gr.FillPolygon(linGrBrush, Terrain423);
                                 break;
                             case (ushort)TerrainUnitModel.Fall424:
-                                gr.FillRectangle(linGrBrush, 1, 4, size - 2, size - 8);
-                                break;
-                            default:
-                                gr.FillRectangle(terrainBrush, 4, 4, size - 8, size - 8);
+                                gr.FillRectangle(linGrBrush, 1, 8, size - 2, size - 16);
                                 break;
                         }
                     }
@@ -3970,7 +4166,7 @@ namespace ACNHPokerCore
             return Final;
         }
 
-        public enum TerrainType : int
+        public enum TerrainType
         {
             RoadWood = 0,       //Wooden path
             RoadTile = 1,       //Terra-cotta tiles

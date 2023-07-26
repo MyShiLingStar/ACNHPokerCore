@@ -1,51 +1,46 @@
 ﻿using System;
 using System.IO;
-using System.Net;
-using System.Text;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text.Json;
+using System.Threading.Tasks;
 
-namespace Discord.Webhook
+namespace DiscordWebhook
 {
     public class DiscordWebhook
     {
         /// <summary>
         /// Webhook url
         /// </summary>
-        public string Url { get; set; }
+        public Uri Uri { get; set; }
 
         /// <summary>
         /// Send webhook message
         /// </summary>
-        public void Send(DiscordMessage message, FileInfo file = null)
+        public async Task SendAsync(DiscordMessage message, params FileInfo[] files)
         {
+            using var httpClient = new HttpClient();
+
             string bound = "------------------------" + DateTime.Now.Ticks.ToString("x");
-            WebClient webhookRequest = new WebClient();
-            webhookRequest.Headers.Add("Content-Type", "multipart/form-data; boundary=" + bound);
-            MemoryStream stream = new MemoryStream();
-            byte[] beginBodyBuffer = Encoding.UTF8.GetBytes("--" + bound + "\r\n");
-            stream.Write(beginBodyBuffer, 0, beginBodyBuffer.Length);
-            bool flag = file != null && file.Exists;
-            if (flag)
+
+            var httpContent = new MultipartFormDataContent(bound);
+
+            foreach (var file in files)
             {
-                string fileBody = "Content-Disposition: form-data; name=\"file\"; filename=\"" + file.Name + "\"\r\nContent-Type: application/octet-stream\r\n\r\n";
-                byte[] fileBodyBuffer = Encoding.UTF8.GetBytes(fileBody);
-                stream.Write(fileBodyBuffer, 0, fileBodyBuffer.Length);
-                byte[] fileBuffer = File.ReadAllBytes(file.FullName);
-                stream.Write(fileBuffer, 0, fileBuffer.Length);
-                string fileBodyEnd = "\r\n--" + bound + "\r\n";
-                byte[] fileBodyEndBuffer = Encoding.UTF8.GetBytes(fileBodyEnd);
-                stream.Write(fileBodyEndBuffer, 0, fileBodyEndBuffer.Length);
+                var fileContent = new ByteArrayContent(await File.ReadAllBytesAsync(file.FullName));
+                fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/octet-stream");
+                httpContent.Add(fileContent, file.Name, file.Name);
             }
-            string jsonBody = string.Concat(new string[]
+
+            var jsonContent = new StringContent(JsonSerializer.Serialize(message));
+            jsonContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+            httpContent.Add(jsonContent, "payload_json");
+
+            var response = await httpClient.PostAsync(Uri, httpContent);
+            if (!response.IsSuccessStatusCode)
             {
-                "Content-Disposition: form-data; name=\"payload_json\"\r\nContent-Type: application/json\r\n\r\n",
-                string.Format("{0}\r\n", message),
-                "--",
-                bound,
-                "--"
-            });
-            byte[] jsonBodyBuffer = Encoding.UTF8.GetBytes(jsonBody);
-            stream.Write(jsonBodyBuffer, 0, jsonBodyBuffer.Length);
-            webhookRequest.UploadData(this.Url, stream.ToArray());
+                throw new DiscordException(await response.Content.ReadAsStringAsync());
+            }
         }
     }
 }

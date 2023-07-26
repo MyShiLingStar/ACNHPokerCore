@@ -18,7 +18,7 @@ namespace ACNHPokerCore
         private static readonly int MidCap = 57;
         private static readonly int HardCap = 64;
 
-        private static bool sendLock = false;
+        private static bool sendLock;
 
         public event CloseHandler CloseForm;
         public Chat(Socket Socket)
@@ -31,36 +31,34 @@ namespace ACNHPokerCore
             switch (num)
             {
                 case 1:
-                    chatBox.Text = "Hello !";
+                    chatBox.Text = @"Hello !";
                     break;
                 case 2:
-                    chatBox.Text = "こんにちは！";
+                    chatBox.Text = @"こんにちは！";
                     break;
                 case 3:
-                    chatBox.Text = "你好！";
+                    chatBox.Text = @"你好！";
                     break;
                 case 4:
-                    chatBox.Text = "Bonjour !";
+                    chatBox.Text = @"Bonjour !";
                     break;
                 case 5:
-                    chatBox.Text = "Hallo !";
+                    chatBox.Text = @"Hallo !";
                     break;
                 case 6:
-                    chatBox.Text = "Hola !";
+                    chatBox.Text = @"Hola !";
                     break;
                 case 7:
-                    chatBox.Text = "Ciao !";
+                    chatBox.Text = @"Ciao !";
                     break;
                 case 8:
-                    chatBox.Text = "Olá !";
+                    chatBox.Text = @"Olá !";
                     break;
                 case 9:
-                    chatBox.Text = "Привет !";
+                    chatBox.Text = @"Привет !";
                     break;
                 case 10:
-                    chatBox.Text = "안녕하세요！";
-                    break;
-                default:
+                    chatBox.Text = @"안녕하세요！";
                     break;
             }
             chatBox.SelectAll();
@@ -68,7 +66,7 @@ namespace ACNHPokerCore
 
         private void Chat_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.CloseForm();
+            if (CloseForm != null) CloseForm();
         }
 
         private void ChatButton_Click(object sender, EventArgs e)
@@ -101,7 +99,7 @@ namespace ACNHPokerCore
             byte[] StrBytes = Encoding.Unicode.GetBytes(message);
             byte[] sendBytes = new byte[StrBytes.Length * 2];
             Buffer.BlockCopy(StrBytes, 0, sendBytes, 0, StrBytes.Length);
-            Utilities.pokeAbsoluteAddress(socket, ChatAddress.ToString("X"), Utilities.ByteToHexString(sendBytes));
+            Utilities.PokeAbsoluteAddress(socket, ChatAddress.ToString("X"), Utilities.ByteToHexString(sendBytes));
 
             Controller.ClickPLUS();
             Thread.Sleep(400);
