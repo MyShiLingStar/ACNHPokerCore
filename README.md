@@ -75,7 +75,8 @@
     * Added Auto-Refill Function and Switch to auto refill your inventory from the last nhi file you loaded. 
 	* Added Incoming Visitor logging
 	* Added Incoming Visitor captures  
-	* Added option to do auto max bells in dodo function.   
+	* Added option to do auto max bells in dodo function.
+	* Added Empty villager house in the villager replacer
 	
 ## Donate
 
