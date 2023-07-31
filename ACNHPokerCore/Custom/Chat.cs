@@ -66,7 +66,7 @@ namespace ACNHPokerCore
 
         private void Chat_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (CloseForm != null) CloseForm();
+            CloseForm?.Invoke();
         }
 
         private void ChatButton_Click(object sender, EventArgs e)

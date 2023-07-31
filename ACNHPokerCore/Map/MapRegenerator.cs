@@ -35,6 +35,8 @@ namespace ACNHPokerCore
         private byte[][] villager;
         private bool[] haveVillager;
         private bool FormIsClosing;
+        private bool debugging;
+
 
         public Dodo dodoSetup;
 
@@ -43,14 +45,16 @@ namespace ACNHPokerCore
         private CancellationTokenSource cts;
 
         public event CloseHandler CloseForm;
+        public event UpdateTurnipPriceHandler updateTurnipPriceHandler;
 
         #region Form Load
-        public MapRegenerator(Socket S, bool Sound)
+        public MapRegenerator(Socket S, bool Sound, bool Debugging)
         {
             try
             {
                 s = S;
                 sound = Sound;
+                debugging = Debugging;
 
                 InitializeComponent();
                 FinMsg.SelectionAlignment = HorizontalAlignment.Center;
@@ -1153,7 +1157,7 @@ namespace ACNHPokerCore
                 dodoSetup = null;
             }
 
-            if (CloseForm != null) CloseForm();
+            CloseForm?.Invoke();
         }
 
         private void HideBtn_Click(object sender, EventArgs e)
@@ -1765,9 +1769,10 @@ namespace ACNHPokerCore
                 btn.Tag = "Disable";
                 btn.BackColor = Color.Orange;
 
-                dodoSetup = new Dodo(s);
+                dodoSetup = new Dodo(s, false, debugging);
                 dodoSetup.CloseForm += DodoSetup_closeForm;
                 dodoSetup.AbortAll += DodoSetup_abortAll;
+                dodoSetup.updateTurnipPriceHandler += DodoSetup_updateTurnipPriceHandler;
                 dodoSetup.Show(this);
                 dodoSetup.Location = new Point(Location.X - 590, Location.Y);
                 dodoSetup.ControlBox = false;
@@ -1788,6 +1793,11 @@ namespace ACNHPokerCore
                 dodoSetup.Close();
                 dodoSetup = null;
             }
+        }
+
+        private void DodoSetup_updateTurnipPriceHandler()
+        {
+            updateTurnipPriceHandler?.Invoke();
         }
 
         private void DodoSetup_abortAll()

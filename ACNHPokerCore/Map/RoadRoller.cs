@@ -2736,7 +2736,7 @@ namespace ACNHPokerCore
 
         private void RoadRoller_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (CloseForm != null) CloseForm();
+            CloseForm?.Invoke();
         }
 
         private void AutoModeButton_Click(object sender, EventArgs e)

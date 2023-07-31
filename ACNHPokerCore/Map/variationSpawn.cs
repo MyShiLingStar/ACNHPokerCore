@@ -220,15 +220,14 @@ namespace ACNHPokerCore
 
         private void ColumnBox_ValueChanged(object sender, EventArgs e)
         {
-            if (SendRowAndColumnEvent != null) SendRowAndColumnEvent((int)rowBox.Value, (int)columnBox.Value);
+            SendRowAndColumnEvent?.Invoke((int)rowBox.Value, (int)columnBox.Value);
             timesLabel1.Text = "× " + columnBox.Value;
             timesLabel2.Text = "× " + columnBox.Value;
             UpdateSize();
         }
         private void RowBox_ValueChanged(object sender, EventArgs e)
         {
-            if (SendRowAndColumnEvent != null)
-                SendRowAndColumnEvent((int)rowBox.Value, (int)columnBox.Value);
+            SendRowAndColumnEvent?.Invoke((int)rowBox.Value, (int)columnBox.Value);
             timesHLabel1.Text = "× " + rowBox.Value;
             timesHLabel2.Text = "× " + rowBox.Value;
             UpdateSize();
@@ -424,8 +423,7 @@ namespace ACNHPokerCore
             }
             else
             {
-                if (SendObeySizeEvent != null)
-                    SendObeySizeEvent(false);
+                SendObeySizeEvent?.Invoke(false);
             }
         }
 

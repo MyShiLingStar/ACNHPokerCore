@@ -25,12 +25,12 @@ namespace ACNHPokerCore
 
             Button b = (Button)sender;
             b.BackColor = Color.Orange;
-            if (applyFilter != null) applyFilter(b.Tag.ToString());
+            applyFilter?.Invoke(b.Tag.ToString());
         }
 
         private void Filter_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (closeFilter != null) closeFilter();
+            closeFilter?.Invoke();
         }
 
         private void ChangeLanguage(string lang)

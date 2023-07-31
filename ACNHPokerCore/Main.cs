@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.FileSystemGlobbing.Internal;
-using NAudio.Wave;
+﻿using NAudio.Wave;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -25,6 +24,7 @@ namespace ACNHPokerCore
     public delegate void CaptureHandler(bool CaptureOn);
     public delegate void ReceiveVariationHandler(InventorySlot item, int type);
     public delegate void ThreadAbortHandler();
+    public delegate void UpdateTurnipPriceHandler();
     #endregion
 
     public partial class Main : Form
@@ -8505,6 +8505,7 @@ namespace ACNHPokerCore
                 };
                 D.CloseForm += DodoHelperCloseForm;
                 D.AbortAll += DodoHelperAbortAll;
+                D.updateTurnipPriceHandler += dodo_updateTurnipPriceHandler;
                 D.Show();
                 D.WriteLog("[You have started dodo helper in standalone mode.]\n\n" +
                                     "1. Disconnect all controller by selecting \"Controllers\" > \"Change Grip/Order\"\n" +
@@ -8515,6 +8516,11 @@ namespace ACNHPokerCore
                                     ">> Please try the buttons below to test the virtual controller. <<"
                                     );
             }
+        }
+
+        private void dodo_updateTurnipPriceHandler()
+        {
+            SetTurnipPriceMax();
         }
 
         private void DodoHelperAbortAll()
@@ -8554,10 +8560,16 @@ namespace ACNHPokerCore
         {
             if (R == null)
             {
-                R = new MapRegenerator(socket, sound);
+                R = new MapRegenerator(socket, sound, DEBUGGING);
                 R.CloseForm += RegeneratorCloseForm;
+                R.updateTurnipPriceHandler += Regenerator_updateTurnipPriceHandler;
                 R.Show();
             }
+        }
+
+        private void Regenerator_updateTurnipPriceHandler()
+        {
+            SetTurnipPriceMax();
         }
 
         private void RegeneratorCloseForm()

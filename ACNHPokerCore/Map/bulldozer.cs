@@ -582,25 +582,11 @@ namespace ACNHPokerCore
             sendBtn.BackColor = Color.Orange;
         }
 
-        private static int MakeLong(short lowPart, short highPart)
-        {
-            return (int)(((ushort)lowPart) | (uint)(highPart << 16));
-        }
-
-        /*
-        private void ListViewItem_SetSpacing(ListView listview, short leftPadding, short topPadding)
-        {
-            const int LVM_FIRST = 0x1000;
-            const int LVM_SETICONSPACING = LVM_FIRST + 53;
-            _ = SendMessage(listview.Handle, LVM_SETICONSPACING, IntPtr.Zero, (IntPtr)MakeLong(leftPadding, topPadding));
-        }
-        */
-
         private void Bulldozer_FormClosed(object sender, FormClosedEventArgs e)
         {
             formClosed = true;
             MyLog.LogEvent("Bulldozer", "Form Closed");
-            if (CloseForm != null) CloseForm();
+            CloseForm?.Invoke();
         }
 
         private void BuildingBtn_Click(object sender, EventArgs e)
@@ -679,12 +665,16 @@ namespace ACNHPokerCore
                     {
                         BuildingType.Enabled = true;
                         BuildingType.SelectedIndex = index;
+                        AUpDown.Enabled = true;
+                        TUpDown.Enabled = true;
                     }
                     else
                     {
                         //Plaza
                         BuildingType.Enabled = false;
                         BuildingType.SelectedIndex = -1;
+                        AUpDown.Enabled = false;
+                        TUpDown.Enabled = false;
                     }
 
                     int OrgX = Int16.Parse(buildingGridView.Rows[e.RowIndex].Cells["X-Coordinate"].Value.ToString());
@@ -707,11 +697,11 @@ namespace ACNHPokerCore
 
                         int Angle = (int)AUpDown.Value;
                         if (Angle <= 3)
-                            inclineAngleSelect.SelectedIndex = (int)AUpDown.Value;
+                            InclineAngleSelect.SelectedIndex = (int)AUpDown.Value;
                         else
-                            inclineAngleSelect.SelectedIndex = 0;
+                            InclineAngleSelect.SelectedIndex = 0;
 
-                        inclineTypeSelect.SelectedIndex = TUpDown.Value switch
+                        InclineTypeSelect.SelectedIndex = TUpDown.Value switch
                         {
                             0 => 0,
                             1 => 1,
@@ -1239,6 +1229,12 @@ namespace ACNHPokerCore
             {
                 inclinePanel.Visible = true;
                 bridgePanel.Visible = false;
+
+                InclineTypeSelect.SelectedIndex = 0;
+                InclineAngleSelect.SelectedIndex = 0;
+
+                if (Width > 1110)
+                    Width = 1110;
             }
             else if (BuildingType.SelectedIndex == 26) // bridge
             {
@@ -1247,6 +1243,7 @@ namespace ACNHPokerCore
 
                 TUpDown.Value = 0;
                 AUpDown.Value = 0;
+                BridgeTypeSelect.SelectedIndex = -1;
                 BridgeTypeSelect.SelectedIndex = 0;
                 BridgeAngleSelect.SelectedIndex = 0;
                 BridgeLengthUpDown.Value = 3;
@@ -1256,6 +1253,9 @@ namespace ACNHPokerCore
             {
                 inclinePanel.Visible = false;
                 bridgePanel.Visible = false;
+
+                if (Width > 1110)
+                    Width = 1110;
             }
         }
 

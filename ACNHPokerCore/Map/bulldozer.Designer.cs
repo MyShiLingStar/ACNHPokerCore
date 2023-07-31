@@ -77,8 +77,8 @@ namespace ACNHPokerCore
             BridgeTypeSelect = new System.Windows.Forms.ComboBox();
             BridgeTypeLabel = new System.Windows.Forms.Label();
             inclinePanel = new System.Windows.Forms.Panel();
-            inclineTypeSelect = new System.Windows.Forms.ComboBox();
-            inclineAngleSelect = new System.Windows.Forms.ComboBox();
+            InclineTypeSelect = new System.Windows.Forms.ComboBox();
+            InclineAngleSelect = new System.Windows.Forms.ComboBox();
             InclineTypeLabel = new System.Windows.Forms.Label();
             InclineAngleLabel = new System.Windows.Forms.Label();
             TUpDown = new System.Windows.Forms.NumericUpDown();
@@ -780,8 +780,8 @@ namespace ACNHPokerCore
             // 
             // inclinePanel
             // 
-            inclinePanel.Controls.Add(inclineTypeSelect);
-            inclinePanel.Controls.Add(inclineAngleSelect);
+            inclinePanel.Controls.Add(InclineTypeSelect);
+            inclinePanel.Controls.Add(InclineAngleSelect);
             inclinePanel.Controls.Add(InclineTypeLabel);
             inclinePanel.Controls.Add(InclineAngleLabel);
             inclinePanel.Location = new System.Drawing.Point(214, 31);
@@ -790,43 +790,43 @@ namespace ACNHPokerCore
             inclinePanel.TabIndex = 242;
             inclinePanel.Visible = false;
             // 
-            // inclineTypeSelect
+            // InclineTypeSelect
             // 
-            inclineTypeSelect.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
-            inclineTypeSelect.DropDownHeight = 200;
-            inclineTypeSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            inclineTypeSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inclineTypeSelect.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            inclineTypeSelect.ForeColor = System.Drawing.Color.White;
-            inclineTypeSelect.FormattingEnabled = true;
-            inclineTypeSelect.IntegralHeight = false;
-            inclineTypeSelect.ItemHeight = 16;
-            inclineTypeSelect.Items.AddRange(new object[] { "Stone : 0x0", "Red Steel : 0x1", "White-Plank : 0x2", "Log : 0x3", "Brick : 0x4", "Natural : 0x1D", "Blue-Plank : 0x1E", "Blue Steel : 0x1F" });
-            inclineTypeSelect.Location = new System.Drawing.Point(7, 26);
-            inclineTypeSelect.MaxDropDownItems = 10;
-            inclineTypeSelect.Name = "inclineTypeSelect";
-            inclineTypeSelect.Size = new System.Drawing.Size(135, 24);
-            inclineTypeSelect.TabIndex = 244;
-            inclineTypeSelect.SelectedIndexChanged += InclineTypeSelect_SelectedIndexChanged;
+            InclineTypeSelect.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            InclineTypeSelect.DropDownHeight = 200;
+            InclineTypeSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            InclineTypeSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            InclineTypeSelect.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            InclineTypeSelect.ForeColor = System.Drawing.Color.White;
+            InclineTypeSelect.FormattingEnabled = true;
+            InclineTypeSelect.IntegralHeight = false;
+            InclineTypeSelect.ItemHeight = 16;
+            InclineTypeSelect.Items.AddRange(new object[] { "Stone : 0x0", "Red Steel : 0x1", "White-Plank : 0x2", "Log : 0x3", "Brick : 0x4", "Natural : 0x1D", "Blue-Plank : 0x1E", "Blue Steel : 0x1F" });
+            InclineTypeSelect.Location = new System.Drawing.Point(7, 26);
+            InclineTypeSelect.MaxDropDownItems = 10;
+            InclineTypeSelect.Name = "InclineTypeSelect";
+            InclineTypeSelect.Size = new System.Drawing.Size(135, 24);
+            InclineTypeSelect.TabIndex = 244;
+            InclineTypeSelect.SelectedIndexChanged += InclineTypeSelect_SelectedIndexChanged;
             // 
-            // inclineAngleSelect
+            // InclineAngleSelect
             // 
-            inclineAngleSelect.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
-            inclineAngleSelect.DropDownHeight = 200;
-            inclineAngleSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            inclineAngleSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inclineAngleSelect.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            inclineAngleSelect.ForeColor = System.Drawing.Color.White;
-            inclineAngleSelect.FormattingEnabled = true;
-            inclineAngleSelect.IntegralHeight = false;
-            inclineAngleSelect.ItemHeight = 16;
-            inclineAngleSelect.Items.AddRange(new object[] { "West → East : 0x0", "South ↑ North : 0x1", "East ← West : 0x2", "North ↓ South : 0x3" });
-            inclineAngleSelect.Location = new System.Drawing.Point(149, 26);
-            inclineAngleSelect.MaxDropDownItems = 10;
-            inclineAngleSelect.Name = "inclineAngleSelect";
-            inclineAngleSelect.Size = new System.Drawing.Size(143, 24);
-            inclineAngleSelect.TabIndex = 243;
-            inclineAngleSelect.SelectedIndexChanged += InclineAngleSelect_SelectedIndexChanged;
+            InclineAngleSelect.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            InclineAngleSelect.DropDownHeight = 200;
+            InclineAngleSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            InclineAngleSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            InclineAngleSelect.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            InclineAngleSelect.ForeColor = System.Drawing.Color.White;
+            InclineAngleSelect.FormattingEnabled = true;
+            InclineAngleSelect.IntegralHeight = false;
+            InclineAngleSelect.ItemHeight = 16;
+            InclineAngleSelect.Items.AddRange(new object[] { "West → East : 0x0", "South ↑ North : 0x1", "East ← West : 0x2", "North ↓ South : 0x3" });
+            InclineAngleSelect.Location = new System.Drawing.Point(149, 26);
+            InclineAngleSelect.MaxDropDownItems = 10;
+            InclineAngleSelect.Name = "InclineAngleSelect";
+            InclineAngleSelect.Size = new System.Drawing.Size(143, 24);
+            InclineAngleSelect.TabIndex = 243;
+            InclineAngleSelect.SelectedIndexChanged += InclineAngleSelect_SelectedIndexChanged;
             // 
             // InclineTypeLabel
             // 
@@ -1181,8 +1181,8 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Label NowLoadingLabel;
         private System.Windows.Forms.PictureBox NowLoading;
         private System.Windows.Forms.Panel inclinePanel;
-        private System.Windows.Forms.ComboBox inclineTypeSelect;
-        private System.Windows.Forms.ComboBox inclineAngleSelect;
+        private System.Windows.Forms.ComboBox InclineTypeSelect;
+        private System.Windows.Forms.ComboBox InclineAngleSelect;
         private System.Windows.Forms.Label InclineTypeLabel;
         private System.Windows.Forms.Label InclineAngleLabel;
         private System.Windows.Forms.Panel bridgePanel;

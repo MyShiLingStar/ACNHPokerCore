@@ -11,7 +11,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Twitch;
-using static System.Windows.Forms.AxHost;
 
 namespace ACNHPokerCore
 {
@@ -66,7 +65,7 @@ namespace ACNHPokerCore
         private string header = "Dutch Sailors            -> Click here to allow keyboard control <-            ";
 
         private CancellationTokenSource cts;
-
+        public event UpdateTurnipPriceHandler updateTurnipPriceHandler;
         public event CloseHandler CloseForm;
         public event ThreadAbortHandler AbortAll;
 
@@ -144,6 +143,8 @@ namespace ACNHPokerCore
                 string[] path = Teleport.getAnchorPath().Split('\\');
                 Text = header + path[path.Length - 1];
             }
+            
+            
         }
 
         #region Teleport Setup
@@ -719,18 +720,11 @@ namespace ACNHPokerCore
 
             if (state != Teleport.OverworldState.Loading && state != Teleport.OverworldState.UserArriveLeavingOrTitleScreen)
             {
-
-                //setting up max bells
                 if (maxBells)
                 {
-                    WriteLog(state.ToString() + "Enabling MAX Bells", true);
-                    //setting max bells prices to MAX 
-                    var Main = new Main();
-                    Main.SetTurnipPriceMax();
-
-
+                    WriteLog("Enabling MAX Bells", true);
+                    updateTurnipPriceHandler?.Invoke();
                 }
-
 
                 if (MyPubSub != null)
                 {
@@ -1372,10 +1366,8 @@ namespace ACNHPokerCore
                 {
                     maxBells = true;
                     config.AppSettings.Settings["AutoMaxBells"].Value = "true";
-                    var Main = new Main();
-                    Main.SetTurnipPriceMax();
+                    updateTurnipPriceHandler?.Invoke();
                 }
-
             }
             else
             {
@@ -1492,17 +1484,14 @@ namespace ACNHPokerCore
                 cts = new CancellationTokenSource();
                 CancellationToken token = cts.Token;
 
-                standaloneThread = new Thread(delegate () { StandaloneLoop(token); });
-                standaloneThread.Start();
-
                 if (maxBells)
                 {
-                    WriteLog("Enabling MAX Bells\r\n", true);
-                    //setting max bells prices to MAX 
-                    var Main = new Main();
-                    Main.SetTurnipPriceMax();
+                    WriteLog("Enabling MAX Bells", true);
+                    updateTurnipPriceHandler?.Invoke();
                 }
 
+                standaloneThread = new Thread(delegate () { StandaloneLoop(token); });
+                standaloneThread.Start();
             }
             else
             {

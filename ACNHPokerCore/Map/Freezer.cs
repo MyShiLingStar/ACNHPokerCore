@@ -159,7 +159,7 @@ namespace ACNHPokerCore
         private void CloseCleaning()
         {
             MyLog.LogEvent("Freeze", "Form Closed");
-            if (closeForm != null) closeForm();
+            closeForm?.Invoke();
         }
 
         private void UnFreezeAllBtn_Click(object sender, EventArgs e)

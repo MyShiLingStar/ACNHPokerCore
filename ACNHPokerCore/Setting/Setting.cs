@@ -340,7 +340,7 @@ namespace ACNHPokerCore
                 }
             }
 
-            if (ToggleOverride != null) ToggleOverride();
+            ToggleOverride?.Invoke();
 
             if (Sound)
                 System.Media.SystemSounds.Asterisk.Play();
@@ -362,7 +362,7 @@ namespace ACNHPokerCore
                     Config.AppSettings.Settings["validation"].Value = "false";
                     Config.Save(ConfigurationSaveMode.Minimal);
                     ValidationLabel.ForeColor = Color.Red;
-                    if (ToggleValidation != null) ToggleValidation();
+                    ToggleValidation?.Invoke();
                 }
             }
             else
@@ -371,8 +371,7 @@ namespace ACNHPokerCore
                 Config.AppSettings.Settings["validation"].Value = "true";
                 Config.Save(ConfigurationSaveMode.Minimal);
                 ValidationLabel.ForeColor = Color.White;
-                if (ToggleValidation != null)
-                    ToggleValidation();
+                ToggleValidation?.Invoke();
             }
         }
 
@@ -389,8 +388,7 @@ namespace ACNHPokerCore
                 Config.AppSettings.Settings["sound"].Value = "false";
                 Config.Save(ConfigurationSaveMode.Minimal);
                 Sound = false;
-                if (ToggleSound != null)
-                    ToggleSound(false);
+                ToggleSound?.Invoke(false);
             }
             else
             {
@@ -398,8 +396,7 @@ namespace ACNHPokerCore
                 Config.AppSettings.Settings["sound"].Value = "true";
                 Config.Save(ConfigurationSaveMode.Minimal);
                 Sound = true;
-                if (ToggleSound != null)
-                    ToggleSound(false);
+                ToggleSound?.Invoke(false);
             }
             if (Sound)
                 System.Media.SystemSounds.Asterisk.Play();
