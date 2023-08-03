@@ -946,6 +946,50 @@ namespace ACNHPokerCore
             }
         }
 
+        public static byte[] PeekMainAddress(Socket socket, USBBot usb, UInt32 address, int size)
+        {
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        byte[] result = new byte[size];
+
+                        string msg = String.Format("peekMain 0x{0:X8} 0x{1}\r\n", address, size);
+                        SendString(socket, Encoding.UTF8.GetBytes(msg));
+
+                        byte[] b = new byte[size * 2 + 64];
+                        int first_rec = ReceiveString(socket, b);
+                        string buffer = Encoding.ASCII.GetString(b, 0, size * 2);
+
+                        for (int i = 0; i < size; i++)
+                        {
+                            result[i] = Convert.ToByte(buffer.Substring(i * 2, 2), 16);
+                        }
+
+                        return result;
+                    }
+                    else
+                    {
+                        byte[] b = usb.ReadBytesMain(address, size);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n peek " + address);
+                        }
+
+                        return b;
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"peekAddress");
+                    return null;
+                }
+            }
+        }
+
         public static byte[] PeekAbsoluteAddress(Socket socket, string address, int size)
         {
             lock (botLock)

@@ -140,7 +140,7 @@ namespace ACNHPokerCore
                 {
                     if (ItemGridView.Rows[e.RowIndex].Cells["ImagePath"].Value != null)
                     {
-                        Image img = Image.FromFile(ItemGridView.Rows[e.RowIndex].Cells["ImagePath"].Value.ToString());
+                        Image img = ImageCacher.GetImage(ItemGridView.Rows[e.RowIndex].Cells["ImagePath"].Value.ToString());
                         e.Value = img;
                     }
                 }

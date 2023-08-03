@@ -24,7 +24,7 @@ namespace ACNHPokerCore
             timer.TimeChanged += () => timeLabel.Text = timer.TimeLeftStr;
 
             // show messageBox on timer = 00:00.000
-            timer.CountDownFinished += () => ToRed();
+            timer.CountDownFinished += ToRed;
 
             timer.StepMs = 77;
         }

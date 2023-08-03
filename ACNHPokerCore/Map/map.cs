@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -12,7 +11,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace ACNHPokerCore
 {
@@ -885,8 +883,8 @@ namespace ACNHPokerCore
                 miniMapBox.Image = MiniMap.DrawSelectSquare(anchorX, anchorY);
             }
 
-            await Task.Run(() => SetupBtnCoordinate(anchorX, anchorY));
-            await Task.Run(() => UpdateAllBtn());
+            SetupBtnCoordinate(anchorX, anchorY);
+            await Task.Run(UpdateAllBtn);
 
             lock (lockObject)
             {
@@ -1368,7 +1366,7 @@ namespace ACNHPokerCore
                         path = imagePath + OverrideDict[imageName] + "_Remake_0_0.png";
                         if (File.Exists(path))
                         {
-                            Image img = Image.FromFile(path);
+                            Image img = ImageCacher.GetImage(path);
                             e.CellStyle.BackColor = Color.Green;
                             e.Value = img;
 
@@ -1379,7 +1377,7 @@ namespace ACNHPokerCore
                             path = imagePath + OverrideDict[imageName] + ".png";
                             if (File.Exists(path))
                             {
-                                Image img = Image.FromFile(path);
+                                Image img = ImageCacher.GetImage(path);
                                 e.CellStyle.BackColor = Color.Green;
                                 e.Value = img;
 
@@ -1391,7 +1389,7 @@ namespace ACNHPokerCore
                     path = imagePath + imageName + "_Remake_0_0.png";
                     if (File.Exists(path))
                     {
-                        Image img = Image.FromFile(path);
+                        Image img = ImageCacher.GetImage(path);
                         e.CellStyle.BackColor = Color.FromArgb(56, 77, 162);
                         e.Value = img;
                     }
@@ -1400,7 +1398,7 @@ namespace ACNHPokerCore
                         path = imagePath + imageName + ".png";
                         if (File.Exists(path))
                         {
-                            Image img = Image.FromFile(path);
+                            Image img = ImageCacher.GetImage(path);
                             e.Value = img;
                         }
                         else
@@ -1408,7 +1406,7 @@ namespace ACNHPokerCore
                             path = imagePath + RemoveNumber(imageName) + ".png";
                             if (File.Exists(path))
                             {
-                                Image img = Image.FromFile(path);
+                                Image img = ImageCacher.GetImage(path);
                                 e.Value = img;
                             }
                             else
@@ -3612,7 +3610,7 @@ namespace ACNHPokerCore
 
             DisableBtn();
 
-            Thread clearGridThread = new(delegate () { ClearGrid(); });
+            Thread clearGridThread = new(ClearGrid);
             clearGridThread.Start();
         }
 

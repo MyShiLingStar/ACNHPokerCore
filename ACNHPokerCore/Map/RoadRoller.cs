@@ -2622,7 +2622,7 @@ namespace ACNHPokerCore
 
         private void RefreshBtn_Click(object sender, EventArgs e)
         {
-            Thread LoadThread = new(delegate () { FetchMap(); });
+            Thread LoadThread = new(FetchMap);
             LoadThread.Start();
         }
 

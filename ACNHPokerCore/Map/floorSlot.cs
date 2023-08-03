@@ -77,7 +77,7 @@ namespace ACNHPokerCore
         public FloorSlot()
         {
             if (File.Exists(Utilities.RecipeOverlayPath))
-                recipe = Image.FromFile(Utilities.RecipeOverlayPath);
+                recipe = ImageCacher.GetImage(Utilities.RecipeOverlayPath);
 
             ItemName = "";
             Flag0 = "00";
@@ -433,9 +433,9 @@ namespace ACNHPokerCore
                     if (image1Path != "")
                     {
                         if (ItemID == 0xFFFD)
-                            topleft = (new Bitmap(Image.FromFile(image1Path), new Size((Width) / 3, (Height) / 3)));
+                            topleft = (new Bitmap(ImageCacher.GetImage(image1Path), new Size((Width) / 3, (Height) / 3)));
                         else
-                            topleft = (new Bitmap(Image.FromFile(image1Path), new Size((Width) / 2, (Height) / 2)));
+                            topleft = (new Bitmap(ImageCacher.GetImage(image1Path), new Size((Width) / 2, (Height) / 2)));
                     }
                     else if (ItemID != 0xFFFE)
                     {
@@ -448,9 +448,9 @@ namespace ACNHPokerCore
                     if (image2Path != "")
                     {
                         if (Part2 == 0x0000FFFD)
-                            bottomleft = (new Bitmap(Image.FromFile(image2Path), new Size((Width) / 3, (Height) / 3)));
+                            bottomleft = (new Bitmap(ImageCacher.GetImage(image2Path), new Size((Width) / 3, (Height) / 3)));
                         else
-                            bottomleft = (new Bitmap(Image.FromFile(image2Path), new Size((Width) / 2, (Height) / 2)));
+                            bottomleft = (new Bitmap(ImageCacher.GetImage(image2Path), new Size((Width) / 2, (Height) / 2)));
                     }
                     else if (Part2 != 0x0000FFFE)
                     {
@@ -463,9 +463,9 @@ namespace ACNHPokerCore
                     if (image3Path != "")
                     {
                         if (Part3 == 0x0000FFFD)
-                            topright = (new Bitmap(Image.FromFile(image3Path), new Size((Width) / 3, (Height) / 3)));
+                            topright = (new Bitmap(ImageCacher.GetImage(image3Path), new Size((Width) / 3, (Height) / 3)));
                         else
-                            topright = (new Bitmap(Image.FromFile(image3Path), new Size((Width) / 2, (Height) / 2)));
+                            topright = (new Bitmap(ImageCacher.GetImage(image3Path), new Size((Width) / 2, (Height) / 2)));
                     }
                     else if (Part3 != 0x0000FFFE)
                     {
@@ -478,9 +478,9 @@ namespace ACNHPokerCore
                     if (image4Path != "")
                     {
                         if (Part4 == 0x0000FFFD)
-                            bottomright = (new Bitmap(Image.FromFile(image4Path), new Size((Width) / 3, (Height) / 3)));
+                            bottomright = (new Bitmap(ImageCacher.GetImage(image4Path), new Size((Width) / 3, (Height) / 3)));
                         else
-                            bottomright = (new Bitmap(Image.FromFile(image4Path), new Size((Width) / 2, (Height) / 2)));
+                            bottomright = (new Bitmap(ImageCacher.GetImage(image4Path), new Size((Width) / 2, (Height) / 2)));
                     }
                     else if (Part4 != 0x0000FFFE)
                     {
@@ -518,7 +518,7 @@ namespace ACNHPokerCore
                     }
                     else if (ItemID == 0x16A2) // recipe
                     {
-                        Image background = Image.FromFile(image1Path);
+                        Image background = ImageCacher.GetImage(image1Path);
                         int imageSize = (int)(background.Width * recipeMultiplier);
                         Image icon = (new Bitmap(recipe, new Size(imageSize, imageSize)));
 
@@ -529,22 +529,22 @@ namespace ACNHPokerCore
                     {
                         if (File.Exists(containItemPath))
                         {
-                            Image background = Image.FromFile(image1Path);
+                            Image background = ImageCacher.GetImage(image1Path);
                             int imageSize = (int)(background.Width * wallMultiplier);
-                            Image icon = (new Bitmap(Image.FromFile(containItemPath), new Size(imageSize, imageSize)));
+                            Image icon = (new Bitmap(ImageCacher.GetImage(containItemPath), new Size(imageSize, imageSize)));
 
                             Image img = PlaceImageOverImage(background, icon, background.Width - (imageSize - 5), background.Width - (imageSize - 5), 1);
                             return new Bitmap(img, size);
                         }
                         else
                         {
-                            Image img = Image.FromFile(image1Path);
+                            Image img = ImageCacher.GetImage(image1Path);
                             return new Bitmap(img, size);
                         }
                     }
                     else if (image1Path != "")
                     {
-                        Image img = Image.FromFile(image1Path);
+                        Image img = ImageCacher.GetImage(image1Path);
                         return new Bitmap(img, size);
                     }
                     else

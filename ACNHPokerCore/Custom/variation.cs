@@ -125,7 +125,7 @@ namespace ACNHPokerCore
                     string path = imgPath + furnitureGridView.Rows[e.RowIndex].Cells[1].Value.ToString() + @"\" + removeSpace(furnitureGridView.Rows[e.RowIndex].Cells[4].Value.ToString()) + ".png";
                     if (File.Exists(path))
                     {
-                        Image img = Image.FromFile(path);
+                        Image img = ImageCacher.GetImage(path);
                         e.Value = img;
                         return;
                     }
@@ -133,7 +133,7 @@ namespace ACNHPokerCore
                     path = imgPath + furnitureGridView.Rows[e.RowIndex].Cells[1].Value.ToString() + @"\" + removeSpace(furnitureGridView.Rows[e.RowIndex].Cells[4].Value.ToString()) + "_0_0" + ".png";
                     if (File.Exists(path))
                     {
-                        Image img = Image.FromFile(path);
+                        Image img = ImageCacher.GetImage(path);
                         e.Value = img;
                         return;
                     }

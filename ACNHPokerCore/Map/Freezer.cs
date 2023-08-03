@@ -865,7 +865,7 @@ namespace ACNHPokerCore
 
         private void freezeAllVillagerBtn_Click(object sender, EventArgs e)
         {
-            Thread FreezeAllVillagerThread = new(delegate () { FreezeAllVillager(); });
+            Thread FreezeAllVillagerThread = new(FreezeAllVillager);
             FreezeAllVillagerThread.Start();
 
         }

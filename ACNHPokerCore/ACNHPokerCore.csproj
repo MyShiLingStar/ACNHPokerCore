@@ -55,8 +55,9 @@
     <PackageReference Include="AutoCompleteMenu-ScintillaNET" Version="2.1.0" />
     <PackageReference Include="DotNetZip" Version="1.16.0" />
     <PackageReference Include="LibUsbDotNet" Version="2.2.29" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0-preview.5.23280.8" />
-    <PackageReference Include="Microsoft.NETCore.Platforms" Version="8.0.0-preview.5.23280.8" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.0-preview.6.23329.7" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0-preview.6.23329.7" />
+    <PackageReference Include="Microsoft.NETCore.Platforms" Version="8.0.0-preview.6.23329.7" />
     <PackageReference Include="NAudio" Version="2.1.0" />
     <PackageReference Include="WinFormsToggleSwitch" Version="1.1.0" />
   </ItemGroup>

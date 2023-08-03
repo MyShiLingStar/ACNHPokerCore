@@ -1033,7 +1033,7 @@ namespace ACNHPokerCore
                 string path = Main.GetImagePathFromID(CurrentOrder.Id, Convert.ToUInt32("0x" + Utilities.PrecedingZeros(CurrentOrder.Count, 8), 16));
                 if (File.Exists(path))
                 {
-                    Image image = Image.FromFile(path);
+                    Image image = ImageCacher.GetImage(path);
                     itemDisplay.SetItemdisplay(image);
                 }
             }

@@ -353,6 +353,8 @@ namespace ACNHPokerCore
             PokeButton = new System.Windows.Forms.Button();
             FillButton = new System.Windows.Forms.Button();
             ChaseTimer = new System.Windows.Forms.Timer(components);
+            CacheButton = new System.Windows.Forms.Button();
+            CacheImage = new System.Windows.Forms.PictureBox();
             VillagerAutoCompleteMenu = new AutocompleteMenuNS.AutocompleteMenu();
             AlwaysOnControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)IPAddressInputBackground).BeginInit();
@@ -391,6 +393,7 @@ namespace ACNHPokerCore
             VillagerNowLoadingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)VillagerNowLoadingImage).BeginInit();
             VillagerControlPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)CacheImage).BeginInit();
             SuspendLayout();
             // 
             // VillagerAutoCompleteMenu
@@ -5398,11 +5401,37 @@ namespace ACNHPokerCore
             ChaseTimer.Interval = 1000;
             ChaseTimer.Tick += ChaseTimer_Tick;
             // 
+            // CacheButton
+            // 
+            CacheButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            CacheButton.FlatAppearance.BorderSize = 0;
+            CacheButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            CacheButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            CacheButton.ForeColor = System.Drawing.Color.White;
+            CacheButton.Location = new System.Drawing.Point(1059, 617);
+            CacheButton.Name = "CacheButton";
+            CacheButton.Size = new System.Drawing.Size(79, 55);
+            CacheButton.TabIndex = 51;
+            CacheButton.Tag = "";
+            CacheButton.Text = "Cache";
+            CacheButton.UseVisualStyleBackColor = false;
+            CacheButton.Click += CacheButton_Click;
+            // 
+            // CacheImage
+            // 
+            CacheImage.Location = new System.Drawing.Point(1059, 678);
+            CacheImage.Name = "CacheImage";
+            CacheImage.Size = new System.Drawing.Size(128, 128);
+            CacheImage.TabIndex = 52;
+            CacheImage.TabStop = false;
+            // 
             // Main
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
             ClientSize = new System.Drawing.Size(1204, 516);
+            Controls.Add(CacheImage);
+            Controls.Add(CacheButton);
             Controls.Add(FillButton);
             Controls.Add(FullPeekResult5);
             Controls.Add(FullPeekResult4);
@@ -5486,6 +5515,7 @@ namespace ACNHPokerCore
             VillagerNowLoadingPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)VillagerNowLoadingImage).EndInit();
             VillagerControlPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)CacheImage).EndInit();
             ResumeLayout(false);
         }
 
@@ -5813,5 +5843,7 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Label AirportColorLabel;
         private System.Windows.Forms.ComboBox AirportColor;
         private System.Windows.Forms.Button SetAirportColorBtn;
+        private System.Windows.Forms.Button CacheButton;
+        private System.Windows.Forms.PictureBox CacheImage;
     }
 }

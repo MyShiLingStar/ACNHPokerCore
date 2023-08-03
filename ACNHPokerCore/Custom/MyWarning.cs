@@ -10,11 +10,13 @@ namespace ACNHPokerCore
     public partial class MyWarning : Form
     {
         readonly Socket socket;
+        readonly USBBot usb;
         readonly bool sound;
         readonly MiniMap map;
-        public MyWarning(Socket S, bool Sound, MiniMap Map)
+        public MyWarning(Socket S, USBBot USB, bool Sound, MiniMap Map)
         {
             socket = S;
+            usb = USB;
             sound = Sound;
             map = Map;
             InitializeComponent();
@@ -35,7 +37,7 @@ namespace ACNHPokerCore
             answerBox.Enabled = false;
             PleaseWaitPanel.Visible = true;
 
-            Thread FlattenThread = new(delegate () { FlattenTerrain(); });
+            Thread FlattenThread = new(FlattenTerrain);
             FlattenThread.Start();
         }
 
@@ -43,7 +45,7 @@ namespace ACNHPokerCore
         {
             SaveFileDialog file = new();
 
-            byte[] CurrentTerrainData = Utilities.GetTerrain(socket, null);
+            byte[] CurrentTerrainData = Utilities.GetTerrain(socket, usb);
 
             DateTime localDate = DateTime.Now;
             var culture = new CultureInfo("en-US");
@@ -52,7 +54,7 @@ namespace ACNHPokerCore
 
             int counter = 0;
 
-            while (Utilities.IsAboutToSave(socket, null, 10))
+            while (Utilities.IsAboutToSave(socket, usb, 10))
             {
                 if (counter > 15)
                     break;
@@ -71,7 +73,7 @@ namespace ACNHPokerCore
 
             map.UpdateTerrain(EmptyTerrainData);
 
-            Utilities.SendTerrain(socket, null, EmptyTerrainData, ref counter);
+            Utilities.SendTerrain(socket, usb, EmptyTerrainData, ref counter);
 
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();

@@ -25,7 +25,7 @@ namespace ACNHPokerCore
                 string[] lines = Items[e.Index].ToString()?.Split(new[] { " " }, StringSplitOptions.None);
                 Image img;
                 if (lines != null && File.Exists(Utilities.GetVillagerImage(lines[lines.Length - 1])))
-                    img = Image.FromFile(Utilities.GetVillagerImage(lines[lines.Length - 1]));
+                    img = ImageCacher.GetImage(Utilities.GetVillagerImage(lines[lines.Length - 1]));
                 else
                     img = new Bitmap(Properties.Resources.Leaf, new Size(60, 60));
                 // Draw the colored 16 x 16 square

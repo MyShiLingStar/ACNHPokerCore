@@ -1811,7 +1811,7 @@ namespace ACNHPokerCore
             if (File.Exists(ImagePath))
             {
                 BridgeImage.Visible = true;
-                Image image = new Bitmap(Image.FromFile(ImagePath), new Size(BridgeImage.Width, BridgeImage.Height));
+                Image image = new Bitmap(ImageCacher.GetImage(ImagePath), new Size(BridgeImage.Width, BridgeImage.Height));
                 switch (angle)
                 {
                     case 0:
@@ -1833,7 +1833,7 @@ namespace ACNHPokerCore
 
         private void FlattenAllBtn_Click(object sender, EventArgs e)
         {
-            MyWarning flattenWarning = new(s, sound, MiniMap);
+            MyWarning flattenWarning = new(s, usb, sound, MiniMap);
             flattenWarning.ShowDialog();
             miniMapBox.BackgroundImage = MiniMap.CombineMap(MiniMap.DrawFullBackground(), MiniMap.DrawEdge());
             miniMapBox.Image = null;
@@ -1849,7 +1849,7 @@ namespace ACNHPokerCore
                 TerrainBtn.Visible = false;
                 terrainPanel.Visible = false;
 
-                Thread RemoveRoadThread = new(delegate () { RemoveRoad(); });
+                Thread RemoveRoadThread = new(RemoveRoad);
                 RemoveRoadThread.Start();
             }
         }
@@ -1910,7 +1910,7 @@ namespace ACNHPokerCore
                 TerrainBtn.Visible = false;
                 terrainPanel.Visible = false;
 
-                Thread RemoveDesignThread = new(delegate () { RemoveDesign(); });
+                Thread RemoveDesignThread = new(RemoveDesign);
                 RemoveDesignThread.Start();
             }
         }

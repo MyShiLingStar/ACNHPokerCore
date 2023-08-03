@@ -272,6 +272,25 @@ namespace ACNHPokerCore
             }
         }
 
+        public byte[] ReadBytesMain(uint offset, int length)
+        {
+            if (length > MaximumTransferSize)
+                return ReadBytesLarge(offset, length);
+            lock (_sync)
+            {
+                var cmd = PeekMain(offset, length);
+                SendInternal(cmd);
+
+                // give it time to push data back
+                Thread.Sleep((length / 256));
+
+                var buffer = new byte[length];
+                var _ = ReadInternal(buffer);
+                //return Decoder.ConvertHexByteStringToBytes(buffer);
+                return buffer;
+            }
+        }
+
         public void SendBytes(byte[] encodeData)
         {
             lock (_sync)

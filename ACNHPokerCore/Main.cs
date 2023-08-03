@@ -1,4 +1,7 @@
-﻿using NAudio.Wave;
+﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using NAudio.Wave;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -81,6 +84,7 @@ namespace ACNHPokerCore
         private bool connecting = false;
         public bool sound = true;
         public bool capturesetting = false;
+        private bool init = true;
         private static string languageSetting = "eng";
 
         private const string insectAppearFileName = @"InsectAppearParam.bin";
@@ -116,6 +120,11 @@ namespace ACNHPokerCore
         public Main()
         {
             InitializeComponent();
+
+            IHost host = Host.CreateDefaultBuilder().ConfigureServices(services => services.AddMemoryCache()).Build();
+            IMemoryCache cache = host.Services.GetRequiredService<IMemoryCache>();
+
+            ImageCacher.setup(cache);
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -144,7 +153,8 @@ namespace ACNHPokerCore
             {
                 capturesetting = false;
             }
-            else {
+            else
+            {
                 capturesetting = true;
             }
             setting = new Setting(overrideSetting, validation, sound, capturesetting);
@@ -605,7 +615,7 @@ namespace ACNHPokerCore
                 path = Utilities.imagePath + OverrideDict[imageName] + ".png";
                 if (File.Exists(path))
                 {
-                    Image img = Image.FromFile(path);
+                    Image img = ImageCacher.GetImage(path);
                     //e.CellStyle.BackColor = Color.Green;
                     e.Value = img;
 
@@ -616,7 +626,7 @@ namespace ACNHPokerCore
             path = Utilities.imagePath + imageName + "_Remake_0_0.png";
             if (File.Exists(path))
             {
-                Image img = Image.FromFile(path);
+                Image img = ImageCacher.GetImage(path);
                 e.CellStyle.BackColor = Color.FromArgb(56, 77, 162);
                 e.Value = img;
             }
@@ -625,7 +635,7 @@ namespace ACNHPokerCore
                 path = Utilities.imagePath + RemoveNumber(imageName) + ".png";
                 if (File.Exists(path))
                 {
-                    Image img = Image.FromFile(path);
+                    Image img = ImageCacher.GetImage(path);
                     e.Value = img;
                 }
                 else
@@ -633,7 +643,7 @@ namespace ACNHPokerCore
                     path = Utilities.imagePath + imageName + ".png";
                     if (File.Exists(path))
                     {
-                        Image img = Image.FromFile(path);
+                        Image img = ImageCacher.GetImage(path);
                         e.Value = img;
                     }
                     else
@@ -1081,7 +1091,7 @@ namespace ACNHPokerCore
             {
                 MyLog.LogEvent("MainForm", "EasterEgg Started");
 
-                Thread songThread = new(delegate () { Egg(); });
+                Thread songThread = new(Egg);
                 songThread.Start();
             }
             else
@@ -1329,6 +1339,7 @@ namespace ACNHPokerCore
                                 UpdateTurnipPrices();
                                 ReadWeatherSeed();
                                 ReadAirportColor();
+                                readActivatedCheat();
 
                                 currentGridView = InsectGridView;
 
@@ -1349,6 +1360,7 @@ namespace ACNHPokerCore
                                     Utilities.SendString(socket, Utilities.UnFreeze(Utilities.ItemSlotBase));
                                     Utilities.SendString(socket, Utilities.UnFreeze(Utilities.ItemSlot21Base));
                                 }
+                                init = false;
                             });
 
                             MyLog.LogEvent("MainForm", "Data Reading Ended");
@@ -1415,6 +1427,7 @@ namespace ACNHPokerCore
 
                 Text = version;
                 HidePagination();
+                init = true;
             }
         }
 
@@ -2465,7 +2478,7 @@ namespace ACNHPokerCore
 
         private void UnwrapAllItemsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Thread unwrapAllThread = new(delegate () { UnwrapAll(); });
+            Thread unwrapAllThread = new(UnwrapAll);
             unwrapAllThread.Start();
         }
 
@@ -3736,7 +3749,7 @@ namespace ACNHPokerCore
                         path = Utilities.imagePath + OverrideDict[imageName] + ".png";
                         if (File.Exists(path))
                         {
-                            Image img = Image.FromFile(path);
+                            Image img = ImageCacher.GetImage(path);
                             //e.CellStyle.BackColor = Color.Green;
                             e.Value = img;
 
@@ -3747,7 +3760,7 @@ namespace ACNHPokerCore
                     path = Utilities.imagePath + imageName + ".png";
                     if (File.Exists(path))
                     {
-                        Image img = Image.FromFile(path);
+                        Image img = ImageCacher.GetImage(path);
                         e.Value = img;
                     }
                     else
@@ -3755,7 +3768,7 @@ namespace ACNHPokerCore
                         path = Utilities.imagePath + imageName + "_Remake_0_0.png";
                         if (File.Exists(path))
                         {
-                            Image img = Image.FromFile(path);
+                            Image img = ImageCacher.GetImage(path);
                             e.CellStyle.BackColor = Color.FromArgb(56, 77, 162);
                             e.Value = img;
                         }
@@ -3801,7 +3814,7 @@ namespace ACNHPokerCore
                         string path = Utilities.imagePath + OverrideDict[imageName] + ".png";
                         if (File.Exists(path))
                         {
-                            Image img = Image.FromFile(path);
+                            Image img = ImageCacher.GetImage(path);
                             //e.CellStyle.BackColor = Color.Green;
                             e.Value = img;
                         }
@@ -3848,7 +3861,7 @@ namespace ACNHPokerCore
                         path = Utilities.imagePath + OverrideDict[imageName] + ".png";
                         if (File.Exists(path))
                         {
-                            Image img = Image.FromFile(path);
+                            Image img = ImageCacher.GetImage(path);
                             //e.CellStyle.BackColor = Color.Green;
                             e.Value = img;
 
@@ -3859,7 +3872,7 @@ namespace ACNHPokerCore
                     path = Utilities.imagePath + imageName + ".png";
                     if (File.Exists(path))
                     {
-                        Image img = Image.FromFile(path);
+                        Image img = ImageCacher.GetImage(path);
                         e.Value = img;
                     }
                     else
@@ -3867,7 +3880,7 @@ namespace ACNHPokerCore
                         path = Utilities.imagePath + imageName + "_Remake_0_0.png";
                         if (File.Exists(path))
                         {
-                            Image img = Image.FromFile(path);
+                            Image img = ImageCacher.GetImage(path);
                             e.CellStyle.BackColor = Color.FromArgb(56, 77, 162);
                             e.Value = img;
                         }
@@ -3876,7 +3889,7 @@ namespace ACNHPokerCore
                             path = Utilities.imagePath + RemoveNumber(imageName) + ".png";
                             if (File.Exists(path))
                             {
-                                Image img = Image.FromFile(path);
+                                Image img = ImageCacher.GetImage(path);
                                 e.Value = img;
                             }
                             else
@@ -4588,13 +4601,18 @@ namespace ACNHPokerCore
                 System.Media.SystemSounds.Asterisk.Play();
         }
 
+        private void ButtonSelected(Button selected, Button[] NotSelected)
+        {
+            selected.BackColor = Color.FromArgb(80, 80, 255);
+            foreach (Button b in NotSelected)
+            {
+                b.BackColor = Color.FromArgb(114, 137, 218);
+            }
+        }
+
         private void MaxSpeedX1Btn_Click(object sender, EventArgs e)
         {
-            maxSpeedX1Btn.BackColor = Color.FromArgb(80, 80, 255);
-            maxSpeedX2Btn.BackColor = Color.FromArgb(114, 137, 218);
-            maxSpeedX3Btn.BackColor = Color.FromArgb(114, 137, 218);
-            maxSpeedX5Btn.BackColor = Color.FromArgb(114, 137, 218);
-            maxSpeedX100Btn.BackColor = Color.FromArgb(114, 137, 218);
+            ButtonSelected(maxSpeedX1Btn, new Button[] { maxSpeedX2Btn, maxSpeedX3Btn, maxSpeedX5Btn, maxSpeedX100Btn });
 
             Utilities.PokeAddress(socket, usb, Utilities.MaxSpeedAddress.ToString("X"), Utilities.MaxSpeedX1);
             if (sound)
@@ -4603,11 +4621,7 @@ namespace ACNHPokerCore
 
         private void MaxSpeedX2Btn_Click(object sender, EventArgs e)
         {
-            maxSpeedX1Btn.BackColor = Color.FromArgb(114, 137, 218);
-            maxSpeedX2Btn.BackColor = Color.FromArgb(80, 80, 255);
-            maxSpeedX3Btn.BackColor = Color.FromArgb(114, 137, 218);
-            maxSpeedX5Btn.BackColor = Color.FromArgb(114, 137, 218);
-            maxSpeedX100Btn.BackColor = Color.FromArgb(114, 137, 218);
+            ButtonSelected(maxSpeedX2Btn, new Button[] { maxSpeedX1Btn, maxSpeedX3Btn, maxSpeedX5Btn, maxSpeedX100Btn });
 
             Utilities.PokeAddress(socket, usb, Utilities.MaxSpeedAddress.ToString("X"), Utilities.MaxSpeedX2);
             if (sound)
@@ -4616,11 +4630,7 @@ namespace ACNHPokerCore
 
         private void MaxSpeedX3Btn_Click(object sender, EventArgs e)
         {
-            maxSpeedX1Btn.BackColor = Color.FromArgb(114, 137, 218);
-            maxSpeedX2Btn.BackColor = Color.FromArgb(114, 137, 218);
-            maxSpeedX3Btn.BackColor = Color.FromArgb(80, 80, 255);
-            maxSpeedX5Btn.BackColor = Color.FromArgb(114, 137, 218);
-            maxSpeedX100Btn.BackColor = Color.FromArgb(114, 137, 218);
+            ButtonSelected(maxSpeedX3Btn, new Button[] { maxSpeedX2Btn, maxSpeedX1Btn, maxSpeedX5Btn, maxSpeedX100Btn });
 
             Utilities.PokeAddress(socket, usb, Utilities.MaxSpeedAddress.ToString("X"), Utilities.MaxSpeedX3);
             if (sound)
@@ -4629,11 +4639,7 @@ namespace ACNHPokerCore
 
         private void MaxSpeedX5Btn_Click(object sender, EventArgs e)
         {
-            maxSpeedX1Btn.BackColor = Color.FromArgb(114, 137, 218);
-            maxSpeedX2Btn.BackColor = Color.FromArgb(114, 137, 218);
-            maxSpeedX3Btn.BackColor = Color.FromArgb(114, 137, 218);
-            maxSpeedX5Btn.BackColor = Color.FromArgb(80, 80, 255);
-            maxSpeedX100Btn.BackColor = Color.FromArgb(114, 137, 218);
+            ButtonSelected(maxSpeedX5Btn, new Button[] { maxSpeedX2Btn, maxSpeedX3Btn, maxSpeedX1Btn, maxSpeedX100Btn });
 
             Utilities.PokeAddress(socket, usb, Utilities.MaxSpeedAddress.ToString("X"), Utilities.MaxSpeedX5);
             if (sound)
@@ -4642,11 +4648,7 @@ namespace ACNHPokerCore
 
         private void MaxSpeedX100Btn_Click(object sender, EventArgs e)
         {
-            maxSpeedX1Btn.BackColor = Color.FromArgb(114, 137, 218);
-            maxSpeedX2Btn.BackColor = Color.FromArgb(114, 137, 218);
-            maxSpeedX3Btn.BackColor = Color.FromArgb(114, 137, 218);
-            maxSpeedX5Btn.BackColor = Color.FromArgb(114, 137, 218);
-            maxSpeedX100Btn.BackColor = Color.FromArgb(80, 80, 255);
+            ButtonSelected(maxSpeedX100Btn, new Button[] { maxSpeedX2Btn, maxSpeedX3Btn, maxSpeedX5Btn, maxSpeedX1Btn });
 
             Utilities.PokeAddress(socket, usb, Utilities.MaxSpeedAddress.ToString("X"), Utilities.MaxSpeedX100);
             if (sound)
@@ -4655,6 +4657,7 @@ namespace ACNHPokerCore
 
         private void DisableCollisionToggle_CheckedChanged(object sender, EventArgs e)
         {
+            if (init) return;
             if (DisableCollisionToggle.Checked)
             {
                 Utilities.PokeMainAddress(socket, usb, Utilities.CollisionAddress.ToString("X"), Utilities.CollisionDisable);
@@ -4669,6 +4672,7 @@ namespace ACNHPokerCore
 
         private void FastSwimToggle_CheckedChanged(object sender, EventArgs e)
         {
+            if (init) return;
             if (FastSwimToggle.Checked)
             {
                 Utilities.SetFastSwimSpeed(socket, usb, true);
@@ -4683,11 +4687,7 @@ namespace ACNHPokerCore
 
         private void AnimationSpeedx50_Click(object sender, EventArgs e)
         {
-            animationSpeedx1.BackColor = Color.FromArgb(114, 137, 218);
-            animationSpeedx2.BackColor = Color.FromArgb(114, 137, 218);
-            animationSpeedx0_1.BackColor = Color.FromArgb(114, 137, 218);
-            animationSpeedx50.BackColor = Color.FromArgb(80, 80, 255);
-            animationSpeedx5.BackColor = Color.FromArgb(114, 137, 218);
+            ButtonSelected(animationSpeedx50, new Button[] { animationSpeedx1, animationSpeedx2, animationSpeedx0_1, animationSpeedx5 });
 
             Utilities.PokeMainAddress(socket, usb, Utilities.aSpeedAddress.ToString("X"), Utilities.aSpeedX50);
             if (sound)
@@ -4696,11 +4696,7 @@ namespace ACNHPokerCore
 
         private void AnimationSpeedx5_Click(object sender, EventArgs e)
         {
-            animationSpeedx1.BackColor = Color.FromArgb(114, 137, 218);
-            animationSpeedx2.BackColor = Color.FromArgb(114, 137, 218);
-            animationSpeedx0_1.BackColor = Color.FromArgb(114, 137, 218);
-            animationSpeedx50.BackColor = Color.FromArgb(114, 137, 218);
-            animationSpeedx5.BackColor = Color.FromArgb(80, 80, 255);
+            ButtonSelected(animationSpeedx5, new Button[] { animationSpeedx1, animationSpeedx2, animationSpeedx0_1, animationSpeedx50 });
 
             Utilities.PokeMainAddress(socket, usb, Utilities.aSpeedAddress.ToString("X"), Utilities.aSpeedX5);
             if (sound)
@@ -4709,11 +4705,7 @@ namespace ACNHPokerCore
 
         private void AnimationSpeedx2_Click(object sender, EventArgs e)
         {
-            animationSpeedx1.BackColor = Color.FromArgb(114, 137, 218);
-            animationSpeedx2.BackColor = Color.FromArgb(80, 80, 255);
-            animationSpeedx0_1.BackColor = Color.FromArgb(114, 137, 218);
-            animationSpeedx50.BackColor = Color.FromArgb(114, 137, 218);
-            animationSpeedx5.BackColor = Color.FromArgb(114, 137, 218);
+            ButtonSelected(animationSpeedx2, new Button[] { animationSpeedx1, animationSpeedx50, animationSpeedx0_1, animationSpeedx5 });
 
             Utilities.PokeMainAddress(socket, usb, Utilities.aSpeedAddress.ToString("X"), Utilities.aSpeedX2);
             if (sound)
@@ -4722,11 +4714,7 @@ namespace ACNHPokerCore
 
         private void AnimationSpeedx0_1_Click(object sender, EventArgs e)
         {
-            animationSpeedx1.BackColor = Color.FromArgb(114, 137, 218);
-            animationSpeedx2.BackColor = Color.FromArgb(114, 137, 218);
-            animationSpeedx0_1.BackColor = Color.FromArgb(80, 80, 255);
-            animationSpeedx50.BackColor = Color.FromArgb(114, 137, 218);
-            animationSpeedx5.BackColor = Color.FromArgb(114, 137, 218);
+            ButtonSelected(animationSpeedx0_1, new Button[] { animationSpeedx1, animationSpeedx2, animationSpeedx50, animationSpeedx5 });
 
             Utilities.PokeMainAddress(socket, usb, Utilities.aSpeedAddress.ToString("X"), Utilities.aSpeedX01);
             if (sound)
@@ -4735,15 +4723,51 @@ namespace ACNHPokerCore
 
         private void AnimationSpeedx1_Click(object sender, EventArgs e)
         {
-            animationSpeedx1.BackColor = Color.FromArgb(80, 80, 255);
-            animationSpeedx2.BackColor = Color.FromArgb(114, 137, 218);
-            animationSpeedx0_1.BackColor = Color.FromArgb(114, 137, 218);
-            animationSpeedx50.BackColor = Color.FromArgb(114, 137, 218);
-            animationSpeedx5.BackColor = Color.FromArgb(114, 137, 218);
+            ButtonSelected(animationSpeedx1, new Button[] { animationSpeedx50, animationSpeedx2, animationSpeedx0_1, animationSpeedx5 });
 
             Utilities.PokeMainAddress(socket, usb, Utilities.aSpeedAddress.ToString("X"), Utilities.aSpeedX1);
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
+        }
+
+        private void readActivatedCheat()
+        {
+            string MaxSpeed = Utilities.ByteToHexString(Utilities.PeekAddress(socket, usb, Utilities.MaxSpeedAddress, 4));
+            string SwimSpeed = Utilities.ByteToHexString(Utilities.PeekAddress(socket, usb, Utilities.SwimSpeed, 4));
+            string Collision = Utilities.Flip(Utilities.ByteToHexString(Utilities.PeekMainAddress(socket, usb, Utilities.CollisionAddress, 4)));
+            string AnimationSpeed = Utilities.Flip(Utilities.ByteToHexString(Utilities.PeekMainAddress(socket, usb, Utilities.aSpeedAddress, 4)));
+            string Magic = Utilities.Flip(Utilities.ByteToHexString(Utilities.PeekMainAddress(socket, usb, Utilities.MagicAddress, 4)));
+
+            if (MaxSpeed.Equals(Utilities.MaxSpeedX1))
+            { }
+            else if (MaxSpeed.Equals(Utilities.MaxSpeedX2))
+            { ButtonSelected(maxSpeedX2Btn, new Button[] { maxSpeedX1Btn, maxSpeedX3Btn, maxSpeedX5Btn, maxSpeedX100Btn }); }
+            else if (MaxSpeed.Equals(Utilities.MaxSpeedX3))
+            { ButtonSelected(maxSpeedX3Btn, new Button[] { maxSpeedX2Btn, maxSpeedX1Btn, maxSpeedX5Btn, maxSpeedX100Btn }); }
+            else if (MaxSpeed.Equals(Utilities.MaxSpeedX5))
+            { ButtonSelected(maxSpeedX5Btn, new Button[] { maxSpeedX2Btn, maxSpeedX3Btn, maxSpeedX1Btn, maxSpeedX100Btn }); }
+            else if (MaxSpeed.Equals(Utilities.MaxSpeedX100))
+            { ButtonSelected(maxSpeedX100Btn, new Button[] { maxSpeedX2Btn, maxSpeedX3Btn, maxSpeedX5Btn, maxSpeedX1Btn }); }
+
+            if (AnimationSpeed.Equals(Utilities.aSpeedX1))
+            { }
+            else if (AnimationSpeed.Equals(Utilities.aSpeedX2))
+            { ButtonSelected(animationSpeedx2, new Button[] { animationSpeedx50, animationSpeedx1, animationSpeedx0_1, animationSpeedx5 }); }
+            else if (AnimationSpeed.Equals(Utilities.aSpeedX5))
+            { ButtonSelected(animationSpeedx5, new Button[] { animationSpeedx50, animationSpeedx2, animationSpeedx0_1, animationSpeedx1 }); }
+            else if (AnimationSpeed.Equals(Utilities.aSpeedX50))
+            { ButtonSelected(animationSpeedx50, new Button[] { animationSpeedx1, animationSpeedx2, animationSpeedx0_1, animationSpeedx5 }); }
+            else if (AnimationSpeed.Equals(Utilities.aSpeedX01))
+            { ButtonSelected(animationSpeedx0_1, new Button[] { animationSpeedx50, animationSpeedx2, animationSpeedx1, animationSpeedx5 }); }
+
+            if (SwimSpeed.Equals(Utilities.FastSwimSpeed))
+            { FastSwimToggle.Checked = true; }
+
+            if (Collision.Equals(Utilities.CollisionDisable))
+            { DisableCollisionToggle.Checked = true; }
+
+            if (Magic.Equals(Utilities.MagicOn))
+            { StarFragmentToggle.Checked = true; }
         }
 
         #endregion
@@ -5525,8 +5549,7 @@ namespace ACNHPokerCore
             string imagePath = GetImagePathFromID(id, itemSource);
             if (imagePath != "")
             {
-                Image image = Image.FromFile(imagePath);
-                e.Value = image;
+                e.Value = ImageCacher.GetImage(imagePath);
             }
         }
 
@@ -6322,7 +6345,7 @@ namespace ACNHPokerCore
         {
             DisableBtn();
 
-            Thread readThread = new(delegate () { ReadData(); });
+            Thread readThread = new(ReadData);
             readThread.Start();
 
         }
@@ -6459,7 +6482,7 @@ namespace ACNHPokerCore
                     {
                         string path = Utilities.GetVillagerImage(V[i].GetRealName());
                         if (!path.Equals(string.Empty))
-                            img = Image.FromFile(path);
+                            img = ImageCacher.GetImage(path);
                         else
                             img = new Bitmap(Properties.Resources.Leaf, new Size(110, 110));
                     }
@@ -6467,7 +6490,7 @@ namespace ACNHPokerCore
                     {
                         string path = Utilities.GetVillagerImage(V[i].GetInternalName());
                         if (!path.Equals(string.Empty))
-                            img = Image.FromFile(path);
+                            img = ImageCacher.GetImage(path);
                         else
                             img = new Bitmap(Properties.Resources.Leaf, new Size(110, 110));
                     }
@@ -6643,7 +6666,7 @@ namespace ACNHPokerCore
                 {
                     string path = Utilities.GetVillagerImage(V[j].GetRealName());
                     if (!path.Equals(string.Empty))
-                        img = Image.FromFile(path);
+                        img = ImageCacher.GetImage(path);
                     else
                         img = new Bitmap(Properties.Resources.Leaf, new Size(110, 110));
                 }
@@ -6651,7 +6674,7 @@ namespace ACNHPokerCore
                 {
                     string path = Utilities.GetVillagerImage(V[j].GetInternalName());
                     if (!path.Equals(string.Empty))
-                        img = Image.FromFile(path);
+                        img = ImageCacher.GetImage(path);
                     else
                         img = new Bitmap(Properties.Resources.Leaf, new Size(110, 110));
                 }
@@ -6735,7 +6758,7 @@ namespace ACNHPokerCore
                     VillagerLargePanel.Controls.Remove(villagerButton[i]);
             }
 
-            Thread loadAllVillagerThread = new(delegate () { LoadAllVillager(); });
+            Thread loadAllVillagerThread = new(LoadAllVillager);
             loadAllVillagerThread.Start();
         }
 
@@ -6757,7 +6780,7 @@ namespace ACNHPokerCore
             }
 
             if (!path.Equals(string.Empty))
-                img = Image.FromFile(path);
+                img = ImageCacher.GetImage(path);
             else
                 img = new Bitmap(Properties.Resources.Leaf, new Size(128, 128));
 
@@ -7378,7 +7401,7 @@ namespace ACNHPokerCore
             {
                 string path = Utilities.GetVillagerImage(RealName);
                 if (!path.Equals(string.Empty))
-                    img = Image.FromFile(path);
+                    img = ImageCacher.GetImage(path);
                 else
                     img = new Bitmap(Properties.Resources.Leaf, new Size(110, 110));
                 MysVillagerDisplay.Text = "";
@@ -7387,7 +7410,7 @@ namespace ACNHPokerCore
             {
                 string path = Utilities.GetVillagerImage(StrName);
                 if (!path.Equals(string.Empty))
-                    img = Image.FromFile(path);
+                    img = ImageCacher.GetImage(path);
                 else
                     img = new Bitmap(Properties.Resources.Leaf, new Size(110, 110));
                 MysVillagerDisplay.Text = RealName + " : " + StrName;
@@ -7414,7 +7437,7 @@ namespace ACNHPokerCore
                 Image img;
                 string path = Utilities.GetVillagerImage(lines[lines.Length - 1]);
                 if (!path.Equals(String.Empty))
-                    img = Image.FromFile(path);
+                    img = ImageCacher.GetImage(path);
                 else
                     img = new Bitmap(Properties.Resources.Leaf, new Size(110, 110));
                 MysVillagerDisplay.Text = lines[0] + " : " + lines[lines.Length - 1];
@@ -8215,7 +8238,8 @@ namespace ACNHPokerCore
                     StartConnectionButton.Visible = false;
                     SettingButton.Visible = false;
 
-                    //this.BulldozerButton.Visible = true;
+                    //MapDropperButton.Visible = true;
+                    //BulldozerButton.Visible = true;
 
                     offline = false;
 
@@ -8229,6 +8253,7 @@ namespace ACNHPokerCore
                     UpdateTurnipPrices();
                     ReadWeatherSeed();
                     ReadAirportColor();
+
 
                     IPAddressInputBox.Visible = false;
                     IPAddressInputBackground.Visible = false;
@@ -8424,7 +8449,7 @@ namespace ACNHPokerCore
 
         private void CheckStateButton_Click(object sender, EventArgs e)
         {
-            Thread stateThread = new(delegate () { TryState(); });
+            Thread stateThread = new(TryState);
             stateThread.Start();
         }
         private static void TryState()
@@ -8444,6 +8469,7 @@ namespace ACNHPokerCore
 
         private void StarFragmentToggle_CheckedChanged(object sender, EventArgs e)
         {
+            if (init) return;
             if (StarFragmentToggle.Checked)
             {
                 byte[] b = Utilities.PeekMainAddress(socket, Utilities.MagicAddress.ToString("X"), 32);
@@ -8785,5 +8811,9 @@ namespace ACNHPokerCore
 
         #endregion
 
+        private void CacheButton_Click(object sender, EventArgs e)
+        {
+            CacheImage.Image = ImageCacher.GetImage(GetImagePathFromID(IDTextbox.Text, itemSource));
+        }
     }
 }

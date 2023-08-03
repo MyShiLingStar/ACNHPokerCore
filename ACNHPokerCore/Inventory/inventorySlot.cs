@@ -114,7 +114,7 @@ namespace ACNHPokerCore
             if (recipe == null)
             {
                 if (File.Exists(Utilities.RecipeOverlayPath))
-                    recipe = Image.FromFile(Utilities.RecipeOverlayPath);
+                    recipe = ImageCacher.GetImage(Utilities.RecipeOverlayPath);
             }
 
             if (large)
@@ -125,7 +125,7 @@ namespace ACNHPokerCore
                 }
                 else if (itemID == 0x16A2) //recipe
                 {
-                    Image background = Image.FromFile(imagePath);
+                    Image background = ImageCacher.GetImage(imagePath);
                     int imageSize = (int)(background.Width * 0.3);
 
                     if (recipe != null)
@@ -143,22 +143,22 @@ namespace ACNHPokerCore
                 {
                     if (File.Exists(containItemPath))
                     {
-                        Image background = Image.FromFile(imagePath);
+                        Image background = ImageCacher.GetImage(imagePath);
                         int imageSize = (int)(background.Width * 0.45);
-                        Image icon = (new Bitmap(Image.FromFile(containItemPath), new Size(imageSize, imageSize)));
+                        Image icon = (new Bitmap(ImageCacher.GetImage(containItemPath), new Size(imageSize, imageSize)));
 
                         Image img = PlaceImageOverImage(background, icon, background.Width - imageSize - 10, background.Width - imageSize - 10, 1);
                         return new Bitmap(img, new Size(128, 128));
                     }
                     else
                     {
-                        Image img = Image.FromFile(imagePath);
+                        Image img = ImageCacher.GetImage(imagePath);
                         return new Bitmap(img, new Size(128, 128));
                     }
                 }
                 else if (imagePath != "")
                 {
-                    Image img = Image.FromFile(imagePath);
+                    Image img = ImageCacher.GetImage(imagePath);
                     return new Bitmap(img, new Size(128, 128));
                 }
                 else
@@ -176,22 +176,22 @@ namespace ACNHPokerCore
                 {
                     if (File.Exists(containItemPath))
                     {
-                        Image background = Image.FromFile(imagePath);
+                        Image background = ImageCacher.GetImage(imagePath);
                         int imageSize = (int)(background.Width * 0.6);
-                        Image icon = (new Bitmap(Image.FromFile(containItemPath), new Size(imageSize, imageSize)));
+                        Image icon = (new Bitmap(ImageCacher.GetImage(containItemPath), new Size(imageSize, imageSize)));
 
                         Image img = PlaceImageOverImage(background, icon, background.Width - imageSize, background.Width - imageSize, 1);
                         return new Bitmap(img, new Size(64, 64));
                     }
                     else
                     {
-                        Image img = Image.FromFile(imagePath);
+                        Image img = ImageCacher.GetImage(imagePath);
                         return new Bitmap(img, new Size(64, 64));
                     }
                 }
                 else if (itemID == 0x16A2) // recipe
                 {
-                    Image background = Image.FromFile(imagePath);
+                    Image background = ImageCacher.GetImage(imagePath);
                     int imageSize = (int)(background.Width * 0.35);
                     if (recipe != null)
                     {
@@ -207,7 +207,7 @@ namespace ACNHPokerCore
                 }
                 else if (imagePath != "")
                 {
-                    Image img = Image.FromFile(imagePath);
+                    Image img = ImageCacher.GetImage(imagePath);
                     return new Bitmap(img, new Size(64, 64));
 
                 }
