@@ -19,6 +19,7 @@ namespace ACNHPokerCore
 
         public static Image GetImage(string pickedImagePath)
         {
+            if (pickedImagePath.Equals(string.Empty)) { return null; }
             if (File.Exists(pickedImagePath))
             {
                 m_memoryCache.TryGetValue(pickedImagePath, out m_imageObject);
@@ -31,7 +32,7 @@ namespace ACNHPokerCore
                     Image image = Image.FromFile(pickedImagePath);
                     m_imageObject = new ImageObject(pickedImagePath, image, ourFileDate);
 
-                    var memCacheEntryOptions = new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(300));
+                    var memCacheEntryOptions = new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(120)).SetAbsoluteExpiration(TimeSpan.FromSeconds(300));
 
                     m_memoryCache.Set(pickedImagePath, m_imageObject, memCacheEntryOptions);
 
@@ -46,7 +47,8 @@ namespace ACNHPokerCore
             }
             else
             {
-                throw new FileNotFoundException();
+                return null;
+                //throw new FileNotFoundException();
             }
         }
     }
