@@ -102,14 +102,6 @@ namespace ACNHPokerCore
                 maxBells = false;
                 maxBellsBox.Checked = false;
             }
-            if (maxBells == true)
-            {
-                maxBellsBox.Checked = true;
-            }
-            else {
-                maxBellsBox.Checked = false;
-            }
-
             
             if (Teleport.AllAnchorValid() || debugging)
             {
@@ -1366,6 +1358,7 @@ namespace ACNHPokerCore
                 {
                     maxBells = true;
                     config.AppSettings.Settings["AutoMaxBells"].Value = "true";
+                    config.Save(ConfigurationSaveMode.Minimal);
                     updateTurnipPriceHandler?.Invoke();
                 }
             }
@@ -1373,6 +1366,7 @@ namespace ACNHPokerCore
             {
                 maxBells = false;
                 config.AppSettings.Settings["AutoMaxBells"].Value = "false";
+                config.Save(ConfigurationSaveMode.Minimal);
             }
         }
 
@@ -1523,6 +1517,12 @@ namespace ACNHPokerCore
             idleNum = 0;
             string newVisitor;
             string newVisitorIsland;
+
+            if (ConfigurationManager.AppSettings["AutoMaxBells"] == "true")
+            {
+                maxBells = true;
+                maxBellsBox.Checked = true;
+            }
 
             if (ConfigurationManager.AppSettings["capture"] == "true")
             {
