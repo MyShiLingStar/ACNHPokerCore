@@ -2795,7 +2795,10 @@ namespace ACNHPokerCore
             var button = (InventorySlot)sender;
             if (!button.IsEmpty())
             {
-                ButtonToolTip.SetToolTip(button, button.DisplayItemName() + "\n\nID : " + button.DisplayItemID() + "\nCount : " + button.DisplayItemData() + "\nFlag : 0x" + button.GetFlag0() + button.GetFlag1());
+                ButtonToolTip.SetToolTip(button, button.DisplayItemName() + 
+                                                "\n\nID : " + button.DisplayItemID() + "" +
+                                                "\nCount : " + button.DisplayItemData() + 
+                                                "\nFlag : " + button.GetFlag0() + " " + button.GetFlag1());
             }
         }
 
@@ -4661,10 +4664,12 @@ namespace ACNHPokerCore
             if (DisableCollisionToggle.Checked)
             {
                 Utilities.PokeMainAddress(socket, usb, Utilities.CollisionAddress.ToString("X"), Utilities.CollisionDisable);
+                Utilities.PokeMainAddress(socket, usb, Utilities.ActorCollisionAddress.ToString("X"), Utilities.ActorCollisionDisable);
             }
             else
             {
                 Utilities.PokeMainAddress(socket, usb, Utilities.CollisionAddress.ToString("X"), Utilities.CollisionEnable);
+                Utilities.PokeMainAddress(socket, usb, Utilities.ActorCollisionAddress.ToString("X"), Utilities.ActorCollisionEnable);
             }
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
@@ -8426,6 +8431,60 @@ namespace ACNHPokerCore
             Utilities.PokeAddress(socket, null, DebugAddress.Text, DebugValue.Text);
         }
 
+        private void PeekMButton_Click(object sender, EventArgs e)
+        {
+            var address = Convert.ToUInt32(DebugAddress.Text, 16);
+            byte[] addressBank = Utilities.PeekMainAddress(socket, null, address, 256);
+
+            byte[] firstBytes = new byte[4];
+            byte[] secondBytes = new byte[4];
+            byte[] thirdBytes = new byte[4];
+            byte[] fourthBytes = new byte[4];
+
+            byte[] firstFullResult = new byte[32];
+            byte[] secondFullResult = new byte[32];
+            byte[] thirdFullResult = new byte[32];
+            byte[] fourthFullResult = new byte[32];
+            byte[] fifthFullResult = new byte[32];
+
+            Buffer.BlockCopy(addressBank, 0x0, firstBytes, 0x0, 0x4);
+            Buffer.BlockCopy(addressBank, 0x4, secondBytes, 0x0, 0x4);
+            Buffer.BlockCopy(addressBank, 0x8, thirdBytes, 0x0, 0x4);
+            Buffer.BlockCopy(addressBank, 0xC, fourthBytes, 0x0, 0x4);
+
+            Buffer.BlockCopy(addressBank, 0x0, firstFullResult, 0x0, 0x20);
+            Buffer.BlockCopy(addressBank, 0x20, secondFullResult, 0x0, 0x20);
+            Buffer.BlockCopy(addressBank, 0x40, thirdFullResult, 0x0, 0x20);
+            Buffer.BlockCopy(addressBank, 0x60, fourthFullResult, 0x0, 0x20);
+            Buffer.BlockCopy(addressBank, 0x80, fifthFullResult, 0x0, 0x20);
+
+            string firstResult = Utilities.ByteToHexString(firstBytes);
+            string secondResult = Utilities.ByteToHexString(secondBytes);
+            string thirdResult = Utilities.ByteToHexString(thirdBytes);
+            string fourthResult = Utilities.ByteToHexString(fourthBytes);
+
+            string fullResult1 = Utilities.ByteToHexString(firstFullResult);
+            string fullResult2 = Utilities.ByteToHexString(secondFullResult);
+            string fullResult3 = Utilities.ByteToHexString(thirdFullResult);
+            string fullResult4 = Utilities.ByteToHexString(fourthFullResult);
+            string fullResult5 = Utilities.ByteToHexString(fifthFullResult);
+
+            PeekResult1.Text = Utilities.Flip(firstResult);
+            PeekResult2.Text = Utilities.Flip(secondResult);
+            PeekResult3.Text = Utilities.Flip(thirdResult);
+            PeekResult4.Text = Utilities.Flip(fourthResult);
+
+            FullPeekResult1.Text = fullResult1.Insert(56, " ").Insert(48, " ").Insert(40, " ").Insert(32, " ").Insert(24, " ").Insert(16, " ").Insert(8, " ");
+            FullPeekResult2.Text = fullResult2.Insert(56, " ").Insert(48, " ").Insert(40, " ").Insert(32, " ").Insert(24, " ").Insert(16, " ").Insert(8, " ");
+            FullPeekResult3.Text = fullResult3.Insert(56, " ").Insert(48, " ").Insert(40, " ").Insert(32, " ").Insert(24, " ").Insert(16, " ").Insert(8, " ");
+            FullPeekResult4.Text = fullResult4.Insert(56, " ").Insert(48, " ").Insert(40, " ").Insert(32, " ").Insert(24, " ").Insert(16, " ").Insert(8, " ");
+            FullPeekResult5.Text = fullResult5.Insert(56, " ").Insert(48, " ").Insert(40, " ").Insert(32, " ").Insert(24, " ").Insert(16, " ").Insert(8, " ");
+        }
+        private void PokeMButton_Click(object sender, EventArgs e)
+        {
+            Utilities.PokeMainAddress(socket, null, DebugAddress.Text, DebugValue.Text);
+        }
+
         private void UnhideButton_Click(object sender, EventArgs e)
         {
             if (currentPanel == ItemModePanel)
@@ -8472,21 +8531,27 @@ namespace ACNHPokerCore
             if (init) return;
             if (StarFragmentToggle.Checked)
             {
-                byte[] b = Utilities.PeekMainAddress(socket, Utilities.MagicAddress.ToString("X"), 32);
-                Debug.Print(Utilities.ByteToHexString(b));
                 Utilities.PokeMainAddress(socket, usb, Utilities.MagicAddress.ToString("X"), Utilities.MagicOn);
                 Utilities.PokeMainAddress(socket, usb, (Utilities.MagicAddress + 0x14).ToString("X"), Utilities.MagicOn);
-                b = Utilities.PeekMainAddress(socket, Utilities.MagicAddress.ToString("X"), 32);
-                Debug.Print(Utilities.ByteToHexString(b));
+
+                //Utilities.PokeMainAddress(socket, usb, Utilities.ShopAddress.ToString("X"), Utilities.ShopOpen);
+                Utilities.PokeMainAddress(socket, usb, Utilities.PetalsAddress.ToString("X"), Utilities.PetalsEnable);
+                Utilities.PokeMainAddress(socket, usb, Utilities.PetalsIntensityAddress.ToString("X"), Utilities.PetalsIntensityMAX);
+                //Utilities.PokeMainAddress(socket, usb, Utilities.ParticleScaleAddress.ToString("X"), Utilities.ParticleScaleMAX);
+                Utilities.PokeMainAddress(socket, usb, Utilities.EatAllAddress.ToString("X"), Utilities.EatAllEnable);
+                Utilities.PokeMainAddress(socket, usb, Utilities.EatAll2Address.ToString("X"), Utilities.EatAll2Enable);
             }
             else
             {
-                byte[] b = Utilities.PeekMainAddress(socket, Utilities.MagicAddress.ToString("X"), 32);
-                Debug.Print(Utilities.ByteToHexString(b));
                 Utilities.PokeMainAddress(socket, usb, Utilities.MagicAddress.ToString("X"), Utilities.MagicOff);
                 Utilities.PokeMainAddress(socket, usb, (Utilities.MagicAddress + 0x14).ToString("X"), Utilities.MagicOff);
-                b = Utilities.PeekMainAddress(socket, Utilities.MagicAddress.ToString("X"), 32);
-                Debug.Print(Utilities.ByteToHexString(b));
+
+                //Utilities.PokeMainAddress(socket, usb, Utilities.ShopAddress.ToString("X"), Utilities.ShopNormal);
+                Utilities.PokeMainAddress(socket, usb, Utilities.PetalsAddress.ToString("X"), Utilities.PetalsDisable);
+                Utilities.PokeMainAddress(socket, usb, Utilities.PetalsIntensityAddress.ToString("X"), Utilities.PetalsIntensityNormal);
+                //Utilities.PokeMainAddress(socket, usb, Utilities.ParticleScaleAddress.ToString("X"), Utilities.ParticleScaleNormal);
+                Utilities.PokeMainAddress(socket, usb, Utilities.EatAllAddress.ToString("X"), Utilities.EatAllDisable);
+                Utilities.PokeMainAddress(socket, usb, Utilities.EatAll2Address.ToString("X"), Utilities.EatAll2Disable);
             }
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();

@@ -223,6 +223,41 @@ namespace ACNHPokerCore
         public static readonly string CollisionDisable = "12800014";
         public static readonly string CollisionEnable = "B95BA014";
 
+        public static UInt32 ActorCollisionAddress = 0x0123BBDC;
+        public static readonly string ActorCollisionDisable = "1E3E1000";
+        public static readonly string ActorCollisionEnable = "1E2E1000";
+
+        public static UInt32 ParticleScaleAddress = 0x026311B8;
+        public static readonly string ParticleScaleNormal = "1E2E1001";
+        public static readonly string ParticleScaleMAX = "1E21D001";
+
+        public static UInt32 PetalsAddress = 0x00332814;
+        public static UInt32 PetalsIntensityAddress = PetalsAddress + 0x20;
+        public static readonly string PetalsDisable = "71000D1F";
+        public static readonly string PetalsEnable = "7100011F";
+        public static readonly string PetalsIntensityNormal = "1E2E1001";
+        public static readonly string PetalsIntensityMAX = "1E27F001";
+
+        public static UInt32 LeavesAddress = 0x00332C60;
+        public static readonly string LeavesDisable = "1A9F17E9";
+        public static readonly string LeavesEnable = "1A9F07E9";
+
+        public static UInt32 ShopAddress = 0x01B06370;
+        public static readonly string ShopNormal = "2A1F03E0";
+        public static readonly string ShopOpen = "52800020";
+
+        public static UInt32 BGMAddress = 0x01A02148;
+        public static readonly string BGMEnable = "1E2E1001";
+        public static readonly string BGMDisable = "1E3E1001";
+
+        public static UInt32 EatAllAddress = 0x01F08304;
+        public static UInt32 EatAll2Address = 0x015652F0;
+
+        public static readonly string EatAllDisable = "97C2FB0F";
+        public static readonly string EatAll2Disable = "B9000268";
+        public static readonly string EatAllEnable = "52800020";
+        public static readonly string EatAll2Enable = "D503201F";
+
         public static UInt32 aSpeedAddress = 0x043BC3C0; //
         public static readonly string aSpeedX1 = "3F800000";
         public static readonly string aSpeedX2 = "40000000";
@@ -484,7 +519,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public static bool SpawnRecipe(Socket socket, USBBot usb, int slot, String value, String recipeValue)
+        public static void SpawnRecipe(Socket socket, USBBot usb, int slot, String value, String recipeValue)
         {
             lock (botLock)
             {
@@ -507,18 +542,15 @@ namespace ACNHPokerCore
 
                     //Debug.Print("Slot : " + slot + " | ID : " + value + " | RecipeValue : " + recipeValue);
                     //Debug.Print("Spawn recipe : poke " + GetItemSlotAddress(slot) + " 0x" + flip(precedingZeros(value, 8)) + " 0x" + flip(precedingZeros(recipeValue, 8)));
-                    return true;
                 }
                 catch
                 {
                     MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"SpawnRecipe");
                 }
-
-                return false;
             }
         }
 
-        public static bool SpawnFlower(Socket socket, USBBot usb, int slot, String value, String flowerValue)
+        public static void SpawnFlower(Socket socket, USBBot usb, int slot, String value, String flowerValue)
         {
             lock (botLock)
             {
@@ -541,14 +573,11 @@ namespace ACNHPokerCore
 
                     //Debug.Print("Slot : " + slot + " | ID : " + value + " | FlowerValue : " + flowerValue);
                     //Debug.Print("Spawn Flower : poke " + GetItemSlotAddress(slot) + " 0x" + flip(precedingZeros(value, 8)) + " 0x" + flip(precedingZeros(flowerValue, 8)));
-                    return true;
                 }
                 catch
                 {
                     MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"SpawnFlower");
                 }
-
-                return false;
             }
         }
 
@@ -606,23 +635,6 @@ namespace ACNHPokerCore
                 {
                     SendByteArray8(socket, GetItemSlotUIntAddress(1), buffer1, 160, ref counter);
                     SendByteArray8(socket, GetItemSlotUIntAddress(21), buffer2, 160, ref counter);
-                }
-                else
-                {
-                    usb.WriteBytes(buffer1, GetItemSlotUIntAddress(1));
-                    usb.WriteBytes(buffer2, GetItemSlotUIntAddress(21));
-                }
-            }
-        }
-
-        public static void OverwriteAll(Socket socket, USBBot usb, byte[] buffer1, byte[] buffer2)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    SendByteArray8(socket, GetItemSlotUIntAddress(1), buffer1, 160);
-                    SendByteArray8(socket, GetItemSlotUIntAddress(21), buffer2, 160);
                 }
                 else
                 {
@@ -954,21 +966,16 @@ namespace ACNHPokerCore
                 {
                     if (usb == null)
                     {
-                        byte[] result = new byte[size];
+                        Debug.Print("[Sys] PeekMain : Address " + address.ToString("X") + " " + size);
 
-                        string msg = String.Format("peekMain 0x{0:X8} 0x{1}\r\n", address, size);
-                        SendString(socket, Encoding.UTF8.GetBytes(msg));
+                        byte[] b = ReadMainByteArray(socket, address, size);
 
-                        byte[] b = new byte[size * 2 + 64];
-                        int first_rec = ReceiveString(socket, b);
-                        string buffer = Encoding.ASCII.GetString(b, 0, size * 2);
-
-                        for (int i = 0; i < size; i++)
+                        if (b == null)
                         {
-                            result[i] = Convert.ToByte(buffer.Substring(i * 2, 2), 16);
+                            MessageBox.Show("Wait something is wrong here!? \n\n peek " + address.ToString("X") + " " + size);
                         }
 
-                        return result;
+                        return b;
                     }
                     else
                     {
@@ -988,6 +995,38 @@ namespace ACNHPokerCore
                     return null;
                 }
             }
+        }
+
+        public static byte[] ReadMainByteArray(Socket socket, long initAddr, int size)
+        {
+            byte[] result = new byte[size];
+            const int maxBytesToReceive = 1536;
+            int received = 0;
+            int bytesToReceive;
+            while (received < size)
+            {
+                bytesToReceive = (size - received > maxBytesToReceive) ? maxBytesToReceive : size - received;
+                string bufferRepr = ReadMainToIntermediateString(socket, initAddr + received, bytesToReceive);
+                if (bufferRepr == null)
+                {
+                    return null;
+                }
+                for (int i = 0; i < bytesToReceive; i++)
+                {
+                    result[received + i] = Convert.ToByte(bufferRepr.Substring(i * 2, 2), 16);
+                }
+                received += bytesToReceive;
+            }
+            return result;
+        }
+
+        private static string ReadMainToIntermediateString(Socket socket, long address, int size)
+        {
+            string msg = String.Format("peekMain 0x{0:X8} {1}\r\n", address, size);
+            SendString(socket, Encoding.UTF8.GetBytes(msg));
+            byte[] b = new byte[size * 2 + 64];
+            int first_rec = ReceiveString(socket, b);
+            return Encoding.ASCII.GetString(b, 0, size * 2);
         }
 
         public static byte[] PeekAbsoluteAddress(Socket socket, string address, int size)
@@ -1038,9 +1077,6 @@ namespace ACNHPokerCore
 
         public static byte[] ReadByteArray(Socket socket, long initAddr, int size)
         {
-            //try
-            //{
-            // Read in small chunks
             byte[] result = new byte[size];
             const int maxBytesToReceive = 1536;
             int received = 0;
@@ -1060,19 +1096,11 @@ namespace ACNHPokerCore
                 received += bytesToReceive;
             }
             return result;
-            /*}
-            catch
-            {
-                MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
-                formControl.ClearRefresh();
-                return null;
-            }*/
         }
         public static byte[] ReadByteArray(Socket socket, long initAddr, int size, ref int counter)
         {
             try
             {
-                // Read in small chunks
                 byte[] result = new byte[size];
                 const int maxBytesToReceive = 1536;
                 int received = 0;
@@ -1394,14 +1422,6 @@ namespace ACNHPokerCore
                 {
                     if (usb == null)
                     {
-                        /*
-                        string msg = String.Format("peek 0x{0:X8} {1}\r\n", reactionAddress.ToString("X"), 8);
-                        //Debug.Print("Peek Reaction : " + msg);
-                        SendString(socket, Encoding.UTF8.GetBytes(msg));
-
-                        byte[] b = new byte[4096];
-                        socket.Receive(b);
-                        */
                         Debug.Print("[Sys] Peek : Reaction " + (playerReactionAddress + (player * playerOffset)).ToString("X"));
 
                         byte[] b = ReadByteArray(socket, (playerReactionAddress + (player * playerOffset)), 8);

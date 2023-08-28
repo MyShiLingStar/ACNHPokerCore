@@ -355,6 +355,8 @@ namespace ACNHPokerCore
             ChaseTimer = new System.Windows.Forms.Timer(components);
             CacheButton = new System.Windows.Forms.Button();
             CacheImage = new System.Windows.Forms.PictureBox();
+            PokeMButton = new System.Windows.Forms.Button();
+            PeekMButton = new System.Windows.Forms.Button();
             VillagerAutoCompleteMenu = new AutocompleteMenuNS.AutocompleteMenu();
             AlwaysOnControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)IPAddressInputBackground).BeginInit();
@@ -1061,7 +1063,7 @@ namespace ACNHPokerCore
             DebugAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
             DebugAddress.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold);
             DebugAddress.ForeColor = System.Drawing.Color.White;
-            DebugAddress.Location = new System.Drawing.Point(86, 556);
+            DebugAddress.Location = new System.Drawing.Point(160, 556);
             DebugAddress.MaxLength = 8;
             DebugAddress.Multiline = false;
             DebugAddress.Name = "DebugAddress";
@@ -1076,7 +1078,7 @@ namespace ACNHPokerCore
             DebugValue.BorderStyle = System.Windows.Forms.BorderStyle.None;
             DebugValue.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold);
             DebugValue.ForeColor = System.Drawing.Color.White;
-            DebugValue.Location = new System.Drawing.Point(86, 617);
+            DebugValue.Location = new System.Drawing.Point(160, 617);
             DebugValue.MaxLength = 8;
             DebugValue.Multiline = false;
             DebugValue.Name = "DebugValue";
@@ -5355,9 +5357,9 @@ namespace ACNHPokerCore
             PeekButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             PeekButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             PeekButton.ForeColor = System.Drawing.Color.White;
-            PeekButton.Location = new System.Drawing.Point(1, 556);
+            PeekButton.Location = new System.Drawing.Point(99, 556);
             PeekButton.Name = "PeekButton";
-            PeekButton.Size = new System.Drawing.Size(79, 55);
+            PeekButton.Size = new System.Drawing.Size(55, 55);
             PeekButton.TabIndex = 38;
             PeekButton.Tag = "";
             PeekButton.Text = "Peek";
@@ -5371,9 +5373,9 @@ namespace ACNHPokerCore
             PokeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             PokeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             PokeButton.ForeColor = System.Drawing.Color.White;
-            PokeButton.Location = new System.Drawing.Point(1, 617);
+            PokeButton.Location = new System.Drawing.Point(99, 617);
             PokeButton.Name = "PokeButton";
-            PokeButton.Size = new System.Drawing.Size(79, 55);
+            PokeButton.Size = new System.Drawing.Size(55, 55);
             PokeButton.TabIndex = 39;
             PokeButton.Tag = "";
             PokeButton.Text = "Poke";
@@ -5425,11 +5427,45 @@ namespace ACNHPokerCore
             CacheImage.TabIndex = 52;
             CacheImage.TabStop = false;
             // 
+            // PokeMButton
+            // 
+            PokeMButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            PokeMButton.FlatAppearance.BorderSize = 0;
+            PokeMButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            PokeMButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            PokeMButton.ForeColor = System.Drawing.Color.White;
+            PokeMButton.Location = new System.Drawing.Point(38, 617);
+            PokeMButton.Name = "PokeMButton";
+            PokeMButton.Size = new System.Drawing.Size(55, 55);
+            PokeMButton.TabIndex = 54;
+            PokeMButton.Tag = "";
+            PokeMButton.Text = "PokeM";
+            PokeMButton.UseVisualStyleBackColor = false;
+            PokeMButton.Click += PokeMButton_Click;
+            // 
+            // PeekMButton
+            // 
+            PeekMButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            PeekMButton.FlatAppearance.BorderSize = 0;
+            PeekMButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            PeekMButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            PeekMButton.ForeColor = System.Drawing.Color.White;
+            PeekMButton.Location = new System.Drawing.Point(38, 556);
+            PeekMButton.Name = "PeekMButton";
+            PeekMButton.Size = new System.Drawing.Size(55, 55);
+            PeekMButton.TabIndex = 53;
+            PeekMButton.Tag = "";
+            PeekMButton.Text = "PeekM";
+            PeekMButton.UseVisualStyleBackColor = false;
+            PeekMButton.Click += PeekMButton_Click;
+            // 
             // Main
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
             ClientSize = new System.Drawing.Size(1204, 516);
+            Controls.Add(PokeMButton);
+            Controls.Add(PeekMButton);
             Controls.Add(CacheImage);
             Controls.Add(CacheButton);
             Controls.Add(FillButton);
@@ -5845,5 +5881,7 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Button SetAirportColorBtn;
         private System.Windows.Forms.Button CacheButton;
         private System.Windows.Forms.PictureBox CacheImage;
+        private System.Windows.Forms.Button PokeMButton;
+        private System.Windows.Forms.Button PeekMButton;
     }
 }

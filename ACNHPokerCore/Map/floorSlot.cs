@@ -518,7 +518,7 @@ namespace ACNHPokerCore
                     }
                     else if (ItemID == 0x16A2) // recipe
                     {
-                        Image background = ImageCacher.GetImage(image1Path);
+                        Image background = new Bitmap(ImageCacher.GetImage(image1Path));
                         int imageSize = (int)(background.Width * recipeMultiplier);
                         Image icon = (new Bitmap(recipe, new Size(imageSize, imageSize)));
 
@@ -529,7 +529,7 @@ namespace ACNHPokerCore
                     {
                         if (File.Exists(containItemPath))
                         {
-                            Image background = ImageCacher.GetImage(image1Path);
+                            Image background = new Bitmap(ImageCacher.GetImage(image1Path));
                             int imageSize = (int)(background.Width * wallMultiplier);
                             Image icon = (new Bitmap(ImageCacher.GetImage(containItemPath), new Size(imageSize, imageSize)));
 

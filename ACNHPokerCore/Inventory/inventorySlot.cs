@@ -125,7 +125,7 @@ namespace ACNHPokerCore
                 }
                 else if (itemID == 0x16A2) //recipe
                 {
-                    Image background = ImageCacher.GetImage(imagePath);
+                    Image background = new Bitmap(ImageCacher.GetImage(imagePath));
                     int imageSize = (int)(background.Width * 0.3);
 
                     if (recipe != null)
@@ -143,11 +143,12 @@ namespace ACNHPokerCore
                 {
                     if (File.Exists(containItemPath))
                     {
-                        Image background = ImageCacher.GetImage(imagePath);
+                        Image background = new Bitmap(ImageCacher.GetImage(imagePath));
                         int imageSize = (int)(background.Width * 0.45);
                         Image icon = (new Bitmap(ImageCacher.GetImage(containItemPath), new Size(imageSize, imageSize)));
 
                         Image img = PlaceImageOverImage(background, icon, background.Width - imageSize - 10, background.Width - imageSize - 10, 1);
+
                         return new Bitmap(img, new Size(128, 128));
                     }
                     else
@@ -176,11 +177,12 @@ namespace ACNHPokerCore
                 {
                     if (File.Exists(containItemPath))
                     {
-                        Image background = ImageCacher.GetImage(imagePath);
+                        Image background = new Bitmap(ImageCacher.GetImage(imagePath));
                         int imageSize = (int)(background.Width * 0.6);
                         Image icon = (new Bitmap(ImageCacher.GetImage(containItemPath), new Size(imageSize, imageSize)));
 
                         Image img = PlaceImageOverImage(background, icon, background.Width - imageSize, background.Width - imageSize, 1);
+
                         return new Bitmap(img, new Size(64, 64));
                     }
                     else
@@ -191,7 +193,7 @@ namespace ACNHPokerCore
                 }
                 else if (itemID == 0x16A2) // recipe
                 {
-                    Image background = ImageCacher.GetImage(imagePath);
+                    Image background = new Bitmap(ImageCacher.GetImage(imagePath));
                     int imageSize = (int)(background.Width * 0.35);
                     if (recipe != null)
                     {
@@ -453,22 +455,21 @@ namespace ACNHPokerCore
                     ForeColor = Color.Blue;
                     TextAlign = ContentAlignment.TopRight;
                 }
-                /*
                 else if (itemID == 0x114A) // Money Tree
                 {
-                    this.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+                    Font = new Font("Arial", 8F, FontStyle.Bold);
+                    string containItemName = Main.GetNameFromID(Utilities.PrecedingZeros(FillItemData(),8).Substring(4,4));
                     if (containItemName.Length > 10)
                     {
-                        this.Text = containItemName.Substring(0, 8) + "...";
+                        Text = containItemName.Substring(0, 8) + "...";
                     }
                     else
                     {
-                        this.Text = containItemName;
+                        Text = containItemName;
                     }
-                    this.ForeColor = System.Drawing.Color.White;
-                    this.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+                    ForeColor = Color.White;
+                    TextAlign = ContentAlignment.BottomLeft;
                 }
-                */
                 else if (itemID == 0x315A || itemID == 0x1618 || itemID == 0x342F) // Wall-Mounted
                 {
 
