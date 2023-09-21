@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ACNHPokerCore
@@ -525,7 +524,7 @@ namespace ACNHPokerCore
                         Image img = PlaceImageOverImage(background, icon, background.Width - (imageSize - 5), background.Width - (imageSize - 5), 1);
                         return new Bitmap(img, size);
                     }
-                    else if (ItemID == 0x315A || ItemID == 0x1618 || ItemID == 0x342F) // Wall-Mount
+                    else if (ItemID == 0x315A || ItemID == 0x1618 || ItemID == 0x342F || ItemID == 0x114A || ItemID == 0xEC9C) // Wall-Mount/Money Tree
                     {
                         if (File.Exists(containItemPath))
                         {

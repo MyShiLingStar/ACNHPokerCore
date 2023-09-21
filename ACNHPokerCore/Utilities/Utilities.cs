@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -316,10 +317,110 @@ namespace ACNHPokerCore
         public static string RecipeOverlayPath = imagePath + RecipeOverlayFile;
 
         public static string BridgeImagePath = @"BridgeImage\";
+        public static string fileName = @"Fairy";
+        public static string filePath = saveFolder + fileName.Replace("F", "");
 
         public static Dictionary<string, string> itemkind = new();
 
         private static readonly Object botLock = new();
+
+        #region Emulator
+
+        public static bool isEmulator = false;
+
+        public const int PROCESS_ALL_ACCESS = 0x1F0FFF;
+        public const int PROCESS_WM_READ = 0x0010;
+        public const int PROCESS_QUERY_INFORMATION = 0x0400;
+        public const int MEM_COMMIT = 0x00001000;
+        public const int PAGE_READWRITE = 0x04;
+
+
+        public static IntPtr ReadProcessHandle;
+        public static IntPtr WriteProcessHandle;
+
+        public static int EmulatorType; // 0 = Y, 1 = R
+        public static long EmulatorHeadAddress = 0x0;
+        public static long HeapOffsetValue = 0x0;
+
+        public struct MEMORY_BASIC_INFORMATION64
+        {
+            public long BaseAddress;
+            public long AllocationBase;
+            public uint AllocationProtect;
+            public uint __alignment1;
+            public long RegionSize;
+            public uint State;
+            public uint Protect;
+            public uint Type;
+            public uint __alignment2;
+        }
+
+        public struct SYSTEM_INFO
+        {
+            public ushort processorArchitecture;
+            public uint pageSize;
+            public IntPtr minimumApplicationAddress;
+            public IntPtr maximumApplicationAddress;
+            public IntPtr activeProcessorMask;
+            public uint numberOfProcessors;
+            public uint processorType;
+            public uint allocationGranularity;
+            public ushort processorLevel;
+            public ushort processorRevision;
+        }
+
+        [DllImport("kernel32.dll")]
+        public static extern void GetSystemInfo(out SYSTEM_INFO lpSystemInfo);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern int VirtualQueryEx(IntPtr hProcess, IntPtr lpAddress, out MEMORY_BASIC_INFORMATION64 lpBuffer, uint dwLength);
+
+        [DllImport("kernel32.dll")]
+        public static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
+
+        [DllImport("kernel32.dll")]
+        public static extern bool ReadProcessMemory(int hProcess, long lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern bool WriteProcessMemory(int hProcess, long lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesWritten);
+
+        public static bool FileCheck(string input)
+        {
+            if (File.Exists(filePath))
+            {
+                if (ByteArraysEqual(StringToByte(input), File.ReadAllBytes(filePath)))
+                    return true;
+                else
+                {
+                    File.Delete(filePath);
+                    return false;
+                }
+            }
+            else
+                return false;
+        }
+        static bool ByteArraysEqual(ReadOnlySpan<byte> a1, ReadOnlySpan<byte> a2)
+        {
+            return a1.SequenceEqual(a2);
+        }
+
+        public static byte[] ReadEmulatorMemory(UInt32 Address, int size)
+        {
+            byte[] buffer = new byte[size];
+            int bytesRead = 0;
+            if (ReadProcessMemory((int)ReadProcessHandle, EmulatorHeadAddress + Address, buffer, size, ref bytesRead))
+                return buffer;
+            else
+                return null;
+        }
+
+        public static void WriteEmulatorMemory(UInt32 Address, byte[] buffer)
+        {
+            int bytesWritten = 0;
+            WriteProcessMemory((int)WriteProcessHandle, EmulatorHeadAddress + Address, buffer, buffer.Length, ref bytesWritten);
+        }
+
+        #endregion
 
         public static void BuildDictionary()
         {
@@ -412,6 +513,18 @@ namespace ACNHPokerCore
             }
         }
 
+        public static uint GetItemFlag1UIntAddress(int slot)
+        {
+            if (slot <= 20)
+            {
+                return (uint)(0x3 + ItemSlotBase + ((Clamp(slot, 1, 20) - 1) * 0x8));
+            }
+            else
+            {
+                return (uint)(0x3 + ItemSlot21Base + ((Clamp(slot, 21, 40) - 21) * 0x8));
+            }
+        }
+
         public static byte[] StringToByte(string Bank)
         {
             if (Bank.Length <= 1)
@@ -464,6 +577,11 @@ namespace ACNHPokerCore
 
         public static byte[] GetInventoryBank(Socket socket, USBBot usb, int slot)
         {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory(GetItemSlotUIntAddress(slot), 160);
+            }
+
             lock (botLock)
             {
                 if (usb == null)
@@ -495,8 +613,25 @@ namespace ACNHPokerCore
             }
         }
 
+        public static byte[] GetInventoryName(Socket socket, USBBot usb, int playerNumber)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory((uint)(player1SlotBase + (playerNumber * playerOffset)) + InventoryNameOffset, 0x34);
+            }
+
+            return PeekAddress(socket, usb, (uint)(player1SlotBase + (playerNumber * playerOffset)) + InventoryNameOffset, 0x34);
+        }
+
         public static void SpawnItem(Socket socket, USBBot usb, int slot, String value, String amount)
         {
+            if (isEmulator)
+            {
+                byte[] b = Utilities.Add(StringToByte(Flip(PrecedingZeros(value, 8))), StringToByte(Flip(PrecedingZeros(amount, 8))));
+                WriteEmulatorMemory(GetItemSlotUIntAddress(slot), b);
+                return;
+            }
+
             lock (botLock)
             {
                 if (usb == null)
@@ -521,6 +656,14 @@ namespace ACNHPokerCore
 
         public static void SpawnRecipe(Socket socket, USBBot usb, int slot, String value, String recipeValue)
         {
+            if (isEmulator)
+            {
+                byte[] b = Utilities.Add(StringToByte(Flip(PrecedingZeros(value, 8))), StringToByte(Flip(PrecedingZeros(recipeValue, 8))));
+                WriteEmulatorMemory(GetItemSlotUIntAddress(slot), b);
+                return;
+            }
+
+
             lock (botLock)
             {
                 try
@@ -552,6 +695,13 @@ namespace ACNHPokerCore
 
         public static void SpawnFlower(Socket socket, USBBot usb, int slot, String value, String flowerValue)
         {
+            if (isEmulator)
+            {
+                byte[] b = Utilities.Add(StringToByte(Flip(PrecedingZeros(value, 8))), StringToByte(Flip(PrecedingZeros(flowerValue, 8))));
+                WriteEmulatorMemory(GetItemSlotUIntAddress(slot), b);
+                return;
+            }
+
             lock (botLock)
             {
                 try
@@ -629,6 +779,14 @@ namespace ACNHPokerCore
 
         public static void OverwriteAll(Socket socket, USBBot usb, byte[] buffer1, byte[] buffer2, ref int counter)
         {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory(GetItemSlotUIntAddress(1), buffer1);
+                WriteEmulatorMemory(GetItemSlotUIntAddress(21), buffer2);
+                return;
+            }
+
+
             lock (botLock)
             {
                 if (usb == null)
@@ -646,6 +804,24 @@ namespace ACNHPokerCore
 
         public static UInt64[] GetTurnipPrices(Socket socket, USBBot usb)
         {
+            if (isEmulator)
+            {
+                UInt64[] result = new UInt64[13];
+
+                byte[] b = ReadEmulatorMemory(TurnipPurchasePriceAddr, 60);
+
+                result[12] = b[0];
+
+                for (int i = 0; i < 12; i++)
+                {
+                    byte[] temp = new byte[4];
+                    Buffer.BlockCopy(b, 12 + (i * 4), temp, 0, 4);
+                    result[i] = BitConverter.ToUInt32(temp, 0);
+                }
+
+                return result;
+            }
+
             lock (botLock)
             {
                 UInt64[] result = new UInt64[13];
@@ -669,15 +845,34 @@ namespace ACNHPokerCore
 
                     for (int i = 0; i < 12; i++)
                     {
-                        result[i] = b[12 + (i * 4)];
+                        byte[] temp = new byte[4];
+                        Buffer.BlockCopy(b, 12 + (i * 4), temp, 0, 4);
+                        result[i] = BitConverter.ToUInt32(temp, 0);
                     }
                 }
                 return result;
             }
         }
 
-        public static bool ChangeTurnipPrices(Socket socket, USBBot usb, UInt32[] prices)
+        public static void ChangeTurnipPrices(Socket socket, USBBot usb, UInt32[] prices)
         {
+            if (isEmulator)
+            {
+                byte[] BuyPrice = StringToByte(Flip(PrecedingZeros(prices[12].ToString("X"), 8)));
+                WriteEmulatorMemory(TurnipPurchasePriceAddr, BuyPrice);
+                WriteEmulatorMemory(TurnipPurchasePriceAddr + TurnipBuffer, BuyPrice);
+
+                byte[] SellPrice = Array.Empty<byte>();
+
+                for (int i = 0; i < 12; i++)
+                {
+                    SellPrice = Add(SellPrice, StringToByte(Flip(PrecedingZeros(prices[i].ToString("X"), 8))));
+                }
+                WriteEmulatorMemory(TurnipSellPriceAddr, SellPrice);
+                WriteEmulatorMemory(TurnipSellPriceAddr + TurnipBuffer, SellPrice);
+                return;
+            }
+
             lock (botLock)
             {
                 if (usb == null)
@@ -693,13 +888,16 @@ namespace ACNHPokerCore
                     usb.WriteBytes(BuyPrice, TurnipPurchasePriceAddr);
                     usb.WriteBytes(BuyPrice, TurnipPurchasePriceAddr + TurnipBuffer);
 
+                    byte[] SellPrice = Array.Empty<byte>();
+
                     for (int i = 0; i < 12; i++)
                     {
-                        usb.WriteBytes(StringToByte(Flip(PrecedingZeros(prices[i].ToString("X"), 8))), (uint)(TurnipSellPriceAddr + (4 * i)));
-                        usb.WriteBytes(StringToByte(Flip(PrecedingZeros(prices[i].ToString("X"), 8))), (uint)(TurnipSellPriceAddr + (4 * i) + TurnipBuffer));
+                        SellPrice = Add(SellPrice, StringToByte(Flip(PrecedingZeros(prices[i].ToString("X"), 8))));
                     }
+                    usb.WriteBytes(SellPrice, TurnipSellPriceAddr);
+                    usb.WriteBytes(SellPrice, TurnipSellPriceAddr + TurnipBuffer);
                 }
-                return false;
+                return;
             }
         }
 
@@ -837,6 +1035,7 @@ namespace ACNHPokerCore
             }
         }
 
+        #region Peek & Poke
         public static byte[] PeekAddress(Socket socket, USBBot usb, UInt32 address, int size)
         {
             lock (botLock)
@@ -1025,7 +1224,7 @@ namespace ACNHPokerCore
             string msg = String.Format("peekMain 0x{0:X8} {1}\r\n", address, size);
             SendString(socket, Encoding.UTF8.GetBytes(msg));
             byte[] b = new byte[size * 2 + 64];
-            int first_rec = ReceiveString(socket, b);
+            _ = ReceiveString(socket, b);
             return Encoding.ASCII.GetString(b, 0, size * 2);
         }
 
@@ -1057,22 +1256,6 @@ namespace ACNHPokerCore
                 string msg = String.Format("pokeAbsolute 0x{0:X8} 0x{1}\r\n", address, value);
                 SendString(socket, Encoding.UTF8.GetBytes(msg));
             }
-        }
-
-        public static void SetStamina(Socket socket, USBBot usb, string value)
-        {
-            PokeAddress(socket, usb, staminaAddress.ToString("X"), value);
-        }
-
-        public static void SetAirportColor(Socket socket, USBBot usb, string value)
-        {
-            PokeAddress(socket, usb, AirportColor.ToString("X"), value);
-            PokeAddress(socket, usb, (AirportColor + mapOffset).ToString("X"), value);
-        }
-
-        public static void SetFlag1(Socket socket, USBBot usb, int slot, string flag)
-        {
-            PokeAddress(socket, usb, GetItemFlag1Address(slot), flag);
         }
 
         public static byte[] ReadByteArray(Socket socket, long initAddr, int size)
@@ -1125,58 +1308,6 @@ namespace ACNHPokerCore
             }
         }
 
-        /*
-        public static bool SendByteArray(Socket socket, long initAddr, byte[] buffer, int size, ref int counter)
-        {
-            // Send in small chunks
-            const int maxBytesTosend = 1536;
-            int sent = 0;
-            int bytesToSend = 0;
-            StringBuilder dataTemp = new StringBuilder();
-            string msg;
-            while (sent < size)
-            {
-                dataTemp.Clear();
-                bytesToSend = (size - sent > maxBytesTosend) ? maxBytesTosend : size - sent;
-                for (int i = 0; i < bytesToSend; i++)
-                {
-                    dataTemp.Append(String.Format("{0:X2}", buffer[sent + i]));
-                }
-                msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", initAddr + sent, dataTemp.ToString());
-                SendString(socket, Encoding.UTF8.GetBytes(msg));
-                sent += bytesToSend;
-                counter++;
-            }
-
-            return false;
-        }
-
-        public static bool SendByteArray(Socket socket, long initAddr, byte[] buffer, int size)
-        {
-            // Send in small chunks
-            const int maxBytesTosend = 1536;
-            int sent = 0;
-            int bytesToSend = 0;
-            StringBuilder dataTemp = new StringBuilder();
-            string msg;
-            while (sent < size)
-            {
-                dataTemp.Clear();
-                bytesToSend = (size - sent > maxBytesTosend) ? maxBytesTosend : size - sent;
-                for (int i = 0; i < bytesToSend; i++)
-                {
-                    dataTemp.Append(String.Format("{0:X2}", buffer[sent + i]));
-                }
-                msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", initAddr + sent, dataTemp.ToString());
-                //Debug.Print(msg);
-                SendString(socket, Encoding.UTF8.GetBytes(msg));
-                sent += bytesToSend;
-            }
-
-            return false;
-        }
-        */
-
         private static string ReadToIntermediateString(Socket socket, long address, int size)
         {
             //try
@@ -1185,7 +1316,7 @@ namespace ACNHPokerCore
             //Debug.Print(msg);
             SendString(socket, Encoding.UTF8.GetBytes(msg));
             byte[] b = new byte[size * 2 + 64];
-            int first_rec = ReceiveString(socket, b);
+            _ = ReceiveString(socket, b);
             //Debug.Print(String.Format("Received {0} Bytes", first_rec));
             return Encoding.ASCII.GetString(b, 0, size * 2);
             /*}
@@ -1211,9 +1342,9 @@ namespace ACNHPokerCore
                     string bufferRepr = ReadToIntermediateString(socket, initAddr + received, bytesToReceive);
                     for (int i = 0; i < (bytesToReceive / 4); i++)
                     {
-                        buffer[offset + (received / 4) + i] = Convert.ToUInt32(string.Concat(bufferRepr.AsSpan(i * 8 + 6, 2), 
-                                                                                            bufferRepr.AsSpan(i * 8 + 4, 2), 
-                                                                                            bufferRepr.AsSpan(i * 8 + 2, 2), 
+                        buffer[offset + (received / 4) + i] = Convert.ToUInt32(string.Concat(bufferRepr.AsSpan(i * 8 + 6, 2),
+                                                                                            bufferRepr.AsSpan(i * 8 + 4, 2),
+                                                                                            bufferRepr.AsSpan(i * 8 + 2, 2),
                                                                                             bufferRepr.AsSpan(i * 8, 2)), 16);
                     }
                     received += bytesToReceive;
@@ -1316,276 +1447,6 @@ namespace ACNHPokerCore
             } while (received < size && buffer[received - 1] != 0xA);
             return received;
         }
-
-        public static byte[] GetTownID(Socket socket, USBBot usb)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    Debug.Print("[Sys] Peek : TownID " + TownNameddress.ToString("X"));
-
-                    byte[] b = ReadByteArray(socket, TownNameddress, 0x1C);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n TownNameddress");
-                    }
-                    return b;
-                }
-                else
-                {
-                    Debug.Print("[Usb] Peek : TownID " + TownNameddress.ToString("X"));
-
-                    byte[] b = usb.ReadBytes(TownNameddress, 0x1C);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n TownNameddress");
-                    }
-                    return b;
-                }
-            }
-        }
-
-        public static byte[] GetWeatherSeed(Socket socket, USBBot usb)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    Debug.Print("[Sys] Peek : WeatherSeed " + weatherSeed.ToString("X"));
-
-                    byte[] b = ReadByteArray(socket, weatherSeed, 0x4);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n WeatherSeed");
-                    }
-                    return b;
-                }
-                else
-                {
-                    Debug.Print("[Usb] Peek : WeatherSeed " + weatherSeed.ToString("X"));
-
-                    byte[] b = usb.ReadBytes(weatherSeed, 0x4);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n WeatherSeed");
-                    }
-                    return b;
-                }
-            }
-        }
-
-        public static byte GetAirportColor(Socket socket, USBBot usb)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    Debug.Print("[Sys] Peek : AirportColor " + AirportColor.ToString("X"));
-
-                    byte[] b = ReadByteArray(socket, AirportColor, 1);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show(@"Wait something is wrong here!? \n\n AirportColor");
-                        return 0xDD;
-                    }
-
-                    return b[0];
-                }
-                else
-                {
-                    Debug.Print("[Usb] Peek : AirportColor " + AirportColor.ToString("X"));
-
-                    byte[] b = ReadLargeBytes(usb, (uint)AirportColor, 1);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n AirportColor");
-                        return 0xDD;
-                    }
-
-                    return b[0];
-                }
-            }
-        }
-
-        public static byte[] GetReaction(Socket socket, USBBot usb, int player)
-        {
-            lock (botLock)
-            {
-                try
-                {
-                    if (usb == null)
-                    {
-                        Debug.Print("[Sys] Peek : Reaction " + (playerReactionAddress + (player * playerOffset)).ToString("X"));
-
-                        byte[] b = ReadByteArray(socket, (playerReactionAddress + (player * playerOffset)), 8);
-
-                        if (b == null)
-                        {
-                            MessageBox.Show("Wait something is wrong here!? \n\n Reaction ");
-                        }
-
-                        return b;
-                    }
-                    else
-                    {
-                        Debug.Print("[Usb] Peek : Reaction " + (playerReactionAddress + (player * playerOffset)).ToString("X"));
-
-                        byte[] b = usb.ReadBytes((uint)(playerReactionAddress + (player * playerOffset)), 8);
-
-                        if (b == null)
-                        {
-                            MessageBox.Show("Wait something is wrong here!? \n\n Reaction");
-                        }
-
-                        return b;
-                    }
-
-                }
-                catch
-                {
-                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getReaction");
-                    return null;
-                }
-            }
-        }
-
-        public static void SetReaction(Socket socket, USBBot usb, int player, string reactionFirstHalf, string reactionSecondHalf)
-        {
-            lock (botLock)
-            {
-                try
-                {
-                    if (usb == null)
-                    {
-                        string msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (playerReactionAddress + (player * playerOffset)).ToString("x"), reactionFirstHalf);
-                        Debug.Print("Poke Reaction: " + msg);
-                        SendString(socket, Encoding.UTF8.GetBytes(msg));
-
-                        msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", ((playerReactionAddress + (player * playerOffset)) + 4).ToString("x"), reactionSecondHalf);
-                        Debug.Print("Poke Reaction: " + msg);
-                        SendString(socket, Encoding.UTF8.GetBytes(msg));
-                    }
-                    else
-                    {
-                        usb.WriteBytes(StringToByte(reactionFirstHalf), (uint)(playerReactionAddress + (player * playerOffset)));
-
-                        usb.WriteBytes(StringToByte(reactionSecondHalf), (uint)((playerReactionAddress + (player * playerOffset)) + 4));
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"setReaction");
-                }
-            }
-        }
-
-        public static void SendSpawnRate(Socket socket, USBBot usb, byte[] buffer, int index, int type, ref int counter)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    if (type == 0)
-                    {
-                        SendByteArray8(socket, InsectAppearPointer + InsectDataSize * index + 0x2, buffer, 12 * 6 * 2, ref counter);
-                    }
-                    else if (type == 1)
-                    {
-                        SendByteArray8(socket, FishRiverAppearPointer + FishDataSize * index + 0x2, buffer, 78, ref counter);
-                    }
-                    else if (type == 2)
-                    {
-                        SendByteArray8(socket, FishSeaAppearPointer + FishDataSize * index + 0x2, buffer, 78, ref counter);
-                    }
-                    else if (type == 3)
-                    {
-                        SendByteArray8(socket, CreatureSeaAppearPointer + SeaCreatureDataSize * index + 0x2, buffer, 78, ref counter);
-                    }
-                }
-                else
-                {
-                    if (type == 0)
-                    {
-                        usb.WriteBytes(buffer, (uint)(InsectAppearPointer + InsectDataSize * index + 0x2));
-                    }
-                    else if (type == 1)
-                    {
-                        usb.WriteBytes(buffer, (uint)(FishRiverAppearPointer + FishDataSize * index + 0x2));
-                    }
-                    else if (type == 2)
-                    {
-                        usb.WriteBytes(buffer, (uint)(FishSeaAppearPointer + FishDataSize * index + 0x2));
-                    }
-                    else if (type == 3)
-                    {
-                        usb.WriteBytes(buffer, (uint)(CreatureSeaAppearPointer + SeaCreatureDataSize * index + 0x2));
-                    }
-                }
-            }
-        }
-
-        public static byte[] GetCritterData(Socket socket, USBBot usb, int mode)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    if (mode == 0)
-                    {
-                        Debug.Print("[Sys] Peek : Insect " + InsectAppearPointer.ToString("X") + " " + InsectDataSize * InsectNumRecords);
-                        return ReadByteArray(socket, InsectAppearPointer, InsectDataSize * InsectNumRecords);
-                    }
-                    else if (mode == 1)
-                    {
-                        Debug.Print("[Sys] Peek : FishRiver " + FishRiverAppearPointer.ToString("X") + " " + FishDataSize * FishRiverNumRecords);
-                        return ReadByteArray(socket, FishRiverAppearPointer, FishDataSize * FishRiverNumRecords);
-                    }
-                    else if (mode == 2)
-                    {
-                        Debug.Print("[Sys] Peek : FishSea " + FishSeaAppearPointer.ToString("X") + " " + FishDataSize * FishSeaNumRecords);
-                        return ReadByteArray(socket, FishSeaAppearPointer, FishDataSize * FishSeaNumRecords);
-                    }
-                    else if (mode == 3)
-                    {
-                        Debug.Print("[Sys] Peek : CreatureSea " + CreatureSeaAppearPointer.ToString("X") + " " + SeaCreatureDataSize * SeaCreatureNumRecords);
-                        return ReadByteArray(socket, CreatureSeaAppearPointer, SeaCreatureDataSize * SeaCreatureNumRecords);
-                    }
-                    return null;
-                }
-                else
-                {
-                    if (mode == 0)
-                    {
-                        Debug.Print("[Usb] Peek : Insect " + InsectAppearPointer.ToString("X") + " " + InsectDataSize * InsectNumRecords);
-                        return ReadLargeBytes(usb, InsectAppearPointer, InsectDataSize * InsectNumRecords);
-                    }
-                    else if (mode == 1)
-                    {
-                        Debug.Print("[Usb] Peek : FishRiver " + FishRiverAppearPointer.ToString("X") + " " + FishDataSize * FishRiverNumRecords);
-                        return ReadLargeBytes(usb, FishRiverAppearPointer, FishDataSize * FishRiverNumRecords);
-                    }
-                    else if (mode == 2)
-                    {
-                        Debug.Print("[Usb] Peek : FishSea " + FishSeaAppearPointer.ToString("X") + " " + FishDataSize * FishSeaNumRecords);
-                        return ReadLargeBytes(usb, FishSeaAppearPointer, FishDataSize * FishSeaNumRecords);
-                    }
-                    else if (mode == 3)
-                    {
-                        Debug.Print("[Usb] Peek : CreatureSea " + CreatureSeaAppearPointer.ToString("X") + " " + SeaCreatureDataSize * SeaCreatureNumRecords);
-                        return ReadLargeBytes(usb, CreatureSeaAppearPointer, SeaCreatureDataSize * SeaCreatureNumRecords);
-                    }
-                    return null;
-                }
-            }
-        }
-
         private static byte[] ReadLargeBytes(USBBot usb, uint address, int size)
         {
             // Read in small chunks
@@ -1655,1323 +1516,6 @@ namespace ACNHPokerCore
                 sent += bytesToSend;
                 counter++;
             }
-        }
-
-        public static byte[] GetVillager(Socket socket, USBBot usb, int num, int size, ref int counter)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    Debug.Print("[Sys] Peek : Villager " + (VillagerAddress + (num * VillagerSize)).ToString("X") + " " + num + " " + size);
-
-                    byte[] b = ReadByteArray(socket, VillagerAddress + (num * VillagerSize), size, ref counter);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n Villager");
-                    }
-
-                    return b;
-                }
-                else
-                {
-                    Debug.Print("[Usb] Peek : Villager " + (VillagerAddress + (num * VillagerSize)).ToString("X") + " " + num + " " + size);
-
-                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerAddress + (num * VillagerSize)), size, ref counter);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n Villager");
-                    }
-
-                    return b;
-                }
-            }
-        }
-
-        public static byte[] GetVillager(Socket socket, USBBot usb, int num, int size)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    byte[] b = ReadByteArray(socket, VillagerAddress + (num * VillagerSize), size);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n Villager");
-                    }
-
-                    return b;
-                }
-                else
-                {
-                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerAddress + (num * VillagerSize)), size);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n Villager");
-                    }
-
-                    return b;
-                }
-            }
-        }
-
-        public static void LoadVillager(Socket socket, USBBot usb, int num, byte[] villager, ref int counter)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    SendByteArray8(socket, VillagerAddress + (num * VillagerSize), villager, (int)VillagerSize, ref counter);
-
-                    //SendByteArray(socket, VillagerAddress + (num * VillagerSize) + VillagerHouseBufferDiff, villager, (int)VillagerSize, ref counter);
-                }
-                else
-                {
-                    WriteLargeBytes(usb, VillagerAddress + (num * VillagerSize), villager, (int)VillagerSize, ref counter);
-
-                    //WriteLargeBytes(usb, VillagerAddress + (num * VillagerSize) + VillagerHouseBufferDiff, villager, (int)VillagerSize, ref counter);
-                }
-            }
-        }
-
-        public static byte[] GetMoveout(Socket socket, USBBot usb, int num, int size, ref int counter)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    //Debug.Print("[Sys] Peek : Moveout " + (VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset).ToString("X") + " " + size);
-
-                    byte[] b = ReadByteArray(socket, VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset, size, ref counter);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n Moveout");
-                    }
-
-                    return b;
-                }
-                else
-                {
-                    Debug.Print("[Usb] Peek : Moveout " + (VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset).ToString("X") + " " + size);
-
-                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset), size, ref counter);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n Moveout");
-                    }
-
-                    return b;
-                }
-            }
-        }
-
-        public static byte[] GetMoveout(Socket socket, USBBot usb, int num, int size)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-
-                    byte[] b = ReadByteArray(socket, VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset, size);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n Moveout");
-                    }
-
-                    return b;
-                }
-                else
-                {
-
-                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset), size);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n Moveout");
-                    }
-
-                    return b;
-                }
-            }
-        }
-
-        public static void SetMoveout(Socket socket, USBBot usb, int num, byte[] flagData, ref int counter)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    SendByteArray8(socket, VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset, flagData, flagData.Length, ref counter);
-                }
-                else
-                {
-                    WriteLargeBytes(usb, VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset, flagData, flagData.Length, ref counter);
-                }
-            }
-        }
-
-        public static byte[] GetHouse(Socket socket, USBBot usb, int num, ref int counter, uint diff = 0)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    Debug.Print("[Sys] Peek : House " + (VillagerHouseAddress + (num * (VillagerHouseSize)) + diff).ToString("X") + " " + (int)VillagerHouseSize);
-
-                    byte[] b = ReadByteArray(socket, VillagerHouseAddress + (num * (VillagerHouseSize)) + diff, (int)VillagerHouseSize, ref counter);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n House");
-                    }
-
-                    return b;
-                }
-                else
-                {
-                    Debug.Print("[Usb] Peek : House " + (VillagerHouseAddress + (num * (VillagerHouseSize)) + diff).ToString("X") + " " + (int)VillagerHouseSize);
-
-                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerHouseAddress + (num * (VillagerHouseSize)) + diff), (int)VillagerHouseSize);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n House");
-                    }
-
-                    return b;
-                }
-            }
-        }
-
-        public static void LoadHouse(Socket socket, USBBot usb, int num, byte[] house, ref int counter)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    SendByteArray8(socket, VillagerHouseAddress + (num * (VillagerHouseSize)), house, (int)VillagerHouseSize, ref counter);
-
-                    SendByteArray8(socket, VillagerHouseAddress + (num * (VillagerHouseSize)) + VillagerHouseBufferDiff, house, (int)VillagerHouseSize, ref counter);
-                }
-                else
-                {
-                    WriteLargeBytes(usb, VillagerHouseAddress + (num * (VillagerHouseSize)), house, (int)VillagerHouseSize, ref counter);
-
-                    WriteLargeBytes(usb, VillagerHouseAddress + (num * (VillagerHouseSize)) + VillagerHouseBufferDiff, house, (int)VillagerHouseSize, ref counter);
-                }
-            }
-        }
-
-        public static byte GetHouseOwner(Socket socket, USBBot usb, int num, ref int counter)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    Debug.Print("[Sys] Peek : HouseOwner " + (VillagerHouseAddress + (num * (VillagerHouseSize)) + VillagerHouseOwnerOffset).ToString("X"));
-
-                    byte[] b = ReadByteArray(socket, VillagerHouseAddress + (num * (VillagerHouseSize)) + VillagerHouseOwnerOffset, 1, ref counter);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show(@"Wait something is wrong here!? HouseOwner");
-                        return 0xDD;
-                    }
-
-                    return b[0];
-                }
-                else
-                {
-                    Debug.Print("[Usb] Peek : HouseOwner " + (VillagerHouseAddress + (num * (VillagerHouseSize)) + VillagerHouseOwnerOffset).ToString("X"));
-
-                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerHouseAddress + (num * (VillagerHouseSize)) + VillagerHouseOwnerOffset), 1, ref counter);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n HouseOwner");
-                        return 0xDD;
-                    }
-
-                    return b[0];
-                }
-            }
-        }
-
-        public static byte GetHouseOwner(Socket socket, USBBot usb, int num)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    byte[] b = ReadByteArray(socket, VillagerHouseAddress + (num * (VillagerHouseSize)) + VillagerHouseOwnerOffset, 1);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n HouseOwner");
-                        return 0xDD;
-                    }
-
-                    return b[0];
-                }
-                else
-                {
-                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerHouseAddress + (num * (VillagerHouseSize)) + VillagerHouseOwnerOffset), 1);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n HouseOwner");
-                        return 0xDD;
-                    }
-
-                    return b[0];
-                }
-            }
-        }
-
-        public static byte[] GetCatchphrase(Socket socket, USBBot usb, int num, ref int counter)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    Debug.Print("[Sys] Peek : Catchphrase " + (VillagerAddress + (num * VillagerSize) + VillagerCatchphraseOffset).ToString("X"));
-
-                    byte[] b = ReadByteArray(socket, VillagerAddress + (num * VillagerSize) + VillagerCatchphraseOffset, 0x2C, ref counter);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n Catchphrase");
-                    }
-
-                    return b;
-                }
-                else
-                {
-                    Debug.Print("[Usb] Peek : Catchphrase " + (VillagerAddress + (num * VillagerSize) + VillagerCatchphraseOffset).ToString("X"));
-
-                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerAddress + (num * VillagerSize) + VillagerCatchphraseOffset), 0x2C, ref counter);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n Catchphrase");
-                    }
-
-                    return b;
-                }
-            }
-        }
-
-        public static void SetCatchphrase(Socket socket, USBBot usb, int num, byte[] pharse)
-        {
-            lock (botLock)
-            {
-                try
-                {
-                    if (usb == null)
-                    {
-                        string msg;
-
-                        msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + VillagerCatchphraseOffset).ToString("X"), ByteToHexString(pharse));
-                        Debug.Print("Poke Catchphrase: " + msg);
-                        SendString(socket, Encoding.UTF8.GetBytes(msg));
-
-                        //msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + VillagerCatchphraseOffset + VillagerHouseBufferDiff).ToString("X"), ByteToHexString(pharse));
-                        //Debug.Print("Poke Catchphrase: " + msg);
-                        //SendString(socket, Encoding.UTF8.GetBytes(msg));
-                    }
-                    else
-                    {
-                        usb.WriteBytes(pharse, (uint)(VillagerAddress + (num * VillagerSize) + VillagerCatchphraseOffset));
-
-                        //usb.WriteBytes(pharse, (uint)(VillagerAddress + (num * VillagerSize) + VillagerCatchphraseOffset + VillagerHouseBufferDiff));
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"SetCatchphrase");
-                }
-            }
-        }
-
-        public static byte GetVillagerFlag(Socket socket, USBBot usb, int num, uint offset)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    Debug.Print("[Sys] Peek : VillagerFlag " + (VillagerAddress + (num * VillagerSize) + offset).ToString("X"));
-
-                    byte[] b = ReadByteArray(socket, VillagerAddress + (num * VillagerSize) + offset, 1);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show(@"Wait something is wrong here!? VillagerFlag");
-                    }
-
-                    return b[0];
-                }
-                else
-                {
-                    Debug.Print("[Usb] Peek : VillagerFlag " + (VillagerAddress + (num * VillagerSize) + offset).ToString("X"));
-
-                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerAddress + (num * VillagerSize) + offset), 1);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show(@"Wait something is wrong here!? VillagerFlag");
-                    }
-
-                    return b[0];
-                }
-            }
-        }
-
-        public static byte GetVillagerHouseFlag(Socket socket, USBBot usb, int num, uint offset, ref int counter)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    Debug.Print("[Sys] Peek : VillagerHouseFlag " + (VillagerHouseAddress + (num * (VillagerHouseSize)) + offset).ToString("X"));
-
-                    byte[] b = ReadByteArray(socket, VillagerHouseAddress + (num * (VillagerHouseSize)) + offset, 1, ref counter);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show(@"Wait something is wrong here!? VillagerHouseFlag");
-                    }
-
-                    return b[0];
-                }
-                else
-                {
-                    Debug.Print("[Usb] Peek : VillagerHouseFlag " + (VillagerHouseAddress + (num * (VillagerHouseSize)) + offset).ToString("X"));
-
-                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerHouseAddress + (num * (VillagerHouseSize)) + offset), 1, ref counter);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show(@"Wait something is wrong here!? VillagerHouseFlag");
-                    }
-
-                    return b[0];
-                }
-            }
-        }
-
-        public static int FindHouseIndex(int VillagerNum, int[] list)
-        {
-            for (int i = 0; i < list.Length; i++)
-            {
-                if (list[i] == VillagerNum)
-                    return i;
-            }
-            return -1;
-        }
-
-        public static void SetMoveout(Socket socket, USBBot usb, int num, string MoveoutFlag = "2", string ForceMoveoutFlag = "1")
-        {
-            lock (botLock)
-            {
-                try
-                {
-                    if (usb == null)
-                    {
-                        string msg;
-
-                        msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset).ToString("X"), MoveoutFlag);
-                        Debug.Print("Poke Moveout: " + msg);
-                        SendString(socket, Encoding.UTF8.GetBytes(msg));
-
-                        //msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset + VillagerHouseBufferDiff).ToString("X"), MoveoutFlag);
-                        //Debug.Print("Poke Moveout: " + msg);
-                        //SendString(socket, Encoding.UTF8.GetBytes(msg));
-
-                        msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + VillagerForceMoveoutOffset).ToString("X"), ForceMoveoutFlag);
-                        Debug.Print("Poke ForceMoveout: " + msg);
-                        SendString(socket, Encoding.UTF8.GetBytes(msg));
-
-                        //msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + VillagerForceMoveoutOffset + VillagerHouseBufferDiff).ToString("X"), ForceMoveoutFlag);
-                        //Debug.Print("Poke ForceMoveout: " + msg);
-                        //SendString(socket, Encoding.UTF8.GetBytes(msg));
-
-                        msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + VillagerAbandonHouseOffset).ToString("X"), "0");
-                        Debug.Print("Poke AbandonHouse: " + msg);
-                        SendString(socket, Encoding.UTF8.GetBytes(msg));
-
-                        //msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + VillagerAbandonHouseOffset + VillagerHouseBufferDiff).ToString("X"), "0");
-                        //Debug.Print("Poke AbandonHouse: " + msg);
-                        //SendString(socket, Encoding.UTF8.GetBytes(msg));
-                    }
-                    else
-                    {
-                        usb.WriteBytes(StringToByte(MoveoutFlag), (uint)(VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset));
-
-                        //usb.WriteBytes(stringToByte(MoveoutFlag), (uint)(VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset + VillagerHouseBufferDiff));
-
-                        usb.WriteBytes(StringToByte(ForceMoveoutFlag), (uint)(VillagerAddress + (num * VillagerSize) + VillagerForceMoveoutOffset));
-
-                        //usb.WriteBytes(stringToByte(ForceMoveoutFlag), (uint)(VillagerAddress + (num * VillagerSize) + VillagerForceMoveoutOffset + VillagerHouseBufferDiff));
-
-                        usb.WriteBytes(StringToByte("0"), (uint)(VillagerAddress + (num * VillagerSize) + VillagerAbandonHouseOffset));
-
-                        //usb.WriteBytes(stringToByte("0"), (uint)(VillagerAddress + (num * VillagerSize) + VillagerAbandonHouseOffset + VillagerHouseBufferDiff));
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"SetMoveout");
-                }
-            }
-        }
-
-        public static void SetFriendship(Socket socket, USBBot usb, int num, int player, string FriendshipFlag = "FF")
-        {
-            lock (botLock)
-            {
-                try
-                {
-                    if (usb == null)
-                    {
-                        string msg;
-                        msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset) + VillagerFriendshipOffset).ToString("X"), FriendshipFlag);
-                        Debug.Print("Poke Friendship: " + msg);
-                        SendString(socket, Encoding.UTF8.GetBytes(msg));
-
-                        //msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset) + VillagerFriendshipOffset + VillagerHouseBufferDiff).ToString("X"), FriendshipFlag);
-                        //Debug.Print("Poke Friendship: " + msg);
-                        //SendString(socket, Encoding.UTF8.GetBytes(msg));
-                    }
-                    else
-                    {
-                        usb.WriteBytes(StringToByte(FriendshipFlag), (uint)(VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset) + VillagerFriendshipOffset));
-
-                        //usb.WriteBytes(stringToByte(FriendshipFlag), (uint)(VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset) + VillagerFriendshipOffset + VillagerHouseBufferDiff));
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"SetFriendship");
-                }
-            }
-        }
-
-        public static byte[] GetPlayerDataVillager(Socket socket, USBBot usb, int num, int player, int size, ref int counter)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    Debug.Print("[Sys] Peek : Villager " + player + " " + (VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset)).ToString("X") + " " + num + " " + size);
-
-                    byte[] b = ReadByteArray(socket, VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset), size, ref counter);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n Villager");
-                    }
-
-                    return b;
-                }
-                else
-                {
-                    Debug.Print("[Usb] Peek : Villager " + player + " " + (VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset)).ToString("X") + " " + num + " " + size);
-
-                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset)), size, ref counter);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n Villager");
-                    }
-
-                    return b;
-                }
-            }
-        }
-
-        public static byte[] GetPlayerDataVillager(Socket socket, USBBot usb, int num, int player, int size)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    Debug.Print("[Sys] Peek : Villager " + player + " " + (VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset)).ToString("X") + " " + num + " " + size);
-
-                    byte[] b = ReadByteArray(socket, VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset), size);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n Villager");
-                    }
-
-                    return b;
-                }
-                else
-                {
-                    Debug.Print("[Usb] Peek : Villager " + player + " " + (VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset)).ToString("X") + " " + num + " " + size);
-
-                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset)), size);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n Villager");
-                    }
-
-                    return b;
-                }
-            }
-        }
-
-        public static void SetMysVillager(Socket socket, USBBot usb, byte[] buffer, byte[] species, ref int counter)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    SendByteArray8(socket, MysIslandVillagerAddress, buffer, buffer.Length, ref counter);
-                    SendByteArray8(socket, MysIslandVillagerSpecies, species, species.Length, ref counter);
-                }
-                else
-                {
-                    usb.WriteBytes(buffer, MysIslandVillagerAddress);
-                    usb.WriteBytes(species, MysIslandVillagerSpecies);
-                }
-            }
-        }
-
-        public static byte[] GetMysVillagerName(Socket socket, USBBot usb)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    Debug.Print("[Sys] Peek : MysVillager " + MysIslandVillagerAddress.ToString("X"));
-
-                    byte[] b = ReadByteArray(socket, MysIslandVillagerAddress, 8);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n MysVillagerName");
-                    }
-                    return b;
-                }
-                else
-                {
-                    Debug.Print("[Usb] Peek : MysVillager " + MysIslandVillagerAddress.ToString("X"));
-
-                    byte[] b = usb.ReadBytes(MysIslandVillagerAddress, 8);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n MysVillagerName");
-                    }
-                    return b;
-                }
-            }
-        }
-
-        public static string GetVillagerInternalName(byte Species, byte Variant)
-        {
-            //int s = Convert.ToInt32(Species);
-            //int v = Convert.ToInt32(Variant);
-            return $"{(VillagerSpecies)Species}{Variant:00}";
-        }
-        public static string GetVillagerRealName(byte Species, byte Variant)
-        {
-            string internalName = GetVillagerInternalName(Species, Variant);
-            if (RealName.ContainsKey(internalName))
-                return RealName[internalName];
-            else
-                return "ERROR";
-        }
-
-        public static string GetVillagerRealName(string IName)
-        {
-            if (RealName.ContainsKey(IName))
-                return RealName[IName];
-            else
-                return "ERROR";
-        }
-
-        public static string GetVillagerImage(string name)
-        {
-            string path = imagePath + villagerPath + name + ".png";
-            if (File.Exists(path))
-                return path;
-            else
-            {
-                path = imagePath + villagerPath + MissingImage;
-                if (File.Exists(path))
-                    return path;
-                else
-                    return "";
-            }
-        }
-
-        public static void DropItem(Socket socket, USBBot usb, long address, string itemId, string count, string flag0, string flag1)
-        {
-            lock (botLock)
-            {
-                try
-                {
-                    if (usb == null)
-                    {
-                        SendByteArray8(socket, address, StringToByte(BuildDropStringLeft(itemId, count, flag0, flag1)), 16);
-                        SendByteArray8(socket, address + mapOffset, StringToByte(BuildDropStringLeft(itemId, count, flag0, flag1)), 16);
-
-                        SendByteArray8(socket, address + 0x600, StringToByte(BuildDropStringRight(itemId)), 16);
-                        SendByteArray8(socket, address + 0x600 + mapOffset, StringToByte(BuildDropStringRight(itemId)), 16);
-
-                        Debug.Print("Drop: " + address + " " + itemId + " " + count + " " + flag0 + " " + flag1);
-                    }
-                    else
-                    {
-
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"dropItem");
-                }
-            }
-        }
-
-        public static void DropCore(Socket socket, USBBot usb, long address, string itemId, string count, string flag0, string flag1)
-        {
-            lock (botLock)
-            {
-                try
-                {
-                    if (usb == null)
-                    {
-                        SendByteArray8(socket, address, StringToByte(BuildDropCore(itemId, count, flag0, flag1)), 8);
-                        SendByteArray8(socket, address + mapOffset, StringToByte(BuildDropCore(itemId, count, flag0, flag1)), 8);
-
-                        Debug.Print("DropCore: " + address + " " + itemId + " " + count + " " + flag0 + " " + flag1);
-                    }
-                    else
-                    {
-
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"dropItem");
-                }
-            }
-        }
-
-        public static void ExtDropItem(Socket socket, USBBot usb, long address, string itemId, string count, string flag0, string flag1)
-        {
-            lock (botLock)
-            {
-                try
-                {
-                    if (usb == null)
-                    {
-                        SendByteArray8(socket, address, StringToByte(ExtbuildDropStringLeft(itemId, count, flag0, flag1)), 16);
-                        SendByteArray8(socket, address + mapOffset, StringToByte(ExtbuildDropStringLeft(itemId, count, flag0, flag1)), 16);
-
-                        SendByteArray8(socket, address + 0x600, StringToByte(BuildDropStringRight("FFFE", true)), 16);
-                        SendByteArray8(socket, address + 0x600 + mapOffset, StringToByte(BuildDropStringRight("FFFE", true)), 16);
-
-                        Debug.Print("Drop: " + address + " " + itemId + " " + count + " " + flag0 + " " + flag1);
-                    }
-                    else
-                    {
-
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"dropItem");
-                }
-            }
-        }
-
-        public static string ExtbuildDropStringLeft(string itemId, string count, string flag0, string flag1)
-        {
-            return Flip(itemId) + flag1 + flag0 + Flip(count) + Flip("FFFE") + "0000" + "0000" + "00" + "00";
-        }
-
-        public static void DeleteFloorItem(Socket socket, USBBot usb, long address)
-        {
-            lock (botLock)
-            {
-                try
-                {
-                    if (usb == null)
-                    {
-                        SendByteArray8(socket, address, StringToByte(BuildDropStringLeft("FFFE", "00000000", "00", "00", true)), 16);
-                        SendByteArray8(socket, address + mapOffset, StringToByte(BuildDropStringLeft("FFFE", "00000000", "00", "00", true)), 16);
-
-                        SendByteArray8(socket, address + 0x600, StringToByte(BuildDropStringRight("FFFE", true)), 16);
-                        SendByteArray8(socket, address + 0x600 + mapOffset, StringToByte(BuildDropStringRight("FFFE", true)), 16);
-
-                        Debug.Print("Delete: " + address);
-                    }
-                    else
-                    {
-
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"deleteFloorItem");
-                }
-            }
-        }
-
-        public static byte[] GetMapLayer(Socket socket, USBBot usb, long address, ref int counter)
-        {
-            lock (botLock)
-            {
-                try
-                {
-                    if (usb == null)
-                    {
-                        Debug.Print("[Sys] Peek : Map Layer " + address.ToString("X"));
-
-                        byte[] b = ReadByteArray8(socket, address, (int)mapSize, ref counter);
-
-                        if (b == null)
-                        {
-                            MessageBox.Show("Wait something is wrong here!? \n\n Map Layer");
-                        }
-                        return b;
-                    }
-                    else
-                    {
-                        Debug.Print("[Usb] Peek : Map Layer " + address.ToString("X"));
-
-                        byte[] b = ReadLargeBytes(usb, (uint)address, (int)mapSize, ref counter);
-
-                        if (b == null)
-                        {
-                            MessageBox.Show("Wait something is wrong here!? \n\n Map Layer");
-                        }
-                        return b;
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getMapLayer");
-                    return null;
-                }
-            }
-        }
-
-        public static byte[] GetAcre(Socket socket, USBBot usb)
-        {
-            lock (botLock)
-            {
-                try
-                {
-                    if (usb == null)
-                    {
-                        Debug.Print("[Sys] Peek : Acre " + AcreOffset.ToString("X"));
-
-                        byte[] b = ReadByteArray(socket, AcreOffset, AcreAndPlaza);
-
-                        if (b == null)
-                        {
-                            MessageBox.Show("Wait something is wrong here!? \n\n Acre");
-                        }
-                        return b;
-                    }
-                    else
-                    {
-                        Debug.Print("[Usb] Peek : Acre " + AcreOffset.ToString("X"));
-
-                        byte[] b = usb.ReadBytes(AcreOffset, AcreAndPlaza);
-
-                        if (b == null)
-                        {
-                            MessageBox.Show("Wait something is wrong here!? \n\n Acre");
-                        }
-                        return b;
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getAcre");
-                    return null;
-                }
-            }
-        }
-
-        public static void SendAcre(Socket socket, USBBot usb, byte[] acre, ref int counter)
-        {
-            lock (botLock)
-            {
-                try
-                {
-                    if (usb == null)
-                    {
-                        Debug.Print("[Sys] Poke : Acre " + AcreOffset.ToString("X"));
-
-                        SendByteArray8(socket, AcreOffset, acre, acre.Length, ref counter);
-                        SendByteArray8(socket, AcreOffset + mapOffset, acre, acre.Length, ref counter);
-                    }
-                    else
-                    {
-                        Debug.Print("[Usb] Poke : Acre " + AcreOffset.ToString("X"));
-
-                        WriteLargeBytes(usb, AcreOffset, acre, acre.Length, ref counter);
-                        WriteLargeBytes(usb, AcreOffset + mapOffset, acre, acre.Length, ref counter);
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"sendAcre");
-                }
-            }
-        }
-
-        public static void SendPlaza(Socket socket, USBBot usb, byte[] plaza, ref int counter)
-        {
-            lock (botLock)
-            {
-                try
-                {
-                    if (usb == null)
-                    {
-                        Debug.Print("[Sys] Poke : Plaza " + (AcreOffset + 0x94).ToString("X"));
-
-                        SendByteArray8(socket, AcreOffset + 0x94, plaza, plaza.Length, ref counter);
-                        SendByteArray8(socket, AcreOffset + 0x94 + mapOffset, plaza, plaza.Length, ref counter);
-                    }
-                    else
-                    {
-                        Debug.Print("[Usb] Poke : Plaza " + (AcreOffset + 0x94).ToString("X"));
-
-                        WriteLargeBytes(usb, AcreOffset + 0x94, plaza, plaza.Length, ref counter);
-                        WriteLargeBytes(usb, AcreOffset + 0x94 + mapOffset, plaza, plaza.Length, ref counter);
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"sendPlaza");
-                }
-            }
-        }
-
-        public static void SendBuilding(Socket socket, USBBot usb, byte[] building, ref int counter)
-        {
-            lock (botLock)
-            {
-                try
-                {
-                    if (usb == null)
-                    {
-                        Debug.Print("[Sys] Poke : Building " + BuildingOffset.ToString("X"));
-
-                        SendByteArray8(socket, BuildingOffset, building, building.Length, ref counter);
-                        SendByteArray8(socket, BuildingOffset + mapOffset, building, building.Length, ref counter);
-                    }
-                    else
-                    {
-                        Debug.Print("[Usb] Poke : Building " + BuildingOffset.ToString("X"));
-
-                        WriteLargeBytes(usb, BuildingOffset, building, building.Length, ref counter);
-                        WriteLargeBytes(usb, BuildingOffset + mapOffset, building, building.Length, ref counter);
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"sendBuilding");
-                }
-            }
-        }
-
-        public static byte[] GetBuilding(Socket socket, USBBot usb)
-        {
-            lock (botLock)
-            {
-                try
-                {
-                    if (usb == null)
-                    {
-                        Debug.Print("[Sys] Peek : Building " + BuildingOffset.ToString("X"));
-
-                        byte[] b = ReadByteArray(socket, BuildingOffset, AllBuildingSize);
-
-                        if (b == null)
-                        {
-                            MessageBox.Show("Wait something is wrong here!? \n\n Building");
-                        }
-                        return b;
-                    }
-                    else
-                    {
-                        Debug.Print("[Usb] Peek : Building " + BuildingOffset.ToString("X"));
-
-                        byte[] b = usb.ReadBytes(BuildingOffset, AllBuildingSize);
-
-                        if (b == null)
-                        {
-                            MessageBox.Show("Wait something is wrong here!? \n\n Building");
-                        }
-                        return b;
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getBuilding");
-                    return null;
-                }
-            }
-        }
-
-        public static void SendTerrain(Socket socket, USBBot usb, byte[] terrain, ref int counter)
-        {
-            lock (botLock)
-            {
-                try
-                {
-                    if (usb == null)
-                    {
-                        Debug.Print("[Sys] Poke : Terrain " + TerrainOffset.ToString("X"));
-
-                        SendByteArray8(socket, TerrainOffset, terrain, AllTerrainSize, ref counter);
-                        SendByteArray8(socket, TerrainOffset + mapOffset, terrain, AllTerrainSize, ref counter);
-                    }
-                    else
-                    {
-                        Debug.Print("[Usb] Poke : Terrain " + TerrainOffset.ToString("X"));
-
-                        WriteLargeBytes(usb, TerrainOffset, terrain, AllTerrainSize, ref counter);
-                        WriteLargeBytes(usb, TerrainOffset + mapOffset, terrain, AllTerrainSize, ref counter);
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"sendTerrain");
-                }
-            }
-        }
-
-        public static void SendCustomMap(Socket socket, USBBot usb, byte[] CustomMap, ref int counter)
-        {
-            lock (botLock)
-            {
-                try
-                {
-                    if (usb == null)
-                    {
-                        Debug.Print("[Sys] Poke : CustomMap " + TerrainOffset.ToString("X"));
-
-                        SendByteArray8(socket, mapCustomDesign, CustomMap, CustomMap.Length, ref counter);
-                        SendByteArray8(socket, mapCustomDesign + mapOffset, CustomMap, CustomMap.Length, ref counter);
-                    }
-                    else
-                    {
-                        Debug.Print("[Usb] Poke : CustomMap " + TerrainOffset.ToString("X"));
-
-                        WriteLargeBytes(usb, mapCustomDesign, CustomMap, CustomMap.Length, ref counter);
-                        WriteLargeBytes(usb, mapCustomDesign + mapOffset, CustomMap, CustomMap.Length, ref counter);
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"sendCustomMap");
-                }
-            }
-        }
-
-        public static byte[] GetTerrain(Socket socket, USBBot usb)
-        {
-            lock (botLock)
-            {
-                try
-                {
-                    if (usb == null)
-                    {
-                        Debug.Print("[Sys] Peek : Terrain " + TerrainOffset.ToString("X"));
-
-                        byte[] b = ReadByteArray8(socket, TerrainOffset, AllTerrainSize);
-
-                        if (b == null)
-                        {
-                            MessageBox.Show("Wait something is wrong here!? \n\n Terrain");
-                        }
-                        return b;
-                    }
-                    else
-                    {
-                        Debug.Print("[Usb] Peek : Terrain " + TerrainOffset.ToString("X"));
-
-                        byte[] b = usb.ReadBytes(TerrainOffset, AllTerrainSize);
-
-                        if (b == null)
-                        {
-                            MessageBox.Show("Wait something is wrong here!? \n\n Terrain");
-                        }
-                        return b;
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getTerrain");
-                    return null;
-                }
-            }
-        }
-
-        public static byte[] GetActivate(Socket socket, USBBot usb, long address, ref int counter)
-        {
-            lock (botLock)
-            {
-                try
-                {
-                    if (usb == null)
-                    {
-                        Debug.Print("[Sys] Peek : Activate " + address.ToString("X"));
-
-                        byte[] b = ReadByteArray8(socket, address, (int)mapActivateSize, ref counter);
-
-                        if (b == null)
-                        {
-                            MessageBox.Show("Wait something is wrong here!? \n\n Activate");
-                        }
-                        return b;
-                    }
-                    else
-                    {
-                        Debug.Print("[Usb] Peek : Activate " + address.ToString("X"));
-
-                        byte[] b = ReadLargeBytes(usb, (uint)address, (int)mapActivateSize, ref counter);
-
-                        if (b == null)
-                        {
-                            MessageBox.Show("Wait something is wrong here!? \n\n Activate");
-                        }
-                        return b;
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getActivate");
-                    return null;
-                }
-            }
-        }
-
-        public static byte[] GetCustomDesignMap(Socket socket, USBBot usb, ref int counter)
-        {
-            lock (botLock)
-            {
-                try
-                {
-                    if (usb == null)
-                    {
-                        Debug.Print("[Sys] Peek : CustomDesignMap " + mapCustomDesign.ToString("X"));
-
-                        byte[] b = ReadByteArray8(socket, mapCustomDesign, MapTileCount16x16 * 2, ref counter);
-
-                        if (b == null)
-                        {
-                            MessageBox.Show("Wait something is wrong here!? \n\n CustomDesignMap");
-                        }
-                        return b;
-                    }
-                    else
-                    {
-                        Debug.Print("[Usb] Peek : CustomDesignMap " + mapCustomDesign.ToString("X"));
-
-                        byte[] b = ReadLargeBytes(usb, mapCustomDesign, MapTileCount16x16 * 2, ref counter);
-
-                        if (b == null)
-                        {
-                            MessageBox.Show("Wait something is wrong here!? \n\n CustomDesignMap");
-                        }
-                        return b;
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getCustomDesignMap");
-                    return null;
-                }
-            }
-        }
-
-
-        public static byte[] GetMyDesign(Socket socket, USBBot usb, ref int counter)
-        {
-            lock (botLock)
-            {
-                try
-                {
-                    if (usb == null)
-                    {
-                        Debug.Print("[Sys] Peek : MyDesign " + MyDesignZero.ToString("X"));
-
-                        byte[] b = ReadByteArray8(socket, MyDesignZero, DesignPattern.SIZE * PatternCount, ref counter);
-
-                        if (b == null)
-                        {
-                            MessageBox.Show("Wait something is wrong here!? \n\n MyDesign");
-                        }
-                        return b;
-                    }
-                    else
-                    {
-                        Debug.Print("[Usb] Peek : MyDesign " + MyDesignZero.ToString("X"));
-
-                        byte[] b = ReadLargeBytes(usb, MyDesignZero, DesignPattern.SIZE * PatternCount, ref counter);
-
-                        if (b == null)
-                        {
-                            MessageBox.Show("Wait something is wrong here!? \n\n MyDesign");
-                        }
-                        return b;
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getMyDesign");
-                    return null;
-                }
-            }
-        }
-
-        public static byte[] GetCoordinate(Socket socket, USBBot usb)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    Debug.Print("[Sys] Peek : Coordinate " + coordinate.ToString("X"));
-
-                    byte[] b = ReadByteArray(socket, coordinate, 8);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n Coordinate");
-                    }
-                    return b;
-                }
-                else
-                {
-                    Debug.Print("[Usb] Peek : Coordinate " + coordinate.ToString("X"));
-
-                    byte[] b = usb.ReadBytes(coordinate, 8);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n Coordinate");
-                    }
-                    return b;
-                }
-            }
-        }
-
-        public static byte[] GetSaving(Socket socket, USBBot usb = null)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    Debug.Print("[Sys] Peek : Save " + savingOffset.ToString("X"));
-
-                    byte[] b = ReadByteArray(socket, savingOffset, 32);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n Save");
-                    }
-                    return b;
-                }
-                else
-                {
-                    Debug.Print("[Usb] Peek : Save " + savingOffset.ToString("X"));
-
-                    byte[] b = usb.ReadBytes(savingOffset, 32);
-
-                    if (b == null)
-                    {
-                        MessageBox.Show("Wait something is wrong here!? \n\n Save");
-                    }
-                    return b;
-                }
-            }
-        }
-
-        public static void DropColumn(Socket socket, USBBot usb, uint address1, uint address2, byte[] buffer1, byte[] buffer2, ref int counter)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    SendByteArray8(socket, address1, buffer1, buffer1.Length, ref counter);
-                    SendByteArray8(socket, address1 + mapOffset, buffer1, buffer1.Length, ref counter);
-                    SendByteArray8(socket, address2, buffer2, buffer2.Length, ref counter);
-                    SendByteArray8(socket, address2 + mapOffset, buffer2, buffer2.Length, ref counter);
-                }
-                else
-                {
-                    WriteLargeBytes(usb, address1, buffer1, buffer1.Length, ref counter);
-                    WriteLargeBytes(usb, address1 + mapOffset, buffer1, buffer1.Length, ref counter);
-                    WriteLargeBytes(usb, address2, buffer2, buffer2.Length, ref counter);
-                    WriteLargeBytes(usb, address2 + mapOffset, buffer2, buffer2.Length, ref counter);
-                }
-            }
-        }
-
-        public static void DropColumn2(Socket socket, USBBot usb, uint address1, uint address2, byte[] buffer1, byte[] buffer2)
-        {
-            lock (botLock)
-            {
-                if (usb == null)
-                {
-                    SendByteArray8(socket, address1, buffer1, buffer1.Length);
-                    SendByteArray8(socket, address1 + mapOffset, buffer1, buffer1.Length);
-                    SendByteArray8(socket, address2, buffer2, buffer2.Length);
-                    SendByteArray8(socket, address2 + mapOffset, buffer2, buffer2.Length);
-                }
-            }
-        }
-
-        public static string BuildDropStringLeft(string itemId, string count, string flag0, string flag1, Boolean empty = false)
-        {
-            string partID = "FDFF0000";
-            if (empty || itemId == "FFFE")
-                return Flip(itemId) + flag1 + flag0 + Flip(count) + Flip(itemId) + "0000" + "0000" + "00" + "00";
-            else
-                return Flip(itemId) + flag1 + flag0 + Flip(count) + partID + Flip(itemId) + "00" + "01";
-        }
-        public static string BuildDropStringRight(string itemId, Boolean empty = false)
-        {
-            string partID = "FDFF0000";
-            if (empty || itemId == "FFFE")
-                return Flip(itemId) + "0000" + "0000" + "00" + "00" + Flip(itemId) + "0000" + "0000" + "00" + "00";
-            else
-                return partID + Flip(itemId) + "01" + "00" + partID + Flip(itemId) + "01" + "01";
-        }
-        public static string BuildLeftExtension(string itemId, string flag0, string flag1, int DiffX, int DiffY)
-        {
-            string ExtensionID = "FFFD";
-            return Flip(ExtensionID) + flag1 + flag0 + Flip(itemId) + PrecedingZeros((DiffX * 2).ToString("X"), 2) + PrecedingZeros((DiffY * 2).ToString("X"), 2)
-                 + Flip(ExtensionID) + flag1 + flag0 + Flip(itemId) + PrecedingZeros((DiffX * 2).ToString("X"), 2) + PrecedingZeros((DiffY * 2 + 1).ToString("X"), 2);
-        }
-        public static string BuildRightExtension(string itemId, string flag0, string flag1, int DiffX, int DiffY)
-        {
-            string ExtensionID = "FFFD";
-            return Flip(ExtensionID) + flag1 + flag0 + Flip(itemId) + PrecedingZeros((DiffX * 2 + 1).ToString("X"), 2) + PrecedingZeros((DiffY * 2).ToString("X"), 2)
-                 + Flip(ExtensionID) + flag1 + flag0 + Flip(itemId) + PrecedingZeros((DiffX * 2 + 1).ToString("X"), 2) + PrecedingZeros((DiffY * 2 + 1).ToString("X"), 2);
-        }
-
-        public static string BuildDropCore(string itemId, string count, string flag0, string flag1)
-        {
-            return Flip(itemId) + flag1 + flag0 + Flip(count);
         }
 
         public static byte[] ReadByteArray8(Socket socket, long initAddr, int size, ref int counter)
@@ -3088,6 +1632,2001 @@ namespace ACNHPokerCore
                 //Debug.Print(String.Format("Received {0} Bytes", first_rec));
                 return Encoding.ASCII.GetString(b, 0, size * 2);
             }
+        }
+
+        #endregion
+
+        public static void SetMaxSpeed(Socket socket, USBBot usb, string value)
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory(MaxSpeedAddress, StringToByte(value));
+                return;
+            }
+
+            PokeAddress(socket, usb, MaxSpeedAddress.ToString("X"), value);
+        }
+
+        public static void SetStamina(Socket socket, USBBot usb, string value)
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory(staminaAddress, StringToByte(value));
+                return;
+            }
+
+            PokeAddress(socket, usb, staminaAddress.ToString("X"), value);
+        }
+
+        public static void SetAirportColor(Socket socket, USBBot usb, string value)
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory(AirportColor, StringToByte(value));
+                WriteEmulatorMemory(AirportColor + mapOffset, StringToByte(value));
+                return;
+            }
+
+            PokeAddress(socket, usb, AirportColor.ToString("X"), value);
+            PokeAddress(socket, usb, (AirportColor + mapOffset).ToString("X"), value);
+        }
+
+        public static void SetFlag1(Socket socket, USBBot usb, int slot, string flag)
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory(GetItemFlag1UIntAddress(slot), StringToByte(flag));
+                return;
+            }
+
+            PokeAddress(socket, usb, GetItemFlag1Address(slot), flag);
+        }
+
+        /*
+        public static bool SendByteArray(Socket socket, long initAddr, byte[] buffer, int size, ref int counter)
+        {
+            // Send in small chunks
+            const int maxBytesTosend = 1536;
+            int sent = 0;
+            int bytesToSend = 0;
+            StringBuilder dataTemp = new StringBuilder();
+            string msg;
+            while (sent < size)
+            {
+                dataTemp.Clear();
+                bytesToSend = (size - sent > maxBytesTosend) ? maxBytesTosend : size - sent;
+                for (int i = 0; i < bytesToSend; i++)
+                {
+                    dataTemp.Append(String.Format("{0:X2}", buffer[sent + i]));
+                }
+                msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", initAddr + sent, dataTemp.ToString());
+                SendString(socket, Encoding.UTF8.GetBytes(msg));
+                sent += bytesToSend;
+                counter++;
+            }
+
+            return false;
+        }
+
+        public static bool SendByteArray(Socket socket, long initAddr, byte[] buffer, int size)
+        {
+            // Send in small chunks
+            const int maxBytesTosend = 1536;
+            int sent = 0;
+            int bytesToSend = 0;
+            StringBuilder dataTemp = new StringBuilder();
+            string msg;
+            while (sent < size)
+            {
+                dataTemp.Clear();
+                bytesToSend = (size - sent > maxBytesTosend) ? maxBytesTosend : size - sent;
+                for (int i = 0; i < bytesToSend; i++)
+                {
+                    dataTemp.Append(String.Format("{0:X2}", buffer[sent + i]));
+                }
+                msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", initAddr + sent, dataTemp.ToString());
+                //Debug.Print(msg);
+                SendString(socket, Encoding.UTF8.GetBytes(msg));
+                sent += bytesToSend;
+            }
+
+            return false;
+        }
+        */
+
+        public static byte[] GetTownID(Socket socket, USBBot usb)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory(TownNameddress, 0x1C);
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    Debug.Print("[Sys] Peek : TownID " + TownNameddress.ToString("X"));
+
+                    byte[] b = ReadByteArray(socket, TownNameddress, 0x1C);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n TownNameddress");
+                    }
+                    return b;
+                }
+                else
+                {
+                    Debug.Print("[Usb] Peek : TownID " + TownNameddress.ToString("X"));
+
+                    byte[] b = usb.ReadBytes(TownNameddress, 0x1C);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n TownNameddress");
+                    }
+                    return b;
+                }
+            }
+        }
+
+        public static byte[] GetWeatherSeed(Socket socket, USBBot usb)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory(weatherSeed, 0x4);
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    Debug.Print("[Sys] Peek : WeatherSeed " + weatherSeed.ToString("X"));
+
+                    byte[] b = ReadByteArray(socket, weatherSeed, 0x4);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n WeatherSeed");
+                    }
+                    return b;
+                }
+                else
+                {
+                    Debug.Print("[Usb] Peek : WeatherSeed " + weatherSeed.ToString("X"));
+
+                    byte[] b = usb.ReadBytes(weatherSeed, 0x4);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n WeatherSeed");
+                    }
+                    return b;
+                }
+            }
+        }
+
+        public static byte GetAirportColor(Socket socket, USBBot usb)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory(AirportColor, 1)[0];
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    Debug.Print("[Sys] Peek : AirportColor " + AirportColor.ToString("X"));
+
+                    byte[] b = ReadByteArray(socket, AirportColor, 1);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show(@"Wait something is wrong here!? \n\n AirportColor");
+                        return 0xDD;
+                    }
+
+                    return b[0];
+                }
+                else
+                {
+                    Debug.Print("[Usb] Peek : AirportColor " + AirportColor.ToString("X"));
+
+                    byte[] b = ReadLargeBytes(usb, (uint)AirportColor, 1);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n AirportColor");
+                        return 0xDD;
+                    }
+
+                    return b[0];
+                }
+            }
+        }
+
+        public static byte[] GetReaction(Socket socket, USBBot usb, int player)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory((uint)(playerReactionAddress + (player * playerOffset)), 8);
+            }
+
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        Debug.Print("[Sys] Peek : Reaction " + (playerReactionAddress + (player * playerOffset)).ToString("X"));
+
+                        byte[] b = ReadByteArray(socket, (playerReactionAddress + (player * playerOffset)), 8);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n Reaction ");
+                        }
+
+                        return b;
+                    }
+                    else
+                    {
+                        Debug.Print("[Usb] Peek : Reaction " + (playerReactionAddress + (player * playerOffset)).ToString("X"));
+
+                        byte[] b = usb.ReadBytes((uint)(playerReactionAddress + (player * playerOffset)), 8);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n Reaction");
+                        }
+
+                        return b;
+                    }
+
+                }
+                catch
+                {
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getReaction");
+                    return null;
+                }
+            }
+        }
+
+        public static void SetReaction(Socket socket, USBBot usb, int player, string reactionFirstHalf, string reactionSecondHalf)
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory((uint)(playerReactionAddress + (player * playerOffset)), StringToByte(reactionFirstHalf));
+                WriteEmulatorMemory((uint)(playerReactionAddress + (player * playerOffset)) + 4, StringToByte(reactionSecondHalf));
+                return;
+            }
+
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        string msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (playerReactionAddress + (player * playerOffset)).ToString("x"), reactionFirstHalf);
+                        Debug.Print("Poke Reaction: " + msg);
+                        SendString(socket, Encoding.UTF8.GetBytes(msg));
+
+                        msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", ((playerReactionAddress + (player * playerOffset)) + 4).ToString("x"), reactionSecondHalf);
+                        Debug.Print("Poke Reaction: " + msg);
+                        SendString(socket, Encoding.UTF8.GetBytes(msg));
+                    }
+                    else
+                    {
+                        usb.WriteBytes(StringToByte(reactionFirstHalf), (uint)(playerReactionAddress + (player * playerOffset)));
+
+                        usb.WriteBytes(StringToByte(reactionSecondHalf), (uint)((playerReactionAddress + (player * playerOffset)) + 4));
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"setReaction");
+                }
+            }
+        }
+
+        public static void SendSpawnRate(Socket socket, USBBot usb, byte[] buffer, int index, int type, ref int counter)
+        {
+            if (isEmulator)
+            {
+                if (type == 0)
+                {
+                    WriteEmulatorMemory((uint)(InsectAppearPointer + InsectDataSize * index + 0x2), buffer);
+                }
+                else if (type == 1)
+                {
+                    WriteEmulatorMemory((uint)(FishRiverAppearPointer + FishDataSize * index + 0x2), buffer);
+                }
+                else if (type == 2)
+                {
+                    WriteEmulatorMemory((uint)(FishSeaAppearPointer + FishDataSize * index + 0x2), buffer);
+                }
+                else if (type == 3)
+                {
+                    WriteEmulatorMemory((uint)(CreatureSeaAppearPointer + SeaCreatureDataSize * index + 0x2), buffer);
+                }
+                return;
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    if (type == 0)
+                    {
+                        SendByteArray8(socket, InsectAppearPointer + InsectDataSize * index + 0x2, buffer, 12 * 6 * 2, ref counter);
+                    }
+                    else if (type == 1)
+                    {
+                        SendByteArray8(socket, FishRiverAppearPointer + FishDataSize * index + 0x2, buffer, 78, ref counter);
+                    }
+                    else if (type == 2)
+                    {
+                        SendByteArray8(socket, FishSeaAppearPointer + FishDataSize * index + 0x2, buffer, 78, ref counter);
+                    }
+                    else if (type == 3)
+                    {
+                        SendByteArray8(socket, CreatureSeaAppearPointer + SeaCreatureDataSize * index + 0x2, buffer, 78, ref counter);
+                    }
+                }
+                else
+                {
+                    if (type == 0)
+                    {
+                        usb.WriteBytes(buffer, (uint)(InsectAppearPointer + InsectDataSize * index + 0x2));
+                    }
+                    else if (type == 1)
+                    {
+                        usb.WriteBytes(buffer, (uint)(FishRiverAppearPointer + FishDataSize * index + 0x2));
+                    }
+                    else if (type == 2)
+                    {
+                        usb.WriteBytes(buffer, (uint)(FishSeaAppearPointer + FishDataSize * index + 0x2));
+                    }
+                    else if (type == 3)
+                    {
+                        usb.WriteBytes(buffer, (uint)(CreatureSeaAppearPointer + SeaCreatureDataSize * index + 0x2));
+                    }
+                }
+            }
+        }
+
+        public static byte[] GetCritterData(Socket socket, USBBot usb, int mode)
+        {
+            if (isEmulator)
+            {
+                if (mode == 0)
+                {
+                    return ReadEmulatorMemory(InsectAppearPointer, InsectDataSize * InsectNumRecords);
+                }
+                else if (mode == 1)
+                {
+                    return ReadEmulatorMemory(FishRiverAppearPointer, FishDataSize * FishRiverNumRecords);
+                }
+                else if (mode == 2)
+                {
+                    return ReadEmulatorMemory(FishSeaAppearPointer, FishDataSize * FishSeaNumRecords);
+                }
+                else if (mode == 3)
+                {
+                    return ReadEmulatorMemory(CreatureSeaAppearPointer, SeaCreatureDataSize * SeaCreatureNumRecords);
+                }
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    if (mode == 0)
+                    {
+                        Debug.Print("[Sys] Peek : Insect " + InsectAppearPointer.ToString("X") + " " + InsectDataSize * InsectNumRecords);
+                        return ReadByteArray(socket, InsectAppearPointer, InsectDataSize * InsectNumRecords);
+                    }
+                    else if (mode == 1)
+                    {
+                        Debug.Print("[Sys] Peek : FishRiver " + FishRiverAppearPointer.ToString("X") + " " + FishDataSize * FishRiverNumRecords);
+                        return ReadByteArray(socket, FishRiverAppearPointer, FishDataSize * FishRiverNumRecords);
+                    }
+                    else if (mode == 2)
+                    {
+                        Debug.Print("[Sys] Peek : FishSea " + FishSeaAppearPointer.ToString("X") + " " + FishDataSize * FishSeaNumRecords);
+                        return ReadByteArray(socket, FishSeaAppearPointer, FishDataSize * FishSeaNumRecords);
+                    }
+                    else if (mode == 3)
+                    {
+                        Debug.Print("[Sys] Peek : CreatureSea " + CreatureSeaAppearPointer.ToString("X") + " " + SeaCreatureDataSize * SeaCreatureNumRecords);
+                        return ReadByteArray(socket, CreatureSeaAppearPointer, SeaCreatureDataSize * SeaCreatureNumRecords);
+                    }
+                    return null;
+                }
+                else
+                {
+                    if (mode == 0)
+                    {
+                        Debug.Print("[Usb] Peek : Insect " + InsectAppearPointer.ToString("X") + " " + InsectDataSize * InsectNumRecords);
+                        return ReadLargeBytes(usb, InsectAppearPointer, InsectDataSize * InsectNumRecords);
+                    }
+                    else if (mode == 1)
+                    {
+                        Debug.Print("[Usb] Peek : FishRiver " + FishRiverAppearPointer.ToString("X") + " " + FishDataSize * FishRiverNumRecords);
+                        return ReadLargeBytes(usb, FishRiverAppearPointer, FishDataSize * FishRiverNumRecords);
+                    }
+                    else if (mode == 2)
+                    {
+                        Debug.Print("[Usb] Peek : FishSea " + FishSeaAppearPointer.ToString("X") + " " + FishDataSize * FishSeaNumRecords);
+                        return ReadLargeBytes(usb, FishSeaAppearPointer, FishDataSize * FishSeaNumRecords);
+                    }
+                    else if (mode == 3)
+                    {
+                        Debug.Print("[Usb] Peek : CreatureSea " + CreatureSeaAppearPointer.ToString("X") + " " + SeaCreatureDataSize * SeaCreatureNumRecords);
+                        return ReadLargeBytes(usb, CreatureSeaAppearPointer, SeaCreatureDataSize * SeaCreatureNumRecords);
+                    }
+                    return null;
+                }
+            }
+        }
+
+        public static byte[] GetVillager(Socket socket, USBBot usb, int num, int size, ref int counter)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory((uint)(VillagerAddress + (num * VillagerSize)), size);
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    Debug.Print("[Sys] Peek : Villager " + (VillagerAddress + (num * VillagerSize)).ToString("X") + " " + num + " " + size);
+
+                    byte[] b = ReadByteArray(socket, VillagerAddress + (num * VillagerSize), size, ref counter);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n Villager");
+                    }
+
+                    return b;
+                }
+                else
+                {
+                    Debug.Print("[Usb] Peek : Villager " + (VillagerAddress + (num * VillagerSize)).ToString("X") + " " + num + " " + size);
+
+                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerAddress + (num * VillagerSize)), size, ref counter);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n Villager");
+                    }
+
+                    return b;
+                }
+            }
+        }
+
+        public static byte[] GetVillager(Socket socket, USBBot usb, int num, int size)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory((uint)(VillagerAddress + (num * VillagerSize)), size);
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    byte[] b = ReadByteArray(socket, VillagerAddress + (num * VillagerSize), size);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n Villager");
+                    }
+
+                    return b;
+                }
+                else
+                {
+                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerAddress + (num * VillagerSize)), size);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n Villager");
+                    }
+
+                    return b;
+                }
+            }
+        }
+
+        public static void LoadVillager(Socket socket, USBBot usb, int num, byte[] villager, ref int counter)
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory((uint)(VillagerAddress + (num * VillagerSize)), villager);
+                return;
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    SendByteArray8(socket, VillagerAddress + (num * VillagerSize), villager, (int)VillagerSize, ref counter);
+
+                    //SendByteArray(socket, VillagerAddress + (num * VillagerSize) + VillagerHouseBufferDiff, villager, (int)VillagerSize, ref counter);
+                }
+                else
+                {
+                    WriteLargeBytes(usb, VillagerAddress + (num * VillagerSize), villager, (int)VillagerSize, ref counter);
+
+                    //WriteLargeBytes(usb, VillagerAddress + (num * VillagerSize) + VillagerHouseBufferDiff, villager, (int)VillagerSize, ref counter);
+                }
+            }
+        }
+
+        public static byte[] GetMoveout(Socket socket, USBBot usb, int num, int size, ref int counter)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory((uint)(VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset), size);
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    //Debug.Print("[Sys] Peek : Moveout " + (VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset).ToString("X") + " " + size);
+
+                    byte[] b = ReadByteArray(socket, VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset, size, ref counter);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n Moveout");
+                    }
+
+                    return b;
+                }
+                else
+                {
+                    Debug.Print("[Usb] Peek : Moveout " + (VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset).ToString("X") + " " + size);
+
+                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset), size, ref counter);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n Moveout");
+                    }
+
+                    return b;
+                }
+            }
+        }
+
+        public static byte[] GetMoveout(Socket socket, USBBot usb, int num, int size)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory((uint)(VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset), size);
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+
+                    byte[] b = ReadByteArray(socket, VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset, size);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n Moveout");
+                    }
+
+                    return b;
+                }
+                else
+                {
+
+                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset), size);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n Moveout");
+                    }
+
+                    return b;
+                }
+            }
+        }
+
+        public static void SetMoveout(Socket socket, USBBot usb, int num, byte[] flagData, ref int counter)
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory((uint)(VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset), flagData);
+                return;
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    SendByteArray8(socket, VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset, flagData, flagData.Length, ref counter);
+                }
+                else
+                {
+                    WriteLargeBytes(usb, VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset, flagData, flagData.Length, ref counter);
+                }
+            }
+        }
+
+        public static byte[] GetHouse(Socket socket, USBBot usb, int num, ref int counter, uint diff = 0)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory((uint)(VillagerHouseAddress + (num * (VillagerHouseSize)) + diff), (int)VillagerHouseSize);
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    Debug.Print("[Sys] Peek : House " + (VillagerHouseAddress + (num * (VillagerHouseSize)) + diff).ToString("X") + " " + (int)VillagerHouseSize);
+
+                    byte[] b = ReadByteArray(socket, VillagerHouseAddress + (num * (VillagerHouseSize)) + diff, (int)VillagerHouseSize, ref counter);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n House");
+                    }
+
+                    return b;
+                }
+                else
+                {
+                    Debug.Print("[Usb] Peek : House " + (VillagerHouseAddress + (num * (VillagerHouseSize)) + diff).ToString("X") + " " + (int)VillagerHouseSize);
+
+                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerHouseAddress + (num * (VillagerHouseSize)) + diff), (int)VillagerHouseSize);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n House");
+                    }
+
+                    return b;
+                }
+            }
+        }
+
+        public static void LoadHouse(Socket socket, USBBot usb, int num, byte[] house, ref int counter)
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory((uint)(VillagerHouseAddress + (num * (VillagerHouseSize))), house);
+                WriteEmulatorMemory((uint)(VillagerHouseAddress + (num * (VillagerHouseSize)) + VillagerHouseBufferDiff), house);
+                return;
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    SendByteArray8(socket, VillagerHouseAddress + (num * (VillagerHouseSize)), house, (int)VillagerHouseSize, ref counter);
+
+                    SendByteArray8(socket, VillagerHouseAddress + (num * (VillagerHouseSize)) + VillagerHouseBufferDiff, house, (int)VillagerHouseSize, ref counter);
+                }
+                else
+                {
+                    WriteLargeBytes(usb, VillagerHouseAddress + (num * (VillagerHouseSize)), house, (int)VillagerHouseSize, ref counter);
+
+                    WriteLargeBytes(usb, VillagerHouseAddress + (num * (VillagerHouseSize)) + VillagerHouseBufferDiff, house, (int)VillagerHouseSize, ref counter);
+                }
+            }
+        }
+
+        public static byte GetHouseOwner(Socket socket, USBBot usb, int num, ref int counter)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory((uint)(VillagerHouseAddress + (num * (VillagerHouseSize)) + VillagerHouseOwnerOffset), 1)[0];
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    Debug.Print("[Sys] Peek : HouseOwner " + (VillagerHouseAddress + (num * (VillagerHouseSize)) + VillagerHouseOwnerOffset).ToString("X"));
+
+                    byte[] b = ReadByteArray(socket, VillagerHouseAddress + (num * (VillagerHouseSize)) + VillagerHouseOwnerOffset, 1, ref counter);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show(@"Wait something is wrong here!? HouseOwner");
+                        return 0xDD;
+                    }
+
+                    return b[0];
+                }
+                else
+                {
+                    Debug.Print("[Usb] Peek : HouseOwner " + (VillagerHouseAddress + (num * (VillagerHouseSize)) + VillagerHouseOwnerOffset).ToString("X"));
+
+                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerHouseAddress + (num * (VillagerHouseSize)) + VillagerHouseOwnerOffset), 1, ref counter);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n HouseOwner");
+                        return 0xDD;
+                    }
+
+                    return b[0];
+                }
+            }
+        }
+
+        public static byte GetHouseOwner(Socket socket, USBBot usb, int num)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory((uint)(VillagerHouseAddress + (num * (VillagerHouseSize)) + VillagerHouseOwnerOffset), 1)[0];
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    byte[] b = ReadByteArray(socket, VillagerHouseAddress + (num * (VillagerHouseSize)) + VillagerHouseOwnerOffset, 1);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n HouseOwner");
+                        return 0xDD;
+                    }
+
+                    return b[0];
+                }
+                else
+                {
+                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerHouseAddress + (num * (VillagerHouseSize)) + VillagerHouseOwnerOffset), 1);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n HouseOwner");
+                        return 0xDD;
+                    }
+
+                    return b[0];
+                }
+            }
+        }
+
+        public static byte[] GetCatchphrase(Socket socket, USBBot usb, int num, ref int counter)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory((uint)(VillagerAddress + (num * VillagerSize) + VillagerCatchphraseOffset), 0x2C);
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    Debug.Print("[Sys] Peek : Catchphrase " + (VillagerAddress + (num * VillagerSize) + VillagerCatchphraseOffset).ToString("X"));
+
+                    byte[] b = ReadByteArray(socket, VillagerAddress + (num * VillagerSize) + VillagerCatchphraseOffset, 0x2C, ref counter);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n Catchphrase");
+                    }
+
+                    return b;
+                }
+                else
+                {
+                    Debug.Print("[Usb] Peek : Catchphrase " + (VillagerAddress + (num * VillagerSize) + VillagerCatchphraseOffset).ToString("X"));
+
+                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerAddress + (num * VillagerSize) + VillagerCatchphraseOffset), 0x2C, ref counter);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n Catchphrase");
+                    }
+
+                    return b;
+                }
+            }
+        }
+
+        public static void SetCatchphrase(Socket socket, USBBot usb, int num, byte[] pharse)
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory((uint)(VillagerAddress + (num * VillagerSize) + VillagerCatchphraseOffset), pharse);
+                return;
+            }
+
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        string msg;
+
+                        msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + VillagerCatchphraseOffset).ToString("X"), ByteToHexString(pharse));
+                        Debug.Print("Poke Catchphrase: " + msg);
+                        SendString(socket, Encoding.UTF8.GetBytes(msg));
+
+                        //msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + VillagerCatchphraseOffset + VillagerHouseBufferDiff).ToString("X"), ByteToHexString(pharse));
+                        //Debug.Print("Poke Catchphrase: " + msg);
+                        //SendString(socket, Encoding.UTF8.GetBytes(msg));
+                    }
+                    else
+                    {
+                        usb.WriteBytes(pharse, (uint)(VillagerAddress + (num * VillagerSize) + VillagerCatchphraseOffset));
+
+                        //usb.WriteBytes(pharse, (uint)(VillagerAddress + (num * VillagerSize) + VillagerCatchphraseOffset + VillagerHouseBufferDiff));
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"SetCatchphrase");
+                }
+            }
+        }
+
+        public static byte GetVillagerFlag(Socket socket, USBBot usb, int num, uint offset)
+        {
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    Debug.Print("[Sys] Peek : VillagerFlag " + (VillagerAddress + (num * VillagerSize) + offset).ToString("X"));
+
+                    byte[] b = ReadByteArray(socket, VillagerAddress + (num * VillagerSize) + offset, 1);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show(@"Wait something is wrong here!? VillagerFlag");
+                    }
+
+                    return b[0];
+                }
+                else
+                {
+                    Debug.Print("[Usb] Peek : VillagerFlag " + (VillagerAddress + (num * VillagerSize) + offset).ToString("X"));
+
+                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerAddress + (num * VillagerSize) + offset), 1);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show(@"Wait something is wrong here!? VillagerFlag");
+                    }
+
+                    return b[0];
+                }
+            }
+        }
+
+        public static byte GetVillagerHouseFlag(Socket socket, USBBot usb, int num, uint offset, ref int counter)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory((uint)(VillagerHouseAddress + (num * (VillagerHouseSize)) + offset), 1)[0];
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    Debug.Print("[Sys] Peek : VillagerHouseFlag " + (VillagerHouseAddress + (num * (VillagerHouseSize)) + offset).ToString("X"));
+
+                    byte[] b = ReadByteArray(socket, VillagerHouseAddress + (num * (VillagerHouseSize)) + offset, 1, ref counter);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show(@"Wait something is wrong here!? VillagerHouseFlag");
+                    }
+
+                    return b[0];
+                }
+                else
+                {
+                    Debug.Print("[Usb] Peek : VillagerHouseFlag " + (VillagerHouseAddress + (num * (VillagerHouseSize)) + offset).ToString("X"));
+
+                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerHouseAddress + (num * (VillagerHouseSize)) + offset), 1, ref counter);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show(@"Wait something is wrong here!? VillagerHouseFlag");
+                    }
+
+                    return b[0];
+                }
+            }
+        }
+
+        public static int FindHouseIndex(int VillagerNum, int[] list)
+        {
+            for (int i = 0; i < list.Length; i++)
+            {
+                if (list[i] == VillagerNum)
+                    return i;
+            }
+            return -1;
+        }
+
+        public static void SetMoveout(Socket socket, USBBot usb, int num, string MoveoutFlag = "2", string ForceMoveoutFlag = "1")
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory((uint)(VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset), StringToByte(MoveoutFlag));
+
+                WriteEmulatorMemory((uint)(VillagerAddress + (num * VillagerSize) + VillagerForceMoveoutOffset), StringToByte(ForceMoveoutFlag));
+
+                WriteEmulatorMemory((uint)(VillagerAddress + (num * VillagerSize) + VillagerAbandonHouseOffset), StringToByte("0"));
+
+                return;
+            }
+
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        string msg;
+
+                        msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset).ToString("X"), MoveoutFlag);
+                        Debug.Print("Poke Moveout: " + msg);
+                        SendString(socket, Encoding.UTF8.GetBytes(msg));
+
+                        //msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset + VillagerHouseBufferDiff).ToString("X"), MoveoutFlag);
+                        //Debug.Print("Poke Moveout: " + msg);
+                        //SendString(socket, Encoding.UTF8.GetBytes(msg));
+
+                        msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + VillagerForceMoveoutOffset).ToString("X"), ForceMoveoutFlag);
+                        Debug.Print("Poke ForceMoveout: " + msg);
+                        SendString(socket, Encoding.UTF8.GetBytes(msg));
+
+                        //msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + VillagerForceMoveoutOffset + VillagerHouseBufferDiff).ToString("X"), ForceMoveoutFlag);
+                        //Debug.Print("Poke ForceMoveout: " + msg);
+                        //SendString(socket, Encoding.UTF8.GetBytes(msg));
+
+                        msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + VillagerAbandonHouseOffset).ToString("X"), "0");
+                        Debug.Print("Poke AbandonHouse: " + msg);
+                        SendString(socket, Encoding.UTF8.GetBytes(msg));
+
+                        //msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + VillagerAbandonHouseOffset + VillagerHouseBufferDiff).ToString("X"), "0");
+                        //Debug.Print("Poke AbandonHouse: " + msg);
+                        //SendString(socket, Encoding.UTF8.GetBytes(msg));
+                    }
+                    else
+                    {
+                        usb.WriteBytes(StringToByte(MoveoutFlag), (uint)(VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset));
+
+                        //usb.WriteBytes(stringToByte(MoveoutFlag), (uint)(VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset + VillagerHouseBufferDiff));
+
+                        usb.WriteBytes(StringToByte(ForceMoveoutFlag), (uint)(VillagerAddress + (num * VillagerSize) + VillagerForceMoveoutOffset));
+
+                        //usb.WriteBytes(stringToByte(ForceMoveoutFlag), (uint)(VillagerAddress + (num * VillagerSize) + VillagerForceMoveoutOffset + VillagerHouseBufferDiff));
+
+                        usb.WriteBytes(StringToByte("0"), (uint)(VillagerAddress + (num * VillagerSize) + VillagerAbandonHouseOffset));
+
+                        //usb.WriteBytes(stringToByte("0"), (uint)(VillagerAddress + (num * VillagerSize) + VillagerAbandonHouseOffset + VillagerHouseBufferDiff));
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"SetMoveout");
+                }
+            }
+        }
+
+        public static void SetFriendship(Socket socket, USBBot usb, int num, int player, string FriendshipFlag = "FF")
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory((uint)(VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset) + VillagerFriendshipOffset), StringToByte(FriendshipFlag));
+
+                return;
+            }
+
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        string msg;
+                        msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset) + VillagerFriendshipOffset).ToString("X"), FriendshipFlag);
+                        Debug.Print("Poke Friendship: " + msg);
+                        SendString(socket, Encoding.UTF8.GetBytes(msg));
+
+                        //msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset) + VillagerFriendshipOffset + VillagerHouseBufferDiff).ToString("X"), FriendshipFlag);
+                        //Debug.Print("Poke Friendship: " + msg);
+                        //SendString(socket, Encoding.UTF8.GetBytes(msg));
+                    }
+                    else
+                    {
+                        usb.WriteBytes(StringToByte(FriendshipFlag), (uint)(VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset) + VillagerFriendshipOffset));
+
+                        //usb.WriteBytes(stringToByte(FriendshipFlag), (uint)(VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset) + VillagerFriendshipOffset + VillagerHouseBufferDiff));
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"SetFriendship");
+                }
+            }
+        }
+
+        public static byte[] GetPlayerDataVillager(Socket socket, USBBot usb, int num, int player, int size)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory((uint)(VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset)), size);
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    Debug.Print("[Sys] Peek : Villager " + player + " " + (VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset)).ToString("X") + " " + num + " " + size);
+
+                    byte[] b = ReadByteArray(socket, VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset), size);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n Villager");
+                    }
+
+                    return b;
+                }
+                else
+                {
+                    Debug.Print("[Usb] Peek : Villager " + player + " " + (VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset)).ToString("X") + " " + num + " " + size);
+
+                    byte[] b = ReadLargeBytes(usb, (uint)(VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset)), size);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n Villager");
+                    }
+
+                    return b;
+                }
+            }
+        }
+
+        public static void SetMysVillager(Socket socket, USBBot usb, byte[] buffer, byte[] species, ref int counter)
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory(MysIslandVillagerAddress, buffer);
+                WriteEmulatorMemory(MysIslandVillagerSpecies, species);
+                return;
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    SendByteArray8(socket, MysIslandVillagerAddress, buffer, buffer.Length, ref counter);
+                    SendByteArray8(socket, MysIslandVillagerSpecies, species, species.Length, ref counter);
+                }
+                else
+                {
+                    usb.WriteBytes(buffer, MysIslandVillagerAddress);
+                    usb.WriteBytes(species, MysIslandVillagerSpecies);
+                }
+            }
+        }
+
+        public static byte[] GetMysVillagerName(Socket socket, USBBot usb)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory(MysIslandVillagerAddress, 8);
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    Debug.Print("[Sys] Peek : MysVillager " + MysIslandVillagerAddress.ToString("X"));
+
+                    byte[] b = ReadByteArray(socket, MysIslandVillagerAddress, 8);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n MysVillagerName");
+                    }
+                    return b;
+                }
+                else
+                {
+                    Debug.Print("[Usb] Peek : MysVillager " + MysIslandVillagerAddress.ToString("X"));
+
+                    byte[] b = usb.ReadBytes(MysIslandVillagerAddress, 8);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n MysVillagerName");
+                    }
+                    return b;
+                }
+            }
+        }
+
+        public static string GetVillagerInternalName(byte Species, byte Variant)
+        {
+            //int s = Convert.ToInt32(Species);
+            //int v = Convert.ToInt32(Variant);
+            return $"{(VillagerSpecies)Species}{Variant:00}";
+        }
+        public static string GetVillagerRealName(byte Species, byte Variant)
+        {
+            string internalName = GetVillagerInternalName(Species, Variant);
+            if (RealName.ContainsKey(internalName))
+                return RealName[internalName];
+            else
+                return "ERROR";
+        }
+
+        public static string GetVillagerRealName(string IName)
+        {
+            if (RealName.ContainsKey(IName))
+                return RealName[IName];
+            else
+                return "ERROR";
+        }
+
+        public static string GetVillagerImage(string name)
+        {
+            string path = imagePath + villagerPath + name + ".png";
+            if (File.Exists(path))
+                return path;
+            else
+            {
+                path = imagePath + villagerPath + MissingImage;
+                if (File.Exists(path))
+                    return path;
+                else
+                    return "";
+            }
+        }
+
+        public static void DropItem(Socket socket, USBBot usb, long address, string itemId, string count, string flag0, string flag1)
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory((uint)address, StringToByte(BuildDropStringLeft(itemId, count, flag0, flag1)));
+                WriteEmulatorMemory((uint)(address + mapOffset), StringToByte(BuildDropStringLeft(itemId, count, flag0, flag1)));
+                WriteEmulatorMemory((uint)address + 0x600, StringToByte(BuildDropStringRight(itemId)));
+                WriteEmulatorMemory((uint)address + 0x600 + mapOffset, StringToByte(BuildDropStringRight(itemId)));
+                return;
+            }
+
+
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        SendByteArray8(socket, address, StringToByte(BuildDropStringLeft(itemId, count, flag0, flag1)), 16);
+                        SendByteArray8(socket, address + mapOffset, StringToByte(BuildDropStringLeft(itemId, count, flag0, flag1)), 16);
+
+                        SendByteArray8(socket, address + 0x600, StringToByte(BuildDropStringRight(itemId)), 16);
+                        SendByteArray8(socket, address + 0x600 + mapOffset, StringToByte(BuildDropStringRight(itemId)), 16);
+
+                        Debug.Print("Drop: " + address + " " + itemId + " " + count + " " + flag0 + " " + flag1);
+                    }
+                    else
+                    {
+
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"dropItem");
+                }
+            }
+        }
+
+        public static void DropCore(Socket socket, USBBot usb, long address, string itemId, string count, string flag0, string flag1)
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory((uint)address, StringToByte(BuildDropCore(itemId, count, flag0, flag1)));
+                WriteEmulatorMemory((uint)(address + mapOffset), StringToByte(BuildDropCore(itemId, count, flag0, flag1)));
+                return;
+            }
+
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        SendByteArray8(socket, address, StringToByte(BuildDropCore(itemId, count, flag0, flag1)), 8);
+                        SendByteArray8(socket, address + mapOffset, StringToByte(BuildDropCore(itemId, count, flag0, flag1)), 8);
+
+                        Debug.Print("DropCore: " + address + " " + itemId + " " + count + " " + flag0 + " " + flag1);
+                    }
+                    else
+                    {
+
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"dropItem");
+                }
+            }
+        }
+
+        public static void ExtDropItem(Socket socket, USBBot usb, long address, string itemId, string count, string flag0, string flag1)
+        {
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        SendByteArray8(socket, address, StringToByte(ExtbuildDropStringLeft(itemId, count, flag0, flag1)), 16);
+                        SendByteArray8(socket, address + mapOffset, StringToByte(ExtbuildDropStringLeft(itemId, count, flag0, flag1)), 16);
+
+                        SendByteArray8(socket, address + 0x600, StringToByte(BuildDropStringRight("FFFE", true)), 16);
+                        SendByteArray8(socket, address + 0x600 + mapOffset, StringToByte(BuildDropStringRight("FFFE", true)), 16);
+
+                        Debug.Print("Drop: " + address + " " + itemId + " " + count + " " + flag0 + " " + flag1);
+                    }
+                    else
+                    {
+
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"dropItem");
+                }
+            }
+        }
+
+        public static string ExtbuildDropStringLeft(string itemId, string count, string flag0, string flag1)
+        {
+            return Flip(itemId) + flag1 + flag0 + Flip(count) + Flip("FFFE") + "0000" + "0000" + "00" + "00";
+        }
+
+        public static void DeleteFloorItem(Socket socket, USBBot usb, long address)
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory((uint)address, StringToByte(BuildDropStringLeft("FFFE", "00000000", "00", "00", true)));
+                WriteEmulatorMemory((uint)(address + mapOffset), StringToByte(BuildDropStringLeft("FFFE", "00000000", "00", "00", true)));
+                WriteEmulatorMemory((uint)address + 0x600, StringToByte(BuildDropStringRight("FFFE", true)));
+                WriteEmulatorMemory((uint)address + 0x600 + mapOffset, StringToByte(BuildDropStringRight("FFFE", true)));
+                return;
+            }
+
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        SendByteArray8(socket, address, StringToByte(BuildDropStringLeft("FFFE", "00000000", "00", "00", true)), 16);
+                        SendByteArray8(socket, address + mapOffset, StringToByte(BuildDropStringLeft("FFFE", "00000000", "00", "00", true)), 16);
+
+                        SendByteArray8(socket, address + 0x600, StringToByte(BuildDropStringRight("FFFE", true)), 16);
+                        SendByteArray8(socket, address + 0x600 + mapOffset, StringToByte(BuildDropStringRight("FFFE", true)), 16);
+
+                        Debug.Print("Delete: " + address);
+                    }
+                    else
+                    {
+
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"deleteFloorItem");
+                }
+            }
+        }
+
+        public static byte[] GetMapLayer(Socket socket, USBBot usb, long address, ref int counter)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory((uint)address, (int)mapSize);
+            }
+
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        Debug.Print("[Sys] Peek : Map Layer " + address.ToString("X"));
+
+                        byte[] b = ReadByteArray8(socket, address, (int)mapSize, ref counter);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n Map Layer");
+                        }
+                        return b;
+                    }
+                    else
+                    {
+                        Debug.Print("[Usb] Peek : Map Layer " + address.ToString("X"));
+
+                        byte[] b = ReadLargeBytes(usb, (uint)address, (int)mapSize, ref counter);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n Map Layer");
+                        }
+                        return b;
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getMapLayer");
+                    return null;
+                }
+            }
+        }
+
+        public static byte[] GetAcre(Socket socket, USBBot usb)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory(AcreOffset, AcreAndPlaza);
+            }
+
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        Debug.Print("[Sys] Peek : Acre " + AcreOffset.ToString("X"));
+
+                        byte[] b = ReadByteArray(socket, AcreOffset, AcreAndPlaza);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n Acre");
+                        }
+                        return b;
+                    }
+                    else
+                    {
+                        Debug.Print("[Usb] Peek : Acre " + AcreOffset.ToString("X"));
+
+                        byte[] b = usb.ReadBytes(AcreOffset, AcreAndPlaza);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n Acre");
+                        }
+                        return b;
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getAcre");
+                    return null;
+                }
+            }
+        }
+
+        public static void SendAcre(Socket socket, USBBot usb, byte[] acre, ref int counter)
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory(AcreOffset, acre);
+                WriteEmulatorMemory(AcreOffset + mapOffset, acre);
+                return;
+            }
+
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        Debug.Print("[Sys] Poke : Acre " + AcreOffset.ToString("X"));
+
+                        SendByteArray8(socket, AcreOffset, acre, acre.Length, ref counter);
+                        SendByteArray8(socket, AcreOffset + mapOffset, acre, acre.Length, ref counter);
+                    }
+                    else
+                    {
+                        Debug.Print("[Usb] Poke : Acre " + AcreOffset.ToString("X"));
+
+                        WriteLargeBytes(usb, AcreOffset, acre, acre.Length, ref counter);
+                        WriteLargeBytes(usb, AcreOffset + mapOffset, acre, acre.Length, ref counter);
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"sendAcre");
+                }
+            }
+        }
+
+        public static void SendPlaza(Socket socket, USBBot usb, byte[] plaza, ref int counter)
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory(AcreOffset + 0x94, plaza);
+                WriteEmulatorMemory(AcreOffset + 0x94 + mapOffset, plaza);
+                return;
+            }
+
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        Debug.Print("[Sys] Poke : Plaza " + (AcreOffset + 0x94).ToString("X"));
+
+                        SendByteArray8(socket, AcreOffset + 0x94, plaza, plaza.Length, ref counter);
+                        SendByteArray8(socket, AcreOffset + 0x94 + mapOffset, plaza, plaza.Length, ref counter);
+                    }
+                    else
+                    {
+                        Debug.Print("[Usb] Poke : Plaza " + (AcreOffset + 0x94).ToString("X"));
+
+                        WriteLargeBytes(usb, AcreOffset + 0x94, plaza, plaza.Length, ref counter);
+                        WriteLargeBytes(usb, AcreOffset + 0x94 + mapOffset, plaza, plaza.Length, ref counter);
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"sendPlaza");
+                }
+            }
+        }
+
+        public static void SendBuilding(Socket socket, USBBot usb, byte[] building, ref int counter)
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory(BuildingOffset, building);
+                WriteEmulatorMemory(BuildingOffset + mapOffset, building);
+                return;
+            }
+
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        Debug.Print("[Sys] Poke : Building " + BuildingOffset.ToString("X"));
+
+                        SendByteArray8(socket, BuildingOffset, building, building.Length, ref counter);
+                        SendByteArray8(socket, BuildingOffset + mapOffset, building, building.Length, ref counter);
+                    }
+                    else
+                    {
+                        Debug.Print("[Usb] Poke : Building " + BuildingOffset.ToString("X"));
+
+                        WriteLargeBytes(usb, BuildingOffset, building, building.Length, ref counter);
+                        WriteLargeBytes(usb, BuildingOffset + mapOffset, building, building.Length, ref counter);
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"sendBuilding");
+                }
+            }
+        }
+
+        public static byte[] GetBuilding(Socket socket, USBBot usb)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory(BuildingOffset, AllBuildingSize);
+            }
+
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        Debug.Print("[Sys] Peek : Building " + BuildingOffset.ToString("X"));
+
+                        byte[] b = ReadByteArray(socket, BuildingOffset, AllBuildingSize);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n Building");
+                        }
+                        return b;
+                    }
+                    else
+                    {
+                        Debug.Print("[Usb] Peek : Building " + BuildingOffset.ToString("X"));
+
+                        byte[] b = usb.ReadBytes(BuildingOffset, AllBuildingSize);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n Building");
+                        }
+                        return b;
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getBuilding");
+                    return null;
+                }
+            }
+        }
+
+        public static void SendTerrain(Socket socket, USBBot usb, byte[] terrain, ref int counter)
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory(TerrainOffset, terrain);
+                WriteEmulatorMemory(TerrainOffset + mapOffset, terrain);
+                return;
+            }
+
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        Debug.Print("[Sys] Poke : Terrain " + TerrainOffset.ToString("X"));
+
+                        SendByteArray8(socket, TerrainOffset, terrain, AllTerrainSize, ref counter);
+                        SendByteArray8(socket, TerrainOffset + mapOffset, terrain, AllTerrainSize, ref counter);
+                    }
+                    else
+                    {
+                        Debug.Print("[Usb] Poke : Terrain " + TerrainOffset.ToString("X"));
+
+                        WriteLargeBytes(usb, TerrainOffset, terrain, AllTerrainSize, ref counter);
+                        WriteLargeBytes(usb, TerrainOffset + mapOffset, terrain, AllTerrainSize, ref counter);
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"sendTerrain");
+                }
+            }
+        }
+
+        public static void SendCustomMap(Socket socket, USBBot usb, byte[] CustomMap, ref int counter)
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory(mapCustomDesign, CustomMap);
+                WriteEmulatorMemory(mapCustomDesign + mapOffset, CustomMap);
+                return;
+            }
+
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        Debug.Print("[Sys] Poke : CustomMap " + TerrainOffset.ToString("X"));
+
+                        SendByteArray8(socket, mapCustomDesign, CustomMap, CustomMap.Length, ref counter);
+                        SendByteArray8(socket, mapCustomDesign + mapOffset, CustomMap, CustomMap.Length, ref counter);
+                    }
+                    else
+                    {
+                        Debug.Print("[Usb] Poke : CustomMap " + TerrainOffset.ToString("X"));
+
+                        WriteLargeBytes(usb, mapCustomDesign, CustomMap, CustomMap.Length, ref counter);
+                        WriteLargeBytes(usb, mapCustomDesign + mapOffset, CustomMap, CustomMap.Length, ref counter);
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"sendCustomMap");
+                }
+            }
+        }
+
+        public static byte[] GetTerrain(Socket socket, USBBot usb)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory(TerrainOffset, AllTerrainSize);
+            }
+
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        Debug.Print("[Sys] Peek : Terrain " + TerrainOffset.ToString("X"));
+
+                        byte[] b = ReadByteArray8(socket, TerrainOffset, AllTerrainSize);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n Terrain");
+                        }
+                        return b;
+                    }
+                    else
+                    {
+                        Debug.Print("[Usb] Peek : Terrain " + TerrainOffset.ToString("X"));
+
+                        byte[] b = usb.ReadBytes(TerrainOffset, AllTerrainSize);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n Terrain");
+                        }
+                        return b;
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getTerrain");
+                    return null;
+                }
+            }
+        }
+
+        public static byte[] GetActivate(Socket socket, USBBot usb, long address, ref int counter)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory((uint)address, (int)mapActivateSize);
+            }
+
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        Debug.Print("[Sys] Peek : Activate " + address.ToString("X"));
+
+                        byte[] b = ReadByteArray8(socket, address, (int)mapActivateSize, ref counter);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n Activate");
+                        }
+                        return b;
+                    }
+                    else
+                    {
+                        Debug.Print("[Usb] Peek : Activate " + address.ToString("X"));
+
+                        byte[] b = ReadLargeBytes(usb, (uint)address, (int)mapActivateSize, ref counter);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n Activate");
+                        }
+                        return b;
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getActivate");
+                    return null;
+                }
+            }
+        }
+
+        public static byte[] GetCustomDesignMap(Socket socket, USBBot usb, ref int counter)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory(mapCustomDesign, MapTileCount16x16 * 2);
+            }
+
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        Debug.Print("[Sys] Peek : CustomDesignMap " + mapCustomDesign.ToString("X"));
+
+                        byte[] b = ReadByteArray8(socket, mapCustomDesign, MapTileCount16x16 * 2, ref counter);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n CustomDesignMap");
+                        }
+                        return b;
+                    }
+                    else
+                    {
+                        Debug.Print("[Usb] Peek : CustomDesignMap " + mapCustomDesign.ToString("X"));
+
+                        byte[] b = ReadLargeBytes(usb, mapCustomDesign, MapTileCount16x16 * 2, ref counter);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n CustomDesignMap");
+                        }
+                        return b;
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getCustomDesignMap");
+                    return null;
+                }
+            }
+        }
+
+        public static byte[] GetMyDesign(Socket socket, USBBot usb, ref int counter)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory(MyDesignZero, DesignPattern.SIZE * PatternCount);
+            }
+
+            lock (botLock)
+            {
+                try
+                {
+                    if (usb == null)
+                    {
+                        Debug.Print("[Sys] Peek : MyDesign " + MyDesignZero.ToString("X"));
+
+                        byte[] b = ReadByteArray8(socket, MyDesignZero, DesignPattern.SIZE * PatternCount, ref counter);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n MyDesign");
+                        }
+                        return b;
+                    }
+                    else
+                    {
+                        Debug.Print("[Usb] Peek : MyDesign " + MyDesignZero.ToString("X"));
+
+                        byte[] b = ReadLargeBytes(usb, MyDesignZero, DesignPattern.SIZE * PatternCount, ref counter);
+
+                        if (b == null)
+                        {
+                            MessageBox.Show("Wait something is wrong here!? \n\n MyDesign");
+                        }
+                        return b;
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"getMyDesign");
+                    return null;
+                }
+            }
+        }
+
+        public static byte[] GetCoordinate(Socket socket, USBBot usb)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory(coordinate, 8);
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    Debug.Print("[Sys] Peek : Coordinate " + coordinate.ToString("X"));
+
+                    byte[] b = ReadByteArray(socket, coordinate, 8);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n Coordinate");
+                    }
+                    return b;
+                }
+                else
+                {
+                    Debug.Print("[Usb] Peek : Coordinate " + coordinate.ToString("X"));
+
+                    byte[] b = usb.ReadBytes(coordinate, 8);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n Coordinate");
+                    }
+                    return b;
+                }
+            }
+        }
+
+        public static byte[] GetSaving(Socket socket, USBBot usb = null)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory(savingOffset, 32);
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    Debug.Print("[Sys] Peek : Save " + savingOffset.ToString("X"));
+
+                    byte[] b = ReadByteArray(socket, savingOffset, 32);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n Save");
+                    }
+                    return b;
+                }
+                else
+                {
+                    Debug.Print("[Usb] Peek : Save " + savingOffset.ToString("X"));
+
+                    byte[] b = usb.ReadBytes(savingOffset, 32);
+
+                    if (b == null)
+                    {
+                        MessageBox.Show("Wait something is wrong here!? \n\n Save");
+                    }
+                    return b;
+                }
+            }
+        }
+
+        public static void DropColumn(Socket socket, USBBot usb, uint address1, uint address2, byte[] buffer1, byte[] buffer2, ref int counter)
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory(address1, buffer1);
+                WriteEmulatorMemory(address1 + mapOffset, buffer1);
+                WriteEmulatorMemory(address2, buffer2);
+                WriteEmulatorMemory(address2 + mapOffset, buffer2);
+                return;
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    SendByteArray8(socket, address1, buffer1, buffer1.Length, ref counter);
+                    SendByteArray8(socket, address1 + mapOffset, buffer1, buffer1.Length, ref counter);
+                    SendByteArray8(socket, address2, buffer2, buffer2.Length, ref counter);
+                    SendByteArray8(socket, address2 + mapOffset, buffer2, buffer2.Length, ref counter);
+                }
+                else
+                {
+                    WriteLargeBytes(usb, address1, buffer1, buffer1.Length, ref counter);
+                    WriteLargeBytes(usb, address1 + mapOffset, buffer1, buffer1.Length, ref counter);
+                    WriteLargeBytes(usb, address2, buffer2, buffer2.Length, ref counter);
+                    WriteLargeBytes(usb, address2 + mapOffset, buffer2, buffer2.Length, ref counter);
+                }
+            }
+        }
+
+        public static void DropColumn2(Socket socket, USBBot usb, uint address1, uint address2, byte[] buffer1, byte[] buffer2)
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory(address1, buffer1);
+                WriteEmulatorMemory(address1 + mapOffset, buffer1);
+                WriteEmulatorMemory(address2, buffer2);
+                WriteEmulatorMemory(address2 + mapOffset, buffer2);
+                return;
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    SendByteArray8(socket, address1, buffer1, buffer1.Length);
+                    SendByteArray8(socket, address1 + mapOffset, buffer1, buffer1.Length);
+                    SendByteArray8(socket, address2, buffer2, buffer2.Length);
+                    SendByteArray8(socket, address2 + mapOffset, buffer2, buffer2.Length);
+                }
+            }
+        }
+
+        public static void DropRenewColumn(Socket socket, USBBot usb, uint address, byte[] column)
+        {
+            if (isEmulator)
+            {
+                WriteEmulatorMemory(address, column);
+                WriteEmulatorMemory(address + mapOffset, column);
+                return;
+            }
+
+            lock (botLock)
+            {
+                if (usb == null)
+                {
+                    SendByteArray8(socket, address, column, column.Length);
+                    SendByteArray8(socket, address + mapOffset, column, column.Length);
+                }
+                else
+                {
+
+                }
+            }
+        }
+
+        public static byte[] Read7x7Floor(Socket socket, USBBot usb, uint address)
+        {
+            if (isEmulator)
+            {
+                return ReadEmulatorMemory(address, 0x4E70);
+            }
+
+            lock (botLock)
+            {
+                byte[] buffer = null;
+
+                if (usb == null)
+                {
+                    buffer = ReadByteArray8(socket, address, 0x4E70);
+                }
+                else
+                {
+
+                }
+                return buffer;
+            }
+        }
+
+        public static string BuildDropStringLeft(string itemId, string count, string flag0, string flag1, Boolean empty = false)
+        {
+            string partID = "FDFF0000";
+            if (empty || itemId == "FFFE")
+                return Flip(itemId) + flag1 + flag0 + Flip(count) + Flip(itemId) + "0000" + "0000" + "00" + "00";
+            else
+                return Flip(itemId) + flag1 + flag0 + Flip(count) + partID + Flip(itemId) + "00" + "01";
+        }
+        public static string BuildDropStringRight(string itemId, Boolean empty = false)
+        {
+            string partID = "FDFF0000";
+            if (empty || itemId == "FFFE")
+                return Flip(itemId) + "0000" + "0000" + "00" + "00" + Flip(itemId) + "0000" + "0000" + "00" + "00";
+            else
+                return partID + Flip(itemId) + "01" + "00" + partID + Flip(itemId) + "01" + "01";
+        }
+        public static string BuildLeftExtension(string itemId, string flag0, string flag1, int DiffX, int DiffY)
+        {
+            string ExtensionID = "FFFD";
+            return Flip(ExtensionID) + flag1 + flag0 + Flip(itemId) + PrecedingZeros((DiffX * 2).ToString("X"), 2) + PrecedingZeros((DiffY * 2).ToString("X"), 2)
+                 + Flip(ExtensionID) + flag1 + flag0 + Flip(itemId) + PrecedingZeros((DiffX * 2).ToString("X"), 2) + PrecedingZeros((DiffY * 2 + 1).ToString("X"), 2);
+        }
+        public static string BuildRightExtension(string itemId, string flag0, string flag1, int DiffX, int DiffY)
+        {
+            string ExtensionID = "FFFD";
+            return Flip(ExtensionID) + flag1 + flag0 + Flip(itemId) + PrecedingZeros((DiffX * 2 + 1).ToString("X"), 2) + PrecedingZeros((DiffY * 2).ToString("X"), 2)
+                 + Flip(ExtensionID) + flag1 + flag0 + Flip(itemId) + PrecedingZeros((DiffX * 2 + 1).ToString("X"), 2) + PrecedingZeros((DiffY * 2 + 1).ToString("X"), 2);
+        }
+
+        public static string BuildDropCore(string itemId, string count, string flag0, string flag1)
+        {
+            return Flip(itemId) + flag1 + flag0 + Flip(count);
         }
 
         public static byte[] GetVisitorName(Socket socket)
@@ -3211,6 +3750,26 @@ namespace ACNHPokerCore
 
         public static void SetFastSwimSpeed(Socket socket, USBBot usb, bool enable)
         {
+            if (isEmulator)
+            {
+                if (enable)
+                {
+                    WriteEmulatorMemory(JumpDistance, StringToByte(LongJumpDistance));
+                    WriteEmulatorMemory(DiveTime, StringToByte(LongDiveTime));
+                    WriteEmulatorMemory(SwimSpeed, StringToByte(FastSwimSpeed));
+                    WriteEmulatorMemory(DiveSpeed, StringToByte(FastDiveSpeed));
+                }
+                else
+                {
+                    WriteEmulatorMemory(JumpDistance, StringToByte(DefaultJumpDistance));
+                    WriteEmulatorMemory(DiveTime, StringToByte(DefaultDiveTime));
+                    WriteEmulatorMemory(SwimSpeed, StringToByte(DefaultSwimSpeed));
+                    WriteEmulatorMemory(DiveSpeed, StringToByte(DefaultDiveSpeed));
+                }
+
+                return;
+            }
+
             lock (botLock)
             {
                 if (enable)

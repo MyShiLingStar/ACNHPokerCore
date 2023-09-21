@@ -38,6 +38,7 @@ namespace ACNHPokerCore
         private static Socket socket;
         private static USBBot usb;
         private readonly string version = "ACNHPokerCore R23 for v2.0.6";
+        private string hardwareId;
 
         private Panel currentPanel;
 
@@ -129,6 +130,8 @@ namespace ACNHPokerCore
 
         private void Main_Load(object sender, EventArgs e)
         {
+            hardwareId = libc.hwid.HwId.Generate();
+
             Text = version;
 
             IPAddressInputBox.Text = ConfigurationManager.AppSettings["ipAddress"];
@@ -708,9 +711,17 @@ namespace ACNHPokerCore
                 UInt16 intId = Convert.ToUInt16(id, 16);
 
                 string front = Utilities.PrecedingZeros(hexValue, 8).Substring(0, 4);
-                //string back = Utilities.precedingZeros(hexValue, 8).Substring(4, 4);
+                string back = Utilities.PrecedingZeros(hexValue, 8).Substring(4, 4);
 
-                if (ItemAttr.hasFenceWithVariation(intId))  // Fence Variation
+                if (IDTextbox.Text is "315A" or "1618" or "342F") // Wall-Mounted
+                {
+                    SelectedItem.Setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, itemSource, Convert.ToUInt32("0x" + hexValue, 16)), true, GetImagePathFromID(back, itemSource));
+                }
+                else if (IDTextbox.Text is "114A") // Money Tree
+                {
+                    SelectedItem.Setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, itemSource, Convert.ToUInt32("0x" + hexValue, 16)), true, GetImagePathFromID(back, itemSource));
+                }
+                else if (ItemAttr.hasFenceWithVariation(intId))  // Fence Variation
                 {
                     SelectedItem.Setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, itemSource, Convert.ToUInt32("0x" + front, 16)), true, "");
                 }
@@ -930,7 +941,7 @@ namespace ACNHPokerCore
 
         private string UpdateTownID()
         {
-            if (socket == null && usb == null)
+            if (socket == null && usb == null && Utilities.isEmulator == false)
                 return "";
 
             MyLog.LogEvent("MainForm", "Reading Island Name :");
@@ -1339,7 +1350,7 @@ namespace ACNHPokerCore
                                 UpdateTurnipPrices();
                                 ReadWeatherSeed();
                                 ReadAirportColor();
-                                readActivatedCheat();
+                                ReadActivatedCheat();
 
                                 currentGridView = InsectGridView;
 
@@ -1513,13 +1524,13 @@ namespace ACNHPokerCore
         private static string[] GetInventoryName()
         {
             string[] namelist = new string[8];
-            Debug.Print("Peek 8 Name:");
+            //Debug.Print("Peek 8 Name:");
             byte[] tempHeader = null;
             Boolean headerFound = false;
 
             for (int i = 0; i < 8; i++)
             {
-                byte[] b = Utilities.PeekAddress(socket, usb, (uint)(Utilities.player1SlotBase + (i * Utilities.playerOffset)) + Utilities.InventoryNameOffset, 0x34);
+                byte[] b = Utilities.GetInventoryName(socket, usb, i);
                 namelist[i] = Encoding.Unicode.GetString(b, 32, 20);
                 namelist[i] = namelist[i].Replace("\0", string.Empty);
                 if (namelist[i].Equals(string.Empty) && !headerFound)
@@ -1753,6 +1764,10 @@ namespace ACNHPokerCore
                     else if (itemId == "0A13") // Fossil
                     {
                         btn.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                    }
+                    else if (itemId == "114A") // Money Tree
+                    {
+                        btn.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
                     }
                     else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
                     {
@@ -2072,28 +2087,27 @@ namespace ACNHPokerCore
 
             try
             {
+                if (!offline)
+                    Utilities.SpawnItem(socket, usb, selectedSlot, SelectedItem.GetFlag0() + SelectedItem.GetFlag1() + IDTextbox.Text, Utilities.PrecedingZeros(hexValue, 8));
+
                 if (IDTextbox.Text is "16A2") //recipe
                 {
-                    if (!offline)
-                        Utilities.SpawnItem(socket, usb, selectedSlot, SelectedItem.GetFlag0() + SelectedItem.GetFlag1() + IDTextbox.Text, Utilities.PrecedingZeros(hexValue, 8));
-                    selectedButton.Setup(GetNameFromID(Utilities.Turn2bytes(hexValue), recipeSource), 0x16A2, Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(hexValue), recipeSource));
+                    selectedButton.Setup(GetNameFromID(hexValue, recipeSource), 0x16A2, Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(hexValue), recipeSource));
+                }
+                else if (IDTextbox.Text is "114A") // Money Tree
+                {
+                    selectedButton.Setup(GetNameFromID(IDTextbox.Text, itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource, Convert.ToUInt32("0x" + hexValue, 16)), GetImagePathFromID(Utilities.Turn2bytes(hexValue), itemSource), SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
                 }
                 else if (IDTextbox.Text is "315A" or "1618" or "342F") // Wall-Mounted
                 {
-                    if (!offline)
-                        Utilities.SpawnItem(socket, usb, selectedSlot, SelectedItem.GetFlag0() + SelectedItem.GetFlag1() + IDTextbox.Text, Utilities.PrecedingZeros(hexValue, 8));
-                    selectedButton.Setup(GetNameFromID(IDTextbox.Text, itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(IDTextbox.Text, itemSource, Convert.ToUInt32("0x" + hexValue, 16)), GetImagePathFromID((Utilities.Turn2bytes(hexValue)), itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(front), 16)), SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
+                    selectedButton.Setup(GetNameFromID(IDTextbox.Text, itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(IDTextbox.Text, itemSource, Convert.ToUInt32("0x" + hexValue, 16)), GetImagePathFromID(Utilities.Turn2bytes(hexValue), itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(front), 16)), SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
                 }
                 else if (ItemAttr.hasFenceWithVariation(intId))  // Fence Variation
                 {
-                    if (!offline)
-                        Utilities.SpawnItem(socket, usb, selectedSlot, SelectedItem.GetFlag0() + SelectedItem.GetFlag1() + IDTextbox.Text, Utilities.PrecedingZeros(hexValue, 8));
                     selectedButton.Setup(GetNameFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource, Convert.ToUInt32("0x" + front, 16)), "", SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
                 }
                 else
                 {
-                    if (!offline)
-                        Utilities.SpawnItem(socket, usb, selectedSlot, SelectedItem.GetFlag0() + SelectedItem.GetFlag1() + IDTextbox.Text, Utilities.PrecedingZeros(hexValue, 8));
                     selectedButton.Setup(GetNameFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource, Convert.ToUInt32("0x" + hexValue, 16)), "", SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
                 }
             }
@@ -2600,7 +2614,11 @@ namespace ACNHPokerCore
             {
                 if (IDTextbox.Text is "16A2") //recipe
                 {
-                    SelectedItem.Setup(GetNameFromID(Utilities.Turn2bytes(hexValue), recipeSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(hexValue), recipeSource), true, "", SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
+                    SelectedItem.Setup(GetNameFromID(hexValue, recipeSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(hexValue), recipeSource), true, "", SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
+                }
+                else if (IDTextbox.Text is "114A") // Money Tree
+                {
+                    SelectedItem.Setup(GetNameFromID(IDTextbox.Text, itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource, Convert.ToUInt32("0x" + hexValue, 16)), true, GetImagePathFromID(Utilities.Turn2bytes(hexValue), itemSource), SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
                 }
                 else if (IDTextbox.Text is "315A" or "1618" or "342F") // Wall-Mounted
                 {
@@ -2756,7 +2774,11 @@ namespace ACNHPokerCore
             {
                 if (IDTextbox.Text is "16A2") //recipe
                 {
-                    SelectedItem.Setup(GetNameFromID(Utilities.Turn2bytes(hexValue), recipeSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(hexValue), recipeSource), true, "", SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
+                    SelectedItem.Setup(GetNameFromID(hexValue, recipeSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(hexValue), recipeSource), true, "", SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
+                }
+                else if (IDTextbox.Text is "114A") // Money Tree
+                {
+                    SelectedItem.Setup(GetNameFromID(IDTextbox.Text, itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource, Convert.ToUInt32("0x" + hexValue, 16)), true, GetImagePathFromID(Utilities.Turn2bytes(hexValue), itemSource), SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
                 }
                 else if (IDTextbox.Text is "315A" or "1618" or "342F") // Wall-Mounted
                 {
@@ -2795,9 +2817,9 @@ namespace ACNHPokerCore
             var button = (InventorySlot)sender;
             if (!button.IsEmpty())
             {
-                ButtonToolTip.SetToolTip(button, button.DisplayItemName() + 
+                ButtonToolTip.SetToolTip(button, button.DisplayItemName() +
                                                 "\n\nID : " + button.DisplayItemID() + "" +
-                                                "\nCount : " + button.DisplayItemData() + 
+                                                "\nCount : " + button.DisplayItemData() +
                                                 "\nFlag : " + button.GetFlag0() + " " + button.GetFlag1());
             }
         }
@@ -2821,6 +2843,9 @@ namespace ACNHPokerCore
             ItemModeButton.Visible = false;
             RecipeModeButton.Visible = false;
             FlowerModeButton.Visible = false;
+            FavoriteModeButton.Visible = false;
+
+            WrappingPanel.Visible = false;
 
             SelectedItem.Visible = false;
             SelectedItemName.Visible = false;
@@ -2843,6 +2868,9 @@ namespace ACNHPokerCore
             ItemModeButton.Visible = true;
             RecipeModeButton.Visible = true;
             FlowerModeButton.Visible = true;
+            FavoriteModeButton.Visible = true;
+
+            WrappingPanel.Visible = true;
 
             SelectedItem.Visible = true;
             SelectedItemName.Visible = true;
@@ -3138,6 +3166,7 @@ namespace ACNHPokerCore
                     byte[] flag1Bytes = new byte[1];
                     byte[] dataBytes = new byte[4];
                     byte[] recipeBytes = new byte[2];
+                    byte[] fenceBytes = new byte[2];
 
                     int slotOffset = ((slotId - 1) * 0x8);
                     int flag0Offset = 0x3 + ((slotId - 1) * 0x8);
@@ -3149,12 +3178,15 @@ namespace ACNHPokerCore
                     Buffer.BlockCopy(newInventory, flag1Offset, flag1Bytes, 0, 1);
                     Buffer.BlockCopy(newInventory, countOffset, dataBytes, 0, 4);
                     Buffer.BlockCopy(newInventory, countOffset, recipeBytes, 0, 2);
+                    Buffer.BlockCopy(newInventory, countOffset + 0x2, fenceBytes, 0x0, 0x2);
 
                     string itemId = Utilities.Flip(Utilities.ByteToHexString(slotBytes));
                     string itemData = Utilities.Flip(Utilities.ByteToHexString(dataBytes));
                     string recipeData = Utilities.Flip(Utilities.ByteToHexString(recipeBytes));
+                    string fenceData = Utilities.Flip(Utilities.ByteToHexString(fenceBytes));
                     string flag0 = Utilities.ByteToHexString(flag0Bytes);
                     string flag1 = Utilities.ByteToHexString(flag1Bytes);
+                    UInt16 intId = Convert.ToUInt16(itemId, 16);
 
                     //Debug.Print("Slot : " + slotId.ToString() + " ID : " + itemID + " Data : " + itemData + " recipeData : " + recipeData + " Flag0 : " + flag0 + " Flag1 : " + flag1);
 
@@ -3180,7 +3212,15 @@ namespace ACNHPokerCore
                     }
                     else if (itemId == "114A") // Money Tree
                     {
-                        btn.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetNameFromID(recipeData, itemSource), flag0, flag1);
+                        btn.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                    }
+                    else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                    {
+                        btn.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                    }
+                    else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                    {
+                        btn.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                     }
                     else
                     {
@@ -3704,6 +3744,9 @@ namespace ACNHPokerCore
                     ((DataTable)FlowerGridView.DataSource).DefaultView.RowFilter = string.Format(languageSetting + " LIKE '%{0}%'", EscapeLikeValue(ItemSearchBox.Text));
                 if (FavGridView.DataSource != null)
                     ((DataTable)FavGridView.DataSource).DefaultView.RowFilter = string.Format("Name" + " LIKE '%{0}%'", EscapeLikeValue(ItemSearchBox.Text));
+
+                ItemSearchBox.Font = new Font("Microsoft Sans Serif", 14F);
+                ItemSearchBox.ForeColor = Color.White;
             }
             catch
             {
@@ -3938,7 +3981,11 @@ namespace ACNHPokerCore
 
                     if (id == "16A2") //recipe
                     {
-                        SelectedItem.Setup(GetNameFromID(Utilities.Turn2bytes(hexValue), recipeSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(hexValue), recipeSource), true, "", SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
+                        SelectedItem.Setup(GetNameFromID(hexValue, recipeSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(hexValue), recipeSource), true, "", SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
+                    }
+                    else if (id == "114A") // Money Tree
+                    {
+                        SelectedItem.Setup(GetNameFromID(IDTextbox.Text, itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource, Convert.ToUInt32("0x" + hexValue, 16)), true, GetImagePathFromID(Utilities.Turn2bytes(hexValue), itemSource), SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
                     }
                     else if (id == "315A" || id == "1618" || id == "342F") // Wall-Mounted
                     {
@@ -4224,46 +4271,54 @@ namespace ACNHPokerCore
 
         private void IDTextbox_TextChanged(object sender, EventArgs e)
         {
-            if (((RichTextBox)sender).Modified)
+            try
             {
-                if (IDTextbox.Text != "")
+                if (((RichTextBox)sender).Modified)
                 {
-                    if (ItemAttr.hasGenetics(Convert.ToUInt16("0x" + IDTextbox.Text, 16)))
+                    if (IDTextbox.Text != "")
                     {
-                        if (HexModeButton.Tag.ToString() == "Normal")
+                        if (ItemAttr.hasGenetics(Convert.ToUInt16("0x" + IDTextbox.Text, 16)))
                         {
-                            HexModeButton_Click(sender, e);
-                        }
+                            if (HexModeButton.Tag.ToString() == "Normal")
+                            {
+                                HexModeButton_Click(sender, e);
+                            }
 
-                        string value = AmountOrCountTextbox.Text;
-                        int length = value.Length;
-                        string firstByte;
-                        string secondByte;
-                        if (length < 2)
-                        {
-                            firstByte = "0";
-                            secondByte = value;
+                            string value = AmountOrCountTextbox.Text;
+                            int length = value.Length;
+                            string firstByte;
+                            string secondByte;
+                            if (length < 2)
+                            {
+                                firstByte = "0";
+                                secondByte = value;
+                            }
+                            else
+                            {
+                                firstByte = value.Substring(length - 2, 1);
+                                secondByte = value.Substring(length - 1, 1);
+                            }
+
+                            SetGeneComboBox(firstByte, secondByte);
+                            GenePanel.Visible = true;
                         }
                         else
                         {
-                            firstByte = value.Substring(length - 2, 1);
-                            secondByte = value.Substring(length - 1, 1);
+                            GenePanel.Visible = false;
                         }
 
-                        SetGeneComboBox(firstByte, secondByte);
-                        GenePanel.Visible = true;
+                        if (IDTextbox.Text is "315A" or "1618" or "342F")
+                        {
+                            WallMountMsg.Visible = true;
+                        }
+                        else
+                        {
+                            WallMountMsg.Visible = false;
+                        }
                     }
                     else
                     {
                         GenePanel.Visible = false;
-                    }
-
-                    if (IDTextbox.Text is "315A" or "1618" or "342F")
-                    {
-                        WallMountMsg.Visible = true;
-                    }
-                    else
-                    {
                         WallMountMsg.Visible = false;
                     }
                 }
@@ -4272,11 +4327,11 @@ namespace ACNHPokerCore
                     GenePanel.Visible = false;
                     WallMountMsg.Visible = false;
                 }
+
             }
-            else
+            catch
             {
-                GenePanel.Visible = false;
-                WallMountMsg.Visible = false;
+                IDTextbox.Clear();
             }
         }
 
@@ -4604,7 +4659,7 @@ namespace ACNHPokerCore
                 System.Media.SystemSounds.Asterisk.Play();
         }
 
-        private void ButtonSelected(Button selected, Button[] NotSelected)
+        private static void ButtonSelected(Button selected, Button[] NotSelected)
         {
             selected.BackColor = Color.FromArgb(80, 80, 255);
             foreach (Button b in NotSelected)
@@ -4617,7 +4672,7 @@ namespace ACNHPokerCore
         {
             ButtonSelected(maxSpeedX1Btn, new Button[] { maxSpeedX2Btn, maxSpeedX3Btn, maxSpeedX5Btn, maxSpeedX100Btn });
 
-            Utilities.PokeAddress(socket, usb, Utilities.MaxSpeedAddress.ToString("X"), Utilities.MaxSpeedX1);
+            Utilities.SetMaxSpeed(socket, usb, Utilities.MaxSpeedX1);
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
         }
@@ -4626,7 +4681,7 @@ namespace ACNHPokerCore
         {
             ButtonSelected(maxSpeedX2Btn, new Button[] { maxSpeedX1Btn, maxSpeedX3Btn, maxSpeedX5Btn, maxSpeedX100Btn });
 
-            Utilities.PokeAddress(socket, usb, Utilities.MaxSpeedAddress.ToString("X"), Utilities.MaxSpeedX2);
+            Utilities.SetMaxSpeed(socket, usb, Utilities.MaxSpeedX2);
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
         }
@@ -4635,7 +4690,7 @@ namespace ACNHPokerCore
         {
             ButtonSelected(maxSpeedX3Btn, new Button[] { maxSpeedX2Btn, maxSpeedX1Btn, maxSpeedX5Btn, maxSpeedX100Btn });
 
-            Utilities.PokeAddress(socket, usb, Utilities.MaxSpeedAddress.ToString("X"), Utilities.MaxSpeedX3);
+            Utilities.SetMaxSpeed(socket, usb, Utilities.MaxSpeedX3);
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
         }
@@ -4644,7 +4699,7 @@ namespace ACNHPokerCore
         {
             ButtonSelected(maxSpeedX5Btn, new Button[] { maxSpeedX2Btn, maxSpeedX3Btn, maxSpeedX1Btn, maxSpeedX100Btn });
 
-            Utilities.PokeAddress(socket, usb, Utilities.MaxSpeedAddress.ToString("X"), Utilities.MaxSpeedX5);
+            Utilities.SetMaxSpeed(socket, usb, Utilities.MaxSpeedX5);
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
         }
@@ -4653,7 +4708,7 @@ namespace ACNHPokerCore
         {
             ButtonSelected(maxSpeedX100Btn, new Button[] { maxSpeedX2Btn, maxSpeedX3Btn, maxSpeedX5Btn, maxSpeedX1Btn });
 
-            Utilities.PokeAddress(socket, usb, Utilities.MaxSpeedAddress.ToString("X"), Utilities.MaxSpeedX100);
+            Utilities.SetMaxSpeed(socket, usb, Utilities.MaxSpeedX100);
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
         }
@@ -4735,7 +4790,7 @@ namespace ACNHPokerCore
                 System.Media.SystemSounds.Asterisk.Play();
         }
 
-        private void readActivatedCheat()
+        private void ReadActivatedCheat()
         {
             string MaxSpeed = Utilities.ByteToHexString(Utilities.PeekAddress(socket, usb, Utilities.MaxSpeedAddress, 4));
             string SwimSpeed = Utilities.ByteToHexString(Utilities.PeekAddress(socket, usb, Utilities.SwimSpeed, 4));
@@ -6438,8 +6493,11 @@ namespace ACNHPokerCore
                 else
                     ShowVillagerWait(15000, "Acquiring villager data...");
 
-                if ((socket == null || socket.Connected == false) & usb == null)
+                if ((socket == null || socket.Connected == false) && usb == null && !Utilities.isEmulator)
+                {
+                    HideVillagerWait();
                     return;
+                }
 
                 VillagerLoading = true;
                 selectedVillagerButton = null;
@@ -6972,6 +7030,9 @@ namespace ACNHPokerCore
             VillagerLoading = false;
 
             HideVillagerWait();
+
+            if (sound)
+                System.Media.SystemSounds.Asterisk.Play();
         }
 
         private void ForcedMoveoutButton_Click(object sender, EventArgs e)
@@ -7697,11 +7758,15 @@ namespace ACNHPokerCore
 
             if (IDTextbox.Text is "16A2") //recipe
             {
-                SelectedItem.Setup(GetNameFromID(Utilities.Turn2bytes(hexValue), recipeSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(hexValue), recipeSource), true, "", SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
+                SelectedItem.Setup(GetNameFromID(hexValue, recipeSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(hexValue), recipeSource), true, "", SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
+            }
+            else if (IDTextbox.Text is "114A") // Money Tree
+            {
+                SelectedItem.Setup(GetNameFromID(IDTextbox.Text, itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource, Convert.ToUInt32("0x" + hexValue, 16)), true, GetImagePathFromID(Utilities.Turn2bytes(hexValue), itemSource), SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
             }
             else if (IDTextbox.Text is "315A" or "1618" or "342F") // Wall-Mounted
             {
-                SelectedItem.Setup(GetNameFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource, Convert.ToUInt32("0x" + hexValue, 16)), true, GetImagePathFromID((Utilities.Turn2bytes(hexValue)), itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(front), 16)), SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
+                SelectedItem.Setup(GetNameFromID(IDTextbox.Text, itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource, Convert.ToUInt32("0x" + hexValue, 16)), true, GetImagePathFromID(Utilities.Turn2bytes(hexValue), itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(front), 16)), SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
             }
             else if (ItemAttr.hasFenceWithVariation(intId))  // Fence Variation
             {
@@ -7764,11 +7829,15 @@ namespace ACNHPokerCore
 
             if (IDTextbox.Text is "16A2") //recipe
             {
-                SelectedItem.Setup(GetNameFromID(Utilities.Turn2bytes(hexValue), recipeSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(hexValue), recipeSource), true, "", SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
+                SelectedItem.Setup(GetNameFromID(hexValue, recipeSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(hexValue), recipeSource), true, "", SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
+            }
+            else if (IDTextbox.Text is "114A") // Money Tree
+            {
+                SelectedItem.Setup(GetNameFromID(IDTextbox.Text, itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource, Convert.ToUInt32("0x" + hexValue, 16)), true, GetImagePathFromID(Utilities.Turn2bytes(hexValue), itemSource), SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
             }
             else if (IDTextbox.Text is "315A" or "1618" or "342F") // Wall-Mounted
             {
-                SelectedItem.Setup(GetNameFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource, Convert.ToUInt32("0x" + hexValue, 16)), true, GetImagePathFromID((Utilities.Turn2bytes(hexValue)), itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(front), 16)), SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
+                SelectedItem.Setup(GetNameFromID(IDTextbox.Text, itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource, Convert.ToUInt32("0x" + hexValue, 16)), true, GetImagePathFromID(Utilities.Turn2bytes(hexValue), itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(front), 16)), SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
             }
             else if (ItemAttr.hasFenceWithVariation(intId))  // Fence Variation
             {
@@ -7870,6 +7939,10 @@ namespace ACNHPokerCore
                 DodoHelperButton.Visible = true;
                 BulldozerButton.Visible = true;
                 chatButton.Visible = true;
+            }
+            else if (e.KeyCode.ToString() == "F10")
+            {
+                EmulatorButton_Click(null, null);
             }
             else if (e.KeyCode.ToString() == "End")
             {
@@ -8596,7 +8669,7 @@ namespace ACNHPokerCore
                 };
                 D.CloseForm += DodoHelperCloseForm;
                 D.AbortAll += DodoHelperAbortAll;
-                D.updateTurnipPriceHandler += dodo_updateTurnipPriceHandler;
+                D.updateTurnipPriceHandler += Dodo_updateTurnipPriceHandler;
                 D.Show();
                 D.WriteLog("[You have started dodo helper in standalone mode.]\n\n" +
                                     "1. Disconnect all controller by selecting \"Controllers\" > \"Change Grip/Order\"\n" +
@@ -8609,7 +8682,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void dodo_updateTurnipPriceHandler()
+        private void Dodo_updateTurnipPriceHandler()
         {
             SetTurnipPriceMax();
         }
@@ -8879,6 +8952,318 @@ namespace ACNHPokerCore
         private void CacheButton_Click(object sender, EventArgs e)
         {
             CacheImage.Image = ImageCacher.GetImage(GetImagePathFromID(IDTextbox.Text, itemSource));
+        }
+
+        private void EmulatorButton_Click(object sender, EventArgs e)
+        {
+            if (Utilities.FileCheck(hardwareId))
+            {
+
+            }
+            else
+            {
+                MyCheck checker = new(hardwareId);
+                checker.ShowDialog(this);
+                if (!Utilities.FileCheck(hardwareId))
+                    return;
+            }
+
+            if (Utilities.isEmulator)
+                return;
+
+            bool headFound = false;
+
+            /*
+            int numOfChase = 20000;
+            long startAddress = 0x2A000000000;
+
+            if (ModifierKeys == Keys.Shift)
+            {
+                numOfChase = 500000;
+                startAddress = 0x0;
+            }
+            */
+
+            new Thread(() =>
+            {
+                connecting = true;
+
+                Thread.CurrentThread.IsBackground = true;
+
+                //ShowWait();
+
+                Process[] processListYuzu = Process.GetProcessesByName("yuzu");
+                Process[] processListRyu = Process.GetProcessesByName("ryujinx");
+                Process process;
+                if (processListYuzu.Length <= 0 && processListRyu.Length <= 0)
+                {
+                    MyMessageBox.Show("Unable to locate the process \"yuzu.exe\" or \"ryujinx.exe\" !",
+                        "Piece of shit drill (1) !", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    HideWait();
+                    return;
+                }
+                else
+                {
+                    if (processListYuzu.Length != 0)
+                    {
+                        process = processListYuzu[0];
+                        Utilities.EmulatorType = 0;
+                    }
+                    else
+                    {
+                        process = processListRyu[0];
+                        Utilities.EmulatorType = 1;
+                    }
+                }
+
+                Invoke((MethodInvoker)delegate
+                {
+                    StartConnectionButton.Visible = false;
+                    USBConnectionButton.Visible = false;
+                    IPAddressInputBox.Visible = false;
+                    IPAddressInputBackground.Visible = false;
+                });
+
+                Utilities.ReadProcessHandle = Utilities.OpenProcess(Utilities.PROCESS_WM_READ, false, process.Id);
+                Utilities.WriteProcessHandle = Utilities.OpenProcess(Utilities.PROCESS_ALL_ACCESS, false, process.Id);
+
+
+
+
+                Utilities.SYSTEM_INFO sys_info = new();
+                Utilities.GetSystemInfo(out sys_info);
+
+                IntPtr proc_min_address = sys_info.minimumApplicationAddress;
+                IntPtr proc_max_address = sys_info.maximumApplicationAddress;
+
+                long proc_min_address_l = proc_min_address;
+                long proc_max_address_l = proc_max_address;
+
+                IntPtr processHandle = Utilities.OpenProcess(Utilities.PROCESS_QUERY_INFORMATION | Utilities.PROCESS_WM_READ, false, process.Id);
+
+                Utilities.MEMORY_BASIC_INFORMATION64 mem_basic_info = new();
+
+                long firstHeadAddress = 0x0;
+
+                long lookingForSize;
+
+                if (Utilities.EmulatorType == 0)
+                    lookingForSize = 0x100000000;
+                else
+                    lookingForSize = 0xCCE00000;
+
+                while (proc_min_address_l < proc_max_address_l)
+                {
+                    _ = Utilities.VirtualQueryEx(processHandle, proc_min_address, out mem_basic_info, 48);
+
+                    //Debug.Print(proc_min_address.ToString("X") + " " + mem_basic_info.RegionSize.ToString("X"));
+
+                    if (mem_basic_info.RegionSize == lookingForSize)
+                    {
+                        headFound = true;
+                        if (Utilities.EmulatorType == 0)
+                        {
+                            firstHeadAddress = mem_basic_info.BaseAddress;
+                            Debug.Print("[Y] FirstBase = 0x" + firstHeadAddress.ToString("X"));
+                        }
+                        else
+                        {
+                            firstHeadAddress = mem_basic_info.BaseAddress + 0xCE00000;
+                            Debug.Print("[R] FirstBase = 0x" + firstHeadAddress.ToString("X"));
+                        }
+                        break;
+                    }
+
+                    proc_min_address_l += mem_basic_info.RegionSize;
+                    proc_min_address = new IntPtr(proc_min_address_l);
+                }
+
+                /*
+                ProcessModule myProcessModule;
+
+                for (int i = 0; i < process.Modules.Count; i++)
+                {
+                    myProcessModule = process.Modules[i];
+                    Debug.Print(myProcessModule.ModuleName + " : " + myProcessModule.BaseAddress.ToString("x8"));
+                }
+
+                Debug.Print("The process's main module's base address is: 0x" + process.MainModule.BaseAddress.ToString("x8"));
+                */
+
+                /*
+                int bytesRead = 0;
+                int bufferSize = 0x5000000;
+                byte[] buffer = new byte[bufferSize];
+                long offset = 0;
+                byte[] pattern = new byte[] { 0x00, 0x20, 0x00, 0x00,
+                                          0x00, 0x00, 0x00, 0x00,
+                                          0x48, 0x0A, 0x60, 0x06,
+                                          0x21, 0x00, 0x00, 0x00,
+                                          0x48, 0x0A, 0x61, 0x06,
+                                          0x21, 0x00, 0x00, 0x00 };
+
+                long diff = bufferSize - pattern.Length;
+                ShowWait();
+
+                for (int i = 0; i < numOfChase; i++)
+                {
+                    ChasingAddress = (startAddress + offset).ToString("X");
+
+                    Debug.Print("Chasing : " + i + " " + ChasingAddress + " " + bytesRead);
+                    bool ReadSuccess = Utilities.ReadProcessMemory((int)Utilities.ReadProcessHandle, startAddress + offset, buffer, buffer.Length, ref bytesRead);
+                    if (ReadSuccess)
+                    {
+                        int result = Search(buffer, pattern);
+                        if (result >= 0)
+                        {
+                            long finalAddress = startAddress + offset + result;
+
+                            Debug.Print(result.ToString("X") + "  " + offset.ToString("X") + " Final : " + finalAddress.ToString("X"));
+
+                                headFound = true;
+                            Utilities.EmulatorHeadAddress = finalAddress;
+                                break;
+                        }
+
+                    }
+                    offset += diff;
+                }
+
+                if (sound)
+                    System.Media.SystemSounds.Asterisk.Play();
+
+                HideWait();
+                */
+
+                if (!headFound)
+                {
+                    MyMessageBox.Show("Unable to locate the memory head!",
+                      "Piece of shit drill (2) !", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    HideWait();
+                    return;
+                }
+                else
+                {
+                    long heapBaseAddress;
+                    long personalidAddress;
+                    int i = 0;
+
+                    do
+                    {
+                        i++;
+
+                        heapBaseAddress = firstHeadAddress - 0xA1FD28 + 0x8B1E0 + 0x12CFCA8 + 0x3000 + 0x13EC248 + 0x1570F68 + 0x11000 + 0x400000;
+                        personalidAddress = heapBaseAddress + 0xAC43C4C8 - 0xC10 + 0xB0B8;
+
+                        byte[] idBuffer = new byte[4];
+                        int bytesRead = 0;
+                        bool ReadSuccess = Utilities.ReadProcessMemory((int)Utilities.ReadProcessHandle, personalidAddress, idBuffer, idBuffer.Length, ref bytesRead);
+                        int id = BitConverter.ToInt32(idBuffer, 0);
+
+                        if (id == 0)
+                        {
+                            firstHeadAddress += 0x40000000;
+                        }
+                        else
+                        {
+                            Utilities.HeapOffsetValue = firstHeadAddress - mem_basic_info.BaseAddress;
+                            Debug.Print("Offset =  + 0x" + Utilities.HeapOffsetValue.ToString("X"));
+                            Utilities.EmulatorHeadAddress = firstHeadAddress;
+                            break;
+                        }
+
+                    } while (i <= 4);
+
+                    if (Utilities.EmulatorHeadAddress == 0x0)
+                    {
+                        MyMessageBox.Show("Unable to locate the heap offset!",
+                          "Piece of shit drill (3) !", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        HideWait();
+                        return;
+                    }
+
+
+                    Utilities.isEmulator = true;
+
+
+                    Invoke((MethodInvoker)delegate
+                    {
+
+                        RefreshButton.Visible = true;
+                        PlayerInventorySelector.Visible = true;
+
+                        InventoryAutoRefreshToggle.Visible = true;
+                        AutoRefreshLabel.Visible = true;
+
+
+                        OtherTabButton.Visible = true;
+                        //CritterTabButton.Visible = true;
+                        VillagerTabButton.Visible = true;
+
+                        WrapSelector.SelectedIndex = 0;
+
+                        FreezeTimeLabel.Visible = false;
+                        FreezeTimeButton.Visible = false;
+                        UnFreezeTimeButton.Visible = false;
+                        AnimationSpeedLabel.Visible = false;
+                        animationSpeedx0_1.Visible = false;
+                        animationSpeedx1.Visible = false;
+                        animationSpeedx2.Visible = false;
+                        animationSpeedx5.Visible = false;
+                        animationSpeedx50.Visible = false;
+                        DisableCollisionLabel.Visible = false;
+                        DisableCollisionToggle.Visible = false;
+                        MaxWalkSpeedLabel.Visible = false;
+                        maxSpeedX1Btn.Visible = false;
+                        maxSpeedX2Btn.Visible = false;
+                        maxSpeedX3Btn.Visible = false;
+                        maxSpeedX5Btn.Visible = false;
+                        maxSpeedX100Btn.Visible = false;
+                        SwimClubModeLabel.Visible = false;
+                        FastSwimToggle.Visible = false;
+
+                        SettingButton.Visible = false;
+
+                        MapDropperButton.Visible = true;
+                        //RegeneratorButton.Visible = true;
+                        //FreezerButton.Visible = true;
+                        //DodoHelperButton.Visible = true;
+                        BulldozerButton.Visible = true;
+                        RoadRollerButton.Visible = true;
+                        //chatButton.Visible = true;
+
+                        offline = false;
+
+                        CurrentPlayerIndex = UpdateDropdownBox();
+
+
+                        PlayerInventorySelector.SelectedIndex = CurrentPlayerIndex;
+                        PlayerInventorySelectorOther.SelectedIndex = CurrentPlayerIndex;
+
+                        if (Utilities.EmulatorType == 0)
+                            Text += UpdateTownID() + " [Yuzu] + 0x" + Utilities.HeapOffsetValue.ToString("X");
+                        else
+                            Text += UpdateTownID() + " [Ryujinx] + 0x" + Utilities.HeapOffsetValue.ToString("X");
+
+
+                        SetEatButton();
+                        UpdateTurnipPrices();
+                        ReadWeatherSeed();
+                        ReadAirportColor();
+                        //readActivatedCheat();
+
+                        currentGridView = InsectGridView;
+
+                        MyLog.LogEvent("MainForm", "Loading Param Files");
+
+                        LoadGridView(InsectAppearParam, InsectGridView, ref insectRate, Utilities.InsectDataSize, Utilities.InsectNumRecords);
+                        LoadGridView(FishRiverAppearParam, RiverFishGridView, ref riverFishRate, Utilities.FishDataSize, Utilities.FishRiverNumRecords, 1);
+                        LoadGridView(FishSeaAppearParam, SeaFishGridView, ref seaFishRate, Utilities.FishDataSize, Utilities.FishSeaNumRecords, 1);
+                        LoadGridView(CreatureSeaAppearParam, SeaCreatureGridView, ref seaCreatureRate, Utilities.SeaCreatureDataSize, Utilities.SeaCreatureNumRecords, 1);
+
+                    });
+                }
+            }).Start();
         }
     }
 }

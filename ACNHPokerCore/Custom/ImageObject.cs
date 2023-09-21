@@ -9,7 +9,7 @@ namespace ACNHPokerCore
         public Image itemImage { get; set; }
         public DateTime SubmitDate { get; set; }
 
-        public ImageObject(string fn,Image image, DateTime dt)
+        public ImageObject(string fn, Image image, DateTime dt)
         {
             FileName = fn;
             itemImage = image;

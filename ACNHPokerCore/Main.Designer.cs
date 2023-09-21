@@ -107,6 +107,11 @@ namespace ACNHPokerCore
             OtherTabButton = new System.Windows.Forms.Button();
             InventoryTabButton = new System.Windows.Forms.Button();
             InventoryLargePanel = new System.Windows.Forms.Panel();
+            WrappingPanel = new System.Windows.Forms.Panel();
+            RetainNameToggle = new JCS.ToggleSwitch();
+            WrapSelector = new System.Windows.Forms.ComboBox();
+            WrappingLabel = new System.Windows.Forms.Label();
+            RetainNameLabel = new System.Windows.Forms.Label();
             webhookBtn = new System.Windows.Forms.Button();
             ChasingAddressLabel = new System.Windows.Forms.Label();
             ChaseBtn = new System.Windows.Forms.Button();
@@ -120,17 +125,13 @@ namespace ACNHPokerCore
             SelectedItemName = new System.Windows.Forms.Label();
             VersionButton = new System.Windows.Forms.Button();
             CheckStateButton = new System.Windows.Forms.Button();
-            RetainNameToggle = new JCS.ToggleSwitch();
-            RetainNameLabel = new System.Windows.Forms.Label();
             PaginationPanel = new System.Windows.Forms.TableLayoutPanel();
             NextButton = new System.Windows.Forms.Button();
             FastNextButton = new System.Windows.Forms.Button();
             PageLabel = new System.Windows.Forms.Label();
             FastBackButton = new System.Windows.Forms.Button();
             BackButton = new System.Windows.Forms.Button();
-            WrapSelector = new System.Windows.Forms.ComboBox();
             ClearAllButton = new System.Windows.Forms.Button();
-            WrappingLabel = new System.Windows.Forms.Label();
             selectedFlag1 = new System.Windows.Forms.Label();
             selectedFlag0 = new System.Windows.Forms.Label();
             selectedData = new System.Windows.Forms.Label();
@@ -361,6 +362,7 @@ namespace ACNHPokerCore
             AlwaysOnControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)IPAddressInputBackground).BeginInit();
             InventoryLargePanel.SuspendLayout();
+            WrappingPanel.SuspendLayout();
             PaginationPanel.SuspendLayout();
             LoadingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)NowLoadingImage).BeginInit();
@@ -1571,6 +1573,7 @@ namespace ACNHPokerCore
             // 
             // InventoryLargePanel
             // 
+            InventoryLargePanel.Controls.Add(WrappingPanel);
             InventoryLargePanel.Controls.Add(webhookBtn);
             InventoryLargePanel.Controls.Add(ChasingAddressLabel);
             InventoryLargePanel.Controls.Add(ChaseBtn);
@@ -1584,12 +1587,8 @@ namespace ACNHPokerCore
             InventoryLargePanel.Controls.Add(SelectedItemName);
             InventoryLargePanel.Controls.Add(VersionButton);
             InventoryLargePanel.Controls.Add(CheckStateButton);
-            InventoryLargePanel.Controls.Add(RetainNameToggle);
-            InventoryLargePanel.Controls.Add(RetainNameLabel);
             InventoryLargePanel.Controls.Add(PaginationPanel);
-            InventoryLargePanel.Controls.Add(WrapSelector);
             InventoryLargePanel.Controls.Add(ClearAllButton);
-            InventoryLargePanel.Controls.Add(WrappingLabel);
             InventoryLargePanel.Controls.Add(selectedFlag1);
             InventoryLargePanel.Controls.Add(selectedFlag0);
             InventoryLargePanel.Controls.Add(selectedData);
@@ -1622,6 +1621,65 @@ namespace ACNHPokerCore
             InventoryLargePanel.Name = "InventoryLargePanel";
             InventoryLargePanel.Size = new System.Drawing.Size(1225, 550);
             InventoryLargePanel.TabIndex = 18;
+            // 
+            // WrappingPanel
+            // 
+            WrappingPanel.Controls.Add(RetainNameToggle);
+            WrappingPanel.Controls.Add(WrapSelector);
+            WrappingPanel.Controls.Add(WrappingLabel);
+            WrappingPanel.Controls.Add(RetainNameLabel);
+            WrappingPanel.Location = new System.Drawing.Point(640, 447);
+            WrappingPanel.Name = "WrappingPanel";
+            WrappingPanel.Size = new System.Drawing.Size(112, 63);
+            WrappingPanel.TabIndex = 55;
+            // 
+            // RetainNameToggle
+            // 
+            RetainNameToggle.Checked = true;
+            RetainNameToggle.Location = new System.Drawing.Point(75, 45);
+            RetainNameToggle.Name = "RetainNameToggle";
+            RetainNameToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F);
+            RetainNameToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F);
+            RetainNameToggle.Size = new System.Drawing.Size(35, 16);
+            RetainNameToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
+            RetainNameToggle.TabIndex = 34;
+            RetainNameToggle.UseAnimation = false;
+            // 
+            // WrapSelector
+            // 
+            WrapSelector.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            WrapSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            WrapSelector.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            WrapSelector.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            WrapSelector.ForeColor = System.Drawing.Color.White;
+            WrapSelector.FormattingEnabled = true;
+            WrapSelector.Items.AddRange(new object[] { "Yellow : 01", "Pink : 05", "Orange : 09", "Chartreuse : 0D", "Green : 11", "Mint : 15", "Light-blue : 19", "Purple : 1D", "Navy : 21", "Blue : 25", "White : 29", "Red : 2D", "Gold : 31", "Brown : 35", "Gray : 39", "Black : 3D", "Present : 02", "Box : 03", "Festive : 3F", "Lucky money : 33", "Sebaetdon : 37", "otoshidama : 3B" });
+            WrapSelector.Location = new System.Drawing.Point(6, 20);
+            WrapSelector.Name = "WrapSelector";
+            WrapSelector.Size = new System.Drawing.Size(100, 23);
+            WrapSelector.TabIndex = 27;
+            // 
+            // WrappingLabel
+            // 
+            WrappingLabel.AutoSize = true;
+            WrappingLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            WrappingLabel.ForeColor = System.Drawing.Color.White;
+            WrappingLabel.Location = new System.Drawing.Point(20, 2);
+            WrappingLabel.Name = "WrappingLabel";
+            WrappingLabel.Size = new System.Drawing.Size(74, 16);
+            WrappingLabel.TabIndex = 33;
+            WrappingLabel.Text = "Wrapping";
+            // 
+            // RetainNameLabel
+            // 
+            RetainNameLabel.AutoSize = true;
+            RetainNameLabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            RetainNameLabel.ForeColor = System.Drawing.Color.White;
+            RetainNameLabel.Location = new System.Drawing.Point(-1, 45);
+            RetainNameLabel.Name = "RetainNameLabel";
+            RetainNameLabel.Size = new System.Drawing.Size(79, 15);
+            RetainNameLabel.TabIndex = 34;
+            RetainNameLabel.Text = "Retain Name";
             // 
             // webhookBtn
             // 
@@ -1813,29 +1871,6 @@ namespace ACNHPokerCore
             CheckStateButton.UseVisualStyleBackColor = false;
             CheckStateButton.Click += CheckStateButton_Click;
             // 
-            // RetainNameToggle
-            // 
-            RetainNameToggle.Checked = true;
-            RetainNameToggle.Location = new System.Drawing.Point(718, 490);
-            RetainNameToggle.Name = "RetainNameToggle";
-            RetainNameToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F);
-            RetainNameToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F);
-            RetainNameToggle.Size = new System.Drawing.Size(35, 16);
-            RetainNameToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
-            RetainNameToggle.TabIndex = 34;
-            RetainNameToggle.UseAnimation = false;
-            // 
-            // RetainNameLabel
-            // 
-            RetainNameLabel.AutoSize = true;
-            RetainNameLabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            RetainNameLabel.ForeColor = System.Drawing.Color.White;
-            RetainNameLabel.Location = new System.Drawing.Point(640, 490);
-            RetainNameLabel.Name = "RetainNameLabel";
-            RetainNameLabel.Size = new System.Drawing.Size(79, 15);
-            RetainNameLabel.TabIndex = 34;
-            RetainNameLabel.Text = "Retain Name";
-            // 
             // PaginationPanel
             // 
             PaginationPanel.ColumnCount = 5;
@@ -1939,20 +1974,6 @@ namespace ACNHPokerCore
             BackButton.UseVisualStyleBackColor = false;
             BackButton.Click += BackButton_Click;
             // 
-            // WrapSelector
-            // 
-            WrapSelector.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
-            WrapSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            WrapSelector.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            WrapSelector.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            WrapSelector.ForeColor = System.Drawing.Color.White;
-            WrapSelector.FormattingEnabled = true;
-            WrapSelector.Items.AddRange(new object[] { "Yellow : 01", "Pink : 05", "Orange : 09", "Chartreuse : 0D", "Green : 11", "Mint : 15", "Light-blue : 19", "Purple : 1D", "Navy : 21", "Blue : 25", "White : 29", "Red : 2D", "Gold : 31", "Brown : 35", "Gray : 39", "Black : 3D", "Present : 02", "Box : 03", "Festive : 3F", "Lucky money : 33", "Sebaetdon : 37", "otoshidama : 3B" });
-            WrapSelector.Location = new System.Drawing.Point(646, 466);
-            WrapSelector.Name = "WrapSelector";
-            WrapSelector.Size = new System.Drawing.Size(100, 23);
-            WrapSelector.TabIndex = 27;
-            // 
             // ClearAllButton
             // 
             ClearAllButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
@@ -1968,17 +1989,6 @@ namespace ACNHPokerCore
             ClearAllButton.Text = "Clear All";
             ClearAllButton.UseVisualStyleBackColor = false;
             ClearAllButton.Click += ClearAllButton_Click;
-            // 
-            // WrappingLabel
-            // 
-            WrappingLabel.AutoSize = true;
-            WrappingLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            WrappingLabel.ForeColor = System.Drawing.Color.White;
-            WrappingLabel.Location = new System.Drawing.Point(660, 448);
-            WrappingLabel.Name = "WrappingLabel";
-            WrappingLabel.Size = new System.Drawing.Size(74, 16);
-            WrappingLabel.TabIndex = 33;
-            WrappingLabel.Text = "Wrapping";
             // 
             // selectedFlag1
             // 
@@ -5412,7 +5422,7 @@ namespace ACNHPokerCore
             CacheButton.ForeColor = System.Drawing.Color.White;
             CacheButton.Location = new System.Drawing.Point(1059, 617);
             CacheButton.Name = "CacheButton";
-            CacheButton.Size = new System.Drawing.Size(79, 55);
+            CacheButton.Size = new System.Drawing.Size(55, 55);
             CacheButton.TabIndex = 51;
             CacheButton.Tag = "";
             CacheButton.Text = "Cache";
@@ -5504,6 +5514,8 @@ namespace ACNHPokerCore
             ((System.ComponentModel.ISupportInitialize)IPAddressInputBackground).EndInit();
             InventoryLargePanel.ResumeLayout(false);
             InventoryLargePanel.PerformLayout();
+            WrappingPanel.ResumeLayout(false);
+            WrappingPanel.PerformLayout();
             PaginationPanel.ResumeLayout(false);
             PaginationPanel.PerformLayout();
             LoadingPanel.ResumeLayout(false);
@@ -5883,5 +5895,6 @@ namespace ACNHPokerCore
         private System.Windows.Forms.PictureBox CacheImage;
         private System.Windows.Forms.Button PokeMButton;
         private System.Windows.Forms.Button PeekMButton;
+        private System.Windows.Forms.Panel WrappingPanel;
     }
 }

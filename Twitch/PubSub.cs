@@ -39,8 +39,8 @@ namespace Twitch
 
         private static RichTextBox LogBox;
 
-        public static List<ItemOrder> DropOrderList = new List<ItemOrder>();
-        public static List<VillagerOrder> VillagerOrderList = new List<VillagerOrder>();
+        public static List<ItemOrder> DropOrderList = new();
+        public static List<VillagerOrder> VillagerOrderList = new();
 
         public PubSub(TwitchBot TwitchBot, string TwitchChannelid, string TwitchChannelAccessToken, ref RichTextBox log)
         {
@@ -362,7 +362,7 @@ namespace Twitch
             string color = "";
             if (ItemDict.ContainsKey(name.ToLower()) && otherColor == 0)            // exect name       exect name,[red]
             {
-                DataView dv = new DataView(itemSource);
+                DataView dv = new(itemSource);
                 dv.RowFilter = string.Format("eng LIKE '%{0}%' AND color = '{1}'", EscapeLikeValue(name), EscapeLikeValue(colorStr));
                 if (dv.Count > 0)                                                   // exect name,[red]
                 {
@@ -387,7 +387,7 @@ namespace Twitch
             {
                 if (!colorStr.Equals(string.Empty))                                 // LIKE name,[red]
                 {
-                    DataView dv = new DataView(itemSource);
+                    DataView dv = new(itemSource);
                     dv.RowFilter = string.Format("eng LIKE '%{0}%' AND color = '{1}'", EscapeLikeValue(name), EscapeLikeValue(colorStr));
                     if (dv.Count > 0)
                     {
@@ -406,7 +406,7 @@ namespace Twitch
 
                 if (id != null && id.Equals(string.Empty))
                 {
-                    DataView dv = new DataView(itemSource);
+                    DataView dv = new(itemSource);
                     dv.RowFilter = string.Format("eng LIKE '%{0}%'", EscapeLikeValue(name));
                     if (dv.Count > 0)
                     {
@@ -535,7 +535,7 @@ namespace Twitch
             }
             else
             {
-                DataView dv = new DataView(recipeSource);
+                DataView dv = new(recipeSource);
                 dv.RowFilter = string.Format("eng LIKE '%{0}%'", EscapeLikeValue(name));
                 if (dv.Count > 0)
                 {
@@ -605,7 +605,7 @@ namespace Twitch
 
         private static string EscapeLikeValue(string valueWithoutWildcards)
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             for (int i = 0; i < valueWithoutWildcards.Length; i++)
             {
                 char c = valueWithoutWildcards[i];
@@ -641,7 +641,7 @@ namespace Twitch
 
         private Dictionary<string, string> CreateItemDictionary(string path)
         {
-            Dictionary<string, string> dict = new Dictionary<string, string>();
+            Dictionary<string, string> dict = new();
 
             if (File.Exists(path))
             {
@@ -664,7 +664,7 @@ namespace Twitch
 
         private Dictionary<string, string> CreateReverseDictionary(string path)
         {
-            Dictionary<string, string> dict = new Dictionary<string, string>();
+            Dictionary<string, string> dict = new();
 
             if (File.Exists(path))
             {
@@ -686,7 +686,7 @@ namespace Twitch
 
         private Dictionary<string, string> CreateColorDictionary(string path)
         {
-            Dictionary<string, string> dict = new Dictionary<string, string>();
+            Dictionary<string, string> dict = new();
 
             if (File.Exists(path))
             {
@@ -709,7 +709,7 @@ namespace Twitch
 
         private Dictionary<string, string> CreateRecipeDictionary(string path)
         {
-            Dictionary<string, string> dict = new Dictionary<string, string>();
+            Dictionary<string, string> dict = new();
 
             if (File.Exists(path))
             {
@@ -731,7 +731,7 @@ namespace Twitch
 
         private Dictionary<string, string> CreateVillagerDictionary()
         {
-            Dictionary<string, string> dict = new Dictionary<string, string>();
+            Dictionary<string, string> dict = new();
 
             foreach (KeyValuePair<string, string> entry in RealName)
             {
@@ -813,8 +813,8 @@ namespace Twitch
         }
 
         #region Villager
-        public static Dictionary<string, string> RealName = new Dictionary<string, string>
-            {
+        public static Dictionary<string, string> RealName = new()
+        {
                 {"ant00", "Cyrano"},
                 {"ant01", "Antonio"},
                 {"ant02", "Pango"},

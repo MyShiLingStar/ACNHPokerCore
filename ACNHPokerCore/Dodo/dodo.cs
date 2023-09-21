@@ -98,11 +98,12 @@ namespace ACNHPokerCore
                 maxBells = true;
                 maxBellsBox.Checked = true;
             }
-            else {
+            else
+            {
                 maxBells = false;
                 maxBellsBox.Checked = false;
             }
-            
+
             if (Teleport.AllAnchorValid() || debugging)
             {
                 Point Done = new(-4200, 0);
@@ -135,8 +136,8 @@ namespace ACNHPokerCore
                 string[] path = Teleport.getAnchorPath().Split('\\');
                 Text = header + path[path.Length - 1];
             }
-            
-            
+
+
         }
 
         #region Teleport Setup

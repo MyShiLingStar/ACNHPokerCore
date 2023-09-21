@@ -139,7 +139,7 @@ namespace ACNHPokerCore
                     else
                         return new Bitmap(background, new Size(128, 128));
                 }
-                else if (itemID == 0x315A || itemID == 0x1618 || itemID == 0x342F) // Wall-Mount
+                else if (itemID == 0x315A || itemID == 0x1618 || itemID == 0x342F || itemID == 0x114A || itemID == 0xEC9C) // Wall-Mount/Money Tree
                 {
                     if (File.Exists(containItemPath))
                     {
@@ -173,7 +173,7 @@ namespace ACNHPokerCore
                 {
                     return new Bitmap(Properties.Resources.Leaf, new Size(64, 64));
                 }
-                else if (itemID == 0x315A || itemID == 0x1618 || itemID == 0x342F) // Wall-Mount
+                else if (itemID == 0x315A || itemID == 0x1618 || itemID == 0x342F || itemID == 0x114A || itemID == 0xEC9C) // Wall-Mount/Money Tree
                 {
                     if (File.Exists(containItemPath))
                     {
@@ -455,10 +455,10 @@ namespace ACNHPokerCore
                     ForeColor = Color.Blue;
                     TextAlign = ContentAlignment.TopRight;
                 }
-                else if (itemID == 0x114A) // Money Tree
+                else if (itemID == 0x114A || itemID == 0xEC9C) // Money Tree
                 {
                     Font = new Font("Arial", 8F, FontStyle.Bold);
-                    string containItemName = Main.GetNameFromID(Utilities.PrecedingZeros(FillItemData(),8).Substring(4,4));
+                    string containItemName = Main.GetNameFromID(Utilities.PrecedingZeros(FillItemData(), 8).Substring(4, 4));
                     if (containItemName.Length > 10)
                     {
                         Text = containItemName.Substring(0, 8) + "...";

@@ -1,8 +1,7 @@
-﻿using System;
-using System.Diagnostics;
+﻿using Microsoft.Extensions.Caching.Memory;
+using System;
 using System.Drawing;
 using System.IO;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace ACNHPokerCore
 {

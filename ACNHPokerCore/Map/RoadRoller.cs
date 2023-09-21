@@ -610,7 +610,7 @@ namespace ACNHPokerCore
         {
             try
             {
-                if (socket != null || usb != null)
+                if (socket != null || usb != null || Utilities.isEmulator)
                 {
                     Layer1 = Utilities.GetMapLayer(socket, usb, Utilities.mapZero, ref counter);
                     Acre = Utilities.GetAcre(socket, usb);
@@ -629,6 +629,7 @@ namespace ACNHPokerCore
 
                     if (MyDesign != null || MapCustomDesgin != null)
                     {
+
                         Invoke((MethodInvoker)delegate
                         {
                             var imageList = new ImageList
@@ -808,7 +809,7 @@ namespace ACNHPokerCore
         private Bitmap DrawTileWithCustomDesign(TerrainUnit currentUnit, int size)
         {
             Color borderColor = Color.Orange;
-            Bitmap BottomImage = new Bitmap(size, size);
+            Bitmap BottomImage = new(size, size);
             using Graphics gr = Graphics.FromImage(BottomImage);
             gr.SmoothingMode = SmoothingMode.None;
             gr.Clear(borderColor);

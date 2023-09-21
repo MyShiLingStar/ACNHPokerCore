@@ -162,9 +162,9 @@ namespace ACNHPokerCore
             }
 
             g.DrawImage(e.Item.ImageList.Images[e.ItemIndex], new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 4, e.Bounds.Width - 8, e.Bounds.Width - 8));
-            Font drawFont = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            SolidBrush drawBrush = new SolidBrush(Color.White);
-            StringFormat drawFormat = new StringFormat();
+            Font drawFont = new("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            SolidBrush drawBrush = new(Color.White);
+            StringFormat drawFormat = new();
             drawFormat.LineAlignment = StringAlignment.Center;
             drawFormat.Alignment = StringAlignment.Center;
             g.DrawString(e.Item.Text, drawFont, drawBrush, new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 4 + e.Bounds.Width, e.Bounds.Width - 8, 10), drawFormat);
@@ -172,7 +172,7 @@ namespace ACNHPokerCore
 
         private void LoadMap(bool saveFile)
         {
-            if (s == null && usb == null)
+            if (s == null && usb == null && !Utilities.isEmulator)
                 return;
 
             counter = 0;

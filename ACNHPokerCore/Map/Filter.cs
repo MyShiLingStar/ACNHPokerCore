@@ -37,7 +37,7 @@ namespace ACNHPokerCore
         {
             foreach (Control c in Controls)
             {
-                ComponentResourceManager resources = new ComponentResourceManager(typeof(Filter));
+                ComponentResourceManager resources = new(typeof(Filter));
                 resources.ApplyResources(c, c.Name, new CultureInfo(lang));
             }
         }
