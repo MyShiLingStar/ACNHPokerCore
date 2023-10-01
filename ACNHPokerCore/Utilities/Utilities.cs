@@ -625,40 +625,48 @@ namespace ACNHPokerCore
 
         public static void SpawnItem(Socket socket, USBBot usb, int slot, String value, String amount)
         {
+            byte[] b = Add(StringToByte(Flip(PrecedingZeros(value, 8))), StringToByte(Flip(PrecedingZeros(amount, 8))));
+
             if (isEmulator)
             {
-                byte[] b = Utilities.Add(StringToByte(Flip(PrecedingZeros(value, 8))), StringToByte(Flip(PrecedingZeros(amount, 8))));
                 WriteEmulatorMemory(GetItemSlotUIntAddress(slot), b);
                 return;
             }
 
             lock (botLock)
             {
-                if (usb == null)
+                try
                 {
-                    string msg = String.Format("poke {0:X8} 0x{1}\r\n", GetItemSlotAddress(slot), Flip(PrecedingZeros(value, 8)));
-                    SendString(socket, Encoding.UTF8.GetBytes(msg));
+                    if (usb == null)
+                    {
+                        SendByteArray(socket, GetItemSlotUIntAddress(slot), b, b.Length);
 
-                    string countMsg = String.Format("poke {0:X8} 0x{1}\r\n", GetItemCountAddress(slot), Flip(PrecedingZeros(amount, 8)));
-                    SendString(socket, Encoding.UTF8.GetBytes(countMsg));
+                        /*
+                        string msg = String.Format("poke {0:X8} 0x{1}\r\n", GetItemSlotAddress(slot), Flip(PrecedingZeros(value, 8)));
+                        SendString(socket, Encoding.UTF8.GetBytes(msg));
+
+                        string countMsg = String.Format("poke {0:X8} 0x{1}\r\n", GetItemCountAddress(slot), Flip(PrecedingZeros(amount, 8)));
+                        SendString(socket, Encoding.UTF8.GetBytes(countMsg));
+                        */
+                    }
+                    else
+                    {
+                        usb.WriteBytes(b, GetItemSlotUIntAddress(slot));
+                    }
                 }
-                else
+                catch
                 {
-                    usb.WriteBytes(StringToByte(Flip(PrecedingZeros(value, 8))), GetItemSlotUIntAddress(slot));
-
-                    usb.WriteBytes(StringToByte(Flip(PrecedingZeros(amount, 8))), GetItemCountUIntAddress(slot));
+                    MessageBox.Show(@"Exception, try restarting the program or reconnecting to the switch.", @"SpawnRecipe");
                 }
-
-                //Debug.Print("Slot : " + slot + " | ID : " + value + " | Amount : " + amount);
-                //Debug.Print("Spawn Item : poke " + GetItemSlotAddress(slot) + " 0x" + flip(precedingZeros(value, 8)) + " 0x" + flip(precedingZeros(amount, 8)));
             }
         }
 
         public static void SpawnRecipe(Socket socket, USBBot usb, int slot, String value, String recipeValue)
         {
+            byte[] b = Add(StringToByte(Flip(PrecedingZeros(value, 8))), StringToByte(Flip(PrecedingZeros(recipeValue, 8))));
+
             if (isEmulator)
             {
-                byte[] b = Utilities.Add(StringToByte(Flip(PrecedingZeros(value, 8))), StringToByte(Flip(PrecedingZeros(recipeValue, 8))));
                 WriteEmulatorMemory(GetItemSlotUIntAddress(slot), b);
                 return;
             }
@@ -670,21 +678,19 @@ namespace ACNHPokerCore
                 {
                     if (usb == null)
                     {
+                        SendByteArray(socket, GetItemSlotUIntAddress(slot), b, b.Length);
+                        /*
                         string msg = String.Format("poke {0:X8} 0x{1}\r\n", GetItemSlotAddress(slot), Flip(PrecedingZeros(value, 8)));
                         SendString(socket, Encoding.UTF8.GetBytes(msg));
 
                         string countMsg = String.Format("poke {0:X8} 0x{1}\r\n", GetItemCountAddress(slot), Flip(PrecedingZeros(recipeValue, 8)));
                         SendString(socket, Encoding.UTF8.GetBytes(countMsg));
+                        */
                     }
                     else
                     {
-                        usb.WriteBytes(StringToByte(Flip(PrecedingZeros(value, 8))), GetItemSlotUIntAddress(slot));
-
-                        usb.WriteBytes(StringToByte(Flip(PrecedingZeros(recipeValue, 8))), GetItemCountUIntAddress(slot));
+                        usb.WriteBytes(b, GetItemSlotUIntAddress(slot));
                     }
-
-                    //Debug.Print("Slot : " + slot + " | ID : " + value + " | RecipeValue : " + recipeValue);
-                    //Debug.Print("Spawn recipe : poke " + GetItemSlotAddress(slot) + " 0x" + flip(precedingZeros(value, 8)) + " 0x" + flip(precedingZeros(recipeValue, 8)));
                 }
                 catch
                 {
@@ -695,9 +701,10 @@ namespace ACNHPokerCore
 
         public static void SpawnFlower(Socket socket, USBBot usb, int slot, String value, String flowerValue)
         {
+            byte[] b = Add(StringToByte(Flip(PrecedingZeros(value, 8))), StringToByte(Flip(PrecedingZeros(flowerValue, 8))));
+
             if (isEmulator)
             {
-                byte[] b = Utilities.Add(StringToByte(Flip(PrecedingZeros(value, 8))), StringToByte(Flip(PrecedingZeros(flowerValue, 8))));
                 WriteEmulatorMemory(GetItemSlotUIntAddress(slot), b);
                 return;
             }
@@ -708,21 +715,21 @@ namespace ACNHPokerCore
                 {
                     if (usb == null)
                     {
+                        SendByteArray(socket, GetItemSlotUIntAddress(slot), b, b.Length);
+
+                        /*
                         string msg = String.Format("poke {0:X8} 0x{1}\r\n", GetItemSlotAddress(slot), Flip(PrecedingZeros(value, 8)));
                         SendString(socket, Encoding.UTF8.GetBytes(msg));
 
                         string countMsg = String.Format("poke {0:X8} 0x{1}\r\n", GetItemCountAddress(slot), Flip(PrecedingZeros(flowerValue, 8)));
                         SendString(socket, Encoding.UTF8.GetBytes(countMsg));
+                        */
                     }
                     else
                     {
-                        usb.WriteBytes(StringToByte(Flip(PrecedingZeros(value, 8))), GetItemSlotUIntAddress(slot));
-
-                        usb.WriteBytes(StringToByte(Flip(PrecedingZeros(flowerValue, 8))), GetItemCountUIntAddress(slot));
+                        usb.WriteBytes(b, GetItemSlotUIntAddress(slot));
                     }
 
-                    //Debug.Print("Slot : " + slot + " | ID : " + value + " | FlowerValue : " + flowerValue);
-                    //Debug.Print("Spawn Flower : poke " + GetItemSlotAddress(slot) + " 0x" + flip(precedingZeros(value, 8)) + " 0x" + flip(precedingZeros(flowerValue, 8)));
                 }
                 catch
                 {
@@ -791,8 +798,8 @@ namespace ACNHPokerCore
             {
                 if (usb == null)
                 {
-                    SendByteArray8(socket, GetItemSlotUIntAddress(1), buffer1, 160, ref counter);
-                    SendByteArray8(socket, GetItemSlotUIntAddress(21), buffer2, 160, ref counter);
+                    SendByteArray(socket, GetItemSlotUIntAddress(1), buffer1, 160, ref counter);
+                    SendByteArray(socket, GetItemSlotUIntAddress(21), buffer2, 160, ref counter);
                 }
                 else
                 {
@@ -839,7 +846,7 @@ namespace ACNHPokerCore
                 {
                     Debug.Print("[Usb] Peek : TurnipPrice " + TurnipPurchasePriceAddr.ToString("X") + " " + TurnipSellPriceAddr.ToString("X"));
 
-                    byte[] b = usb.ReadBytes(TurnipPurchasePriceAddr, 57);
+                    byte[] b = usb.ReadBytes(TurnipPurchasePriceAddr, 60);
 
                     result[12] = b[0];
 
@@ -1044,14 +1051,6 @@ namespace ACNHPokerCore
                 {
                     if (usb == null)
                     {
-                        /*
-                        string msg = String.Format("peek {0:X8} {1}\r\n", address, size);
-                        Debug.Print("Peek : " + msg);
-                        SendString(socket, Encoding.UTF8.GetBytes(msg));
-
-                        byte[] b = new byte[330];
-                        socket.Receive(b);
-                        */
                         Debug.Print("[Sys] Peek : Address " + address.ToString("X") + " " + size);
 
                         byte[] b = ReadByteArray(socket, address, size);
@@ -1258,34 +1257,12 @@ namespace ACNHPokerCore
             }
         }
 
-        public static byte[] ReadByteArray(Socket socket, long initAddr, int size)
-        {
-            byte[] result = new byte[size];
-            const int maxBytesToReceive = 1536;
-            int received = 0;
-            int bytesToReceive;
-            while (received < size)
-            {
-                bytesToReceive = (size - received > maxBytesToReceive) ? maxBytesToReceive : size - received;
-                string bufferRepr = ReadToIntermediateString(socket, initAddr + received, bytesToReceive);
-                if (bufferRepr == null)
-                {
-                    return null;
-                }
-                for (int i = 0; i < bytesToReceive; i++)
-                {
-                    result[received + i] = Convert.ToByte(bufferRepr.Substring(i * 2, 2), 16);
-                }
-                received += bytesToReceive;
-            }
-            return result;
-        }
         public static byte[] ReadByteArray(Socket socket, long initAddr, int size, ref int counter)
         {
             try
             {
                 byte[] result = new byte[size];
-                const int maxBytesToReceive = 1536;
+                const int maxBytesToReceive = 8192;
                 int received = 0;
                 int bytesToReceive;
                 while (received < size)
@@ -1308,24 +1285,38 @@ namespace ACNHPokerCore
             }
         }
 
+        public static byte[] ReadByteArray(Socket socket, long initAddr, int size)
+        {
+            byte[] result = new byte[size];
+            const int maxBytesToReceive = 8192;
+            int received = 0;
+            int bytesToReceive;
+            while (received < size)
+            {
+                bytesToReceive = (size - received > maxBytesToReceive) ? maxBytesToReceive : size - received;
+                string bufferRepr = ReadToIntermediateString(socket, initAddr + received, bytesToReceive);
+                if (bufferRepr == null)
+                {
+                    return null;
+                }
+                for (int i = 0; i < bytesToReceive; i++)
+                {
+                    result[received + i] = Convert.ToByte(bufferRepr.Substring(i * 2, 2), 16);
+                }
+                received += bytesToReceive;
+            }
+            return result;
+        }
+
         private static string ReadToIntermediateString(Socket socket, long address, int size)
         {
-            //try
-            //{
             string msg = String.Format("peek 0x{0:X8} {1}\r\n", address, size);
-            //Debug.Print(msg);
             SendString(socket, Encoding.UTF8.GetBytes(msg));
+
             byte[] b = new byte[size * 2 + 64];
             _ = ReceiveString(socket, b);
-            //Debug.Print(String.Format("Received {0} Bytes", first_rec));
+
             return Encoding.ASCII.GetString(b, 0, size * 2);
-            /*}
-            catch
-            {
-                MessageBox.Show("Exception, try restarting the program or reconnecting to the switch.");
-                formControl.ClearRefresh();
-                return null;
-            }*/
         }
 
         public static void ReadUInt64Array(Socket socket, long initAddr, UInt64[] buffer, int size, int offset = 0)
@@ -1447,6 +1438,7 @@ namespace ACNHPokerCore
             } while (received < size && buffer[received - 1] != 0xA);
             return received;
         }
+
         private static byte[] ReadLargeBytes(USBBot usb, uint address, int size)
         {
             // Read in small chunks
@@ -1518,58 +1510,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public static byte[] ReadByteArray8(Socket socket, long initAddr, int size, ref int counter)
-        {
-            lock (botLock)
-            {
-                // Read in small chunks
-                byte[] result = new byte[size];
-                const int maxBytesToReceive = 8192;
-                int received = 0;
-                int bytesToReceive;
-                while (received < size)
-                {
-                    bytesToReceive = (size - received > maxBytesToReceive) ? maxBytesToReceive : size - received;
-                    string bufferRepr = ReadToIntermediateString8(socket, initAddr + received, bytesToReceive);
-                    if (bufferRepr == null)
-                        return null;
-                    for (int i = 0; i < bytesToReceive; i++)
-                    {
-                        result[received + i] = Convert.ToByte(bufferRepr.Substring(i * 2, 2), 16);
-                    }
-                    received += bytesToReceive;
-                    counter++;
-                }
-                return result;
-            }
-        }
-
-        public static byte[] ReadByteArray8(Socket socket, long initAddr, int size)
-        {
-            lock (botLock)
-            {
-                // Read in small chunks
-                byte[] result = new byte[size];
-                const int maxBytesToReceive = 8192;
-                int received = 0;
-                int bytesToReceive;
-                while (received < size)
-                {
-                    bytesToReceive = (size - received > maxBytesToReceive) ? maxBytesToReceive : size - received;
-                    string bufferRepr = ReadToIntermediateString8(socket, initAddr + received, bytesToReceive);
-                    if (bufferRepr == null)
-                        return null;
-                    for (int i = 0; i < bytesToReceive; i++)
-                    {
-                        result[received + i] = Convert.ToByte(bufferRepr.Substring(i * 2, 2), 16);
-                    }
-                    received += bytesToReceive;
-                }
-                return result;
-            }
-        }
-
-        public static void SendByteArray8(Socket socket, long initAddr, byte[] buffer, int size, ref int counter)
+        public static void SendByteArray(Socket socket, long initAddr, byte[] buffer, int size, ref int counter)
         {
             lock (botLock)
             {
@@ -1595,7 +1536,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public static void SendByteArray8(Socket socket, long initAddr, byte[] buffer, int size)
+        public static void SendByteArray(Socket socket, long initAddr, byte[] buffer, int size)
         {
             lock (botLock)
             {
@@ -1617,20 +1558,6 @@ namespace ACNHPokerCore
                     SendString(socket, Encoding.UTF8.GetBytes(msg));
                     sent += bytesToSend;
                 }
-            }
-        }
-
-        private static string ReadToIntermediateString8(Socket socket, long address, int size)
-        {
-            lock (botLock)
-            {
-                string msg = String.Format("peek 0x{0:X8} {1}\r\n", address, size);
-                //Debug.Print(msg);
-                SendString(socket, Encoding.UTF8.GetBytes(msg));
-                byte[] b = new byte[size * 2 + 64];
-                int first_rec = ReceiveString(socket, b);
-                //Debug.Print(String.Format("Received {0} Bytes", first_rec));
-                return Encoding.ASCII.GetString(b, 0, size * 2);
             }
         }
 
@@ -1681,58 +1608,6 @@ namespace ACNHPokerCore
 
             PokeAddress(socket, usb, GetItemFlag1Address(slot), flag);
         }
-
-        /*
-        public static bool SendByteArray(Socket socket, long initAddr, byte[] buffer, int size, ref int counter)
-        {
-            // Send in small chunks
-            const int maxBytesTosend = 1536;
-            int sent = 0;
-            int bytesToSend = 0;
-            StringBuilder dataTemp = new StringBuilder();
-            string msg;
-            while (sent < size)
-            {
-                dataTemp.Clear();
-                bytesToSend = (size - sent > maxBytesTosend) ? maxBytesTosend : size - sent;
-                for (int i = 0; i < bytesToSend; i++)
-                {
-                    dataTemp.Append(String.Format("{0:X2}", buffer[sent + i]));
-                }
-                msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", initAddr + sent, dataTemp.ToString());
-                SendString(socket, Encoding.UTF8.GetBytes(msg));
-                sent += bytesToSend;
-                counter++;
-            }
-
-            return false;
-        }
-
-        public static bool SendByteArray(Socket socket, long initAddr, byte[] buffer, int size)
-        {
-            // Send in small chunks
-            const int maxBytesTosend = 1536;
-            int sent = 0;
-            int bytesToSend = 0;
-            StringBuilder dataTemp = new StringBuilder();
-            string msg;
-            while (sent < size)
-            {
-                dataTemp.Clear();
-                bytesToSend = (size - sent > maxBytesTosend) ? maxBytesTosend : size - sent;
-                for (int i = 0; i < bytesToSend; i++)
-                {
-                    dataTemp.Append(String.Format("{0:X2}", buffer[sent + i]));
-                }
-                msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", initAddr + sent, dataTemp.ToString());
-                //Debug.Print(msg);
-                SendString(socket, Encoding.UTF8.GetBytes(msg));
-                sent += bytesToSend;
-            }
-
-            return false;
-        }
-        */
 
         public static byte[] GetTownID(Socket socket, USBBot usb)
         {
@@ -1895,10 +1770,11 @@ namespace ACNHPokerCore
 
         public static void SetReaction(Socket socket, USBBot usb, int player, string reactionFirstHalf, string reactionSecondHalf)
         {
+            byte[] b = Add(StringToByte(reactionFirstHalf), StringToByte(reactionSecondHalf));
+
             if (isEmulator)
             {
-                WriteEmulatorMemory((uint)(playerReactionAddress + (player * playerOffset)), StringToByte(reactionFirstHalf));
-                WriteEmulatorMemory((uint)(playerReactionAddress + (player * playerOffset)) + 4, StringToByte(reactionSecondHalf));
+                WriteEmulatorMemory((uint)(playerReactionAddress + (player * playerOffset)), b);
                 return;
             }
 
@@ -1908,6 +1784,8 @@ namespace ACNHPokerCore
                 {
                     if (usb == null)
                     {
+                        SendByteArray(socket, playerReactionAddress + (player * playerOffset), b, b.Length);
+                        /*
                         string msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (playerReactionAddress + (player * playerOffset)).ToString("x"), reactionFirstHalf);
                         Debug.Print("Poke Reaction: " + msg);
                         SendString(socket, Encoding.UTF8.GetBytes(msg));
@@ -1915,12 +1793,11 @@ namespace ACNHPokerCore
                         msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", ((playerReactionAddress + (player * playerOffset)) + 4).ToString("x"), reactionSecondHalf);
                         Debug.Print("Poke Reaction: " + msg);
                         SendString(socket, Encoding.UTF8.GetBytes(msg));
+                        */
                     }
                     else
                     {
-                        usb.WriteBytes(StringToByte(reactionFirstHalf), (uint)(playerReactionAddress + (player * playerOffset)));
-
-                        usb.WriteBytes(StringToByte(reactionSecondHalf), (uint)((playerReactionAddress + (player * playerOffset)) + 4));
+                        usb.WriteBytes(b, (uint)(playerReactionAddress + (player * playerOffset)));
                     }
                 }
                 catch
@@ -1959,19 +1836,19 @@ namespace ACNHPokerCore
                 {
                     if (type == 0)
                     {
-                        SendByteArray8(socket, InsectAppearPointer + InsectDataSize * index + 0x2, buffer, 12 * 6 * 2, ref counter);
+                        SendByteArray(socket, InsectAppearPointer + InsectDataSize * index + 0x2, buffer, 12 * 6 * 2, ref counter);
                     }
                     else if (type == 1)
                     {
-                        SendByteArray8(socket, FishRiverAppearPointer + FishDataSize * index + 0x2, buffer, 78, ref counter);
+                        SendByteArray(socket, FishRiverAppearPointer + FishDataSize * index + 0x2, buffer, 78, ref counter);
                     }
                     else if (type == 2)
                     {
-                        SendByteArray8(socket, FishSeaAppearPointer + FishDataSize * index + 0x2, buffer, 78, ref counter);
+                        SendByteArray(socket, FishSeaAppearPointer + FishDataSize * index + 0x2, buffer, 78, ref counter);
                     }
                     else if (type == 3)
                     {
-                        SendByteArray8(socket, CreatureSeaAppearPointer + SeaCreatureDataSize * index + 0x2, buffer, 78, ref counter);
+                        SendByteArray(socket, CreatureSeaAppearPointer + SeaCreatureDataSize * index + 0x2, buffer, 78, ref counter);
                     }
                 }
                 else
@@ -2155,7 +2032,7 @@ namespace ACNHPokerCore
             {
                 if (usb == null)
                 {
-                    SendByteArray8(socket, VillagerAddress + (num * VillagerSize), villager, (int)VillagerSize, ref counter);
+                    SendByteArray(socket, VillagerAddress + (num * VillagerSize), villager, (int)VillagerSize, ref counter);
 
                     //SendByteArray(socket, VillagerAddress + (num * VillagerSize) + VillagerHouseBufferDiff, villager, (int)VillagerSize, ref counter);
                 }
@@ -2254,7 +2131,7 @@ namespace ACNHPokerCore
             {
                 if (usb == null)
                 {
-                    SendByteArray8(socket, VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset, flagData, flagData.Length, ref counter);
+                    SendByteArray(socket, VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset, flagData, flagData.Length, ref counter);
                 }
                 else
                 {
@@ -2314,9 +2191,9 @@ namespace ACNHPokerCore
             {
                 if (usb == null)
                 {
-                    SendByteArray8(socket, VillagerHouseAddress + (num * (VillagerHouseSize)), house, (int)VillagerHouseSize, ref counter);
+                    SendByteArray(socket, VillagerHouseAddress + (num * (VillagerHouseSize)), house, (int)VillagerHouseSize, ref counter);
 
-                    SendByteArray8(socket, VillagerHouseAddress + (num * (VillagerHouseSize)) + VillagerHouseBufferDiff, house, (int)VillagerHouseSize, ref counter);
+                    SendByteArray(socket, VillagerHouseAddress + (num * (VillagerHouseSize)) + VillagerHouseBufferDiff, house, (int)VillagerHouseSize, ref counter);
                 }
                 else
                 {
@@ -2455,6 +2332,8 @@ namespace ACNHPokerCore
                 {
                     if (usb == null)
                     {
+                        SendByteArray(socket, VillagerAddress + (num * VillagerSize) + VillagerCatchphraseOffset, pharse, pharse.Length);
+                        /*
                         string msg;
 
                         msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + VillagerCatchphraseOffset).ToString("X"), ByteToHexString(pharse));
@@ -2464,6 +2343,7 @@ namespace ACNHPokerCore
                         //msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + VillagerCatchphraseOffset + VillagerHouseBufferDiff).ToString("X"), ByteToHexString(pharse));
                         //Debug.Print("Poke Catchphrase: " + msg);
                         //SendString(socket, Encoding.UTF8.GetBytes(msg));
+                        */
                     }
                     else
                     {
@@ -2579,6 +2459,10 @@ namespace ACNHPokerCore
                 {
                     if (usb == null)
                     {
+                        SendByteArray(socket, VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset, StringToByte(MoveoutFlag), 1);
+                        SendByteArray(socket, VillagerAddress + (num * VillagerSize) + VillagerForceMoveoutOffset, StringToByte(ForceMoveoutFlag), 1);
+                        SendByteArray(socket, VillagerAddress + (num * VillagerSize) + VillagerAbandonHouseOffset, StringToByte("0"), 1);
+                        /*
                         string msg;
 
                         msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + VillagerMoveoutOffset).ToString("X"), MoveoutFlag);
@@ -2604,6 +2488,7 @@ namespace ACNHPokerCore
                         //msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + VillagerAbandonHouseOffset + VillagerHouseBufferDiff).ToString("X"), "0");
                         //Debug.Print("Poke AbandonHouse: " + msg);
                         //SendString(socket, Encoding.UTF8.GetBytes(msg));
+                        */
                     }
                     else
                     {
@@ -2642,6 +2527,8 @@ namespace ACNHPokerCore
                 {
                     if (usb == null)
                     {
+                        SendByteArray(socket, VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset) + VillagerFriendshipOffset, StringToByte(FriendshipFlag), 1);
+                        /*
                         string msg;
                         msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset) + VillagerFriendshipOffset).ToString("X"), FriendshipFlag);
                         Debug.Print("Poke Friendship: " + msg);
@@ -2650,6 +2537,7 @@ namespace ACNHPokerCore
                         //msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (num * VillagerSize) + (player * VillagerPlayerOffset) + VillagerFriendshipOffset + VillagerHouseBufferDiff).ToString("X"), FriendshipFlag);
                         //Debug.Print("Poke Friendship: " + msg);
                         //SendString(socket, Encoding.UTF8.GetBytes(msg));
+                        */
                     }
                     else
                     {
@@ -2716,8 +2604,8 @@ namespace ACNHPokerCore
             {
                 if (usb == null)
                 {
-                    SendByteArray8(socket, MysIslandVillagerAddress, buffer, buffer.Length, ref counter);
-                    SendByteArray8(socket, MysIslandVillagerSpecies, species, species.Length, ref counter);
+                    SendByteArray(socket, MysIslandVillagerAddress, buffer, buffer.Length, ref counter);
+                    SendByteArray(socket, MysIslandVillagerSpecies, species, species.Length, ref counter);
                 }
                 else
                 {
@@ -2819,11 +2707,11 @@ namespace ACNHPokerCore
                 {
                     if (usb == null)
                     {
-                        SendByteArray8(socket, address, StringToByte(BuildDropStringLeft(itemId, count, flag0, flag1)), 16);
-                        SendByteArray8(socket, address + mapOffset, StringToByte(BuildDropStringLeft(itemId, count, flag0, flag1)), 16);
+                        SendByteArray(socket, address, StringToByte(BuildDropStringLeft(itemId, count, flag0, flag1)), 16);
+                        SendByteArray(socket, address + mapOffset, StringToByte(BuildDropStringLeft(itemId, count, flag0, flag1)), 16);
 
-                        SendByteArray8(socket, address + 0x600, StringToByte(BuildDropStringRight(itemId)), 16);
-                        SendByteArray8(socket, address + 0x600 + mapOffset, StringToByte(BuildDropStringRight(itemId)), 16);
+                        SendByteArray(socket, address + 0x600, StringToByte(BuildDropStringRight(itemId)), 16);
+                        SendByteArray(socket, address + 0x600 + mapOffset, StringToByte(BuildDropStringRight(itemId)), 16);
 
                         Debug.Print("Drop: " + address + " " + itemId + " " + count + " " + flag0 + " " + flag1);
                     }
@@ -2854,8 +2742,8 @@ namespace ACNHPokerCore
                 {
                     if (usb == null)
                     {
-                        SendByteArray8(socket, address, StringToByte(BuildDropCore(itemId, count, flag0, flag1)), 8);
-                        SendByteArray8(socket, address + mapOffset, StringToByte(BuildDropCore(itemId, count, flag0, flag1)), 8);
+                        SendByteArray(socket, address, StringToByte(BuildDropCore(itemId, count, flag0, flag1)), 8);
+                        SendByteArray(socket, address + mapOffset, StringToByte(BuildDropCore(itemId, count, flag0, flag1)), 8);
 
                         Debug.Print("DropCore: " + address + " " + itemId + " " + count + " " + flag0 + " " + flag1);
                     }
@@ -2879,11 +2767,11 @@ namespace ACNHPokerCore
                 {
                     if (usb == null)
                     {
-                        SendByteArray8(socket, address, StringToByte(ExtbuildDropStringLeft(itemId, count, flag0, flag1)), 16);
-                        SendByteArray8(socket, address + mapOffset, StringToByte(ExtbuildDropStringLeft(itemId, count, flag0, flag1)), 16);
+                        SendByteArray(socket, address, StringToByte(ExtbuildDropStringLeft(itemId, count, flag0, flag1)), 16);
+                        SendByteArray(socket, address + mapOffset, StringToByte(ExtbuildDropStringLeft(itemId, count, flag0, flag1)), 16);
 
-                        SendByteArray8(socket, address + 0x600, StringToByte(BuildDropStringRight("FFFE", true)), 16);
-                        SendByteArray8(socket, address + 0x600 + mapOffset, StringToByte(BuildDropStringRight("FFFE", true)), 16);
+                        SendByteArray(socket, address + 0x600, StringToByte(BuildDropStringRight("FFFE", true)), 16);
+                        SendByteArray(socket, address + 0x600 + mapOffset, StringToByte(BuildDropStringRight("FFFE", true)), 16);
 
                         Debug.Print("Drop: " + address + " " + itemId + " " + count + " " + flag0 + " " + flag1);
                     }
@@ -2921,11 +2809,11 @@ namespace ACNHPokerCore
                 {
                     if (usb == null)
                     {
-                        SendByteArray8(socket, address, StringToByte(BuildDropStringLeft("FFFE", "00000000", "00", "00", true)), 16);
-                        SendByteArray8(socket, address + mapOffset, StringToByte(BuildDropStringLeft("FFFE", "00000000", "00", "00", true)), 16);
+                        SendByteArray(socket, address, StringToByte(BuildDropStringLeft("FFFE", "00000000", "00", "00", true)), 16);
+                        SendByteArray(socket, address + mapOffset, StringToByte(BuildDropStringLeft("FFFE", "00000000", "00", "00", true)), 16);
 
-                        SendByteArray8(socket, address + 0x600, StringToByte(BuildDropStringRight("FFFE", true)), 16);
-                        SendByteArray8(socket, address + 0x600 + mapOffset, StringToByte(BuildDropStringRight("FFFE", true)), 16);
+                        SendByteArray(socket, address + 0x600, StringToByte(BuildDropStringRight("FFFE", true)), 16);
+                        SendByteArray(socket, address + 0x600 + mapOffset, StringToByte(BuildDropStringRight("FFFE", true)), 16);
 
                         Debug.Print("Delete: " + address);
                     }
@@ -2956,7 +2844,7 @@ namespace ACNHPokerCore
                     {
                         Debug.Print("[Sys] Peek : Map Layer " + address.ToString("X"));
 
-                        byte[] b = ReadByteArray8(socket, address, (int)mapSize, ref counter);
+                        byte[] b = ReadByteArray(socket, address, (int)mapSize, ref counter);
 
                         if (b == null)
                         {
@@ -3046,8 +2934,8 @@ namespace ACNHPokerCore
                     {
                         Debug.Print("[Sys] Poke : Acre " + AcreOffset.ToString("X"));
 
-                        SendByteArray8(socket, AcreOffset, acre, acre.Length, ref counter);
-                        SendByteArray8(socket, AcreOffset + mapOffset, acre, acre.Length, ref counter);
+                        SendByteArray(socket, AcreOffset, acre, acre.Length, ref counter);
+                        SendByteArray(socket, AcreOffset + mapOffset, acre, acre.Length, ref counter);
                     }
                     else
                     {
@@ -3081,8 +2969,8 @@ namespace ACNHPokerCore
                     {
                         Debug.Print("[Sys] Poke : Plaza " + (AcreOffset + 0x94).ToString("X"));
 
-                        SendByteArray8(socket, AcreOffset + 0x94, plaza, plaza.Length, ref counter);
-                        SendByteArray8(socket, AcreOffset + 0x94 + mapOffset, plaza, plaza.Length, ref counter);
+                        SendByteArray(socket, AcreOffset + 0x94, plaza, plaza.Length, ref counter);
+                        SendByteArray(socket, AcreOffset + 0x94 + mapOffset, plaza, plaza.Length, ref counter);
                     }
                     else
                     {
@@ -3116,8 +3004,8 @@ namespace ACNHPokerCore
                     {
                         Debug.Print("[Sys] Poke : Building " + BuildingOffset.ToString("X"));
 
-                        SendByteArray8(socket, BuildingOffset, building, building.Length, ref counter);
-                        SendByteArray8(socket, BuildingOffset + mapOffset, building, building.Length, ref counter);
+                        SendByteArray(socket, BuildingOffset, building, building.Length, ref counter);
+                        SendByteArray(socket, BuildingOffset + mapOffset, building, building.Length, ref counter);
                     }
                     else
                     {
@@ -3195,8 +3083,8 @@ namespace ACNHPokerCore
                     {
                         Debug.Print("[Sys] Poke : Terrain " + TerrainOffset.ToString("X"));
 
-                        SendByteArray8(socket, TerrainOffset, terrain, AllTerrainSize, ref counter);
-                        SendByteArray8(socket, TerrainOffset + mapOffset, terrain, AllTerrainSize, ref counter);
+                        SendByteArray(socket, TerrainOffset, terrain, AllTerrainSize, ref counter);
+                        SendByteArray(socket, TerrainOffset + mapOffset, terrain, AllTerrainSize, ref counter);
                     }
                     else
                     {
@@ -3230,8 +3118,8 @@ namespace ACNHPokerCore
                     {
                         Debug.Print("[Sys] Poke : CustomMap " + TerrainOffset.ToString("X"));
 
-                        SendByteArray8(socket, mapCustomDesign, CustomMap, CustomMap.Length, ref counter);
-                        SendByteArray8(socket, mapCustomDesign + mapOffset, CustomMap, CustomMap.Length, ref counter);
+                        SendByteArray(socket, mapCustomDesign, CustomMap, CustomMap.Length, ref counter);
+                        SendByteArray(socket, mapCustomDesign + mapOffset, CustomMap, CustomMap.Length, ref counter);
                     }
                     else
                     {
@@ -3263,7 +3151,7 @@ namespace ACNHPokerCore
                     {
                         Debug.Print("[Sys] Peek : Terrain " + TerrainOffset.ToString("X"));
 
-                        byte[] b = ReadByteArray8(socket, TerrainOffset, AllTerrainSize);
+                        byte[] b = ReadByteArray(socket, TerrainOffset, AllTerrainSize);
 
                         if (b == null)
                         {
@@ -3307,7 +3195,7 @@ namespace ACNHPokerCore
                     {
                         Debug.Print("[Sys] Peek : Activate " + address.ToString("X"));
 
-                        byte[] b = ReadByteArray8(socket, address, (int)mapActivateSize, ref counter);
+                        byte[] b = ReadByteArray(socket, address, (int)mapActivateSize, ref counter);
 
                         if (b == null)
                         {
@@ -3351,7 +3239,7 @@ namespace ACNHPokerCore
                     {
                         Debug.Print("[Sys] Peek : CustomDesignMap " + mapCustomDesign.ToString("X"));
 
-                        byte[] b = ReadByteArray8(socket, mapCustomDesign, MapTileCount16x16 * 2, ref counter);
+                        byte[] b = ReadByteArray(socket, mapCustomDesign, MapTileCount16x16 * 2, ref counter);
 
                         if (b == null)
                         {
@@ -3395,7 +3283,7 @@ namespace ACNHPokerCore
                     {
                         Debug.Print("[Sys] Peek : MyDesign " + MyDesignZero.ToString("X"));
 
-                        byte[] b = ReadByteArray8(socket, MyDesignZero, DesignPattern.SIZE * PatternCount, ref counter);
+                        byte[] b = ReadByteArray(socket, MyDesignZero, DesignPattern.SIZE * PatternCount, ref counter);
 
                         if (b == null)
                         {
@@ -3511,10 +3399,10 @@ namespace ACNHPokerCore
             {
                 if (usb == null)
                 {
-                    SendByteArray8(socket, address1, buffer1, buffer1.Length, ref counter);
-                    SendByteArray8(socket, address1 + mapOffset, buffer1, buffer1.Length, ref counter);
-                    SendByteArray8(socket, address2, buffer2, buffer2.Length, ref counter);
-                    SendByteArray8(socket, address2 + mapOffset, buffer2, buffer2.Length, ref counter);
+                    SendByteArray(socket, address1, buffer1, buffer1.Length, ref counter);
+                    SendByteArray(socket, address1 + mapOffset, buffer1, buffer1.Length, ref counter);
+                    SendByteArray(socket, address2, buffer2, buffer2.Length, ref counter);
+                    SendByteArray(socket, address2 + mapOffset, buffer2, buffer2.Length, ref counter);
                 }
                 else
                 {
@@ -3526,7 +3414,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public static void DropColumn2(Socket socket, USBBot usb, uint address1, uint address2, byte[] buffer1, byte[] buffer2)
+        public static void DropColumn(Socket socket, USBBot usb, uint address1, uint address2, byte[] buffer1, byte[] buffer2)
         {
             if (isEmulator)
             {
@@ -3541,10 +3429,10 @@ namespace ACNHPokerCore
             {
                 if (usb == null)
                 {
-                    SendByteArray8(socket, address1, buffer1, buffer1.Length);
-                    SendByteArray8(socket, address1 + mapOffset, buffer1, buffer1.Length);
-                    SendByteArray8(socket, address2, buffer2, buffer2.Length);
-                    SendByteArray8(socket, address2 + mapOffset, buffer2, buffer2.Length);
+                    SendByteArray(socket, address1, buffer1, buffer1.Length);
+                    SendByteArray(socket, address1 + mapOffset, buffer1, buffer1.Length);
+                    SendByteArray(socket, address2, buffer2, buffer2.Length);
+                    SendByteArray(socket, address2 + mapOffset, buffer2, buffer2.Length);
                 }
             }
         }
@@ -3562,8 +3450,8 @@ namespace ACNHPokerCore
             {
                 if (usb == null)
                 {
-                    SendByteArray8(socket, address, column, column.Length);
-                    SendByteArray8(socket, address + mapOffset, column, column.Length);
+                    SendByteArray(socket, address, column, column.Length);
+                    SendByteArray(socket, address + mapOffset, column, column.Length);
                 }
                 else
                 {
@@ -3585,7 +3473,7 @@ namespace ACNHPokerCore
 
                 if (usb == null)
                 {
-                    buffer = ReadByteArray8(socket, address, 0x4E70);
+                    buffer = ReadByteArray(socket, address, 0x4E70);
                 }
                 else
                 {
@@ -3701,7 +3589,7 @@ namespace ACNHPokerCore
             lock (botLock)
             {
                 byte[] empty = new byte[20];
-                SendByteArray8(socket, VisitorNameAddress, empty, 20);
+                SendByteArray(socket, VisitorNameAddress, empty, 20);
                 Debug.Print("Send Blank Name");
             }
         }
@@ -3714,19 +3602,24 @@ namespace ACNHPokerCore
                 {
                     if (usb == null)
                     {
-                        string msg;
 
                         if (chi)
                         {
+                            SendByteArray(socket, TextSpeedAddress + ChineseLanguageOffset, StringToByte("3"), 1);
+                            /*
                             msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (TextSpeedAddress + ChineseLanguageOffset).ToString("X"), "3");
                             Debug.Print("Poke TextSpeedChi: " + msg);
                             SendString(socket, Encoding.UTF8.GetBytes(msg));
+                            */
                         }
                         else
                         {
+                            SendByteArray(socket, TextSpeedAddress, StringToByte("3"), 1);
+                            /*
                             msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", TextSpeedAddress.ToString("X"), "3");
                             Debug.Print("Poke TextSpeed: " + msg);
                             SendString(socket, Encoding.UTF8.GetBytes(msg));
+                            */
                         }
                     }
                     else
@@ -4170,14 +4063,18 @@ namespace ACNHPokerCore
 
         public static async Task LoadBoth(Socket socket, int villagerIndex, byte[] villager, int houseIndex, byte[] house)
         {
-            await Task.Run(() => SendByteArray8(socket, VillagerAddress + (villagerIndex * VillagerSize), villager, (int)VillagerSize));
-            await Task.Run(() => SendByteArray8(socket, VillagerHouseAddress + (houseIndex * (VillagerHouseSize)), house, (int)VillagerHouseSize));
+            await Task.Run(() => SendByteArray(socket, VillagerAddress + (villagerIndex * VillagerSize), villager, (int)VillagerSize));
+            await Task.Run(() => SendByteArray(socket, VillagerHouseAddress + (houseIndex * (VillagerHouseSize)), house, (int)VillagerHouseSize));
         }
 
         public static async Task SetMoveout(Socket socket, int villagerIndex, string MoveoutFlag = "2", string ForceMoveoutFlag = "1")
         {
             await Task.Run(() =>
             {
+                SendByteArray(socket, VillagerAddress + (villagerIndex * VillagerSize) + VillagerMoveoutOffset, StringToByte(MoveoutFlag), 1);
+                SendByteArray(socket, VillagerAddress + (villagerIndex * VillagerSize) + VillagerForceMoveoutOffset, StringToByte(ForceMoveoutFlag), 1);
+                SendByteArray(socket, VillagerAddress + (villagerIndex * VillagerSize) + VillagerAbandonHouseOffset, StringToByte("0"), 1);
+                /*
                 string msg;
                 msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (villagerIndex * VillagerSize) + VillagerMoveoutOffset).ToString("X"), MoveoutFlag);
                 SendString(socket, Encoding.UTF8.GetBytes(msg));
@@ -4187,6 +4084,7 @@ namespace ACNHPokerCore
 
                 msg = String.Format("poke 0x{0:X8} 0x{1}\r\n", (VillagerAddress + (villagerIndex * VillagerSize) + VillagerAbandonHouseOffset).ToString("X"), "0");
                 SendString(socket, Encoding.UTF8.GetBytes(msg));
+                */
             });
         }
 
@@ -5079,6 +4977,7 @@ namespace ACNHPokerCore
         #endregion
 
         #region Kind
+
         public static readonly Dictionary<string, int> CountByKind = new()
         {
             {"Kind_Ftr", 1},

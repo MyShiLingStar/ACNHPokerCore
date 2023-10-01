@@ -8833,7 +8833,7 @@ namespace ACNHPokerCore
             {
                 ChasingAddress = (startAddress + offset - 4).ToString("X");
                 Debug.Print("Chasing : " + ChasingAddress);
-                byte[] b = Utilities.ReadByteArray8(socket, startAddress + offset - 4, 8192);
+                byte[] b = Utilities.ReadByteArray(socket, startAddress + offset - 4, 8192);
                 int result = Search(b, pattern);
                 if (result >= 0)
                 {

@@ -124,7 +124,7 @@ namespace ACNHPokerCore
         {
             ShowMapWait(42, "Saving...");
 
-            byte[] save = Utilities.ReadByteArray8(s, address, 0x54000, ref counter);
+            byte[] save = Utilities.ReadByteArray(s, address, 0x54000, ref counter);
 
             File.WriteAllBytes(file.FileName, save);
 
@@ -210,8 +210,8 @@ namespace ACNHPokerCore
 
             for (int i = 0; i < 42; i++)
             {
-                Utilities.SendByteArray8(s, address + (i * 0x2000), b[i], 0x2000, ref counter);
-                Utilities.SendByteArray8(s, address + (i * 0x2000) + Utilities.mapOffset, b[i], 0x2000, ref counter);
+                Utilities.SendByteArray(s, address + (i * 0x2000), b[i], 0x2000, ref counter);
+                Utilities.SendByteArray(s, address + (i * 0x2000) + Utilities.mapOffset, b[i], 0x2000, ref counter);
             }
 
             Thread.Sleep(3000);
@@ -716,7 +716,7 @@ namespace ACNHPokerCore
                             {
                                 lock (mapLock)
                                 {
-                                    var c = Utilities.ReadByteArray8(s, address + (i * 0x2000), 0x2000, ref counter);
+                                    var c = Utilities.ReadByteArray(s, address + (i * 0x2000), 0x2000, ref counter);
 
                                     if (c != null)
                                     {
@@ -728,7 +728,7 @@ namespace ACNHPokerCore
                                         else
                                         {
                                             Debug.Print("Replace " + i);
-                                            Utilities.SendByteArray8(s, address + (i * 0x2000), b[i], 0x2000, ref writeCount);
+                                            Utilities.SendByteArray(s, address + (i * 0x2000), b[i], 0x2000, ref writeCount);
                                             Thread.Sleep(500);
                                         }
                                     }
@@ -961,7 +961,7 @@ namespace ACNHPokerCore
 
                                 lock (mapLock)
                                 {
-                                    var c = Utilities.ReadByteArray8(s, address + (i * 0x1800), 0x1800, ref counter);
+                                    var c = Utilities.ReadByteArray(s, address + (i * 0x1800), 0x1800, ref counter);
 
                                     if (c != null)
                                     {
@@ -973,7 +973,7 @@ namespace ACNHPokerCore
                                         else
                                         {
                                             Debug.Print("Replace " + i);
-                                            Utilities.SendByteArray8(s, address + (i * 0x1800), u[i], 0x1800, ref writeCount);
+                                            Utilities.SendByteArray(s, address + (i * 0x1800), u[i], 0x1800, ref writeCount);
                                             Thread.Sleep(500);
                                         }
                                     }

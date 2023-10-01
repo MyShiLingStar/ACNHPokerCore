@@ -99,7 +99,7 @@ namespace ACNHPokerCore
 
             lockControl();
 
-            byte[] save = Utilities.ReadByteArray8(s, address, 0x54000 * 2, ref counter);
+            byte[] save = Utilities.ReadByteArray(s, address, 0x54000 * 2, ref counter);
 
             File.WriteAllBytes(file.FileName, save);
 

@@ -4247,13 +4247,13 @@ namespace ACNHPokerCore
 
                     List<Task> tasks = new()
                     {
-                    Task.Run(() => Utilities.DropColumn2(s, usb, address1, address1 + 0x600, b[0], b[1])),
-                    Task.Run(() => Utilities.DropColumn2(s, usb, address2, address2 + 0x600, b[2], b[3])),
-                    Task.Run(() => Utilities.DropColumn2(s, usb, address3, address3 + 0x600, b[4], b[5])),
-                    Task.Run(() => Utilities.DropColumn2(s, usb, address4, address4 + 0x600, b[6], b[7])),
-                    Task.Run(() => Utilities.DropColumn2(s, usb, address5, address5 + 0x600, b[8], b[9])),
-                    Task.Run(() => Utilities.DropColumn2(s, usb, address6, address6 + 0x600, b[10], b[11])),
-                    Task.Run(() => Utilities.DropColumn2(s, usb, address7, address7 + 0x600, b[12], b[13]))
+                    Task.Run(() => Utilities.DropColumn(s, usb, address1, address1 + 0x600, b[0], b[1])),
+                    Task.Run(() => Utilities.DropColumn(s, usb, address2, address2 + 0x600, b[2], b[3])),
+                    Task.Run(() => Utilities.DropColumn(s, usb, address3, address3 + 0x600, b[4], b[5])),
+                    Task.Run(() => Utilities.DropColumn(s, usb, address4, address4 + 0x600, b[6], b[7])),
+                    Task.Run(() => Utilities.DropColumn(s, usb, address5, address5 + 0x600, b[8], b[9])),
+                    Task.Run(() => Utilities.DropColumn(s, usb, address6, address6 + 0x600, b[10], b[11])),
+                    Task.Run(() => Utilities.DropColumn(s, usb, address7, address7 + 0x600, b[12], b[13]))
                     };
 
                     await Task.WhenAll(tasks);
@@ -6024,13 +6024,13 @@ namespace ACNHPokerCore
 
                     List<Task> tasks = new()
                     {
-                    Task.Run(() => Utilities.DropColumn2(s, usb, address1, address1 + 0x600, b[0], b[1])),
-                    Task.Run(() => Utilities.DropColumn2(s, usb, address2, address2 + 0x600, b[2], b[3])),
-                    Task.Run(() => Utilities.DropColumn2(s, usb, address3, address3 + 0x600, b[4], b[5])),
-                    Task.Run(() => Utilities.DropColumn2(s, usb, address4, address4 + 0x600, b[6], b[7])),
-                    Task.Run(() => Utilities.DropColumn2(s, usb, address5, address5 + 0x600, b[8], b[9])),
-                    Task.Run(() => Utilities.DropColumn2(s, usb, address6, address6 + 0x600, b[10], b[11])),
-                    Task.Run(() => Utilities.DropColumn2(s, usb, address7, address7 + 0x600, b[12], b[13]))
+                    Task.Run(() => Utilities.DropColumn(s, usb, address1, address1 + 0x600, b[0], b[1])),
+                    Task.Run(() => Utilities.DropColumn(s, usb, address2, address2 + 0x600, b[2], b[3])),
+                    Task.Run(() => Utilities.DropColumn(s, usb, address3, address3 + 0x600, b[4], b[5])),
+                    Task.Run(() => Utilities.DropColumn(s, usb, address4, address4 + 0x600, b[6], b[7])),
+                    Task.Run(() => Utilities.DropColumn(s, usb, address5, address5 + 0x600, b[8], b[9])),
+                    Task.Run(() => Utilities.DropColumn(s, usb, address6, address6 + 0x600, b[10], b[11])),
+                    Task.Run(() => Utilities.DropColumn(s, usb, address7, address7 + 0x600, b[12], b[13]))
                     };
 
                     await Task.WhenAll(tasks);
