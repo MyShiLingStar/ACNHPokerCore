@@ -817,13 +817,15 @@ namespace ACNHPokerCore
 
                 byte[] b = ReadEmulatorMemory(TurnipPurchasePriceAddr, 60);
 
-                result[12] = b[0];
+                byte[] BuyTemp = new byte[4];
+                Buffer.BlockCopy(b, 0, BuyTemp, 0, 4);
+                result[12] = BitConverter.ToUInt32(BuyTemp, 0);
 
                 for (int i = 0; i < 12; i++)
                 {
-                    byte[] temp = new byte[4];
-                    Buffer.BlockCopy(b, 12 + (i * 4), temp, 0, 4);
-                    result[i] = BitConverter.ToUInt32(temp, 0);
+                    byte[] SellTemp = new byte[4];
+                    Buffer.BlockCopy(b, 12 + (i * 4), SellTemp, 0, 4);
+                    result[i] = BitConverter.ToUInt32(SellTemp, 0);
                 }
 
                 return result;
@@ -848,13 +850,15 @@ namespace ACNHPokerCore
 
                     byte[] b = usb.ReadBytes(TurnipPurchasePriceAddr, 60);
 
-                    result[12] = b[0];
+                    byte[] BuyTemp = new byte[4];
+                    Buffer.BlockCopy(b, 0, BuyTemp, 0, 4);
+                    result[12] = BitConverter.ToUInt32(BuyTemp, 0);
 
                     for (int i = 0; i < 12; i++)
                     {
-                        byte[] temp = new byte[4];
-                        Buffer.BlockCopy(b, 12 + (i * 4), temp, 0, 4);
-                        result[i] = BitConverter.ToUInt32(temp, 0);
+                        byte[] SellTemp = new byte[4];
+                        Buffer.BlockCopy(b, 12 + (i * 4), SellTemp, 0, 4);
+                        result[i] = BitConverter.ToUInt32(SellTemp, 0);
                     }
                 }
                 return result;

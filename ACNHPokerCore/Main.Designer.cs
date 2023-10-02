@@ -623,7 +623,7 @@ namespace ACNHPokerCore
             turnipSell6PM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
             turnipSell6PM.ForeColor = System.Drawing.Color.White;
             turnipSell6PM.Location = new System.Drawing.Point(259, 404);
-            turnipSell6PM.MaxLength = 15;
+            turnipSell6PM.MaxLength = 9;
             turnipSell6PM.Multiline = false;
             turnipSell6PM.Name = "turnipSell6PM";
             turnipSell6PM.Size = new System.Drawing.Size(155, 38);
@@ -638,7 +638,7 @@ namespace ACNHPokerCore
             turnipSell5PM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
             turnipSell5PM.ForeColor = System.Drawing.Color.White;
             turnipSell5PM.Location = new System.Drawing.Point(259, 341);
-            turnipSell5PM.MaxLength = 15;
+            turnipSell5PM.MaxLength = 9;
             turnipSell5PM.Multiline = false;
             turnipSell5PM.Name = "turnipSell5PM";
             turnipSell5PM.Size = new System.Drawing.Size(155, 38);
@@ -653,7 +653,7 @@ namespace ACNHPokerCore
             turnipSell4PM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
             turnipSell4PM.ForeColor = System.Drawing.Color.White;
             turnipSell4PM.Location = new System.Drawing.Point(259, 278);
-            turnipSell4PM.MaxLength = 15;
+            turnipSell4PM.MaxLength = 9;
             turnipSell4PM.Multiline = false;
             turnipSell4PM.Name = "turnipSell4PM";
             turnipSell4PM.Size = new System.Drawing.Size(155, 38);
@@ -668,7 +668,7 @@ namespace ACNHPokerCore
             turnipSell3PM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
             turnipSell3PM.ForeColor = System.Drawing.Color.White;
             turnipSell3PM.Location = new System.Drawing.Point(259, 215);
-            turnipSell3PM.MaxLength = 15;
+            turnipSell3PM.MaxLength = 9;
             turnipSell3PM.Multiline = false;
             turnipSell3PM.Name = "turnipSell3PM";
             turnipSell3PM.Size = new System.Drawing.Size(155, 38);
@@ -683,7 +683,7 @@ namespace ACNHPokerCore
             turnipSell2PM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
             turnipSell2PM.ForeColor = System.Drawing.Color.White;
             turnipSell2PM.Location = new System.Drawing.Point(259, 152);
-            turnipSell2PM.MaxLength = 15;
+            turnipSell2PM.MaxLength = 9;
             turnipSell2PM.Multiline = false;
             turnipSell2PM.Name = "turnipSell2PM";
             turnipSell2PM.Size = new System.Drawing.Size(155, 38);
@@ -698,7 +698,7 @@ namespace ACNHPokerCore
             turnipSell1PM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
             turnipSell1PM.ForeColor = System.Drawing.Color.White;
             turnipSell1PM.Location = new System.Drawing.Point(259, 89);
-            turnipSell1PM.MaxLength = 15;
+            turnipSell1PM.MaxLength = 9;
             turnipSell1PM.Multiline = false;
             turnipSell1PM.Name = "turnipSell1PM";
             turnipSell1PM.Size = new System.Drawing.Size(155, 38);
@@ -713,7 +713,7 @@ namespace ACNHPokerCore
             turnipSell6AM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
             turnipSell6AM.ForeColor = System.Drawing.Color.White;
             turnipSell6AM.Location = new System.Drawing.Point(51, 404);
-            turnipSell6AM.MaxLength = 15;
+            turnipSell6AM.MaxLength = 9;
             turnipSell6AM.Multiline = false;
             turnipSell6AM.Name = "turnipSell6AM";
             turnipSell6AM.Size = new System.Drawing.Size(155, 38);
@@ -728,7 +728,7 @@ namespace ACNHPokerCore
             turnipSell5AM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
             turnipSell5AM.ForeColor = System.Drawing.Color.White;
             turnipSell5AM.Location = new System.Drawing.Point(51, 341);
-            turnipSell5AM.MaxLength = 15;
+            turnipSell5AM.MaxLength = 9;
             turnipSell5AM.Multiline = false;
             turnipSell5AM.Name = "turnipSell5AM";
             turnipSell5AM.Size = new System.Drawing.Size(155, 38);
@@ -743,7 +743,7 @@ namespace ACNHPokerCore
             turnipSell4AM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
             turnipSell4AM.ForeColor = System.Drawing.Color.White;
             turnipSell4AM.Location = new System.Drawing.Point(51, 278);
-            turnipSell4AM.MaxLength = 15;
+            turnipSell4AM.MaxLength = 9;
             turnipSell4AM.Multiline = false;
             turnipSell4AM.Name = "turnipSell4AM";
             turnipSell4AM.Size = new System.Drawing.Size(155, 38);
@@ -758,7 +758,7 @@ namespace ACNHPokerCore
             turnipSell3AM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
             turnipSell3AM.ForeColor = System.Drawing.Color.White;
             turnipSell3AM.Location = new System.Drawing.Point(51, 215);
-            turnipSell3AM.MaxLength = 15;
+            turnipSell3AM.MaxLength = 9;
             turnipSell3AM.Multiline = false;
             turnipSell3AM.Name = "turnipSell3AM";
             turnipSell3AM.Size = new System.Drawing.Size(155, 38);
@@ -773,7 +773,7 @@ namespace ACNHPokerCore
             turnipSell2AM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
             turnipSell2AM.ForeColor = System.Drawing.Color.White;
             turnipSell2AM.Location = new System.Drawing.Point(51, 152);
-            turnipSell2AM.MaxLength = 15;
+            turnipSell2AM.MaxLength = 9;
             turnipSell2AM.Multiline = false;
             turnipSell2AM.Name = "turnipSell2AM";
             turnipSell2AM.Size = new System.Drawing.Size(155, 38);
@@ -788,7 +788,7 @@ namespace ACNHPokerCore
             turnipBuyPrice.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
             turnipBuyPrice.ForeColor = System.Drawing.Color.White;
             turnipBuyPrice.Location = new System.Drawing.Point(51, 26);
-            turnipBuyPrice.MaxLength = 15;
+            turnipBuyPrice.MaxLength = 9;
             turnipBuyPrice.Multiline = false;
             turnipBuyPrice.Name = "turnipBuyPrice";
             turnipBuyPrice.Size = new System.Drawing.Size(155, 38);
@@ -803,7 +803,7 @@ namespace ACNHPokerCore
             turnipSell1AM.Font = new System.Drawing.Font("Arial", 23F, System.Drawing.FontStyle.Bold);
             turnipSell1AM.ForeColor = System.Drawing.Color.White;
             turnipSell1AM.Location = new System.Drawing.Point(51, 89);
-            turnipSell1AM.MaxLength = 15;
+            turnipSell1AM.MaxLength = 9;
             turnipSell1AM.Multiline = false;
             turnipSell1AM.Name = "turnipSell1AM";
             turnipSell1AM.Size = new System.Drawing.Size(155, 38);
