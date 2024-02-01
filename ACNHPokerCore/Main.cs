@@ -2,7 +2,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NAudio.Wave;
+using ScintillaNET;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -8196,6 +8198,1801 @@ namespace ACNHPokerCore
 
         #endregion
 
+        private void processCheat(string[] cheattext)
+        {
+
+
+            int slotId = 0;
+            string myItemId = "";
+            string myItemData = "";
+
+            Invoke((MethodInvoker)delegate
+            {
+
+                //online
+                if (!offline)
+                {
+
+                    slotId = 0;
+                    foreach (string line in cheattext)
+                    {
+                        //slotId++; //works online                    
+                        slotId++;
+                        Regex regex = new Regex(" ");         // Split on space.
+                        string[] substrings = regex.Split(line);
+                        MyLog.LogEvent("Online Split String", substrings[0] + " " + substrings[1] + " " + substrings[2] + " " + substrings[3]);
+
+                        myItemId = substrings[3].Substring(4); //substrings[3];
+                        myItemData = substrings[2].Substring(4); //substrings[2];
+
+                        byte[] newInventory = new byte[320];
+                        byte[] slotBytes = new byte[2];
+                        byte[] flag0Bytes = new byte[1];
+                        byte[] flag1Bytes = new byte[1];
+                        byte[] dataBytes = new byte[4];
+                        byte[] recipeBytes = new byte[2];
+                        byte[] fenceBytes = new byte[2];
+
+                        int slotOffset = ((slotId - 1) * 0x8);
+                        int flag0Offset = 0x3 + ((slotId - 1) * 0x8);
+                        int flag1Offset = 0x2 + ((slotId - 1) * 0x8);
+                        int countOffset = 0x4 + ((slotId - 1) * 0x8);
+
+                        Buffer.BlockCopy(newInventory, slotOffset, slotBytes, 0, 2);
+                        Buffer.BlockCopy(newInventory, flag0Offset, flag0Bytes, 0, 1);
+                        Buffer.BlockCopy(newInventory, flag1Offset, flag1Bytes, 0, 1);
+                        Buffer.BlockCopy(newInventory, countOffset, dataBytes, 0, 4);
+                        Buffer.BlockCopy(newInventory, countOffset, recipeBytes, 0, 2);
+                        Buffer.BlockCopy(newInventory, countOffset + 0x2, fenceBytes, 0x0, 0x2);
+
+                        string itemId = myItemId; //Utilities.Flip(Utilities.ByteToHexString(slotBytes));
+                        string itemData = myItemData; //Utilities.Flip(Utilities.ByteToHexString(dataBytes));
+                        string recipeData = myItemData; //Utilities.Flip(Utilities.ByteToHexString(recipeBytes));
+                        string fenceData = myItemData; //Utilities.Flip(Utilities.ByteToHexString(fenceBytes));
+                        string flag0 = Utilities.ByteToHexString(flag0Bytes);
+                        string flag1 = Utilities.ByteToHexString(flag1Bytes);
+                        UInt16 intId = Convert.ToUInt16(itemId, 16);
+                        string hexValue = Utilities.PrecedingZeros(itemData, 8);
+
+                        Utilities.SpawnItem(socket, usb, slotId, flag0 + flag1 + itemId, Utilities.PrecedingZeros(itemData, 8));
+                        UpdateInventory();
+                        MyLog.LogEvent("Online", "slotId: " + slotId.ToString() + " itemId: " + itemId + " itemData: " + itemData + " recipeData: " + recipeData + " Flag0: " + flag0 + " Flag1: " + flag1);
+
+
+                    } //cheatline 
+
+                } //online
+
+                //offline
+                else
+                {
+                    //make sure we start from first slot
+                    slotId = 0;
+                    foreach (string line in cheattext)
+                    {
+
+
+                        slotId++;
+
+
+                        Regex regex = new Regex(" ");         // Split on space.
+                        string[] substrings = regex.Split(line);
+                        MyLog.LogEvent("Offline Split String", substrings[0] + " " + substrings[1] + " " + substrings[2] + " " + substrings[3]);
+                        myItemId = substrings[3].Substring(4); //substrings[3];
+                        myItemData = substrings[2].Substring(4); //substrings[2];
+
+                        byte[] newInventory = new byte[320];
+                        byte[] slotBytes = new byte[2];
+                        byte[] flag0Bytes = new byte[1];
+                        byte[] flag1Bytes = new byte[1];
+                        byte[] dataBytes = new byte[4];
+                        byte[] recipeBytes = new byte[2];
+                        byte[] fenceBytes = new byte[2];
+
+                        int slotOffset = ((slotId - 1) * 0x8);
+                        int flag0Offset = 0x3 + ((slotId - 1) * 0x8);
+                        int flag1Offset = 0x2 + ((slotId - 1) * 0x8);
+                        int countOffset = 0x4 + ((slotId - 1) * 0x8);
+
+                        Buffer.BlockCopy(newInventory, slotOffset, slotBytes, 0, 2);
+                        Buffer.BlockCopy(newInventory, flag0Offset, flag0Bytes, 0, 1);
+                        Buffer.BlockCopy(newInventory, flag1Offset, flag1Bytes, 0, 1);
+                        Buffer.BlockCopy(newInventory, countOffset, dataBytes, 0, 4);
+                        Buffer.BlockCopy(newInventory, countOffset, recipeBytes, 0, 2);
+                        Buffer.BlockCopy(newInventory, countOffset + 0x2, fenceBytes, 0x0, 0x2);
+
+                        string itemId = myItemId; //Utilities.Flip(Utilities.ByteToHexString(slotBytes));
+                        string itemData = myItemData; //Utilities.Flip(Utilities.ByteToHexString(dataBytes));
+                        string recipeData = myItemData; //Utilities.Flip(Utilities.ByteToHexString(recipeBytes));
+                        string fenceData = myItemData; //Utilities.Flip(Utilities.ByteToHexString(fenceBytes));
+                        string flag0 = Utilities.ByteToHexString(flag0Bytes);
+                        string flag1 = Utilities.ByteToHexString(flag1Bytes);
+                        UInt16 intId = Convert.ToUInt16(itemId, 16);
+                        string hexValue = Utilities.PrecedingZeros(itemData, 8);
+                        string myHexValue = Utilities.PrecedingZeros(myItemData, 8);
+
+                        MyLog.LogEvent("Offline", "slotId: " + slotId.ToString() + " myItemId: " + myItemId + " myItemData: " + myItemData + " recipeData: " + recipeData + " Flag0: " + flag0 + " Flag1: " + flag1);
+
+
+                        /// I know this is horrible way of coding... I can not get two foreach loops to work together///
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        if (slotId == 1)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot1.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot1.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot1.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot1.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot1.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot1.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot1.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot1.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot1.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 2)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot2.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot2.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot2.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot2.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot2.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot2.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot2.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot2.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot2.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 3)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot3.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot3.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot3.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot3.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot3.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot3.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot3.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot3.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot3.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 4)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot4.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot4.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot4.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot4.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot4.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot4.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot4.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot4.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot4.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 5)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot5.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot5.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot5.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot5.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot5.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot5.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot5.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot5.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot5.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 6)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot6.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot6.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot6.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot6.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot6.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot6.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot6.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot6.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot6.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 7)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot7.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot7.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot7.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot7.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot7.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot7.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot7.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot7.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot7.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 8)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot8.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot8.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot8.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot8.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot8.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot8.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot8.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot8.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot8.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 9)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot9.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot9.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot9.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot9.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot9.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot9.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot9.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot9.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot9.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 10)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot10.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot10.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot10.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot10.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot10.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot10.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot10.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot10.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot10.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 11)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot11.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot11.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot11.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot11.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot11.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot11.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot11.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot11.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot11.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 12)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot12.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot12.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot12.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot12.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot12.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot12.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot12.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot12.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot12.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 13)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot13.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot13.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot13.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot13.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot13.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot13.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot13.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot13.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot13.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 14)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot14.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot14.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot14.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot14.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot14.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot14.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot14.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot14.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot14.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 15)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot15.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot15.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot15.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot15.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot15.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot15.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot15.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot15.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot15.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 16)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot16.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot16.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot16.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot16.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot16.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot16.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot16.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot16.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot16.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 17)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot17.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot17.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot17.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot17.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot17.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot17.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot17.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot17.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot17.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 18)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot18.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot18.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot18.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot18.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot18.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot18.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot18.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot18.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot18.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 19)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot19.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot19.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot19.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot19.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot19.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot19.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot19.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot19.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot19.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 20)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot20.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot20.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot20.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot20.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot20.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot20.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot20.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot20.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot20.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 21)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot21.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot21.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot21.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot21.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot21.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot21.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot21.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot21.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot21.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 22)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot22.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot22.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot22.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot22.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot22.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot22.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot22.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot22.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot22.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 23)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot23.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot23.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot23.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot23.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot23.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot23.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot23.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot23.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot23.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 24)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot24.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot24.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot24.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot24.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot24.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot24.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot24.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot24.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot24.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 25)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot25.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot25.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot25.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot25.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot25.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot25.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot25.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot25.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot25.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 26)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot26.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot26.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot26.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot26.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot26.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot26.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot26.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot26.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot26.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 27)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot27.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot27.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot27.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot27.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot27.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot27.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot27.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot27.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot27.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 28)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot28.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot28.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot28.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot28.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot28.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot28.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot28.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot28.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot28.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 29)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot29.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot29.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot29.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot29.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot29.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot29.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot29.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot29.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot29.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 30)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot30.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot30.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot30.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot30.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot30.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot30.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot30.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot30.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot30.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 31)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot31.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot31.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot31.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot31.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot31.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot31.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot31.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot31.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot31.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 32)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot32.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot32.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot32.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot32.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot32.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot32.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot32.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot32.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot32.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 33)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot33.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot33.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot33.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot33.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot33.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot33.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot33.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot33.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot33.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 34)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot34.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot34.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot34.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot34.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot34.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot34.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot34.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot34.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot34.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 35)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot35.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot35.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot35.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot35.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot35.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot35.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot35.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot35.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot35.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 36)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot36.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot36.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot36.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot36.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot36.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot36.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot36.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot36.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot36.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 37)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot37.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot37.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot37.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot37.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot37.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot37.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot37.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot37.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot37.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 38)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot38.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot38.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot38.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot38.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot38.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot38.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot38.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot38.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot38.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 39)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot39.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot39.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot39.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot39.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot39.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot39.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot39.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot39.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot39.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+
+                        if (slotId == 40)
+                        {
+                            if (itemId == "FFFE") //Nothing
+                            {
+                                inventorySlot40.Setup("", 0xFFFE, 0x0, "", "00", "00");
+                            }
+                            else if (itemId == "16A2") //Recipe
+                            {
+                                inventorySlot40.Setup(GetNameFromID(recipeData, recipeSource), 0x16A2, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "1095") //Delivery
+                            {
+                                inventorySlot40.Setup(GetNameFromID(recipeData, itemSource), 0x1095, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                            else if (itemId == "16A1") //Bottle Message
+                            {
+                                inventorySlot40.Setup(GetNameFromID(recipeData, recipeSource), 0x16A1, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, recipeSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "0A13") // Fossil
+                            {
+                                inventorySlot40.Setup(GetNameFromID(recipeData, itemSource), 0x0A13, Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(recipeData, itemSource), "", flag0, flag1);
+                            }
+                            else if (itemId == "114A") // Money Tree
+                            {
+                                inventorySlot40.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource), flag0, flag1);
+                            }
+                            else if (itemId == "315A" || itemId == "1618" || itemId == "342F") // Wall-Mounted
+                            {
+                                inventorySlot40.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
+                            }
+                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            {
+                                inventorySlot40.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
+                            }
+                            else
+                            {
+                                inventorySlot40.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), "", flag0, flag1);
+                            }
+                        }
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+                    }  //cheat line
+
+
+                } //offline
+                  
+            }); //invoke
+
+        }
+
+        private void LoadCheat_Click(global::System.Object sender, global::System.EventArgs e)
+        {
+
+            try
+            {
+                OpenFileDialog file = new()
+                {
+                    Filter = @"Cheat Text (*.txt)|*.txt|All files (*.*)|*.*",
+                };
+
+                Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
+
+                string savepath;
+
+                if (config.AppSettings.Settings["LastLoad"].Value.Equals(string.Empty))
+                    savepath = Directory.GetCurrentDirectory() + @"\save";
+                else
+                    savepath = config.AppSettings.Settings["LastLoad"].Value;
+
+                if (Directory.Exists(savepath))
+                {
+                    file.InitialDirectory = savepath;
+                }
+                else
+                {
+                    file.InitialDirectory = @"C:\";
+                }
+
+                if (file.ShowDialog() != DialogResult.OK)
+                    return;
+
+                string[] temp = file.FileName.Split('\\');
+                string path = "";
+                for (int i = 0; i < temp.Length - 1; i++)
+                    path = path + temp[i] + "\\";
+
+                config.AppSettings.Settings["LastLoad"].Value = path;
+                config.Save(ConfigurationSaveMode.Minimal);
+
+                string[] cheattext = File.ReadAllLines(file.FileName);
+                processCheat(cheattext);
+
+            }
+            catch
+            {
+                // ignored
+            }
+
+        }
+
+
+        private void LoadCheatfromClipBoard_Click(global::System.Object sender, global::System.EventArgs e)
+        {
+
+            if (Clipboard.ContainsText(TextDataFormat.Text))
+            {
+                var text = Clipboard.GetText();
+                string file = "cheat.txt";
+                File.WriteAllText(file, text);
+                string[] cheattext = File.ReadAllLines(file);
+                processCheat(cheattext);
+
+            }
+
+        }
+
         #region Convert to Cheat
 
         private void Converttocheat_Click(object sender, EventArgs e)
@@ -8235,7 +10032,6 @@ namespace ACNHPokerCore
                 SaveFileDialog file = new()
                 {
                     Filter = @"Cheat Text (*.txt)|*.txt",
-                    //FileName = "items.nhi",
                 };
 
                 Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
