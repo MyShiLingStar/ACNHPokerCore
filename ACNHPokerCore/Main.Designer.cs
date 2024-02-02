@@ -1803,9 +1803,9 @@ namespace ACNHPokerCore
             chatButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             chatButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             chatButton.ForeColor = System.Drawing.Color.White;
-            chatButton.Location = new System.Drawing.Point(858, 492);
+            chatButton.Location = new System.Drawing.Point(662, 80);
             chatButton.Name = "chatButton";
-            chatButton.Size = new System.Drawing.Size(63, 22);
+            chatButton.Size = new System.Drawing.Size(57, 22);
             chatButton.TabIndex = 40;
             chatButton.Tag = "";
             chatButton.Text = "Chat";
@@ -1849,6 +1849,7 @@ namespace ACNHPokerCore
             // 
             // LoadCheat
             // 
+			/*
             LoadCheat.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
             LoadCheat.FlatAppearance.BorderSize = 0;
             LoadCheat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1863,7 +1864,8 @@ namespace ACNHPokerCore
             ConvertToCheat.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             ConvertToCheat.UseVisualStyleBackColor = false;
             ConvertToCheat.Click += LoadCheat_Click;
-            // 
+            //
+			*/ 
             // ConvertToCheat
             // 
             ConvertToCheat.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
@@ -1871,9 +1873,9 @@ namespace ACNHPokerCore
             ConvertToCheat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             ConvertToCheat.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             ConvertToCheat.ForeColor = System.Drawing.Color.White;
-            ConvertToCheat.Location = new System.Drawing.Point(1049, 492);
+            ConvertToCheat.Location = new System.Drawing.Point(1086, 492);
             ConvertToCheat.Name = "ConvertToCheat";
-            ConvertToCheat.Size = new System.Drawing.Size(153, 22);
+            ConvertToCheat.Size = new System.Drawing.Size(116, 22);
             ConvertToCheat.TabIndex = 36;
             ConvertToCheat.Tag = "";
             ConvertToCheat.Text = "Convert to Cheat Txt";
