@@ -1803,7 +1803,7 @@ namespace ACNHPokerCore
             chatButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             chatButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             chatButton.ForeColor = System.Drawing.Color.White;
-            chatButton.Location = new System.Drawing.Point(773, 492);
+            chatButton.Location = new System.Drawing.Point(774, 492);
             chatButton.Name = "chatButton";
             chatButton.Size = new System.Drawing.Size(57, 22);
             chatButton.TabIndex = 40;
