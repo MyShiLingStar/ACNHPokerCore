@@ -1400,7 +1400,9 @@ namespace ACNHPokerCore
 										System.Media.SystemSounds.Asterisk.Play();
 					
 									config.AppSettings.Settings["AutoRefill"].Value = "true";
-									autorefill = true;  
+									autorefill = true;
+									AutoRefill.Checked = true;
+									
 									
 								}
 								else
@@ -1417,6 +1419,7 @@ namespace ACNHPokerCore
 					
 									config.AppSettings.Settings["AutoRefill"].Value = "false";
 									autorefill = false;
+									AutoRefill.Checked = false;
 								}								
 													
                                 init = false;
