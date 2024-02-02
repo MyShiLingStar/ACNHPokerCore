@@ -87,6 +87,7 @@ namespace ACNHPokerCore
         private bool connecting = false;
         public bool sound = true;
         public bool capturesetting = false;
+		public bool autorefill = false;
         private bool init = true;
         private static string languageSetting = "eng";
 
@@ -162,6 +163,16 @@ namespace ACNHPokerCore
             {
                 capturesetting = true;
             }
+            if (ConfigurationManager.AppSettings["AutoRefill"] == "false")
+            {
+				AutoRefill.Checked = false;
+                autorefill = false;
+            }
+            else
+            {
+				AutoRefill.Checked = true;
+                autorefill = true;
+            }						
             setting = new Setting(overrideSetting, validation, sound, capturesetting);
             setting.ToggleOverride += Setting_toggleOverride;
             setting.ToggleValidation += Setting_toggleValidation;
@@ -508,7 +519,6 @@ namespace ACNHPokerCore
         {
             capturesetting = CaptureOn;
         }
-
         private void Setting_toggleValidation()
         {
             validation = !validation;
@@ -1598,6 +1608,8 @@ namespace ACNHPokerCore
                     System.Media.SystemSounds.Asterisk.Play();
 
                 config.AppSettings.Settings["AutoRefill"].Value = "true";
+				autorefill = true;  
+				
             }
             else
             {
@@ -1612,6 +1624,7 @@ namespace ACNHPokerCore
                     System.Media.SystemSounds.Asterisk.Play();
 
                 config.AppSettings.Settings["AutoRefill"].Value = "false";
+				autorefill = false;
             }
 
             config.Save(ConfigurationSaveMode.Minimal);
