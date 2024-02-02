@@ -1871,7 +1871,7 @@ namespace ACNHPokerCore
             ConvertToCheat.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
             ConvertToCheat.FlatAppearance.BorderSize = 0;
             ConvertToCheat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            ConvertToCheat.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            ConvertToCheat.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             ConvertToCheat.ForeColor = System.Drawing.Color.White;
             ConvertToCheat.Location = new System.Drawing.Point(1086, 492);
             ConvertToCheat.Name = "ConvertToCheat";
