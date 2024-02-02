@@ -165,12 +165,10 @@ namespace ACNHPokerCore
             }
             if (ConfigurationManager.AppSettings["AutoRefill"] == "false")
             {
-				AutoRefill.Checked = false;
                 autorefill = false;
             }
             else
             {
-				AutoRefill.Checked = true;
                 autorefill = true;
             }						
             setting = new Setting(overrideSetting, validation, sound, capturesetting);
@@ -519,6 +517,7 @@ namespace ACNHPokerCore
         {
             capturesetting = CaptureOn;
         }
+
         private void Setting_toggleValidation()
         {
             validation = !validation;
@@ -1383,6 +1382,43 @@ namespace ACNHPokerCore
                                     Utilities.SendString(socket, Utilities.UnFreeze(Utilities.ItemSlotBase));
                                     Utilities.SendString(socket, Utilities.UnFreeze(Utilities.ItemSlot21Base));
                                 }
+								
+								//auto refill 
+								if (autorefill)
+								{
+					
+					
+									byte[] bank01To20 = Utilities.GetInventoryBank(socket, null, 1);
+									byte[] bank21To40 = Utilities.GetInventoryBank(socket, null, 21);
+					
+									Utilities.SendString(socket, Utilities.Freeze(Utilities.ItemSlotBase, bank01To20));
+									Utilities.SendString(socket, Utilities.Freeze(Utilities.ItemSlot21Base, bank21To40));
+					
+									//int freezeCount = Utilities.GetFreezeCount(socket);
+					
+									if (sound)
+										System.Media.SystemSounds.Asterisk.Play();
+					
+									config.AppSettings.Settings["AutoRefill"].Value = "true";
+									autorefill = true;  
+									
+								}
+								else
+								{
+					
+									Utilities.SendString(socket, Utilities.UnFreeze(Utilities.ItemSlotBase));
+									Utilities.SendString(socket, Utilities.UnFreeze(Utilities.ItemSlot21Base));
+					
+									//int freezeCount = Utilities.GetFreezeCount(socket);
+					
+					
+									if (sound)
+										System.Media.SystemSounds.Asterisk.Play();
+					
+									config.AppSettings.Settings["AutoRefill"].Value = "false";
+									autorefill = false;
+								}								
+													
                                 init = false;
                             });
 
