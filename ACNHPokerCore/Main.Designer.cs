@@ -107,6 +107,8 @@ namespace ACNHPokerCore
             OtherTabButton = new System.Windows.Forms.Button();
             InventoryTabButton = new System.Windows.Forms.Button();
             InventoryLargePanel = new System.Windows.Forms.Panel();
+            LoadCheatfromClipBoard = new System.Windows.Forms.Button();
+            LoadCheat = new System.Windows.Forms.Button();
             WrappingPanel = new System.Windows.Forms.Panel();
             RetainNameToggle = new JCS.ToggleSwitch();
             WrapSelector = new System.Windows.Forms.ComboBox();
@@ -1573,6 +1575,8 @@ namespace ACNHPokerCore
             // 
             // InventoryLargePanel
             // 
+            InventoryLargePanel.Controls.Add(LoadCheatfromClipBoard);
+            InventoryLargePanel.Controls.Add(LoadCheat);
             InventoryLargePanel.Controls.Add(WrappingPanel);
             InventoryLargePanel.Controls.Add(webhookBtn);
             InventoryLargePanel.Controls.Add(ChasingAddressLabel);
@@ -1621,6 +1625,38 @@ namespace ACNHPokerCore
             InventoryLargePanel.Name = "InventoryLargePanel";
             InventoryLargePanel.Size = new System.Drawing.Size(1225, 550);
             InventoryLargePanel.TabIndex = 18;
+            // 
+            // LoadCheatfromClipBoard
+            // 
+            LoadCheatfromClipBoard.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            LoadCheatfromClipBoard.FlatAppearance.BorderSize = 0;
+            LoadCheatfromClipBoard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            LoadCheatfromClipBoard.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            LoadCheatfromClipBoard.ForeColor = System.Drawing.Color.White;
+            LoadCheatfromClipBoard.Location = new System.Drawing.Point(942, 492);
+            LoadCheatfromClipBoard.Name = "LoadCheatfromClipBoard";
+            LoadCheatfromClipBoard.Size = new System.Drawing.Size(141, 22);
+            this.LoadCheatfromClipBoard.TabIndex = 57;
+            this.LoadCheatfromClipBoard.Tag = "";
+            this.LoadCheatfromClipBoard.Text = "Load Cheat Clipboard";
+            this.LoadCheatfromClipBoard.UseVisualStyleBackColor = false;
+            LoadCheatfromClipBoard.Click += LoadCheatfromClipBoard_Click;
+            // 
+            // LoadCheat
+            // 
+            this.LoadCheat.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            LoadCheat.FlatAppearance.BorderSize = 0;
+            LoadCheat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            LoadCheat.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            LoadCheat.ForeColor = System.Drawing.Color.White;
+            LoadCheat.Location = new System.Drawing.Point(834, 492);
+            LoadCheat.Name = "LoadCheat";
+            LoadCheat.Size = new System.Drawing.Size(105, 22);
+            LoadCheat.TabIndex = 56;
+            LoadCheat.Tag = "";
+            LoadCheat.Text = "Load Cheat Txt";
+            LoadCheat.UseVisualStyleBackColor = false;
+            LoadCheat.Click += LoadCheat_Click;
             // 
             // WrappingPanel
             // 
@@ -1767,9 +1803,9 @@ namespace ACNHPokerCore
             chatButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             chatButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             chatButton.ForeColor = System.Drawing.Color.White;
-            chatButton.Location = new System.Drawing.Point(858, 492);
+            chatButton.Location = new System.Drawing.Point(774, 492);
             chatButton.Name = "chatButton";
-            chatButton.Size = new System.Drawing.Size(90, 22);
+            chatButton.Size = new System.Drawing.Size(57, 22);
             chatButton.TabIndex = 40;
             chatButton.Tag = "";
             chatButton.Text = "Chat";
@@ -1811,16 +1847,35 @@ namespace ACNHPokerCore
             UnhideButton.UseVisualStyleBackColor = false;
             UnhideButton.Click += UnhideButton_Click;
             // 
+            // LoadCheat
+            // 
+			/*
+            LoadCheat.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            LoadCheat.FlatAppearance.BorderSize = 0;
+            LoadCheat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            LoadCheat.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            LoadCheat.ForeColor = System.Drawing.Color.White;
+            LoadCheat.Location = new System.Drawing.Point(926, 492);
+            LoadCheat.Name = "LoadCheat";
+            LoadCheat.Size = new System.Drawing.Size(119, 22);
+            LoadCheat.TabIndex = 56;
+            LoadCheat.Tag = "";
+            LoadCheat.Text = "Load Cheat Txt";
+            ConvertToCheat.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            ConvertToCheat.UseVisualStyleBackColor = false;
+            ConvertToCheat.Click += LoadCheat_Click;
+            //
+			*/ 
             // ConvertToCheat
             // 
             ConvertToCheat.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
             ConvertToCheat.FlatAppearance.BorderSize = 0;
             ConvertToCheat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            ConvertToCheat.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            ConvertToCheat.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             ConvertToCheat.ForeColor = System.Drawing.Color.White;
-            ConvertToCheat.Location = new System.Drawing.Point(1039, 492);
+            ConvertToCheat.Location = new System.Drawing.Point(1086, 492);
             ConvertToCheat.Name = "ConvertToCheat";
-            ConvertToCheat.Size = new System.Drawing.Size(163, 22);
+            ConvertToCheat.Size = new System.Drawing.Size(116, 22);
             ConvertToCheat.TabIndex = 36;
             ConvertToCheat.Tag = "";
             ConvertToCheat.Text = "Convert to Cheat Txt";
@@ -5892,5 +5947,7 @@ namespace ACNHPokerCore
         private System.Windows.Forms.Button PokeMButton;
         private System.Windows.Forms.Button PeekMButton;
         private System.Windows.Forms.Panel WrappingPanel;
+        private global::System.Windows.Forms.Button LoadCheat;
+        private global::System.Windows.Forms.Button LoadCheatfromClipBoard;
     }
 }
