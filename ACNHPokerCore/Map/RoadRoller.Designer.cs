@@ -260,8 +260,8 @@
             DisplayCustomDesignToggle.Checked = true;
             DisplayCustomDesignToggle.Location = new System.Drawing.Point(403, 3);
             DisplayCustomDesignToggle.Name = "DisplayCustomDesignToggle";
-            DisplayCustomDesignToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            DisplayCustomDesignToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            DisplayCustomDesignToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F);
+            DisplayCustomDesignToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F);
             DisplayCustomDesignToggle.Size = new System.Drawing.Size(35, 16);
             DisplayCustomDesignToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
             DisplayCustomDesignToggle.TabIndex = 244;
@@ -271,7 +271,7 @@
             // DisplayCustomDesignLabel
             // 
             DisplayCustomDesignLabel.AutoSize = true;
-            DisplayCustomDesignLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            DisplayCustomDesignLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             DisplayCustomDesignLabel.ForeColor = System.Drawing.Color.White;
             DisplayCustomDesignLabel.Location = new System.Drawing.Point(222, 3);
             DisplayCustomDesignLabel.Name = "DisplayCustomDesignLabel";
@@ -283,7 +283,7 @@
             // DisplayBuildingLabel
             // 
             DisplayBuildingLabel.AutoSize = true;
-            DisplayBuildingLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            DisplayBuildingLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             DisplayBuildingLabel.ForeColor = System.Drawing.Color.White;
             DisplayBuildingLabel.Location = new System.Drawing.Point(28, 22);
             DisplayBuildingLabel.Name = "DisplayBuildingLabel";
@@ -297,8 +297,8 @@
             DisplayBuildingToggle.Checked = true;
             DisplayBuildingToggle.Location = new System.Drawing.Point(165, 22);
             DisplayBuildingToggle.Name = "DisplayBuildingToggle";
-            DisplayBuildingToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            DisplayBuildingToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            DisplayBuildingToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F);
+            DisplayBuildingToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F);
             DisplayBuildingToggle.Size = new System.Drawing.Size(35, 16);
             DisplayBuildingToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
             DisplayBuildingToggle.TabIndex = 241;
@@ -308,7 +308,7 @@
             // HighlightCornerLabel
             // 
             HighlightCornerLabel.AutoSize = true;
-            HighlightCornerLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            HighlightCornerLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             HighlightCornerLabel.ForeColor = System.Drawing.Color.White;
             HighlightCornerLabel.Location = new System.Drawing.Point(464, 3);
             HighlightCornerLabel.Name = "HighlightCornerLabel";
@@ -321,8 +321,8 @@
             // 
             HighlightCornerToggle.Location = new System.Drawing.Point(601, 3);
             HighlightCornerToggle.Name = "HighlightCornerToggle";
-            HighlightCornerToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            HighlightCornerToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            HighlightCornerToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F);
+            HighlightCornerToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F);
             HighlightCornerToggle.Size = new System.Drawing.Size(35, 16);
             HighlightCornerToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
             HighlightCornerToggle.TabIndex = 239;
@@ -333,8 +333,8 @@
             // 
             DisplayInfoToggle.Location = new System.Drawing.Point(403, 22);
             DisplayInfoToggle.Name = "DisplayInfoToggle";
-            DisplayInfoToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            DisplayInfoToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            DisplayInfoToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F);
+            DisplayInfoToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F);
             DisplayInfoToggle.Size = new System.Drawing.Size(35, 16);
             DisplayInfoToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
             DisplayInfoToggle.TabIndex = 236;
@@ -343,7 +343,7 @@
             // DisplayInfoLabel
             // 
             DisplayInfoLabel.AutoSize = true;
-            DisplayInfoLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            DisplayInfoLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             DisplayInfoLabel.ForeColor = System.Drawing.Color.White;
             DisplayInfoLabel.Location = new System.Drawing.Point(301, 22);
             DisplayInfoLabel.Name = "DisplayInfoLabel";
@@ -355,7 +355,7 @@
             // DisplayRoadLabel
             // 
             DisplayRoadLabel.AutoSize = true;
-            DisplayRoadLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            DisplayRoadLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             DisplayRoadLabel.ForeColor = System.Drawing.Color.White;
             DisplayRoadLabel.Location = new System.Drawing.Point(50, 3);
             DisplayRoadLabel.Name = "DisplayRoadLabel";
@@ -369,8 +369,8 @@
             DisplayRoadToggle.Checked = true;
             DisplayRoadToggle.Location = new System.Drawing.Point(165, 3);
             DisplayRoadToggle.Name = "DisplayRoadToggle";
-            DisplayRoadToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            DisplayRoadToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            DisplayRoadToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F);
+            DisplayRoadToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F);
             DisplayRoadToggle.Size = new System.Drawing.Size(35, 16);
             DisplayRoadToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
             DisplayRoadToggle.TabIndex = 237;
@@ -399,7 +399,7 @@
             CustomModeButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
             CustomModeButton.FlatAppearance.BorderSize = 0;
             CustomModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            CustomModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CustomModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             CustomModeButton.ForeColor = System.Drawing.Color.White;
             CustomModeButton.Location = new System.Drawing.Point(159, 200);
             CustomModeButton.Name = "CustomModeButton";
@@ -416,7 +416,7 @@
             ConfirmBtn.BackColor = System.Drawing.Color.Orange;
             ConfirmBtn.FlatAppearance.BorderSize = 0;
             ConfirmBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            ConfirmBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ConfirmBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             ConfirmBtn.ForeColor = System.Drawing.Color.White;
             ConfirmBtn.Location = new System.Drawing.Point(9, 575);
             ConfirmBtn.Margin = new System.Windows.Forms.Padding(4);
@@ -433,7 +433,7 @@
             ManualModeButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
             ManualModeButton.FlatAppearance.BorderSize = 0;
             ManualModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            ManualModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             ManualModeButton.ForeColor = System.Drawing.Color.White;
             ManualModeButton.Location = new System.Drawing.Point(83, 200);
             ManualModeButton.Name = "ManualModeButton";
@@ -449,7 +449,7 @@
             AutoModeButton.BackColor = System.Drawing.Color.FromArgb(80, 80, 255);
             AutoModeButton.FlatAppearance.BorderSize = 0;
             AutoModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            AutoModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            AutoModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             AutoModeButton.ForeColor = System.Drawing.Color.White;
             AutoModeButton.Location = new System.Drawing.Point(7, 200);
             AutoModeButton.Name = "AutoModeButton";
@@ -507,8 +507,8 @@
             // 
             fixRiverMouthToggle.Location = new System.Drawing.Point(123, 84);
             fixRiverMouthToggle.Name = "fixRiverMouthToggle";
-            fixRiverMouthToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            fixRiverMouthToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            fixRiverMouthToggle.OffFont = new System.Drawing.Font("Segoe UI", 9F);
+            fixRiverMouthToggle.OnFont = new System.Drawing.Font("Segoe UI", 9F);
             fixRiverMouthToggle.Size = new System.Drawing.Size(38, 16);
             fixRiverMouthToggle.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Carbon;
             fixRiverMouthToggle.TabIndex = 243;
@@ -518,7 +518,7 @@
             // FixRiverMouthLabel
             // 
             FixRiverMouthLabel.AutoSize = true;
-            FixRiverMouthLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            FixRiverMouthLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             FixRiverMouthLabel.ForeColor = System.Drawing.Color.White;
             FixRiverMouthLabel.Location = new System.Drawing.Point(69, 67);
             FixRiverMouthLabel.Name = "FixRiverMouthLabel";
@@ -533,7 +533,7 @@
             ArchBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             ArchBtn.FlatAppearance.BorderSize = 0;
             ArchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            ArchBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ArchBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             ArchBtn.ForeColor = System.Drawing.Color.White;
             ArchBtn.Image = Properties.Resources.pattern;
             ArchBtn.Location = new System.Drawing.Point(69, 275);
@@ -547,7 +547,7 @@
             // Elevation0Label
             // 
             Elevation0Label.AutoSize = true;
-            Elevation0Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            Elevation0Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             Elevation0Label.ForeColor = System.Drawing.Color.White;
             Elevation0Label.Location = new System.Drawing.Point(126, 47);
             Elevation0Label.Name = "Elevation0Label";
@@ -562,7 +562,7 @@
             StoneBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             StoneBtn.FlatAppearance.BorderSize = 0;
             StoneBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            StoneBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            StoneBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             StoneBtn.ForeColor = System.Drawing.Color.White;
             StoneBtn.Image = Properties.Resources.stone;
             StoneBtn.Location = new System.Drawing.Point(3, 275);
@@ -576,7 +576,7 @@
             // ElevationLabel
             // 
             ElevationLabel.AutoSize = true;
-            ElevationLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ElevationLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             ElevationLabel.ForeColor = System.Drawing.Color.White;
             ElevationLabel.Location = new System.Drawing.Point(67, 1);
             ElevationLabel.Name = "ElevationLabel";
@@ -588,7 +588,7 @@
             // Elevation2Label
             // 
             Elevation2Label.AutoSize = true;
-            Elevation2Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            Elevation2Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             Elevation2Label.ForeColor = System.Drawing.Color.White;
             Elevation2Label.Location = new System.Drawing.Point(126, 17);
             Elevation2Label.Name = "Elevation2Label";
@@ -600,7 +600,7 @@
             // Elevation1Label
             // 
             Elevation1Label.AutoSize = true;
-            Elevation1Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            Elevation1Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             Elevation1Label.ForeColor = System.Drawing.Color.White;
             Elevation1Label.Location = new System.Drawing.Point(126, 32);
             Elevation1Label.Name = "Elevation1Label";
@@ -627,7 +627,7 @@
             CliffBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             CliffBtn.FlatAppearance.BorderSize = 0;
             CliffBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            CliffBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             CliffBtn.ForeColor = System.Drawing.Color.White;
             CliffBtn.Image = Properties.Resources.cliff;
             CliffBtn.Location = new System.Drawing.Point(3, 1);
@@ -644,7 +644,7 @@
             CornerBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             CornerBtn.FlatAppearance.BorderSize = 0;
             CornerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            CornerBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CornerBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             CornerBtn.ForeColor = System.Drawing.Color.White;
             CornerBtn.Image = Properties.Resources.corner;
             CornerBtn.Location = new System.Drawing.Point(163, 1);
@@ -661,7 +661,7 @@
             RiverBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             RiverBtn.FlatAppearance.BorderSize = 0;
             RiverBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RiverBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RiverBtn.ForeColor = System.Drawing.Color.White;
             RiverBtn.Image = Properties.Resources.river;
             RiverBtn.Location = new System.Drawing.Point(3, 67);
@@ -678,7 +678,7 @@
             DirtBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             DirtBtn.FlatAppearance.BorderSize = 0;
             DirtBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            DirtBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            DirtBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             DirtBtn.ForeColor = System.Drawing.Color.White;
             DirtBtn.Image = Properties.Resources.dirt;
             DirtBtn.Location = new System.Drawing.Point(3, 143);
@@ -695,7 +695,7 @@
             WoodBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             WoodBtn.FlatAppearance.BorderSize = 0;
             WoodBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            WoodBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            WoodBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             WoodBtn.ForeColor = System.Drawing.Color.White;
             WoodBtn.Image = Properties.Resources.wood;
             WoodBtn.Location = new System.Drawing.Point(69, 209);
@@ -712,7 +712,7 @@
             TileBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             TileBtn.FlatAppearance.BorderSize = 0;
             TileBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            TileBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            TileBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             TileBtn.ForeColor = System.Drawing.Color.White;
             TileBtn.Image = Properties.Resources.tile;
             TileBtn.Location = new System.Drawing.Point(3, 209);
@@ -729,7 +729,7 @@
             BrickBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             BrickBtn.FlatAppearance.BorderSize = 0;
             BrickBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            BrickBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            BrickBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             BrickBtn.ForeColor = System.Drawing.Color.White;
             BrickBtn.Image = Properties.Resources.brick;
             BrickBtn.Location = new System.Drawing.Point(135, 209);
@@ -746,7 +746,7 @@
             SandBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             SandBtn.FlatAppearance.BorderSize = 0;
             SandBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            SandBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            SandBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             SandBtn.ForeColor = System.Drawing.Color.White;
             SandBtn.Image = Properties.Resources.sand;
             SandBtn.Location = new System.Drawing.Point(135, 143);
@@ -763,7 +763,7 @@
             DarkDirtBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             DarkDirtBtn.FlatAppearance.BorderSize = 0;
             DarkDirtBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            DarkDirtBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            DarkDirtBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             DarkDirtBtn.ForeColor = System.Drawing.Color.White;
             DarkDirtBtn.Image = Properties.Resources.darksoil;
             DarkDirtBtn.Location = new System.Drawing.Point(69, 143);
@@ -814,7 +814,7 @@
             ManualRoadModeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             ManualRoadModeButton.FlatAppearance.BorderSize = 0;
             ManualRoadModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            ManualRoadModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualRoadModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             ManualRoadModeButton.ForeColor = System.Drawing.Color.White;
             ManualRoadModeButton.Location = new System.Drawing.Point(85, 3);
             ManualRoadModeButton.Name = "ManualRoadModeButton";
@@ -830,7 +830,7 @@
             ManualRiverModeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             ManualRiverModeButton.FlatAppearance.BorderSize = 0;
             ManualRiverModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            ManualRiverModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualRiverModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             ManualRiverModeButton.ForeColor = System.Drawing.Color.White;
             ManualRiverModeButton.Location = new System.Drawing.Point(44, 3);
             ManualRiverModeButton.Name = "ManualRiverModeButton";
@@ -846,7 +846,7 @@
             ManualCliffModeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             ManualCliffModeButton.FlatAppearance.BorderSize = 0;
             ManualCliffModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            ManualCliffModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualCliffModeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             ManualCliffModeButton.ForeColor = System.Drawing.Color.White;
             ManualCliffModeButton.Location = new System.Drawing.Point(3, 3);
             ManualCliffModeButton.Name = "ManualCliffModeButton";
@@ -890,7 +890,7 @@
             RotateRoadButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             RotateRoadButton.FlatAppearance.BorderSize = 0;
             RotateRoadButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RotateRoadButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RotateRoadButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RotateRoadButton.ForeColor = System.Drawing.Color.White;
             RotateRoadButton.Location = new System.Drawing.Point(167, 3);
             RotateRoadButton.Name = "RotateRoadButton";
@@ -906,7 +906,7 @@
             RoadButton8A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RoadButton8A.FlatAppearance.BorderSize = 0;
             RoadButton8A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RoadButton8A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton8A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RoadButton8A.ForeColor = System.Drawing.Color.White;
             RoadButton8A.Location = new System.Drawing.Point(44, 249);
             RoadButton8A.Name = "RoadButton8A";
@@ -923,7 +923,7 @@
             RoadButton0A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RoadButton0A.FlatAppearance.BorderSize = 0;
             RoadButton0A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RoadButton0A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton0A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RoadButton0A.ForeColor = System.Drawing.Color.White;
             RoadButton0A.Location = new System.Drawing.Point(3, 3);
             RoadButton0A.Name = "RoadButton0A";
@@ -940,7 +940,7 @@
             RoadButton3B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RoadButton3B.FlatAppearance.BorderSize = 0;
             RoadButton3B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RoadButton3B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton3B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RoadButton3B.ForeColor = System.Drawing.Color.White;
             RoadButton3B.Location = new System.Drawing.Point(44, 126);
             RoadButton3B.Name = "RoadButton3B";
@@ -957,7 +957,7 @@
             RoadButton7A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RoadButton7A.FlatAppearance.BorderSize = 0;
             RoadButton7A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RoadButton7A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton7A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RoadButton7A.ForeColor = System.Drawing.Color.White;
             RoadButton7A.Location = new System.Drawing.Point(3, 249);
             RoadButton7A.Name = "RoadButton7A";
@@ -974,7 +974,7 @@
             RoadButton3A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RoadButton3A.FlatAppearance.BorderSize = 0;
             RoadButton3A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RoadButton3A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton3A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RoadButton3A.ForeColor = System.Drawing.Color.White;
             RoadButton3A.Location = new System.Drawing.Point(3, 126);
             RoadButton3A.Name = "RoadButton3A";
@@ -991,7 +991,7 @@
             RoadButton3C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RoadButton3C.FlatAppearance.BorderSize = 0;
             RoadButton3C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RoadButton3C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton3C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RoadButton3C.ForeColor = System.Drawing.Color.White;
             RoadButton3C.Location = new System.Drawing.Point(85, 126);
             RoadButton3C.Name = "RoadButton3C";
@@ -1008,7 +1008,7 @@
             RoadButton6B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RoadButton6B.FlatAppearance.BorderSize = 0;
             RoadButton6B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RoadButton6B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton6B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RoadButton6B.ForeColor = System.Drawing.Color.White;
             RoadButton6B.Location = new System.Drawing.Point(126, 208);
             RoadButton6B.Name = "RoadButton6B";
@@ -1025,7 +1025,7 @@
             RoadButton2C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RoadButton2C.FlatAppearance.BorderSize = 0;
             RoadButton2C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RoadButton2C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton2C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RoadButton2C.ForeColor = System.Drawing.Color.White;
             RoadButton2C.Location = new System.Drawing.Point(85, 85);
             RoadButton2C.Name = "RoadButton2C";
@@ -1042,7 +1042,7 @@
             RoadButton0B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RoadButton0B.FlatAppearance.BorderSize = 0;
             RoadButton0B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RoadButton0B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton0B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RoadButton0B.ForeColor = System.Drawing.Color.White;
             RoadButton0B.Location = new System.Drawing.Point(44, 3);
             RoadButton0B.Name = "RoadButton0B";
@@ -1059,7 +1059,7 @@
             RoadButton4A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RoadButton4A.FlatAppearance.BorderSize = 0;
             RoadButton4A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RoadButton4A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton4A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RoadButton4A.ForeColor = System.Drawing.Color.White;
             RoadButton4A.Location = new System.Drawing.Point(3, 167);
             RoadButton4A.Name = "RoadButton4A";
@@ -1076,7 +1076,7 @@
             RoadButton6A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RoadButton6A.FlatAppearance.BorderSize = 0;
             RoadButton6A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RoadButton6A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton6A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RoadButton6A.ForeColor = System.Drawing.Color.White;
             RoadButton6A.Location = new System.Drawing.Point(85, 208);
             RoadButton6A.Name = "RoadButton6A";
@@ -1093,7 +1093,7 @@
             RoadButton2B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RoadButton2B.FlatAppearance.BorderSize = 0;
             RoadButton2B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RoadButton2B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton2B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RoadButton2B.ForeColor = System.Drawing.Color.White;
             RoadButton2B.Location = new System.Drawing.Point(44, 85);
             RoadButton2B.Name = "RoadButton2B";
@@ -1110,7 +1110,7 @@
             RoadButton1A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RoadButton1A.FlatAppearance.BorderSize = 0;
             RoadButton1A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RoadButton1A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton1A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RoadButton1A.ForeColor = System.Drawing.Color.White;
             RoadButton1A.Location = new System.Drawing.Point(3, 44);
             RoadButton1A.Name = "RoadButton1A";
@@ -1127,7 +1127,7 @@
             RoadButton4B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RoadButton4B.FlatAppearance.BorderSize = 0;
             RoadButton4B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RoadButton4B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton4B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RoadButton4B.ForeColor = System.Drawing.Color.White;
             RoadButton4B.Location = new System.Drawing.Point(44, 167);
             RoadButton4B.Name = "RoadButton4B";
@@ -1144,7 +1144,7 @@
             RoadButton5B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RoadButton5B.FlatAppearance.BorderSize = 0;
             RoadButton5B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RoadButton5B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton5B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RoadButton5B.ForeColor = System.Drawing.Color.White;
             RoadButton5B.Location = new System.Drawing.Point(44, 208);
             RoadButton5B.Name = "RoadButton5B";
@@ -1161,7 +1161,7 @@
             RoadButton2A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RoadButton2A.FlatAppearance.BorderSize = 0;
             RoadButton2A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RoadButton2A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton2A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RoadButton2A.ForeColor = System.Drawing.Color.White;
             RoadButton2A.Location = new System.Drawing.Point(3, 85);
             RoadButton2A.Name = "RoadButton2A";
@@ -1178,7 +1178,7 @@
             RoadButton1B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RoadButton1B.FlatAppearance.BorderSize = 0;
             RoadButton1B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RoadButton1B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton1B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RoadButton1B.ForeColor = System.Drawing.Color.White;
             RoadButton1B.Location = new System.Drawing.Point(44, 44);
             RoadButton1B.Name = "RoadButton1B";
@@ -1195,7 +1195,7 @@
             RoadButton4C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RoadButton4C.FlatAppearance.BorderSize = 0;
             RoadButton4C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RoadButton4C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton4C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RoadButton4C.ForeColor = System.Drawing.Color.White;
             RoadButton4C.Location = new System.Drawing.Point(85, 167);
             RoadButton4C.Name = "RoadButton4C";
@@ -1212,7 +1212,7 @@
             RoadButton5A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RoadButton5A.FlatAppearance.BorderSize = 0;
             RoadButton5A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RoadButton5A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton5A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RoadButton5A.ForeColor = System.Drawing.Color.White;
             RoadButton5A.Location = new System.Drawing.Point(3, 208);
             RoadButton5A.Name = "RoadButton5A";
@@ -1229,7 +1229,7 @@
             RoadButton1C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RoadButton1C.FlatAppearance.BorderSize = 0;
             RoadButton1C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RoadButton1C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RoadButton1C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RoadButton1C.ForeColor = System.Drawing.Color.White;
             RoadButton1C.Location = new System.Drawing.Point(85, 44);
             RoadButton1C.Name = "RoadButton1C";
@@ -1277,7 +1277,7 @@
             CliffButton8A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             CliffButton8A.FlatAppearance.BorderSize = 0;
             CliffButton8A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            CliffButton8A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton8A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             CliffButton8A.ForeColor = System.Drawing.Color.White;
             CliffButton8A.Location = new System.Drawing.Point(167, 249);
             CliffButton8A.Name = "CliffButton8A";
@@ -1291,7 +1291,7 @@
             // ManualTerrainElevation3Label
             // 
             ManualTerrainElevation3Label.AutoSize = true;
-            ManualTerrainElevation3Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualTerrainElevation3Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             ManualTerrainElevation3Label.ForeColor = System.Drawing.Color.White;
             ManualTerrainElevation3Label.Location = new System.Drawing.Point(185, 70);
             ManualTerrainElevation3Label.Name = "ManualTerrainElevation3Label";
@@ -1303,7 +1303,7 @@
             // ManualTerrainElevationLabel
             // 
             ManualTerrainElevationLabel.AutoSize = true;
-            ManualTerrainElevationLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualTerrainElevationLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             ManualTerrainElevationLabel.ForeColor = System.Drawing.Color.White;
             ManualTerrainElevationLabel.Location = new System.Drawing.Point(126, 55);
             ManualTerrainElevationLabel.Name = "ManualTerrainElevationLabel";
@@ -1315,7 +1315,7 @@
             // ManualTerrainElevation2Label
             // 
             ManualTerrainElevation2Label.AutoSize = true;
-            ManualTerrainElevation2Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualTerrainElevation2Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             ManualTerrainElevation2Label.ForeColor = System.Drawing.Color.White;
             ManualTerrainElevation2Label.Location = new System.Drawing.Point(185, 94);
             ManualTerrainElevation2Label.Name = "ManualTerrainElevation2Label";
@@ -1327,7 +1327,7 @@
             // ManualTerrainElevation1Label
             // 
             ManualTerrainElevation1Label.AutoSize = true;
-            ManualTerrainElevation1Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualTerrainElevation1Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             ManualTerrainElevation1Label.ForeColor = System.Drawing.Color.White;
             ManualTerrainElevation1Label.Location = new System.Drawing.Point(185, 118);
             ManualTerrainElevation1Label.Name = "ManualTerrainElevation1Label";
@@ -1356,7 +1356,7 @@
             RotateCliffButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             RotateCliffButton.FlatAppearance.BorderSize = 0;
             RotateCliffButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RotateCliffButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RotateCliffButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RotateCliffButton.ForeColor = System.Drawing.Color.White;
             RotateCliffButton.Location = new System.Drawing.Point(167, 3);
             RotateCliffButton.Name = "RotateCliffButton";
@@ -1372,7 +1372,7 @@
             CliffButton8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             CliffButton8.FlatAppearance.BorderSize = 0;
             CliffButton8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            CliffButton8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             CliffButton8.ForeColor = System.Drawing.Color.White;
             CliffButton8.Location = new System.Drawing.Point(44, 249);
             CliffButton8.Name = "CliffButton8";
@@ -1389,7 +1389,7 @@
             CliffButton0A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             CliffButton0A.FlatAppearance.BorderSize = 0;
             CliffButton0A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            CliffButton0A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton0A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             CliffButton0A.ForeColor = System.Drawing.Color.White;
             CliffButton0A.Location = new System.Drawing.Point(3, 3);
             CliffButton0A.Name = "CliffButton0A";
@@ -1406,7 +1406,7 @@
             CliffButton3B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             CliffButton3B.FlatAppearance.BorderSize = 0;
             CliffButton3B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            CliffButton3B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton3B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             CliffButton3B.ForeColor = System.Drawing.Color.White;
             CliffButton3B.Location = new System.Drawing.Point(44, 126);
             CliffButton3B.Name = "CliffButton3B";
@@ -1423,7 +1423,7 @@
             CliffButton7A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             CliffButton7A.FlatAppearance.BorderSize = 0;
             CliffButton7A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            CliffButton7A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton7A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             CliffButton7A.ForeColor = System.Drawing.Color.White;
             CliffButton7A.Location = new System.Drawing.Point(3, 249);
             CliffButton7A.Name = "CliffButton7A";
@@ -1440,7 +1440,7 @@
             CliffButton3A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             CliffButton3A.FlatAppearance.BorderSize = 0;
             CliffButton3A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            CliffButton3A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton3A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             CliffButton3A.ForeColor = System.Drawing.Color.White;
             CliffButton3A.Location = new System.Drawing.Point(3, 126);
             CliffButton3A.Name = "CliffButton3A";
@@ -1457,7 +1457,7 @@
             CliffButton3C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             CliffButton3C.FlatAppearance.BorderSize = 0;
             CliffButton3C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            CliffButton3C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton3C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             CliffButton3C.ForeColor = System.Drawing.Color.White;
             CliffButton3C.Location = new System.Drawing.Point(85, 126);
             CliffButton3C.Name = "CliffButton3C";
@@ -1474,7 +1474,7 @@
             CliffButton6B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             CliffButton6B.FlatAppearance.BorderSize = 0;
             CliffButton6B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            CliffButton6B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton6B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             CliffButton6B.ForeColor = System.Drawing.Color.White;
             CliffButton6B.Location = new System.Drawing.Point(126, 208);
             CliffButton6B.Name = "CliffButton6B";
@@ -1491,7 +1491,7 @@
             CliffButton2C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             CliffButton2C.FlatAppearance.BorderSize = 0;
             CliffButton2C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            CliffButton2C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton2C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             CliffButton2C.ForeColor = System.Drawing.Color.White;
             CliffButton2C.Location = new System.Drawing.Point(85, 85);
             CliffButton2C.Name = "CliffButton2C";
@@ -1508,7 +1508,7 @@
             CliffButton4A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             CliffButton4A.FlatAppearance.BorderSize = 0;
             CliffButton4A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            CliffButton4A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton4A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             CliffButton4A.ForeColor = System.Drawing.Color.White;
             CliffButton4A.Location = new System.Drawing.Point(3, 167);
             CliffButton4A.Name = "CliffButton4A";
@@ -1525,7 +1525,7 @@
             CliffButton6A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             CliffButton6A.FlatAppearance.BorderSize = 0;
             CliffButton6A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            CliffButton6A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton6A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             CliffButton6A.ForeColor = System.Drawing.Color.White;
             CliffButton6A.Location = new System.Drawing.Point(85, 208);
             CliffButton6A.Name = "CliffButton6A";
@@ -1542,7 +1542,7 @@
             CliffButton2B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             CliffButton2B.FlatAppearance.BorderSize = 0;
             CliffButton2B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            CliffButton2B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton2B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             CliffButton2B.ForeColor = System.Drawing.Color.White;
             CliffButton2B.Location = new System.Drawing.Point(44, 85);
             CliffButton2B.Name = "CliffButton2B";
@@ -1559,7 +1559,7 @@
             CliffButton1A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             CliffButton1A.FlatAppearance.BorderSize = 0;
             CliffButton1A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            CliffButton1A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton1A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             CliffButton1A.ForeColor = System.Drawing.Color.White;
             CliffButton1A.Location = new System.Drawing.Point(3, 44);
             CliffButton1A.Name = "CliffButton1A";
@@ -1576,7 +1576,7 @@
             CliffButton4B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             CliffButton4B.FlatAppearance.BorderSize = 0;
             CliffButton4B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            CliffButton4B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton4B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             CliffButton4B.ForeColor = System.Drawing.Color.White;
             CliffButton4B.Location = new System.Drawing.Point(44, 167);
             CliffButton4B.Name = "CliffButton4B";
@@ -1593,7 +1593,7 @@
             CliffButton5B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             CliffButton5B.FlatAppearance.BorderSize = 0;
             CliffButton5B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            CliffButton5B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton5B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             CliffButton5B.ForeColor = System.Drawing.Color.White;
             CliffButton5B.Location = new System.Drawing.Point(44, 208);
             CliffButton5B.Name = "CliffButton5B";
@@ -1610,7 +1610,7 @@
             CliffButton2A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             CliffButton2A.FlatAppearance.BorderSize = 0;
             CliffButton2A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            CliffButton2A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton2A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             CliffButton2A.ForeColor = System.Drawing.Color.White;
             CliffButton2A.Location = new System.Drawing.Point(3, 85);
             CliffButton2A.Name = "CliffButton2A";
@@ -1627,7 +1627,7 @@
             CliffButton4C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             CliffButton4C.FlatAppearance.BorderSize = 0;
             CliffButton4C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            CliffButton4C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton4C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             CliffButton4C.ForeColor = System.Drawing.Color.White;
             CliffButton4C.Location = new System.Drawing.Point(85, 167);
             CliffButton4C.Name = "CliffButton4C";
@@ -1644,7 +1644,7 @@
             CliffButton5A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             CliffButton5A.FlatAppearance.BorderSize = 0;
             CliffButton5A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            CliffButton5A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CliffButton5A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             CliffButton5A.ForeColor = System.Drawing.Color.White;
             CliffButton5A.Location = new System.Drawing.Point(3, 208);
             CliffButton5A.Name = "CliffButton5A";
@@ -1689,7 +1689,7 @@
             // ManualRiverElevation3Label
             // 
             ManualRiverElevation3Label.AutoSize = true;
-            ManualRiverElevation3Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualRiverElevation3Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             ManualRiverElevation3Label.ForeColor = System.Drawing.Color.White;
             ManualRiverElevation3Label.Location = new System.Drawing.Point(185, 70);
             ManualRiverElevation3Label.Name = "ManualRiverElevation3Label";
@@ -1701,7 +1701,7 @@
             // ManualRiverElevation2Label
             // 
             ManualRiverElevation2Label.AutoSize = true;
-            ManualRiverElevation2Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualRiverElevation2Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             ManualRiverElevation2Label.ForeColor = System.Drawing.Color.White;
             ManualRiverElevation2Label.Location = new System.Drawing.Point(185, 86);
             ManualRiverElevation2Label.Name = "ManualRiverElevation2Label";
@@ -1713,7 +1713,7 @@
             // ManualRiverElevation1Label
             // 
             ManualRiverElevation1Label.AutoSize = true;
-            ManualRiverElevation1Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualRiverElevation1Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             ManualRiverElevation1Label.ForeColor = System.Drawing.Color.White;
             ManualRiverElevation1Label.Location = new System.Drawing.Point(185, 102);
             ManualRiverElevation1Label.Name = "ManualRiverElevation1Label";
@@ -1725,7 +1725,7 @@
             // ManualRiverElevation0Label
             // 
             ManualRiverElevation0Label.AutoSize = true;
-            ManualRiverElevation0Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualRiverElevation0Label.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             ManualRiverElevation0Label.ForeColor = System.Drawing.Color.White;
             ManualRiverElevation0Label.Location = new System.Drawing.Point(185, 118);
             ManualRiverElevation0Label.Name = "ManualRiverElevation0Label";
@@ -1737,7 +1737,7 @@
             // ManualRiverElevationLabel
             // 
             ManualRiverElevationLabel.AutoSize = true;
-            ManualRiverElevationLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ManualRiverElevationLabel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             ManualRiverElevationLabel.ForeColor = System.Drawing.Color.White;
             ManualRiverElevationLabel.Location = new System.Drawing.Point(126, 55);
             ManualRiverElevationLabel.Name = "ManualRiverElevationLabel";
@@ -1764,7 +1764,7 @@
             RotateRiverButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             RotateRiverButton.FlatAppearance.BorderSize = 0;
             RotateRiverButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RotateRiverButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RotateRiverButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RotateRiverButton.ForeColor = System.Drawing.Color.White;
             RotateRiverButton.Location = new System.Drawing.Point(167, 3);
             RotateRiverButton.Name = "RotateRiverButton";
@@ -1780,7 +1780,7 @@
             RiverButton8A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RiverButton8A.FlatAppearance.BorderSize = 0;
             RiverButton8A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RiverButton8A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton8A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RiverButton8A.ForeColor = System.Drawing.Color.White;
             RiverButton8A.Location = new System.Drawing.Point(44, 249);
             RiverButton8A.Name = "RiverButton8A";
@@ -1797,7 +1797,7 @@
             RiverButton0A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RiverButton0A.FlatAppearance.BorderSize = 0;
             RiverButton0A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RiverButton0A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton0A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RiverButton0A.ForeColor = System.Drawing.Color.White;
             RiverButton0A.Location = new System.Drawing.Point(3, 3);
             RiverButton0A.Name = "RiverButton0A";
@@ -1814,7 +1814,7 @@
             RiverButton3B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RiverButton3B.FlatAppearance.BorderSize = 0;
             RiverButton3B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RiverButton3B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton3B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RiverButton3B.ForeColor = System.Drawing.Color.White;
             RiverButton3B.Location = new System.Drawing.Point(44, 126);
             RiverButton3B.Name = "RiverButton3B";
@@ -1831,7 +1831,7 @@
             RiverButton7A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RiverButton7A.FlatAppearance.BorderSize = 0;
             RiverButton7A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RiverButton7A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton7A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RiverButton7A.ForeColor = System.Drawing.Color.White;
             RiverButton7A.Location = new System.Drawing.Point(3, 249);
             RiverButton7A.Name = "RiverButton7A";
@@ -1848,7 +1848,7 @@
             RiverButton3A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RiverButton3A.FlatAppearance.BorderSize = 0;
             RiverButton3A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RiverButton3A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton3A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RiverButton3A.ForeColor = System.Drawing.Color.White;
             RiverButton3A.Location = new System.Drawing.Point(3, 126);
             RiverButton3A.Name = "RiverButton3A";
@@ -1865,7 +1865,7 @@
             RiverButton3C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RiverButton3C.FlatAppearance.BorderSize = 0;
             RiverButton3C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RiverButton3C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton3C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RiverButton3C.ForeColor = System.Drawing.Color.White;
             RiverButton3C.Location = new System.Drawing.Point(85, 126);
             RiverButton3C.Name = "RiverButton3C";
@@ -1882,7 +1882,7 @@
             RiverButton6B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RiverButton6B.FlatAppearance.BorderSize = 0;
             RiverButton6B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RiverButton6B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton6B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RiverButton6B.ForeColor = System.Drawing.Color.White;
             RiverButton6B.Location = new System.Drawing.Point(126, 208);
             RiverButton6B.Name = "RiverButton6B";
@@ -1899,7 +1899,7 @@
             RiverButton2C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RiverButton2C.FlatAppearance.BorderSize = 0;
             RiverButton2C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RiverButton2C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton2C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RiverButton2C.ForeColor = System.Drawing.Color.White;
             RiverButton2C.Location = new System.Drawing.Point(85, 85);
             RiverButton2C.Name = "RiverButton2C";
@@ -1916,7 +1916,7 @@
             RiverButton4A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RiverButton4A.FlatAppearance.BorderSize = 0;
             RiverButton4A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RiverButton4A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton4A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RiverButton4A.ForeColor = System.Drawing.Color.White;
             RiverButton4A.Location = new System.Drawing.Point(3, 167);
             RiverButton4A.Name = "RiverButton4A";
@@ -1933,7 +1933,7 @@
             RiverButton6A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RiverButton6A.FlatAppearance.BorderSize = 0;
             RiverButton6A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RiverButton6A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton6A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RiverButton6A.ForeColor = System.Drawing.Color.White;
             RiverButton6A.Location = new System.Drawing.Point(85, 208);
             RiverButton6A.Name = "RiverButton6A";
@@ -1950,7 +1950,7 @@
             RiverButton2B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RiverButton2B.FlatAppearance.BorderSize = 0;
             RiverButton2B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RiverButton2B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton2B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RiverButton2B.ForeColor = System.Drawing.Color.White;
             RiverButton2B.Location = new System.Drawing.Point(44, 85);
             RiverButton2B.Name = "RiverButton2B";
@@ -1967,7 +1967,7 @@
             RiverButton1A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RiverButton1A.FlatAppearance.BorderSize = 0;
             RiverButton1A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RiverButton1A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton1A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RiverButton1A.ForeColor = System.Drawing.Color.White;
             RiverButton1A.Location = new System.Drawing.Point(3, 44);
             RiverButton1A.Name = "RiverButton1A";
@@ -1984,7 +1984,7 @@
             RiverButton4B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RiverButton4B.FlatAppearance.BorderSize = 0;
             RiverButton4B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RiverButton4B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton4B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RiverButton4B.ForeColor = System.Drawing.Color.White;
             RiverButton4B.Location = new System.Drawing.Point(44, 167);
             RiverButton4B.Name = "RiverButton4B";
@@ -2001,7 +2001,7 @@
             RiverButton5B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RiverButton5B.FlatAppearance.BorderSize = 0;
             RiverButton5B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RiverButton5B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton5B.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RiverButton5B.ForeColor = System.Drawing.Color.White;
             RiverButton5B.Location = new System.Drawing.Point(44, 208);
             RiverButton5B.Name = "RiverButton5B";
@@ -2018,7 +2018,7 @@
             RiverButton2A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RiverButton2A.FlatAppearance.BorderSize = 0;
             RiverButton2A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RiverButton2A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton2A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RiverButton2A.ForeColor = System.Drawing.Color.White;
             RiverButton2A.Location = new System.Drawing.Point(3, 85);
             RiverButton2A.Name = "RiverButton2A";
@@ -2035,7 +2035,7 @@
             RiverButton4C.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RiverButton4C.FlatAppearance.BorderSize = 0;
             RiverButton4C.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RiverButton4C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton4C.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RiverButton4C.ForeColor = System.Drawing.Color.White;
             RiverButton4C.Location = new System.Drawing.Point(85, 167);
             RiverButton4C.Name = "RiverButton4C";
@@ -2052,7 +2052,7 @@
             RiverButton5A.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             RiverButton5A.FlatAppearance.BorderSize = 0;
             RiverButton5A.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            RiverButton5A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            RiverButton5A.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             RiverButton5A.ForeColor = System.Drawing.Color.White;
             RiverButton5A.Location = new System.Drawing.Point(3, 208);
             RiverButton5A.Name = "RiverButton5A";
@@ -2067,7 +2067,7 @@
             // 
             CustomDesignList.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
             CustomDesignList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            CustomDesignList.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            CustomDesignList.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             CustomDesignList.ForeColor = System.Drawing.Color.White;
             CustomDesignList.GridLines = true;
             CustomDesignList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
@@ -2127,7 +2127,7 @@
             // PleaseWaitLabel
             // 
             PleaseWaitLabel.AutoSize = true;
-            PleaseWaitLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            PleaseWaitLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             PleaseWaitLabel.ForeColor = System.Drawing.Color.White;
             PleaseWaitLabel.Location = new System.Drawing.Point(81, 8);
             PleaseWaitLabel.Name = "PleaseWaitLabel";

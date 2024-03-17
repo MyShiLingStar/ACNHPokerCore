@@ -15,18 +15,15 @@
     <PackageIcon>Leaf.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <Platforms>AnyCPU;x86</Platforms>
+    <Platforms>AnyCPU</Platforms>
 	<SatelliteResourceLanguages>none</SatelliteResourceLanguages>
     <SelfContained>false</SelfContained>
 	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+	<Configurations>Debug;Release;x86</Configurations>
+	<PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <NoWarn>1701;1702;NU1701;CS0169;IDE0057;IDE0074;IDE0056;NETSDK1138</NoWarn>
-    <DebugType>embedded</DebugType>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <NoWarn>1701;1702;NU1701;CS0169;IDE0057;IDE0074;IDE0056;NETSDK1138</NoWarn>
     <DebugType>embedded</DebugType>
   </PropertyGroup>
@@ -36,7 +33,7 @@
     <DebugType>embedded</DebugType>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='x86|AnyCPU'">
     <NoWarn>1701;1702;NU1701;CS0169;IDE0057;IDE0074;IDE0056;NETSDK1138</NoWarn>
     <DebugType>embedded</DebugType>
   </PropertyGroup>
@@ -54,7 +51,7 @@
   <ItemGroup>
     <PackageReference Include="AutoCompleteMenu-ScintillaNET" Version="2.1.1" />
     <PackageReference Include="DotNetZip" Version="1.16.0" />
-    <PackageReference Include="libc.hwid" Version="6.0.1" />
+    <PackageReference Include="libc.hwid" Version="6.0.2" />
     <PackageReference Include="LibUsbDotNet" Version="2.2.29" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.0-rc.1.23419.4" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0-rc.1.23419.4" />

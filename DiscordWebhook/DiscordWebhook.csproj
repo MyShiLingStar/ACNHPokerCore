@@ -4,7 +4,8 @@
     <TargetFramework>net7.0-windows</TargetFramework>
     <DebugType>none</DebugType>
     <NoWin32Manifest>true</NoWin32Manifest>
-    <Platforms>AnyCPU;x86</Platforms>
+    <Platforms>AnyCPU</Platforms>
+    <Configurations>Debug;Release;x86</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -15,11 +16,7 @@
     <NoWarn>1701;1702;NETSDK1138</NoWarn>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <NoWarn>1701;1702;NETSDK1138</NoWarn>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='x86|AnyCPU'">
     <NoWarn>1701;1702;NETSDK1138</NoWarn>
   </PropertyGroup>
 

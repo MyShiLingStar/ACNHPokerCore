@@ -1960,6 +1960,7 @@ namespace ACNHPokerCore
             {0x5, Color.RoyalBlue},
             {0x6, Color.RoyalBlue},
             {0x7, Color.RoyalBlue},
+            {0x8, Color.RoyalBlue},
             {0x9, Color.Chocolate},
             {0xA, Color.Chocolate},
             {0xB, Color.Chocolate},

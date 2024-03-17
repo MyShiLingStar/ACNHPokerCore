@@ -93,9 +93,10 @@ namespace ACNHPokerCore
 
         private int currentSize;
 
-        private string debugTerrain = @"terrainAcres.nht";
-        private string debugAcres = @"acres.nha";
-        private string debugBuilding = @"buildings.nhb";
+        private string debugTerrain = @"YourTerrain.nht";
+        private string debugAcres = @"YourAcre.nha";
+        private string debugBuilding = @"YourBuilding.nhb";
+        private string debugDesign = @"YourCustomDesignMap.nhdm";
 
         public RoadRoller(Socket S, USBBot USB, bool Sound, bool Debugging)
         {
@@ -177,22 +178,22 @@ namespace ACNHPokerCore
 
                 byte[] emptyPlaza = new byte[12];
 
-                if (File.Exists(savepath + debugAcres))
+                if (File.Exists(savepath + "\\" + debugAcres))
                 {
-                    Acre = Utilities.Add(File.ReadAllBytes(savepath + debugAcres), emptyPlaza);
+                    Acre = Utilities.Add(File.ReadAllBytes(savepath + "\\" + debugAcres), emptyPlaza);
 
-                    if (File.Exists(savepath + debugTerrain))
+                    if (File.Exists(savepath + "\\" + debugTerrain))
                     {
-                        Terrain = File.ReadAllBytes(savepath + debugTerrain);
+                        Terrain = File.ReadAllBytes(savepath + "\\" + debugTerrain);
                     }
                     else
                     {
                         Terrain = new byte[Utilities.AllTerrainSize];
                     }
 
-                    if (File.Exists(savepath + debugBuilding))
+                    if (File.Exists(savepath + "\\" + debugBuilding))
                     {
-                        Building = File.ReadAllBytes(savepath + debugBuilding);
+                        Building = File.ReadAllBytes(savepath + "\\" + debugBuilding);
                     }
                     else
                     {
@@ -234,15 +235,24 @@ namespace ACNHPokerCore
                         }
                     }
 
+
+
                     Building = new byte[Utilities.AllBuildingSize];
                 }
 
                 Layer1 = new byte[Utilities.mapSize];
-                MapCustomDesgin = new byte[Utilities.MapTileCount16x16 * 2];
 
-                byte[] EmptyDesign = new byte[] { 0x00, 0xF8 };
-                for (int i = 0; i < Utilities.MapTileCount16x16; i++)
-                    Buffer.BlockCopy(EmptyDesign, 0, MapCustomDesgin, i * 2, 2);
+                if (File.Exists(savepath + debugDesign))
+                {
+                    MapCustomDesgin = File.ReadAllBytes(savepath + "\\" + debugDesign);
+                }
+                else
+                {
+                    MapCustomDesgin = new byte[Utilities.MapTileCount16x16 * 2];
+                    byte[] EmptyDesign = new byte[] { 0x00, 0xF8 };
+                    for (int i = 0; i < Utilities.MapTileCount16x16; i++)
+                        Buffer.BlockCopy(EmptyDesign, 0, MapCustomDesgin, i * 2, 2);
+                }
 
                 if (miniMap == null)
                     miniMap = new MiniMap(Layer1, Acre, Building, Terrain, MapCustomDesgin, 2);

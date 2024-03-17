@@ -3477,11 +3477,7 @@ namespace ACNHPokerCore
             // 
             // ButtonToolTip
             // 
-            ButtonToolTip.AutomaticDelay = 0;
             ButtonToolTip.IsBalloon = true;
-            ButtonToolTip.ShowAlways = true;
-            ButtonToolTip.UseAnimation = false;
-            ButtonToolTip.UseFading = false;
             // 
             // OtherLargePanel
             // 

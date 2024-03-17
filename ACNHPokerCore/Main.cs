@@ -32,7 +32,7 @@ namespace ACNHPokerCore
 
     public partial class Main : Form
     {
-        #region variable
+        #region Variable
         private static bool DEBUGGING;
 
         private static Socket socket;
@@ -495,6 +495,23 @@ namespace ACNHPokerCore
             chatButton.Visible = true;
         }
 
+        private void Main_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MyLog.LogEvent("MainForm", "Form Closed");
+        }
+
+        private void Main_LocationChanged(object sender, EventArgs e)
+        {
+            if (selection != null)
+            {
+                selection.Location = new Point(Location.X + 7, Location.Y + Height);
+            }
+            if (Ch != null)
+            {
+                Ch.Location = new Point(Location.X + Width - Ch.Width - 7, Location.Y + Height);
+            }
+        }
+
         #endregion
 
         #region Setting
@@ -533,7 +550,7 @@ namespace ACNHPokerCore
 
         #endregion
 
-        #region Load File
+        #region Load CSV
         private static DataTable LoadItemCSV(string filePath)
         {
             var dt = new DataTable();
@@ -596,6 +613,8 @@ namespace ACNHPokerCore
         }
 
         #endregion
+
+        #region Images
 
         private void ItemGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -785,38 +804,6 @@ namespace ACNHPokerCore
             }
         }
 
-        private void HexModeButton_Click(object sender, EventArgs e)
-        {
-            if (HexModeButton.Tag.ToString() == "Normal")
-            {
-                AmountOrCountLabel.Text = @"Hex Value";
-                HexModeButton.Tag = "Hex";
-                HexModeButton.Text = @"Normal Mode";
-                if (AmountOrCountTextbox.Text != "")
-                {
-                    int decValue = Convert.ToInt32(AmountOrCountTextbox.Text) - 1;
-                    string hexValue;
-                    if (decValue < 0)
-                        hexValue = "0";
-                    else
-                        hexValue = decValue.ToString("X");
-                    AmountOrCountTextbox.Text = Utilities.PrecedingZeros(hexValue, 8);
-                }
-            }
-            else
-            {
-                AmountOrCountLabel.Text = @"Amount";
-                HexModeButton.Tag = "Normal";
-                HexModeButton.Text = @"Hex Mode";
-                if (AmountOrCountTextbox.Text != "")
-                {
-                    string hexValue = AmountOrCountTextbox.Text;
-                    int decValue = Convert.ToInt32(hexValue, 16) + 1;
-                    AmountOrCountTextbox.Text = decValue.ToString();
-                }
-            }
-        }
-
         public static string GetImagePathFromID(string itemID, DataTable source, UInt32 data = 0)
         {
             if (source == null)
@@ -902,6 +889,9 @@ namespace ACNHPokerCore
                 return GetImagePathFromID(ID, itemSource, data);
         }
 
+        #endregion
+
+        #region Get Item Info
         public static string GetNameFromID(string itemID, DataTable source)
         {
             if (source == null)
@@ -938,7 +928,9 @@ namespace ACNHPokerCore
             selectedFlag0.Text = SelectedItem.GetFlag0();
             selectedFlag1.Text = SelectedItem.GetFlag1();
         }
+        #endregion
 
+        #region Island Name
         private string UpdateTownID()
         {
             if (socket == null && usb == null && Utilities.isEmulator == false)
@@ -953,6 +945,8 @@ namespace ACNHPokerCore
 
             return "  |  Island Name : " + IslandName;
         }
+
+        #endregion
 
         #region Language
         private void LanguageSetup(string configLanguage)
@@ -1531,7 +1525,12 @@ namespace ACNHPokerCore
             for (int i = 0; i < 8; i++)
             {
                 byte[] b = Utilities.GetInventoryName(socket, usb, i);
-                namelist[i] = Encoding.Unicode.GetString(b, 32, 20);
+                if (b == null)
+                {
+                    namelist[i] = "NULL";
+                }
+                else
+                    namelist[i] = Encoding.Unicode.GetString(b, 32, 20);
                 namelist[i] = namelist[i].Replace("\0", string.Empty);
                 if (namelist[i].Equals(string.Empty) && !headerFound)
                 {
@@ -1888,11 +1887,6 @@ namespace ACNHPokerCore
         }
         #endregion
 
-        private void Main_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            MyLog.LogEvent("MainForm", "Form Closed");
-        }
-
         #region Variation
         private void OpenVariationMenu()
         {
@@ -1971,17 +1965,7 @@ namespace ACNHPokerCore
         }
         #endregion
 
-        private void Main_LocationChanged(object sender, EventArgs e)
-        {
-            if (selection != null)
-            {
-                selection.Location = new Point(Location.X + 7, Location.Y + Height);
-            }
-            if (Ch != null)
-            {
-                Ch.Location = new Point(Location.X + Width - Ch.Width - 7, Location.Y + Height);
-            }
-        }
+        #region Spawn, Delete, Copy
 
         private void SelectedItem_Click(object sender, EventArgs e)
         {
@@ -2318,6 +2302,8 @@ namespace ACNHPokerCore
                 }
             }
         }
+
+        #endregion
 
         #region Wrap Item
 
@@ -2812,18 +2798,6 @@ namespace ACNHPokerCore
 
         #endregion
 
-        private void InventorySlot_MouseHover(object sender, EventArgs e)
-        {
-            var button = (InventorySlot)sender;
-            if (!button.IsEmpty())
-            {
-                ButtonToolTip.SetToolTip(button, button.DisplayItemName() +
-                                                "\n\nID : " + button.DisplayItemID() + "" +
-                                                "\nCount : " + button.DisplayItemData() +
-                                                "\nFlag : " + button.GetFlag0() + " " + button.GetFlag1());
-            }
-        }
-
         #region Progessbar
         private void ShowWait()
         {
@@ -2878,6 +2852,8 @@ namespace ACNHPokerCore
             ClearAllButton.Visible = true;
         }
         #endregion
+
+        #region Save/Load Item
 
         private void SaveNHIButton_Click(object sender, EventArgs e)
         {
@@ -3309,6 +3285,10 @@ namespace ACNHPokerCore
             }
         }
 
+        #endregion
+
+        #region Fill/Clear
+
         private void RefreshButton_Click(object sender, EventArgs e)
         {
             UpdateInventory();
@@ -3629,107 +3609,9 @@ namespace ACNHPokerCore
             HideWait();
         }
 
-        private void InventoryTabButton_Click(object sender, EventArgs e)
-        {
-            InventoryTabButton.BackColor = Color.FromArgb(80, 80, 255);
-            CritterTabButton.BackColor = Color.FromArgb(114, 137, 218);
-            OtherTabButton.BackColor = Color.FromArgb(114, 137, 218);
-            VillagerTabButton.BackColor = Color.FromArgb(114, 137, 218);
+        #endregion
 
-            InventoryLargePanel.Visible = true;
-            OtherLargePanel.Visible = false;
-            CritterLargePanel.Visible = false;
-            VillagerLargePanel.Visible = false;
-        }
-
-        private void OtherTabButton_Click(object sender, EventArgs e)
-        {
-            InventoryTabButton.BackColor = Color.FromArgb(114, 137, 218);
-            CritterTabButton.BackColor = Color.FromArgb(114, 137, 218);
-            OtherTabButton.BackColor = Color.FromArgb(80, 80, 255);
-            VillagerTabButton.BackColor = Color.FromArgb(114, 137, 218);
-
-            InventoryLargePanel.Visible = false;
-            OtherLargePanel.Visible = true;
-            CritterLargePanel.Visible = false;
-            VillagerLargePanel.Visible = false;
-            CloseVariationMenu();
-        }
-
-        private void CritterTabButton_Click(object sender, EventArgs e)
-        {
-            InventoryTabButton.BackColor = Color.FromArgb(114, 137, 218);
-            CritterTabButton.BackColor = Color.FromArgb(80, 80, 255);
-            OtherTabButton.BackColor = Color.FromArgb(114, 137, 218);
-            VillagerTabButton.BackColor = Color.FromArgb(114, 137, 218);
-
-            InventoryLargePanel.Visible = false;
-            OtherLargePanel.Visible = false;
-            CritterLargePanel.Visible = true;
-            VillagerLargePanel.Visible = false;
-            CloseVariationMenu();
-        }
-
-        private void VillagerTabButton_Click(object sender, EventArgs e)
-        {
-            InventoryTabButton.BackColor = Color.FromArgb(114, 137, 218);
-            CritterTabButton.BackColor = Color.FromArgb(114, 137, 218);
-            OtherTabButton.BackColor = Color.FromArgb(114, 137, 218);
-            VillagerTabButton.BackColor = Color.FromArgb(80, 80, 255);
-
-            InventoryLargePanel.Visible = false;
-            OtherLargePanel.Visible = false;
-            CritterLargePanel.Visible = false;
-            VillagerLargePanel.Visible = true;
-            CloseVariationMenu();
-
-            if (V == null && VillagerFirstLoad)
-            {
-                VillagerFirstLoad = true;
-                Thread loadAllVillagerThread = new(LoadAllVillager);
-                loadAllVillagerThread.Start();
-            }
-        }
-
-        private void Hex_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char c = e.KeyChar;
-            if (!((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f')))
-            {
-                e.Handled = true;
-            }
-            if (c >= 'a' && c <= 'f') e.KeyChar = char.ToUpper(c);
-        }
-
-        private void Dec_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char c = e.KeyChar;
-            if (!((c >= '0' && c <= '9')))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void DecAndHex_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char c = e.KeyChar;
-            if (HexModeButton.Tag.ToString() == "Normal")
-            {
-                if (!((c >= '0' && c <= '9')))
-                {
-                    e.Handled = true;
-                }
-            }
-            else
-            {
-                if (!((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f')))
-                {
-                    e.Handled = true;
-                }
-                if (c >= 'a' && c <= 'f') e.KeyChar = char.ToUpper(c);
-            }
-        }
-
+        #region Search    
         private void ItemSearchBox_TextChanged(object sender, EventArgs e)
         {
             if (ItemSearchBox.Text == @"Search...")
@@ -3779,6 +3661,9 @@ namespace ACNHPokerCore
             }
         }
 
+        #endregion
+
+        #region CellFormatting
         private void RecipeGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (e.RowIndex >= 0 && e.RowIndex < RecipeGridView.Rows.Count)
@@ -4006,6 +3891,9 @@ namespace ACNHPokerCore
             }
         }
 
+        #endregion
+
+        #region Player Selector
         private void PlayerInventorySelector_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (PlayerInventorySelector.SelectedIndex < 0)
@@ -4136,6 +4024,8 @@ namespace ACNHPokerCore
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
         }
+
+        #endregion
 
         #region Pagination
 
@@ -4268,72 +4158,6 @@ namespace ACNHPokerCore
         }
 
         #endregion
-
-        private void IDTextbox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (((RichTextBox)sender).Modified)
-                {
-                    if (IDTextbox.Text != "")
-                    {
-                        if (ItemAttr.hasGenetics(Convert.ToUInt16("0x" + IDTextbox.Text, 16)))
-                        {
-                            if (HexModeButton.Tag.ToString() == "Normal")
-                            {
-                                HexModeButton_Click(sender, e);
-                            }
-
-                            string value = AmountOrCountTextbox.Text;
-                            int length = value.Length;
-                            string firstByte;
-                            string secondByte;
-                            if (length < 2)
-                            {
-                                firstByte = "0";
-                                secondByte = value;
-                            }
-                            else
-                            {
-                                firstByte = value.Substring(length - 2, 1);
-                                secondByte = value.Substring(length - 1, 1);
-                            }
-
-                            SetGeneComboBox(firstByte, secondByte);
-                            GenePanel.Visible = true;
-                        }
-                        else
-                        {
-                            GenePanel.Visible = false;
-                        }
-
-                        if (IDTextbox.Text is "315A" or "1618" or "342F")
-                        {
-                            WallMountMsg.Visible = true;
-                        }
-                        else
-                        {
-                            WallMountMsg.Visible = false;
-                        }
-                    }
-                    else
-                    {
-                        GenePanel.Visible = false;
-                        WallMountMsg.Visible = false;
-                    }
-                }
-                else
-                {
-                    GenePanel.Visible = false;
-                    WallMountMsg.Visible = false;
-                }
-
-            }
-            catch
-            {
-                IDTextbox.Clear();
-            }
-        }
 
         #region Gene
         private void SetGeneComboBox(string firstByte, string secondByte)
@@ -4527,6 +4351,8 @@ namespace ACNHPokerCore
             byte[] reactions7 = new byte[1];
             byte[] reactions8 = new byte[1];
 
+            if (reactionBank == null)
+                return;
             Buffer.BlockCopy(reactionBank, 0, reactions1, 0x0, 0x1);
             Buffer.BlockCopy(reactionBank, 1, reactions2, 0x0, 0x1);
             Buffer.BlockCopy(reactionBank, 2, reactions3, 0x0, 0x1);
@@ -7650,6 +7476,18 @@ namespace ACNHPokerCore
 
         #endregion
 
+        private void InventorySlot_MouseHover(object sender, EventArgs e)
+        {
+            var button = (InventorySlot)sender;
+            if (!button.IsEmpty())
+            {
+                ButtonToolTip.SetToolTip(button, button.DisplayItemName() +
+                                                "\n\nID : " + button.DisplayItemID() + "" +
+                                                "\nCount : " + button.DisplayItemData() +
+                                                "\nFlag : " + button.GetFlag0() + " " + button.GetFlag1());
+            }
+        }
+
         private void AmountOrCountTextbox_DoubleClick(object sender, EventArgs e)
         {
             if (currentPanel == RecipeModePanel || currentPanel == FlowerModePanel)
@@ -7873,6 +7711,143 @@ namespace ACNHPokerCore
                 selection?.ReceiveID(IDTextbox.Text, languageSetting, Utilities.PrecedingZeros(hexValue, 8));
             }
             UpdateSelectedItemInfo(SelectedItem.DisplayItemName(), SelectedItem.DisplayItemID(), SelectedItem.DisplayItemData());
+        }
+
+        private void IDTextbox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (((RichTextBox)sender).Modified)
+                {
+                    if (IDTextbox.Text != "")
+                    {
+                        if (ItemAttr.hasGenetics(Convert.ToUInt16("0x" + IDTextbox.Text, 16)))
+                        {
+                            if (HexModeButton.Tag.ToString() == "Normal")
+                            {
+                                HexModeButton_Click(sender, e);
+                            }
+
+                            string value = AmountOrCountTextbox.Text;
+                            int length = value.Length;
+                            string firstByte;
+                            string secondByte;
+                            if (length < 2)
+                            {
+                                firstByte = "0";
+                                secondByte = value;
+                            }
+                            else
+                            {
+                                firstByte = value.Substring(length - 2, 1);
+                                secondByte = value.Substring(length - 1, 1);
+                            }
+
+                            SetGeneComboBox(firstByte, secondByte);
+                            GenePanel.Visible = true;
+                        }
+                        else
+                        {
+                            GenePanel.Visible = false;
+                        }
+
+                        if (IDTextbox.Text is "315A" or "1618" or "342F")
+                        {
+                            WallMountMsg.Visible = true;
+                        }
+                        else
+                        {
+                            WallMountMsg.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        GenePanel.Visible = false;
+                        WallMountMsg.Visible = false;
+                    }
+                }
+                else
+                {
+                    GenePanel.Visible = false;
+                    WallMountMsg.Visible = false;
+                }
+
+            }
+            catch
+            {
+                IDTextbox.Clear();
+            }
+        }
+
+        private void HexModeButton_Click(object sender, EventArgs e)
+        {
+            if (HexModeButton.Tag.ToString() == "Normal")
+            {
+                AmountOrCountLabel.Text = @"Hex Value";
+                HexModeButton.Tag = "Hex";
+                HexModeButton.Text = @"Normal Mode";
+                if (AmountOrCountTextbox.Text != "")
+                {
+                    int decValue = Convert.ToInt32(AmountOrCountTextbox.Text) - 1;
+                    string hexValue;
+                    if (decValue < 0)
+                        hexValue = "0";
+                    else
+                        hexValue = decValue.ToString("X");
+                    AmountOrCountTextbox.Text = Utilities.PrecedingZeros(hexValue, 8);
+                }
+            }
+            else
+            {
+                AmountOrCountLabel.Text = @"Amount";
+                HexModeButton.Tag = "Normal";
+                HexModeButton.Text = @"Hex Mode";
+                if (AmountOrCountTextbox.Text != "")
+                {
+                    string hexValue = AmountOrCountTextbox.Text;
+                    int decValue = Convert.ToInt32(hexValue, 16) + 1;
+                    AmountOrCountTextbox.Text = decValue.ToString();
+                }
+            }
+        }
+
+        private void Hex_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char c = e.KeyChar;
+            if (!((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f')))
+            {
+                e.Handled = true;
+            }
+            if (c >= 'a' && c <= 'f') e.KeyChar = char.ToUpper(c);
+        }
+
+        private void Dec_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char c = e.KeyChar;
+            if (!((c >= '0' && c <= '9')))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void DecAndHex_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char c = e.KeyChar;
+            if (HexModeButton.Tag.ToString() == "Normal")
+            {
+                if (!((c >= '0' && c <= '9')))
+                {
+                    e.Handled = true;
+                }
+            }
+            else
+            {
+                if (!((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f')))
+                {
+                    e.Handled = true;
+                }
+                if (c >= 'a' && c <= 'f') e.KeyChar = char.ToUpper(c);
+            }
         }
 
         #region Keyboard Hotkey
@@ -8635,6 +8610,11 @@ namespace ACNHPokerCore
             Controller.testWebhook();
         }
 
+        private void CacheButton_Click(object sender, EventArgs e)
+        {
+            CacheImage.Image = ImageCacher.GetImage(GetImagePathFromID(IDTextbox.Text, itemSource));
+        }
+
         #endregion
 
         #region RoadRoller
@@ -8697,6 +8677,70 @@ namespace ACNHPokerCore
             D = null;
         }
         #endregion
+
+        #region Form Control
+
+        private void InventoryTabButton_Click(object sender, EventArgs e)
+        {
+            InventoryTabButton.BackColor = Color.FromArgb(80, 80, 255);
+            CritterTabButton.BackColor = Color.FromArgb(114, 137, 218);
+            OtherTabButton.BackColor = Color.FromArgb(114, 137, 218);
+            VillagerTabButton.BackColor = Color.FromArgb(114, 137, 218);
+
+            InventoryLargePanel.Visible = true;
+            OtherLargePanel.Visible = false;
+            CritterLargePanel.Visible = false;
+            VillagerLargePanel.Visible = false;
+        }
+
+        private void OtherTabButton_Click(object sender, EventArgs e)
+        {
+            InventoryTabButton.BackColor = Color.FromArgb(114, 137, 218);
+            CritterTabButton.BackColor = Color.FromArgb(114, 137, 218);
+            OtherTabButton.BackColor = Color.FromArgb(80, 80, 255);
+            VillagerTabButton.BackColor = Color.FromArgb(114, 137, 218);
+
+            InventoryLargePanel.Visible = false;
+            OtherLargePanel.Visible = true;
+            CritterLargePanel.Visible = false;
+            VillagerLargePanel.Visible = false;
+            CloseVariationMenu();
+        }
+
+        private void CritterTabButton_Click(object sender, EventArgs e)
+        {
+            InventoryTabButton.BackColor = Color.FromArgb(114, 137, 218);
+            CritterTabButton.BackColor = Color.FromArgb(80, 80, 255);
+            OtherTabButton.BackColor = Color.FromArgb(114, 137, 218);
+            VillagerTabButton.BackColor = Color.FromArgb(114, 137, 218);
+
+            InventoryLargePanel.Visible = false;
+            OtherLargePanel.Visible = false;
+            CritterLargePanel.Visible = true;
+            VillagerLargePanel.Visible = false;
+            CloseVariationMenu();
+        }
+
+        private void VillagerTabButton_Click(object sender, EventArgs e)
+        {
+            InventoryTabButton.BackColor = Color.FromArgb(114, 137, 218);
+            CritterTabButton.BackColor = Color.FromArgb(114, 137, 218);
+            OtherTabButton.BackColor = Color.FromArgb(114, 137, 218);
+            VillagerTabButton.BackColor = Color.FromArgb(80, 80, 255);
+
+            InventoryLargePanel.Visible = false;
+            OtherLargePanel.Visible = false;
+            CritterLargePanel.Visible = false;
+            VillagerLargePanel.Visible = true;
+            CloseVariationMenu();
+
+            if (V == null && VillagerFirstLoad)
+            {
+                VillagerFirstLoad = true;
+                Thread loadAllVillagerThread = new(LoadAllVillager);
+                loadAllVillagerThread.Start();
+            }
+        }
 
         private void MapDropperButton_Click(object sender, EventArgs e)
         {
@@ -8771,6 +8815,7 @@ namespace ACNHPokerCore
             F = null;
         }
 
+        #endregion
 
         #region Chat
         private void ChatButton_Click(object sender, EventArgs e)
@@ -8949,11 +8994,7 @@ namespace ACNHPokerCore
 
         #endregion
 
-        private void CacheButton_Click(object sender, EventArgs e)
-        {
-            CacheImage.Image = ImageCacher.GetImage(GetImagePathFromID(IDTextbox.Text, itemSource));
-        }
-
+        #region Emulator
         private void EmulatorButton_Click(object sender, EventArgs e)
         {
             if (Utilities.FileCheck(hardwareId))
@@ -9079,18 +9120,22 @@ namespace ACNHPokerCore
                 }
 
                 /*
+                
                 ProcessModule myProcessModule;
 
                 for (int i = 0; i < process.Modules.Count; i++)
                 {
                     myProcessModule = process.Modules[i];
-                    Debug.Print(myProcessModule.ModuleName + " : " + myProcessModule.BaseAddress.ToString("x8"));
+                    //Debug.Print(myProcessModule.ModuleName + " : " + myProcessModule.BaseAddress.ToString("x8"));
                 }
 
                 Debug.Print("The process's main module's base address is: 0x" + process.MainModule.BaseAddress.ToString("x8"));
                 */
 
                 /*
+                int numOfChase = 20000;
+                long startAddress = firstHeadAddress;
+
                 int bytesRead = 0;
                 int bufferSize = 0x5000000;
                 byte[] buffer = new byte[bufferSize];
@@ -9103,7 +9148,6 @@ namespace ACNHPokerCore
                                           0x21, 0x00, 0x00, 0x00 };
 
                 long diff = bufferSize - pattern.Length;
-                ShowWait();
 
                 for (int i = 0; i < numOfChase; i++)
                 {
@@ -9144,35 +9188,67 @@ namespace ACNHPokerCore
                 }
                 else
                 {
+                    
                     long heapBaseAddress;
                     long personalidAddress;
                     int i = 0;
 
-                    do
+                    if (Utilities.EmulatorType == 0)
                     {
-                        i++;
-
-                        heapBaseAddress = firstHeadAddress - 0xA1FD28 + 0x8B1E0 + 0x12CFCA8 + 0x3000 + 0x13EC248 + 0x1570F68 + 0x11000 + 0x400000;
-                        personalidAddress = heapBaseAddress + 0xAC43C4C8 - 0xC10 + 0xB0B8;
-
-                        byte[] idBuffer = new byte[4];
-                        int bytesRead = 0;
-                        bool ReadSuccess = Utilities.ReadProcessMemory((int)Utilities.ReadProcessHandle, personalidAddress, idBuffer, idBuffer.Length, ref bytesRead);
-                        int id = BitConverter.ToInt32(idBuffer, 0);
-
-                        if (id == 0)
+                        do
                         {
-                            firstHeadAddress += 0x40000000;
-                        }
-                        else
-                        {
-                            Utilities.HeapOffsetValue = firstHeadAddress - mem_basic_info.BaseAddress;
-                            Debug.Print("Offset =  + 0x" + Utilities.HeapOffsetValue.ToString("X"));
-                            Utilities.EmulatorHeadAddress = firstHeadAddress;
-                            break;
-                        }
+                            i++;
 
-                    } while (i <= 4);
+                            heapBaseAddress = firstHeadAddress - 0xA1FD28 + 0x8B1E0 + 0x12CFCA8 + 0x3000 + 0x13EC248 + 0x1570F68 + 0x11000 + 0x400000;
+                            personalidAddress = heapBaseAddress + 0xAC43C4C8 - 0xC10 + 0xB0B8;
+
+                            byte[] idBuffer = new byte[4];
+                            int bytesRead2 = 0;
+                            bool ReadSuccess = Utilities.ReadProcessMemory((int)Utilities.ReadProcessHandle, personalidAddress, idBuffer, idBuffer.Length, ref bytesRead2);
+                            int id = BitConverter.ToInt32(idBuffer, 0);
+
+                            if (id == 0)
+                            {
+                                firstHeadAddress += 0x40000000;
+                            }
+                            else
+                            {
+                                Utilities.HeapOffsetValue = firstHeadAddress - mem_basic_info.BaseAddress;
+                                Debug.Print("Offset =  + 0x" + Utilities.HeapOffsetValue.ToString("X"));
+                                Utilities.EmulatorHeadAddress = firstHeadAddress;
+                                break;
+                            }
+
+                        } while (i <= 4);
+                    }
+                    else
+                    {
+                        do
+                        {
+                            i++;
+
+                            heapBaseAddress = firstHeadAddress - 0xA1FD28 + 0x8B1E0 + 0x12CFCA8 + 0x3000 + 0x13EC248 + 0x1570F68 + 0x11000 + 0x400000;
+                            personalidAddress = heapBaseAddress + 0xAC43C4C8 - 0xC10 + 0xB0B8;
+
+                            byte[] idBuffer = new byte[4];
+                            int bytesRead2 = 0;
+                            bool ReadSuccess = Utilities.ReadProcessMemory((int)Utilities.ReadProcessHandle, personalidAddress, idBuffer, idBuffer.Length, ref bytesRead2);
+                            int id = BitConverter.ToInt32(idBuffer, 0);
+
+                            if (id == 0)
+                            {
+                                firstHeadAddress += 0x40000000;
+                            }
+                            else
+                            {
+                                Utilities.HeapOffsetValue = firstHeadAddress - mem_basic_info.BaseAddress;
+                                Debug.Print("Offset =  + 0x" + Utilities.HeapOffsetValue.ToString("X"));
+                                Utilities.EmulatorHeadAddress = firstHeadAddress;
+                                break;
+                            }
+
+                        } while (i <= 4);
+                    }
 
                     if (Utilities.EmulatorHeadAddress == 0x0)
                     {
@@ -9181,7 +9257,7 @@ namespace ACNHPokerCore
                         HideWait();
                         return;
                     }
-
+                    
 
                     Utilities.isEmulator = true;
 
@@ -9265,5 +9341,7 @@ namespace ACNHPokerCore
                 }
             }).Start();
         }
+
+        #endregion
     }
 }
