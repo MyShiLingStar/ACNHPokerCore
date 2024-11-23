@@ -337,9 +337,9 @@ namespace ACNHPokerCore
                 DataGridViewCellStyle style = new();
 
                 byte key = buildingList[i][0];
-                if (BuildingName.ContainsKey(key))
+                if (BuildingName.TryGetValue(key, out string value))
                 {
-                    buildingGridView.Rows.Add(buildingList[i][0x0], "", BuildingName[key], buildingList[i][0x2], buildingList[i][0x4], buildingList[i][0x6], buildingList[i][0x8]);
+                    buildingGridView.Rows.Add(buildingList[i][0x0], "", value, buildingList[i][0x2], buildingList[i][0x4], buildingList[i][0x6], buildingList[i][0x8]);
                     style.BackColor = MiniMap.ByteToBuildingColor[buildingList[i][0x0]];
                 }
                 else
@@ -1292,8 +1292,8 @@ namespace ACNHPokerCore
                 byte type = (byte)index;
 
                 buildingGridView.Rows[buildingGridView.CurrentCell.RowIndex].Cells["ID"].Value = type;
-                if (BuildingName.ContainsKey(type))
-                    buildingGridView.Rows[buildingGridView.CurrentCell.RowIndex].Cells["Name"].Value = BuildingName[type];
+                if (BuildingName.TryGetValue(type, out string value))
+                    buildingGridView.Rows[buildingGridView.CurrentCell.RowIndex].Cells["Name"].Value = value;
                 else
                     buildingGridView.Rows[buildingGridView.CurrentCell.RowIndex].Cells["Name"].Value = type.ToString("X");
 
@@ -1459,10 +1459,10 @@ namespace ACNHPokerCore
                     DataGridViewCellStyle style = new();
 
                     byte key = buildingList[i][0];
-                    if (BuildingName.ContainsKey(key))
+                    if (BuildingName.TryGetValue(key, out string value))
                     {
                         buildingGridView.Rows[i + 1].Cells["ID"].Value = buildingList[i][0x0];
-                        buildingGridView.Rows[i + 1].Cells["Name"].Value = BuildingName[key];
+                        buildingGridView.Rows[i + 1].Cells["Name"].Value = value;
                         buildingGridView.Rows[i + 1].Cells["X-Coordinate"].Value = buildingList[i][0x2];
                         buildingGridView.Rows[i + 1].Cells["Y-Coordinate"].Value = buildingList[i][0x4];
                         style.BackColor = MiniMap.ByteToBuildingColor[buildingList[i][0x0]];

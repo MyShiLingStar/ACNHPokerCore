@@ -101,7 +101,7 @@ namespace Twitch
                             string name = "";
                             string num = "0";
 
-                            if (message.Contains(","))
+                            if (message.Contains(','))
                             {
                                 string[] temp = message.Split(',');
                                 if (temp.Length >= 2)

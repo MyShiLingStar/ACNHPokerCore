@@ -461,7 +461,7 @@ namespace ACNHPokerCore
                     string containItemName = Main.GetNameFromID(Utilities.PrecedingZeros(FillItemData(), 8).Substring(4, 4));
                     if (containItemName.Length > 10)
                     {
-                        Text = containItemName.Substring(0, 8) + "...";
+                        Text = string.Concat(containItemName.AsSpan(0, 8), "...");
                     }
                     else
                     {

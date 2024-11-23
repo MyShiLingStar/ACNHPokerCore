@@ -2664,16 +2664,16 @@ namespace ACNHPokerCore
         public static string GetVillagerRealName(byte Species, byte Variant)
         {
             string internalName = GetVillagerInternalName(Species, Variant);
-            if (RealName.ContainsKey(internalName))
-                return RealName[internalName];
+            if (RealName.TryGetValue(internalName, out string value))
+                return value;
             else
                 return "ERROR";
         }
 
         public static string GetVillagerRealName(string IName)
         {
-            if (RealName.ContainsKey(IName))
-                return RealName[IName];
+            if (RealName.TryGetValue(IName, out string value))
+                return value;
             else
                 return "ERROR";
         }

@@ -1395,8 +1395,8 @@ namespace ACNHPokerCore
                             buildingBottomY = BuildingY;
                         }
 
-                        if (ByteToBuildingColor.ContainsKey(buildingList[i][0]))
-                            BuildingColor = ByteToBuildingColor[buildingList[i][0]];
+                        if (ByteToBuildingColor.TryGetValue(buildingList[i][0], out Color value))
+                            BuildingColor = value;
                         else
                             BuildingColor = Color.Black;
 
@@ -1576,8 +1576,8 @@ namespace ACNHPokerCore
                             buildingBottomY = BuildingY;
                         }
 
-                        if (ByteToBuildingColor.ContainsKey(buildingList[i][0]))
-                            BuildingColor = ByteToBuildingColor[buildingList[i][0]];
+                        if (ByteToBuildingColor.TryGetValue(buildingList[i][0], out Color value))
+                            BuildingColor = value;
                         else
                             BuildingColor = Color.Black;
 
@@ -1870,8 +1870,8 @@ namespace ACNHPokerCore
                 }
             }
 
-            if (ByteToBuildingColor.ContainsKey(BuildingByte))
-                BuildingColor = ByteToBuildingColor[BuildingByte];
+            if (ByteToBuildingColor.TryGetValue(BuildingByte, out Color value))
+                BuildingColor = value;
             else
                 BuildingColor = Color.Black;
 

@@ -407,14 +407,13 @@ namespace ACNHPokerCore
             {
                 var buttonTextArrayIndex = Convert.ToInt32(buttonID);
 
-                switch (languageID)
+                return languageID switch
                 {
-                    case TwoLetterISOLanguageID.de: return BUTTON_TEXTS_GERMAN_DE[buttonTextArrayIndex];
-                    case TwoLetterISOLanguageID.es: return BUTTON_TEXTS_SPANISH_ES[buttonTextArrayIndex];
-                    case TwoLetterISOLanguageID.it: return BUTTON_TEXTS_ITALIAN_IT[buttonTextArrayIndex];
-
-                    default: return BUTTON_TEXTS_ENGLISH_EN[buttonTextArrayIndex];
-                }
+                    TwoLetterISOLanguageID.de => BUTTON_TEXTS_GERMAN_DE[buttonTextArrayIndex],
+                    TwoLetterISOLanguageID.es => BUTTON_TEXTS_SPANISH_ES[buttonTextArrayIndex],
+                    TwoLetterISOLanguageID.it => BUTTON_TEXTS_ITALIAN_IT[buttonTextArrayIndex],
+                    _ => BUTTON_TEXTS_ENGLISH_EN[buttonTextArrayIndex],
+                };
             }
 
             /// <summary>
@@ -636,24 +635,13 @@ namespace ACNHPokerCore
             /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
             private void FlexibleMessageBoxForm_Shown(object sender, EventArgs e)
             {
-                int buttonIndexToFocus;
                 Button buttonToFocus;
-
-                //Set the default button...
-                switch (defaultButton)
+                var buttonIndexToFocus = defaultButton switch
                 {
-                    case MessageBoxDefaultButton.Button1:
-                    default:
-                        buttonIndexToFocus = 1;
-                        break;
-                    case MessageBoxDefaultButton.Button2:
-                        buttonIndexToFocus = 2;
-                        break;
-                    case MessageBoxDefaultButton.Button3:
-                        buttonIndexToFocus = 3;
-                        break;
-                }
-
+                    MessageBoxDefaultButton.Button2 => 2,
+                    MessageBoxDefaultButton.Button3 => 3,
+                    _ => 1,
+                };
                 if (buttonIndexToFocus > visibleButtonsCount) buttonIndexToFocus = visibleButtonsCount;
 
                 if (buttonIndexToFocus == 3)

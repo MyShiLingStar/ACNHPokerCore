@@ -523,7 +523,7 @@ namespace ACNHPokerCore
                 ceiling = false;
             }
 
-            if (size.Contains("x"))
+            if (size.Contains('x'))
             {
                 string[] dimension = size.Replace("_Wall", "").Replace("_Rug", "").Replace("_Pillar", "").Replace("_Ceiling", "").Split("x");
                 string[] front = dimension[0].Split("_");

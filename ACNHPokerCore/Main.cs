@@ -129,6 +129,8 @@ namespace ACNHPokerCore
             ImageCacher.setup(cache);
         }
 
+
+
         private void Main_Load(object sender, EventArgs e)
         {
             hardwareId = libc.hwid.HwId.Generate();
@@ -1388,9 +1390,6 @@ namespace ACNHPokerCore
 					
 									//int freezeCount = Utilities.GetFreezeCount(socket);
 					
-									if (sound)
-										System.Media.SystemSounds.Asterisk.Play();
-					
 									config.AppSettings.Settings["AutoRefill"].Value = "true";
 									autorefill = true;
 									AutoRefill.Checked = true;
@@ -1404,10 +1403,6 @@ namespace ACNHPokerCore
 									Utilities.SendString(socket, Utilities.UnFreeze(Utilities.ItemSlot21Base));
 					
 									//int freezeCount = Utilities.GetFreezeCount(socket);
-					
-					
-									if (sound)
-										System.Media.SystemSounds.Asterisk.Play();
 					
 									config.AppSettings.Settings["AutoRefill"].Value = "false";
 									autorefill = false;
@@ -8243,7 +8238,7 @@ namespace ACNHPokerCore
                     {
                         //slotId++; //works online                    
                         slotId++;
-                        Regex regex = new Regex(" ");         // Split on space.
+                        Regex regex = new(" ");         // Split on space.
                         string[] substrings = regex.Split(line);
                         MyLog.LogEvent("Online Split String", substrings[0] + " " + substrings[1] + " " + substrings[2] + " " + substrings[3]);
 
@@ -8300,7 +8295,7 @@ namespace ACNHPokerCore
                         slotId++;
 
 
-                        Regex regex = new Regex(" ");         // Split on space.
+                        Regex regex = new(" ");         // Split on space.
                         string[] substrings = regex.Split(line);
                         MyLog.LogEvent("Offline Split String", substrings[0] + " " + substrings[1] + " " + substrings[2] + " " + substrings[3]);
                         myItemId = substrings[3].Substring(4); //substrings[3];
@@ -11148,7 +11143,7 @@ namespace ACNHPokerCore
 
                         MapDropperButton.Visible = true;
                         //RegeneratorButton.Visible = true;
-                        //FreezerButton.Visible = true;
+                        FreezerButton.Visible = true;
                         //DodoHelperButton.Visible = true;
                         BulldozerButton.Visible = true;
                         RoadRollerButton.Visible = true;

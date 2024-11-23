@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 
@@ -21,6 +22,9 @@ namespace ACNHPokerCore
             if (pickedImagePath.Equals(string.Empty)) { return null; }
             if (File.Exists(pickedImagePath))
             {
+                if (m_memoryCache == null)
+                    return Image.FromFile(pickedImagePath);
+
                 m_memoryCache.TryGetValue(pickedImagePath, out m_imageObject);
 
                 if (m_imageObject == null)

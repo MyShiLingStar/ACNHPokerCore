@@ -1189,9 +1189,9 @@ namespace ACNHPokerCore
                 {
                     string imageName = FieldRow[1].ToString();
 
-                    if (OverrideDict.ContainsKey(imageName))
+                    if (OverrideDict.TryGetValue(imageName, out string value))
                     {
-                        path = imagePath + OverrideDict[imageName] + "_Remake_0_0.png";
+                        path = imagePath + value + "_Remake_0_0.png";
                         if (File.Exists(path))
                         {
                             return path;
@@ -1266,9 +1266,9 @@ namespace ACNHPokerCore
 
                 string imageName = row[1].ToString();
 
-                if (OverrideDict.ContainsKey(imageName))
+                if (OverrideDict.TryGetValue(imageName, out string value))
                 {
-                    path = imagePath + OverrideDict[imageName] + ".png";
+                    path = imagePath + value + ".png";
                     if (File.Exists(path))
                     {
                         return path;
@@ -1372,9 +1372,9 @@ namespace ACNHPokerCore
                         return;
                     string imageName = Grid.Rows[e.RowIndex].Cells["iName"].Value.ToString();
 
-                    if (OverrideDict.ContainsKey(imageName))
+                    if (OverrideDict.TryGetValue(imageName, out string value))
                     {
-                        path = imagePath + OverrideDict[imageName] + "_Remake_0_0.png";
+                        path = imagePath + value + "_Remake_0_0.png";
                         if (File.Exists(path))
                         {
                             Image img = ImageCacher.GetImage(path);
@@ -1949,8 +1949,8 @@ namespace ACNHPokerCore
                 string[] dataRow = line.Split(new[] { " ; " }, StringSplitOptions.RemoveEmptyEntries);
                 string id = dataRow[0];
 
-                if (Utilities.itemkind.ContainsKey(id))
-                    dataRow = dataRow.ToList().Append(Utilities.itemkind[id]).ToArray();
+                if (Utilities.itemkind.TryGetValue(id, out string value))
+                    dataRow = dataRow.ToList().Append(value).ToArray();
                 else
                     _ = dataRow.ToList().Append("Null").ToArray();
 
@@ -7262,12 +7262,10 @@ namespace ACNHPokerCore
 
                 if (Utilities.itemkind.ContainsKey(id))
                 {
-                    if (!Utilities.CountByKind.ContainsKey(Utilities.itemkind[id]))
+                    if (!Utilities.CountByKind.TryGetValue(Utilities.itemkind[id], out int value))
                         HexTextbox.Text = "00000000";
                     else
                     {
-                        int value = Utilities.CountByKind[Utilities.itemkind[id]];
-
                         if (ItemAttr.hasFenceWithVariation(IntId))  // Fence Variation
                         {
                             string hexValue = Utilities.PrecedingZeros(HexTextbox.Text, 8);

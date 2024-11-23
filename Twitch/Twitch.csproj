@@ -34,9 +34,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AsyncAwaitBestPractices" Version="7.0.0" />
-    <PackageReference Include="System.Drawing.Common" Version="8.0.0-rc.1.23419.5" />
-    <PackageReference Include="TwitchLib.Communication" Version="2.0.0" />
+    <PackageReference Include="AsyncAwaitBestPractices" Version="9.0.0" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.10" />
+    <PackageReference Include="System.Runtime.Caching" Version="8.0.1" />
+    <PackageReference Include="TwitchLib.Communication" Version="2.0.1" />
     <PackageReference Include="TwitchLib.PubSub" Version="4.0.0-preview-f833b1ab1ebef37618dba3fbb1e0a661ff183af5" />
   </ItemGroup>
 

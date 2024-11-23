@@ -205,7 +205,7 @@ namespace Twitch
                 string name = "";
                 string num = "0";
                 string message = Message.Replace('’', '\'').Replace('`', '\'').Trim();
-                if (message.Contains(","))
+                if (message.Contains(','))
                 {
                     string[] temp = message.Split(',');
                     if (temp.Length >= 2)
@@ -276,7 +276,7 @@ namespace Twitch
                     string name = "";
                     string num = "0";
                     string message = e.Message.Replace('’', '\'').Replace('`', '\'').Trim();
-                    if (message.Contains(","))
+                    if (message.Contains(','))
                     {
                         string[] temp = message.Split(',');
                         if (temp.Length >= 2)
@@ -323,7 +323,7 @@ namespace Twitch
             string colorStr = "";
 
 
-            if (numStr.Contains("[") && numStr.Contains("]"))                       // ,[2]     ,[red]
+            if (numStr.Contains('[') && numStr.Contains(']'))                       // ,[2]     ,[red]
             {
                 string tempNum = numStr.Replace("[", "").Replace("]", "");          // 2 red
                 try
@@ -379,8 +379,8 @@ namespace Twitch
                 else
                 {
                     id = ItemDict[name.ToLower()];
-                    if (ColorDict.ContainsKey(id))
-                        color = ColorDict[id];
+                    if (ColorDict.TryGetValue(id, out string value))
+                        color = value;
                 }
             }
             else
@@ -459,11 +459,11 @@ namespace Twitch
                     }
                     else
                     {
-                        if (name.Contains("[") && name.Contains("]"))
+                        if (name.Contains('[') && name.Contains(']'))
                             await MyTwitchBot.SendMessage($"Sorry, I am unable to find an item with the name \"{name}\". Did you forget the comma \",\" before the Brackets \"[ ]\"?");
                         else if (name.Contains("poster") || name.Contains("photo"))
                             await MyTwitchBot.SendMessage($"Sorry, I am unable to find an item with the name \"{name}\". Did you forget the \"\'s \" after the name?");
-                        else if (name.Contains("0") || name.Contains("1") || name.Contains("2") || name.Contains("3") || name.Contains("4") || name.Contains("5") || name.Contains("6") || name.Contains("7") || name.Contains("8") || name.Contains("9"))
+                        else if (name.Contains('0') || name.Contains('1') || name.Contains('2') || name.Contains('3') || name.Contains('4') || name.Contains('5') || name.Contains('6') || name.Contains('7') || name.Contains('8') || name.Contains('9'))
                             await MyTwitchBot.SendMessage($"Sorry, I am unable to find an item with the name \"{name}\". Did you forget the comma \",\" before the number?");
                         else
                             await MyTwitchBot.SendMessage($"Sorry, I am unable to find an item with the name \"{name}\". Are you sure you are using the correct \"English\" name?");
@@ -484,8 +484,8 @@ namespace Twitch
 
                 if (color != null && !color.Equals(string.Empty))
                 {
-                    if (ReverseDict.ContainsKey(id))
-                        await MyTwitchBot.SendMessage($"{displayName}, your order of \"{ReverseDict[id]}\" ({color}) have been received!");
+                    if (ReverseDict.TryGetValue(id, out string ColorValue))
+                        await MyTwitchBot.SendMessage($"{displayName}, your order of \"{ColorValue}\" ({color}) have been received!");
                     else
                         await MyTwitchBot.SendMessage($"{displayName}, your order have been received!");
                 }
@@ -501,14 +501,14 @@ namespace Twitch
                 }
                 else
                 {
-                    if (ReverseDict.ContainsKey(id))
-                        await MyTwitchBot.SendMessage($"{displayName}, your order of \"{ReverseDict[id]}\" have been received!");
+                    if (ReverseDict.TryGetValue(id, out string ReverseValue))
+                        await MyTwitchBot.SendMessage($"{displayName}, your order of \"{ReverseValue}\" have been received!");
                     else
                         await MyTwitchBot.SendMessage($"{displayName}, your order have been received!");
                 }
 
-                if (ReverseDict.ContainsKey(id))
-                    WriteLog($"{displayName} | {ReverseDict[id]} | {id} | {hexValue} | {color}", true);
+                if (ReverseDict.TryGetValue(id, out string value))
+                    WriteLog($"{displayName} | {value} | {id} | {hexValue} | {color}", true);
                 else
                     WriteLog($"{displayName} | {id} | {hexValue} | {color}", true);
 
@@ -554,13 +554,13 @@ namespace Twitch
 
             if (recipeId != null && !recipeId.Equals(String.Empty))
             {
-                if (RecipeDict.ContainsKey(recipeId))
-                    await MyTwitchBot.SendMessage($"{displayName}, your order of \"{RecipeDict[recipeId]} recipe\" have been received!");
+                if (RecipeDict.TryGetValue(recipeId, out string value))
+                    await MyTwitchBot.SendMessage($"{displayName}, your order of \"{value} recipe\" have been received!");
                 else
                     await MyTwitchBot.SendMessage($"{displayName}, your order of recipe have been received!");
 
-                if (RecipeDict.ContainsKey(recipeId))
-                    WriteLog($"{displayName} | {RecipeDict[recipeId]} recipe | {recipeId} ", true);
+                if (RecipeDict.TryGetValue(recipeId, out string LogValue))
+                    WriteLog($"{displayName} | {LogValue} recipe | {recipeId} ", true);
                 else
                     WriteLog($"{displayName} | {recipeId}", true);
 
@@ -610,7 +610,7 @@ namespace Twitch
             {
                 char c = valueWithoutWildcards[i];
                 if (c == '*' || c == '%' || c == '[' || c == ']')
-                    sb.Append("[").Append(c).Append("]");
+                    sb.Append('[').Append(c).Append(']');
                 else if (c == '\'')
                     sb.Append("''");
                 else
