@@ -109,7 +109,7 @@ namespace ACNHPokerCore
         public static UInt32 VisitorList = VisitorNameAddress - 0x118;
         public static UInt32 VisitorListSize = 0x1C;
 
-        public static UInt32 TextSpeedAddress = 0x0BD43084; //
+        public static UInt32 TextSpeedAddress = 0x0BF43084; //0x0BD43084;
 
         public static UInt32 ChineseLanguageOffset = 0x7000; //
 
@@ -209,64 +209,70 @@ namespace ACNHPokerCore
         public static readonly string LongDiveTime = "FFFFFFFF";
         public static readonly string FastSwimSpeed = "00000040";
         public static readonly string FastDiveSpeed = "00000040";
+
         // ---- Main
-        public static UInt32 freezeTimeAddress = 0x00328BD0; //0x00328BB0;
+        public static UInt32 freezeTimeAddress = 0x00328BB0; //0x00328BD0; //0x00328BB0;
         public static readonly string freezeTimeValue = "D503201F";
         public static readonly string unfreezeTimeValue = "F9203260";
 
-        public static UInt32 wSpeedAddress = 0x016127A0; //0x01612740; //0x01612720;
+        //--------------------------------------------------------------------------------------------
+        // Replaced by max walk speed
+        public static UInt32 wSpeedAddress = 0x01612780; //0x016127A0; //0x01612740; //0x01612720;
         public static readonly string wSpeedX1 = "BD578661";
         public static readonly string wSpeedX2 = "1E201001";
         public static readonly string wSpeedX3 = "1E211001";
         public static readonly string wSpeedX4 = "1E221001";
+        //--------------------------------------------------------------------------------------------
 
-        public static UInt32 CollisionAddress = 0x0155FDC0; //0x0155FD60; //0x0155FD40;
+        public static UInt32 CollisionAddress = 0x0155FDA0; //0x0155FDC0; //0x0155FD60; //0x0155FD40;
         public static readonly string CollisionDisable = "12800014";
         public static readonly string CollisionEnable = "B95BA014";
 
-        public static UInt32 ActorCollisionAddress = 0x0123BBDC;
+        public static UInt32 ActorCollisionAddress = 0x0123BBBC; //0x0123BBDC;
         public static readonly string ActorCollisionDisable = "1E3E1000";
         public static readonly string ActorCollisionEnable = "1E2E1000";
 
-        public static UInt32 ParticleScaleAddress = 0x026311B8;
-        public static readonly string ParticleScaleNormal = "1E2E1001";
-        public static readonly string ParticleScaleMAX = "1E21D001";
-
-        public static UInt32 PetalsAddress = 0x00332814;
-        public static UInt32 PetalsIntensityAddress = PetalsAddress + 0x20;
-        public static readonly string PetalsDisable = "71000D1F";
-        public static readonly string PetalsEnable = "7100011F";
-        public static readonly string PetalsIntensityNormal = "1E2E1001";
-        public static readonly string PetalsIntensityMAX = "1E27F001";
-
-        public static UInt32 LeavesAddress = 0x00332C60;
-        public static readonly string LeavesDisable = "1A9F17E9";
-        public static readonly string LeavesEnable = "1A9F07E9";
-
-        public static UInt32 ShopAddress = 0x01B06370;
-        public static readonly string ShopNormal = "2A1F03E0";
-        public static readonly string ShopOpen = "52800020";
-
-        public static UInt32 BGMAddress = 0x01A02148;
-        public static readonly string BGMEnable = "1E2E1001";
-        public static readonly string BGMDisable = "1E3E1001";
-
-        public static UInt32 EatAllAddress = 0x01F08304;
-        public static UInt32 EatAll2Address = 0x015652F0;
-
-        public static readonly string EatAllDisable = "97C2FB0F";
-        public static readonly string EatAll2Disable = "B9000268";
-        public static readonly string EatAllEnable = "52800020";
-        public static readonly string EatAll2Enable = "D503201F";
-
-        public static UInt32 aSpeedAddress = 0x043BC3C0; //
+        public static UInt32 aSpeedAddress = 0x043BC3C0; //0x043BC3C0; 
         public static readonly string aSpeedX1 = "3F800000";
         public static readonly string aSpeedX2 = "40000000";
         public static readonly string aSpeedX5 = "40A00000";
         public static readonly string aSpeedX50 = "42480000";
         public static readonly string aSpeedX01 = "3DCCCCCD";
 
-        public static UInt32 MagicAddress = 0x008AFED8; //
+
+
+        public static UInt32 ParticleScaleAddress = 0x02631198; //0x026311B8; //
+        public static readonly string ParticleScaleNormal = "1E2E1001";
+        public static readonly string ParticleScaleMAX = "1E21D001";
+
+        public static UInt32 PetalsAddress = 0x003327F4; //0x00332814; //
+        public static UInt32 PetalsIntensityAddress = PetalsAddress + 0x20; //
+        public static readonly string PetalsDisable = "71000D1F";
+        public static readonly string PetalsEnable = "7100011F";
+        public static readonly string PetalsIntensityNormal = "1E2E1001";
+        public static readonly string PetalsIntensityMAX = "1E27F001";
+
+        public static UInt32 LeavesAddress = 0x00332C40; //0x00332C60;
+        public static readonly string LeavesDisable = "1A9F17E9";
+        public static readonly string LeavesEnable = "1A9F07E9";
+
+        public static UInt32 ShopAddress = 0x01B06350; //0x01B06370;
+        public static readonly string ShopNormal = "2A1F03E0";
+        public static readonly string ShopOpen = "52800020";
+
+        public static UInt32 BGMAddress = 0x01A02128; //0x01A02148;
+        public static readonly string BGMEnable = "1E2E1001";
+        public static readonly string BGMDisable = "1E3E1001";
+
+        public static UInt32 EatAllAddress = 0x01F082E4; //0x01F08304; //
+        public static UInt32 EatAll2Address = 0x015652D0; //0x015652F0; //
+
+        public static readonly string EatAllDisable = "97C2FB0F";
+        public static readonly string EatAll2Disable = "B9000268";
+        public static readonly string EatAllEnable = "52800020";
+        public static readonly string EatAll2Enable = "D503201F";
+
+        public static UInt32 MagicAddress = 0x008AFEB8; //0x008AFED8; //
         public static readonly string MagicOn = "79401A60";
         public static readonly string MagicOff = "52810840";
 

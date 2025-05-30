@@ -68,7 +68,9 @@
 	* Added Hotkeys and MultiSelect when operating Bulk Selector.
 	* Fixed a crash related to some "hacky"	code in Bulldozer.
 	* Update for Game version "Ver. 2.0.6"
-	
+* R24
+	* Update for Game version "Ver. 2.0.7"
+
 ## Ely's Changes:   
 	* Added function to export cheat sheet (only first 40 Items cheats)to the inventory. (Beta)
     * Added function to convert the inventory to cheat sheet txt.  

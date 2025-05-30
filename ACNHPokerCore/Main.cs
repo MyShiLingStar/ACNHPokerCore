@@ -37,7 +37,7 @@ namespace ACNHPokerCore
 
         private static Socket socket;
         private static USBBot usb;
-        private readonly string version = "ACNHPokerCore R23 for v2.0.6";
+        private readonly string version = "ACNHPokerCore R24 for v2.0.7";
         private string hardwareId;
 
         private Panel currentPanel;
@@ -10423,24 +10423,30 @@ namespace ACNHPokerCore
                 Utilities.PokeMainAddress(socket, usb, Utilities.MagicAddress.ToString("X"), Utilities.MagicOn);
                 Utilities.PokeMainAddress(socket, usb, (Utilities.MagicAddress + 0x14).ToString("X"), Utilities.MagicOn);
 
-                //Utilities.PokeMainAddress(socket, usb, Utilities.ShopAddress.ToString("X"), Utilities.ShopOpen);
                 Utilities.PokeMainAddress(socket, usb, Utilities.PetalsAddress.ToString("X"), Utilities.PetalsEnable);
                 Utilities.PokeMainAddress(socket, usb, Utilities.PetalsIntensityAddress.ToString("X"), Utilities.PetalsIntensityMAX);
                 //Utilities.PokeMainAddress(socket, usb, Utilities.ParticleScaleAddress.ToString("X"), Utilities.ParticleScaleMAX);
                 Utilities.PokeMainAddress(socket, usb, Utilities.EatAllAddress.ToString("X"), Utilities.EatAllEnable);
                 Utilities.PokeMainAddress(socket, usb, Utilities.EatAll2Address.ToString("X"), Utilities.EatAll2Enable);
+
+                //Utilities.PokeMainAddress(socket, usb, Utilities.LeavesAddress.ToString("X"), Utilities.LeavesEnable);
+                Utilities.PokeMainAddress(socket, usb, Utilities.ShopAddress.ToString("X"), Utilities.ShopOpen);
+                //Utilities.PokeMainAddress(socket, usb, Utilities.BGMAddress.ToString("X"), Utilities.BGMDisable);
             }
             else
             {
                 Utilities.PokeMainAddress(socket, usb, Utilities.MagicAddress.ToString("X"), Utilities.MagicOff);
                 Utilities.PokeMainAddress(socket, usb, (Utilities.MagicAddress + 0x14).ToString("X"), Utilities.MagicOff);
 
-                //Utilities.PokeMainAddress(socket, usb, Utilities.ShopAddress.ToString("X"), Utilities.ShopNormal);
                 Utilities.PokeMainAddress(socket, usb, Utilities.PetalsAddress.ToString("X"), Utilities.PetalsDisable);
                 Utilities.PokeMainAddress(socket, usb, Utilities.PetalsIntensityAddress.ToString("X"), Utilities.PetalsIntensityNormal);
                 //Utilities.PokeMainAddress(socket, usb, Utilities.ParticleScaleAddress.ToString("X"), Utilities.ParticleScaleNormal);
                 Utilities.PokeMainAddress(socket, usb, Utilities.EatAllAddress.ToString("X"), Utilities.EatAllDisable);
                 Utilities.PokeMainAddress(socket, usb, Utilities.EatAll2Address.ToString("X"), Utilities.EatAll2Disable);
+
+                //Utilities.PokeMainAddress(socket, usb, Utilities.LeavesAddress.ToString("X"), Utilities.LeavesDisable);
+                Utilities.PokeMainAddress(socket, usb, Utilities.ShopAddress.ToString("X"), Utilities.ShopNormal);
+                //Utilities.PokeMainAddress(socket, usb, Utilities.BGMAddress.ToString("X"), Utilities.BGMEnable);
             }
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
