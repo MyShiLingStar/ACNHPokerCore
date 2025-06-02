@@ -24,6 +24,8 @@ namespace ACNHPokerCore
 
         public event CloseHandler closeForm;
 
+        public bool isChinese = false;
+
         public Freezer(Socket S, bool Sound, bool Debugging)
         {
             s = S;
@@ -37,6 +39,8 @@ namespace ACNHPokerCore
                 int freezeCount = Utilities.GetFreezeCount(s);
                 updateFreezeCountLabel(freezeCount);
             }
+
+            isChinese = Utilities.IsChinese(s);
 
             FinMsg.SelectionAlignment = HorizontalAlignment.Center;
 
@@ -207,7 +211,10 @@ namespace ACNHPokerCore
 
         private void EnableTextBtn_Click(object sender, EventArgs e)
         {
-            Utilities.SendString(s, Utilities.Freeze(Utilities.TextSpeedAddress, new byte[] { 3 }));
+            if (isChinese)
+                Utilities.SendString(s, Utilities.Freeze(Utilities.TextSpeedAddress + Utilities.ChineseLanguageOffset, new byte[] { 3 }));
+            else
+                Utilities.SendString(s, Utilities.Freeze(Utilities.TextSpeedAddress, new byte[] { 3 }));
 
             int freezeCount = Utilities.GetFreezeCount(s);
 
@@ -224,7 +231,10 @@ namespace ACNHPokerCore
 
         private void DisableTextBtn_Click(object sender, EventArgs e)
         {
-            Utilities.SendString(s, Utilities.UnFreeze(Utilities.TextSpeedAddress));
+            if (isChinese)
+                Utilities.SendString(s, Utilities.UnFreeze(Utilities.TextSpeedAddress + Utilities.ChineseLanguageOffset));
+            else
+                Utilities.SendString(s, Utilities.UnFreeze(Utilities.TextSpeedAddress));
 
             int freezeCount = Utilities.GetFreezeCount(s);
 

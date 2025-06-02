@@ -71,9 +71,10 @@
 * R24
 	* Update for Game version "Ver. 2.0.7"
 
-## Ely's Changes:   
+## Ely's Changes:
+
 	* Added function to export cheat sheet (only first 40 Items cheats)to the inventory. (Beta)
-    * Added function to convert the inventory to cheat sheet txt.  
+    * Added function to convert the inventory to cheat sheet txt.
     * Added Auto-Refill Function and Switch to auto refill your inventory from the last nhi file you loaded. 
 	* Added Incoming Visitor logging
 	* Added Incoming Visitor captures  

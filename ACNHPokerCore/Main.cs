@@ -11149,7 +11149,7 @@ namespace ACNHPokerCore
 
                         MapDropperButton.Visible = true;
                         //RegeneratorButton.Visible = true;
-                        FreezerButton.Visible = true;
+                        //FreezerButton.Visible = true;
                         //DodoHelperButton.Visible = true;
                         BulldozerButton.Visible = true;
                         RoadRollerButton.Visible = true;

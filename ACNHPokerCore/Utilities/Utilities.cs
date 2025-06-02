@@ -109,7 +109,7 @@ namespace ACNHPokerCore
         public static UInt32 VisitorList = VisitorNameAddress - 0x118;
         public static UInt32 VisitorListSize = 0x1C;
 
-        public static UInt32 TextSpeedAddress = 0x0BF43084; //0x0BD43084;
+        public static UInt32 TextSpeedAddress = 0x0BD43084;
 
         public static UInt32 ChineseLanguageOffset = 0x7000; //
 
