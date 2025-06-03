@@ -320,6 +320,8 @@ namespace ACNHPokerCore
                 return OverworldState.Loading;
             else if ($"{value:X8}".EndsWith("5B08"))
                 return OverworldState.Loading;
+            else if ($"{value:X8}".EndsWith("6174"))
+                return OverworldState.Loading;
             return value switch
             {
                 0x00000000 => OverworldState.Null,

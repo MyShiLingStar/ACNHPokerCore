@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace ACNHPokerCore
 {
@@ -718,8 +719,21 @@ namespace ACNHPokerCore
             /// <summary>
             /// The text that is been used for the heading.
             /// </summary>
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+
+            #endregion
+
+            #region Properties (only used for binding)
+
+            /// <summary>
+            /// The text that is been used for the heading.
+            /// </summary>
             public string CaptionText { get; set; }
 
+            /// <summary>
+            /// The text that is been used in the FlexibleMessageBoxForm.
+            /// </summary>
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
             /// <summary>
             /// The text that is been used in the FlexibleMessageBoxForm.
             /// </summary>

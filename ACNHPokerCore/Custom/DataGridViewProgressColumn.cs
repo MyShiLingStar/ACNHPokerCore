@@ -12,6 +12,7 @@ namespace ACNHPokerCore
             CellTemplate = new DataGridViewProgressCell();
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public sealed override DataGridViewCell CellTemplate
         {
             get { return base.CellTemplate; }

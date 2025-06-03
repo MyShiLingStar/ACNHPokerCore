@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net9.0-windows10.0.17763.0</TargetFramework>
 	<RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>NewLeaf.ico</ApplicationIcon>
@@ -43,6 +43,10 @@
     <Compile Remove="bin\**" />
     <EmbeddedResource Remove="bin\**" />
     <None Remove="bin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Map\map.Designer.cs~RF7f8b1f.TMP" />
   </ItemGroup>
 
   <ItemGroup>

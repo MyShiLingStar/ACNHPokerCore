@@ -407,7 +407,423 @@ namespace ACNHPokerCore
             VillagerAutoCompleteMenu.Colors = (AutocompleteMenuNS.Colors)resources.GetObject("VillagerAutoCompleteMenu.Colors");
             VillagerAutoCompleteMenu.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             VillagerAutoCompleteMenu.ImageList = null;
-            VillagerAutoCompleteMenu.Items = new string[] { "Ace : brd09", "Admiral : brd06", "Agent S : squ05", "Agnes : pig17", "Al : gor08", "Alfonso : crd00", "Alice : kal01", "Alli : crd01", "Amelia : pbr01", "Anabelle : ant03", "Anchovy : brd02", "Angus : bul00", "Anicotti : mus10", "Ankha : cat19", "Annalisa : ant08", "Annalise : hrs09", "Antonio : ant01", "Apollo : pbr00", "Apple : ham01", "Astrid : kgr05", "Audie : wol12", "Aurora : pgn00", "Ava : chn05", "Avery : pbr05", "Axel : elp06", "Azalea : rhn05", "Baabara : shp01", "Bam : der01", "Bangle : tig03", "Barold : cbr16", "Bea : dog10", "Beardo : bea13", "Beau : der07", "Becky : chn09", "Bella : mus02", "Benedict : chn01", "Benjamin : dog16", "Bertha : hip03", "Bettina : mus15", "Bianca : tig06", "Biff : hip04", "Big Top : elp02", "Bill : duk00", "Billy : goa02", "Biskit : dog03", "Bitty : hip05", "Blaire : squ01", "Blanche : ost08", "Bluebear : cbr00", "Bob : cat00", "Bonbon : rbt17", "Bones : dog04", "Boomer : pgn10", "Boone : gor02", "Boots : crd02", "Boris : pig09", "Boyd : gor05", "Bree : mus03", "Broccolo : mus12", "Broffina : chn12", "Bruce : der03", "Bubbles : hip02", "Buck : hrs00", "Bud : lon00", "Bunnie : rbt00", "Butch : dog01", "Buzz : pbr03", "Cally : squ11", "Camofrog : flg03", "Canberra : kal08", "Candi : mus08", "Carmen : rbt16", "Caroline : squ06", "Carrie : kgr02", "Cashmere : shp04", "Celia : pbr09", "Cephalobot : ocp04", "Cesar : gor00", "Chabwick : pgn07", "Chadder : mus18", "Chai : elp11", "Charlise : bea12", "Chelsea : der10", "Cheri : cbr10", "Cherry : dog17", "Chester : cbr15", "Chevre : goa00", "Chief : wol00", "Chops : pig14", "Chow : bea03", "Chrissy : rbt13", "Claude : rbt11", "Claudia : tig05", "Clay : ham05", "Cleo : hrs07", "Clyde : hrs10", "Coach : bul07", "Cobb : pig08", "Coco : rbt02", "Cole : rbt18", "Colton : hrs11", "Cookie : dog08", "Cousteau : flg10", "Cranston : ost06", "Croque : flg17", "Cube : pgn02", "Curlos : shp08", "Curly : pig00", "Curt : bea02", "Cyd : elp12", "Cyrano : ant00", "Daisy : dog07", "Deena : duk04", "Deirdre : der04", "Del : crd04", "Deli : mnk08", "Derwin : duk08", "Diana : der08", "Diva : flg18", "Dizzy : elp01", "Dobie : wol04", "Doc : rbt10", "Dom : shp15", "Dora : mus00", "Dotty : rbt01", "Drago : crd08", "Drake : duk09", "Drift : flg04", "Ed : hrs06", "Egbert : chn02", "Elise : mnk05", "Ellie : elp07", "Elmer : hrs03", "Eloise : elp03", "Elvis : lon01", "Erik : der09", "Étoile : shp14", "Eugene : kal10", "Eunice : shp02", "Faith : kal07", "Fang : wol06", "Fauna : der00", "Felicity : cat17", "Filbert : squ02", "Flip : mnk06", "Flo : pgn13", "Flora : ost09", "Flurry : ham06", "Francine : rbt12", "Frank : pbr06", "Freckles : duk07", "Frett : dog11", "Freya : wol05", "Friga : pgn04", "Frita : shp11", "Frobert : flg02", "Fuchsia : der06", "Gabi : rbt05", "Gala : pig13", "Gaston : rbt04", "Gayle : crd07", "Genji : rbt08", "Gigi : flg16", "Gladys : ost01", "Gloria : duk15", "Goldie : dog00", "Gonzo : kal04", "Goose : chn00", "Graham : ham02", "Greta : mus16", "Grizzly : bea09", "Groucho : bea06", "Gruff : goa04", "Gwen : pgn05", "Hamlet : ham00", "Hamphrey : ham07", "Hans : gor10", "Harry : hip08", "Hazel : squ18", "Henry : flg19", "Hippeux : hip09", "Hopkins : rbt14", "Hopper : pgn03", "Hornsby : rhn04", "Huck : flg11", "Hugh : pig03", "Iggly : pgn11", "Ike : bea11", "Ione : squ21", "Jacob : brd11", "Jacques : brd16", "Jambette : flg13", "Jay : brd00", "Jeremiah : flg07", "Jitters : brd04", "Joey : duk01", "Judy : cbr19", "Julia : ost05", "Julian : hrs13", "June : cbr13", "Kabuki : cat09", "Katt : cat21", "Keaton : pbr08", "Ken : chn13", "Ketchup : duk13", "Kevin : pig15", "Kid Cat : cat10", "Kidd : goa07", "Kiki : cat04", "Kitt : kgr00", "Kitty : cat14", "Klaus : bea14", "Knox : chn11", "Kody : cbr04", "Kyle : wol10", "Leonardo : tig04", "Leopold : lon04", "Lily : flg00", "Limberg : mus01", "Lionel : lon08", "Lobo : wol01", "Lolly : cat18", "Lopez : der05", "Louie : gor04", "Lucha : brd15", "Lucky : dog02", "Lucy : pig04", "Lyman : kal09", "Mac : dog14", "Maddie : dog09", "Maelle : duk03", "Maggie : pig10", "Mallary : duk06", "Maple : cbr01", "Marcel : dog15", "Marcie : kgr10", "Margie : elp04", "Marina : ocp01", "Marlo : ham09", "Marshal : squ17", "Marty : cbr18", "Mathilda : kgr01", "Megan : bea15", "Melba : kal02", "Merengue : rhn07", "Merry : cat16", "Midge : brd08", "Mint : squ09", "Mira : rbt19", "Miranda : duk12", "Mitzi : cat01", "Moe : cat08", "Molly : duk16", "Monique : cat11", "Monty : mnk04", "Moose : mus14", "Mott : lon06", "Muffy : shp12", "Murphy : cbr07", "Nan : goa01", "Nana : mnk01", "Naomi : cow07", "Nate : bea05", "Nibbles : squ04", "Norma : cow06", "O'Hare : rbt15", "Octavian : ocp00", "Olaf : ant09", "Olive : cbr09", "Olivia : cat03", "Opal : elp00", "Ozzie : kal05", "Pancetti : pig16", "Pango : ant02", "Paolo : elp05", "Papi : hrs12", "Pashmina : goa08", "Pate : duk02", "Patty : cow00", "Paula : bea10", "Peaches : hrs08", "Peanut : squ00", "Pecan : squ03", "Peck : brd17", "Peewee : gor01", "Peggy : pig11", "Pekoe : cbr14", "Penelope : mus17", "Petri : mus19", "Phil : ost07", "Phoebe : ost10", "Pierce : pbr02", "Pietro : shp13", "Pinky : bea01", "Piper : brd05", "Pippy : rbt06", "Plucky : chn10", "Pompom : duk05", "Poncho : cbr02", "Poppy : squ15", "Portia : dog05", "Prince : flg12", "Puck : pgn06", "Puddles : flg06", "Pudge : cbr03", "Punchy : cat06", "Purrl : cat07", "Queenie : ost00", "Quillson : duk17", "Quinn : pbr10", "Raddle : flg15", "Rasher : pig02", "Raymond : cat23", "Renée : rhn08", "Reneigh : hrs16", "Rex : lon02", "Rhonda : rhn01", "Ribbot : flg01", "Ricky : squ10", "Rilla : gor11", "Rio : ost04", "Rizzo : mus09", "Roald : pgn01", "Robin : brd01", "Rocco : hip00", "Rocket : gor09", "Rod : mus05", "Rodeo : bul01", "Rodney : ham03", "Rolf : tig00", "Rooney : kgr09", "Rory : lon07", "Roscoe : hrs04", "Rosie : cat02", "Roswell : crd05", "Rowan : tig01", "Ruby : rbt09", "Rudy : cat20", "Sally : squ07", "Samson : mus04", "Sandy : ost02", "Sasha : rbt21", "Savannah : hrs02", "Scoot : duk10", "Shari : mnk07", "Sheldon : squ16", "Shep : dog18", "Sherb : goa09", "Shino : der11", "Simon : mnk02", "Skye : wol09", "Sly : crd06", "Snake : rbt03", "Snooty : ant06", "Soleil : ham04", "Sparro : brd18", "Spike : rhn02", "Spork : pig05", "Sprinkle : pgn14", "Sprocket : ost03", "Static : squ08", "Stella : shp03", "Sterling : pbr07", "Stinky : cat13", "Stitches : cbr05", "Stu : bul03", "Sydney : kal03", "Sylvana : squ14", "Sylvia : kgr06", "T-Bone : bul05", "Tabby : cat12", "Tad : flg09", "Tammi : mnk03", "Tammy : cbr17", "Tangy : cat05", "Tank : rhn00", "Tasha : squ13", "Teddy : bea00", "Tex : pgn12", "Tia : elp10", "Tiansheng : mnk09", "Tiffany : rbt07", "Timbra : shp10", "Tipper : cow01", "Toby : rbt20", "Tom : cat15", "Truffles : pig01", "Tucker : elp09", "Tutu : bea07", "Twiggy : brd03", "Tybalt : tig02", "Ursala : bea08", "Velma : goa06", "Vesta : shp00", "Vic : bul08", "Victoria : hrs01", "Violet : gor07", "Vivian : wol08", "Vladimir : cbr06", "Wade : pgn09", "Walker : dog06", "Walt : kgr08", "Wart Jr. : flg05", "Weber : duk11", "Wendy : shp09", "Whitney : wol03", "Willow : shp07", "Winnie : hrs05", "Wolfgang : wol02", "Yuka : kal00", "Zell : der02", "Zoe : ant05", "Zucker : ocp02", "Empty : non00" };
+            VillagerAutoCompleteMenu.Items = new string[]
+    {
+    "Ace : brd09",
+    "Admiral : brd06",
+    "Agent S : squ05",
+    "Agnes : pig17",
+    "Al : gor08",
+    "Alfonso : crd00",
+    "Alice : kal01",
+    "Alli : crd01",
+    "Amelia : pbr01",
+    "Anabelle : ant03",
+    "Anchovy : brd02",
+    "Angus : bul00",
+    "Anicotti : mus10",
+    "Ankha : cat19",
+    "Annalisa : ant08",
+    "Annalise : hrs09",
+    "Antonio : ant01",
+    "Apollo : pbr00",
+    "Apple : ham01",
+    "Astrid : kgr05",
+    "Audie : wol12",
+    "Aurora : pgn00",
+    "Ava : chn05",
+    "Avery : pbr05",
+    "Axel : elp06",
+    "Azalea : rhn05",
+    "Baabara : shp01",
+    "Bam : der01",
+    "Bangle : tig03",
+    "Barold : cbr16",
+    "Bea : dog10",
+    "Beardo : bea13",
+    "Beau : der07",
+    "Becky : chn09",
+    "Bella : mus02",
+    "Benedict : chn01",
+    "Benjamin : dog16",
+    "Bertha : hip03",
+    "Bettina : mus15",
+    "Bianca : tig06",
+    "Biff : hip04",
+    "Big Top : elp02",
+    "Bill : duk00",
+    "Billy : goa02",
+    "Biskit : dog03",
+    "Bitty : hip05",
+    "Blaire : squ01",
+    "Blanche : ost08",
+    "Bluebear : cbr00",
+    "Bob : cat00",
+    "Bonbon : rbt17",
+    "Bones : dog04",
+    "Boomer : pgn10",
+    "Boone : gor02",
+    "Boots : crd02",
+    "Boris : pig09",
+    "Boyd : gor05",
+    "Bree : mus03",
+    "Broccolo : mus12",
+    "Broffina : chn12",
+    "Bruce : der03",
+    "Bubbles : hip02",
+    "Buck : hrs00",
+    "Bud : lon00",
+    "Bunnie : rbt00",
+    "Butch : dog01",
+    "Buzz : pbr03",
+    "Cally : squ11",
+    "Camofrog : flg03",
+    "Canberra : kal08",
+    "Candi : mus08",
+    "Carmen : rbt16",
+    "Caroline : squ06",
+    "Carrie : kgr02",
+    "Cashmere : shp04",
+    "Celia : pbr09",
+    "Cephalobot : ocp04",
+    "Cesar : gor00",
+    "Chabwick : pgn07",
+    "Chadder : mus18",
+    "Chai : elp11",
+    "Charlise : bea12",
+    "Chelsea : der10",
+    "Cheri : cbr10",
+    "Cherry : dog17",
+    "Chester : cbr15",
+    "Chevre : goa00",
+    "Chief : wol00",
+    "Chops : pig14",
+    "Chow : bea03",
+    "Chrissy : rbt13",
+    "Claude : rbt11",
+    "Claudia : tig05",
+    "Clay : ham05",
+    "Cleo : hrs07",
+    "Clyde : hrs10",
+    "Coach : bul07",
+    "Cobb : pig08",
+    "Coco : rbt02",
+    "Cole : rbt18",
+    "Colton : hrs11",
+    "Cookie : dog08",
+    "Cousteau : flg10",
+    "Cranston : ost06",
+    "Croque : flg17",
+    "Cube : pgn02",
+    "Curlos : shp08",
+    "Curly : pig00",
+    "Curt : bea02",
+    "Cyd : elp12",
+    "Cyrano : ant00",
+    "Daisy : dog07",
+    "Deena : duk04",
+    "Deirdre : der04",
+    "Del : crd04",
+    "Deli : mnk08",
+    "Derwin : duk08",
+    "Diana : der08",
+    "Diva : flg18",
+    "Dizzy : elp01",
+    "Dobie : wol04",
+    "Doc : rbt10",
+    "Dom : shp15",
+    "Dora : mus00",
+    "Dotty : rbt01",
+    "Drago : crd08",
+    "Drake : duk09",
+    "Drift : flg04",
+    "Ed : hrs06",
+    "Egbert : chn02",
+    "Elise : mnk05",
+    "Ellie : elp07",
+    "Elmer : hrs03",
+    "Eloise : elp03",
+    "Elvis : lon01",
+    "Erik : der09",
+    "Étoile : shp14",
+    "Eugene : kal10",
+    "Eunice : shp02",
+    "Faith : kal07",
+    "Fang : wol06",
+    "Fauna : der00",
+    "Felicity : cat17",
+    "Filbert : squ02",
+    "Flip : mnk06",
+    "Flo : pgn13",
+    "Flora : ost09",
+    "Flurry : ham06",
+    "Francine : rbt12",
+    "Frank : pbr06",
+    "Freckles : duk07",
+    "Frett : dog11",
+    "Freya : wol05",
+    "Friga : pgn04",
+    "Frita : shp11",
+    "Frobert : flg02",
+    "Fuchsia : der06",
+    "Gabi : rbt05",
+    "Gala : pig13",
+    "Gaston : rbt04",
+    "Gayle : crd07",
+    "Genji : rbt08",
+    "Gigi : flg16",
+    "Gladys : ost01",
+    "Gloria : duk15",
+    "Goldie : dog00",
+    "Gonzo : kal04",
+    "Goose : chn00",
+    "Graham : ham02",
+    "Greta : mus16",
+    "Grizzly : bea09",
+    "Groucho : bea06",
+    "Gruff : goa04",
+    "Gwen : pgn05",
+    "Hamlet : ham00",
+    "Hamphrey : ham07",
+    "Hans : gor10",
+    "Harry : hip08",
+    "Hazel : squ18",
+    "Henry : flg19",
+    "Hippeux : hip09",
+    "Hopkins : rbt14",
+    "Hopper : pgn03",
+    "Hornsby : rhn04",
+    "Huck : flg11",
+    "Hugh : pig03",
+    "Iggly : pgn11",
+    "Ike : bea11",
+    "Ione : squ21",
+    "Jacob : brd11",
+    "Jacques : brd16",
+    "Jambette : flg13",
+    "Jay : brd00",
+    "Jeremiah : flg07",
+    "Jitters : brd04",
+    "Joey : duk01",
+    "Judy : cbr19",
+    "Julia : ost05",
+    "Julian : hrs13",
+    "June : cbr13",
+    "Kabuki : cat09",
+    "Katt : cat21",
+    "Keaton : pbr08",
+    "Ken : chn13",
+    "Ketchup : duk13",
+    "Kevin : pig15",
+    "Kid Cat : cat10",
+    "Kidd : goa07",
+    "Kiki : cat04",
+    "Kitt : kgr00",
+    "Kitty : cat14",
+    "Klaus : bea14",
+    "Knox : chn11",
+    "Kody : cbr04",
+    "Kyle : wol10",
+    "Leonardo : tig04",
+    "Leopold : lon04",
+    "Lily : flg00",
+    "Limberg : mus01",
+    "Lionel : lon08",
+    "Lobo : wol01",
+    "Lolly : cat18",
+    "Lopez : der05",
+    "Louie : gor04",
+    "Lucha : brd15",
+    "Lucky : dog02",
+    "Lucy : pig04",
+    "Lyman : kal09",
+    "Mac : dog14",
+    "Maddie : dog09",
+    "Maelle : duk03",
+    "Maggie : pig10",
+    "Mallary : duk06",
+    "Maple : cbr01",
+    "Marcel : dog15",
+    "Marcie : kgr10",
+    "Margie : elp04",
+    "Marina : ocp01",
+    "Marlo : ham09",
+    "Marshal : squ17",
+    "Marty : cbr18",
+    "Mathilda : kgr01",
+    "Megan : bea15",
+    "Melba : kal02",
+    "Merengue : rhn07",
+    "Merry : cat16",
+    "Midge : brd08",
+    "Mint : squ09",
+    "Mira : rbt19",
+    "Miranda : duk12",
+    "Mitzi : cat01",
+    "Moe : cat08",
+    "Molly : duk16",
+    "Monique : cat11",
+    "Monty : mnk04",
+    "Moose : mus14",
+    "Mott : lon06",
+    "Muffy : shp12",
+    "Murphy : cbr07",
+    "Nan : goa01",
+    "Nana : mnk01",
+    "Naomi : cow07",
+    "Nate : bea05",
+    "Nibbles : squ04",
+    "Norma : cow06",
+    "O'Hare : rbt15",
+    "Octavian : ocp00",
+    "Olaf : ant09",
+    "Olive : cbr09",
+    "Olivia : cat03",
+    "Opal : elp00",
+    "Ozzie : kal05",
+    "Pancetti : pig16",
+    "Pango : ant02",
+    "Paolo : elp05",
+    "Papi : hrs12",
+    "Pashmina : goa08",
+    "Pate : duk02",
+    "Patty : cow00",
+    "Paula : bea10",
+    "Peaches : hrs08",
+    "Peanut : squ00",
+    "Pecan : squ03",
+    "Peck : brd17",
+    "Peewee : gor01",
+    "Peggy : pig11",
+    "Pekoe : cbr14",
+    "Penelope : mus17",
+    "Petri : mus19",
+    "Phil : ost07",
+    "Phoebe : ost10",
+    "Pierce : pbr02",
+    "Pietro : shp13",
+    "Pinky : bea01",
+    "Piper : brd05",
+    "Pippy : rbt06",
+    "Plucky : chn10",
+    "Pompom : duk05",
+    "Poncho : cbr02",
+    "Poppy : squ15",
+    "Portia : dog05",
+    "Prince : flg12",
+    "Puck : pgn06",
+    "Puddles : flg06",
+    "Pudge : cbr03",
+    "Punchy : cat06",
+    "Purrl : cat07",
+    "Queenie : ost00",
+    "Quillson : duk17",
+    "Quinn : pbr10",
+    "Raddle : flg15",
+    "Rasher : pig02",
+    "Raymond : cat23",
+    "Renée : rhn08",
+    "Reneigh : hrs16",
+    "Rex : lon02",
+    "Rhonda : rhn01",
+    "Ribbot : flg01",
+    "Ricky : squ10",
+    "Rilla : gor11",
+    "Rio : ost04",
+    "Rizzo : mus09",
+    "Roald : pgn01",
+    "Robin : brd01",
+    "Rocco : hip00",
+    "Rocket : gor09",
+    "Rod : mus05",
+    "Rodeo : bul01",
+    "Rodney : ham03",
+    "Rolf : tig00",
+    "Rooney : kgr09",
+    "Rory : lon07",
+    "Roscoe : hrs04",
+    "Rosie : cat02",
+    "Roswell : crd05",
+    "Rowan : tig01",
+    "Ruby : rbt09",
+    "Rudy : cat20",
+    "Sally : squ07",
+    "Samson : mus04",
+    "Sandy : ost02",
+    "Sasha : rbt21",
+    "Savannah : hrs02",
+    "Scoot : duk10",
+    "Shari : mnk07",
+    "Sheldon : squ16",
+    "Shep : dog18",
+    "Sherb : goa09",
+    "Shino : der11",
+    "Simon : mnk02",
+    "Skye : wol09",
+    "Sly : crd06",
+    "Snake : rbt03",
+    "Snooty : ant06",
+    "Soleil : ham04",
+    "Sparro : brd18",
+    "Spike : rhn02",
+    "Spork : pig05",
+    "Sprinkle : pgn14",
+    "Sprocket : ost03",
+    "Static : squ08",
+    "Stella : shp03",
+    "Sterling : pbr07",
+    "Stinky : cat13",
+    "Stitches : cbr05",
+    "Stu : bul03",
+    "Sydney : kal03",
+    "Sylvana : squ14",
+    "Sylvia : kgr06",
+    "T-Bone : bul05",
+    "Tabby : cat12",
+    "Tad : flg09",
+    "Tammi : mnk03",
+    "Tammy : cbr17",
+    "Tangy : cat05",
+    "Tank : rhn00",
+    "Tasha : squ13",
+    "Teddy : bea00",
+    "Tex : pgn12",
+    "Tia : elp10",
+    "Tiansheng : mnk09",
+    "Tiffany : rbt07",
+    "Timbra : shp10",
+    "Tipper : cow01",
+    "Toby : rbt20",
+    "Tom : cat15",
+    "Truffles : pig01",
+    "Tucker : elp09",
+    "Tutu : bea07",
+    "Twiggy : brd03",
+    "Tybalt : tig02",
+    "Ursala : bea08",
+    "Velma : goa06",
+    "Vesta : shp00",
+    "Vic : bul08",
+    "Victoria : hrs01",
+    "Violet : gor07",
+    "Vivian : wol08",
+    "Vladimir : cbr06",
+    "Wade : pgn09",
+    "Walker : dog06",
+    "Walt : kgr08",
+    "Wart Jr. : flg05",
+    "Weber : duk11",
+    "Wendy : shp09",
+    "Whitney : wol03",
+    "Willow : shp07",
+    "Winnie : hrs05",
+    "Wolfgang : wol02",
+    "Yuka : kal00",
+    "Zell : der02",
+    "Zoe : ant05",
+    "Zucker : ocp02",
+    "Empty : non00"
+    };
             VillagerAutoCompleteMenu.LeftPadding = 0;
             VillagerAutoCompleteMenu.TargetControlWrapper = null;
             // 
@@ -1636,15 +2052,15 @@ namespace ACNHPokerCore
             LoadCheatfromClipBoard.Location = new System.Drawing.Point(942, 492);
             LoadCheatfromClipBoard.Name = "LoadCheatfromClipBoard";
             LoadCheatfromClipBoard.Size = new System.Drawing.Size(141, 22);
-            this.LoadCheatfromClipBoard.TabIndex = 57;
-            this.LoadCheatfromClipBoard.Tag = "";
-            this.LoadCheatfromClipBoard.Text = "Load Cheat Clipboard";
-            this.LoadCheatfromClipBoard.UseVisualStyleBackColor = false;
+            LoadCheatfromClipBoard.TabIndex = 57;
+            LoadCheatfromClipBoard.Tag = "";
+            LoadCheatfromClipBoard.Text = "Load Cheat Clipboard";
+            LoadCheatfromClipBoard.UseVisualStyleBackColor = false;
             LoadCheatfromClipBoard.Click += LoadCheatfromClipBoard_Click;
             // 
             // LoadCheat
             // 
-            this.LoadCheat.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            LoadCheat.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
             LoadCheat.FlatAppearance.BorderSize = 0;
             LoadCheat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             LoadCheat.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
@@ -1847,25 +2263,6 @@ namespace ACNHPokerCore
             UnhideButton.UseVisualStyleBackColor = false;
             UnhideButton.Click += UnhideButton_Click;
             // 
-            // LoadCheat
-            // 
-			/*
-            LoadCheat.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
-            LoadCheat.FlatAppearance.BorderSize = 0;
-            LoadCheat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            LoadCheat.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            LoadCheat.ForeColor = System.Drawing.Color.White;
-            LoadCheat.Location = new System.Drawing.Point(926, 492);
-            LoadCheat.Name = "LoadCheat";
-            LoadCheat.Size = new System.Drawing.Size(119, 22);
-            LoadCheat.TabIndex = 56;
-            LoadCheat.Tag = "";
-            LoadCheat.Text = "Load Cheat Txt";
-            ConvertToCheat.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            ConvertToCheat.UseVisualStyleBackColor = false;
-            ConvertToCheat.Click += LoadCheat_Click;
-            //
-			*/ 
             // ConvertToCheat
             // 
             ConvertToCheat.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
@@ -2225,11 +2622,8 @@ namespace ACNHPokerCore
             SelectedItem.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
             SelectedItem.FlatAppearance.BorderSize = 0;
             SelectedItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            SelectedItem.FlowerQuantity = (ushort)0;
             SelectedItem.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             SelectedItem.ForeColor = System.Drawing.Color.White;
-            SelectedItem.ItemDurability = (ushort)0;
-            SelectedItem.ItemQuantity = (ushort)0;
             SelectedItem.Location = new System.Drawing.Point(1, 379);
             SelectedItem.Name = "SelectedItem";
             SelectedItem.Size = new System.Drawing.Size(110, 110);
@@ -2310,11 +2704,8 @@ namespace ACNHPokerCore
             inventorySlot40.ContextMenuStrip = ItemRightClick;
             inventorySlot40.FlatAppearance.BorderSize = 0;
             inventorySlot40.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot40.FlowerQuantity = (ushort)0;
             inventorySlot40.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot40.ForeColor = System.Drawing.Color.White;
-            inventorySlot40.ItemDurability = (ushort)0;
-            inventorySlot40.ItemQuantity = (ushort)0;
             inventorySlot40.Location = new System.Drawing.Point(732, 246);
             inventorySlot40.Name = "inventorySlot40";
             inventorySlot40.Size = new System.Drawing.Size(75, 75);
@@ -2394,11 +2785,8 @@ namespace ACNHPokerCore
             inventorySlot39.ContextMenuStrip = ItemRightClick;
             inventorySlot39.FlatAppearance.BorderSize = 0;
             inventorySlot39.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot39.FlowerQuantity = (ushort)0;
             inventorySlot39.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot39.ForeColor = System.Drawing.Color.White;
-            inventorySlot39.ItemDurability = (ushort)0;
-            inventorySlot39.ItemQuantity = (ushort)0;
             inventorySlot39.Location = new System.Drawing.Point(651, 246);
             inventorySlot39.Name = "inventorySlot39";
             inventorySlot39.Size = new System.Drawing.Size(75, 75);
@@ -2415,11 +2803,8 @@ namespace ACNHPokerCore
             inventorySlot38.ContextMenuStrip = ItemRightClick;
             inventorySlot38.FlatAppearance.BorderSize = 0;
             inventorySlot38.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot38.FlowerQuantity = (ushort)0;
             inventorySlot38.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot38.ForeColor = System.Drawing.Color.White;
-            inventorySlot38.ItemDurability = (ushort)0;
-            inventorySlot38.ItemQuantity = (ushort)0;
             inventorySlot38.Location = new System.Drawing.Point(570, 246);
             inventorySlot38.Name = "inventorySlot38";
             inventorySlot38.Size = new System.Drawing.Size(75, 75);
@@ -2436,11 +2821,8 @@ namespace ACNHPokerCore
             inventorySlot37.ContextMenuStrip = ItemRightClick;
             inventorySlot37.FlatAppearance.BorderSize = 0;
             inventorySlot37.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot37.FlowerQuantity = (ushort)0;
             inventorySlot37.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot37.ForeColor = System.Drawing.Color.White;
-            inventorySlot37.ItemDurability = (ushort)0;
-            inventorySlot37.ItemQuantity = (ushort)0;
             inventorySlot37.Location = new System.Drawing.Point(489, 246);
             inventorySlot37.Name = "inventorySlot37";
             inventorySlot37.Size = new System.Drawing.Size(75, 75);
@@ -2457,11 +2839,8 @@ namespace ACNHPokerCore
             inventorySlot36.ContextMenuStrip = ItemRightClick;
             inventorySlot36.FlatAppearance.BorderSize = 0;
             inventorySlot36.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot36.FlowerQuantity = (ushort)0;
             inventorySlot36.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot36.ForeColor = System.Drawing.Color.White;
-            inventorySlot36.ItemDurability = (ushort)0;
-            inventorySlot36.ItemQuantity = (ushort)0;
             inventorySlot36.Location = new System.Drawing.Point(408, 246);
             inventorySlot36.Name = "inventorySlot36";
             inventorySlot36.Size = new System.Drawing.Size(75, 75);
@@ -2478,11 +2857,8 @@ namespace ACNHPokerCore
             inventorySlot35.ContextMenuStrip = ItemRightClick;
             inventorySlot35.FlatAppearance.BorderSize = 0;
             inventorySlot35.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot35.FlowerQuantity = (ushort)0;
             inventorySlot35.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot35.ForeColor = System.Drawing.Color.White;
-            inventorySlot35.ItemDurability = (ushort)0;
-            inventorySlot35.ItemQuantity = (ushort)0;
             inventorySlot35.Location = new System.Drawing.Point(327, 246);
             inventorySlot35.Name = "inventorySlot35";
             inventorySlot35.Size = new System.Drawing.Size(75, 75);
@@ -2499,11 +2875,8 @@ namespace ACNHPokerCore
             inventorySlot34.ContextMenuStrip = ItemRightClick;
             inventorySlot34.FlatAppearance.BorderSize = 0;
             inventorySlot34.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot34.FlowerQuantity = (ushort)0;
             inventorySlot34.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot34.ForeColor = System.Drawing.Color.White;
-            inventorySlot34.ItemDurability = (ushort)0;
-            inventorySlot34.ItemQuantity = (ushort)0;
             inventorySlot34.Location = new System.Drawing.Point(246, 246);
             inventorySlot34.Name = "inventorySlot34";
             inventorySlot34.Size = new System.Drawing.Size(75, 75);
@@ -2520,11 +2893,8 @@ namespace ACNHPokerCore
             inventorySlot33.ContextMenuStrip = ItemRightClick;
             inventorySlot33.FlatAppearance.BorderSize = 0;
             inventorySlot33.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot33.FlowerQuantity = (ushort)0;
             inventorySlot33.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot33.ForeColor = System.Drawing.Color.White;
-            inventorySlot33.ItemDurability = (ushort)0;
-            inventorySlot33.ItemQuantity = (ushort)0;
             inventorySlot33.Location = new System.Drawing.Point(165, 246);
             inventorySlot33.Name = "inventorySlot33";
             inventorySlot33.Size = new System.Drawing.Size(75, 75);
@@ -2541,11 +2911,8 @@ namespace ACNHPokerCore
             inventorySlot32.ContextMenuStrip = ItemRightClick;
             inventorySlot32.FlatAppearance.BorderSize = 0;
             inventorySlot32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot32.FlowerQuantity = (ushort)0;
             inventorySlot32.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot32.ForeColor = System.Drawing.Color.White;
-            inventorySlot32.ItemDurability = (ushort)0;
-            inventorySlot32.ItemQuantity = (ushort)0;
             inventorySlot32.Location = new System.Drawing.Point(84, 246);
             inventorySlot32.Name = "inventorySlot32";
             inventorySlot32.Size = new System.Drawing.Size(75, 75);
@@ -2562,11 +2929,8 @@ namespace ACNHPokerCore
             inventorySlot31.ContextMenuStrip = ItemRightClick;
             inventorySlot31.FlatAppearance.BorderSize = 0;
             inventorySlot31.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot31.FlowerQuantity = (ushort)0;
             inventorySlot31.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot31.ForeColor = System.Drawing.Color.White;
-            inventorySlot31.ItemDurability = (ushort)0;
-            inventorySlot31.ItemQuantity = (ushort)0;
             inventorySlot31.Location = new System.Drawing.Point(3, 246);
             inventorySlot31.Name = "inventorySlot31";
             inventorySlot31.Size = new System.Drawing.Size(75, 75);
@@ -2583,11 +2947,8 @@ namespace ACNHPokerCore
             inventorySlot30.ContextMenuStrip = ItemRightClick;
             inventorySlot30.FlatAppearance.BorderSize = 0;
             inventorySlot30.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot30.FlowerQuantity = (ushort)0;
             inventorySlot30.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot30.ForeColor = System.Drawing.Color.White;
-            inventorySlot30.ItemDurability = (ushort)0;
-            inventorySlot30.ItemQuantity = (ushort)0;
             inventorySlot30.Location = new System.Drawing.Point(732, 165);
             inventorySlot30.Name = "inventorySlot30";
             inventorySlot30.Size = new System.Drawing.Size(75, 75);
@@ -2604,11 +2965,8 @@ namespace ACNHPokerCore
             inventorySlot29.ContextMenuStrip = ItemRightClick;
             inventorySlot29.FlatAppearance.BorderSize = 0;
             inventorySlot29.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot29.FlowerQuantity = (ushort)0;
             inventorySlot29.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot29.ForeColor = System.Drawing.Color.White;
-            inventorySlot29.ItemDurability = (ushort)0;
-            inventorySlot29.ItemQuantity = (ushort)0;
             inventorySlot29.Location = new System.Drawing.Point(651, 165);
             inventorySlot29.Name = "inventorySlot29";
             inventorySlot29.Size = new System.Drawing.Size(75, 75);
@@ -2625,11 +2983,8 @@ namespace ACNHPokerCore
             inventorySlot28.ContextMenuStrip = ItemRightClick;
             inventorySlot28.FlatAppearance.BorderSize = 0;
             inventorySlot28.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot28.FlowerQuantity = (ushort)0;
             inventorySlot28.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot28.ForeColor = System.Drawing.Color.White;
-            inventorySlot28.ItemDurability = (ushort)0;
-            inventorySlot28.ItemQuantity = (ushort)0;
             inventorySlot28.Location = new System.Drawing.Point(570, 165);
             inventorySlot28.Name = "inventorySlot28";
             inventorySlot28.Size = new System.Drawing.Size(75, 75);
@@ -2646,11 +3001,8 @@ namespace ACNHPokerCore
             inventorySlot27.ContextMenuStrip = ItemRightClick;
             inventorySlot27.FlatAppearance.BorderSize = 0;
             inventorySlot27.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot27.FlowerQuantity = (ushort)0;
             inventorySlot27.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot27.ForeColor = System.Drawing.Color.White;
-            inventorySlot27.ItemDurability = (ushort)0;
-            inventorySlot27.ItemQuantity = (ushort)0;
             inventorySlot27.Location = new System.Drawing.Point(489, 165);
             inventorySlot27.Name = "inventorySlot27";
             inventorySlot27.Size = new System.Drawing.Size(75, 75);
@@ -2667,11 +3019,8 @@ namespace ACNHPokerCore
             inventorySlot26.ContextMenuStrip = ItemRightClick;
             inventorySlot26.FlatAppearance.BorderSize = 0;
             inventorySlot26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot26.FlowerQuantity = (ushort)0;
             inventorySlot26.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot26.ForeColor = System.Drawing.Color.White;
-            inventorySlot26.ItemDurability = (ushort)0;
-            inventorySlot26.ItemQuantity = (ushort)0;
             inventorySlot26.Location = new System.Drawing.Point(408, 165);
             inventorySlot26.Name = "inventorySlot26";
             inventorySlot26.Size = new System.Drawing.Size(75, 75);
@@ -2688,11 +3037,8 @@ namespace ACNHPokerCore
             inventorySlot25.ContextMenuStrip = ItemRightClick;
             inventorySlot25.FlatAppearance.BorderSize = 0;
             inventorySlot25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot25.FlowerQuantity = (ushort)0;
             inventorySlot25.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot25.ForeColor = System.Drawing.Color.White;
-            inventorySlot25.ItemDurability = (ushort)0;
-            inventorySlot25.ItemQuantity = (ushort)0;
             inventorySlot25.Location = new System.Drawing.Point(327, 165);
             inventorySlot25.Name = "inventorySlot25";
             inventorySlot25.Size = new System.Drawing.Size(75, 75);
@@ -2709,11 +3055,8 @@ namespace ACNHPokerCore
             inventorySlot24.ContextMenuStrip = ItemRightClick;
             inventorySlot24.FlatAppearance.BorderSize = 0;
             inventorySlot24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot24.FlowerQuantity = (ushort)0;
             inventorySlot24.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot24.ForeColor = System.Drawing.Color.White;
-            inventorySlot24.ItemDurability = (ushort)0;
-            inventorySlot24.ItemQuantity = (ushort)0;
             inventorySlot24.Location = new System.Drawing.Point(246, 165);
             inventorySlot24.Name = "inventorySlot24";
             inventorySlot24.Size = new System.Drawing.Size(75, 75);
@@ -2730,11 +3073,8 @@ namespace ACNHPokerCore
             inventorySlot23.ContextMenuStrip = ItemRightClick;
             inventorySlot23.FlatAppearance.BorderSize = 0;
             inventorySlot23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot23.FlowerQuantity = (ushort)0;
             inventorySlot23.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot23.ForeColor = System.Drawing.Color.White;
-            inventorySlot23.ItemDurability = (ushort)0;
-            inventorySlot23.ItemQuantity = (ushort)0;
             inventorySlot23.Location = new System.Drawing.Point(165, 165);
             inventorySlot23.Name = "inventorySlot23";
             inventorySlot23.Size = new System.Drawing.Size(75, 75);
@@ -2751,11 +3091,8 @@ namespace ACNHPokerCore
             inventorySlot22.ContextMenuStrip = ItemRightClick;
             inventorySlot22.FlatAppearance.BorderSize = 0;
             inventorySlot22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot22.FlowerQuantity = (ushort)0;
             inventorySlot22.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot22.ForeColor = System.Drawing.Color.White;
-            inventorySlot22.ItemDurability = (ushort)0;
-            inventorySlot22.ItemQuantity = (ushort)0;
             inventorySlot22.Location = new System.Drawing.Point(84, 165);
             inventorySlot22.Name = "inventorySlot22";
             inventorySlot22.Size = new System.Drawing.Size(75, 75);
@@ -2772,11 +3109,8 @@ namespace ACNHPokerCore
             inventorySlot21.ContextMenuStrip = ItemRightClick;
             inventorySlot21.FlatAppearance.BorderSize = 0;
             inventorySlot21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot21.FlowerQuantity = (ushort)0;
             inventorySlot21.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot21.ForeColor = System.Drawing.Color.White;
-            inventorySlot21.ItemDurability = (ushort)0;
-            inventorySlot21.ItemQuantity = (ushort)0;
             inventorySlot21.Location = new System.Drawing.Point(3, 165);
             inventorySlot21.Name = "inventorySlot21";
             inventorySlot21.Size = new System.Drawing.Size(75, 75);
@@ -2793,11 +3127,8 @@ namespace ACNHPokerCore
             inventorySlot20.ContextMenuStrip = ItemRightClick;
             inventorySlot20.FlatAppearance.BorderSize = 0;
             inventorySlot20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot20.FlowerQuantity = (ushort)0;
             inventorySlot20.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot20.ForeColor = System.Drawing.Color.White;
-            inventorySlot20.ItemDurability = (ushort)0;
-            inventorySlot20.ItemQuantity = (ushort)0;
             inventorySlot20.Location = new System.Drawing.Point(732, 84);
             inventorySlot20.Name = "inventorySlot20";
             inventorySlot20.Size = new System.Drawing.Size(75, 75);
@@ -2814,11 +3145,8 @@ namespace ACNHPokerCore
             inventorySlot19.ContextMenuStrip = ItemRightClick;
             inventorySlot19.FlatAppearance.BorderSize = 0;
             inventorySlot19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot19.FlowerQuantity = (ushort)0;
             inventorySlot19.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot19.ForeColor = System.Drawing.Color.White;
-            inventorySlot19.ItemDurability = (ushort)0;
-            inventorySlot19.ItemQuantity = (ushort)0;
             inventorySlot19.Location = new System.Drawing.Point(651, 84);
             inventorySlot19.Name = "inventorySlot19";
             inventorySlot19.Size = new System.Drawing.Size(75, 75);
@@ -2835,11 +3163,8 @@ namespace ACNHPokerCore
             inventorySlot18.ContextMenuStrip = ItemRightClick;
             inventorySlot18.FlatAppearance.BorderSize = 0;
             inventorySlot18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot18.FlowerQuantity = (ushort)0;
             inventorySlot18.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot18.ForeColor = System.Drawing.Color.White;
-            inventorySlot18.ItemDurability = (ushort)0;
-            inventorySlot18.ItemQuantity = (ushort)0;
             inventorySlot18.Location = new System.Drawing.Point(570, 84);
             inventorySlot18.Name = "inventorySlot18";
             inventorySlot18.Size = new System.Drawing.Size(75, 75);
@@ -2856,11 +3181,8 @@ namespace ACNHPokerCore
             inventorySlot17.ContextMenuStrip = ItemRightClick;
             inventorySlot17.FlatAppearance.BorderSize = 0;
             inventorySlot17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot17.FlowerQuantity = (ushort)0;
             inventorySlot17.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot17.ForeColor = System.Drawing.Color.White;
-            inventorySlot17.ItemDurability = (ushort)0;
-            inventorySlot17.ItemQuantity = (ushort)0;
             inventorySlot17.Location = new System.Drawing.Point(489, 84);
             inventorySlot17.Name = "inventorySlot17";
             inventorySlot17.Size = new System.Drawing.Size(75, 75);
@@ -2877,11 +3199,8 @@ namespace ACNHPokerCore
             inventorySlot16.ContextMenuStrip = ItemRightClick;
             inventorySlot16.FlatAppearance.BorderSize = 0;
             inventorySlot16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot16.FlowerQuantity = (ushort)0;
             inventorySlot16.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot16.ForeColor = System.Drawing.Color.White;
-            inventorySlot16.ItemDurability = (ushort)0;
-            inventorySlot16.ItemQuantity = (ushort)0;
             inventorySlot16.Location = new System.Drawing.Point(408, 84);
             inventorySlot16.Name = "inventorySlot16";
             inventorySlot16.Size = new System.Drawing.Size(75, 75);
@@ -2898,11 +3217,8 @@ namespace ACNHPokerCore
             inventorySlot15.ContextMenuStrip = ItemRightClick;
             inventorySlot15.FlatAppearance.BorderSize = 0;
             inventorySlot15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot15.FlowerQuantity = (ushort)0;
             inventorySlot15.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot15.ForeColor = System.Drawing.Color.White;
-            inventorySlot15.ItemDurability = (ushort)0;
-            inventorySlot15.ItemQuantity = (ushort)0;
             inventorySlot15.Location = new System.Drawing.Point(327, 84);
             inventorySlot15.Name = "inventorySlot15";
             inventorySlot15.Size = new System.Drawing.Size(75, 75);
@@ -2919,11 +3235,8 @@ namespace ACNHPokerCore
             inventorySlot14.ContextMenuStrip = ItemRightClick;
             inventorySlot14.FlatAppearance.BorderSize = 0;
             inventorySlot14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot14.FlowerQuantity = (ushort)0;
             inventorySlot14.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot14.ForeColor = System.Drawing.Color.White;
-            inventorySlot14.ItemDurability = (ushort)0;
-            inventorySlot14.ItemQuantity = (ushort)0;
             inventorySlot14.Location = new System.Drawing.Point(246, 84);
             inventorySlot14.Name = "inventorySlot14";
             inventorySlot14.Size = new System.Drawing.Size(75, 75);
@@ -2940,11 +3253,8 @@ namespace ACNHPokerCore
             inventorySlot13.ContextMenuStrip = ItemRightClick;
             inventorySlot13.FlatAppearance.BorderSize = 0;
             inventorySlot13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot13.FlowerQuantity = (ushort)0;
             inventorySlot13.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot13.ForeColor = System.Drawing.Color.White;
-            inventorySlot13.ItemDurability = (ushort)0;
-            inventorySlot13.ItemQuantity = (ushort)0;
             inventorySlot13.Location = new System.Drawing.Point(165, 84);
             inventorySlot13.Name = "inventorySlot13";
             inventorySlot13.Size = new System.Drawing.Size(75, 75);
@@ -2961,11 +3271,8 @@ namespace ACNHPokerCore
             inventorySlot12.ContextMenuStrip = ItemRightClick;
             inventorySlot12.FlatAppearance.BorderSize = 0;
             inventorySlot12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot12.FlowerQuantity = (ushort)0;
             inventorySlot12.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot12.ForeColor = System.Drawing.Color.White;
-            inventorySlot12.ItemDurability = (ushort)0;
-            inventorySlot12.ItemQuantity = (ushort)0;
             inventorySlot12.Location = new System.Drawing.Point(84, 84);
             inventorySlot12.Name = "inventorySlot12";
             inventorySlot12.Size = new System.Drawing.Size(75, 75);
@@ -2982,11 +3289,8 @@ namespace ACNHPokerCore
             inventorySlot11.ContextMenuStrip = ItemRightClick;
             inventorySlot11.FlatAppearance.BorderSize = 0;
             inventorySlot11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot11.FlowerQuantity = (ushort)0;
             inventorySlot11.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot11.ForeColor = System.Drawing.Color.White;
-            inventorySlot11.ItemDurability = (ushort)0;
-            inventorySlot11.ItemQuantity = (ushort)0;
             inventorySlot11.Location = new System.Drawing.Point(3, 84);
             inventorySlot11.Name = "inventorySlot11";
             inventorySlot11.Size = new System.Drawing.Size(75, 75);
@@ -3003,11 +3307,8 @@ namespace ACNHPokerCore
             inventorySlot10.ContextMenuStrip = ItemRightClick;
             inventorySlot10.FlatAppearance.BorderSize = 0;
             inventorySlot10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot10.FlowerQuantity = (ushort)0;
             inventorySlot10.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot10.ForeColor = System.Drawing.Color.White;
-            inventorySlot10.ItemDurability = (ushort)0;
-            inventorySlot10.ItemQuantity = (ushort)0;
             inventorySlot10.Location = new System.Drawing.Point(732, 3);
             inventorySlot10.Name = "inventorySlot10";
             inventorySlot10.Size = new System.Drawing.Size(75, 75);
@@ -3024,11 +3325,8 @@ namespace ACNHPokerCore
             inventorySlot9.ContextMenuStrip = ItemRightClick;
             inventorySlot9.FlatAppearance.BorderSize = 0;
             inventorySlot9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot9.FlowerQuantity = (ushort)0;
             inventorySlot9.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot9.ForeColor = System.Drawing.Color.White;
-            inventorySlot9.ItemDurability = (ushort)0;
-            inventorySlot9.ItemQuantity = (ushort)0;
             inventorySlot9.Location = new System.Drawing.Point(651, 3);
             inventorySlot9.Name = "inventorySlot9";
             inventorySlot9.Size = new System.Drawing.Size(75, 75);
@@ -3045,11 +3343,8 @@ namespace ACNHPokerCore
             inventorySlot8.ContextMenuStrip = ItemRightClick;
             inventorySlot8.FlatAppearance.BorderSize = 0;
             inventorySlot8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot8.FlowerQuantity = (ushort)0;
             inventorySlot8.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot8.ForeColor = System.Drawing.Color.White;
-            inventorySlot8.ItemDurability = (ushort)0;
-            inventorySlot8.ItemQuantity = (ushort)0;
             inventorySlot8.Location = new System.Drawing.Point(570, 3);
             inventorySlot8.Name = "inventorySlot8";
             inventorySlot8.Size = new System.Drawing.Size(75, 75);
@@ -3066,11 +3361,8 @@ namespace ACNHPokerCore
             inventorySlot7.ContextMenuStrip = ItemRightClick;
             inventorySlot7.FlatAppearance.BorderSize = 0;
             inventorySlot7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot7.FlowerQuantity = (ushort)0;
             inventorySlot7.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot7.ForeColor = System.Drawing.Color.White;
-            inventorySlot7.ItemDurability = (ushort)0;
-            inventorySlot7.ItemQuantity = (ushort)0;
             inventorySlot7.Location = new System.Drawing.Point(489, 3);
             inventorySlot7.Name = "inventorySlot7";
             inventorySlot7.Size = new System.Drawing.Size(75, 75);
@@ -3087,11 +3379,8 @@ namespace ACNHPokerCore
             inventorySlot6.ContextMenuStrip = ItemRightClick;
             inventorySlot6.FlatAppearance.BorderSize = 0;
             inventorySlot6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot6.FlowerQuantity = (ushort)0;
             inventorySlot6.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot6.ForeColor = System.Drawing.Color.White;
-            inventorySlot6.ItemDurability = (ushort)0;
-            inventorySlot6.ItemQuantity = (ushort)0;
             inventorySlot6.Location = new System.Drawing.Point(408, 3);
             inventorySlot6.Name = "inventorySlot6";
             inventorySlot6.Size = new System.Drawing.Size(75, 75);
@@ -3108,11 +3397,8 @@ namespace ACNHPokerCore
             inventorySlot5.ContextMenuStrip = ItemRightClick;
             inventorySlot5.FlatAppearance.BorderSize = 0;
             inventorySlot5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot5.FlowerQuantity = (ushort)0;
             inventorySlot5.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot5.ForeColor = System.Drawing.Color.White;
-            inventorySlot5.ItemDurability = (ushort)0;
-            inventorySlot5.ItemQuantity = (ushort)0;
             inventorySlot5.Location = new System.Drawing.Point(327, 3);
             inventorySlot5.Name = "inventorySlot5";
             inventorySlot5.Size = new System.Drawing.Size(75, 75);
@@ -3129,11 +3415,8 @@ namespace ACNHPokerCore
             inventorySlot4.ContextMenuStrip = ItemRightClick;
             inventorySlot4.FlatAppearance.BorderSize = 0;
             inventorySlot4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot4.FlowerQuantity = (ushort)0;
             inventorySlot4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot4.ForeColor = System.Drawing.Color.White;
-            inventorySlot4.ItemDurability = (ushort)0;
-            inventorySlot4.ItemQuantity = (ushort)0;
             inventorySlot4.Location = new System.Drawing.Point(246, 3);
             inventorySlot4.Name = "inventorySlot4";
             inventorySlot4.Size = new System.Drawing.Size(75, 75);
@@ -3150,11 +3433,8 @@ namespace ACNHPokerCore
             inventorySlot3.ContextMenuStrip = ItemRightClick;
             inventorySlot3.FlatAppearance.BorderSize = 0;
             inventorySlot3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot3.FlowerQuantity = (ushort)0;
             inventorySlot3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot3.ForeColor = System.Drawing.Color.White;
-            inventorySlot3.ItemDurability = (ushort)0;
-            inventorySlot3.ItemQuantity = (ushort)0;
             inventorySlot3.Location = new System.Drawing.Point(165, 3);
             inventorySlot3.Name = "inventorySlot3";
             inventorySlot3.Size = new System.Drawing.Size(75, 75);
@@ -3171,11 +3451,8 @@ namespace ACNHPokerCore
             inventorySlot2.ContextMenuStrip = ItemRightClick;
             inventorySlot2.FlatAppearance.BorderSize = 0;
             inventorySlot2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot2.FlowerQuantity = (ushort)0;
             inventorySlot2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot2.ForeColor = System.Drawing.Color.White;
-            inventorySlot2.ItemDurability = (ushort)0;
-            inventorySlot2.ItemQuantity = (ushort)0;
             inventorySlot2.Location = new System.Drawing.Point(84, 3);
             inventorySlot2.Name = "inventorySlot2";
             inventorySlot2.Size = new System.Drawing.Size(75, 75);
@@ -3192,11 +3469,8 @@ namespace ACNHPokerCore
             inventorySlot1.ContextMenuStrip = ItemRightClick;
             inventorySlot1.FlatAppearance.BorderSize = 0;
             inventorySlot1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            inventorySlot1.FlowerQuantity = (ushort)0;
             inventorySlot1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             inventorySlot1.ForeColor = System.Drawing.Color.White;
-            inventorySlot1.ItemDurability = (ushort)0;
-            inventorySlot1.ItemQuantity = (ushort)0;
             inventorySlot1.Location = new System.Drawing.Point(3, 3);
             inventorySlot1.Name = "inventorySlot1";
             inventorySlot1.Size = new System.Drawing.Size(75, 75);
@@ -3219,7 +3493,6 @@ namespace ACNHPokerCore
             ItemGridView.Name = "ItemGridView";
             ItemGridView.ReadOnly = true;
             ItemGridView.RowHeadersVisible = false;
-            ItemGridView.RowTemplate.Height = 25;
             ItemGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             ItemGridView.Size = new System.Drawing.Size(345, 465);
             ItemGridView.TabIndex = 18;
@@ -3239,7 +3512,6 @@ namespace ACNHPokerCore
             FavGridView.Name = "FavGridView";
             FavGridView.ReadOnly = true;
             FavGridView.RowHeadersVisible = false;
-            FavGridView.RowTemplate.Height = 25;
             FavGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             FavGridView.Size = new System.Drawing.Size(345, 465);
             FavGridView.TabIndex = 33;
@@ -3277,7 +3549,6 @@ namespace ACNHPokerCore
             RecipeGridView.Name = "RecipeGridView";
             RecipeGridView.ReadOnly = true;
             RecipeGridView.RowHeadersVisible = false;
-            RecipeGridView.RowTemplate.Height = 25;
             RecipeGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             RecipeGridView.Size = new System.Drawing.Size(345, 465);
             RecipeGridView.TabIndex = 31;
@@ -3296,7 +3567,6 @@ namespace ACNHPokerCore
             FlowerGridView.Name = "FlowerGridView";
             FlowerGridView.ReadOnly = true;
             FlowerGridView.RowHeadersVisible = false;
-            FlowerGridView.RowTemplate.Height = 25;
             FlowerGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             FlowerGridView.Size = new System.Drawing.Size(345, 465);
             FlowerGridView.TabIndex = 32;
@@ -5554,7 +5824,7 @@ namespace ACNHPokerCore
             MaximumSize = new System.Drawing.Size(1500, 1000);
             MinimumSize = new System.Drawing.Size(1220, 555);
             Name = "Main";
-            Opacity = 0.97D;
+            Opacity = 0.98D;
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "ACNHPokerCore";
             FormClosed += Main_FormClosed;

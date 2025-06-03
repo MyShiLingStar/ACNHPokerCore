@@ -3,22 +3,33 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace ACNHPokerCore
 {
     class FloorSlot : Button
     {
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string ItemName { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string Flag0 { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string Flag1 { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ushort ItemID { get; set; } // flag 1 + flag 2 + itemID
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public uint ItemData { get; set; }
-
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public uint Part2 { get; set; } // FDFF0000
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public uint Part2Data { get; set; } // 01 + 00 + itemID
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public uint Part3 { get; set; } // FDFF0000
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public uint Part3Data { get; set; } // 00 + 01 + itemID
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public uint Part4 { get; set; } // FDFF0000
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public uint Part4Data { get; set; } // 01 + 01 + itemID
 
         private string image1Path = "";
@@ -26,7 +37,9 @@ namespace ACNHPokerCore
         private string image3Path = "";
         private string image4Path = "";
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int MapX { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int MapY { get; set; }
 
         private readonly Image recipe;
@@ -40,6 +53,7 @@ namespace ACNHPokerCore
         private static readonly object syncRoot = new();
         private static readonly object lockObject = new();
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ushort ItemDurability
         {
             get
@@ -51,6 +65,8 @@ namespace ACNHPokerCore
                 ItemData = (ItemData & 0xFFFF) + ((uint)value << 16);
             }
         }
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ushort ItemQuantity
         {
             get
@@ -62,6 +78,8 @@ namespace ACNHPokerCore
                 ItemData = (ItemData & 0xFFFF0000) + value;
             }
         }
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ushort FlowerQuantity
         {
             get

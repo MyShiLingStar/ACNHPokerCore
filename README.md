@@ -1,5 +1,5 @@
 ## You can find the latest version of ACNHPokerCore : [🢧 Here 🢦](https://myshilingstar.github.io/GetAzure/)
-## You can find the latest x64 .NET 7.0 Desktop Runtime [🢧 Here 🢦](https://aka.ms/dotnet-core-applaunch?framework=Microsoft.WindowsDesktop.App&framework_version=7.0.0&arch=x64&rid=win10-x64&gui=true)
+## You can find the latest x64 .NET 9.0 Desktop Runtime [🢧 Here 🢦](https://aka.ms/dotnet-core-applaunch?framework=Microsoft.WindowsDesktop.App&framework_version=9.0.0&arch=x64&rid=win10-x64&gui=true)
 
 # ACNHPokerCore
 ![Release Image](https://user-images.githubusercontent.com/816502/189231022-02bfa2d8-1857-4b88-8edd-4a26a86a1c65.png)
@@ -70,6 +70,7 @@
 	* Update for Game version "Ver. 2.0.6"
 * R24
 	* Update for Game version "Ver. 2.0.7"
+	* Update from .NET 7.0 to .NET 9.0.
 
 ## Ely's Changes:
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.ComponentModel;
 
 namespace ACNHPokerCore
 {
@@ -22,6 +23,7 @@ namespace ACNHPokerCore
         private Image recipe = null;
 
         private string containItemPath = "";
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public UInt16 ItemDurability
         {
             get
@@ -33,6 +35,7 @@ namespace ACNHPokerCore
                 itemData = (itemData & 0xFFFF) + ((UInt32)value << 16);
             }
         }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public UInt16 ItemQuantity
         {
             get
@@ -45,6 +48,7 @@ namespace ACNHPokerCore
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public UInt16 FlowerQuantity
         {
             get

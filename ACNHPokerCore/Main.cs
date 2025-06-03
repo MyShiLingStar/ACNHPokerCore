@@ -229,7 +229,7 @@ namespace ACNHPokerCore
                 ItemGridView.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 57, 60, 67);
 
                 ItemGridView.EnableHeadersVisualStyles = false;
-
+                ItemGridView.ShowCellToolTips = false;
                 //create the image column
                 DataGridViewImageColumn imageColumn = new()
                 {
@@ -346,6 +346,7 @@ namespace ACNHPokerCore
                 RecipeGridView.Columns["rus"].HeaderText = @"Name";
 
                 RecipeGridView.DefaultCellStyle.Font = new Font("Microsoft JhengHei UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+                RecipeGridView.ShowCellToolTips = false;
             }
             else
             {
@@ -419,6 +420,7 @@ namespace ACNHPokerCore
                 FlowerGridView.Columns["rus"].HeaderText = @"Name";
 
                 FlowerGridView.DefaultCellStyle.Font = new Font("Microsoft JhengHei UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+                FlowerGridView.ShowCellToolTips = false;
             }
             else
             {
@@ -483,6 +485,7 @@ namespace ACNHPokerCore
                 FavGridView.Columns["Image"].Width = 128;
 
                 FavGridView.DefaultCellStyle.Font = new Font("Microsoft JhengHei UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+                FavGridView.ShowCellToolTips = false;
             }
 
             currentPanel = ItemModePanel;
@@ -1370,7 +1373,8 @@ namespace ACNHPokerCore
 
                                 Teleport.Init(socket);
                                 Controller.Init(socket, IslandName);
-
+                                
+                                
                                 if (Utilities.GetFreezeCount(socket) > 0)
                                 {
                                     Utilities.SendString(socket, Utilities.UnFreeze(Utilities.ItemSlotBase));
@@ -1380,8 +1384,7 @@ namespace ACNHPokerCore
 								//auto refill 
 								if (autorefill)
 								{
-					
-					
+
 									byte[] bank01To20 = Utilities.GetInventoryBank(socket, null, 1);
 									byte[] bank21To40 = Utilities.GetInventoryBank(socket, null, 21);
 					
@@ -1393,8 +1396,6 @@ namespace ACNHPokerCore
 									config.AppSettings.Settings["AutoRefill"].Value = "true";
 									autorefill = true;
 									AutoRefill.Checked = true;
-									
-									
 								}
 								else
 								{
@@ -1407,8 +1408,8 @@ namespace ACNHPokerCore
 									config.AppSettings.Settings["AutoRefill"].Value = "false";
 									autorefill = false;
 									AutoRefill.Checked = false;
-								}								
-													
+								}
+
                                 init = false;
                             });
 
@@ -5507,11 +5508,14 @@ namespace ACNHPokerCore
                 grid.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 57, 60, 67);
                 grid.EnableHeadersVisualStyles = false;
 
+                grid.ShowCellToolTips = false;
+
                 DataGridViewCellStyle btnStyle = new()
                 {
                     BackColor = Color.FromArgb(114, 137, 218),
                     Font = new Font("Arial", 8F, FontStyle.Bold),
                     Alignment = DataGridViewContentAlignment.MiddleCenter
+                    
                 };
 
                 DataGridViewCellStyle selectedbtnStyle = new()
@@ -5531,7 +5535,6 @@ namespace ACNHPokerCore
                 dt.Columns.Add("Name", typeof(string));
                 dt.Columns.Add("ID", typeof(string));
                 dt.Columns.Add(" ", typeof(int));
-
 
                 UInt16 id;
 
@@ -5555,8 +5558,8 @@ namespace ACNHPokerCore
                     }
                     dt.Rows.Add(i, critterName, $"{id:X4}", spawnRate);
                 }
-                grid.DataSource = dt;
 
+                grid.DataSource = dt;
 
                 DataGridViewImageColumn imageColumn = new()
                 {
@@ -5567,6 +5570,7 @@ namespace ACNHPokerCore
                     SortMode = DataGridViewColumnSortMode.NotSortable,
                 };
                 grid.Columns.Insert(0, imageColumn);
+
 
                 // Index
                 grid.Columns[1].DefaultCellStyle = fontStyle;
