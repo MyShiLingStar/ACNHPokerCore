@@ -22,7 +22,7 @@ namespace ACNHPokerCore
                 e.DrawBackground();
                 e.DrawFocusRectangle();
 
-                string[] lines = Items[e.Index].ToString()?.Split(new[] { " " }, StringSplitOptions.None);
+                string[] lines = Items[e.Index].ToString()?.Split([" "], StringSplitOptions.None);
                 Image img;
                 if (lines != null && File.Exists(Utilities.GetVillagerImage(lines[lines.Length - 1])))
                     img = ImageCacher.GetImage(Utilities.GetVillagerImage(lines[lines.Length - 1]));

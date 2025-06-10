@@ -128,7 +128,7 @@ namespace ACNHPokerCore
             Refresh(false);
         }
 
-        private Mutex _mutex = new Mutex();
+        private readonly Mutex _mutex = new();
         public void Refresh(bool large)
         {
             _mutex.WaitOne();
@@ -218,28 +218,28 @@ namespace ACNHPokerCore
             }
 
 
-            if (ItemAttr.hasDurability(ItemID)) //Tools
+            if (ItemAttr.HasDurability(ItemID)) //Tools
             {
                 TextAlign = ContentAlignment.BottomLeft;
                 Text = "Dur: " + ItemDurability;
             }
-            else if (ItemAttr.hasUse(ItemID)) // Food/Drink
+            else if (ItemAttr.HasUse(ItemID)) // Food/Drink
             {
                 TextAlign = ContentAlignment.BottomLeft;
                 Text = "Use: " + ItemDurability;
             }
-            else if (ItemAttr.isFlower(ItemID)) //Flowers
+            else if (ItemAttr.IsFlower(ItemID)) //Flowers
             {
                 TextAlign = ContentAlignment.BottomRight;
                 ForeColor = Color.Yellow;
                 Text = (FlowerQuantity + 1).ToString();
             }
-            else if (ItemAttr.hasQuantity(ItemID)) // Materials
+            else if (ItemAttr.HasQuantity(ItemID)) // Materials
             {
                 TextAlign = ContentAlignment.BottomRight;
                 Text = (ItemQuantity + 1).ToString();
             }
-            else if (ItemAttr.hasGenetics(ItemID))
+            else if (ItemAttr.HasGenetics(ItemID))
             {
                 if (ItemData.ToString("X").Contains("83E0") || (ItemData.ToString("X").Contains("8642"))) // Flower
                 {

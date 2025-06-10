@@ -8,14 +8,14 @@ namespace ACNHPokerCore
 {
     public partial class Filter : Form
     {
-        public event ApplyFilter applyFilter;
-        public event CloseFilter closeFilter;
+        public event ApplyFilter ApplyFilter;
+        public event CloseFilter CloseFilter;
         public Filter()
         {
             InitializeComponent();
         }
 
-        private void filter_Click(object sender, System.EventArgs e)
+        private void Filter_Click(object sender, System.EventArgs e)
         {
             foreach (Button button in Controls)
             {
@@ -25,12 +25,12 @@ namespace ACNHPokerCore
 
             Button b = (Button)sender;
             b.BackColor = Color.Orange;
-            applyFilter?.Invoke(b.Tag.ToString());
+            ApplyFilter?.Invoke(b.Tag.ToString());
         }
 
         private void Filter_FormClosed(object sender, FormClosedEventArgs e)
         {
-            closeFilter?.Invoke();
+            CloseFilter?.Invoke();
         }
 
         private void ChangeLanguage(string lang)

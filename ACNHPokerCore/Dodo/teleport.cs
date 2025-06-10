@@ -23,7 +23,7 @@ namespace ACNHPokerCore
         private static readonly int turningSize = 4;
         private static readonly int teleportSize = coordinateSize + turningSize;
 
-        private static readonly object lockObject = new();
+        private static readonly Lock lockObject = new();
         private static string anchorPath;
 
         public enum OverworldState
@@ -96,7 +96,7 @@ namespace ACNHPokerCore
             Config.Save(ConfigurationSaveMode.Minimal);
         }
 
-        public static string getAnchorPath()
+        public static string GetAnchorPath()
         {
             return anchorPath;
         }

@@ -9,7 +9,7 @@ namespace DiscordWebhook
     {
         public DiscordMessage()
         {
-            Embeds = new List<DiscordEmbed>();
+            Embeds = [];
         }
 
         [JsonPropertyName("content")]
@@ -54,7 +54,7 @@ namespace DiscordWebhook
     {
         public DiscordEmbed()
         {
-            Fields = new List<EmbedField>();
+            Fields = [];
         }
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

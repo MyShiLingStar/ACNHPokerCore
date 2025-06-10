@@ -326,9 +326,9 @@ namespace ACNHPokerCore
         public static string fileName = @"Fairy";
         public static string filePath = saveFolder + fileName.Replace("F", "");
 
-        public static Dictionary<string, string> itemkind = new();
+        public static Dictionary<string, string> itemkind = [];
 
-        private static readonly Object botLock = new();
+        private static readonly Lock botLock = new();
 
         #region Emulator
 
@@ -414,7 +414,7 @@ namespace ACNHPokerCore
         {
             byte[] buffer = new byte[size];
             int bytesRead = 0;
-            if (ReadProcessMemory((int)ReadProcessHandle, EmulatorHeadAddress + Address, buffer, size, ref bytesRead))
+            if (ReadProcessMemory(checked((int)WriteProcessHandle), EmulatorHeadAddress + Address, buffer, size, ref bytesRead))
                 return buffer;
             else
                 return null;
@@ -423,7 +423,7 @@ namespace ACNHPokerCore
         public static void WriteEmulatorMemory(UInt32 Address, byte[] buffer)
         {
             int bytesWritten = 0;
-            WriteProcessMemory((int)WriteProcessHandle, EmulatorHeadAddress + Address, buffer, buffer.Length, ref bytesWritten);
+            WriteProcessMemory(checked((int)WriteProcessHandle), EmulatorHeadAddress + Address, buffer, buffer.Length, ref bytesWritten);
         }
 
         #endregion
@@ -436,7 +436,7 @@ namespace ACNHPokerCore
 
                 foreach (string line in lines)
                 {
-                    string[] parts = line.Split(new[] { " ; " }, StringSplitOptions.RemoveEmptyEntries);
+                    string[] parts = line.Split([" ; "], StringSplitOptions.RemoveEmptyEntries);
                     if (line.Contains("Kind_"))
                     {
                         if (parts[1].Contains("Fake"))
@@ -535,8 +535,7 @@ namespace ACNHPokerCore
         {
             if (Bank.Length <= 1)
             {
-                byte[] small = new byte[1];
-                small[0] = Convert.ToByte(Bank, 16);
+                byte[] small = [Convert.ToByte(Bank, 16)];
                 return small;
             }
 
@@ -879,7 +878,7 @@ namespace ACNHPokerCore
                 WriteEmulatorMemory(TurnipPurchasePriceAddr, BuyPrice);
                 WriteEmulatorMemory(TurnipPurchasePriceAddr + TurnipBuffer, BuyPrice);
 
-                byte[] SellPrice = Array.Empty<byte>();
+                byte[] SellPrice = [];
 
                 for (int i = 0; i < 12; i++)
                 {
@@ -905,7 +904,7 @@ namespace ACNHPokerCore
                     usb.WriteBytes(BuyPrice, TurnipPurchasePriceAddr);
                     usb.WriteBytes(BuyPrice, TurnipPurchasePriceAddr + TurnipBuffer);
 
-                    byte[] SellPrice = Array.Empty<byte>();
+                    byte[] SellPrice = [];
 
                     for (int i = 0; i < 12; i++)
                     {
@@ -4058,7 +4057,7 @@ namespace ACNHPokerCore
         {
             lock (botLock)
             {
-                List<string> VillagerList = new();
+                List<string> VillagerList = [];
                 byte[] b;
 
                 for (int i = 0; i < 10; i++)

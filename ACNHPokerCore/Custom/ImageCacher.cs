@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 
@@ -11,7 +10,7 @@ namespace ACNHPokerCore
         private static IMemoryCache m_memoryCache;
         private static ImageObject m_imageObject;
 
-        public static void setup(IMemoryCache memoryCache)
+        public static void Setup(IMemoryCache memoryCache)
         {
             m_memoryCache = memoryCache;
             m_imageObject = null;
@@ -46,7 +45,7 @@ namespace ACNHPokerCore
                     //Debug.Print("Cache");
                 }
 
-                return m_imageObject.itemImage;
+                return m_imageObject.ItemImage;
             }
             else
             {

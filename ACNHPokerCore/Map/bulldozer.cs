@@ -44,11 +44,11 @@ namespace ACNHPokerCore
         public event CloseHandler CloseForm;
         private bool formClosed;
 
-        private bool debugging;
-        private string debugTerrain = @"YourTerrain.nht";
-        private string debugAcres = @"YourAcre.nha";
-        private string debugBuilding = @"YourBuilding.nhb";
-        private string debugDesign = @"YourCustomDesignMap.nhdm";
+        private readonly bool debugging;
+        private readonly string debugTerrain = @"YourTerrain.nht";
+        private readonly string debugAcres = @"YourAcre.nha";
+        private readonly string debugBuilding = @"YourBuilding.nhb";
+        private readonly string debugDesign = @"YourCustomDesignMap.nhdm";
 
         public Bulldozer(Socket S, USBBot USB, bool Sound, bool Debugging)
         {
@@ -103,7 +103,7 @@ namespace ACNHPokerCore
                     else
                     {
                         MapCustomDesgin = new byte[Utilities.MapTileCount16x16 * 2];
-                        byte[] EmptyDesign = new byte[] { 0x00, 0xF8 };
+                        byte[] EmptyDesign = [0x00, 0xF8];
                         for (int i = 0; i < Utilities.MapTileCount16x16; i++)
                             Buffer.BlockCopy(EmptyDesign, 0, MapCustomDesgin, i * 2, 2);
                     }
@@ -172,9 +172,11 @@ namespace ACNHPokerCore
             g.DrawImage(e.Item.ImageList.Images[e.ItemIndex], new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 4, e.Bounds.Width - 8, e.Bounds.Width - 8));
             Font drawFont = new("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
             SolidBrush drawBrush = new(Color.White);
-            StringFormat drawFormat = new();
-            drawFormat.LineAlignment = StringAlignment.Center;
-            drawFormat.Alignment = StringAlignment.Center;
+            StringFormat drawFormat = new()
+            {
+                LineAlignment = StringAlignment.Center,
+                Alignment = StringAlignment.Center
+            };
             g.DrawString(e.Item.Text, drawFont, drawBrush, new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 4 + e.Bounds.Width, e.Bounds.Width - 8, 10), drawFormat);
         }
 
@@ -495,9 +497,7 @@ namespace ACNHPokerCore
                     else
                         HoverAcre = AcreX + 63;
 
-                    byte[] AcreBytes = new byte[2];
-                    AcreBytes[0] = Acre[HoverAcre * 2];
-                    AcreBytes[1] = Acre[HoverAcre * 2 + 1];
+                    byte[] AcreBytes = [Acre[HoverAcre * 2], Acre[HoverAcre * 2 + 1]];
                     int AcreNumber = BitConverter.ToInt16(AcreBytes, 0);
                     var AcreName = (Utilities.Acre)AcreNumber;
                     MapToolTip.Show(CoordinateText + "\n" + AcreName + "\n" + AcreNumber, miniMapBox, AcreX * 64 + 64, AcreY * 64 + 64);
@@ -1847,7 +1847,7 @@ namespace ACNHPokerCore
             miniMapBox.Image = null;
         }
 
-        private void removeAllRoadsBtn_Click(object sender, EventArgs e)
+        private void RemoveAllRoadsBtn_Click(object sender, EventArgs e)
         {
             if (MyMessageBox.Show("Are you sure you would like to remove ALL roads on your island?", "Long road ahead...", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
@@ -1878,7 +1878,7 @@ namespace ACNHPokerCore
 
             counter = 0;
 
-            byte[] EmptyRoadData = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+            byte[] EmptyRoadData = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00];
 
             for (int i = 0; i < Utilities.MapTileCount16x16; i++)
             {
@@ -1908,7 +1908,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void removeAllDesignBtn_Click(object sender, EventArgs e)
+        private void RemoveAllDesignBtn_Click(object sender, EventArgs e)
         {
             if (MyMessageBox.Show("Are you sure you would like to remove ALL custom designs on your island?", "Deep Cleansing Scrub...", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
@@ -1943,7 +1943,7 @@ namespace ACNHPokerCore
             {
                 for (int j = 0; j < numOfRow; j++)
                 {
-                    byte[] EmptyCustomDesignData = new byte[] { 0x00, 0xF8 };
+                    byte[] EmptyCustomDesignData = [0x00, 0xF8];
                     Buffer.BlockCopy(EmptyCustomDesignData, 0, newCustomMap, (i * numOfRow * 2) + (j * 2), 2);
                 }
             }

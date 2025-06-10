@@ -62,10 +62,10 @@ namespace ACNHPokerCore
         bool L;
         bool holdingL;
 
-        private string header = "Dutch Sailors            -> Click here to allow keyboard control <-            ";
+        private readonly string header = "Dutch Sailors            -> Click here to allow keyboard control <-            ";
 
         private CancellationTokenSource cts;
-        public event UpdateTurnipPriceHandler updateTurnipPriceHandler;
+        public event UpdateTurnipPriceHandler UpdateTurnipPriceHandler;
         public event CloseHandler CloseForm;
         public event ThreadAbortHandler AbortAll;
 
@@ -127,13 +127,13 @@ namespace ACNHPokerCore
             controllerTimer.Start();
             KeyPreview = true;
 
-            if (Teleport.getAnchorPath() == null)
+            if (Teleport.GetAnchorPath() == null)
             {
                 Text = header + @"DEBUGGING";
             }
             else
             {
-                string[] path = Teleport.getAnchorPath().Split('\\');
+                string[] path = Teleport.GetAnchorPath().Split('\\');
                 Text = header + path[path.Length - 1];
             }
 
@@ -716,7 +716,7 @@ namespace ACNHPokerCore
                 if (maxBells)
                 {
                     WriteLog("Enabling MAX Bells", true);
-                    updateTurnipPriceHandler?.Invoke();
+                    UpdateTurnipPriceHandler?.Invoke();
                 }
 
                 if (MyPubSub != null)
@@ -1349,7 +1349,7 @@ namespace ACNHPokerCore
         }
 
 
-        void maxBellsBox_CheckedChanged(object sender, EventArgs e)
+        void MaxBellsBox_CheckedChanged(object sender, EventArgs e)
         {
             Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
             if (maxBellsBox.Checked)
@@ -1360,7 +1360,7 @@ namespace ACNHPokerCore
                     maxBells = true;
                     config.AppSettings.Settings["AutoMaxBells"].Value = "true";
                     config.Save(ConfigurationSaveMode.Minimal);
-                    updateTurnipPriceHandler?.Invoke();
+                    UpdateTurnipPriceHandler?.Invoke();
                 }
             }
             else
@@ -1482,7 +1482,7 @@ namespace ACNHPokerCore
                 if (maxBells)
                 {
                     WriteLog("Enabling MAX Bells", true);
-                    updateTurnipPriceHandler?.Invoke();
+                    UpdateTurnipPriceHandler?.Invoke();
                 }
 
                 standaloneThread = new Thread(delegate () { StandaloneLoop(token); });

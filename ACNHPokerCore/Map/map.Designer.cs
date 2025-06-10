@@ -2438,7 +2438,7 @@ namespace ACNHPokerCore
             addMainToolStripMenuItem.Name = "addMainToolStripMenuItem";
             addMainToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             addMainToolStripMenuItem.Text = "Add Main Only";
-            addMainToolStripMenuItem.Click += addMainToolStripMenuItem_Click;
+            addMainToolStripMenuItem.Click += AddMainToolStripMenuItem_Click;
             // 
             // addSubToolStripMenuItem
             // 
@@ -2446,7 +2446,7 @@ namespace ACNHPokerCore
             addSubToolStripMenuItem.Name = "addSubToolStripMenuItem";
             addSubToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             addSubToolStripMenuItem.Text = "Add Sub Only";
-            addSubToolStripMenuItem.Click += addSubToolStripMenuItem_Click;
+            addSubToolStripMenuItem.Click += AddSubToolStripMenuItem_Click;
             // 
             // AddALLToBulkOption
             // 
@@ -2526,7 +2526,7 @@ namespace ACNHPokerCore
             MaximumSize = new System.Drawing.Size(1220, 1000);
             MinimumSize = new System.Drawing.Size(1220, 670);
             Name = "Map";
-            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Map Dropper";
             FormClosing += Map_FormClosing;
             FormClosed += Map_FormClosed;

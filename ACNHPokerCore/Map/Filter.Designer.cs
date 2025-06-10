@@ -74,7 +74,7 @@
             this.PictureBtn.Name = "PictureBtn";
             this.PictureBtn.Tag = "Kind_Picture";
             this.PictureBtn.UseVisualStyleBackColor = false;
-            this.PictureBtn.Click += new System.EventHandler(this.filter_Click);
+            this.PictureBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // SculptureBtn
             // 
@@ -85,7 +85,7 @@
             this.SculptureBtn.Name = "SculptureBtn";
             this.SculptureBtn.Tag = "Kind_Sculpture";
             this.SculptureBtn.UseVisualStyleBackColor = false;
-            this.SculptureBtn.Click += new System.EventHandler(this.filter_Click);
+            this.SculptureBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // TopShortBtn
             // 
@@ -96,7 +96,7 @@
             this.TopShortBtn.Name = "TopShortBtn";
             this.TopShortBtn.Tag = "Top_Short";
             this.TopShortBtn.UseVisualStyleBackColor = false;
-            this.TopShortBtn.Click += new System.EventHandler(this.filter_Click);
+            this.TopShortBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // TopMediumBtn
             // 
@@ -107,7 +107,7 @@
             this.TopMediumBtn.Name = "TopMediumBtn";
             this.TopMediumBtn.Tag = "Top_Middle";
             this.TopMediumBtn.UseVisualStyleBackColor = false;
-            this.TopMediumBtn.Click += new System.EventHandler(this.filter_Click);
+            this.TopMediumBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // OnepieceLongBtn
             // 
@@ -118,7 +118,7 @@
             this.OnepieceLongBtn.Name = "OnepieceLongBtn";
             this.OnepieceLongBtn.Tag = "Onepiece_Long";
             this.OnepieceLongBtn.UseVisualStyleBackColor = false;
-            this.OnepieceLongBtn.Click += new System.EventHandler(this.filter_Click);
+            this.OnepieceLongBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // SocksBtn
             // 
@@ -129,7 +129,7 @@
             this.SocksBtn.Name = "SocksBtn";
             this.SocksBtn.Tag = "Kind_Socks";
             this.SocksBtn.UseVisualStyleBackColor = false;
-            this.SocksBtn.Click += new System.EventHandler(this.filter_Click);
+            this.SocksBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // AccessoryBtn
             // 
@@ -140,7 +140,7 @@
             this.AccessoryBtn.Name = "AccessoryBtn";
             this.AccessoryBtn.Tag = "Kind_Accessory";
             this.AccessoryBtn.UseVisualStyleBackColor = false;
-            this.AccessoryBtn.Click += new System.EventHandler(this.filter_Click);
+            this.AccessoryBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // TopLongBtn
             // 
@@ -151,7 +151,7 @@
             this.TopLongBtn.Name = "TopLongBtn";
             this.TopLongBtn.Tag = "Top_Long";
             this.TopLongBtn.UseVisualStyleBackColor = false;
-            this.TopLongBtn.Click += new System.EventHandler(this.filter_Click);
+            this.TopLongBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // FossilBtn
             // 
@@ -162,7 +162,7 @@
             this.FossilBtn.Name = "FossilBtn";
             this.FossilBtn.Tag = "Kind_Fossil";
             this.FossilBtn.UseVisualStyleBackColor = false;
-            this.FossilBtn.Click += new System.EventHandler(this.filter_Click);
+            this.FossilBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // BagBackpackBtn
             // 
@@ -173,7 +173,7 @@
             this.BagBackpackBtn.Name = "BagBackpackBtn";
             this.BagBackpackBtn.Tag = "Kind_Bag";
             this.BagBackpackBtn.UseVisualStyleBackColor = false;
-            this.BagBackpackBtn.Click += new System.EventHandler(this.filter_Click);
+            this.BagBackpackBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // CapBtn
             // 
@@ -184,7 +184,7 @@
             this.CapBtn.Name = "CapBtn";
             this.CapBtn.Tag = "Kind_Cap";
             this.CapBtn.UseVisualStyleBackColor = false;
-            this.CapBtn.Click += new System.EventHandler(this.filter_Click);
+            this.CapBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // HelmetBtn
             // 
@@ -195,7 +195,7 @@
             this.HelmetBtn.Name = "HelmetBtn";
             this.HelmetBtn.Tag = "Kind_Helmet";
             this.HelmetBtn.UseVisualStyleBackColor = false;
-            this.HelmetBtn.Click += new System.EventHandler(this.filter_Click);
+            this.HelmetBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // HandBagBtn
             // 
@@ -206,7 +206,7 @@
             this.HandBagBtn.Name = "HandBagBtn";
             this.HandBagBtn.Tag = "Kind_HandBag";
             this.HandBagBtn.UseVisualStyleBackColor = false;
-            this.HandBagBtn.Click += new System.EventHandler(this.filter_Click);
+            this.HandBagBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // PhotoBtn
             // 
@@ -217,7 +217,7 @@
             this.PhotoBtn.Name = "PhotoBtn";
             this.PhotoBtn.Tag = "Kind_Bromide";
             this.PhotoBtn.UseVisualStyleBackColor = false;
-            this.PhotoBtn.Click += new System.EventHandler(this.filter_Click);
+            this.PhotoBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // OnepieceDressBtn
             // 
@@ -228,7 +228,7 @@
             this.OnepieceDressBtn.Name = "OnepieceDressBtn";
             this.OnepieceDressBtn.Tag = "Onepiece_Dress";
             this.OnepieceDressBtn.UseVisualStyleBackColor = false;
-            this.OnepieceDressBtn.Click += new System.EventHandler(this.filter_Click);
+            this.OnepieceDressBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // BottomsLongBtn
             // 
@@ -239,7 +239,7 @@
             this.BottomsLongBtn.Name = "BottomsLongBtn";
             this.BottomsLongBtn.Tag = "Bottoms_Long";
             this.BottomsLongBtn.UseVisualStyleBackColor = false;
-            this.BottomsLongBtn.Click += new System.EventHandler(this.filter_Click);
+            this.BottomsLongBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // BottomsMediumBtn
             // 
@@ -250,7 +250,7 @@
             this.BottomsMediumBtn.Name = "BottomsMediumBtn";
             this.BottomsMediumBtn.Tag = "Bottoms_Middle";
             this.BottomsMediumBtn.UseVisualStyleBackColor = false;
-            this.BottomsMediumBtn.Click += new System.EventHandler(this.filter_Click);
+            this.BottomsMediumBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // BottomsShortBtn
             // 
@@ -261,7 +261,7 @@
             this.BottomsShortBtn.Name = "BottomsShortBtn";
             this.BottomsShortBtn.Tag = "Bottoms_Short";
             this.BottomsShortBtn.UseVisualStyleBackColor = false;
-            this.BottomsShortBtn.Click += new System.EventHandler(this.filter_Click);
+            this.BottomsShortBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // OnepieceMediumBtn
             // 
@@ -272,7 +272,7 @@
             this.OnepieceMediumBtn.Name = "OnepieceMediumBtn";
             this.OnepieceMediumBtn.Tag = "Onepiece_Middle";
             this.OnepieceMediumBtn.UseVisualStyleBackColor = false;
-            this.OnepieceMediumBtn.Click += new System.EventHandler(this.filter_Click);
+            this.OnepieceMediumBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // OnepieceShortBtn
             // 
@@ -283,7 +283,7 @@
             this.OnepieceShortBtn.Name = "OnepieceShortBtn";
             this.OnepieceShortBtn.Tag = "Onepiece_Short";
             this.OnepieceShortBtn.UseVisualStyleBackColor = false;
-            this.OnepieceShortBtn.Click += new System.EventHandler(this.filter_Click);
+            this.OnepieceShortBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // ShoesBootsBtn
             // 
@@ -294,7 +294,7 @@
             this.ShoesBootsBtn.Name = "ShoesBootsBtn";
             this.ShoesBootsBtn.Tag = "Shoes_Boots";
             this.ShoesBootsBtn.UseVisualStyleBackColor = false;
-            this.ShoesBootsBtn.Click += new System.EventHandler(this.filter_Click);
+            this.ShoesBootsBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // ShoesPumpsBtn
             // 
@@ -305,7 +305,7 @@
             this.ShoesPumpsBtn.Name = "ShoesPumpsBtn";
             this.ShoesPumpsBtn.Tag = "Shoes_Pumps";
             this.ShoesPumpsBtn.UseVisualStyleBackColor = false;
-            this.ShoesPumpsBtn.Click += new System.EventHandler(this.filter_Click);
+            this.ShoesPumpsBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // PosterBtn
             // 
@@ -316,7 +316,7 @@
             this.PosterBtn.Name = "PosterBtn";
             this.PosterBtn.Tag = "Kind_Poster";
             this.PosterBtn.UseVisualStyleBackColor = false;
-            this.PosterBtn.Click += new System.EventHandler(this.filter_Click);
+            this.PosterBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // DishesBtn
             // 
@@ -327,7 +327,7 @@
             this.DishesBtn.Name = "DishesBtn";
             this.DishesBtn.Tag = "Kind_Dishes";
             this.DishesBtn.UseVisualStyleBackColor = false;
-            this.DishesBtn.Click += new System.EventHandler(this.filter_Click);
+            this.DishesBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // DrinkBtn
             // 
@@ -338,7 +338,7 @@
             this.DrinkBtn.Name = "DrinkBtn";
             this.DrinkBtn.Tag = "Kind_Drink";
             this.DrinkBtn.UseVisualStyleBackColor = false;
-            this.DrinkBtn.Click += new System.EventHandler(this.filter_Click);
+            this.DrinkBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // SeaCreatureBtn
             // 
@@ -349,7 +349,7 @@
             this.SeaCreatureBtn.Name = "SeaCreatureBtn";
             this.SeaCreatureBtn.Tag = "Kind_DiveFish";
             this.SeaCreatureBtn.UseVisualStyleBackColor = false;
-            this.SeaCreatureBtn.Click += new System.EventHandler(this.filter_Click);
+            this.SeaCreatureBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // FishBtn
             // 
@@ -360,7 +360,7 @@
             this.FishBtn.Name = "FishBtn";
             this.FishBtn.Tag = "Kind_Fish";
             this.FishBtn.UseVisualStyleBackColor = false;
-            this.FishBtn.Click += new System.EventHandler(this.filter_Click);
+            this.FishBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // InsectBtn
             // 
@@ -371,7 +371,7 @@
             this.InsectBtn.Name = "InsectBtn";
             this.InsectBtn.Tag = "Kind_Insect";
             this.InsectBtn.UseVisualStyleBackColor = false;
-            this.InsectBtn.Click += new System.EventHandler(this.filter_Click);
+            this.InsectBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // StarPieceBtn
             // 
@@ -382,7 +382,7 @@
             this.StarPieceBtn.Name = "StarPieceBtn";
             this.StarPieceBtn.Tag = "Kind_StarPiece";
             this.StarPieceBtn.UseVisualStyleBackColor = false;
-            this.StarPieceBtn.Click += new System.EventHandler(this.filter_Click);
+            this.StarPieceBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // MusicBtn
             // 
@@ -393,7 +393,7 @@
             this.MusicBtn.Name = "MusicBtn";
             this.MusicBtn.Tag = "Kind_Music";
             this.MusicBtn.UseVisualStyleBackColor = false;
-            this.MusicBtn.Click += new System.EventHandler(this.filter_Click);
+            this.MusicBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // GyroidBtn
             // 
@@ -404,7 +404,7 @@
             this.GyroidBtn.Name = "GyroidBtn";
             this.GyroidBtn.Tag = "Kind_Gyroid";
             this.GyroidBtn.UseVisualStyleBackColor = false;
-            this.GyroidBtn.Click += new System.EventHandler(this.filter_Click);
+            this.GyroidBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // UmbrellaBtn
             // 
@@ -415,7 +415,7 @@
             this.UmbrellaBtn.Name = "UmbrellaBtn";
             this.UmbrellaBtn.Tag = "Kind_Umbrella";
             this.UmbrellaBtn.UseVisualStyleBackColor = false;
-            this.UmbrellaBtn.Click += new System.EventHandler(this.filter_Click);
+            this.UmbrellaBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // ClearBtn
             // 
@@ -426,7 +426,7 @@
             this.ClearBtn.Name = "ClearBtn";
             this.ClearBtn.Tag = "Clear";
             this.ClearBtn.UseVisualStyleBackColor = false;
-            this.ClearBtn.Click += new System.EventHandler(this.filter_Click);
+            this.ClearBtn.Click += new System.EventHandler(this.Filter_Click);
             // 
             // ChangeLanguageBtn
             // 

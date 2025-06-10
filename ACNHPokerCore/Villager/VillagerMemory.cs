@@ -2,11 +2,10 @@
 
 namespace ACNHPokerCore
 {
-    public class VillagerMemory
+    public class VillagerMemory(byte[] data)
     {
-        private readonly byte[] Data;
+        private readonly byte[] Data = data;
 
-        public VillagerMemory(byte[] data) => Data = data;
         public uint TownID
         {
             get => BitConverter.ToUInt32(Data, 0x00);

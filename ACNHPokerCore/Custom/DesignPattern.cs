@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 
 namespace ACNHPokerCore
 {
-    public class DesignPattern
+    public class DesignPattern(byte[] data)
     {
         public const int Width = 32;
         public const int Height = 32;
@@ -18,7 +18,7 @@ namespace ACNHPokerCore
         private const int PaletteColorSize = 3;
         private const int PixelDataOffset = PaletteDataStart + (PaletteColorCount * PaletteColorSize);
 
-        public byte[] Data;
+        public byte[] Data = data;
 
         public uint Hash
         {
@@ -53,11 +53,6 @@ namespace ACNHPokerCore
         public string PlayerName
         {
             get => Utilities.GetString(Data, PersonalOffset + 0x20, 10);
-        }
-
-        public DesignPattern(byte[] data)
-        {
-            Data = data;
         }
 
         public static int GetColorOffset(int index)

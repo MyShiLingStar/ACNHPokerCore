@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace ACNHPokerCore
 {
-    public partial class variationSpawn : Form
+    public partial class VariationSpawn : Form
     {
         readonly InventorySlot[,] mainSlot = new InventorySlot[1, 3];
         readonly InventorySlot[,] subSlot = new InventorySlot[1, 3];
@@ -38,7 +38,7 @@ namespace ACNHPokerCore
         public event ObeySizeHandler SendObeySizeEvent;
         public event UpdateRowAndColumnHandler SendRowAndColumnEvent;
 
-        public variationSpawn(InventorySlot[,] variationList, byte[] layer1, byte[] acre, byte[] building, byte[] terrain, byte[] design, int x, int y, string flag, string size)
+        public VariationSpawn(InventorySlot[,] variationList, byte[] layer1, byte[] acre, byte[] building, byte[] terrain, byte[] design, int x, int y, string flag, string size)
         {
             Layer1 = layer1;
             Acre = acre;

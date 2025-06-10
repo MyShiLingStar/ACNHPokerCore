@@ -1,9 +1,7 @@
 ﻿using ICSharpCode.SharpZipLib.Core;
 using ICSharpCode.SharpZipLib.Zip;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Configuration;
-using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,13 +11,13 @@ namespace ACNHPokerCore
 {
     public partial class ImgRetriever : Form
     {
-        bool skipDownload = false;
+        private readonly bool skipDownload = false;
         int entryTotal = 0;
         int fileCounter = 0;
-        string directoryName = @"img";
-        string fileName = @"img.zip";
-        string downloadFileUrl = "https://github.com/MyShiLingStar/ACNHPokerCore/releases/download/ImgPack8/img.zip";
-        System.Windows.Forms.Timer progressTimer = new();
+        private readonly string directoryName = @"img";
+        private readonly string fileName = @"img.zip";
+        private readonly string downloadFileUrl = "https://github.com/MyShiLingStar/ACNHPokerCore/releases/download/ImgPack8/img.zip";
+        private readonly System.Windows.Forms.Timer progressTimer = new();
 
         public ImgRetriever()
         {
@@ -83,15 +81,13 @@ namespace ACNHPokerCore
         {
             string destinationFilePath = Path.GetFullPath(fileName);
 
-            using (var client = new HttpClientDownloadWithProgress(downloadFileUrl, destinationFilePath))
+            using var client = new HttpClientDownloadWithProgress(downloadFileUrl, destinationFilePath);
+            client.ProgressChanged += (_, _, progressPercentage) =>
             {
-                client.ProgressChanged += (_, _, progressPercentage) =>
-                {
-                    if (progressPercentage != null) progressBar.Value = (int)progressPercentage;
-                };
+                if (progressPercentage != null) progressBar.Value = (int)progressPercentage;
+            };
 
-                await client.StartDownload();
-            }
+            await client.StartDownload();
         }
 
         private void ExtractHere()
@@ -116,13 +112,17 @@ namespace ACNHPokerCore
             string fileFilter = null;
             string dirFilter = null;
 
-            events = new FastZipEvents();
-            events.CompletedFile = new CompletedFileHandler(CompletedFile);
+            events = new FastZipEvents
+            {
+                CompletedFile = new CompletedFileHandler(CompletedFile)
+            };
 
-            var fastZip = new FastZip(events);
-            fastZip.CreateEmptyDirectories = createEmptyDirs;
-            fastZip.RestoreAttributesOnExtract = restoreAttributes;
-            fastZip.RestoreDateTimeOnExtract = restoreDates;
+            var fastZip = new FastZip(events)
+            {
+                CreateEmptyDirectories = createEmptyDirs,
+                RestoreAttributesOnExtract = restoreAttributes,
+                RestoreDateTimeOnExtract = restoreDates
+            };
 
             ZipFile zipFile = new(fileName);
             entryTotal = (int)zipFile.Count;

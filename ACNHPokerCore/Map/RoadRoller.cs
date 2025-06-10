@@ -84,19 +84,19 @@ namespace ACNHPokerCore
         private Button manualSelectedRiverModel;
 
         private bool isBigControl;
-        private readonly Dictionary<string, Size> ControlSize = new();
-        private readonly Dictionary<string, Point> ControlLocation = new();
+        private readonly Dictionary<string, Size> ControlSize = [];
+        private readonly Dictionary<string, Point> ControlLocation = [];
 
         public event CloseHandler CloseForm;
 
-        private static readonly object lockObject = new();
+        private static readonly Lock lockObject = new();
 
         private int currentSize;
 
-        private string debugTerrain = @"YourTerrain.nht";
-        private string debugAcres = @"YourAcre.nha";
-        private string debugBuilding = @"YourBuilding.nhb";
-        private string debugDesign = @"YourCustomDesignMap.nhdm";
+        private readonly string debugTerrain = @"YourTerrain.nht";
+        private readonly string debugAcres = @"YourAcre.nha";
+        private readonly string debugBuilding = @"YourBuilding.nhb";
+        private readonly string debugDesign = @"YourCustomDesignMap.nhdm";
 
         public RoadRoller(Socket S, USBBot USB, bool Sound, bool Debugging)
         {
@@ -249,7 +249,7 @@ namespace ACNHPokerCore
                 else
                 {
                     MapCustomDesgin = new byte[Utilities.MapTileCount16x16 * 2];
-                    byte[] EmptyDesign = new byte[] { 0x00, 0xF8 };
+                    byte[] EmptyDesign = [0x00, 0xF8];
                     for (int i = 0; i < Utilities.MapTileCount16x16; i++)
                         Buffer.BlockCopy(EmptyDesign, 0, MapCustomDesgin, i * 2, 2);
                 }
@@ -2120,7 +2120,7 @@ namespace ACNHPokerCore
                         return;
 
                     byte[] CustomDesignBytes = BitConverter.GetBytes(CustomDesignList.FocusedItem.Index);
-                    byte[] Half = new[] { CustomDesignBytes[0], CustomDesignBytes[1] };
+                    byte[] Half = [CustomDesignBytes[0], CustomDesignBytes[1]];
 
                     PlaceDesign(Half, Xcoordinate + anchorX, Ycoordinate + anchorY);
 
@@ -2395,7 +2395,7 @@ namespace ACNHPokerCore
                     if (Xcoordinate == LastChangedX && Ycoordinate == LastChangedY && wasPlacing)
                         return;
                     byte[] CustomDesignBytes = BitConverter.GetBytes(CustomDesignList.FocusedItem.Index);
-                    byte[] Half = new[] { CustomDesignBytes[0], CustomDesignBytes[1] };
+                    byte[] Half = [CustomDesignBytes[0], CustomDesignBytes[1]];
 
                     PlaceDesign(Half, Xcoordinate + anchorX, Ycoordinate + anchorY);
 
@@ -3182,22 +3182,22 @@ namespace ACNHPokerCore
             }
             using (Graphics gr = Graphics.FromImage(Cliff2B))
             {
-                Point[] Terrain2B = new[] { new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                Point[] Terrain2B = [new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1)];
                 gr.FillPolygon(CliffBrush, Terrain2B);
             }
             using (Graphics gr = Graphics.FromImage(Cliff2C))
             {
-                Point[] Terrain2C = new[] { new Point(4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                Point[] Terrain2C = [new Point(4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1)];
                 gr.FillPolygon(CliffBrush, Terrain2C);
             }
             using (Graphics gr = Graphics.FromImage(Cliff3A))
             {
-                Point[] Terrain3A = new[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                Point[] Terrain3A = [new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1)];
                 gr.FillPolygon(CliffBrush, Terrain3A);
             }
             using (Graphics gr = Graphics.FromImage(Cliff3B))
             {
-                Point[] Terrain3B = new[] { new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(4, size - 1) };
+                Point[] Terrain3B = [new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(4, size - 1)];
                 gr.FillPolygon(CliffBrush, Terrain3B);
             }
             using (Graphics gr = Graphics.FromImage(Cliff3C))
@@ -3206,22 +3206,22 @@ namespace ACNHPokerCore
             }
             using (Graphics gr = Graphics.FromImage(Cliff4A))
             {
-                Point[] Terrain4A = new[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(4, size - 1) };
+                Point[] Terrain4A = [new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 1), new Point(4, size - 1)];
                 gr.FillPolygon(CliffBrush, Terrain4A);
             }
             using (Graphics gr = Graphics.FromImage(Cliff4B))
             {
-                Point[] Terrain4B = new[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1) };
+                Point[] Terrain4B = [new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1)];
                 gr.FillPolygon(CliffBrush, Terrain4B);
             }
             using (Graphics gr = Graphics.FromImage(Cliff4C))
             {
-                Point[] Terrain4C = new[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4), new Point(1, 4), new Point(4, 4) };
+                Point[] Terrain4C = [new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4), new Point(1, 4), new Point(4, 4)];
                 gr.FillPolygon(CliffBrush, Terrain4C);
             }
             using (Graphics gr = Graphics.FromImage(Cliff5A))
             {
-                Point[] Terrain5A = new[] { new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4) };
+                Point[] Terrain5A = [new Point(4, 1), new Point(size - 4, 1), new Point(size - 4, 4), new Point(size - 1, 4), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4)];
                 gr.FillPolygon(CliffBrush, Terrain5A);
             }
             using (Graphics gr = Graphics.FromImage(Cliff5B))
@@ -3230,17 +3230,17 @@ namespace ACNHPokerCore
             }
             using (Graphics gr = Graphics.FromImage(Cliff6A))
             {
-                Point[] Terrain6A = new[] { new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4) };
+                Point[] Terrain6A = [new Point(4, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(1, size - 1), new Point(1, 4), new Point(4, 4)];
                 gr.FillPolygon(CliffBrush, Terrain6A);
             }
             using (Graphics gr = Graphics.FromImage(Cliff6B))
             {
-                Point[] Terrain6B = new[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
+                Point[] Terrain6B = [new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 4), new Point(size - 4, size - 4), new Point(size - 4, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4)];
                 gr.FillPolygon(CliffBrush, Terrain6B);
             }
             using (Graphics gr = Graphics.FromImage(Cliff7A))
             {
-                Point[] Terrain7A = new[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4) };
+                Point[] Terrain7A = [new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 1), new Point(4, size - 1), new Point(4, size - 4), new Point(1, size - 4)];
                 gr.FillPolygon(CliffBrush, Terrain7A);
             }
             using (Graphics gr = Graphics.FromImage(Cliff8))
@@ -3406,22 +3406,22 @@ namespace ACNHPokerCore
             }
             using (Graphics gr = Graphics.FromImage(River2B))
             {
-                Point[] Terrain2B = new[] { new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1) };
+                Point[] Terrain2B = [new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1)];
                 gr.FillPolygon(RiverBrush, Terrain2B);
             }
             using (Graphics gr = Graphics.FromImage(River2C))
             {
-                Point[] Terrain2C = new[] { new Point(8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1) };
+                Point[] Terrain2C = [new Point(8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1)];
                 gr.FillPolygon(RiverBrush, Terrain2C);
             }
             using (Graphics gr = Graphics.FromImage(River3A))
             {
-                Point[] Terrain3A = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1) };
+                Point[] Terrain3A = [new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1)];
                 gr.FillPolygon(RiverBrush, Terrain3A);
             }
             using (Graphics gr = Graphics.FromImage(River3B))
             {
-                Point[] Terrain3B = new[] { new Point(size - 1, 8), new Point(size - 1, size - 1), new Point(8, size - 1) };
+                Point[] Terrain3B = [new Point(size - 1, 8), new Point(size - 1, size - 1), new Point(8, size - 1)];
                 gr.FillPolygon(RiverBrush, Terrain3B);
             }
             using (Graphics gr = Graphics.FromImage(River3C))
@@ -3430,22 +3430,22 @@ namespace ACNHPokerCore
             }
             using (Graphics gr = Graphics.FromImage(River4A))
             {
-                Point[] Terrain4A = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 1), new Point(8, size - 1) };
+                Point[] Terrain4A = [new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 1), new Point(8, size - 1)];
                 gr.FillPolygon(RiverBrush, Terrain4A);
             }
             using (Graphics gr = Graphics.FromImage(River4B))
             {
-                Point[] Terrain4B = new[] { new Point(8, 1), new Point(size - 1, 1), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1) };
+                Point[] Terrain4B = [new Point(8, 1), new Point(size - 1, 1), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1)];
                 gr.FillPolygon(RiverBrush, Terrain4B);
             }
             using (Graphics gr = Graphics.FromImage(River4C))
             {
-                Point[] Terrain4C = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8), new Point(1, 8), new Point(8, 8) };
+                Point[] Terrain4C = [new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8), new Point(1, 8), new Point(8, 8)];
                 gr.FillPolygon(RiverBrush, Terrain4C);
             }
             using (Graphics gr = Graphics.FromImage(River5A))
             {
-                Point[] Terrain5A = new[] { new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(1, size - 1), new Point(1, 8), new Point(8, 8) };
+                Point[] Terrain5A = [new Point(8, 1), new Point(size - 8, 1), new Point(size - 8, 8), new Point(size - 1, 8), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(1, size - 1), new Point(1, 8), new Point(8, 8)];
                 gr.FillPolygon(RiverBrush, Terrain5A);
             }
             using (Graphics gr = Graphics.FromImage(River5B))
@@ -3454,17 +3454,17 @@ namespace ACNHPokerCore
             }
             using (Graphics gr = Graphics.FromImage(River6A))
             {
-                Point[] Terrain6A = new[] { new Point(8, 1), new Point(size - 1, 1), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(1, size - 1), new Point(1, 8), new Point(8, 8) };
+                Point[] Terrain6A = [new Point(8, 1), new Point(size - 1, 1), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(1, size - 1), new Point(1, 8), new Point(8, 8)];
                 gr.FillPolygon(RiverBrush, Terrain6A);
             }
             using (Graphics gr = Graphics.FromImage(River6B))
             {
-                Point[] Terrain6B = new[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8) };
+                Point[] Terrain6B = [new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 8), new Point(size - 8, size - 8), new Point(size - 8, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8)];
                 gr.FillPolygon(RiverBrush, Terrain6B);
             }
             using (Graphics gr = Graphics.FromImage(River7A))
             {
-                Point[] Terrain7A = new[] { new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8) };
+                Point[] Terrain7A = [new Point(1, 1), new Point(size - 1, 1), new Point(size - 1, size - 1), new Point(8, size - 1), new Point(8, size - 8), new Point(1, size - 8)];
                 gr.FillPolygon(RiverBrush, Terrain7A);
             }
             using (Graphics gr = Graphics.FromImage(River8A))

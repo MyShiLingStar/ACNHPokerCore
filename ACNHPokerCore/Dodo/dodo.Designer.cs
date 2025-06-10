@@ -427,7 +427,7 @@ namespace ACNHPokerCore
             maxBellsBox.Text = "Max Bells";
             HoverToolTip.SetToolTip(maxBellsBox, "Enable or Disable auto max bells.\r\nYou can toggle this on and off without stopping the process.");
             maxBellsBox.UseVisualStyleBackColor = false;
-            maxBellsBox.CheckedChanged += maxBellsBox_CheckedChanged;
+            maxBellsBox.CheckedChanged += MaxBellsBox_CheckedChanged;
             // 
             // standaloneStart
             // 

@@ -7,8 +7,8 @@ namespace ACNHPokerCore
     static class ItemAttr
     {
         public const UInt16 empty = 0xFFFE;
-        private static readonly HashSet<UInt16> hasDurabilitySet = new()
-        {
+        private static readonly HashSet<UInt16> hasDurabilitySet =
+        [
             0x0833, // shovel
             0x0834, // axe
             0x0948, // flimsy net
@@ -42,9 +42,9 @@ namespace ACNHPokerCore
             0x21d4, // golden rod
             0x2591, // golden axe
             0x3147, // worn axe
-        };
-        private static readonly HashSet<UInt16> hasUseSet = new()
-        {
+        ];
+        private static readonly HashSet<UInt16> hasUseSet =
+        [
             0x0144, // rainbow soft serve
             0x0145, // berry-vanilla soft serve
             0x0146, // matcha-vanilla soft serve
@@ -81,9 +81,9 @@ namespace ACNHPokerCore
             0x39F5,
             0x3A04,
             0x3A05,
-        };
-        private static readonly HashSet<UInt16> hasGeneticsSet = new()
-        {
+        ];
+        private static readonly HashSet<UInt16> hasGeneticsSet =
+        [
             0x0A43, // red-cosmos stems
             0x0A44, // red-cosmos buds
             0x0A46, // white-cosmos stems
@@ -452,9 +452,9 @@ namespace ACNHPokerCore
             0xEBF0, //orange-hyacinth (Bud)
             0xEBEC, //orange-hyacinth (Flower)
             0xECC1, //lily-of-the-valley (Flower)
-        };
-        private static readonly HashSet<UInt16> isRoseSet = new()
-        {
+        ];
+        private static readonly HashSet<UInt16> isRoseSet =
+        [
             0x0B75, // white-rose stems
             0x0B76, // white-rose buds
             0x0B79, // red-rose stems
@@ -485,9 +485,9 @@ namespace ACNHPokerCore
             0x0F22, // black-rose plant
             0x0F24, // blue-rose plant
             0x0F26, // gold-rose plant
-        };
-        private static readonly HashSet<UInt16> isTreeSet = new()
-        {
+        ];
+        private static readonly HashSet<UInt16> isTreeSet =
+        [
             0x0AEC, // small young hardwood
             0x0AED, // medium young hardwood
             0x0AEE, // large young hardwood
@@ -611,26 +611,26 @@ namespace ACNHPokerCore
             0xEC9D, // Money Tree(Grow 3)
             0xEC9C, // Money Tree(Full-grown)
             0xED16, // Tree(Easter Egg)
-        };
-        private static readonly HashSet<UInt16> isFruitSet = new()
-        {
+        ];
+        private static readonly HashSet<UInt16> isFruitSet =
+        [
             0x08A5, // apple
             0x08A6, // orange
             0x08ED, // pear
             0x08EE, // peach
             0x08EF, // cherry
             0x08F0, // coconut
-        };
-        private static readonly HashSet<UInt16> isMushroomSet = new()
-        {
+        ];
+        private static readonly HashSet<UInt16> isMushroomSet =
+        [
             0x0CCC, // elegant mushroom
             0x0CCD, // round mushroom
             0x0CCE, // skinny mushroom
             0x0CCF, // flat mushroom
             0x0CD0, // rare mushroom
-        };
-        private static readonly HashSet<UInt16> isCraftMaterialSet = new()
-        {
+        ];
+        private static readonly HashSet<UInt16> isCraftMaterialSet =
+        [
             0x09C4, // tree branch
             0x09C5, // bamboo piece
             0x0ACF, // softwood
@@ -682,9 +682,9 @@ namespace ACNHPokerCore
             0x36AC, // whole-wheat flour
             0x36AD, // sugar
             0x36AE, // brown sugar
-        };
-        private static readonly HashSet<UInt16> isDummyContainerSet = new()
-        {
+        ];
+        private static readonly HashSet<UInt16> isDummyContainerSet =
+        [
             0x1225, // delivery
             0x1180, // present
             0x1095, // delivery box
@@ -704,9 +704,9 @@ namespace ACNHPokerCore
             0x1E20, // present
             0x1E21, // present
             0x1E22, // present
-        };
-        private static readonly HashSet<UInt16> isFenceSet = new()
-        {
+        ];
+        private static readonly HashSet<UInt16> isFenceSet =
+        [
             0x0C08, // brick fence
             0x0D4A, // vertical-board fence
             0x0D4B, // bamboo lattice fence
@@ -738,9 +738,9 @@ namespace ACNHPokerCore
             0x39A5,
             0x39A6,
             0x39A7,
-        };
-        private static readonly HashSet<UInt16> isPlacedFenceSet = new()
-        {
+        ];
+        private static readonly HashSet<UInt16> isPlacedFenceSet =
+        [
             0xEBD5, //corral fence
             0xEBBA, //vertical-board fence
             0xECB8, //vertical-board fence (Black)
@@ -842,9 +842,9 @@ namespace ACNHPokerCore
             0xED25, //spooky fence
             0xECC4, //Harvey's island fence
             0xED46, //庭専用柵（編集外用）
-        };
-        private static readonly HashSet<UInt16> isFenceWithVariation = new()
-        {
+        ];
+        private static readonly HashSet<UInt16> isFenceWithVariation =
+        [
             0x0D4A, // vertical-board fence
             0x1105, // iron fence
             0x1457, // zen fence
@@ -855,9 +855,9 @@ namespace ACNHPokerCore
             0x39A4, // frozen fence
             0x39A6, // corrugated iron fence
             0x39A7, // park fence
-        };
-        private static readonly HashSet<UInt16> isFlowerSet = new()
-        {
+        ];
+        private static readonly HashSet<UInt16> isFlowerSet =
+        [
             0x0900, // red cosmos
             0x0901, // white cosmos
             0x0B2F, // yellow cosmos
@@ -915,9 +915,9 @@ namespace ACNHPokerCore
             0x11AE, // Yellow Pumpkin
             0x11AF, // Green Pumpkin
             0x11B0, // White Pumpkin
-        };
-        private static readonly HashSet<UInt16> isFlowerSeedSet = new()
-        {
+        ];
+        private static readonly HashSet<UInt16> isFlowerSeedSet =
+        [
             0x0A42, // red-cosmos bag
             0x0A45, // white-cosmos bag
             0x0B30, // yellow-cosmos bag
@@ -948,9 +948,9 @@ namespace ACNHPokerCore
             0x0BDB, // sugarcane start
             0x0BE0, // seed potato
             0x0BE5, // carrot start
-        };
-        private static readonly HashSet<UInt16> isBushStartSet = new()
-        {
+        ];
+        private static readonly HashSet<UInt16> isBushStartSet =
+        [
             0x0B04, // white-azalea start
             0x0BCB, // red-hibiscus start
             0x0BD0, // holly start
@@ -965,9 +965,9 @@ namespace ACNHPokerCore
             0x33CE, // pink-plumeria start
             0x3424, // white-plumeria start
 
-        };
-        private static readonly HashSet<UInt16> isWrappingPaperSet = new()
-        {
+        ];
+        private static readonly HashSet<UInt16> isWrappingPaperSet =
+        [
             0x1E03, // yellow wrapping paper
             0x1E04, // pink wrapping paper
             0x1E05, // orange wrapping paper
@@ -985,7 +985,7 @@ namespace ACNHPokerCore
             0x1E11, // gray wrapping paper
             0x1E12, // black wrapping paper
             0x35E0, // festive wrapping paper
-        };
+        ];
         private static readonly HashSet<UInt16> hasQuantitySet = new(
             new UInt16[] {
                 0x09D1, // Customization Kit
@@ -1157,63 +1157,63 @@ namespace ACNHPokerCore
             }
         );
 
-        public static bool hasDurability(UInt16 item)
+        public static bool HasDurability(UInt16 item)
         {
             return hasDurabilitySet.Contains(item);
         }
-        public static bool hasUse(UInt16 item)
+        public static bool HasUse(UInt16 item)
         {
             return hasUseSet.Contains(item);
         }
-        public static bool hasQuantity(UInt16 item)
+        public static bool HasQuantity(UInt16 item)
         {
             return hasQuantitySet.Contains(item);
         }
-        public static bool hasGenetics(UInt16 item)
+        public static bool HasGenetics(UInt16 item)
         {
             return hasGeneticsSet.Contains(item);
         }
-        public static bool isRose(UInt16 item)
+        public static bool IsRose(UInt16 item)
         {
             return isRoseSet.Contains(item);
         }
-        public static bool isTree(UInt16 item)
+        public static bool IsTree(UInt16 item)
         {
             return isTreeSet.Contains(item);
         }
-        public static bool containsItem(UInt16 item)
+        public static bool ContainsItem(UInt16 item)
         {
             return containsItemSet.Contains(item);
         }
-        public static bool isFlower(UInt16 item)
+        public static bool IsFlower(UInt16 item)
         {
             return isFlowerSet.Contains(item);
         }
-        public static bool isShell(UInt16 item)
+        public static bool IsShell(UInt16 item)
         {
             return isShellSet.Contains(item);
         }
-        public static bool isWeed(UInt16 item)
+        public static bool IsWeed(UInt16 item)
         {
             return isWeedSet.Contains(item);
         }
-        public static bool isStone(UInt16 item)
+        public static bool IsStone(UInt16 item)
         {
             return isStoneSet.Contains(item);
         }
-        public static bool isFence(UInt16 item)
+        public static bool IsFence(UInt16 item)
         {
             return isFenceSet.Contains(item);
         }
-        public static bool isPlacedFence(UInt16 item)
+        public static bool IsPlacedFence(UInt16 item)
         {
             return isPlacedFenceSet.Contains(item);
         }
-        public static bool isBush(UInt16 item)
+        public static bool IsBush(UInt16 item)
         {
             return isBushSet.Contains(item);
         }
-        public static bool hasFenceWithVariation(UInt16 item)
+        public static bool HasFenceWithVariation(UInt16 item)
         {
             return isFenceWithVariation.Contains(item);
         }

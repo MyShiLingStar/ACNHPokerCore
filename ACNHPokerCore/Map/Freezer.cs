@@ -11,7 +11,7 @@ namespace ACNHPokerCore
     public partial class Freezer : Form
     {
         private static Socket s;
-        private bool debugging;
+        private readonly bool debugging;
         private readonly bool sound;
         private int counter;
         private MiniMap MiniMap;
@@ -22,7 +22,7 @@ namespace ACNHPokerCore
         private static byte[][] villager;
         private static bool[] haveVillager;
 
-        public event CloseHandler closeForm;
+        public event CloseHandler CloseForm;
 
         public bool isChinese = false;
 
@@ -37,7 +37,7 @@ namespace ACNHPokerCore
             if (!debugging)
             {
                 int freezeCount = Utilities.GetFreezeCount(s);
-                updateFreezeCountLabel(freezeCount);
+                UpdateFreezeCountLabel(freezeCount);
                 isChinese = Utilities.IsChinese(s);
             }
 
@@ -46,7 +46,7 @@ namespace ACNHPokerCore
             MyLog.LogEvent("Freeze", "Freeze Form Started Successfully");
         }
 
-        private void saveMapBtn_Click(object sender, EventArgs e)
+        private void SaveMapBtn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -86,7 +86,7 @@ namespace ACNHPokerCore
 
                 uint address = Utilities.mapZero;
 
-                Thread LoadThread = new(delegate () { saveMapFloor(address, file); });
+                Thread LoadThread = new(delegate () { SaveMapFloor(address, file); });
                 LoadThread.Start();
 
             }
@@ -96,11 +96,11 @@ namespace ACNHPokerCore
             }
         }
 
-        private void saveMapFloor(uint address, SaveFileDialog file)
+        private void SaveMapFloor(uint address, SaveFileDialog file)
         {
-            showMapWait(84, "Saving...");
+            ShowMapWait(84, "Saving...");
 
-            lockControl();
+            LockControl();
 
             byte[] save = Utilities.ReadByteArray(s, address, 0x54000 * 2, ref counter);
 
@@ -109,9 +109,9 @@ namespace ACNHPokerCore
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
 
-            hideMapWait();
+            HideMapWait();
 
-            unlockControl();
+            UnlockControl();
 
             Invoke((MethodInvoker)delegate
             {
@@ -120,7 +120,7 @@ namespace ACNHPokerCore
             });
         }
 
-        private void showMapWait(int size, string msg = "")
+        private void ShowMapWait(int size, string msg = "")
         {
             Invoke((MethodInvoker)delegate
             {
@@ -134,7 +134,7 @@ namespace ACNHPokerCore
             });
         }
 
-        private void hideMapWait()
+        private void HideMapWait()
         {
             Invoke((MethodInvoker)delegate
             {
@@ -162,38 +162,38 @@ namespace ACNHPokerCore
         private void CloseCleaning()
         {
             MyLog.LogEvent("Freeze", "Form Closed");
-            closeForm?.Invoke();
+            CloseForm?.Invoke();
         }
 
         private void UnFreezeAllBtn_Click(object sender, EventArgs e)
         {
-            showMapWait(1, "Unfreezing...");
-            lockControl();
+            ShowMapWait(1, "Unfreezing...");
+            LockControl();
             Utilities.SendString(s, Utilities.FreezeClear());
             Thread.Sleep(100);
             int freezeCount = Utilities.GetFreezeCount(s);
             Thread.Sleep(3000);
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
-            hideMapWait();
-            unlockControl();
+            HideMapWait();
+            UnlockControl();
             Invoke((MethodInvoker)delegate
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Build a snowman?";
-                updateFreezeCountLabel(freezeCount);
+                UpdateFreezeCountLabel(freezeCount);
             });
 
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
         }
 
-        private void updateFreezeCountLabel(int value)
+        private void UpdateFreezeCountLabel(int value)
         {
             FreezeCountLabel.Text = value + " / 255";
         }
 
-        private void changeRateBtn_Click(object sender, EventArgs e)
+        private void ChangeRateBtn_Click(object sender, EventArgs e)
         {
             string value = RateBar.Value.ToString();
             Utilities.SendString(s, Utilities.FreezeRate(value));
@@ -211,9 +211,9 @@ namespace ACNHPokerCore
         private void EnableTextBtn_Click(object sender, EventArgs e)
         {
             if (isChinese)
-                Utilities.SendString(s, Utilities.Freeze(Utilities.TextSpeedAddress + Utilities.ChineseLanguageOffset, new byte[] { 3 }));
+                Utilities.SendString(s, Utilities.Freeze(Utilities.TextSpeedAddress + Utilities.ChineseLanguageOffset, [3]));
             else
-                Utilities.SendString(s, Utilities.Freeze(Utilities.TextSpeedAddress, new byte[] { 3 }));
+                Utilities.SendString(s, Utilities.Freeze(Utilities.TextSpeedAddress, [3]));
 
             int freezeCount = Utilities.GetFreezeCount(s);
 
@@ -221,7 +221,7 @@ namespace ACNHPokerCore
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Instant Text Activated!";
-                updateFreezeCountLabel(freezeCount);
+                UpdateFreezeCountLabel(freezeCount);
             });
 
             if (sound)
@@ -241,7 +241,7 @@ namespace ACNHPokerCore
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Instant Text Deactivated!";
-                updateFreezeCountLabel(freezeCount);
+                UpdateFreezeCountLabel(freezeCount);
             });
 
             if (sound)
@@ -267,7 +267,7 @@ namespace ACNHPokerCore
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Inventory Freeze Activated!";
-                updateFreezeCountLabel(freezeCount);
+                UpdateFreezeCountLabel(freezeCount);
             });
 
             if (sound)
@@ -285,7 +285,7 @@ namespace ACNHPokerCore
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Inventory Freeze Deactivated!";
-                updateFreezeCountLabel(freezeCount);
+                UpdateFreezeCountLabel(freezeCount);
             });
 
             if (sound)
@@ -348,9 +348,9 @@ namespace ACNHPokerCore
 
         private void FreezeMapFloor(uint address, byte[] data)
         {
-            showMapWait(84, "Casting...");
+            ShowMapWait(84, "Casting...");
 
-            lockControl();
+            LockControl();
 
             byte[][] b = new byte[84][];
 
@@ -365,15 +365,15 @@ namespace ACNHPokerCore
 
             int freezeCount = Utilities.GetFreezeCount(s);
 
-            hideMapWait();
+            HideMapWait();
 
-            unlockControl();
+            UnlockControl();
 
             Invoke((MethodInvoker)delegate
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Let it go!";
-                updateFreezeCountLabel(freezeCount);
+                UpdateFreezeCountLabel(freezeCount);
             });
 
             if (sound)
@@ -392,9 +392,9 @@ namespace ACNHPokerCore
 
         private void UnFreezeMapFloor(uint address)
         {
-            showMapWait(84, "Casting...");
+            ShowMapWait(84, "Casting...");
 
-            lockControl();
+            LockControl();
 
             for (int i = 0; i < 84; i++)
             {
@@ -405,22 +405,22 @@ namespace ACNHPokerCore
 
             int freezeCount = Utilities.GetFreezeCount(s);
 
-            hideMapWait();
+            HideMapWait();
 
-            unlockControl();
+            UnlockControl();
 
             Invoke((MethodInvoker)delegate
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Build a snowman?";
-                updateFreezeCountLabel(freezeCount);
+                UpdateFreezeCountLabel(freezeCount);
             });
 
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
         }
 
-        private void lockControl()
+        private void LockControl()
         {
             Invoke((MethodInvoker)delegate
             {
@@ -428,7 +428,7 @@ namespace ACNHPokerCore
             });
         }
 
-        private void unlockControl()
+        private void UnlockControl()
         {
             Invoke((MethodInvoker)delegate
             {
@@ -534,7 +534,7 @@ namespace ACNHPokerCore
             */
         }
 
-        private void miniMapBox_MouseDown(object sender, MouseEventArgs e)
+        private void MiniMapBox_MouseDown(object sender, MouseEventArgs e)
         {
             Debug.Print(e.X + " " + e.Y);
 
@@ -564,7 +564,7 @@ namespace ACNHPokerCore
             miniMapBox.Image = MiniMap.DrawSelectSquare(anchorX, anchorY);
         }
 
-        private void miniMapBox_MouseMove(object sender, MouseEventArgs e)
+        private void MiniMapBox_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -595,7 +595,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void startBtn_Click(object sender, EventArgs e)
+        private void StartBtn_Click(object sender, EventArgs e)
         {
             if (tempData.Length != Utilities.mapSize * 2)
             {
@@ -611,9 +611,9 @@ namespace ACNHPokerCore
 
         private void FreezeMapFloor2(uint address, byte[] data, int x, int y)
         {
-            showMapWait(124, "Casting...");
+            ShowMapWait(124, "Casting...");
 
-            lockControl();
+            LockControl();
 
             byte[][] b = new byte[112][];
 
@@ -631,11 +631,11 @@ namespace ACNHPokerCore
                 }
                 else if ((x % 2 == 0) && (i == x / 2))
                 {
-                    spliter((uint)(address + ((i - 1) * 0x1800)), b[i - 1], b[i], y, false);
+                    Spliter((uint)(address + ((i - 1) * 0x1800)), b[i - 1], b[i], y, false);
                 }
                 else if ((x % 2 != 0) && (i == x / 2 + 1))
                 {
-                    spliter((uint)(address + ((i - 1) * 0x1800)), b[i - 1], b[i], y, true);
+                    Spliter((uint)(address + ((i - 1) * 0x1800)), b[i - 1], b[i], y, true);
                 }
                 else
                 {
@@ -647,22 +647,22 @@ namespace ACNHPokerCore
 
             int freezeCount = Utilities.GetFreezeCount(s);
 
-            hideMapWait();
+            HideMapWait();
 
-            unlockControl();
+            UnlockControl();
 
             Invoke((MethodInvoker)delegate
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Let it go!";
-                updateFreezeCountLabel(freezeCount);
+                UpdateFreezeCountLabel(freezeCount);
             });
 
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
         }
 
-        private void spliter(uint address, byte[] first, byte[] second, int y, bool front)
+        private void Spliter(uint address, byte[] first, byte[] second, int y, bool front)
         {
             int size = 0x10;
             byte[][] parts = new byte[13][];
@@ -818,7 +818,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void freezeVillagerBtn_Click(object sender, EventArgs e)
+        private void FreezeVillagerBtn_Click(object sender, EventArgs e)
         {
             villagerFlag = new byte[10][];
             villager = new byte[10][];
@@ -842,14 +842,14 @@ namespace ACNHPokerCore
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Stay!";
-                updateFreezeCountLabel(freezeCount);
+                UpdateFreezeCountLabel(freezeCount);
             });
 
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
         }
 
-        private void unfreezeVillagerBtn_Click(object sender, EventArgs e)
+        private void UnfreezeVillagerBtn_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < 10; i++)
             {
@@ -865,14 +865,14 @@ namespace ACNHPokerCore
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Go!";
-                updateFreezeCountLabel(freezeCount);
+                UpdateFreezeCountLabel(freezeCount);
             });
 
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
         }
 
-        private void freezeAllVillagerBtn_Click(object sender, EventArgs e)
+        private void FreezeAllVillagerBtn_Click(object sender, EventArgs e)
         {
             Thread FreezeAllVillagerThread = new(FreezeAllVillager);
             FreezeAllVillagerThread.Start();
@@ -881,9 +881,9 @@ namespace ACNHPokerCore
 
         private void FreezeAllVillager()
         {
-            showMapWait(124, "Casting...");
+            ShowMapWait(124, "Casting...");
 
-            lockControl();
+            LockControl();
 
             int counter = 0;
 
@@ -931,22 +931,22 @@ namespace ACNHPokerCore
 
             int freezeCount = Utilities.GetFreezeCount(s);
 
-            hideMapWait();
+            HideMapWait();
 
-            unlockControl();
+            UnlockControl();
 
             Invoke((MethodInvoker)delegate
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = V.GetRealName() + " is in Purgatory! " + V.HouseIndex;
-                updateFreezeCountLabel(freezeCount);
+                UpdateFreezeCountLabel(freezeCount);
             });
 
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
         }
 
-        private void unfreezeAllVillagerBtn_Click(object sender, EventArgs e)
+        private void UnfreezeAllVillagerBtn_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < 10; i++)
             {
@@ -974,7 +974,7 @@ namespace ACNHPokerCore
             {
                 FinMsg.Visible = true;
                 FinMsg.Text = "Limbo!";
-                updateFreezeCountLabel(freezeCount);
+                UpdateFreezeCountLabel(freezeCount);
             });
 
             if (sound)

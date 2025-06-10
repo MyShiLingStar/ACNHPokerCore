@@ -17,7 +17,7 @@ namespace ACNHPokerCore
         private int RowMouseUp = -1;
         private bool HoldingMouseDown;
 
-        private bool sound;
+        private readonly bool sound;
         public bool CancelFormClose;
 
         public event CloseHandler CloseForm;

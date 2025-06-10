@@ -5,25 +5,19 @@ namespace ACNHPokerCore
     /// <summary>
     /// Stream for looping playback
     /// </summary>
-    public class LoopStream : WaveStream
+    /// <remarks>
+    /// Creates a new Loop stream
+    /// </remarks>
+    /// <param name="sourceStream">The stream to read from. Note: the Read method of this stream should return 0 when it reaches the end
+    /// or else we will not loop to the start again.</param>
+    public class LoopStream(WaveStream sourceStream) : WaveStream
     {
-        readonly WaveStream sourceStream;
-
-        /// <summary>
-        /// Creates a new Loop stream
-        /// </summary>
-        /// <param name="sourceStream">The stream to read from. Note: the Read method of this stream should return 0 when it reaches the end
-        /// or else we will not loop to the start again.</param>
-        public LoopStream(WaveStream sourceStream)
-        {
-            this.sourceStream = sourceStream;
-            EnableLooping = true;
-        }
+        readonly WaveStream sourceStream = sourceStream;
 
         /// <summary>
         /// Use this to turn looping on or off
         /// </summary>
-        public bool EnableLooping { get; set; }
+        public bool EnableLooping { get; set; } = true;
 
         /// <summary>
         /// Return source stream's wave format

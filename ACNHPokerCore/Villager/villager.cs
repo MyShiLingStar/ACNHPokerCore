@@ -77,8 +77,7 @@ namespace ACNHPokerCore
 
         public VillagerMemory GetMemory(int index)
         {
-            if (index >= PlayerMemoryCount)
-                throw new ArgumentOutOfRangeException(nameof(index));
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, PlayerMemoryCount);
 
             var bytes = Utilities.Slice(Data, (int)(0x4 + (index * Utilities.VillagerMemoryTinySize)), (int)Utilities.VillagerMemoryTinySize);
             return new VillagerMemory(bytes);

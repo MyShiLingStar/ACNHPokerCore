@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.ComponentModel;
 
 namespace ACNHPokerCore
 {
@@ -395,28 +395,28 @@ namespace ACNHPokerCore
                         ForeColor = Color.LightSalmon;
                     }
                 }
-                else if (ItemAttr.hasDurability(itemID)) //Tools
+                else if (ItemAttr.HasDurability(itemID)) //Tools
                 {
                     TextAlign = ContentAlignment.BottomLeft;
                     Text = @"Dur: " + ItemDurability;
                 }
-                else if (ItemAttr.hasUse(itemID)) // Food/Drink
+                else if (ItemAttr.HasUse(itemID)) // Food/Drink
                 {
                     TextAlign = ContentAlignment.BottomLeft;
                     Text = @"Use: " + ItemDurability;
                 }
-                else if (ItemAttr.isFlower(itemID)) //Flowers
+                else if (ItemAttr.IsFlower(itemID)) //Flowers
                 {
                     TextAlign = ContentAlignment.BottomRight;
                     ForeColor = Color.Yellow;
                     Text = (FlowerQuantity + 1).ToString();
                 }
-                else if (ItemAttr.hasQuantity(itemID)) // Materials
+                else if (ItemAttr.HasQuantity(itemID)) // Materials
                 {
                     TextAlign = ContentAlignment.BottomRight;
                     Text = (ItemQuantity + 1).ToString();
                 }
-                else if (ItemAttr.hasGenetics(itemID))
+                else if (ItemAttr.HasGenetics(itemID))
                 {
                     if (DisplayItemData().Contains("83E0") || DisplayItemData().Contains("8642")) // Flower
                     {

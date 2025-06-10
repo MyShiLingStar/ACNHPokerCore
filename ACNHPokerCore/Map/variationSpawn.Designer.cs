@@ -1,7 +1,7 @@
 ﻿
 namespace ACNHPokerCore
 {
-    partial class variationSpawn
+    partial class VariationSpawn
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace ACNHPokerCore
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(variationSpawn));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VariationSpawn));
             this.mainPanel = new System.Windows.Forms.Panel();
             this.timesLabel1 = new System.Windows.Forms.RichTextBox();
             this.dotdotdot15 = new System.Windows.Forms.Label();

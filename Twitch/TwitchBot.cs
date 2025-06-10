@@ -13,33 +13,33 @@ namespace Twitch
         const int port = 6667;
         TcpClient tcpClient;
 
-        string password;
-        string botUsername;
-        string channel;
+        readonly string password;
+        readonly string botUsername;
+        readonly string channel;
 
         private StreamReader streamReader;
         private StreamWriter streamWriter;
-        private TaskCompletionSource<int> connected = new();
+        private readonly TaskCompletionSource<int> connected = new();
 
         public event TwitchChatEventHandler OnMessage = delegate { };
         public delegate void TwitchChatEventHandler(object sender, TwitchChatMessage e);
 
-        private string DropItemCommand;
-        private string DropRecipeCommand;
+        private readonly string DropItemCommand;
+        private readonly string DropRecipeCommand;
 
-        private bool commandMode;
+        private readonly bool commandMode;
 
         private bool stop;
 
-        public static string csvFolder = @"csv\";
-        public static string itemFile = @"items.csv";
-        public static string itemPath = csvFolder + itemFile;
-        public static string recipeFile = @"recipes.csv";
-        public static string recipePath = csvFolder + recipeFile;
+        public static readonly string csvFolder = @"csv\";
+        public static readonly string itemFile = @"items.csv";
+        public static readonly string itemPath = csvFolder + itemFile;
+        public static readonly string recipeFile = @"recipes.csv";
+        public static readonly string recipePath = csvFolder + recipeFile;
 
-        public static string saveFolder = @"save\";
-        public static string TwitchSettingFile = @"twitch.json";
-        public static string TwitchSettingPath = saveFolder + TwitchSettingFile;
+        public static readonly string saveFolder = @"save\";
+        public static readonly string TwitchSettingFile = @"twitch.json";
+        public static readonly string TwitchSettingPath = saveFolder + TwitchSettingFile;
 
         public class TwitchChatMessage : EventArgs
         {
@@ -174,7 +174,7 @@ namespace Twitch
                     //:mytwitchchannel!mytwitchchannel@mytwitchchannel.tmi.twitch.tv 
                     // ^^^^^^^^
                     //Grab this name here
-                    int exclamationPointPosition = split[0].IndexOf("!", StringComparison.Ordinal);
+                    int exclamationPointPosition = split[0].IndexOf('!');
                     string username = split[0].Substring(1, exclamationPointPosition - 1);
                     //Skip the first character, the first colon, then find the next colon
                     int secondColonPosition = line.IndexOf(':', 1);//the 1 here is what skips the first character

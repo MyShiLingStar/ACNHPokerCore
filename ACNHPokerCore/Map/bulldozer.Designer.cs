@@ -979,7 +979,7 @@ namespace ACNHPokerCore
             removeAllCustomBtn.TabIndex = 245;
             removeAllCustomBtn.Text = "Remove All Custom Designs";
             removeAllCustomBtn.UseVisualStyleBackColor = false;
-            removeAllCustomBtn.Click += removeAllDesignBtn_Click;
+            removeAllCustomBtn.Click += RemoveAllDesignBtn_Click;
             // 
             // removeAllRoadsBtn
             // 
@@ -994,7 +994,7 @@ namespace ACNHPokerCore
             removeAllRoadsBtn.TabIndex = 244;
             removeAllRoadsBtn.Text = "Remove All Roads";
             removeAllRoadsBtn.UseVisualStyleBackColor = false;
-            removeAllRoadsBtn.Click += removeAllRoadsBtn_Click;
+            removeAllRoadsBtn.Click += RemoveAllRoadsBtn_Click;
             // 
             // flattenAllTerrainBtn
             // 

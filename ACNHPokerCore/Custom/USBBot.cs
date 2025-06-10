@@ -30,7 +30,7 @@ namespace ACNHPokerCore
 
         public bool Connected { get; private set; }
 
-        private readonly object _sync = new();
+        private readonly Lock _sync = new();
 
         private MonoUsbSessionHandle context;
 
@@ -177,10 +177,7 @@ namespace ACNHPokerCore
 
         private int ReadInternal(byte[] buffer)
         {
-            var handle = GetUsableAndOpenUsbHandle();
-            if (handle == null)
-                throw new Exception("USB writer is null, you may have disconnected the device during previous function");
-
+            var handle = GetUsableAndOpenUsbHandle() ?? throw new Exception("USB writer is null, you may have disconnected the device during previous function");
             byte[] sizeOfReturn = new byte[4];
 
             MonoUsbApi.BulkTransfer(handle, READPOINT, sizeOfReturn, 4, out var _, 5000);
@@ -193,10 +190,7 @@ namespace ACNHPokerCore
 
         private void SendInternal(byte[] buffer)
         {
-            var handle = GetUsableAndOpenUsbHandle();
-            if (handle == null)
-                throw new Exception("USB writer is null, you may have disconnected the device during previous function");
-
+            var handle = GetUsableAndOpenUsbHandle() ?? throw new Exception("USB writer is null, you may have disconnected the device during previous function");
             uint pack = (uint)buffer.Length + 2;
             byte[] packed = BitConverter.GetBytes(pack);
             var ec = MonoUsbApi.BulkTransfer(handle, WRITEPOINT, packed, packed.Length, out _, 5000);
@@ -323,7 +317,7 @@ namespace ACNHPokerCore
 
         private byte[] ReadBytesLarge(uint offset, int length)
         {
-            List<byte> read = new();
+            List<byte> read = [];
             for (int i = 0; i < length; i += MaximumTransferSize)
                 read.AddRange(ReadBytes(offset + (uint)i, Math.Min(MaximumTransferSize, length - i)));
             return read.ToArray();

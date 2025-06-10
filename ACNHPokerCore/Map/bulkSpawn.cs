@@ -31,7 +31,7 @@ namespace ACNHPokerCore
         private int colNum;
         private byte[][] SpawnArea;
         private bool spawnlock;
-        private bool debugging;
+        private readonly bool debugging;
         public BulkSpawn(Socket S, USBBot Bot, byte[] layer1, byte[] layer2, byte[] acre, byte[] building, byte[] terrain, byte[] design, int x, int y, bool Ignore, bool Sound, bool Debugging, bool Layer1Selected)
         {
             try

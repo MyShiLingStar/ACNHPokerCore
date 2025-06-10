@@ -28,17 +28,17 @@ namespace ACNHPokerCore
             var dt = new DataTable();
 
             File.ReadLines(filePath).Take(1)
-                .SelectMany(x => x.Split(new[] { " ; " }, StringSplitOptions.RemoveEmptyEntries))
+                .SelectMany(x => x.Split([" ; "], StringSplitOptions.RemoveEmptyEntries))
                 .ToList()
                 .ForEach(x => dt.Columns.Add(x.Trim()));
 
             File.ReadLines(filePath).Skip(1)
-                .Select(x => x.Split(new[] { " ; " }, StringSplitOptions.RemoveEmptyEntries))
+                .Select(x => x.Split([" ; "], StringSplitOptions.RemoveEmptyEntries))
                 .ToList()
                 .ForEach(line => dt.Rows.Add(line));
 
             if (dt.Columns.Contains("id"))
-                dt.PrimaryKey = new[] { dt.Columns["id"] };
+                dt.PrimaryKey = [dt.Columns["id"]];
 
             return dt;
         }
@@ -213,7 +213,7 @@ namespace ACNHPokerCore
                     selection[j, k].Font = new Font("Arial", 10F, FontStyle.Bold);
                     //selection[j, k].setHide(true);
 
-                    if (ItemAttr.hasFenceWithVariation(id)) // Fence with Variation
+                    if (ItemAttr.HasFenceWithVariation(id)) // Fence with Variation
                     {
                         string front = Utilities.PrecedingZeros((j + (0x20 * k)).ToString("X"), 4);
                         string back = Utilities.Turn2bytes(value);
@@ -387,7 +387,7 @@ namespace ACNHPokerCore
 
                             string path = Utilities.imagePath + iName + "_Remake_" + j + "_" + k + ".png";
 
-                            if (ItemAttr.hasFenceWithVariation(itemID)) // Fence with Variation
+                            if (ItemAttr.HasFenceWithVariation(itemID)) // Fence with Variation
                             {
                                 string front = Utilities.PrecedingZeros((j + (0x20 * k)).ToString("X"), 4);
                                 string back = Utilities.Turn2bytes(value);

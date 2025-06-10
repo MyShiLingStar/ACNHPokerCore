@@ -85,7 +85,7 @@ namespace ACNHPokerCore
         private bool connecting = false;
         public bool sound = true;
         public bool capturesetting = false;
-		public bool autorefill = false;
+        public bool autorefill = false;
         private bool init = true;
         private static string languageSetting = "eng";
 
@@ -112,10 +112,14 @@ namespace ACNHPokerCore
 
         private string ChasingAddress = "";
 
-        private static readonly Object itemLock = new();
-        private static readonly Object villagerLock = new();
+        private static readonly Lock itemLock = new();
+        private static readonly Lock villagerLock = new();
 
         private WaveOut waveOut;
+
+        [GeneratedRegex(" ")]
+        private static partial Regex Space();
+
         #endregion
 
         #region Form Load
@@ -126,7 +130,7 @@ namespace ACNHPokerCore
             IHost host = Host.CreateDefaultBuilder().ConfigureServices(services => services.AddMemoryCache()).Build();
             IMemoryCache cache = host.Services.GetRequiredService<IMemoryCache>();
 
-            ImageCacher.setup(cache);
+            ImageCacher.Setup(cache);
         }
 
 
@@ -170,7 +174,7 @@ namespace ACNHPokerCore
             else
             {
                 autorefill = true;
-            }						
+            }
             setting = new Setting(overrideSetting, validation, sound, capturesetting);
             setting.ToggleOverride += Setting_toggleOverride;
             setting.ToggleValidation += Setting_toggleValidation;
@@ -570,17 +574,17 @@ namespace ACNHPokerCore
             var dt = new DataTable();
 
             File.ReadLines(filePath).Take(1)
-                .SelectMany(x => x.Split(new[] { " ; " }, StringSplitOptions.RemoveEmptyEntries))
+                .SelectMany(x => x.Split([" ; "], StringSplitOptions.RemoveEmptyEntries))
                 .ToList()
                 .ForEach(x => dt.Columns.Add(x.Trim()));
 
             File.ReadLines(filePath).Skip(1)
-                .Select(x => x.Split(new[] { " ; " }, StringSplitOptions.RemoveEmptyEntries))
+                .Select(x => x.Split([" ; "], StringSplitOptions.RemoveEmptyEntries))
                 .ToList()
                 .ForEach(line => dt.Rows.Add(line));
 
             if (dt.Columns.Contains("id"))
-                dt.PrimaryKey = new[] { dt.Columns["id"] };
+                dt.PrimaryKey = [dt.Columns["id"]];
 
             return dt;
         }
@@ -590,12 +594,12 @@ namespace ACNHPokerCore
             var dt = new DataTable();
 
             File.ReadLines(filePath).Take(1)
-                .SelectMany(x => x.Split(new[] { " ; " }, StringSplitOptions.RemoveEmptyEntries))
+                .SelectMany(x => x.Split([" ; "], StringSplitOptions.RemoveEmptyEntries))
                 .ToList()
                 .ForEach(x => dt.Columns.Add(x.Trim()));
 
             File.ReadLines(filePath).Skip(1)
-                .Select(x => x.Split(new[] { " ; " }, StringSplitOptions.RemoveEmptyEntries))
+                .Select(x => x.Split([" ; "], StringSplitOptions.RemoveEmptyEntries))
                 .ToList()
                 .ForEach(line => dt.Rows.Add(line));
 
@@ -608,7 +612,7 @@ namespace ACNHPokerCore
         }
         private static Dictionary<string, string> CreateOverride(string path)
         {
-            Dictionary<string, string> dict = new();
+            Dictionary<string, string> dict = [];
 
             if (!File.Exists(path)) return dict;
 
@@ -616,7 +620,7 @@ namespace ACNHPokerCore
 
             foreach (string line in lines)
             {
-                string[] parts = line.Split(new[] { " ; " }, StringSplitOptions.RemoveEmptyEntries);
+                string[] parts = line.Split([" ; "], StringSplitOptions.RemoveEmptyEntries);
                 if (parts.Length == 3)
                 {
                     dict.Add(parts[1], parts[2]);
@@ -646,9 +650,9 @@ namespace ACNHPokerCore
 
             string imageName = value.ToString();
 
-            if (imageName != null && OverrideDict.ContainsKey(imageName))
+            if (imageName != null && OverrideDict.TryGetValue(imageName, out string filename))
             {
-                path = Utilities.imagePath + OverrideDict[imageName] + ".png";
+                path = Utilities.imagePath + filename + ".png";
                 if (File.Exists(path))
                 {
                     Image img = ImageCacher.GetImage(path);
@@ -692,7 +696,7 @@ namespace ACNHPokerCore
 
         private static string RemoveNumber(string filename)
         {
-            char[] myChar = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            char[] myChar = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
             return filename.Trim(myChar);
         }
 
@@ -754,7 +758,7 @@ namespace ACNHPokerCore
                 {
                     SelectedItem.Setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, itemSource, Convert.ToUInt32("0x" + hexValue, 16)), true, GetImagePathFromID(back, itemSource));
                 }
-                else if (ItemAttr.hasFenceWithVariation(intId))  // Fence Variation
+                else if (ItemAttr.HasFenceWithVariation(intId))  // Fence Variation
                 {
                     SelectedItem.Setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(id, itemSource, Convert.ToUInt32("0x" + front, 16)), true, "");
                 }
@@ -858,9 +862,9 @@ namespace ACNHPokerCore
 
                 string imageName = row[1].ToString();
 
-                if (imageName != null && OverrideDict.ContainsKey(imageName))
+                if (imageName != null && OverrideDict.TryGetValue(imageName, out string filename))
                 {
-                    path = Utilities.imagePath + OverrideDict[imageName] + ".png";
+                    path = Utilities.imagePath + filename + ".png";
                     if (File.Exists(path))
                     {
                         return path;
@@ -1373,42 +1377,42 @@ namespace ACNHPokerCore
 
                                 Teleport.Init(socket);
                                 Controller.Init(socket, IslandName);
-                                
-                                
+
+
                                 if (Utilities.GetFreezeCount(socket) > 0)
                                 {
                                     Utilities.SendString(socket, Utilities.UnFreeze(Utilities.ItemSlotBase));
                                     Utilities.SendString(socket, Utilities.UnFreeze(Utilities.ItemSlot21Base));
                                 }
-								
-								//auto refill 
-								if (autorefill)
-								{
 
-									byte[] bank01To20 = Utilities.GetInventoryBank(socket, null, 1);
-									byte[] bank21To40 = Utilities.GetInventoryBank(socket, null, 21);
-					
-									Utilities.SendString(socket, Utilities.Freeze(Utilities.ItemSlotBase, bank01To20));
-									Utilities.SendString(socket, Utilities.Freeze(Utilities.ItemSlot21Base, bank21To40));
-					
-									//int freezeCount = Utilities.GetFreezeCount(socket);
-					
-									config.AppSettings.Settings["AutoRefill"].Value = "true";
-									autorefill = true;
-									AutoRefill.Checked = true;
-								}
-								else
-								{
-					
-									Utilities.SendString(socket, Utilities.UnFreeze(Utilities.ItemSlotBase));
-									Utilities.SendString(socket, Utilities.UnFreeze(Utilities.ItemSlot21Base));
-					
-									//int freezeCount = Utilities.GetFreezeCount(socket);
-					
-									config.AppSettings.Settings["AutoRefill"].Value = "false";
-									autorefill = false;
-									AutoRefill.Checked = false;
-								}
+                                //auto refill 
+                                if (autorefill)
+                                {
+
+                                    byte[] bank01To20 = Utilities.GetInventoryBank(socket, null, 1);
+                                    byte[] bank21To40 = Utilities.GetInventoryBank(socket, null, 21);
+
+                                    Utilities.SendString(socket, Utilities.Freeze(Utilities.ItemSlotBase, bank01To20));
+                                    Utilities.SendString(socket, Utilities.Freeze(Utilities.ItemSlot21Base, bank21To40));
+
+                                    //int freezeCount = Utilities.GetFreezeCount(socket);
+
+                                    config.AppSettings.Settings["AutoRefill"].Value = "true";
+                                    autorefill = true;
+                                    AutoRefill.Checked = true;
+                                }
+                                else
+                                {
+
+                                    Utilities.SendString(socket, Utilities.UnFreeze(Utilities.ItemSlotBase));
+                                    Utilities.SendString(socket, Utilities.UnFreeze(Utilities.ItemSlot21Base));
+
+                                    //int freezeCount = Utilities.GetFreezeCount(socket);
+
+                                    config.AppSettings.Settings["AutoRefill"].Value = "false";
+                                    autorefill = false;
+                                    AutoRefill.Checked = false;
+                                }
 
                                 init = false;
                             });
@@ -1640,8 +1644,8 @@ namespace ACNHPokerCore
                     System.Media.SystemSounds.Asterisk.Play();
 
                 config.AppSettings.Settings["AutoRefill"].Value = "true";
-				autorefill = true;  
-				
+                autorefill = true;
+
             }
             else
             {
@@ -1656,7 +1660,7 @@ namespace ACNHPokerCore
                     System.Media.SystemSounds.Asterisk.Play();
 
                 config.AppSettings.Settings["AutoRefill"].Value = "false";
-				autorefill = false;
+                autorefill = false;
             }
 
             config.Save(ConfigurationSaveMode.Minimal);
@@ -1820,7 +1824,7 @@ namespace ACNHPokerCore
                     {
                         btn.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                     }
-                    else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                    else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                     {
                         btn.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                     }
@@ -1945,7 +1949,7 @@ namespace ACNHPokerCore
             string id = Utilities.PrecedingZeros(SelectedItem.FillItemID(), 4);
             string value = Utilities.PrecedingZeros(SelectedItem.FillItemData(), 8);
             UInt16 intId = Convert.ToUInt16(id, 16);
-            if (ItemAttr.hasFenceWithVariation(intId))  // Fence Variation
+            if (ItemAttr.HasFenceWithVariation(intId))  // Fence Variation
             {
                 selection.ReceiveID(Utilities.PrecedingZeros(SelectedItem.FillItemID(), 4), languageSetting, value);
             }
@@ -2134,7 +2138,7 @@ namespace ACNHPokerCore
                 {
                     selectedButton.Setup(GetNameFromID(IDTextbox.Text, itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(IDTextbox.Text, itemSource, Convert.ToUInt32("0x" + hexValue, 16)), GetImagePathFromID(Utilities.Turn2bytes(hexValue), itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(front), 16)), SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
                 }
-                else if (ItemAttr.hasFenceWithVariation(intId))  // Fence Variation
+                else if (ItemAttr.HasFenceWithVariation(intId))  // Fence Variation
                 {
                     selectedButton.Setup(GetNameFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource, Convert.ToUInt32("0x" + front, 16)), "", SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
                 }
@@ -2658,7 +2662,7 @@ namespace ACNHPokerCore
                 {
                     SelectedItem.Setup(GetNameFromID(IDTextbox.Text, itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(IDTextbox.Text, itemSource, Convert.ToUInt32("0x" + hexValue, 16)), true, GetImagePathFromID((Utilities.Turn2bytes(hexValue)), itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(front), 16)), SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
                 }
-                else if (ItemAttr.hasFenceWithVariation(IntId)) // Fence Variation
+                else if (ItemAttr.HasFenceWithVariation(IntId)) // Fence Variation
                 {
                     SelectedItem.Setup(GetNameFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource, Convert.ToUInt32("0x" + front, 16)), true, "", SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
 
@@ -2818,7 +2822,7 @@ namespace ACNHPokerCore
                 {
                     SelectedItem.Setup(GetNameFromID(IDTextbox.Text, itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(IDTextbox.Text, itemSource, Convert.ToUInt32("0x" + hexValue, 16)), true, GetImagePathFromID((Utilities.Turn2bytes(hexValue)), itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(front), 16)), SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
                 }
-                else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                 {
                     SelectedItem.Setup(GetNameFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource, Convert.ToUInt32("0x" + front, 16)), true, "", SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
 
@@ -3242,7 +3246,7 @@ namespace ACNHPokerCore
                     {
                         btn.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                     }
-                    else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                    else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                     {
                         btn.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                     }
@@ -3723,9 +3727,9 @@ namespace ACNHPokerCore
                     string imageName = RecipeGridView.Rows[e.RowIndex].Cells["iName"].Value.ToString();
                     string path;
 
-                    if (imageName != null && OverrideDict.ContainsKey(imageName))
+                    if (imageName != null && OverrideDict.TryGetValue(imageName, out string filename))
                     {
-                        path = Utilities.imagePath + OverrideDict[imageName] + ".png";
+                        path = Utilities.imagePath + filename + ".png";
                         if (File.Exists(path))
                         {
                             Image img = ImageCacher.GetImage(path);
@@ -3788,9 +3792,9 @@ namespace ACNHPokerCore
 
                     string imageName = FlowerGridView.Rows[e.RowIndex].Cells["iName"].Value.ToString();
 
-                    if (imageName != null && OverrideDict.ContainsKey(imageName))
+                    if (imageName != null && OverrideDict.TryGetValue(imageName, out string filename))
                     {
-                        string path = Utilities.imagePath + OverrideDict[imageName] + ".png";
+                        string path = Utilities.imagePath + filename + ".png";
                         if (File.Exists(path))
                         {
                             Image img = ImageCacher.GetImage(path);
@@ -3835,9 +3839,9 @@ namespace ACNHPokerCore
                     string imageName = FavGridView.Rows[e.RowIndex].Cells["iName"].Value.ToString();
                     string path;
 
-                    if (imageName != null && OverrideDict.ContainsKey(imageName))
+                    if (imageName != null && OverrideDict.TryGetValue(imageName, out string filename))
                     {
-                        path = Utilities.imagePath + OverrideDict[imageName] + ".png";
+                        path = Utilities.imagePath + filename + ".png";
                         if (File.Exists(path))
                         {
                             Image img = ImageCacher.GetImage(path);
@@ -3924,7 +3928,7 @@ namespace ACNHPokerCore
                     {
                         SelectedItem.Setup(GetNameFromID(IDTextbox.Text, itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(IDTextbox.Text, itemSource, Convert.ToUInt32("0x" + hexValue, 16)), true, GetImagePathFromID((Utilities.Turn2bytes(hexValue)), itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(front), 16)), SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
                     }
-                    else if (ItemAttr.hasFenceWithVariation(intId))  // Fence Variation
+                    else if (ItemAttr.HasFenceWithVariation(intId))  // Fence Variation
                     {
                         SelectedItem.Setup(name, Convert.ToUInt16("0x" + id, 16), Convert.ToUInt32("0x" + data, 16), GetImagePathFromID(id, itemSource, Convert.ToUInt32("0x" + front, 16)), true, "");
                     }
@@ -4544,7 +4548,7 @@ namespace ACNHPokerCore
 
         private void MaxSpeedX1Btn_Click(object sender, EventArgs e)
         {
-            ButtonSelected(maxSpeedX1Btn, new Button[] { maxSpeedX2Btn, maxSpeedX3Btn, maxSpeedX5Btn, maxSpeedX100Btn });
+            ButtonSelected(maxSpeedX1Btn, [maxSpeedX2Btn, maxSpeedX3Btn, maxSpeedX5Btn, maxSpeedX100Btn]);
 
             Utilities.SetMaxSpeed(socket, usb, Utilities.MaxSpeedX1);
             if (sound)
@@ -4553,7 +4557,7 @@ namespace ACNHPokerCore
 
         private void MaxSpeedX2Btn_Click(object sender, EventArgs e)
         {
-            ButtonSelected(maxSpeedX2Btn, new Button[] { maxSpeedX1Btn, maxSpeedX3Btn, maxSpeedX5Btn, maxSpeedX100Btn });
+            ButtonSelected(maxSpeedX2Btn, [maxSpeedX1Btn, maxSpeedX3Btn, maxSpeedX5Btn, maxSpeedX100Btn]);
 
             Utilities.SetMaxSpeed(socket, usb, Utilities.MaxSpeedX2);
             if (sound)
@@ -4562,7 +4566,7 @@ namespace ACNHPokerCore
 
         private void MaxSpeedX3Btn_Click(object sender, EventArgs e)
         {
-            ButtonSelected(maxSpeedX3Btn, new Button[] { maxSpeedX2Btn, maxSpeedX1Btn, maxSpeedX5Btn, maxSpeedX100Btn });
+            ButtonSelected(maxSpeedX3Btn, [maxSpeedX2Btn, maxSpeedX1Btn, maxSpeedX5Btn, maxSpeedX100Btn]);
 
             Utilities.SetMaxSpeed(socket, usb, Utilities.MaxSpeedX3);
             if (sound)
@@ -4571,7 +4575,7 @@ namespace ACNHPokerCore
 
         private void MaxSpeedX5Btn_Click(object sender, EventArgs e)
         {
-            ButtonSelected(maxSpeedX5Btn, new Button[] { maxSpeedX2Btn, maxSpeedX3Btn, maxSpeedX1Btn, maxSpeedX100Btn });
+            ButtonSelected(maxSpeedX5Btn, [maxSpeedX2Btn, maxSpeedX3Btn, maxSpeedX1Btn, maxSpeedX100Btn]);
 
             Utilities.SetMaxSpeed(socket, usb, Utilities.MaxSpeedX5);
             if (sound)
@@ -4580,7 +4584,7 @@ namespace ACNHPokerCore
 
         private void MaxSpeedX100Btn_Click(object sender, EventArgs e)
         {
-            ButtonSelected(maxSpeedX100Btn, new Button[] { maxSpeedX2Btn, maxSpeedX3Btn, maxSpeedX5Btn, maxSpeedX1Btn });
+            ButtonSelected(maxSpeedX100Btn, [maxSpeedX2Btn, maxSpeedX3Btn, maxSpeedX5Btn, maxSpeedX1Btn]);
 
             Utilities.SetMaxSpeed(socket, usb, Utilities.MaxSpeedX100);
             if (sound)
@@ -4621,7 +4625,7 @@ namespace ACNHPokerCore
 
         private void AnimationSpeedx50_Click(object sender, EventArgs e)
         {
-            ButtonSelected(animationSpeedx50, new Button[] { animationSpeedx1, animationSpeedx2, animationSpeedx0_1, animationSpeedx5 });
+            ButtonSelected(animationSpeedx50, [animationSpeedx1, animationSpeedx2, animationSpeedx0_1, animationSpeedx5]);
 
             Utilities.PokeMainAddress(socket, usb, Utilities.aSpeedAddress.ToString("X"), Utilities.aSpeedX50);
             if (sound)
@@ -4630,7 +4634,7 @@ namespace ACNHPokerCore
 
         private void AnimationSpeedx5_Click(object sender, EventArgs e)
         {
-            ButtonSelected(animationSpeedx5, new Button[] { animationSpeedx1, animationSpeedx2, animationSpeedx0_1, animationSpeedx50 });
+            ButtonSelected(animationSpeedx5, [animationSpeedx1, animationSpeedx2, animationSpeedx0_1, animationSpeedx50]);
 
             Utilities.PokeMainAddress(socket, usb, Utilities.aSpeedAddress.ToString("X"), Utilities.aSpeedX5);
             if (sound)
@@ -4639,7 +4643,7 @@ namespace ACNHPokerCore
 
         private void AnimationSpeedx2_Click(object sender, EventArgs e)
         {
-            ButtonSelected(animationSpeedx2, new Button[] { animationSpeedx1, animationSpeedx50, animationSpeedx0_1, animationSpeedx5 });
+            ButtonSelected(animationSpeedx2, [animationSpeedx1, animationSpeedx50, animationSpeedx0_1, animationSpeedx5]);
 
             Utilities.PokeMainAddress(socket, usb, Utilities.aSpeedAddress.ToString("X"), Utilities.aSpeedX2);
             if (sound)
@@ -4648,7 +4652,7 @@ namespace ACNHPokerCore
 
         private void AnimationSpeedx0_1_Click(object sender, EventArgs e)
         {
-            ButtonSelected(animationSpeedx0_1, new Button[] { animationSpeedx1, animationSpeedx2, animationSpeedx50, animationSpeedx5 });
+            ButtonSelected(animationSpeedx0_1, [animationSpeedx1, animationSpeedx2, animationSpeedx50, animationSpeedx5]);
 
             Utilities.PokeMainAddress(socket, usb, Utilities.aSpeedAddress.ToString("X"), Utilities.aSpeedX01);
             if (sound)
@@ -4657,7 +4661,7 @@ namespace ACNHPokerCore
 
         private void AnimationSpeedx1_Click(object sender, EventArgs e)
         {
-            ButtonSelected(animationSpeedx1, new Button[] { animationSpeedx50, animationSpeedx2, animationSpeedx0_1, animationSpeedx5 });
+            ButtonSelected(animationSpeedx1, [animationSpeedx50, animationSpeedx2, animationSpeedx0_1, animationSpeedx5]);
 
             Utilities.PokeMainAddress(socket, usb, Utilities.aSpeedAddress.ToString("X"), Utilities.aSpeedX1);
             if (sound)
@@ -4675,24 +4679,24 @@ namespace ACNHPokerCore
             if (MaxSpeed.Equals(Utilities.MaxSpeedX1))
             { }
             else if (MaxSpeed.Equals(Utilities.MaxSpeedX2))
-            { ButtonSelected(maxSpeedX2Btn, new Button[] { maxSpeedX1Btn, maxSpeedX3Btn, maxSpeedX5Btn, maxSpeedX100Btn }); }
+            { ButtonSelected(maxSpeedX2Btn, [maxSpeedX1Btn, maxSpeedX3Btn, maxSpeedX5Btn, maxSpeedX100Btn]); }
             else if (MaxSpeed.Equals(Utilities.MaxSpeedX3))
-            { ButtonSelected(maxSpeedX3Btn, new Button[] { maxSpeedX2Btn, maxSpeedX1Btn, maxSpeedX5Btn, maxSpeedX100Btn }); }
+            { ButtonSelected(maxSpeedX3Btn, [maxSpeedX2Btn, maxSpeedX1Btn, maxSpeedX5Btn, maxSpeedX100Btn]); }
             else if (MaxSpeed.Equals(Utilities.MaxSpeedX5))
-            { ButtonSelected(maxSpeedX5Btn, new Button[] { maxSpeedX2Btn, maxSpeedX3Btn, maxSpeedX1Btn, maxSpeedX100Btn }); }
+            { ButtonSelected(maxSpeedX5Btn, [maxSpeedX2Btn, maxSpeedX3Btn, maxSpeedX1Btn, maxSpeedX100Btn]); }
             else if (MaxSpeed.Equals(Utilities.MaxSpeedX100))
-            { ButtonSelected(maxSpeedX100Btn, new Button[] { maxSpeedX2Btn, maxSpeedX3Btn, maxSpeedX5Btn, maxSpeedX1Btn }); }
+            { ButtonSelected(maxSpeedX100Btn, [maxSpeedX2Btn, maxSpeedX3Btn, maxSpeedX5Btn, maxSpeedX1Btn]); }
 
             if (AnimationSpeed.Equals(Utilities.aSpeedX1))
             { }
             else if (AnimationSpeed.Equals(Utilities.aSpeedX2))
-            { ButtonSelected(animationSpeedx2, new Button[] { animationSpeedx50, animationSpeedx1, animationSpeedx0_1, animationSpeedx5 }); }
+            { ButtonSelected(animationSpeedx2, [animationSpeedx50, animationSpeedx1, animationSpeedx0_1, animationSpeedx5]); }
             else if (AnimationSpeed.Equals(Utilities.aSpeedX5))
-            { ButtonSelected(animationSpeedx5, new Button[] { animationSpeedx50, animationSpeedx2, animationSpeedx0_1, animationSpeedx1 }); }
+            { ButtonSelected(animationSpeedx5, [animationSpeedx50, animationSpeedx2, animationSpeedx0_1, animationSpeedx1]); }
             else if (AnimationSpeed.Equals(Utilities.aSpeedX50))
-            { ButtonSelected(animationSpeedx50, new Button[] { animationSpeedx1, animationSpeedx2, animationSpeedx0_1, animationSpeedx5 }); }
+            { ButtonSelected(animationSpeedx50, [animationSpeedx1, animationSpeedx2, animationSpeedx0_1, animationSpeedx5]); }
             else if (AnimationSpeed.Equals(Utilities.aSpeedX01))
-            { ButtonSelected(animationSpeedx0_1, new Button[] { animationSpeedx50, animationSpeedx2, animationSpeedx1, animationSpeedx5 }); }
+            { ButtonSelected(animationSpeedx0_1, [animationSpeedx50, animationSpeedx2, animationSpeedx1, animationSpeedx5]); }
 
             if (SwimSpeed.Equals(Utilities.FastSwimSpeed))
             { FastSwimToggle.Checked = true; }
@@ -5065,7 +5069,7 @@ namespace ACNHPokerCore
             MyLog.LogEvent("MainForm", "SaturdayAM : " + $"{turnipPrices[10]}");
             MyLog.LogEvent("MainForm", "SaturdayPM : " + $"{turnipPrices[11]}");
 
-            ulong[] price = { MondayAM, MondayPM, TuesdayAM, TuesdayPM, WednesdayAM, WednesdayPM, ThursdayAM, ThursdayPM, FridayAM, FridayPM, SaturdayAM, SaturdayPM };
+            ulong[] price = [MondayAM, MondayPM, TuesdayAM, TuesdayPM, WednesdayAM, WednesdayPM, ThursdayAM, ThursdayPM, FridayAM, FridayPM, SaturdayAM, SaturdayPM];
             ulong highest = FindHighest(price);
             SetStar(highest, MondayAM, MondayPM, TuesdayAM, TuesdayPM, WednesdayAM, WednesdayPM, ThursdayAM, ThursdayPM, FridayAM, FridayPM, SaturdayAM, SaturdayPM);
         }
@@ -5124,14 +5128,15 @@ namespace ACNHPokerCore
             DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to set all the turnip prices to MAX?\n[Warning] All original prices will be overwritten!", "Set all turnip prices", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
             if (dialogResult == DialogResult.Yes)
             {
-                UInt32[] prices = new[] {
+                UInt32[] prices = [
                 Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
                 Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
                 Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
                 Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
                 Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
                 Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
-                Convert.ToUInt32(min, 10)};
+                Convert.ToUInt32(min, 10)
+                ];
 
                 try
                 {
@@ -5154,14 +5159,15 @@ namespace ACNHPokerCore
             string max = "999999999";
             string min = "1";
 
-            UInt32[] prices = new[] {
+            UInt32[] prices = [
                 Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
                 Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
                 Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
                 Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
                 Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
                 Convert.ToUInt32(max, 10), Convert.ToUInt32(max, 10),
-                Convert.ToUInt32(min, 10)};
+                Convert.ToUInt32(min, 10)
+                ];
 
             try
             {
@@ -5195,14 +5201,15 @@ namespace ACNHPokerCore
             DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to set the turnip prices?\n[Warning] All original prices will be overwritten!", "Set turnip prices", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
             if (dialogResult == DialogResult.Yes)
             {
-                UInt32[] prices = new[] {
+                UInt32[] prices = [
                 Convert.ToUInt32(turnipSell1AM.Text, 10), Convert.ToUInt32(turnipSell1PM.Text, 10),
                 Convert.ToUInt32(turnipSell2AM.Text, 10), Convert.ToUInt32(turnipSell2PM.Text, 10),
                 Convert.ToUInt32(turnipSell3AM.Text, 10), Convert.ToUInt32(turnipSell3PM.Text, 10),
                 Convert.ToUInt32(turnipSell4AM.Text, 10), Convert.ToUInt32(turnipSell4PM.Text, 10),
                 Convert.ToUInt32(turnipSell5AM.Text, 10), Convert.ToUInt32(turnipSell5PM.Text, 10),
                 Convert.ToUInt32(turnipSell6AM.Text, 10), Convert.ToUInt32(turnipSell6PM.Text, 10),
-                Convert.ToUInt32(turnipBuyPrice.Text, 10)};
+                Convert.ToUInt32(turnipBuyPrice.Text, 10)
+                ];
 
                 try
                 {
@@ -5515,7 +5522,7 @@ namespace ACNHPokerCore
                     BackColor = Color.FromArgb(114, 137, 218),
                     Font = new Font("Arial", 8F, FontStyle.Bold),
                     Alignment = DataGridViewContentAlignment.MiddleCenter
-                    
+
                 };
 
                 DataGridViewCellStyle selectedbtnStyle = new()
@@ -6790,7 +6797,7 @@ namespace ACNHPokerCore
 
             if (VillagerReplaceSelector.SelectedIndex < 0)
                 return;
-            string[] lines = VillagerReplaceSelector.SelectedItem.ToString()?.Split(new[] { " " }, StringSplitOptions.None);
+            string[] lines = VillagerReplaceSelector.SelectedItem.ToString()?.Split([" "], StringSplitOptions.None);
             //byte[] IName = Encoding.Default.GetBytes(lines[lines.Length - 1]);
             if (lines != null)
             {
@@ -7367,14 +7374,12 @@ namespace ACNHPokerCore
         {
             if (MysVillagerReplaceSelector.SelectedIndex < 0)
                 return;
-            string[] lines = MysVillagerReplaceSelector.SelectedItem.ToString()?.Split(new[] { " " }, StringSplitOptions.None);
+            string[] lines = MysVillagerReplaceSelector.SelectedItem.ToString()?.Split([" "], StringSplitOptions.None);
 
             if (lines != null)
             {
                 byte[] IName = Encoding.Default.GetBytes(lines[lines.Length - 1]);
-                byte[] species = new byte[1];
-                species[0] = Utilities.CheckSpecies[(lines[lines.Length - 1]).Substring(0, 3)];
-
+                byte[] species = [Utilities.CheckSpecies[(lines[lines.Length - 1]).Substring(0, 3)]];
                 Utilities.SetMysVillager(socket, usb, IName, species, ref counter);
 
                 Image img;
@@ -7433,10 +7438,10 @@ namespace ACNHPokerCore
         {
             byte[] newHouse = new byte[Utilities.VillagerHouseSize];
 
-            byte[] NoItem = { 0xFE, 0xFF };
+            byte[] NoItem = [0xFE, 0xFF];
 
             byte[] NewHouseFooter =
-            {
+            [
                 0x4B, 0x13, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x4B, 0x13, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                 0x9B, 0x13, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xF8, 0x00, 0xF8, 0x00, 0xF8, 0x00, 0x40,
                 0x10, 0x00, 0x00, 0x00, 0x01, 0x01, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F,
@@ -7445,7 +7450,7 @@ namespace ACNHPokerCore
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFE, 0xFF, 0x00, 0x00,
                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            };
+            ];
 
             Array.Copy(oldHouse, 0, newHouse, 0, Utilities.VillagerHouseOldSize);
 
@@ -7493,11 +7498,11 @@ namespace ACNHPokerCore
         {
             for (int i = 0; i < VillagerReplaceSelector.Items.Count; i++)
             {
-                string[] lines = VillagerReplaceSelector.Items[i].ToString()?.Split(new[] { " " }, StringSplitOptions.None);
+                string[] lines = VillagerReplaceSelector.Items[i].ToString()?.Split([" "], StringSplitOptions.None);
                 if (lines != null)
                 {
                     string RealName = lines[0];
-                    if (ReplaceVilllagerSearchBox.Text.Split(new[] { " " }, StringSplitOptions.None)[0].ToLower() == RealName.ToLower())
+                    if (ReplaceVilllagerSearchBox.Text.Split([" "], StringSplitOptions.None)[0].Equals(RealName, StringComparison.CurrentCultureIgnoreCase))
                     {
                         VillagerReplaceSelector.SelectedIndex = i;
                         break;
@@ -7510,13 +7515,13 @@ namespace ACNHPokerCore
         {
             for (int i = 0; i < MysVillagerReplaceSelector.Items.Count; i++)
             {
-                string[] lines = MysVillagerReplaceSelector.Items[i].ToString()?.Split(new[] { " " }, StringSplitOptions.None);
+                string[] lines = MysVillagerReplaceSelector.Items[i].ToString()?.Split([" "], StringSplitOptions.None);
                 //byte[] IName = Encoding.Default.GetBytes(lines[lines.Length - 1]);
                 //string IName = lines[lines.Length - 1];
                 if (lines != null)
                 {
                     string RealName = lines[0];
-                    if (ReplaceMysVilllagerSearchBox.Text.Split(new[] { " " }, StringSplitOptions.None)[0].ToLower() == RealName.ToLower())
+                    if (ReplaceMysVilllagerSearchBox.Text.Split([" "], StringSplitOptions.None)[0].Equals(RealName, StringComparison.CurrentCultureIgnoreCase))
                     {
                         MysVillagerReplaceSelector.SelectedIndex = i;
                         break;
@@ -7550,7 +7555,7 @@ namespace ACNHPokerCore
 
             if (Utilities.itemkind.ContainsKey(id))
             {
-                if (!Utilities.CountByKind.ContainsKey(Utilities.itemkind[id]))
+                if (!Utilities.CountByKind.TryGetValue(Utilities.itemkind[id], out int value))
                 {
                     if (HexModeButton.Tag.ToString() == "Normal")
                         AmountOrCountTextbox.Text = @"1";
@@ -7559,9 +7564,7 @@ namespace ACNHPokerCore
                 }
                 else
                 {
-                    int value = Utilities.CountByKind[Utilities.itemkind[id]];
-
-                    if (ItemAttr.hasFenceWithVariation(intId))  // Fence Variation
+                    if (ItemAttr.HasFenceWithVariation(intId))  // Fence Variation
                     {
                         string hexValue = "00000000";
                         if (HexModeButton.Tag.ToString() == "Normal")
@@ -7657,7 +7660,7 @@ namespace ACNHPokerCore
             {
                 SelectedItem.Setup(GetNameFromID(IDTextbox.Text, itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource, Convert.ToUInt32("0x" + hexValue, 16)), true, GetImagePathFromID(Utilities.Turn2bytes(hexValue), itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(front), 16)), SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
             }
-            else if (ItemAttr.hasFenceWithVariation(intId))  // Fence Variation
+            else if (ItemAttr.HasFenceWithVariation(intId))  // Fence Variation
             {
                 SelectedItem.Setup(GetNameFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource, Convert.ToUInt32("0x" + front, 16)), true, "", SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
 
@@ -7665,7 +7668,7 @@ namespace ACNHPokerCore
             }
             else
             {
-                if (ItemAttr.hasGenetics(Convert.ToUInt16("0x" + IDTextbox.Text, 16)))
+                if (ItemAttr.HasGenetics(Convert.ToUInt16("0x" + IDTextbox.Text, 16)))
                 {
                     string value = AmountOrCountTextbox.Text;
                     int length = value.Length;
@@ -7728,7 +7731,7 @@ namespace ACNHPokerCore
             {
                 SelectedItem.Setup(GetNameFromID(IDTextbox.Text, itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource, Convert.ToUInt32("0x" + hexValue, 16)), true, GetImagePathFromID(Utilities.Turn2bytes(hexValue), itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(front), 16)), SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
             }
-            else if (ItemAttr.hasFenceWithVariation(intId))  // Fence Variation
+            else if (ItemAttr.HasFenceWithVariation(intId))  // Fence Variation
             {
                 SelectedItem.Setup(GetNameFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource), Convert.ToUInt16("0x" + IDTextbox.Text, 16), Convert.ToUInt32("0x" + hexValue, 16), GetImagePathFromID(Utilities.Turn2bytes(IDTextbox.Text), itemSource, Convert.ToUInt32("0x" + front, 16)), true, "", SelectedItem.GetFlag0(), SelectedItem.GetFlag1());
 
@@ -7736,7 +7739,7 @@ namespace ACNHPokerCore
             }
             else
             {
-                if (ItemAttr.hasGenetics(Convert.ToUInt16("0x" + IDTextbox.Text, 16)))
+                if (ItemAttr.HasGenetics(Convert.ToUInt16("0x" + IDTextbox.Text, 16)))
                 {
                     string value = AmountOrCountTextbox.Text;
                     int length = value.Length;
@@ -7772,7 +7775,7 @@ namespace ACNHPokerCore
                 {
                     if (IDTextbox.Text != "")
                     {
-                        if (ItemAttr.hasGenetics(Convert.ToUInt16("0x" + IDTextbox.Text, 16)))
+                        if (ItemAttr.HasGenetics(Convert.ToUInt16("0x" + IDTextbox.Text, 16)))
                         {
                             if (HexModeButton.Tag.ToString() == "Normal")
                             {
@@ -8222,7 +8225,7 @@ namespace ACNHPokerCore
 
         #endregion
 
-        private void processCheat(string[] cheattext)
+        private void ProcessCheat(string[] cheattext)
         {
 
 
@@ -8242,7 +8245,7 @@ namespace ACNHPokerCore
                     {
                         //slotId++; //works online                    
                         slotId++;
-                        Regex regex = new(" ");         // Split on space.
+                        Regex regex = Space();         // Split on space.
                         string[] substrings = regex.Split(line);
                         MyLog.LogEvent("Online Split String", substrings[0] + " " + substrings[1] + " " + substrings[2] + " " + substrings[3]);
 
@@ -8299,7 +8302,7 @@ namespace ACNHPokerCore
                         slotId++;
 
 
-                        Regex regex = new(" ");         // Split on space.
+                        Regex regex = Space();         // Split on space.
                         string[] substrings = regex.Split(line);
                         MyLog.LogEvent("Offline Split String", substrings[0] + " " + substrings[1] + " " + substrings[2] + " " + substrings[3]);
                         myItemId = substrings[3].Substring(4); //substrings[3];
@@ -8370,7 +8373,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot1.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot1.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -8410,7 +8413,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot2.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot2.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -8450,7 +8453,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot3.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot3.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -8490,7 +8493,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot4.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot4.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -8530,7 +8533,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot5.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot5.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -8570,7 +8573,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot6.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot6.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -8610,7 +8613,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot7.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot7.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -8650,7 +8653,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot8.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot8.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -8690,7 +8693,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot9.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot9.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -8730,7 +8733,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot10.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot10.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -8770,7 +8773,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot11.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot11.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -8810,7 +8813,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot12.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot12.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -8850,7 +8853,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot13.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot13.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -8890,7 +8893,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot14.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot14.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -8930,7 +8933,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot15.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot15.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -8970,7 +8973,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot16.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot16.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9010,7 +9013,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot17.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot17.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9050,7 +9053,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot18.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot18.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9090,7 +9093,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot19.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot19.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9130,7 +9133,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot20.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot20.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9170,7 +9173,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot21.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot21.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9210,7 +9213,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot22.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot22.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9250,7 +9253,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot23.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot23.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9290,7 +9293,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot24.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot24.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9330,7 +9333,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot25.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot25.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9370,7 +9373,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot26.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot26.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9410,7 +9413,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot27.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot27.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9450,7 +9453,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot28.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot28.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9490,7 +9493,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot29.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot29.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9530,7 +9533,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot30.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot30.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9570,7 +9573,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot31.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot31.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9610,7 +9613,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot32.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot32.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9650,7 +9653,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot33.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot33.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9690,7 +9693,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot34.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot34.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9730,7 +9733,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot35.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot35.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9770,7 +9773,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot36.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot36.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9810,7 +9813,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot37.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot37.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9850,7 +9853,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot38.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot38.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9890,7 +9893,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot39.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot39.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9930,7 +9933,7 @@ namespace ACNHPokerCore
                             {
                                 inventorySlot40.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + itemData, 16)), GetImagePathFromID(recipeData, itemSource, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(fenceData), 16)), flag0, flag1);
                             }
-                            else if (ItemAttr.hasFenceWithVariation(intId)) // Fence Variation
+                            else if (ItemAttr.HasFenceWithVariation(intId)) // Fence Variation
                             {
                                 inventorySlot40.Setup(GetNameFromID(itemId, itemSource), Convert.ToUInt16("0x" + itemId, 16), Convert.ToUInt32("0x" + itemData, 16), GetImagePathFromID(itemId, itemSource, Convert.ToUInt32("0x" + fenceData, 16)), "", flag0, flag1);
                             }
@@ -9946,7 +9949,7 @@ namespace ACNHPokerCore
 
 
                 } //offline
-                  
+
             }); //invoke
 
         }
@@ -9991,7 +9994,7 @@ namespace ACNHPokerCore
                 config.Save(ConfigurationSaveMode.Minimal);
 
                 string[] cheattext = File.ReadAllLines(file.FileName);
-                processCheat(cheattext);
+                ProcessCheat(cheattext);
 
             }
             catch
@@ -10011,7 +10014,7 @@ namespace ACNHPokerCore
                 string file = "cheat.txt";
                 File.WriteAllText(file, text);
                 string[] cheattext = File.ReadAllLines(file);
-                processCheat(cheattext);
+                ProcessCheat(cheattext);
 
             }
 
@@ -10500,7 +10503,7 @@ namespace ACNHPokerCore
                 };
                 D.CloseForm += DodoHelperCloseForm;
                 D.AbortAll += DodoHelperAbortAll;
-                D.updateTurnipPriceHandler += Dodo_updateTurnipPriceHandler;
+                D.UpdateTurnipPriceHandler += Dodo_updateTurnipPriceHandler;
                 D.Show();
                 D.WriteLog("[You have started dodo helper in standalone mode.]\n\n" +
                                     "1. Disconnect all controller by selecting \"Controllers\" > \"Change Grip/Order\"\n" +
@@ -10621,7 +10624,7 @@ namespace ACNHPokerCore
             {
                 R = new MapRegenerator(socket, sound, DEBUGGING);
                 R.CloseForm += RegeneratorCloseForm;
-                R.updateTurnipPriceHandler += Regenerator_updateTurnipPriceHandler;
+                R.UpdateTurnipPriceHandler += Regenerator_updateTurnipPriceHandler;
                 R.Show();
             }
         }
@@ -10656,7 +10659,7 @@ namespace ACNHPokerCore
             if (F == null)
             {
                 F = new Freezer(socket, sound, DEBUGGING);
-                F.closeForm += FreezerCloseForm;
+                F.CloseForm += FreezerCloseForm;
                 F.Show();
             }
         }
@@ -10721,7 +10724,7 @@ namespace ACNHPokerCore
         {
             ShowWait();
 
-            byte[] pattern = new byte[] { 0xC4, 0x09, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00 }; // 3 tree branches
+            byte[] pattern = [0xC4, 0x09, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00]; // 3 tree branches
 
             int offset = 0;
 
@@ -11039,7 +11042,7 @@ namespace ACNHPokerCore
                 }
                 else
                 {
-                    
+
                     long heapBaseAddress;
                     long personalidAddress;
                     int i = 0;
@@ -11055,7 +11058,7 @@ namespace ACNHPokerCore
 
                             byte[] idBuffer = new byte[4];
                             int bytesRead2 = 0;
-                            bool ReadSuccess = Utilities.ReadProcessMemory((int)Utilities.ReadProcessHandle, personalidAddress, idBuffer, idBuffer.Length, ref bytesRead2);
+                            bool ReadSuccess = Utilities.ReadProcessMemory(checked((int)Utilities.ReadProcessHandle), personalidAddress, idBuffer, idBuffer.Length, ref bytesRead2);
                             int id = BitConverter.ToInt32(idBuffer, 0);
 
                             if (id == 0)
@@ -11083,7 +11086,7 @@ namespace ACNHPokerCore
 
                             byte[] idBuffer = new byte[4];
                             int bytesRead2 = 0;
-                            bool ReadSuccess = Utilities.ReadProcessMemory((int)Utilities.ReadProcessHandle, personalidAddress, idBuffer, idBuffer.Length, ref bytesRead2);
+                            bool ReadSuccess = Utilities.ReadProcessMemory(checked((int)Utilities.ReadProcessHandle), personalidAddress, idBuffer, idBuffer.Length, ref bytesRead2);
                             int id = BitConverter.ToInt32(idBuffer, 0);
 
                             if (id == 0)
@@ -11108,7 +11111,7 @@ namespace ACNHPokerCore
                         HideWait();
                         return;
                     }
-                    
+
 
                     Utilities.isEmulator = true;
 

@@ -83,9 +83,7 @@ namespace ACNHPokerCore
 
             for (int i = 0; i < AcreMax; i++)
             {
-                byte[] AcreBytes = new byte[2];
-                AcreBytes[0] = AcreMapByte[i * 2];
-                AcreBytes[1] = AcreMapByte[i * 2 + 1];
+                byte[] AcreBytes = [AcreMapByte[i * 2], AcreMapByte[i * 2 + 1]];
                 AllAcre[i] = BitConverter.ToInt16(AcreBytes, 0);
             }
 
@@ -127,9 +125,7 @@ namespace ACNHPokerCore
 
             for (int i = 0; i < AcreMax; i++)
             {
-                byte[] AcreBytes = new byte[2];
-                AcreBytes[0] = AcreMapByte[i * 2];
-                AcreBytes[1] = AcreMapByte[i * 2 + 1];
+                byte[] AcreBytes = [AcreMapByte[i * 2], AcreMapByte[i * 2 + 1]];
                 AllAcre[i] = BitConverter.ToInt16(AcreBytes, 0);
             }
 
@@ -994,31 +990,31 @@ namespace ACNHPokerCore
                     string strPart4 = Utilities.ByteToHexString(tempPart4);
                     ushort itemID = Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(IDByte)), 16);
 
-                    if (ItemAttr.isTree(itemID))
+                    if (ItemAttr.IsTree(itemID))
                     {
                         tilesType[i][j] = 1; // Tree
                     }
-                    else if (ItemAttr.hasGenetics(itemID))
+                    else if (ItemAttr.HasGenetics(itemID))
                     {
                         tilesType[i][j] = 2; // Flower
                     }
-                    else if (ItemAttr.isShell(itemID))
+                    else if (ItemAttr.IsShell(itemID))
                     {
                         tilesType[i][j] = 3; // Shell
                     }
-                    else if (ItemAttr.isWeed(itemID))
+                    else if (ItemAttr.IsWeed(itemID))
                     {
                         tilesType[i][j] = 4; // Weed
                     }
-                    else if (ItemAttr.isFence(itemID))
+                    else if (ItemAttr.IsFence(itemID))
                     {
                         tilesType[i][j] = 5; // Fence
                     }
-                    else if (ItemAttr.isStone(itemID))
+                    else if (ItemAttr.IsStone(itemID))
                     {
                         tilesType[i][j] = 6; // Stone
                     }
-                    else if (ItemAttr.hasQuantity(itemID))
+                    else if (ItemAttr.HasQuantity(itemID))
                     {
                         tilesType[i][j] = 9; // Material
                     }
@@ -1034,7 +1030,7 @@ namespace ACNHPokerCore
                     {
                         tilesType[i][j] = 12;
                     }
-                    else if (ItemAttr.isPlacedFence(itemID))
+                    else if (ItemAttr.IsPlacedFence(itemID))
                     {
                         tilesType[i][j] = 13; // PlacedFence
                     }

@@ -227,17 +227,17 @@ namespace ACNHPokerCore
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            int[] SetValue = new int[8];
-
-            SetValue[0] = FriendshipBar1.Value;
-            SetValue[1] = FriendshipBar2.Value;
-            SetValue[2] = FriendshipBar3.Value;
-            SetValue[3] = FriendshipBar4.Value;
-            SetValue[4] = FriendshipBar5.Value;
-            SetValue[5] = FriendshipBar6.Value;
-            SetValue[6] = FriendshipBar7.Value;
-            SetValue[7] = FriendshipBar8.Value;
-
+            int[] SetValue =
+            [
+                FriendshipBar1.Value,
+                FriendshipBar2.Value,
+                FriendshipBar3.Value,
+                FriendshipBar4.Value,
+                FriendshipBar5.Value,
+                FriendshipBar6.Value,
+                FriendshipBar7.Value,
+                FriendshipBar8.Value,
+            ];
             for (int p = 0; p < 8; p++)
             {
                 if (SetValue[p] != friendshipValue[p])

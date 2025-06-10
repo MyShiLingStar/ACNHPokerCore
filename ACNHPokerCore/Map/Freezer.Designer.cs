@@ -85,7 +85,7 @@ namespace ACNHPokerCore
             this.saveMapBtn.Text = "Create Map Template";
             this.formToolTip.SetToolTip(this.saveMapBtn, "Create a Map template and save it to a .nhf2 file. (Layer 1 & 2)\r\n");
             this.saveMapBtn.UseVisualStyleBackColor = false;
-            this.saveMapBtn.Click += new System.EventHandler(this.saveMapBtn_Click);
+            this.saveMapBtn.Click += new System.EventHandler(this.SaveMapBtn_Click);
             // 
             // formToolTip
             // 
@@ -114,7 +114,7 @@ namespace ACNHPokerCore
             this.formToolTip.SetToolTip(this.changeRateBtn, "Change the refresh rate. \r\nLower number means it refresh more frequently.\r\nYou sh" +
         "ould keep this as high as possible to reduce the load.");
             this.changeRateBtn.UseVisualStyleBackColor = false;
-            this.changeRateBtn.Click += new System.EventHandler(this.changeRateBtn_Click);
+            this.changeRateBtn.Click += new System.EventHandler(this.ChangeRateBtn_Click);
             // 
             // startBtn
             // 
@@ -133,7 +133,7 @@ namespace ACNHPokerCore
             this.formToolTip.SetToolTip(this.startBtn, "Start the regen with only the area selected being ignored.\r\n[WARNING] Item droppe" +
         "d/placed on the empty space outside the area will be deleted.");
             this.startBtn.UseVisualStyleBackColor = false;
-            this.startBtn.Click += new System.EventHandler(this.startBtn_Click);
+            this.startBtn.Click += new System.EventHandler(this.StartBtn_Click);
             // 
             // UnFreezeAllBtn
             // 
@@ -382,7 +382,7 @@ namespace ACNHPokerCore
             this.unfreezeAllVillagerBtn.TabIndex = 246;
             this.unfreezeAllVillagerBtn.Text = "UnFreeze All Villager";
             this.unfreezeAllVillagerBtn.UseVisualStyleBackColor = false;
-            this.unfreezeAllVillagerBtn.Click += new System.EventHandler(this.unfreezeAllVillagerBtn_Click);
+            this.unfreezeAllVillagerBtn.Click += new System.EventHandler(this.UnfreezeAllVillagerBtn_Click);
             // 
             // freezeAllVillagerBtn
             // 
@@ -398,7 +398,7 @@ namespace ACNHPokerCore
             this.freezeAllVillagerBtn.TabIndex = 245;
             this.freezeAllVillagerBtn.Text = "Freeze All Villager";
             this.freezeAllVillagerBtn.UseVisualStyleBackColor = false;
-            this.freezeAllVillagerBtn.Click += new System.EventHandler(this.freezeAllVillagerBtn_Click);
+            this.freezeAllVillagerBtn.Click += new System.EventHandler(this.FreezeAllVillagerBtn_Click);
             // 
             // FinMsg
             // 
@@ -495,8 +495,8 @@ namespace ACNHPokerCore
             this.miniMapBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.miniMapBox.TabIndex = 190;
             this.miniMapBox.TabStop = false;
-            this.miniMapBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.miniMapBox_MouseDown);
-            this.miniMapBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.miniMapBox_MouseMove);
+            this.miniMapBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MiniMapBox_MouseDown);
+            this.miniMapBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MiniMapBox_MouseMove);
             // 
             // xCoordinate
             // 

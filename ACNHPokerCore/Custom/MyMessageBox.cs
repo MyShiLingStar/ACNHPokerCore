@@ -1,10 +1,10 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using System.ComponentModel;
 
 namespace ACNHPokerCore
 {
@@ -21,7 +21,7 @@ namespace ACNHPokerCore
         /// 
         /// Default is: 70% of the working area width.
         /// </summary>
-        public static double MAX_WIDTH_FACTOR = 0.7;
+        public static readonly double MAX_WIDTH_FACTOR = 0.7;
 
         /// <summary>
         /// Defines the maximum height for all FlexibleMessageBox instances in percent of the working area.
@@ -32,14 +32,14 @@ namespace ACNHPokerCore
         /// 
         /// Default is: 90% of the working area height.
         /// </summary>
-        public static double MAX_HEIGHT_FACTOR = 0.9;
+        public static readonly double MAX_HEIGHT_FACTOR = 0.9;
 
         /// <summary>
         /// Defines the font for all FlexibleMessageBox instances.
         /// 
         /// Default is: SystemFonts.MessageBoxFont
         /// </summary>
-        public static Font FONT = SystemFonts.MessageBoxFont;
+        public static readonly Font FONT = SystemFonts.MessageBoxFont;
 
         #endregion
 
@@ -185,7 +185,7 @@ namespace ACNHPokerCore
             /// <summary>
             /// Erforderliche Designervariable.
             /// </summary>
-            private System.ComponentModel.IContainer components;
+            private System.ComponentModel.Container components;
 
             /// <summary>
             /// Verwendete Ressourcen bereinigen.
@@ -251,7 +251,7 @@ namespace ACNHPokerCore
                 richTextBoxMessage.TabIndex = 0;
                 richTextBoxMessage.TabStop = false;
                 richTextBoxMessage.Text = "<Message>";
-                richTextBoxMessage.LinkClicked += richTextBoxMessage_LinkClicked;
+                richTextBoxMessage.LinkClicked += RichTextBoxMessage_LinkClicked;
                 // 
                 // panel1
                 // 
@@ -350,10 +350,10 @@ namespace ACNHPokerCore
             //These are the buttons texts for different languages. 
             //If you want to add a new language, add it here and in the GetButtonText-Function
             private enum TwoLetterISOLanguageID { en, de, es, it };
-            private static readonly String[] BUTTON_TEXTS_ENGLISH_EN = { "OK", "Cancel", "&Yes", "&No", "&Abort", "&Retry", "&Ignore" }; //Note: This is also the fallback language
-            private static readonly String[] BUTTON_TEXTS_GERMAN_DE = { "OK", "Abbrechen", "&Ja", "&Nein", "&Abbrechen", "&Wiederholen", "&Ignorieren" };
-            private static readonly String[] BUTTON_TEXTS_SPANISH_ES = { "Aceptar", "Cancelar", "&Sí", "&No", "&Abortar", "&Reintentar", "&Ignorar" };
-            private static readonly String[] BUTTON_TEXTS_ITALIAN_IT = { "OK", "Annulla", "&Sì", "&No", "&Interrompi", "&Riprova", "&Ignora" };
+            private static readonly String[] BUTTON_TEXTS_ENGLISH_EN = ["OK", "Cancel", "&Yes", "&No", "&Abort", "&Retry", "&Ignore"]; //Note: This is also the fallback language
+            private static readonly String[] BUTTON_TEXTS_GERMAN_DE = ["OK", "Abbrechen", "&Ja", "&Nein", "&Abbrechen", "&Wiederholen", "&Ignorieren"];
+            private static readonly String[] BUTTON_TEXTS_SPANISH_ES = ["Aceptar", "Cancelar", "&Sí", "&No", "&Abortar", "&Reintentar", "&Ignorar"];
+            private static readonly String[] BUTTON_TEXTS_ITALIAN_IT = ["OK", "Annulla", "&Sì", "&No", "&Interrompi", "&Riprova", "&Ignora"];
 
             #endregion
 
@@ -361,7 +361,7 @@ namespace ACNHPokerCore
 
             private MessageBoxDefaultButton defaultButton;
             private int visibleButtonsCount;
-            private TwoLetterISOLanguageID languageID;
+            private readonly TwoLetterISOLanguageID languageID;
 
             #endregion
 
@@ -375,7 +375,7 @@ namespace ACNHPokerCore
                 InitializeComponent();
 
                 //Try to evaluate the language. If this fails, the fallback language English will be used
-                Enum.TryParse(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName, out languageID);
+                bool v = Enum.TryParse(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName, out languageID);
 
                 KeyPreview = true;
                 KeyUp += FlexibleMessageBoxForm_KeyUp;
@@ -394,7 +394,7 @@ namespace ACNHPokerCore
             {
                 if (string.IsNullOrEmpty(message)) return null;
 
-                var messageRows = message.Split(new[] { '\n' }, StringSplitOptions.None);
+                var messageRows = message.Split(['\n'], StringSplitOptions.None);
                 return messageRows;
             }
 
@@ -666,7 +666,7 @@ namespace ACNHPokerCore
             /// </summary>
             /// <param name="sender">The source of the event.</param>
             /// <param name="e">The <see cref="System.Windows.Forms.LinkClickedEventArgs"/> instance containing the event data.</param>
-            private void richTextBoxMessage_LinkClicked(object sender, LinkClickedEventArgs e)
+            private void RichTextBoxMessage_LinkClicked(object sender, LinkClickedEventArgs e)
             {
                 try
                 {
@@ -756,13 +756,15 @@ namespace ACNHPokerCore
             public static DialogResult Show(IWin32Window owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton)
             {
                 //Create a new instance of the FlexibleMessageBox form
-                var flexibleMessageBoxForm = new FlexibleMessageBoxForm();
-                flexibleMessageBoxForm.ShowInTaskbar = false;
-                flexibleMessageBoxForm.TopMost = true;
+                var flexibleMessageBoxForm = new FlexibleMessageBoxForm
+                {
+                    ShowInTaskbar = false,
+                    TopMost = true,
 
-                //Bind the caption and the message text
-                flexibleMessageBoxForm.CaptionText = caption;
-                flexibleMessageBoxForm.MessageText = text;
+                    //Bind the caption and the message text
+                    CaptionText = caption,
+                    MessageText = text
+                };
                 flexibleMessageBoxForm.FlexibleMessageBoxFormBindingSource.DataSource = flexibleMessageBoxForm;
 
                 //Set the buttons visibilities and texts. Also set a default button.

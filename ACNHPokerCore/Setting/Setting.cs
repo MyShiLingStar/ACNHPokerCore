@@ -220,7 +220,7 @@ namespace ACNHPokerCore
         {
             TextBox box = (TextBox)sender;
             box.Text = box.Text.ToUpper();
-            char[] allowedChars = new[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+            char[] allowedChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
 
             foreach (char character in box.Text.ToUpper().ToArray())
             {
@@ -245,7 +245,7 @@ namespace ACNHPokerCore
         {
             Configuration Config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
 
-            Dictionary<string, UInt32> ConfigValue = new();
+            Dictionary<string, UInt32> ConfigValue = [];
 
             Config.AppSettings.Settings["PlayerSlot"].Value = PlayerSlot.Text;
             Config.AppSettings.Settings["PlayerOffset"].Value = PlayerOffset.Text;
