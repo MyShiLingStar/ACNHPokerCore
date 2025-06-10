@@ -167,7 +167,7 @@ namespace ACNHPokerCore
             Corner1XBox = new System.Windows.Forms.RichTextBox();
             Corner2YBox = new System.Windows.Forms.RichTextBox();
             Corner2XBox = new System.Windows.Forms.RichTextBox();
-            panel1 = new System.Windows.Forms.Panel();
+            MapPanel = new System.Windows.Forms.Panel();
             miniMapBox = new System.Windows.Forms.PictureBox();
             Language = new System.Windows.Forms.ComboBox();
             FlashTimer = new System.Windows.Forms.Timer(components);
@@ -192,7 +192,7 @@ namespace ACNHPokerCore
             PleaseWaitPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)NowLoading).BeginInit();
             removeItemClick.SuspendLayout();
-            panel1.SuspendLayout();
+            MapPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)miniMapBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)HexTextbox).BeginInit();
             AddToBulkMenu.SuspendLayout();
@@ -2303,16 +2303,16 @@ namespace ACNHPokerCore
             Corner2XBox.TabIndex = 228;
             Corner2XBox.Text = "0";
             // 
-            // panel1
+            // MapPanel
             // 
-            panel1.Controls.Add(miniMapBox);
-            panel1.Location = new System.Drawing.Point(4, 163);
-            panel1.Margin = new System.Windows.Forms.Padding(0);
-            panel1.MaximumSize = new System.Drawing.Size(224, 192);
-            panel1.MinimumSize = new System.Drawing.Size(224, 192);
-            panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(224, 192);
-            panel1.TabIndex = 190;
+            MapPanel.Controls.Add(miniMapBox);
+            MapPanel.Location = new System.Drawing.Point(4, 163);
+            MapPanel.Margin = new System.Windows.Forms.Padding(0);
+            MapPanel.MaximumSize = new System.Drawing.Size(224, 192);
+            MapPanel.MinimumSize = new System.Drawing.Size(224, 192);
+            MapPanel.Name = "MapPanel";
+            MapPanel.Size = new System.Drawing.Size(224, 192);
+            MapPanel.TabIndex = 190;
             // 
             // miniMapBox
             // 
@@ -2352,6 +2352,7 @@ namespace ACNHPokerCore
             // 
             // FlashTimer
             // 
+            FlashTimer.Interval = 1000;
             FlashTimer.Tick += FlashTimer_Tick;
             // 
             // HexTextbox
@@ -2476,7 +2477,7 @@ namespace ACNHPokerCore
             Controls.Add(SizeBox);
             Controls.Add(HexTextbox);
             Controls.Add(Language);
-            Controls.Add(panel1);
+            Controls.Add(MapPanel);
             Controls.Add(ClearCopiedAreaBtn);
             Controls.Add(variationBtn);
             Controls.Add(Corner2YBox);
@@ -2525,8 +2526,7 @@ namespace ACNHPokerCore
             MaximumSize = new System.Drawing.Size(1220, 1000);
             MinimumSize = new System.Drawing.Size(1220, 670);
             Name = "Map";
-            Opacity = 0.98D;
-            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             Text = "Map Dropper";
             FormClosing += Map_FormClosing;
             FormClosed += Map_FormClosed;
@@ -2546,7 +2546,7 @@ namespace ACNHPokerCore
             PleaseWaitPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)NowLoading).EndInit();
             removeItemClick.ResumeLayout(false);
-            panel1.ResumeLayout(false);
+            MapPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)miniMapBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)HexTextbox).EndInit();
             AddToBulkMenu.ResumeLayout(false);
@@ -2681,7 +2681,7 @@ namespace ACNHPokerCore
         private System.Windows.Forms.ToolStripMenuItem replaceItemToolStripMenuItem;
         private HexUpDown FlagTextbox;
         private System.Windows.Forms.Button ClearCopiedAreaBtn;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel MapPanel;
         private System.Windows.Forms.PictureBox miniMapBox;
         private System.Windows.Forms.ToolStripMenuItem flag20ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flag00ToolStripMenuItem;

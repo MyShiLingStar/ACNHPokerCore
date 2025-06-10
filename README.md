@@ -20,7 +20,7 @@
 
 ## Installation
 
-   1. Download and install the x64 .NET 7.0 Desktop Runtime at [Here](https://aka.ms/dotnet-core-applaunch?framework=Microsoft.WindowsDesktop.App&framework_version=7.0.0&arch=x64&rid=win10-x64&gui=true). 
+   1. Download and install the x64 .NET 9.0 Desktop Runtime at [Here](https://aka.ms/dotnet-core-applaunch?framework=Microsoft.WindowsDesktop.App&framework_version=9.0.0&arch=x64&rid=win10-x64&gui=true). 
 
    2. Download and unzip the latest release of ACNHPokerCore at [Here](https://myshilingstar.github.io/GetAzure/)
 

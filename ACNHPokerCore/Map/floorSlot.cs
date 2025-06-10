@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
-using System.ComponentModel;
 
 namespace ACNHPokerCore
 {
@@ -48,10 +50,6 @@ namespace ACNHPokerCore
 
         public bool locked = false;
         public bool corner = false;
-
-        private bool refreshing = false;
-        private static readonly object syncRoot = new();
-        private static readonly object lockObject = new();
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ushort ItemDurability
@@ -130,103 +128,79 @@ namespace ACNHPokerCore
             Refresh(false);
         }
 
+        private Mutex _mutex = new Mutex();
         public void Refresh(bool large)
         {
-            lock (syncRoot)
+            _mutex.WaitOne();
+
+            try
             {
-                if (refreshing)
-                    return;
-
-                refreshing = true;
-
-                ForeColor = Color.White;
-                TextAlign = ContentAlignment.TopLeft;
-
-                try
+                UpdateUI(() =>
                 {
-                    Invoke((MethodInvoker)delegate
-                    {
-                        Text = "";
-                        if (Image != null)
-                        {
-                            Image.Dispose();
-                            if (Image != null)
-                            {
-                                Image = null;
-                            }
-                        }
-                    });
-                }
-                catch
-                {
-                    refreshing = false;
-                    return;
-                }
+                    ForeColor = Color.White;
+                    TextAlign = ContentAlignment.TopLeft;
+                    Text = "";
+                    Image = null;
+                    locked = false;
+                });
 
                 //this.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-                locked = false;
 
                 uint P1Id = ItemData & 0x0000FFFF;
                 uint P2Id = Part2Data & 0x0000FFFF;
                 uint P3Id = Part3Data & 0x0000FFFF;
                 uint P4Id = Part4Data & 0x0000FFFF;
 
-                try
+                if (ItemID != 0xFFFE && (ItemID == P2Id && P2Id == P3Id && P3Id == P4Id) && (Part2 == Part3 && Part3 == Part4)) // Filled Slot
                 {
-                    if (ItemID != 0xFFFE && (ItemID == P2Id && P2Id == P3Id && P3Id == P4Id) && (Part2 == Part3 && Part3 == Part4)) // Filled Slot
-                    {
 
-                        if (Flag1 != "20" || Flag0 != "00")
-                        {
-                            locked = true;
-                        }
-                        //this.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-
-                        Invoke((MethodInvoker)delegate
-                        {
-                            Image = DisplayItemImage(large, false);
-                        });
-                    }
-                    else if (IsExtension())
-                    {
-                        Invoke((MethodInvoker)delegate
-                        {
-                            Image = DisplayItemImage(large, true);
-                        });
-                    }
-                    else if (ItemID == 0xFFFE && Part2 == 0xFFFE && Part3 == 0xFFFE && Part4 == 0xFFFE) // Empty
-                    {
-                        //this.BackColor = Color.LightSalmon;
-                    }
-                    else if (ItemID != 0xFFFE && Flag0 != "00") // wrapped
-                    {
-                        Invoke((MethodInvoker)delegate
-                        {
-                            Image = DisplayItemImage(large, false);
-                        });
-                    }
-                    else // seperate
+                    if (Flag1 != "20" || Flag0 != "00")
                     {
                         locked = true;
-
-                        if (Flag0 != "00")
-                        {
-                            locked = true;
-                        }
-
-                        Invoke((MethodInvoker)delegate
-                        {
-                            Image = DisplayItemImage(large, true);
-                        });
                     }
-                }
-                catch
-                {
-                    refreshing = false;
-                    return;
-                }
+                    //this.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
 
-                refreshing = false;
+                    UpdateUI(() =>
+                    {
+                        Image = DisplayItemImage(large, false);
+                    });
+                }
+                else if (IsExtension())
+                {
+                    UpdateUI(() =>
+                    {
+                        Image = DisplayItemImage(large, true);
+                    });
+                }
+                else if (ItemID == 0xFFFE && Part2 == 0xFFFE && Part3 == 0xFFFE && Part4 == 0xFFFE) // Empty
+                {
+                    //this.BackColor = Color.LightSalmon;
+                }
+                else if (ItemID != 0xFFFE && Flag0 != "00") // wrapped
+                {
+                    UpdateUI(() =>
+                    {
+                        Image = DisplayItemImage(large, false);
+                    });
+                }
+                else // seperate
+                {
+                    locked = true;
+
+                    if (Flag0 != "00")
+                    {
+                        locked = true;
+                    }
+
+                    UpdateUI(() =>
+                    {
+                        Image = DisplayItemImage(large, true);
+                    });
+                }
+            }
+            finally
+            {
+                _mutex.ReleaseMutex();
             }
         }
 
@@ -428,146 +402,143 @@ namespace ACNHPokerCore
 
         public Image DisplayItemImage(bool large, bool separate)
         {
-            lock (lockObject)
+            if (separate)
             {
-                if (separate)
+                Size size;
+
+                size = new Size(64, 64);
+
+                Image background = new Bitmap(75, 75);
+                Image topleft = null;
+                Image topright = null;
+                Image bottomleft = null;
+                Image bottomright = null;
+
+                uint P1Id = ItemData & 0x0000FFFF;
+                uint P2Id = Part2Data & 0x0000FFFF;
+                uint P3Id = Part3Data & 0x0000FFFF;
+                uint P4Id = Part4Data & 0x0000FFFF;
+
+                if (image1Path != "")
                 {
-                    Size size;
+                    if (ItemID == 0xFFFD)
+                        topleft = (new Bitmap(ImageCacher.GetImage(image1Path), new Size((Width) / 3, (Height) / 3)));
+                    else
+                        topleft = (new Bitmap(ImageCacher.GetImage(image1Path), new Size((Width) / 2, (Height) / 2)));
+                }
+                else if (ItemID != 0xFFFE)
+                {
+                    if (P1Id == 0x16A2)
+                        topleft = (new Bitmap(recipe, new Size((Width) / 3, (Height) / 3)));
+                    else
+                        topleft = (new Bitmap(Properties.Resources.Leaf, new Size((Width) / 2, (Height) / 2)));
+                }
 
-                    size = new Size(64, 64);
+                if (image2Path != "")
+                {
+                    if (Part2 == 0x0000FFFD)
+                        bottomleft = (new Bitmap(ImageCacher.GetImage(image2Path), new Size((Width) / 3, (Height) / 3)));
+                    else
+                        bottomleft = (new Bitmap(ImageCacher.GetImage(image2Path), new Size((Width) / 2, (Height) / 2)));
+                }
+                else if (Part2 != 0x0000FFFE)
+                {
+                    if (P2Id == 0x16A2)
+                        bottomleft = (new Bitmap(recipe, new Size((Width) / 3, (Height) / 3)));
+                    else
+                        bottomleft = (new Bitmap(Properties.Resources.Leaf, new Size((Width) / 2, (Height) / 2)));
+                }
 
-                    Image background = new Bitmap(75, 75);
-                    Image topleft = null;
-                    Image topright = null;
-                    Image bottomleft = null;
-                    Image bottomright = null;
+                if (image3Path != "")
+                {
+                    if (Part3 == 0x0000FFFD)
+                        topright = (new Bitmap(ImageCacher.GetImage(image3Path), new Size((Width) / 3, (Height) / 3)));
+                    else
+                        topright = (new Bitmap(ImageCacher.GetImage(image3Path), new Size((Width) / 2, (Height) / 2)));
+                }
+                else if (Part3 != 0x0000FFFE)
+                {
+                    if (P3Id == 0x16A2)
+                        topright = (new Bitmap(recipe, new Size((Width) / 3, (Height) / 3)));
+                    else
+                        topright = (new Bitmap(Properties.Resources.Leaf, new Size((Width) / 2, (Height) / 2)));
+                }
 
-                    uint P1Id = ItemData & 0x0000FFFF;
-                    uint P2Id = Part2Data & 0x0000FFFF;
-                    uint P3Id = Part3Data & 0x0000FFFF;
-                    uint P4Id = Part4Data & 0x0000FFFF;
+                if (image4Path != "")
+                {
+                    if (Part4 == 0x0000FFFD)
+                        bottomright = (new Bitmap(ImageCacher.GetImage(image4Path), new Size((Width) / 3, (Height) / 3)));
+                    else
+                        bottomright = (new Bitmap(ImageCacher.GetImage(image4Path), new Size((Width) / 2, (Height) / 2)));
+                }
+                else if (Part4 != 0x0000FFFE)
+                {
+                    if (P4Id == 0x16A2)
+                        bottomright = (new Bitmap(recipe, new Size((Width) / 3, (Height) / 3)));
+                    else
+                        bottomright = (new Bitmap(Properties.Resources.Leaf, new Size((Width) / 2, (Height) / 2)));
+                }
 
-                    if (image1Path != "")
-                    {
-                        if (ItemID == 0xFFFD)
-                            topleft = (new Bitmap(ImageCacher.GetImage(image1Path), new Size((Width) / 3, (Height) / 3)));
-                        else
-                            topleft = (new Bitmap(ImageCacher.GetImage(image1Path), new Size((Width) / 2, (Height) / 2)));
-                    }
-                    else if (ItemID != 0xFFFE)
-                    {
-                        if (P1Id == 0x16A2)
-                            topleft = (new Bitmap(recipe, new Size((Width) / 3, (Height) / 3)));
-                        else
-                            topleft = (new Bitmap(Properties.Resources.Leaf, new Size((Width) / 2, (Height) / 2)));
-                    }
+                Image img = PlaceImages(background, topleft, topright, bottomleft, bottomright, 1);
+                return new Bitmap(img, size);
+            }
+            else
+            {
+                Size size;
+                double recipeMultiplier;
+                double wallMultiplier;
 
-                    if (image2Path != "")
-                    {
-                        if (Part2 == 0x0000FFFD)
-                            bottomleft = (new Bitmap(ImageCacher.GetImage(image2Path), new Size((Width) / 3, (Height) / 3)));
-                        else
-                            bottomleft = (new Bitmap(ImageCacher.GetImage(image2Path), new Size((Width) / 2, (Height) / 2)));
-                    }
-                    else if (Part2 != 0x0000FFFE)
-                    {
-                        if (P2Id == 0x16A2)
-                            bottomleft = (new Bitmap(recipe, new Size((Width) / 3, (Height) / 3)));
-                        else
-                            bottomleft = (new Bitmap(Properties.Resources.Leaf, new Size((Width) / 2, (Height) / 2)));
-                    }
-
-                    if (image3Path != "")
-                    {
-                        if (Part3 == 0x0000FFFD)
-                            topright = (new Bitmap(ImageCacher.GetImage(image3Path), new Size((Width) / 3, (Height) / 3)));
-                        else
-                            topright = (new Bitmap(ImageCacher.GetImage(image3Path), new Size((Width) / 2, (Height) / 2)));
-                    }
-                    else if (Part3 != 0x0000FFFE)
-                    {
-                        if (P3Id == 0x16A2)
-                            topright = (new Bitmap(recipe, new Size((Width) / 3, (Height) / 3)));
-                        else
-                            topright = (new Bitmap(Properties.Resources.Leaf, new Size((Width) / 2, (Height) / 2)));
-                    }
-
-                    if (image4Path != "")
-                    {
-                        if (Part4 == 0x0000FFFD)
-                            bottomright = (new Bitmap(ImageCacher.GetImage(image4Path), new Size((Width) / 3, (Height) / 3)));
-                        else
-                            bottomright = (new Bitmap(ImageCacher.GetImage(image4Path), new Size((Width) / 2, (Height) / 2)));
-                    }
-                    else if (Part4 != 0x0000FFFE)
-                    {
-                        if (P4Id == 0x16A2)
-                            bottomright = (new Bitmap(recipe, new Size((Width) / 3, (Height) / 3)));
-                        else
-                            bottomright = (new Bitmap(Properties.Resources.Leaf, new Size((Width) / 2, (Height) / 2)));
-                    }
-
-                    Image img = PlaceImages(background, topleft, topright, bottomleft, bottomright, 1);
-                    return new Bitmap(img, size);
+                if (large)
+                {
+                    size = new Size(128, 128);
+                    recipeMultiplier = 0.3;
+                    wallMultiplier = 0.45;
                 }
                 else
                 {
-                    Size size;
-                    double recipeMultiplier;
-                    double wallMultiplier;
+                    size = new Size(64, 64);
+                    recipeMultiplier = 0.5;
+                    wallMultiplier = 0.6;
+                }
 
-                    if (large)
-                    {
-                        size = new Size(128, 128);
-                        recipeMultiplier = 0.3;
-                        wallMultiplier = 0.45;
-                    }
-                    else
-                    {
-                        size = new Size(64, 64);
-                        recipeMultiplier = 0.5;
-                        wallMultiplier = 0.6;
-                    }
+                if (image1Path == "" & ItemID != 0xFFFE)
+                {
+                    return new Bitmap(Properties.Resources.Leaf, size);
+                }
+                else if (ItemID == 0x16A2) // recipe
+                {
+                    Image background = new Bitmap(ImageCacher.GetImage(image1Path));
+                    int imageSize = (int)(background.Width * recipeMultiplier);
+                    Image icon = (new Bitmap(recipe, new Size(imageSize, imageSize)));
 
-                    if (image1Path == "" & ItemID != 0xFFFE)
-                    {
-                        return new Bitmap(Properties.Resources.Leaf, size);
-                    }
-                    else if (ItemID == 0x16A2) // recipe
+                    Image img = PlaceImageOverImage(background, icon, background.Width - (imageSize - 5), background.Width - (imageSize - 5), 1);
+                    return new Bitmap(img, size);
+                }
+                else if (ItemID == 0x315A || ItemID == 0x1618 || ItemID == 0x342F || ItemID == 0x114A || ItemID == 0xEC9C) // Wall-Mount/Money Tree
+                {
+                    if (File.Exists(containItemPath))
                     {
                         Image background = new Bitmap(ImageCacher.GetImage(image1Path));
-                        int imageSize = (int)(background.Width * recipeMultiplier);
-                        Image icon = (new Bitmap(recipe, new Size(imageSize, imageSize)));
+                        int imageSize = (int)(background.Width * wallMultiplier);
+                        Image icon = (new Bitmap(ImageCacher.GetImage(containItemPath), new Size(imageSize, imageSize)));
 
                         Image img = PlaceImageOverImage(background, icon, background.Width - (imageSize - 5), background.Width - (imageSize - 5), 1);
                         return new Bitmap(img, size);
                     }
-                    else if (ItemID == 0x315A || ItemID == 0x1618 || ItemID == 0x342F || ItemID == 0x114A || ItemID == 0xEC9C) // Wall-Mount/Money Tree
-                    {
-                        if (File.Exists(containItemPath))
-                        {
-                            Image background = new Bitmap(ImageCacher.GetImage(image1Path));
-                            int imageSize = (int)(background.Width * wallMultiplier);
-                            Image icon = (new Bitmap(ImageCacher.GetImage(containItemPath), new Size(imageSize, imageSize)));
-
-                            Image img = PlaceImageOverImage(background, icon, background.Width - (imageSize - 5), background.Width - (imageSize - 5), 1);
-                            return new Bitmap(img, size);
-                        }
-                        else
-                        {
-                            Image img = ImageCacher.GetImage(image1Path);
-                            return new Bitmap(img, size);
-                        }
-                    }
-                    else if (image1Path != "")
+                    else
                     {
                         Image img = ImageCacher.GetImage(image1Path);
                         return new Bitmap(img, size);
                     }
-                    else
-                    {
-                        return null;
-                    }
+                }
+                else if (image1Path != "")
+                {
+                    Image img = ImageCacher.GetImage(image1Path);
+                    return new Bitmap(img, size);
+                }
+                else
+                {
+                    return null;
                 }
             }
         }
@@ -680,6 +651,21 @@ namespace ACNHPokerCore
             return output;
         }
 
+        private void UpdateUI(Action action)
+        {
+            this.BeginInvoke((Action)(() =>
+            {
+                try
+                {
+                    action();
+                }
+                catch (Exception ex)
+                {
+                    // Handle or log the exception
+                    MyMessageBox.Show("UI update error: " + ex.Message);
+                }
+            }));
+        }
         /*
         private async static Task<Image> PlaceImagesAsync(Image bottom, Image topleft, Image topright, Image bottomleft, Image bottomright, float alpha)
         {

@@ -314,7 +314,7 @@ namespace ACNHPokerCore
         #endregion
 
         #region Fetch Map
-        private void FetchMapBtn_Click(object sender, EventArgs e)
+        private async void FetchMapBtn_Click(object sender, EventArgs e)
         {
             fetchMapBtn.Enabled = false;
 
@@ -332,7 +332,7 @@ namespace ACNHPokerCore
                 string savepath;
 
                 if (config.AppSettings.Settings["LastLoad"].Value.Equals(string.Empty))
-                    savepath = Directory.GetCurrentDirectory() + @"\save";
+                    savepath = Directory.GetCurrentDirectory() + "\\" + Utilities.saveFolder;
                 else
                     savepath = config.AppSettings.Settings["LastLoad"].Value;
 
@@ -416,6 +416,7 @@ namespace ACNHPokerCore
                 return;
             }
 
+            /*
             Thread LoadThread = new(delegate ()
             {
                 if (ModifierKeys == Keys.Shift)
@@ -423,7 +424,24 @@ namespace ACNHPokerCore
                 else
                     FetchMap(Utilities.mapZero, Utilities.mapZero + Utilities.mapSize, false);
             });
+
             LoadThread.Start();
+            */
+
+            try
+            {
+                await Task.Run(() =>
+                {
+                    if (ModifierKeys == Keys.Shift)
+                        FetchMap(Utilities.mapZero, Utilities.mapZero + Utilities.mapSize, true);
+                    else
+                        FetchMap(Utilities.mapZero, Utilities.mapZero + Utilities.mapSize, false);
+                }).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                MyMessageBox.Show("An error occurred: " + ex.Message);
+            }
         }
 
         private void FetchMap(UInt32 layer1Address, UInt32 layer2Address, bool saveFile)
@@ -486,7 +504,7 @@ namespace ACNHPokerCore
                         anchorY = 48;
                     }
 
-                    Invoke((MethodInvoker)delegate
+                    UpdateUI(() =>
                     {
                         miniMapBox.BackgroundImage = MiniMap.CombineMap(miniMap.DrawBackground(), miniMap.DrawItemMap());
                         _ = DisplayAnchorAsync();
@@ -539,7 +557,7 @@ namespace ACNHPokerCore
 
         public void MoveAnchor(int x, int y)
         {
-            Invoke((MethodInvoker)delegate
+            UpdateUI(() =>
             {
                 btnToolTip.RemoveAll();
 
@@ -766,8 +784,6 @@ namespace ACNHPokerCore
 
         private async Task UpdateBtn(FloorSlot btn)
         {
-            //lock (lockObject)
-            //{
             byte[] Left = new byte[16];
             byte[] Right = new byte[16];
 
@@ -857,7 +873,6 @@ namespace ACNHPokerCore
                 Path4 = GetImagePathFromID(P4Id, source, IntP4Data);
 
             await Task.Run(() => btn.Setup(Name, ID, Data, IntP2Id, IntP2Data, IntP3Id, IntP3Data, IntP4Id, IntP4Data, Path1, Path2, Path3, Path4, ContainPath, flag0, flag1));
-            //}
         }
 
         private async Task UpdateNearBtn(int BtnNum)
@@ -872,10 +887,18 @@ namespace ACNHPokerCore
 
         private async Task UpdateAllBtn()
         {
+            var tasks = new List<Task>();
             for (int i = 0; i < floorSlots.Length; i++)
             {
-                await UpdateBtn(floorSlots[i]);
+                tasks.Add(UpdateBtn(floorSlots[i]));
             }
+            await Task.WhenAll(tasks);
+            /*
+            await Parallel.ForEachAsync(floorSlots, new ParallelOptions { MaxDegreeOfParallelism = floorSlots.Length }, async (floorSlot, cancellationToken) =>
+            {
+                await UpdateBtn(floorSlot);
+            });
+            */
         }
 
         #endregion
@@ -2469,7 +2492,7 @@ namespace ACNHPokerCore
                         }
                         else
                         {
-                            Invoke((MethodInvoker)delegate
+                            UpdateUI(() =>
                             {
                                 EnableBtn();
                             });
@@ -2493,7 +2516,7 @@ namespace ACNHPokerCore
                     Utilities.DropItem(s, usb, address, itemID, itemData, flag0, flag1);
             }
 
-            Invoke((MethodInvoker)delegate
+            UpdateUI(() =>
             {
                 /*
                 if (itemID == "FFFE")
@@ -2751,7 +2774,7 @@ namespace ACNHPokerCore
                             }
                             else
                             {
-                                Invoke((MethodInvoker)delegate
+                                UpdateUI(() =>
                                 {
                                     EnableBtn();
                                 });
@@ -2786,7 +2809,7 @@ namespace ACNHPokerCore
                     Thread.Sleep(3000);
             }
 
-            Invoke((MethodInvoker)delegate
+            UpdateUI(() =>
             {
                 UpdataData(TopLeftX, TopLeftY, SpawnArea, false, true);
                 MoveAnchor(anchorX, anchorY);
@@ -3069,7 +3092,7 @@ namespace ACNHPokerCore
                         }
                         else
                         {
-                            Invoke((MethodInvoker)delegate
+                            UpdateUI(() =>
                             {
                                 EnableBtn();
                             });
@@ -3092,7 +3115,7 @@ namespace ACNHPokerCore
                     Utilities.DropColumn(s, usb, CurAddress, CurAddress + 0x600, SavedArea[i * 2], SavedArea[i * 2 + 1], ref counter);
                 }
 
-                Invoke((MethodInvoker)delegate
+                UpdateUI(() =>
                 {
                     UpdataData(TopLeftX, TopLeftY, SavedArea, false, true);
                 });
@@ -3111,7 +3134,7 @@ namespace ACNHPokerCore
 
             HideMapWait();
 
-            Invoke((MethodInvoker)delegate
+            UpdateUI(() =>
             {
                 MoveAnchor(anchorX, anchorY);
                 EnableBtn();
@@ -3220,7 +3243,7 @@ namespace ACNHPokerCore
             string savepath;
 
             if (config.AppSettings.Settings["LastSave"].Value.Equals(string.Empty))
-                savepath = Directory.GetCurrentDirectory() + @"\save";
+                savepath = Directory.GetCurrentDirectory() + "\\" + Utilities.saveFolder;
             else
                 savepath = config.AppSettings.Settings["LastSave"].Value;
 
@@ -3361,7 +3384,7 @@ namespace ACNHPokerCore
                     }
                     else
                     {
-                        Invoke((MethodInvoker)delegate
+                        UpdateUI(() =>
                         {
                             EnableBtn();
                         });
@@ -3379,7 +3402,7 @@ namespace ACNHPokerCore
 
             Utilities.DeleteFloorItem(s, usb, address);
 
-            Invoke((MethodInvoker)delegate
+            UpdateUI(() =>
             {
                 UpdataData(selectedButton.MapX, selectedButton.MapY);
                 btn.Reset();
@@ -3609,7 +3632,7 @@ namespace ACNHPokerCore
                 BuildActivateTable(ActivateLayer1, ref ActivateTable1);
                 BuildActivateTable(ActivateLayer2, ref ActivateTable2);
 
-                Invoke((MethodInvoker)delegate
+                UpdateUI(() =>
                 {
                     _ = DisplayAnchorAsync();
                     EnableBtn();
@@ -3697,7 +3720,7 @@ namespace ACNHPokerCore
                             }
                             else
                             {
-                                Invoke((MethodInvoker)delegate
+                                UpdateUI(() =>
                                 {
                                     EnableBtn();
                                 });
@@ -3723,7 +3746,7 @@ namespace ACNHPokerCore
                 }
 
 
-                Invoke((MethodInvoker)delegate
+                UpdateUI(() =>
                 {
                     /*
                     BtnSetup(b[0], b[1], anchorX - 3, anchorY - 3, floor1, floor2, floor3, floor4, floor5, floor6, floor7, false);
@@ -3891,7 +3914,7 @@ namespace ACNHPokerCore
                             }
                             else
                             {
-                                Invoke((MethodInvoker)delegate
+                                UpdateUI(() =>
                                 {
                                     EnableBtn();
                                 });
@@ -3916,7 +3939,7 @@ namespace ACNHPokerCore
                     Utilities.DropColumn(s, usb, address7, address7 + 0x600, b[12], b[13], ref counter);
                 }
 
-                Invoke((MethodInvoker)delegate
+                UpdateUI(() =>
                 {
                     /*
                     BtnSetup(b[0], b[1], anchorX - 3, anchorY - 3, floor1, floor2, floor3, floor4, floor5, floor6, floor7, false);
@@ -3968,7 +3991,7 @@ namespace ACNHPokerCore
                 string savepath;
 
                 if (config.AppSettings.Settings["LastSave"].Value.Equals(string.Empty))
-                    savepath = Directory.GetCurrentDirectory() + @"\save";
+                    savepath = Directory.GetCurrentDirectory() + "\\" + Utilities.saveFolder;
                 else
                     savepath = config.AppSettings.Settings["LastSave"].Value;
 
@@ -4047,7 +4070,7 @@ namespace ACNHPokerCore
                 string savepath;
 
                 if (config.AppSettings.Settings["LastLoad"].Value.Equals(string.Empty))
-                    savepath = Directory.GetCurrentDirectory() + @"\save";
+                    savepath = Directory.GetCurrentDirectory() + "\\" + Utilities.saveFolder;
                 else
                     savepath = config.AppSettings.Settings["LastLoad"].Value;
 
@@ -4182,7 +4205,7 @@ namespace ACNHPokerCore
                         }
                         else
                         {
-                            Invoke((MethodInvoker)delegate
+                            UpdateUI(() =>
                             {
                                 EnableBtn();
                             });
@@ -4259,7 +4282,7 @@ namespace ACNHPokerCore
                     await Task.WhenAll(tasks);
                 }
 
-                Invoke((MethodInvoker)delegate
+                UpdateUI(() =>
                 {
                     /*
                     BtnSetup(b[0], b[1], anchorX - 3, anchorY - 3, floor1, floor2, floor3, floor4, floor5, floor6, floor7, false);
@@ -4979,7 +5002,7 @@ namespace ACNHPokerCore
             string savepath;
 
             if (config.AppSettings.Settings["LastSave"].Value.Equals(string.Empty))
-                savepath = Directory.GetCurrentDirectory() + @"\save";
+                savepath = Directory.GetCurrentDirectory() + "\\" + Utilities.saveFolder;
             else
                 savepath = config.AppSettings.Settings["LastSave"].Value;
 
@@ -5014,7 +5037,7 @@ namespace ACNHPokerCore
         #region ProgressBar
         private void ProgressTimer_Tick(object sender, EventArgs e)
         {
-            Invoke((MethodInvoker)delegate
+            UpdateUI(() =>
             {
                 if (counter <= MapProgressBar.Maximum)
                     MapProgressBar.Value = counter;
@@ -5025,7 +5048,7 @@ namespace ACNHPokerCore
 
         private void ShowMapWait(int size, string msg = "")
         {
-            Invoke((MethodInvoker)delegate
+            UpdateUI(() =>
             {
                 WaitMessagebox.SelectionAlignment = HorizontalAlignment.Center;
                 WaitMessagebox.Text = msg;
@@ -5039,11 +5062,27 @@ namespace ACNHPokerCore
 
         private void HideMapWait()
         {
-            Invoke((MethodInvoker)delegate
+            UpdateUI(() =>
             {
                 PleaseWaitPanel.Visible = false;
                 ProgressTimer.Stop();
             });
+        }
+
+        private void UpdateUI(Action action)
+        {
+            this.BeginInvoke((Action)(() =>
+            {
+                try
+                {
+                    action();
+                }
+                catch (Exception ex)
+                {
+                    // Handle or log the exception
+                    MyMessageBox.Show("UI update error: " + ex.Message);
+                }
+            }));
         }
 
         private void DisableBtn()
@@ -5562,7 +5601,7 @@ namespace ACNHPokerCore
             int num = NumOfWrite(change);
             if (num == 0)
             {
-                Invoke((MethodInvoker)delegate
+                UpdateUI(() =>
                 {
                     EnableBtn();
                 });
@@ -5589,7 +5628,7 @@ namespace ACNHPokerCore
                             }
                             else
                             {
-                                Invoke((MethodInvoker)delegate
+                                UpdateUI(() =>
                                 {
                                     EnableBtn();
                                 });
@@ -5616,15 +5655,11 @@ namespace ACNHPokerCore
                     }
                 }
 
-                Invoke((MethodInvoker)delegate
+                UpdateUI(() =>
                 {
                     UpdataData(newLayer);
                     MoveAnchor(anchorX, anchorY);
                     ResetBtnColor();
-                });
-
-                Invoke((MethodInvoker)delegate
-                {
                     EnableBtn();
                 });
 
@@ -5646,7 +5681,7 @@ namespace ACNHPokerCore
             int num = NumOfWrite(change);
             if (num == 0)
             {
-                Invoke((MethodInvoker)delegate
+                UpdateUI(() =>
                 {
                     EnableBtn();
                 });
@@ -5673,7 +5708,7 @@ namespace ACNHPokerCore
                             }
                             else
                             {
-                                Invoke((MethodInvoker)delegate
+                                UpdateUI(() =>
                                 {
                                     EnableBtn();
                                 });
@@ -5700,15 +5735,11 @@ namespace ACNHPokerCore
                     }
                 }
 
-                Invoke((MethodInvoker)delegate
+                UpdateUI(() =>
                 {
                     UpdataData(newLayer);
                     MoveAnchor(anchorX, anchorY);
                     ResetBtnColor();
-                });
-
-                Invoke((MethodInvoker)delegate
-                {
                     EnableBtn();
                 });
 
@@ -6006,7 +6037,7 @@ namespace ACNHPokerCore
                             }
                             else
                             {
-                                Invoke((MethodInvoker)delegate
+                                UpdateUI(() =>
                                 {
                                     EnableBtn();
                                 });
@@ -6036,7 +6067,7 @@ namespace ACNHPokerCore
                     await Task.WhenAll(tasks);
                 }
 
-                Invoke((MethodInvoker)delegate
+                UpdateUI(() =>
                 {
                     /*
                     BtnSetup(b[0], b[1], anchorX - 3, anchorY - 3, floor1, floor2, floor3, floor4, floor5, floor6, floor7, false);
@@ -7186,9 +7217,9 @@ namespace ACNHPokerCore
             else
             {
                 if (CurrentR > target[targetValue].R)
-                    NewR = CurrentR - rand.Next(1, 5);
+                    NewR = CurrentR - rand.Next(1, 20);
                 else if (CurrentR < target[targetValue].R)
-                    NewR = CurrentR + rand.Next(1, 5);
+                    NewR = CurrentR + rand.Next(1, 20);
                 else
                     NewR = CurrentR;
                 if (NewR < 0)
@@ -7197,9 +7228,9 @@ namespace ACNHPokerCore
                     NewR = 255;
 
                 if (CurrentG > target[targetValue].G)
-                    NewG = CurrentG - rand.Next(1, 5);
+                    NewG = CurrentG - rand.Next(1, 20);
                 else if (CurrentG < target[targetValue].G)
-                    NewG = CurrentG + rand.Next(1, 5);
+                    NewG = CurrentG + rand.Next(1, 20);
                 else
                     NewG = CurrentG;
                 if (NewG < 0)
@@ -7208,9 +7239,9 @@ namespace ACNHPokerCore
                     NewG = 255;
 
                 if (CurrentB > target[targetValue].B)
-                    NewB = CurrentB - rand.Next(1, 5);
+                    NewB = CurrentB - rand.Next(1, 20);
                 else if (CurrentB < target[targetValue].B)
-                    NewB = CurrentB + rand.Next(1, 5);
+                    NewB = CurrentB + rand.Next(1, 20);
                 else
                     NewB = CurrentB;
                 if (NewB < 0)
@@ -7218,7 +7249,10 @@ namespace ACNHPokerCore
                 if (NewB > 255)
                     NewB = 255;
 
-                fieldModeBtn.BackColor = Color.FromArgb(NewR, NewG, NewB);
+                UpdateUI(() =>
+                {
+                    fieldModeBtn.BackColor = Color.FromArgb(NewR, NewG, NewB);
+                });
             }
         }
         #endregion
@@ -7325,7 +7359,7 @@ namespace ACNHPokerCore
                                             , "Waiting for autosave to complete...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                Invoke((MethodInvoker)delegate
+                UpdateUI(() =>
                 {
                     NextSaveTimer.Stop();
                     ignore = true;
@@ -7610,7 +7644,7 @@ namespace ACNHPokerCore
                     }
                     else
                     {
-                        Invoke((MethodInvoker)delegate
+                        UpdateUI(() =>
                         {
                             EnableBtn();
                         });
@@ -7631,7 +7665,7 @@ namespace ACNHPokerCore
             Utilities.PokeAddress(s, usb, Address2.ToString("X"), value.ToString("X"));
             Utilities.PokeAddress(s, usb, (Address2 + 0x1C).ToString("X"), value.ToString("X"));
 
-            Invoke((MethodInvoker)delegate
+            UpdateUI(() =>
             {
                 EnableBtn();
             });

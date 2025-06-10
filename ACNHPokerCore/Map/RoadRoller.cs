@@ -163,7 +163,7 @@ namespace ACNHPokerCore
                 string savepath;
 
                 if (config.AppSettings.Settings["LastLoad"].Value.Equals(string.Empty))
-                    savepath = Directory.GetCurrentDirectory() + @"\save";
+                    savepath = Directory.GetCurrentDirectory() + "\\" + Utilities.saveFolder;
                 else
                     savepath = config.AppSettings.Settings["LastLoad"].Value;
 
@@ -2667,7 +2667,7 @@ namespace ACNHPokerCore
 
             DateTime localDate = DateTime.Now;
             var culture = new CultureInfo("en-US");
-            file.FileName = Directory.GetCurrentDirectory() + @"\save\" + localDate.ToString(culture).Replace(" ", "_").Replace(":", "-").Replace("/", "-").Replace("\\", "-").Replace("|", "-").Replace(".", "-") + ".nht";
+            file.FileName = Directory.GetCurrentDirectory() + "\\" + Utilities.saveFolder + localDate.ToString(culture).Replace(" ", "_").Replace(":", "-").Replace("/", "-").Replace("\\", "-").Replace("|", "-").Replace(".", "-") + ".nht";
             File.WriteAllBytes(file.FileName, CurrentTerrainData);
 
             byte[] newTerrain = new byte[numOfRow * numOfColumn * TerrainSize];

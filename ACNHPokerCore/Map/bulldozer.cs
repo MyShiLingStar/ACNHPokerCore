@@ -68,7 +68,7 @@ namespace ACNHPokerCore
                 string savepath;
 
                 if (config.AppSettings.Settings["LastLoad"].Value.Equals(string.Empty))
-                    savepath = Directory.GetCurrentDirectory() + @"\save";
+                    savepath = Directory.GetCurrentDirectory() + "\\" + Utilities.saveFolder;
                 else
                     savepath = config.AppSettings.Settings["LastLoad"].Value;
 
@@ -1089,7 +1089,7 @@ namespace ACNHPokerCore
                 string savepath;
 
                 if (config.AppSettings.Settings["LastSave"].Value.Equals(string.Empty))
-                    savepath = Directory.GetCurrentDirectory() + @"\save";
+                    savepath = Directory.GetCurrentDirectory() + "\\" + Utilities.saveFolder;
                 else
                     savepath = config.AppSettings.Settings["LastSave"].Value;
 
@@ -1142,7 +1142,7 @@ namespace ACNHPokerCore
                 string savepath;
 
                 if (config.AppSettings.Settings["LastLoad"].Value.Equals(string.Empty))
-                    savepath = Directory.GetCurrentDirectory() + @"\save";
+                    savepath = Directory.GetCurrentDirectory() + "\\" + Utilities.saveFolder;
                 else
                     savepath = config.AppSettings.Settings["LastLoad"].Value;
 
@@ -1365,7 +1365,7 @@ namespace ACNHPokerCore
                 string savepath;
 
                 if (config.AppSettings.Settings["LastSave"].Value.Equals(string.Empty))
-                    savepath = Directory.GetCurrentDirectory() + @"\save";
+                    savepath = Directory.GetCurrentDirectory() + "\\" + Utilities.saveFolder;
                 else
                     savepath = config.AppSettings.Settings["LastSave"].Value;
 
@@ -1415,7 +1415,7 @@ namespace ACNHPokerCore
                 string savepath;
 
                 if (config.AppSettings.Settings["LastLoad"].Value.Equals(string.Empty))
-                    savepath = Directory.GetCurrentDirectory() + @"\save";
+                    savepath = Directory.GetCurrentDirectory() + "\\" + Utilities.saveFolder;
                 else
                     savepath = config.AppSettings.Settings["LastLoad"].Value;
 
@@ -1984,7 +1984,7 @@ namespace ACNHPokerCore
                 string savepath;
 
                 if (config.AppSettings.Settings["LastSave"].Value.Equals(string.Empty))
-                    savepath = Directory.GetCurrentDirectory() + @"\save";
+                    savepath = Directory.GetCurrentDirectory() + "\\" + Utilities.saveFolder;
                 else
                     savepath = config.AppSettings.Settings["LastSave"].Value;
 
@@ -2061,7 +2061,7 @@ namespace ACNHPokerCore
                 string savepath;
 
                 if (config.AppSettings.Settings["LastLoad"].Value.Equals(string.Empty))
-                    savepath = Directory.GetCurrentDirectory() + @"\save";
+                    savepath = Directory.GetCurrentDirectory() + "\\" + Utilities.saveFolder;
                 else
                     savepath = config.AppSettings.Settings["LastLoad"].Value;
 
