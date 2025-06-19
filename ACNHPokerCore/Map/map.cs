@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
@@ -143,6 +142,7 @@ namespace ACNHPokerCore
             {
                 s = S;
                 usb = USB;
+
                 if (File.Exists(itemPath))
                     source = LoadItemCSVWithKind(itemPath);
                 if (File.Exists(recipePath))
@@ -155,6 +155,7 @@ namespace ACNHPokerCore
                     favSource = LoadItemCSVWithKind(favPath, false);
                 if (File.Exists(Utilities.fieldPath))
                     fieldSource = LoadItemCSV(Utilities.fieldPath);
+
                 imagePath = ImagePath;
                 OverrideDict = overrideDict;
                 sound = Sound;
@@ -245,8 +246,6 @@ namespace ACNHPokerCore
                 }
 
 
-                //this.BringToFront();
-                //this.Focus();
                 CopyAreaMenu = new ToolStripMenuItem("Copy Area", null, CopyAreaToolStripMenuItem_Click)
                 {
                     ForeColor = Color.White
@@ -297,10 +296,10 @@ namespace ACNHPokerCore
                     FieldGridView.Columns[languageSetting].Visible = true;
                 }
 
-                FlashTimer.Start();
+                //FlashTimer.Start();
 
-                ((System.Windows.Forms.TextBox)HexTextbox.Controls[1]).MaxLength = 8;
-                ((System.Windows.Forms.TextBox)FlagTextbox.Controls[1]).MaxLength = 2;
+                ((TextBox)HexTextbox.Controls[1]).MaxLength = 8;
+                ((TextBox)FlagTextbox.Controls[1]).MaxLength = 2;
 
                 MyLog.LogEvent("Map", "MapForm Started Successfully");
             }
@@ -405,9 +404,16 @@ namespace ACNHPokerCore
                 anchorX = 56;
                 anchorY = 48;
 
-                miniMapBox.BackgroundImage = MiniMap.CombineMap(miniMap.DrawBackground(), miniMap.DrawItemMap());
-                _ = DisplayAnchorAsync();
-                EnableBtn();
+                UpdateUI(() =>
+                {
+                    miniMapBox.BackgroundImage = MiniMap.CombineMap(miniMap.DrawBackground(), miniMap.DrawItemMap());
+                    _ = DisplayAnchorAsync();
+                    xCoordinate.Text = anchorX.ToString();
+                    yCoordinate.Text = anchorY.ToString();
+                    EnableBtn();
+                    fetchMapBtn.Visible = false;
+                    reAnchorBtn.Visible = true;
+                });
                 return;
             }
 
@@ -417,18 +423,6 @@ namespace ACNHPokerCore
                 return;
             }
 
-            /*
-            Thread LoadThread = new(delegate ()
-            {
-                if (ModifierKeys == Keys.Shift)
-                    FetchMap(Utilities.mapZero, Utilities.mapZero + Utilities.mapSize, true);
-                else
-                    FetchMap(Utilities.mapZero, Utilities.mapZero + Utilities.mapSize, false);
-            });
-
-            LoadThread.Start();
-            */
-
             try
             {
                 await Task.Run(() =>
@@ -437,6 +431,7 @@ namespace ACNHPokerCore
                         FetchMap(Utilities.mapZero, Utilities.mapZero + Utilities.mapSize, true);
                     else
                         FetchMap(Utilities.mapZero, Utilities.mapZero + Utilities.mapSize, false);
+
                 }).ConfigureAwait(false);
             }
             catch (Exception ex)
@@ -513,6 +508,7 @@ namespace ACNHPokerCore
                         yCoordinate.Text = anchorY.ToString();
                         EnableBtn();
                         fetchMapBtn.Visible = false;
+                        reAnchorBtn.Visible = true;
                         NextSaveTimer.Start();
                     });
                 }
@@ -531,7 +527,7 @@ namespace ACNHPokerCore
 
         private void Map_Load(object sender, EventArgs e)
         {
-            FetchMapBtn_Click(null, null);
+            //FetchMapBtn_Click(null, null);
         }
         #endregion
 

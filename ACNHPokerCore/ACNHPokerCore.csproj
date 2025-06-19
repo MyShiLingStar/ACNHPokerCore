@@ -22,7 +22,6 @@
 	<Configurations>Debug;Release;x86</Configurations>
 	<PlatformTarget>AnyCPU</PlatformTarget>
 	<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
-	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -1886,6 +1886,7 @@ namespace ACNHPokerCore
             reAnchorBtn.Text = "Re-Anchor";
             formToolTip.SetToolTip(reAnchorBtn, "Move the anchor to your current in-game position.");
             reAnchorBtn.UseVisualStyleBackColor = false;
+            reAnchorBtn.Visible = false;
             reAnchorBtn.MouseClick += ReAnchorBtn_MouseClick;
             // 
             // clearGridBtn

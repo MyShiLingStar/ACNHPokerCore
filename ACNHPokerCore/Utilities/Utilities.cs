@@ -224,11 +224,11 @@ namespace ACNHPokerCore
         public static readonly string wSpeedX4 = "1E221001";
         //--------------------------------------------------------------------------------------------
 
-        public static UInt32 CollisionAddress = 0x0155FDA0; //0x0155FDC0; //0x0155FD60; //0x0155FD40;
+        public static UInt32 CollisionAddress = 0x0155FE10; //0x0155FDA0; //0x0155FDC0; //0x0155FD60; //0x0155FD40;
         public static readonly string CollisionDisable = "12800014";
         public static readonly string CollisionEnable = "B95BA014";
 
-        public static UInt32 ActorCollisionAddress = 0x0123BBBC; //0x0123BBDC;
+        public static UInt32 ActorCollisionAddress = 0x0123BC2C; //0x0123BBBC; //0x0123BBDC;
         public static readonly string ActorCollisionDisable = "1E3E1000";
         public static readonly string ActorCollisionEnable = "1E2E1000";
 
@@ -241,31 +241,31 @@ namespace ACNHPokerCore
 
 
 
-        public static UInt32 ParticleScaleAddress = 0x02631198; //0x026311B8; //
+        public static UInt32 ParticleScaleAddress = 0x026312B8; //0x02631198; //0x026311B8; //
         public static readonly string ParticleScaleNormal = "1E2E1001";
         public static readonly string ParticleScaleMAX = "1E21D001";
 
-        public static UInt32 PetalsAddress = 0x003327F4; //0x00332814; //
+        public static UInt32 PetalsAddress = 0x003327F4; //x003327F4; //0x00332814; //
         public static UInt32 PetalsIntensityAddress = PetalsAddress + 0x20; //
         public static readonly string PetalsDisable = "71000D1F";
         public static readonly string PetalsEnable = "7100011F";
         public static readonly string PetalsIntensityNormal = "1E2E1001";
         public static readonly string PetalsIntensityMAX = "1E27F001";
 
-        public static UInt32 LeavesAddress = 0x00332C40; //0x00332C60;
+        public static UInt32 LeavesAddress = 0x00332C40; //0x00332C40; //0x00332C60;
         public static readonly string LeavesDisable = "1A9F17E9";
         public static readonly string LeavesEnable = "1A9F07E9";
 
-        public static UInt32 ShopAddress = 0x01B06350; //0x01B06370;
+        public static UInt32 ShopAddress = 0x01B063E0; //0x01B06350; //0x01B06370;
         public static readonly string ShopNormal = "2A1F03E0";
         public static readonly string ShopOpen = "52800020";
 
-        public static UInt32 BGMAddress = 0x01A02128; //0x01A02148;
+        public static UInt32 BGMAddress = 0x01A021B8; //0x01A02128; //0x01A02148;
         public static readonly string BGMEnable = "1E2E1001";
         public static readonly string BGMDisable = "1E3E1001";
 
-        public static UInt32 EatAllAddress = 0x01F082E4; //0x01F08304; //
-        public static UInt32 EatAll2Address = 0x015652D0; //0x015652F0; //
+        public static UInt32 EatAllAddress = 0x01F08404; //0x01F082E4; //0x01F08304; //
+        public static UInt32 EatAll2Address = 0x01565340; //0x015652D0; //0x015652F0; //
 
         public static readonly string EatAllDisable = "97C2FB0F";
         public static readonly string EatAll2Disable = "B9000268";

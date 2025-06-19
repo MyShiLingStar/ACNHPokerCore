@@ -37,7 +37,7 @@ namespace ACNHPokerCore
 
         private static Socket socket;
         private static USBBot usb;
-        private readonly string version = "ACNHPokerCore R24 for v2.0.7";
+        private readonly string version = "ACNHPokerCore R24 for v2.0.8";
         private string hardwareId;
 
         private Panel currentPanel;
@@ -1422,6 +1422,7 @@ namespace ACNHPokerCore
                         else
                         {
                             socket.Close();
+                            socket = null;
                             connecting = false;
                             IPAddressInputBackground.Invoke((MethodInvoker)delegate
                             {

@@ -71,6 +71,7 @@
 * R24
 	* Update for Game version "Ver. 2.0.7"
 	* Update from .NET 7.0 to .NET 9.0.
+	* Update for Game version "Ver. 2.0.8"
 
 ## Ely's Changes:
 
