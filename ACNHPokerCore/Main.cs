@@ -1417,6 +1417,31 @@ namespace ACNHPokerCore
                                 init = false;
                             });
 
+                            if (ModifierKeys == Keys.Shift)
+                            {
+                                if (!Directory.Exists(@"Debug\"))
+                                    Directory.CreateDirectory(@"Debug\");
+
+                                byte[] CollisionResult = Utilities.PeekMainAddress(socket, null, Utilities.CollisionAddress, 1000);
+                                File.WriteAllBytes(@"Debug\Collision", CollisionResult);
+
+                                byte[] TimeResult = Utilities.PeekMainAddress(socket, null, Utilities.freezeTimeAddress, 1000);
+                                File.WriteAllBytes(@"Debug\Time", TimeResult);
+
+                                string AddressResult = "Collision : " + Utilities.CollisionAddress.ToString("X") + "\n" +
+                                                       "Time : " + Utilities.freezeTimeAddress.ToString("X");
+
+                                if (overrideSetting)
+                                {
+                                    MyMessageBox.Show("[Warning] You have address override activated!" + "\n" + "\n" +
+                                                      AddressResult, "Bytes Saved!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                else
+                                {
+                                    MyMessageBox.Show(AddressResult, "Bytes Saved!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                            }
+
                             MyLog.LogEvent("MainForm", "Data Reading Ended");
                         }
                         else
