@@ -58,7 +58,7 @@ namespace ACNHPokerCore
                 else
                 {
                     miniMapBox.BackgroundImage = miniMap.RefreshItemMap(layer2);
-                    SpawnAddress = Utilities.mapZero + Utilities.mapSize;
+                    SpawnAddress = Utilities.mapZero + Utilities.NewMapSize;
                 }
                 miniMapBox.Image = MiniMap.DrawMarker(anchorX, anchorY);
                 WarningMessage.SelectionAlignment = HorizontalAlignment.Center;

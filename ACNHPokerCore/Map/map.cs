@@ -354,7 +354,7 @@ namespace ACNHPokerCore
                     }
 
                     if (file.ShowDialog() != DialogResult.OK)
-                        Layer1 = new byte[Utilities.mapSize];
+                        Layer1 = new byte[Utilities.NewMapSize];
                     else
                         Layer1 = File.ReadAllBytes(file.FileName);
                 }
@@ -391,7 +391,7 @@ namespace ACNHPokerCore
                 }
 
 
-                Layer2 = new byte[Utilities.mapSize];
+                Layer2 = new byte[Utilities.NewMapSize];
                 ActivateLayer1 = new byte[Utilities.mapActivateSize];
                 ActivateLayer2 = new byte[Utilities.mapActivateSize];
                 MapCustomDesgin = new byte[Utilities.MapTileCount16x16 * 2];
@@ -430,9 +430,9 @@ namespace ACNHPokerCore
                 await Task.Run(() =>
                 {
                     if (ModifierKeys == Keys.Shift)
-                        FetchMap(Utilities.mapZero, Utilities.mapZero + Utilities.mapSize, true);
+                        FetchMap(Utilities.mapZero, Utilities.mapZero + Utilities.NewMapSize, true);
                     else
-                        FetchMap(Utilities.mapZero, Utilities.mapZero + Utilities.mapSize, false);
+                        FetchMap(Utilities.mapZero, Utilities.mapZero + Utilities.NewMapSize, false);
 
                 }).ConfigureAwait(false);
             }
@@ -2154,7 +2154,7 @@ namespace ACNHPokerCore
             }
             else if (layer2Btn.Checked)
             {
-                address = GetAddress(btn.MapX, btn.MapY) + Utilities.mapSize;
+                address = GetAddress(btn.MapX, btn.MapY) + Utilities.NewMapSize;
             }
             else
                 return;
@@ -2177,7 +2177,7 @@ namespace ACNHPokerCore
             if (layer1Btn.Checked)
                 address = GetAddress(btn.MapX, btn.MapY);
             else if (layer2Btn.Checked)
-                address = GetAddress(btn.MapX, btn.MapY) + Utilities.mapSize;
+                address = GetAddress(btn.MapX, btn.MapY) + Utilities.NewMapSize;
             else
                 return;
 
@@ -2489,7 +2489,7 @@ namespace ACNHPokerCore
             }
             else if (layer2Btn.Checked)
             {
-                address = GetAddress(selectedButton.MapX, selectedButton.MapY, shiftRight, shiftDown) + Utilities.mapSize;
+                address = GetAddress(selectedButton.MapX, selectedButton.MapY, shiftRight, shiftDown) + Utilities.NewMapSize;
             }
             else
                 return;
@@ -2742,7 +2742,7 @@ namespace ACNHPokerCore
             }
             else if (layer2Btn.Checked)
             {
-                address = Utilities.mapZero + Utilities.mapSize;
+                address = Utilities.mapZero + Utilities.NewMapSize;
             }
             else
                 return;
@@ -3101,7 +3101,7 @@ namespace ACNHPokerCore
             }
             else if (layer2Btn.Checked)
             {
-                address = Utilities.mapZero + Utilities.mapSize;
+                address = Utilities.mapZero + Utilities.NewMapSize;
             }
             else
                 return;
@@ -3158,7 +3158,7 @@ namespace ACNHPokerCore
 
                     if (layer2Btn.Checked)
                     {
-                        CurAddress += Utilities.mapSize;
+                        CurAddress += Utilities.NewMapSize;
                     }
 
                     Utilities.DropColumn(s, usb, CurAddress, CurAddress + 0x600, SavedArea[i * 2], SavedArea[i * 2 + 1], ref counter);
@@ -3357,7 +3357,7 @@ namespace ACNHPokerCore
             }
             else if (layer2Btn.Checked)
             {
-                address = Utilities.mapZero + Utilities.mapSize;
+                address = Utilities.mapZero + Utilities.NewMapSize;
             }
             else
                 return;
@@ -3404,7 +3404,7 @@ namespace ACNHPokerCore
                     }
                     else if (layer2Btn.Checked)
                     {
-                        address = (GetAddress(btn.MapX, btn.MapY) + Utilities.mapSize);
+                        address = (GetAddress(btn.MapX, btn.MapY) + Utilities.NewMapSize);
                     }
                     else
                         return;
@@ -3651,7 +3651,7 @@ namespace ACNHPokerCore
 
             DisableBtn();
 
-            Thread LoadThread = new(delegate () { RefreshMap(Utilities.mapZero, Utilities.mapZero + Utilities.mapSize); });
+            Thread LoadThread = new(delegate () { RefreshMap(Utilities.mapZero, Utilities.mapZero + Utilities.NewMapSize); });
             LoadThread.Start();
         }
 
@@ -3748,13 +3748,13 @@ namespace ACNHPokerCore
                     }
                     else if (layer2Btn.Checked)
                     {
-                        address1 = GetAddress(anchorX - 3, anchorY - 3) + Utilities.mapSize;
-                        address2 = GetAddress(anchorX - 2, anchorY - 3) + Utilities.mapSize;
-                        address3 = GetAddress(anchorX - 1, anchorY - 3) + Utilities.mapSize;
-                        address4 = GetAddress(anchorX, anchorY - 3)     + Utilities.mapSize;
-                        address5 = GetAddress(anchorX + 1, anchorY - 3) + Utilities.mapSize;
-                        address6 = GetAddress(anchorX + 2, anchorY - 3) + Utilities.mapSize;
-                        address7 = GetAddress(anchorX + 3, anchorY - 3) + Utilities.mapSize;
+                        address1 = GetAddress(anchorX - 3, anchorY - 3) + Utilities.NewMapSize;
+                        address2 = GetAddress(anchorX - 2, anchorY - 3) + Utilities.NewMapSize;
+                        address3 = GetAddress(anchorX - 1, anchorY - 3) + Utilities.NewMapSize;
+                        address4 = GetAddress(anchorX, anchorY - 3)     + Utilities.NewMapSize;
+                        address5 = GetAddress(anchorX + 1, anchorY - 3) + Utilities.NewMapSize;
+                        address6 = GetAddress(anchorX + 2, anchorY - 3) + Utilities.NewMapSize;
+                        address7 = GetAddress(anchorX + 3, anchorY - 3) + Utilities.NewMapSize;
                     }
                     else
                         return;
@@ -3889,7 +3889,7 @@ namespace ACNHPokerCore
                     if (layer1Btn.Checked)
                         address = GetAddress(anchorX - 3, anchorY - 3);
                     else
-                        address = GetAddress(anchorX - 3, anchorY - 3) + Utilities.mapSize;
+                        address = GetAddress(anchorX - 3, anchorY - 3) + Utilities.NewMapSize;
 
                     byte[] readFloor = Utilities.Read7x7Floor(s, usb, address);
                     byte[] curFloor = new byte[1568];
@@ -3935,13 +3935,13 @@ namespace ACNHPokerCore
                     }
                     else if (layer2Btn.Checked)
                     {
-                        address1 = GetAddress(anchorX - 3, anchorY - 3) + Utilities.mapSize;
-                        address2 = GetAddress(anchorX - 2, anchorY - 3) + Utilities.mapSize;
-                        address3 = GetAddress(anchorX - 1, anchorY - 3) + Utilities.mapSize;
-                        address4 = GetAddress(anchorX, anchorY - 3) + Utilities.mapSize;
-                        address5 = GetAddress(anchorX + 1, anchorY - 3) + Utilities.mapSize;
-                        address6 = GetAddress(anchorX + 2, anchorY - 3) + Utilities.mapSize;
-                        address7 = GetAddress(anchorX + 3, anchorY - 3) + Utilities.mapSize;
+                        address1 = GetAddress(anchorX - 3, anchorY - 3) + Utilities.NewMapSize;
+                        address2 = GetAddress(anchorX - 2, anchorY - 3) + Utilities.NewMapSize;
+                        address3 = GetAddress(anchorX - 1, anchorY - 3) + Utilities.NewMapSize;
+                        address4 = GetAddress(anchorX, anchorY - 3) + Utilities.NewMapSize;
+                        address5 = GetAddress(anchorX + 1, anchorY - 3) + Utilities.NewMapSize;
+                        address6 = GetAddress(anchorX + 2, anchorY - 3) + Utilities.NewMapSize;
+                        address7 = GetAddress(anchorX + 3, anchorY - 3) + Utilities.NewMapSize;
                     }
                     else
                         return;
@@ -4057,7 +4057,7 @@ namespace ACNHPokerCore
                 if (layer1Btn.Checked)
                     address = GetAddress(anchorX - 3, anchorY - 3);
                 else
-                    address = GetAddress(anchorX - 3, anchorY - 3) + Utilities.mapSize;
+                    address = GetAddress(anchorX - 3, anchorY - 3) + Utilities.NewMapSize;
 
                 byte[] b = Utilities.Read7x7Floor(s, usb, address);
                 byte[] save = new byte[1568];
@@ -4202,7 +4202,7 @@ namespace ACNHPokerCore
                         if (layer1Btn.Checked)
                             address = GetAddress(anchorX - 3, anchorY - 3);
                         else
-                            address = GetAddress(anchorX - 3, anchorY - 3) + Utilities.mapSize;
+                            address = GetAddress(anchorX - 3, anchorY - 3) + Utilities.NewMapSize;
 
                         byte[] readFloor = Utilities.Read7x7Floor(s, usb, address);
                         curFloor = new byte[1568];
@@ -4294,13 +4294,13 @@ namespace ACNHPokerCore
                     }
                     else if (layer2Btn.Checked)
                     {
-                        address1 = GetAddress(anchorX - 3, anchorY - 3) + Utilities.mapSize;
-                        address2 = GetAddress(anchorX - 2, anchorY - 3) + Utilities.mapSize;
-                        address3 = GetAddress(anchorX - 1, anchorY - 3) + Utilities.mapSize;
-                        address4 = GetAddress(anchorX, anchorY - 3)     + Utilities.mapSize;
-                        address5 = GetAddress(anchorX + 1, anchorY - 3) + Utilities.mapSize;
-                        address6 = GetAddress(anchorX + 2, anchorY - 3) + Utilities.mapSize;
-                        address7 = GetAddress(anchorX + 3, anchorY - 3) + Utilities.mapSize;
+                        address1 = GetAddress(anchorX - 3, anchorY - 3) + Utilities.NewMapSize;
+                        address2 = GetAddress(anchorX - 2, anchorY - 3) + Utilities.NewMapSize;
+                        address3 = GetAddress(anchorX - 1, anchorY - 3) + Utilities.NewMapSize;
+                        address4 = GetAddress(anchorX, anchorY - 3)     + Utilities.NewMapSize;
+                        address5 = GetAddress(anchorX + 1, anchorY - 3) + Utilities.NewMapSize;
+                        address6 = GetAddress(anchorX + 2, anchorY - 3) + Utilities.NewMapSize;
+                        address7 = GetAddress(anchorX + 3, anchorY - 3) + Utilities.NewMapSize;
                     }
                     else
                         return;
@@ -5600,7 +5600,7 @@ namespace ACNHPokerCore
 
                 DisableBtn();
 
-                ProcessLayer(Layer2, Utilities.mapZero + Utilities.mapSize);
+                ProcessLayer(Layer2, Utilities.mapZero + Utilities.NewMapSize);
             }
         }
         private void ProcessLayer(byte[] Layer, long Address)
@@ -5917,7 +5917,7 @@ namespace ACNHPokerCore
                     }
                     else if (layer2Btn.Checked)
                     {
-                        address = Utilities.mapZero + Utilities.mapSize;
+                        address = Utilities.mapZero + Utilities.NewMapSize;
                         processLayer = Utilities.Add(processLayer, Layer2);
                     }
                     else
@@ -6073,13 +6073,13 @@ namespace ACNHPokerCore
                     }
                     else if (layer2Btn.Checked)
                     {
-                        address1 = GetAddress(anchorX - 3, anchorY - 3) + Utilities.mapSize;
-                        address2 = GetAddress(anchorX - 2, anchorY - 3) + Utilities.mapSize;
-                        address3 = GetAddress(anchorX - 1, anchorY - 3) + Utilities.mapSize;
-                        address4 = GetAddress(anchorX, anchorY - 3) + Utilities.mapSize;
-                        address5 = GetAddress(anchorX + 1, anchorY - 3) + Utilities.mapSize;
-                        address6 = GetAddress(anchorX + 2, anchorY - 3) + Utilities.mapSize;
-                        address7 = GetAddress(anchorX + 3, anchorY - 3) + Utilities.mapSize;
+                        address1 = GetAddress(anchorX - 3, anchorY - 3) + Utilities.NewMapSize;
+                        address2 = GetAddress(anchorX - 2, anchorY - 3) + Utilities.NewMapSize;
+                        address3 = GetAddress(anchorX - 1, anchorY - 3) + Utilities.NewMapSize;
+                        address4 = GetAddress(anchorX, anchorY - 3) + Utilities.NewMapSize;
+                        address5 = GetAddress(anchorX + 1, anchorY - 3) + Utilities.NewMapSize;
+                        address6 = GetAddress(anchorX + 2, anchorY - 3) + Utilities.NewMapSize;
+                        address7 = GetAddress(anchorX + 3, anchorY - 3) + Utilities.NewMapSize;
                     }
                     else
                         return;
@@ -6279,7 +6279,7 @@ namespace ACNHPokerCore
                 }
                 else if (layer2Btn.Checked)
                 {
-                    address = Utilities.mapZero + Utilities.mapSize;
+                    address = Utilities.mapZero + Utilities.NewMapSize;
                 }
                 else
                     return;
@@ -6316,7 +6316,7 @@ namespace ACNHPokerCore
                             }
                             else if (layer2Btn.Checked)
                             {
-                                address = (GetAddress(btn.MapX, btn.MapY) + Utilities.mapSize);
+                                address = (GetAddress(btn.MapX, btn.MapY) + Utilities.NewMapSize);
                             }
                             else
                                 return;
@@ -6431,7 +6431,7 @@ namespace ACNHPokerCore
                 }
                 else if (layer2Btn.Checked)
                 {
-                    address = Utilities.mapZero + Utilities.mapSize;
+                    address = Utilities.mapZero + Utilities.NewMapSize;
                 }
                 else
                     return;
@@ -6468,7 +6468,7 @@ namespace ACNHPokerCore
                             }
                             else if (layer2Btn.Checked)
                             {
-                                address = (GetAddress(btn.MapX, btn.MapY) + Utilities.mapSize);
+                                address = (GetAddress(btn.MapX, btn.MapY) + Utilities.NewMapSize);
                             }
                             else
                                 return;
@@ -6591,7 +6591,7 @@ namespace ACNHPokerCore
                 }
                 else if (layer2Btn.Checked)
                 {
-                    address = Utilities.mapZero + Utilities.mapSize;
+                    address = Utilities.mapZero + Utilities.NewMapSize;
                 }
                 else
                     return;
@@ -6631,7 +6631,7 @@ namespace ACNHPokerCore
                             }
                             else if (layer2Btn.Checked)
                             {
-                                address = (GetAddress(btn.MapX, btn.MapY) + Utilities.mapSize);
+                                address = (GetAddress(btn.MapX, btn.MapY) + Utilities.NewMapSize);
                             }
                             else
                                 return;
@@ -6784,7 +6784,7 @@ namespace ACNHPokerCore
                 }
                 else if (layer2Btn.Checked)
                 {
-                    address = Utilities.mapZero + Utilities.mapSize;
+                    address = Utilities.mapZero + Utilities.NewMapSize;
                 }
                 else
                     return;

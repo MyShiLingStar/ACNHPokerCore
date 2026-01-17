@@ -67,8 +67,6 @@ namespace ACNHPokerCore
         public static UInt32 OldMapSize = 0x54000;
         public static UInt32 NewMapSize = 0x6C000;
 
-        public static UInt32 mapSize = 0x6C000;
-
         public static UInt32 mapActivate = mapZero + 0xD8000;
 
         public static UInt32 mapActivateSize = 0x1B00;
@@ -114,7 +112,7 @@ namespace ACNHPokerCore
         public static UInt32 VisitorList = VisitorNameAddress - 0x118;
         public static UInt32 VisitorListSize = 0x1C;
 
-        public static UInt32 TextSpeedAddress = 0x0BD43084;
+        public static UInt32 TextSpeedAddress = 0x0BD9A9FC; //0x0BD43084;
 
         public static UInt32 ChineseLanguageOffset = 0x7000; //
 
@@ -214,7 +212,7 @@ namespace ACNHPokerCore
         public static readonly string FastSwimSpeed = "00000040";
         public static readonly string FastDiveSpeed = "00000040";
 
-        public static UInt32 readTimeAddress = 0x0BD3A188; //
+        public static UInt32 readTimeAddress = 0x0BD91B00;
         // ---- Main
         public static UInt32 freezeTimeAddress = 0x00328BB0; //0x00328BD0; //0x00328BB0;
         public static readonly string freezeTimeValue = "D503201F";
@@ -2847,7 +2845,7 @@ namespace ACNHPokerCore
         {
             if (isEmulator)
             {
-                return ReadEmulatorMemory((uint)address, (int)mapSize);
+                return ReadEmulatorMemory((uint)address, (int)NewMapSize);
             }
 
             lock (botLock)
@@ -2858,7 +2856,7 @@ namespace ACNHPokerCore
                     {
                         Debug.Print("[Sys] Peek : Map Layer " + address.ToString("X"));
 
-                        byte[] b = ReadByteArray(socket, address, (int)mapSize, ref counter);
+                        byte[] b = ReadByteArray(socket, address, (int)NewMapSize, ref counter);
 
                         if (b == null)
                         {
@@ -2870,7 +2868,7 @@ namespace ACNHPokerCore
                     {
                         Debug.Print("[Usb] Peek : Map Layer " + address.ToString("X"));
 
-                        byte[] b = ReadLargeBytes(usb, (uint)address, (int)mapSize, ref counter);
+                        byte[] b = ReadLargeBytes(usb, (uint)address, (int)NewMapSize, ref counter);
 
                         if (b == null)
                         {
@@ -4117,8 +4115,7 @@ namespace ACNHPokerCore
         {
             byte[] b = PeekAddress(socket, usb, readTimeAddress, 6);
             string time = ByteToHexString(b);
-
-            Debug.Print(time);
+            ByteArrayToDateTime(b);
 
             Int32 year = Convert.ToInt32(Flip(time.Substring(0, 4)), 16);
             Int32 month = Convert.ToInt32((time.Substring(4, 2)), 16);
@@ -4126,7 +4123,7 @@ namespace ACNHPokerCore
             Int32 hour = Convert.ToInt32((time.Substring(8, 2)), 16);
             Int32 min = Convert.ToInt32((time.Substring(10, 2)), 16);
 
-            if (year > 3000 || month > 12 || day > 31 || hour > 24 || min > 60) //Try for Chineses
+            if (year > 3000 || month > 12 || day > 31 || hour > 24 || min > 60) // Try for Chineses
             {
                 b = PeekAddress(socket, usb, readTimeAddress + ChineseLanguageOffset, 6);
                 time = ByteToHexString(b);
@@ -4144,6 +4141,37 @@ namespace ACNHPokerCore
             }
             else
                 return false;
+        }
+
+        public static DateTime ByteArrayToDateTime(byte[] data)
+        {
+            if (data == null || data.Length < 6)
+            {
+                return DateTime.MinValue;
+            }
+
+            try
+            {
+                // Extract year (first 2 bytes, need to flip)
+                string yearHex = data[1].ToString("X2") + data[0].ToString("X2");
+                int year = Convert.ToInt32(yearHex, 16);
+
+                // Extract month, day, hour, minute
+                int month = data[2];
+                int day = data[3];
+                int hour = data[4];
+                int minute = data[5];
+
+                DateTime result = new DateTime(year, month, day, hour, minute, 0);
+                Debug.Print($"Converted: {result:yyyy-MM-dd HH:mm}");
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"Error converting byte array to DateTime: {ex.Message}");
+                return DateTime.MinValue;
+            }
         }
 
         public static string TranslateVariationValue(string input)

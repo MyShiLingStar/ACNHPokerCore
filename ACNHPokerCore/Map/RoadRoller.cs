@@ -244,7 +244,7 @@ namespace ACNHPokerCore
                     Building = new byte[Utilities.AllBuildingSize];
                 }
 
-                Layer1 = new byte[Utilities.mapSize];
+                Layer1 = new byte[Utilities.NewMapSize];
 
                 if (File.Exists(savepath + debugDesign))
                 {

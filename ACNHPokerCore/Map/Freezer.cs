@@ -52,7 +52,7 @@ namespace ACNHPokerCore
             {
                 SaveFileDialog file = new()
                 {
-                    Filter = "New Horizons Fasil 2 (*.nhf2)|*.nhf2",
+                    Filter = "New Horizons Fasil 3 (*.nhf3)|*.nhf3",
                 };
 
                 Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
@@ -98,11 +98,11 @@ namespace ACNHPokerCore
 
         private void SaveMapFloor(uint address, SaveFileDialog file)
         {
-            ShowMapWait(84, "Saving...");
+            ShowMapWait(60, "Saving...");
 
             LockControl();
 
-            byte[] save = Utilities.ReadByteArray(s, address, 0x54000 * 2, ref counter);
+            byte[] save = Utilities.ReadByteArray(s, address, (int)(Utilities.NewMapSize * 2), ref counter);
 
             File.WriteAllBytes(file.FileName, save);
 
@@ -296,7 +296,7 @@ namespace ACNHPokerCore
         {
             OpenFileDialog file = new()
             {
-                Filter = "New Horizons Fasil 2 (*.nhf2)|*.nhf2|All files (*.*)|*.*",
+                Filter = "All files (*.*)|*.*|New Horizons Fasil 3 (*.nhf3)|*.nhf3",
             };
 
             Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
@@ -330,7 +330,23 @@ namespace ACNHPokerCore
 
             byte[] data = File.ReadAllBytes(file.FileName);
 
-            if (data.Length != Utilities.mapSize * 2)
+            if (data.Length == Utilities.OldMapSize || data.Length == Utilities.OldMapSize * 2)
+            {
+                DialogResult dialogResult = MyMessageBox.Show("As of game version v3.0.0, " + "\n" +
+                                                            "The size of the map layer has changed!" + "\n" +
+                                                            "\n" +
+                                                            "Press  [Yes]  to convert it to the new format (.nhf3)." + "\n" +
+                                                            "or  [No]  to cancel." + "\n" + "\n"
+                                                            , "Looks like you are using an old map layer!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    UpdateMapLayer(data);
+                }
+
+                return;
+            }
+
+            if (data.Length != Utilities.NewMapSize * 2)
             {
                 MyMessageBox.Show("Invalid File Size!", "Your map file size is invalid!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -348,17 +364,20 @@ namespace ACNHPokerCore
 
         private void FreezeMapFloor(uint address, byte[] data)
         {
-            ShowMapWait(84, "Casting...");
+            ShowMapWait(90, "Casting...");
 
             LockControl();
 
-            byte[][] b = new byte[84][];
+            int FreezeSize = 0x2000;
+            int NumOfPart = (int)(Utilities.NewMapSize * 2 / FreezeSize);
 
-            for (int i = 0; i < 84; i++)
+            byte[][] b = new byte[NumOfPart][];
+
+            for (int i = 0; i < NumOfPart; i++)
             {
-                b[i] = new byte[0x2000];
-                Buffer.BlockCopy(data, i * 0x2000, b[i], 0x0, 0x2000);
-                Utilities.SendString(s, Utilities.Freeze((uint)(address + (i * 0x2000)), b[i]));
+                b[i] = new byte[FreezeSize];
+                Buffer.BlockCopy(data, i * FreezeSize, b[i], 0x0, FreezeSize);
+                Utilities.SendString(s, Utilities.Freeze((uint)(address + (i * FreezeSize)), b[i]));
                 counter++;
                 Thread.Sleep(100);
             }
@@ -440,7 +459,7 @@ namespace ACNHPokerCore
         {
             OpenFileDialog file = new()
             {
-                Filter = "New Horizons Fasil 2 (*.nhf2)|*.nhf2|All files (*.*)|*.*",
+                Filter = "New Horizons Fasil 3 (*.nhf3)|*.nhf3|All files (*.*)|*.*",
             };
 
             Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
@@ -474,7 +493,7 @@ namespace ACNHPokerCore
 
             byte[] data = File.ReadAllBytes(file.FileName);
 
-            if (data.Length != Utilities.mapSize * 2)
+            if (data.Length != Utilities.NewMapSize * 2)
             {
                 MyMessageBox.Show("Invalid File Size!", "Your map file size is invalid!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -599,7 +618,7 @@ namespace ACNHPokerCore
 
         private void StartBtn_Click(object sender, EventArgs e)
         {
-            if (tempData.Length != Utilities.mapSize * 2)
+            if (tempData.Length != Utilities.NewMapSize * 2)
             {
                 MyMessageBox.Show("Invalid File Size!", "Your map file size is invalid!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -924,10 +943,10 @@ namespace ACNHPokerCore
             byte[] tail = new byte[0xBB6];
 
             Buffer.BlockCopy(VillagerData, 0, head, 0, 0x2F83);
-            Buffer.BlockCopy(VillagerData, 0x1267A, tail, 0, 0xBB6);
+            Buffer.BlockCopy(VillagerData, (int)Utilities.VillagerMoveoutOffset, tail, 0, 0xBB6);
 
             Utilities.FreezeBig(s, Utilities.VillagerAddress, head, 0x2F83);
-            Utilities.FreezeBig(s, Utilities.VillagerAddress + 0x1267A, tail, 0xBB6);
+            Utilities.FreezeBig(s, Utilities.VillagerAddress + Utilities.VillagerMoveoutOffset, tail, 0xBB6);
             Utilities.FreezeBig(s, (uint)(Utilities.VillagerHouseAddress + (V.HouseIndex * (Utilities.VillagerHouseSize))), HouseData, Utilities.VillagerHouseSize);
 
 
@@ -957,7 +976,7 @@ namespace ACNHPokerCore
             }
 
             Utilities.UnFreezeBig(s, Utilities.VillagerAddress, 0x2F83);
-            Utilities.UnFreezeBig(s, Utilities.VillagerAddress + 0x1267A, 0xBB6);
+            Utilities.UnFreezeBig(s, Utilities.VillagerAddress + Utilities.VillagerMoveoutOffset, 0xBB6);
 
             int[] HouseList = new int[10];
 
@@ -978,6 +997,69 @@ namespace ACNHPokerCore
                 FinMsg.Text = "Limbo!";
                 UpdateFreezeCountLabel(freezeCount);
             });
+
+            if (sound)
+                System.Media.SystemSounds.Asterisk.Play();
+        }
+
+        private void UpdateMapLayer(byte[] OldLayer)
+        {
+            byte[] empty = { 0xFE, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+            byte[] newLayer = new byte[Utilities.NewMapSize * 2];
+
+            int newMapOffset = 0xC000;
+
+            for (int i = 0; i < newLayer.Length; i += empty.Length)
+            {
+                Buffer.BlockCopy(empty, 0, newLayer, i, empty.Length);
+            }
+
+            if (OldLayer.Length == Utilities.OldMapSize)
+            {
+                Buffer.BlockCopy(OldLayer, 0, newLayer, newMapOffset, OldLayer.Length);
+            }
+            else if (OldLayer.Length == Utilities.OldMapSize * 2)
+            {
+                Buffer.BlockCopy(OldLayer, 0, newLayer, newMapOffset, (int)Utilities.OldMapSize);
+                Buffer.BlockCopy(OldLayer, (int)Utilities.OldMapSize, newLayer, (int)(Utilities.NewMapSize + newMapOffset), (int)Utilities.OldMapSize);
+            }
+
+
+            SaveFileDialog file = new()
+            {
+                Filter = "New Horizons Fasil 3 (*.nhf3)|*.nhf3",
+            };
+
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
+
+            string savepath;
+
+            if (config.AppSettings.Settings["LastSave"].Value.Equals(string.Empty))
+                savepath = Directory.GetCurrentDirectory() + "\\" + Utilities.saveFolder;
+            else
+                savepath = config.AppSettings.Settings["LastSave"].Value;
+
+            if (Directory.Exists(savepath))
+            {
+                file.InitialDirectory = savepath;
+            }
+            else
+            {
+                file.InitialDirectory = @"C:\";
+            }
+
+            if (file.ShowDialog() != DialogResult.OK)
+                return;
+
+            string[] temp = file.FileName.Split('\\');
+            string path = "";
+            for (int i = 0; i < temp.Length - 1; i++)
+                path = path + temp[i] + "\\";
+
+            config.AppSettings.Settings["LastSave"].Value = path;
+            config.Save(ConfigurationSaveMode.Minimal);
+
+            File.WriteAllBytes(file.FileName, newLayer);
 
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
