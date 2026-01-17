@@ -491,7 +491,7 @@ namespace ACNHPokerCore
                 byte[] Acre = Utilities.GetAcre(s, null);
                 byte[] Building = Utilities.GetBuilding(s, null);
                 byte[] Terrain = Utilities.GetTerrain(s, null);
-                byte[] MapCustomDesgin = Utilities.GetCustomDesignMap(s, null, ref counter);
+                byte[] MapCustomDesgin = null; //Utilities.GetCustomDesignMap(s, null, ref counter);
 
                 if (MiniMap == null)
                     MiniMap = new MiniMap(data, Acre, Building, Terrain, MapCustomDesgin);
@@ -502,12 +502,14 @@ namespace ACNHPokerCore
                 return;
             try
             {
+                /*
                 byte[] Coordinate = Utilities.GetCoordinate(s, null);
                 int x = BitConverter.ToInt32(Coordinate, 0);
                 int y = BitConverter.ToInt32(Coordinate, 4);
 
                 anchorX = x - 0x24;
                 anchorY = y - 0x18;
+                */
 
                 if (anchorX < 3 || anchorY < 3 || anchorX > 108 || anchorY > 92)
                 {

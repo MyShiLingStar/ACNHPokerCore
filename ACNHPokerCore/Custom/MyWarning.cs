@@ -54,6 +54,7 @@ namespace ACNHPokerCore
 
             int counter = 0;
 
+            /*
             while (Utilities.IsAboutToSave(socket, usb, 10))
             {
                 if (counter > 15)
@@ -63,6 +64,7 @@ namespace ACNHPokerCore
             }
 
             counter = 0;
+            */
 
             byte[] EmptyTerrainData = new byte[Utilities.AllTerrainSize];
 

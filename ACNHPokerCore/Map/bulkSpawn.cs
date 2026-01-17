@@ -353,6 +353,7 @@ namespace ACNHPokerCore
 
                     Debug.Print("Length :" + SpawnArea.Length + " Time : " + time);
 
+                    /*
                     int counter = 0;
 
                     while (Utilities.IsAboutToSave(s, bot, time + 10, 0, ignore))
@@ -387,7 +388,7 @@ namespace ACNHPokerCore
                         counter++;
                         Thread.Sleep(5000);
                     }
-
+                    */
                 }
 
                 if (right)
@@ -396,7 +397,7 @@ namespace ACNHPokerCore
                     {
                         for (int i = 0; i < SpawnArea.Length / 2; i++)
                         {
-                            UInt32 address = (UInt32)(SpawnAddress + (0xC00 * (anchorX + i)) + (0x10 * (anchorY)));
+                            UInt32 address = (UInt32)(SpawnAddress + (0xC00 * (anchorX + i + 16)) + (0x10 * (anchorY)));
 
                             Utilities.DropColumn(s, bot, address, address + 0x600, SpawnArea[i * 2], SpawnArea[i * 2 + 1], ref counter);
                         }
@@ -413,7 +414,7 @@ namespace ACNHPokerCore
                     {
                         for (int i = 0; i < SpawnArea.Length / 2; i++)
                         {
-                            UInt32 address = (UInt32)(SpawnAddress + (0xC00 * (anchorX - i)) + (0x10 * (anchorY)));
+                            UInt32 address = (UInt32)(SpawnAddress + (0xC00 * (anchorX - i + 16)) + (0x10 * (anchorY)));
 
                             Utilities.DropColumn(s, bot, address, address + 0x600, SpawnArea[i * 2], SpawnArea[i * 2 + 1], ref counter);
                         }

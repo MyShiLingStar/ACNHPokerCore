@@ -16,23 +16,21 @@ namespace ACNHPokerCore
 {
     public static class Utilities
     {
-        public static UInt32 masterAddress = 0xAFB1E6E0; // 0xAF71E6E0;
+        public static UInt32 masterAddress = 0xB27BB758;
 
         public static UInt32 ItemSlotBase = masterAddress;
         public static UInt32 ItemSlot21Base = masterAddress - 0xB8;
 
-        //AE6022CC
-
-        public static UInt32 MasterRecyclingBase = 0xAEE6F978; //0xAEA6F978;
+        public static UInt32 MasterRecyclingBase = 0xB19C40D0;
         public static UInt32 MasterRecycling21Base = MasterRecyclingBase + 0xA0;
 
-        public static UInt32 TurnipPurchasePriceAddr = 0xAEA140F4; //0xAE6140F4;
+        public static UInt32 TurnipPurchasePriceAddr = 0xB14DBB30; 
         public static UInt32 TurnipSellPriceAddr = TurnipPurchasePriceAddr + 0xC;
-        public static UInt32 TurnipBuffer = 0x8F1BD0;
+        public static UInt32 SaveFileBuffer = 0x9B0EB0;
 
         //=================================================================
 
-        public static UInt32 VillagerAddress = 0xAE5B5EB8; //0xAE1B5EB8;
+        public static UInt32 VillagerAddress = 0xB104B4E0;
         public static UInt32 VillagerSize = 0x13230;
         public static UInt32 VillagerOldSize = 0x12AB0;
         public static UInt32 VillagerMemorySize = 0x5F0;
@@ -47,42 +45,43 @@ namespace ACNHPokerCore
         public static UInt32 VillagerFriendshipOffset = 0x46;
         public static UInt32 VillagerCatchphraseOffset = 0x10794;
 
-        public static UInt32 VillagerHouseAddress = 0xAEA056A4; //0xAE6056A4;
+        public static UInt32 VillagerHouseAddress = 0xB14CD0E0;
         public static UInt32 VillagerHouseSize = 0x12E8;
         public static UInt32 VillagerHouseOldSize = 0x1D4;
         public static UInt32 VillagerHouseBufferDiff = 0x8F1BD0;
         public static UInt32 VillagerHouseOwnerOffset = 0x1C4;
 
-        public static UInt32 MysIslandVillagerAddress = 0x38B33C1C;
+        public static UInt32 MysIslandVillagerAddress = 0x38CEAEA4;
         public static UInt32 MysIslandVillagerSpecies = MysIslandVillagerAddress + 0x110;
 
         //=================================================================
 
-        public static UInt32 weatherSeed = 0xAE7994B0; //0xAE3994B0;
+        public static UInt32 weatherSeed = 0xB122EAD8; 
 
-        public static UInt32 coordinate = 0x3E35A288; //0x3E33A288;
+        public static UInt32 coordinate = 0x3E35A288; //0x3E33A288;                         //*
 
-        public static UInt32 mapZero = 0xAE7E5298; //0xAE3E5298;
+        public static UInt32 mapZero = 0xB127A8C0;
 
-        public static UInt32 AirportColor = mapZero + 0x3143D8;
+        public static UInt32 AirportColor = mapZero + 0x3143D8;                             //*
 
-        public static UInt32 mapOffset = 0x8F1BD0;
+        public static UInt32 OldMapSize = 0x54000;
+        public static UInt32 NewMapSize = 0x6C000;
 
-        public static UInt32 mapSize = 0x54000;
+        public static UInt32 mapSize = 0x6C000;
 
-        public static UInt32 mapActivate = mapZero + 0xA8000;
+        public static UInt32 mapActivate = mapZero + 0xD8000;
 
-        public static UInt32 mapActivateSize = 0x1500;
+        public static UInt32 mapActivateSize = 0x1B00;
 
-        public static UInt32 mapCustomDesign = mapZero + 0xCFA34;
+        public static UInt32 mapCustomDesign = mapZero + 0x100648;
 
         public static int PatternCount = 100;
 
         public static UInt32 MyDesignZero = mapZero - 0x4BBA8;
 
-        public static UInt32 TerrainOffset = mapZero + 0xAAA00;
+        public static UInt32 TerrainOffset = mapZero + 0xDB600;
 
-        public static UInt32 AcreOffset = mapZero + 0xCF998;
+        public static UInt32 AcreOffset = mapZero + 0x1005AC;
 
         private const int AcreWidth = 7 + (2 * 1);
         private const int AcreHeight = 6 + (2 * 1);
@@ -90,13 +89,19 @@ namespace ACNHPokerCore
         public const int AllAcreSize = AcreMax * 2;
         public const int AcreAndPlaza = AllAcreSize + 2 + 2 + 4 + 4;
 
-        public static UInt32 BuildingOffset = mapZero + 0xCF600;
+        public static UInt32 BuildingOffset = mapZero + 0x100200;
         private const int BuildingSize = 0x14;
         public const int AllBuildingSize = 46 * BuildingSize;
 
         public const int MapTileCount16x16 = 16 * 16 * 7 * 6;
         public const int TerrainTileSize = 0xE;
         public const int AllTerrainSize = MapTileCount16x16 * TerrainTileSize;
+
+
+        public const int ExtendedMapNumOfColumn = 16 * 9;
+        public const int ExtendedMapNumOfRow = 16 * 6;
+
+        public const int ExtendedMapTileCount16x16 = ExtendedMapNumOfRow * ExtendedMapNumOfColumn;
 
         //=================================================================
 
@@ -118,13 +123,13 @@ namespace ACNHPokerCore
         //=================================================================
 
         public static UInt32 player1SlotBase = masterAddress;
-        public static UInt32 playerOffset = 0x11B968;
+        public static UInt32 playerOffset = 0x131F70;
         public static UInt32 Slot21Offset = 0xB8;
         public static UInt32 HomeOffset = 0xC4;
-        public static UInt32 ReactionOffset = 0xAFB4;
-        public static UInt32 InventoryNameOffset = 0x3EAE0;
+        public static UInt32 ReactionOffset = 0x12CB4;
+        public static UInt32 InventoryNameOffset = 0x2BA60;
 
-        public static UInt32 TownNameddress = player1SlotBase + InventoryNameOffset;
+        public static UInt32 TownNameddress = player1SlotBase - InventoryNameOffset;
 
         public static UInt32 player1Slot21Base = player1SlotBase - Slot21Offset;
         public static UInt32 player1HouseBase = player1SlotBase + HomeOffset;
@@ -167,28 +172,27 @@ namespace ACNHPokerCore
         public static UInt32 player8HouseBase = player8SlotBase + HomeOffset;
         public static UInt32 player8House21Base = player8HouseBase + 0xA0;
 
-        // ---- Critter
-        public static UInt32 InsectAppearPointer = 0x404DB718; //
+        // ---- Critter 1CD280
+        public static UInt32 InsectAppearPointer = 0x406A8998;
         public static Int32 InsectDataSize = 2 * (1 + 6 * 12 + 5);
         public static Int32 InsectNumRecords = 166;
 
         public static Int32 FishDataSize = 88;
 
-        public static UInt32 FishRiverAppearPointer = 0x4051AEA8; //
+        public static UInt32 FishRiverAppearPointer = 0x406E8128;
         public static Int32 FishRiverNumRecords = 100;
 
-        public static UInt32 FishSeaAppearPointer = 0x40531088; //
+        public static UInt32 FishSeaAppearPointer = 0x406FE308;
         public static Int32 FishSeaNumRecords = 76;
 
-        public static UInt32 CreatureSeaAppearPointer = 0x4049D3AC; //
+        public static UInt32 CreatureSeaAppearPointer = 0x4066A62C;
         public static Int32 SeaCreatureDataSize = 88;
         public static Int32 SeaCreatureNumRecords = 41 * 2;
         // ----
 
-        public static UInt32 staminaAddress = 0xB6C72358; //0xB6872358;
-        public static UInt32 readTimeAddress = 0x0BD3A188; //
+        public static UInt32 staminaAddress = 0xB9763A00;
 
-        public static readonly UInt32 MaxSpeedAddress = 0x0BF5934C; //
+        public static readonly UInt32 MaxSpeedAddress = 0x0BFB3F34;
         public static readonly string MaxSpeedX1 = "0000A03F";
         public static readonly string MaxSpeedX2 = "00002040";
         public static readonly string MaxSpeedX3 = "00007040";
@@ -210,6 +214,7 @@ namespace ACNHPokerCore
         public static readonly string FastSwimSpeed = "00000040";
         public static readonly string FastDiveSpeed = "00000040";
 
+        public static UInt32 readTimeAddress = 0x0BD3A188; //
         // ---- Main
         public static UInt32 freezeTimeAddress = 0x00328BB0; //0x00328BD0; //0x00328BB0;
         public static readonly string freezeTimeValue = "D503201F";
@@ -622,10 +627,10 @@ namespace ACNHPokerCore
         {
             if (isEmulator)
             {
-                return ReadEmulatorMemory((uint)(player1SlotBase + (playerNumber * playerOffset)) + InventoryNameOffset, 0x34);
+                return ReadEmulatorMemory((uint)(player1SlotBase + (playerNumber * playerOffset)) - InventoryNameOffset, 0x34);
             }
 
-            return PeekAddress(socket, usb, (uint)(player1SlotBase + (playerNumber * playerOffset)) + InventoryNameOffset, 0x34);
+            return PeekAddress(socket, usb, (uint)(player1SlotBase + (playerNumber * playerOffset)) - InventoryNameOffset, 0x34);
         }
 
         public static void SpawnItem(Socket socket, USBBot usb, int slot, String value, String amount)
@@ -876,7 +881,7 @@ namespace ACNHPokerCore
             {
                 byte[] BuyPrice = StringToByte(Flip(PrecedingZeros(prices[12].ToString("X"), 8)));
                 WriteEmulatorMemory(TurnipPurchasePriceAddr, BuyPrice);
-                WriteEmulatorMemory(TurnipPurchasePriceAddr + TurnipBuffer, BuyPrice);
+                WriteEmulatorMemory(TurnipPurchasePriceAddr + SaveFileBuffer, BuyPrice);
 
                 byte[] SellPrice = [];
 
@@ -885,7 +890,7 @@ namespace ACNHPokerCore
                     SellPrice = Add(SellPrice, StringToByte(Flip(PrecedingZeros(prices[i].ToString("X"), 8))));
                 }
                 WriteEmulatorMemory(TurnipSellPriceAddr, SellPrice);
-                WriteEmulatorMemory(TurnipSellPriceAddr + TurnipBuffer, SellPrice);
+                WriteEmulatorMemory(TurnipSellPriceAddr + SaveFileBuffer, SellPrice);
                 return;
             }
 
@@ -894,15 +899,15 @@ namespace ACNHPokerCore
                 if (usb == null)
                 {
                     SendUInt32Array(socket, TurnipPurchasePriceAddr, prices, 4, 12);
-                    SendUInt32Array(socket, TurnipPurchasePriceAddr + TurnipBuffer, prices, 4, 12);
+                    SendUInt32Array(socket, TurnipPurchasePriceAddr + SaveFileBuffer, prices, 4, 12);
                     SendUInt32Array(socket, TurnipSellPriceAddr, prices, 4 * 12);
-                    SendUInt32Array(socket, TurnipSellPriceAddr + TurnipBuffer, prices, 4 * 12);
+                    SendUInt32Array(socket, TurnipSellPriceAddr + SaveFileBuffer, prices, 4 * 12);
                 }
                 else
                 {
                     byte[] BuyPrice = StringToByte(Flip(PrecedingZeros(prices[12].ToString("X"), 8)));
                     usb.WriteBytes(BuyPrice, TurnipPurchasePriceAddr);
-                    usb.WriteBytes(BuyPrice, TurnipPurchasePriceAddr + TurnipBuffer);
+                    usb.WriteBytes(BuyPrice, TurnipPurchasePriceAddr + SaveFileBuffer);
 
                     byte[] SellPrice = [];
 
@@ -911,7 +916,7 @@ namespace ACNHPokerCore
                         SellPrice = Add(SellPrice, StringToByte(Flip(PrecedingZeros(prices[i].ToString("X"), 8))));
                     }
                     usb.WriteBytes(SellPrice, TurnipSellPriceAddr);
-                    usb.WriteBytes(SellPrice, TurnipSellPriceAddr + TurnipBuffer);
+                    usb.WriteBytes(SellPrice, TurnipSellPriceAddr + SaveFileBuffer);
                 }
                 return;
             }
@@ -1599,12 +1604,12 @@ namespace ACNHPokerCore
             if (isEmulator)
             {
                 WriteEmulatorMemory(AirportColor, StringToByte(value));
-                WriteEmulatorMemory(AirportColor + mapOffset, StringToByte(value));
+                WriteEmulatorMemory(AirportColor + SaveFileBuffer, StringToByte(value));
                 return;
             }
 
             PokeAddress(socket, usb, AirportColor.ToString("X"), value);
-            PokeAddress(socket, usb, (AirportColor + mapOffset).ToString("X"), value);
+            PokeAddress(socket, usb, (AirportColor + SaveFileBuffer).ToString("X"), value);
         }
 
         public static void SetFlag1(Socket socket, USBBot usb, int slot, string flag)
@@ -2703,9 +2708,9 @@ namespace ACNHPokerCore
             if (isEmulator)
             {
                 WriteEmulatorMemory((uint)address, StringToByte(BuildDropStringLeft(itemId, count, flag0, flag1)));
-                WriteEmulatorMemory((uint)(address + mapOffset), StringToByte(BuildDropStringLeft(itemId, count, flag0, flag1)));
+                WriteEmulatorMemory((uint)(address + SaveFileBuffer), StringToByte(BuildDropStringLeft(itemId, count, flag0, flag1)));
                 WriteEmulatorMemory((uint)address + 0x600, StringToByte(BuildDropStringRight(itemId)));
-                WriteEmulatorMemory((uint)address + 0x600 + mapOffset, StringToByte(BuildDropStringRight(itemId)));
+                WriteEmulatorMemory((uint)address + 0x600 + SaveFileBuffer, StringToByte(BuildDropStringRight(itemId)));
                 return;
             }
 
@@ -2717,10 +2722,10 @@ namespace ACNHPokerCore
                     if (usb == null)
                     {
                         SendByteArray(socket, address, StringToByte(BuildDropStringLeft(itemId, count, flag0, flag1)), 16);
-                        SendByteArray(socket, address + mapOffset, StringToByte(BuildDropStringLeft(itemId, count, flag0, flag1)), 16);
+                        SendByteArray(socket, address + SaveFileBuffer, StringToByte(BuildDropStringLeft(itemId, count, flag0, flag1)), 16);
 
                         SendByteArray(socket, address + 0x600, StringToByte(BuildDropStringRight(itemId)), 16);
-                        SendByteArray(socket, address + 0x600 + mapOffset, StringToByte(BuildDropStringRight(itemId)), 16);
+                        SendByteArray(socket, address + 0x600 + SaveFileBuffer, StringToByte(BuildDropStringRight(itemId)), 16);
 
                         Debug.Print("Drop: " + address + " " + itemId + " " + count + " " + flag0 + " " + flag1);
                     }
@@ -2741,7 +2746,7 @@ namespace ACNHPokerCore
             if (isEmulator)
             {
                 WriteEmulatorMemory((uint)address, StringToByte(BuildDropCore(itemId, count, flag0, flag1)));
-                WriteEmulatorMemory((uint)(address + mapOffset), StringToByte(BuildDropCore(itemId, count, flag0, flag1)));
+                WriteEmulatorMemory((uint)(address + SaveFileBuffer), StringToByte(BuildDropCore(itemId, count, flag0, flag1)));
                 return;
             }
 
@@ -2752,7 +2757,7 @@ namespace ACNHPokerCore
                     if (usb == null)
                     {
                         SendByteArray(socket, address, StringToByte(BuildDropCore(itemId, count, flag0, flag1)), 8);
-                        SendByteArray(socket, address + mapOffset, StringToByte(BuildDropCore(itemId, count, flag0, flag1)), 8);
+                        SendByteArray(socket, address + SaveFileBuffer, StringToByte(BuildDropCore(itemId, count, flag0, flag1)), 8);
 
                         Debug.Print("DropCore: " + address + " " + itemId + " " + count + " " + flag0 + " " + flag1);
                     }
@@ -2777,10 +2782,10 @@ namespace ACNHPokerCore
                     if (usb == null)
                     {
                         SendByteArray(socket, address, StringToByte(ExtbuildDropStringLeft(itemId, count, flag0, flag1)), 16);
-                        SendByteArray(socket, address + mapOffset, StringToByte(ExtbuildDropStringLeft(itemId, count, flag0, flag1)), 16);
+                        SendByteArray(socket, address + SaveFileBuffer, StringToByte(ExtbuildDropStringLeft(itemId, count, flag0, flag1)), 16);
 
                         SendByteArray(socket, address + 0x600, StringToByte(BuildDropStringRight("FFFE", true)), 16);
-                        SendByteArray(socket, address + 0x600 + mapOffset, StringToByte(BuildDropStringRight("FFFE", true)), 16);
+                        SendByteArray(socket, address + 0x600 + SaveFileBuffer, StringToByte(BuildDropStringRight("FFFE", true)), 16);
 
                         Debug.Print("Drop: " + address + " " + itemId + " " + count + " " + flag0 + " " + flag1);
                     }
@@ -2806,9 +2811,9 @@ namespace ACNHPokerCore
             if (isEmulator)
             {
                 WriteEmulatorMemory((uint)address, StringToByte(BuildDropStringLeft("FFFE", "00000000", "00", "00", true)));
-                WriteEmulatorMemory((uint)(address + mapOffset), StringToByte(BuildDropStringLeft("FFFE", "00000000", "00", "00", true)));
+                WriteEmulatorMemory((uint)(address + SaveFileBuffer), StringToByte(BuildDropStringLeft("FFFE", "00000000", "00", "00", true)));
                 WriteEmulatorMemory((uint)address + 0x600, StringToByte(BuildDropStringRight("FFFE", true)));
-                WriteEmulatorMemory((uint)address + 0x600 + mapOffset, StringToByte(BuildDropStringRight("FFFE", true)));
+                WriteEmulatorMemory((uint)address + 0x600 + SaveFileBuffer, StringToByte(BuildDropStringRight("FFFE", true)));
                 return;
             }
 
@@ -2819,10 +2824,10 @@ namespace ACNHPokerCore
                     if (usb == null)
                     {
                         SendByteArray(socket, address, StringToByte(BuildDropStringLeft("FFFE", "00000000", "00", "00", true)), 16);
-                        SendByteArray(socket, address + mapOffset, StringToByte(BuildDropStringLeft("FFFE", "00000000", "00", "00", true)), 16);
+                        SendByteArray(socket, address + SaveFileBuffer, StringToByte(BuildDropStringLeft("FFFE", "00000000", "00", "00", true)), 16);
 
                         SendByteArray(socket, address + 0x600, StringToByte(BuildDropStringRight("FFFE", true)), 16);
-                        SendByteArray(socket, address + 0x600 + mapOffset, StringToByte(BuildDropStringRight("FFFE", true)), 16);
+                        SendByteArray(socket, address + 0x600 + SaveFileBuffer, StringToByte(BuildDropStringRight("FFFE", true)), 16);
 
                         Debug.Print("Delete: " + address);
                     }
@@ -2931,7 +2936,7 @@ namespace ACNHPokerCore
             if (isEmulator)
             {
                 WriteEmulatorMemory(AcreOffset, acre);
-                WriteEmulatorMemory(AcreOffset + mapOffset, acre);
+                WriteEmulatorMemory(AcreOffset + SaveFileBuffer, acre);
                 return;
             }
 
@@ -2944,14 +2949,14 @@ namespace ACNHPokerCore
                         Debug.Print("[Sys] Poke : Acre " + AcreOffset.ToString("X"));
 
                         SendByteArray(socket, AcreOffset, acre, acre.Length, ref counter);
-                        SendByteArray(socket, AcreOffset + mapOffset, acre, acre.Length, ref counter);
+                        SendByteArray(socket, AcreOffset + SaveFileBuffer, acre, acre.Length, ref counter);
                     }
                     else
                     {
                         Debug.Print("[Usb] Poke : Acre " + AcreOffset.ToString("X"));
 
                         WriteLargeBytes(usb, AcreOffset, acre, acre.Length, ref counter);
-                        WriteLargeBytes(usb, AcreOffset + mapOffset, acre, acre.Length, ref counter);
+                        WriteLargeBytes(usb, AcreOffset + SaveFileBuffer, acre, acre.Length, ref counter);
                     }
                 }
                 catch
@@ -2966,7 +2971,7 @@ namespace ACNHPokerCore
             if (isEmulator)
             {
                 WriteEmulatorMemory(AcreOffset + 0x94, plaza);
-                WriteEmulatorMemory(AcreOffset + 0x94 + mapOffset, plaza);
+                WriteEmulatorMemory(AcreOffset + 0x94 + SaveFileBuffer, plaza);
                 return;
             }
 
@@ -2979,14 +2984,14 @@ namespace ACNHPokerCore
                         Debug.Print("[Sys] Poke : Plaza " + (AcreOffset + 0x94).ToString("X"));
 
                         SendByteArray(socket, AcreOffset + 0x94, plaza, plaza.Length, ref counter);
-                        SendByteArray(socket, AcreOffset + 0x94 + mapOffset, plaza, plaza.Length, ref counter);
+                        SendByteArray(socket, AcreOffset + 0x94 + SaveFileBuffer, plaza, plaza.Length, ref counter);
                     }
                     else
                     {
                         Debug.Print("[Usb] Poke : Plaza " + (AcreOffset + 0x94).ToString("X"));
 
                         WriteLargeBytes(usb, AcreOffset + 0x94, plaza, plaza.Length, ref counter);
-                        WriteLargeBytes(usb, AcreOffset + 0x94 + mapOffset, plaza, plaza.Length, ref counter);
+                        WriteLargeBytes(usb, AcreOffset + 0x94 + SaveFileBuffer, plaza, plaza.Length, ref counter);
                     }
                 }
                 catch
@@ -3001,7 +3006,7 @@ namespace ACNHPokerCore
             if (isEmulator)
             {
                 WriteEmulatorMemory(BuildingOffset, building);
-                WriteEmulatorMemory(BuildingOffset + mapOffset, building);
+                WriteEmulatorMemory(BuildingOffset + SaveFileBuffer, building);
                 return;
             }
 
@@ -3014,14 +3019,14 @@ namespace ACNHPokerCore
                         Debug.Print("[Sys] Poke : Building " + BuildingOffset.ToString("X"));
 
                         SendByteArray(socket, BuildingOffset, building, building.Length, ref counter);
-                        SendByteArray(socket, BuildingOffset + mapOffset, building, building.Length, ref counter);
+                        SendByteArray(socket, BuildingOffset + SaveFileBuffer, building, building.Length, ref counter);
                     }
                     else
                     {
                         Debug.Print("[Usb] Poke : Building " + BuildingOffset.ToString("X"));
 
                         WriteLargeBytes(usb, BuildingOffset, building, building.Length, ref counter);
-                        WriteLargeBytes(usb, BuildingOffset + mapOffset, building, building.Length, ref counter);
+                        WriteLargeBytes(usb, BuildingOffset + SaveFileBuffer, building, building.Length, ref counter);
                     }
                 }
                 catch
@@ -3080,7 +3085,7 @@ namespace ACNHPokerCore
             if (isEmulator)
             {
                 WriteEmulatorMemory(TerrainOffset, terrain);
-                WriteEmulatorMemory(TerrainOffset + mapOffset, terrain);
+                WriteEmulatorMemory(TerrainOffset + SaveFileBuffer, terrain);
                 return;
             }
 
@@ -3093,14 +3098,14 @@ namespace ACNHPokerCore
                         Debug.Print("[Sys] Poke : Terrain " + TerrainOffset.ToString("X"));
 
                         SendByteArray(socket, TerrainOffset, terrain, AllTerrainSize, ref counter);
-                        SendByteArray(socket, TerrainOffset + mapOffset, terrain, AllTerrainSize, ref counter);
+                        SendByteArray(socket, TerrainOffset + SaveFileBuffer, terrain, AllTerrainSize, ref counter);
                     }
                     else
                     {
                         Debug.Print("[Usb] Poke : Terrain " + TerrainOffset.ToString("X"));
 
                         WriteLargeBytes(usb, TerrainOffset, terrain, AllTerrainSize, ref counter);
-                        WriteLargeBytes(usb, TerrainOffset + mapOffset, terrain, AllTerrainSize, ref counter);
+                        WriteLargeBytes(usb, TerrainOffset + SaveFileBuffer, terrain, AllTerrainSize, ref counter);
                     }
                 }
                 catch
@@ -3115,7 +3120,7 @@ namespace ACNHPokerCore
             if (isEmulator)
             {
                 WriteEmulatorMemory(mapCustomDesign, CustomMap);
-                WriteEmulatorMemory(mapCustomDesign + mapOffset, CustomMap);
+                WriteEmulatorMemory(mapCustomDesign + SaveFileBuffer, CustomMap);
                 return;
             }
 
@@ -3128,14 +3133,14 @@ namespace ACNHPokerCore
                         Debug.Print("[Sys] Poke : CustomMap " + TerrainOffset.ToString("X"));
 
                         SendByteArray(socket, mapCustomDesign, CustomMap, CustomMap.Length, ref counter);
-                        SendByteArray(socket, mapCustomDesign + mapOffset, CustomMap, CustomMap.Length, ref counter);
+                        SendByteArray(socket, mapCustomDesign + SaveFileBuffer, CustomMap, CustomMap.Length, ref counter);
                     }
                     else
                     {
                         Debug.Print("[Usb] Poke : CustomMap " + TerrainOffset.ToString("X"));
 
                         WriteLargeBytes(usb, mapCustomDesign, CustomMap, CustomMap.Length, ref counter);
-                        WriteLargeBytes(usb, mapCustomDesign + mapOffset, CustomMap, CustomMap.Length, ref counter);
+                        WriteLargeBytes(usb, mapCustomDesign + SaveFileBuffer, CustomMap, CustomMap.Length, ref counter);
                     }
                 }
                 catch
@@ -3237,7 +3242,7 @@ namespace ACNHPokerCore
         {
             if (isEmulator)
             {
-                return ReadEmulatorMemory(mapCustomDesign, MapTileCount16x16 * 2);
+                return ReadEmulatorMemory(mapCustomDesign, ExtendedMapTileCount16x16 * 2);
             }
 
             lock (botLock)
@@ -3248,7 +3253,7 @@ namespace ACNHPokerCore
                     {
                         Debug.Print("[Sys] Peek : CustomDesignMap " + mapCustomDesign.ToString("X"));
 
-                        byte[] b = ReadByteArray(socket, mapCustomDesign, MapTileCount16x16 * 2, ref counter);
+                        byte[] b = ReadByteArray(socket, mapCustomDesign, ExtendedMapTileCount16x16 * 2, ref counter);
 
                         if (b == null)
                         {
@@ -3260,7 +3265,7 @@ namespace ACNHPokerCore
                     {
                         Debug.Print("[Usb] Peek : CustomDesignMap " + mapCustomDesign.ToString("X"));
 
-                        byte[] b = ReadLargeBytes(usb, mapCustomDesign, MapTileCount16x16 * 2, ref counter);
+                        byte[] b = ReadLargeBytes(usb, mapCustomDesign, ExtendedMapTileCount16x16 * 2, ref counter);
 
                         if (b == null)
                         {
@@ -3321,6 +3326,7 @@ namespace ACNHPokerCore
             }
         }
 
+        /*
         public static byte[] GetCoordinate(Socket socket, USBBot usb)
         {
             if (isEmulator)
@@ -3356,6 +3362,7 @@ namespace ACNHPokerCore
                 }
             }
         }
+        */
 
         public static byte[] GetSaving(Socket socket, USBBot usb = null)
         {
@@ -3398,9 +3405,9 @@ namespace ACNHPokerCore
             if (isEmulator)
             {
                 WriteEmulatorMemory(address1, buffer1);
-                WriteEmulatorMemory(address1 + mapOffset, buffer1);
+                WriteEmulatorMemory(address1 + SaveFileBuffer, buffer1);
                 WriteEmulatorMemory(address2, buffer2);
-                WriteEmulatorMemory(address2 + mapOffset, buffer2);
+                WriteEmulatorMemory(address2 + SaveFileBuffer, buffer2);
                 return;
             }
 
@@ -3409,16 +3416,16 @@ namespace ACNHPokerCore
                 if (usb == null)
                 {
                     SendByteArray(socket, address1, buffer1, buffer1.Length, ref counter);
-                    SendByteArray(socket, address1 + mapOffset, buffer1, buffer1.Length, ref counter);
+                    SendByteArray(socket, address1 + SaveFileBuffer, buffer1, buffer1.Length, ref counter);
                     SendByteArray(socket, address2, buffer2, buffer2.Length, ref counter);
-                    SendByteArray(socket, address2 + mapOffset, buffer2, buffer2.Length, ref counter);
+                    SendByteArray(socket, address2 + SaveFileBuffer, buffer2, buffer2.Length, ref counter);
                 }
                 else
                 {
                     WriteLargeBytes(usb, address1, buffer1, buffer1.Length, ref counter);
-                    WriteLargeBytes(usb, address1 + mapOffset, buffer1, buffer1.Length, ref counter);
+                    WriteLargeBytes(usb, address1 + SaveFileBuffer, buffer1, buffer1.Length, ref counter);
                     WriteLargeBytes(usb, address2, buffer2, buffer2.Length, ref counter);
-                    WriteLargeBytes(usb, address2 + mapOffset, buffer2, buffer2.Length, ref counter);
+                    WriteLargeBytes(usb, address2 + SaveFileBuffer, buffer2, buffer2.Length, ref counter);
                 }
             }
         }
@@ -3428,9 +3435,9 @@ namespace ACNHPokerCore
             if (isEmulator)
             {
                 WriteEmulatorMemory(address1, buffer1);
-                WriteEmulatorMemory(address1 + mapOffset, buffer1);
+                WriteEmulatorMemory(address1 + SaveFileBuffer, buffer1);
                 WriteEmulatorMemory(address2, buffer2);
-                WriteEmulatorMemory(address2 + mapOffset, buffer2);
+                WriteEmulatorMemory(address2 + SaveFileBuffer, buffer2);
                 return;
             }
 
@@ -3439,9 +3446,9 @@ namespace ACNHPokerCore
                 if (usb == null)
                 {
                     SendByteArray(socket, address1, buffer1, buffer1.Length);
-                    SendByteArray(socket, address1 + mapOffset, buffer1, buffer1.Length);
+                    SendByteArray(socket, address1 + SaveFileBuffer, buffer1, buffer1.Length);
                     SendByteArray(socket, address2, buffer2, buffer2.Length);
-                    SendByteArray(socket, address2 + mapOffset, buffer2, buffer2.Length);
+                    SendByteArray(socket, address2 + SaveFileBuffer, buffer2, buffer2.Length);
                 }
             }
         }
@@ -3451,7 +3458,7 @@ namespace ACNHPokerCore
             if (isEmulator)
             {
                 WriteEmulatorMemory(address, column);
-                WriteEmulatorMemory(address + mapOffset, column);
+                WriteEmulatorMemory(address + SaveFileBuffer, column);
                 return;
             }
 
@@ -3460,7 +3467,7 @@ namespace ACNHPokerCore
                 if (usb == null)
                 {
                     SendByteArray(socket, address, column, column.Length);
-                    SendByteArray(socket, address + mapOffset, column, column.Length);
+                    SendByteArray(socket, address + SaveFileBuffer, column, column.Length);
                 }
                 else
                 {
@@ -3762,11 +3769,20 @@ namespace ACNHPokerCore
 
             TownNameddress = player1SlotBase + InventoryNameOffset;
 
+            /*
             mapActivate = mapZero + 0xA8000;
             mapCustomDesign = mapZero + 0xCFA34;
             TerrainOffset = mapZero + 0xAAA00;
             AcreOffset = mapZero + 0xCF998;
             BuildingOffset = mapZero + 0xCF600;
+            MyDesignZero = mapZero - 0x4BBA8;
+            */
+
+            mapActivate = mapZero + 0xD8000;
+            mapCustomDesign = mapZero + 0x100648;
+            TerrainOffset = mapZero + 0xDB600;
+            AcreOffset = mapZero + 0x1005AC;
+            BuildingOffset = mapZero + 0x100200;
             MyDesignZero = mapZero - 0x4BBA8;
 
             MasterRecycling21Base = MasterRecyclingBase + 0xA0;
@@ -4226,6 +4242,7 @@ namespace ACNHPokerCore
                 return "0000";
         }
 
+        /*
         public static bool IsAboutToSave(Socket socket, USBBot usb, int second, int saveTime = 0, bool ignoreProtection = false)
         {
             if (ignoreProtection)
@@ -4272,6 +4289,7 @@ namespace ACNHPokerCore
                 return false;
             }
         }
+        */
 
         #region Villager
         public enum VillagerPersonality : byte
@@ -4405,6 +4423,7 @@ namespace ACNHPokerCore
                 {"brd16", "Jacques"},
                 {"brd17", "Peck"},
                 {"brd18", "Sparro"},
+                {"brd20", "Tulin"},
                 {"bul00", "Angus"},
                 {"bul01", "Rodeo"},
                 {"bul03", "Stu"},
@@ -4484,6 +4503,7 @@ namespace ACNHPokerCore
                 {"der09", "Erik"},
                 {"der10", "Chelsea"},
                 {"der11", "Shino"},
+                {"der12", "Mineru"},
                 {"dog00", "Goldie"},
                 {"dog01", "Butch"},
                 {"dog02", "Lucky"},
@@ -4762,6 +4782,8 @@ namespace ACNHPokerCore
                 {"squ16", "Sheldon"},
                 {"squ17", "Marshal"},
                 {"squ18", "Hazel"},
+                {"squ19", "Cece"},
+                {"squ20", "Viché"},
                 {"squ21", "Ione"},
                 {"tig00", "Rolf"},
                 {"tig01", "Rowan"},

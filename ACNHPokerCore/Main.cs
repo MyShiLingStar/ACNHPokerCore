@@ -37,7 +37,7 @@ namespace ACNHPokerCore
 
         private static Socket socket;
         private static USBBot usb;
-        private readonly string version = "ACNHPokerCore R24 for v2.0.8";
+        private readonly string version = "ACNHPokerCore R25 for v3.0.0";
         private string hardwareId;
 
         private Panel currentPanel;
@@ -505,10 +505,10 @@ namespace ACNHPokerCore
             OtherTabButton.Visible = true;
             CritterTabButton.Visible = true;
             MapDropperButton.Visible = true;
-            RegeneratorButton.Visible = true;
-            FreezerButton.Visible = true;
+            //RegeneratorButton.Visible = true;
+            //FreezerButton.Visible = true;
             RoadRollerButton.Visible = true;
-            DodoHelperButton.Visible = true;
+            //DodoHelperButton.Visible = true;
             BulldozerButton.Visible = true;
             chatButton.Visible = true;
         }
@@ -1343,9 +1343,9 @@ namespace ACNHPokerCore
                                 USBConnectionButton.Visible = false;
                                 SettingButton.Visible = false;
                                 MapDropperButton.Visible = true;
-                                RegeneratorButton.Visible = true;
-                                FreezerButton.Visible = true;
-                                DodoHelperButton.Visible = true;
+                                //RegeneratorButton.Visible = true;
+                                //FreezerButton.Visible = true;
+                                //DodoHelperButton.Visible = true;
                                 BulldozerButton.Visible = true;
                                 RoadRollerButton.Visible = true;
                                 chatButton.Visible = true;
@@ -7433,6 +7433,8 @@ namespace ACNHPokerCore
 
         private bool CheckDuplicate(string iName)
         {
+            if (iName == "non00")
+                return false;
             for (int i = 0; i < 10; i++)
             {
                 if (V[i].GetInternalName() == iName)
@@ -7988,10 +7990,10 @@ namespace ACNHPokerCore
                 OtherTabButton.Visible = true;
                 CritterTabButton.Visible = true;
                 MapDropperButton.Visible = true;
-                RegeneratorButton.Visible = true;
-                FreezerButton.Visible = true;
+                //RegeneratorButton.Visible = true;
+                //FreezerButton.Visible = true;
                 RoadRollerButton.Visible = true;
-                DodoHelperButton.Visible = true;
+                //DodoHelperButton.Visible = true;
                 BulldozerButton.Visible = true;
                 chatButton.Visible = true;
             }
@@ -10742,15 +10744,15 @@ namespace ACNHPokerCore
 
             ChaseTimer.Start();
 
-            Thread chaserThread = new(delegate () { Chaser(startAddress); });
+            byte[] pattern = [0xC4, 0x09, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00]; // 3 tree branches
+
+            Thread chaserThread = new(delegate () { Chaser(startAddress, pattern); });
             chaserThread.Start();
         }
 
-        private void Chaser(UInt32 startAddress)
+        private void Chaser(UInt32 startAddress, byte[] pattern)
         {
             ShowWait();
-
-            byte[] pattern = [0xC4, 0x09, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00]; // 3 tree branches
 
             int offset = 0;
 
@@ -10848,6 +10850,19 @@ namespace ACNHPokerCore
 
             ChaseTimer.Stop();
             HideWait();
+        }
+
+        private void Chase2Btn_Click(object sender, EventArgs e)
+        {
+            UInt32 startAddress = Convert.ToUInt32(DebugAddress.Text, 16);
+
+            Debug.Print(startAddress.ToString("X"));
+            byte[] b = [];
+            for (int i = 0; i < 100; i++)
+            {
+                b = Utilities.Add(b, Utilities.ReadByteArray(socket, startAddress + i * 8192 , 8192));
+            }
+            File.WriteAllBytes("Chaser2.bin", b);
         }
 
         private static int Search(byte[] src, byte[] pattern)
@@ -10971,7 +10986,7 @@ namespace ACNHPokerCore
                 if (Utilities.EmulatorType == 0)
                     lookingForSize = 0x100000000;
                 else
-                    lookingForSize = 0xCCE00000;
+                    lookingForSize = 0xC0000000; //0xCCE00000;
 
                 while (proc_min_address_l < proc_max_address_l)
                 {
@@ -10989,7 +11004,7 @@ namespace ACNHPokerCore
                         }
                         else
                         {
-                            firstHeadAddress = mem_basic_info.BaseAddress + 0xCE00000;
+                            firstHeadAddress = mem_basic_info.BaseAddress; // + 0xCE00000;
                             Debug.Print("[R] FirstBase = 0x" + firstHeadAddress.ToString("X"));
                         }
                         break;
@@ -10999,8 +11014,8 @@ namespace ACNHPokerCore
                     proc_min_address = new IntPtr(proc_min_address_l);
                 }
 
+
                 /*
-                
                 ProcessModule myProcessModule;
 
                 for (int i = 0; i < process.Modules.Count; i++)
@@ -11130,6 +11145,9 @@ namespace ACNHPokerCore
                         } while (i <= 4);
                     }
 
+
+                    //Utilities.EmulatorHeadAddress = firstHeadAddress;
+
                     if (Utilities.EmulatorHeadAddress == 0x0)
                     {
                         MyMessageBox.Show("Unable to locate the heap offset!",
@@ -11153,7 +11171,7 @@ namespace ACNHPokerCore
 
 
                         OtherTabButton.Visible = true;
-                        //CritterTabButton.Visible = true;
+                        CritterTabButton.Visible = true;
                         VillagerTabButton.Visible = true;
 
                         WrapSelector.SelectedIndex = 0;

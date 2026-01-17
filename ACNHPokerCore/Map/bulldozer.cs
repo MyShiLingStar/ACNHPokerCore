@@ -28,9 +28,6 @@ namespace ACNHPokerCore
         private const int BuildingSize = 0x14;
         private const int NumOfBuilding = 46;
 
-        private const int numOfColumn = 0x70;
-        private const int numOfRow = 0x60;
-
         private int selectedAcre;
 
         private Panel selectedPanel;
@@ -669,20 +666,20 @@ namespace ACNHPokerCore
                     lastBuilding = index;
 
                     byte type = (byte)index;
-                    if (index <= BuildingType.Items.Count)
-                    {
-                        BuildingType.Enabled = true;
-                        BuildingType.SelectedIndex = index;
-                        AUpDown.Enabled = true;
-                        TUpDown.Enabled = true;
-                    }
-                    else
+                    if (index == 0xff)
                     {
                         //Plaza
                         BuildingType.Enabled = false;
                         BuildingType.SelectedIndex = -1;
                         AUpDown.Enabled = false;
                         TUpDown.Enabled = false;
+                    }
+                    else
+                    {
+                        BuildingType.Enabled = true;
+                        BuildingType.SelectedIndex = index;
+                        AUpDown.Enabled = true;
+                        TUpDown.Enabled = true;
                     }
 
                     int OrgX = Int16.Parse(buildingGridView.Rows[e.RowIndex].Cells["X-Coordinate"].Value.ToString());
@@ -1073,6 +1070,7 @@ namespace ACNHPokerCore
             {0x1B, "Incline"},
             {0x1C, "Redd's Treasure Trawler"},
             {0x1D, "Studio"},
+            {0x2A, "Hotel"},
         };
 
         private void SaveAcreBtn_Click(object sender, EventArgs e)
@@ -1868,6 +1866,7 @@ namespace ACNHPokerCore
 
             int counter = 0;
 
+            /*
             while (Utilities.IsAboutToSave(s, usb, 10))
             {
                 if (counter > 15)
@@ -1877,6 +1876,7 @@ namespace ACNHPokerCore
             }
 
             counter = 0;
+            */
 
             byte[] EmptyRoadData = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00];
 
@@ -1927,6 +1927,7 @@ namespace ACNHPokerCore
         {
             int counter = 0;
 
+            /*
             while (Utilities.IsAboutToSave(s, usb, 10))
             {
                 if (counter > 15)
@@ -1936,15 +1937,16 @@ namespace ACNHPokerCore
             }
 
             counter = 0;
+            */
 
-            byte[] newCustomMap = new byte[numOfRow * numOfColumn * 2];
+            byte[] newCustomMap = new byte[Utilities.ExtendedMapNumOfRow * Utilities.ExtendedMapNumOfColumn * 2];
 
-            for (int i = 0; i < numOfColumn; i++)
+            for (int i = 0; i < Utilities.ExtendedMapNumOfColumn; i++)
             {
-                for (int j = 0; j < numOfRow; j++)
+                for (int j = 0; j < Utilities.ExtendedMapNumOfRow; j++)
                 {
                     byte[] EmptyCustomDesignData = [0x00, 0xF8];
-                    Buffer.BlockCopy(EmptyCustomDesignData, 0, newCustomMap, (i * numOfRow * 2) + (j * 2), 2);
+                    Buffer.BlockCopy(EmptyCustomDesignData, 0, newCustomMap, (i * Utilities.ExtendedMapNumOfRow * 2) + (j * 2), 2);
                 }
             }
 
@@ -2114,6 +2116,7 @@ namespace ACNHPokerCore
             {
                 int counter = 0;
 
+                /*
                 while (Utilities.IsAboutToSave(s, usb, 10))
                 {
                     if (counter > 15)
@@ -2123,6 +2126,7 @@ namespace ACNHPokerCore
                 }
 
                 counter = 0;
+                */
 
                 Utilities.SendTerrain(s, usb, terrain, ref counter);
 

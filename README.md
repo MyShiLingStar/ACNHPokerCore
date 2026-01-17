@@ -72,7 +72,9 @@
 	* Update for Game version "Ver. 2.0.7"
 	* Update from .NET 7.0 to .NET 9.0.
 	* Update for Game version "Ver. 2.0.8"
-
+* R25
+	* Update for Game version "Ver. 3.0.0"
+	
 ## Ely's Changes:
 
 	* Added function to export cheat sheet (only first 40 Items cheats)to the inventory. (Beta)

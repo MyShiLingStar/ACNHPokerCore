@@ -133,6 +133,8 @@ namespace ACNHPokerCore
         private readonly string debugAcres = @"acres.nha";
         private readonly string debugBuilding = @"buildings.nhb";
         private readonly string debugItem = @"item.nhf";
+
+        private const int ExtendedMapOffset = (16 * 6 * 16 * 1) * 2; // One extra column of Acre
         #endregion
 
         #region Form Load
@@ -407,7 +409,7 @@ namespace ACNHPokerCore
                 UpdateUI(() =>
                 {
                     miniMapBox.BackgroundImage = MiniMap.CombineMap(miniMap.DrawBackground(), miniMap.DrawItemMap());
-                    _ = DisplayAnchorAsync();
+                    DisplayAnchorAsync();
                     xCoordinate.Text = anchorX.ToString();
                     yCoordinate.Text = anchorY.ToString();
                     EnableBtn();
@@ -419,7 +421,7 @@ namespace ACNHPokerCore
 
             if ((s == null || s.Connected == false) && usb == null && !Utilities.isEmulator)
             {
-                MessageBox.Show(@"Please connect to the Switch first");
+                MessageBox.Show(@"Please connect to the Switch first!");
                 return;
             }
 
@@ -484,6 +486,7 @@ namespace ACNHPokerCore
                 BuildActivateTable(ActivateLayer1, ref ActivateTable1);
                 BuildActivateTable(ActivateLayer2, ref ActivateTable2);
 
+                /*
                 byte[] Coordinate = Utilities.GetCoordinate(s, usb);
 
                 if (Coordinate != null)
@@ -493,7 +496,7 @@ namespace ACNHPokerCore
 
                     anchorX = x - 0x24;
                     anchorY = y - 0x18;
-
+                */
                     if (anchorX < 3 || anchorY < 3 || anchorX > 108 || anchorY > 92)
                     {
                         anchorX = 56;
@@ -503,17 +506,19 @@ namespace ACNHPokerCore
                     UpdateUI(() =>
                     {
                         miniMapBox.BackgroundImage = MiniMap.CombineMap(miniMap.DrawBackground(), miniMap.DrawItemMap());
-                        _ = DisplayAnchorAsync();
+                        DisplayAnchorAsync();
                         xCoordinate.Text = anchorX.ToString();
                         yCoordinate.Text = anchorY.ToString();
                         EnableBtn();
                         fetchMapBtn.Visible = false;
                         reAnchorBtn.Visible = true;
-                        NextSaveTimer.Start();
+                        //NextSaveTimer.Start();
                     });
+                /*
                 }
                 else
                     throw new NullReferenceException("Coordinate");
+                */
 
                 HideMapWait();
             }
@@ -557,49 +562,31 @@ namespace ACNHPokerCore
             UpdateUI(() =>
             {
                 btnToolTip.RemoveAll();
+            });
 
-                if (x < 3)
-                    anchorX = 3;
-                else if (x > 108)
-                    anchorX = 108;
-                else
-                    anchorX = x;
+            if (x < 3)
+                anchorX = 3;
+            else if (x > 108)
+                anchorX = 108;
+            else
+                anchorX = x;
 
-                if (y < 3)
-                    anchorY = 3;
-                else if (y > 92)
-                    anchorY = 92;
-                else
-                    anchorY = y;
+            if (y < 3)
+                anchorY = 3;
+            else if (y > 92)
+                anchorY = 92;
+            else
+                anchorY = y;
 
+            UpdateUI(() =>
+            {
                 xCoordinate.Text = anchorX.ToString();
                 yCoordinate.Text = anchorY.ToString();
-
-                selectedButton = floor25;
-
-                _ = DisplayAnchorAsync();
             });
-        }
 
-        private void DisplayAnchor()
-        {
-            miniMapBox.Image = MiniMap.DrawSelectSquare(anchorX, anchorY);
+            selectedButton = floor25;
 
-            lock (lockObject)
-            {
-                /*
-                BtnSetup(floorByte[0], floorByte[1], (anchorX - 3), (anchorY - 3), floor1, floor2, floor3, floor4, floor5, floor6, floor7, false);
-                BtnSetup(floorByte[2], floorByte[3], (anchorX - 2), (anchorY - 3), floor8, floor9, floor10, floor11, floor12, floor13, floor14, false);
-                BtnSetup(floorByte[4], floorByte[5], (anchorX - 1), (anchorY - 3), floor15, floor16, floor17, floor18, floor19, floor20, floor21, false);
-                BtnSetup(floorByte[6], floorByte[7], (anchorX - 0), (anchorY - 3), floor22, floor23, floor24, floor25, floor26, floor27, floor28, true);
-                BtnSetup(floorByte[8], floorByte[9], (anchorX + 1), (anchorY - 3), floor29, floor30, floor31, floor32, floor33, floor34, floor35, false);
-                BtnSetup(floorByte[10], floorByte[11], (anchorX + 2), (anchorY - 3), floor36, floor37, floor38, floor39, floor40, floor41, floor42, false);
-                BtnSetup(floorByte[12], floorByte[13], (anchorX + 3), (anchorY - 3), floor43, floor44, floor45, floor46, floor47, floor48, floor49, false);
-                */
-                SetupBtnCoordinate(anchorX, anchorY);
-                _ = UpdateAllBtn();
-                ResetBtnColor();
-            }
+            DisplayAnchorAsync();
         }
 
         private void SetupBtnCoordinate(int x, int y)
@@ -706,7 +693,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void SetBtn(FloorSlot btn, string itemID, string itemData, string part2Id, string part2Data, string part3Id, string part3Data, string part4Id, string part4Data, string flag0, string flag1)
+        private async Task SetBtn(FloorSlot btn, string itemID, string itemData, string part2Id, string part2Data, string part3Id, string part3Data, string part4Id, string part4Data, string flag0, string flag1)
         {
             string Name = GetNameFromID(itemID, source);
             UInt16 ID = Convert.ToUInt16("0x" + itemID, 16);
@@ -786,13 +773,13 @@ namespace ACNHPokerCore
 
             if (layer1Btn.Checked)
             {
-                Buffer.BlockCopy(Layer1, btn.MapX * 0xC00 + btn.MapY * 0x10, Left, 0, 16);
-                Buffer.BlockCopy(Layer1, btn.MapX * 0xC00 + 0x600 + btn.MapY * 0x10, Right, 0, 16);
+                Buffer.BlockCopy(Layer1, (btn.MapX + 16) * 0xC00 + btn.MapY * 0x10, Left, 0, 16);
+                Buffer.BlockCopy(Layer1, (btn.MapX + 16) * 0xC00 + 0x600 + btn.MapY * 0x10, Right, 0, 16);
             }
             else if (layer2Btn.Checked)
             {
-                Buffer.BlockCopy(Layer2, btn.MapX * 0xC00 + btn.MapY * 0x10, Left, 0, 16);
-                Buffer.BlockCopy(Layer2, btn.MapX * 0xC00 + 0x600 + btn.MapY * 0x10, Right, 0, 16);
+                Buffer.BlockCopy(Layer2, (btn.MapX + 16) * 0xC00 + btn.MapY * 0x10, Left, 0, 16);
+                Buffer.BlockCopy(Layer2, (btn.MapX + 16) * 0xC00 + 0x600 + btn.MapY * 0x10, Right, 0, 16);
             }
 
             string LeftStr = Utilities.ByteToHexString(Left);
@@ -810,11 +797,12 @@ namespace ACNHPokerCore
             string P4Id = Utilities.Flip(RightStr.Substring(16, 4));
             string P4Data = Utilities.Flip(RightStr.Substring(24, 8));
 
-            string Path1;
-            string Path2;
-            string Path3;
-            string Path4;
+            string Path1 = "";
+            string Path2 = "";
+            string Path3 = "";
+            string Path4 = "";
             string ContainPath = "";
+
 
             string Name = GetNameFromID(P1Id, source);
             UInt16 ID = Convert.ToUInt16("0x" + P1Id, 16);
@@ -869,61 +857,107 @@ namespace ACNHPokerCore
             else
                 Path4 = GetImagePathFromID(P4Id, source, IntP4Data);
 
-            await Task.Run(() => btn.Setup(Name, ID, Data, IntP2Id, IntP2Data, IntP3Id, IntP3Data, IntP4Id, IntP4Data, Path1, Path2, Path3, Path4, ContainPath, flag0, flag1));
+            await btn.Setup(Name, ID, Data, IntP2Id, IntP2Data, IntP3Id, IntP3Data, IntP4Id, IntP4Data, Path1, Path2, Path3, Path4, ContainPath, flag0, flag1);
+            await btn.setImage(false);
         }
 
         private async Task UpdateNearBtn(int BtnNum)
         {
             if (shiftRight && BtnNum < 42)
-                await UpdateBtn(floorSlots[BtnNum + 7]);
+                UpdateBtn(floorSlots[BtnNum + 7]);
             if (shiftDown && ((BtnNum + 1) % 7) != 0)
-                await UpdateBtn(floorSlots[BtnNum + 1]);
+                UpdateBtn(floorSlots[BtnNum + 1]);
             if (shiftRight && shiftDown && ((BtnNum + 1) % 7) != 0 && BtnNum < 42)
-                await UpdateBtn(floorSlots[BtnNum + 8]);
+                UpdateBtn(floorSlots[BtnNum + 8]);
         }
+
+        private bool isUpdating = false;
 
         private async Task UpdateAllBtn()
         {
+            /*
+            for (int i = 0; i < floorSlots.Length; i++)
+            {
+                UpdateBtn(floorSlots[i]);
+            }
+            */
+
             var tasks = new List<Task>();
             for (int i = 0; i < floorSlots.Length; i++)
             {
                 tasks.Add(UpdateBtn(floorSlots[i]));
+                //UpdateBtn(floorSlots[i]);
             }
             await Task.WhenAll(tasks);
-            /*
-            await Parallel.ForEachAsync(floorSlots, new ParallelOptions { MaxDegreeOfParallelism = floorSlots.Length }, async (floorSlot, cancellationToken) =>
-            {
-                await UpdateBtn(floorSlot);
-            });
-            */
         }
+
+        /*
+        private async Task UpdateAllBtn()
+        {
+            if (isUpdating)
+            {
+                return;
+            }
+
+            isUpdating = true;
+
+            try
+            {
+                //var tasks = new List<Task>();
+                for (int i = 0; i < floorSlots.Length; i++)
+                {
+                    //tasks.Add(UpdateBtn(floorSlots[i]));
+                    UpdateBtn(floorSlots[i]);
+                }
+                //await Task.WhenAll(tasks);
+
+
+                // Do ALL heavy work in parallel on background threads
+                var imageLoadTasks = new List<Task<(int index, Image image)>>();
+
+                for (int i = 0; i < floorSlots.Length; i++)
+                {
+                    int index = i; // Capture index for closure
+                    imageLoadTasks.Add(Task.Run(async () =>
+                    {
+                        var image = await floorSlots[index].LoadImageForSlot(false); // Your heavy work here
+                        return (index, image);
+                    }));
+                }
+
+                // Wait for all background work to complete
+                var results = await Task.WhenAll(imageLoadTasks);
+
+                foreach (var (index, image) in results)
+                {
+                    floorSlots[index].Image = image;
+                }
+            }
+            finally
+            {
+                isUpdating = false;
+            }
+        }
+        */
 
         #endregion
 
-        #region Async
-
-        private async Task DisplayAnchorAsync()
+        private void DisplayAnchorAsync()
         {
             if (drawing)
                 return;
 
             drawing = true;
-
-            lock (lockObject)
-            {
-                miniMapBox.Image = MiniMap.DrawSelectSquare(anchorX, anchorY);
-            }
+            miniMapBox.Image = MiniMap.DrawSelectSquare(anchorX, anchorY);
 
             SetupBtnCoordinate(anchorX, anchorY);
-            await Task.Run(UpdateAllBtn);
 
-            lock (lockObject)
-            {
-                ResetBtnColor();
-                drawing = false;
-            }
+            UpdateAllBtn();
+
+            ResetBtnColor();
+
+            drawing = false;
         }
-        #endregion
 
         private static UInt32 GetAddress(int x, int y, bool right = false, bool down = false)
         {
@@ -935,7 +969,7 @@ namespace ACNHPokerCore
             if (down)
                 shiftDownValue = 0x8;
 
-            return (UInt32)(Utilities.mapZero + (0xC00 * x + shiftRightValue) + (0x10 * y + shiftDownValue));
+            return (UInt32)(Utilities.mapZero + (0xC00 * (x + 16) + shiftRightValue) + (0x10 * y + shiftDownValue));
         }
 
         #region Arrow Buttons
@@ -1195,7 +1229,7 @@ namespace ACNHPokerCore
 
         public string GetImagePathFromID(string itemID, DataTable source, UInt32 data = 0)
         {
-            if (source == null)
+            if (source == null || itemID == "FFFE")
             {
                 return "";
             }
@@ -1347,31 +1381,38 @@ namespace ACNHPokerCore
 
         public string GetNameFromID(string itemID, DataTable table)
         {
+            string ItemName = "";
+
+            if (itemID == "FFFE")
+                return ItemName;
+
             if (fieldSource != null)
             {
                 DataRow FieldRow = fieldSource.Rows.Find(itemID);
                 if (FieldRow != null)
                 {
-                    return (string)FieldRow["name"];
+                    ItemName = (string)FieldRow["name"];
+                    return ItemName;
                 }
             }
 
             if (table == null)
             {
-                return "";
+                return ItemName;
             }
 
             DataRow row = table.Rows.Find(itemID);
 
             if (row == null)
             {
-                return ""; //row not found
+                return ItemName; //row not found
             }
             else
             {
-                //row found set the index and find the name
-                return (string)row[languageSetting];
+                ItemName = (string)row[languageSetting];
             }
+
+            return ItemName;
         }
 
         private void FieldGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -2113,7 +2154,7 @@ namespace ACNHPokerCore
             }
             else if (layer2Btn.Checked)
             {
-                address = (GetAddress(btn.MapX, btn.MapY) + Utilities.mapSize);
+                address = GetAddress(btn.MapX, btn.MapY) + Utilities.mapSize;
             }
             else
                 return;
@@ -2477,6 +2518,7 @@ namespace ACNHPokerCore
             if (!debugging)
             {
 
+                /*
                 int c = 0;
 
                 while (Utilities.IsAboutToSave(s, usb, 5, saveTime, ignore))
@@ -2504,6 +2546,7 @@ namespace ACNHPokerCore
                     c++;
                     Thread.Sleep(3000);
                 }
+                */
 
                 if (coreOnly)
                 {
@@ -2524,12 +2567,12 @@ namespace ACNHPokerCore
                 if (coreOnly)
                 {
                     UpdataDataCoreOnly(btn.MapX, btn.MapY, itemID, itemData, flag0, flag1, shiftRight, shiftDown);
-                    _ = UpdateBtn(btn);
+                    UpdateBtn(btn);
                 }
                 else
                 {
                     UpdataData(btn.MapX, btn.MapY, itemID, itemData, flag0, flag1, shiftRight, shiftDown);
-                    _ = UpdateBtn(btn);
+                    UpdateBtn(btn);
                     if (shiftRight || shiftDown)
                         _ = UpdateNearBtn(int.Parse(btn.Tag.ToString()));
                 }
@@ -2759,6 +2802,7 @@ namespace ACNHPokerCore
 
                     //Debug.Print("Length :" + SpawnArea.Length + " Time : " + time);
 
+                    /*
                     int c = 0;
 
                     while (Utilities.IsAboutToSave(s, usb, time + 10, saveTime, ignore))
@@ -2786,10 +2830,11 @@ namespace ACNHPokerCore
                         c++;
                         Thread.Sleep(3000);
                     }
+                    */
 
                     for (int i = 0; i < SpawnArea.Length / 2; i++)
                     {
-                        UInt32 currentColumn = (UInt32)(address + (0xC00 * (TopLeftX + i)) + (0x10 * (TopLeftY)));
+                        UInt32 currentColumn = (UInt32)(address + (0xC00 * (TopLeftX + i + 16)) + (0x10 * (TopLeftY)));
 
                         Utilities.DropColumn(s, usb, currentColumn, currentColumn + 0x600, SpawnArea[i * 2], SpawnArea[i * 2 + 1], ref counter);
                     }
@@ -2980,13 +3025,13 @@ namespace ACNHPokerCore
                 {
                     if (layer1Btn.Checked)
                     {
-                        Buffer.BlockCopy(Layer1, (0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY)), SavedArea[i * 2], 0x10 * j, 0x10);
-                        Buffer.BlockCopy(Layer1, (0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY)) + 0x600, SavedArea[i * 2 + 1], 0x10 * j, 0x10);
+                        Buffer.BlockCopy(Layer1, (0xC00 * (i + TopLeftX + 16)) + (0x10 * (j + TopLeftY)), SavedArea[i * 2], 0x10 * j, 0x10);
+                        Buffer.BlockCopy(Layer1, (0xC00 * (i + TopLeftX + 16)) + (0x10 * (j + TopLeftY)) + 0x600, SavedArea[i * 2 + 1], 0x10 * j, 0x10);
                     }
                     else
                     {
-                        Buffer.BlockCopy(Layer2, (0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY)), SavedArea[i * 2], 0x10 * j, 0x10);
-                        Buffer.BlockCopy(Layer2, (0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY)) + 0x600, SavedArea[i * 2 + 1], 0x10 * j, 0x10);
+                        Buffer.BlockCopy(Layer2, (0xC00 * (i + TopLeftX + 16)) + (0x10 * (j + TopLeftY)), SavedArea[i * 2], 0x10 * j, 0x10);
+                        Buffer.BlockCopy(Layer2, (0xC00 * (i + TopLeftX + 16)) + (0x10 * (j + TopLeftY)) + 0x600, SavedArea[i * 2 + 1], 0x10 * j, 0x10);
                     }
                 }
             }
@@ -3077,6 +3122,7 @@ namespace ACNHPokerCore
 
                 Debug.Print("Length :" + numberOfColumn + " Time : " + time);
 
+                /*
                 int c = 0;
 
                 while (Utilities.IsAboutToSave(s, usb, time + 10, saveTime, ignore))
@@ -3104,6 +3150,7 @@ namespace ACNHPokerCore
                     c++;
                     Thread.Sleep(3000);
                 }
+                */
 
                 for (int i = 0; i < numberOfColumn; i++)
                 {
@@ -3224,9 +3271,9 @@ namespace ACNHPokerCore
                 for (int j = 0; j < numberOfRow; j++)
                 {
                     if (layer1Btn.Checked)
-                        Buffer.BlockCopy(Layer1, (0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY)), tempItem, 0, sizeOfRow);
+                        Buffer.BlockCopy(Layer1, (0xC00 * (i + TopLeftX + 16)) + (0x10 * (j + TopLeftY)), tempItem, 0, sizeOfRow);
                     else
-                        Buffer.BlockCopy(Layer2, (0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY)), tempItem, 0, sizeOfRow);
+                        Buffer.BlockCopy(Layer2, (0xC00 * (i + TopLeftX + 16)) + (0x10 * (j + TopLeftY)), tempItem, 0, sizeOfRow);
 
                     save = Utilities.Add(save, tempItem);
                 }
@@ -3374,6 +3421,7 @@ namespace ACNHPokerCore
         {
             ShowMapWait(2, "Deleting Item...");
 
+            /*
             int c = 0;
 
             while (Utilities.IsAboutToSave(s, usb, 5, saveTime, ignore))
@@ -3401,6 +3449,7 @@ namespace ACNHPokerCore
                 c++;
                 Thread.Sleep(3000);
             }
+            */
 
             Utilities.DeleteFloorItem(s, usb, address);
 
@@ -3636,7 +3685,7 @@ namespace ACNHPokerCore
 
                 UpdateUI(() =>
                 {
-                    _ = DisplayAnchorAsync();
+                    DisplayAnchorAsync();
                     EnableBtn();
                 });
 
@@ -3689,27 +3738,28 @@ namespace ACNHPokerCore
 
                     if (layer1Btn.Checked)
                     {
-                        address1 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3)));
-                        address2 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 2)) + (0x10 * (anchorY - 3)));
-                        address3 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 1)) + (0x10 * (anchorY - 3)));
-                        address4 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 0)) + (0x10 * (anchorY - 3)));
-                        address5 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX + 1)) + (0x10 * (anchorY - 3)));
-                        address6 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX + 2)) + (0x10 * (anchorY - 3)));
-                        address7 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX + 3)) + (0x10 * (anchorY - 3)));
+                        address1 = GetAddress(anchorX - 3, anchorY - 3);
+                        address2 = GetAddress(anchorX - 2, anchorY - 3);
+                        address3 = GetAddress(anchorX - 1, anchorY - 3);
+                        address4 = GetAddress(anchorX, anchorY - 3);
+                        address5 = GetAddress(anchorX + 1, anchorY - 3);
+                        address6 = GetAddress(anchorX + 2, anchorY - 3);
+                        address7 = GetAddress(anchorX + 3, anchorY - 3);
                     }
                     else if (layer2Btn.Checked)
                     {
-                        address1 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3))) + Utilities.mapSize;
-                        address2 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 2)) + (0x10 * (anchorY - 3))) + Utilities.mapSize;
-                        address3 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 1)) + (0x10 * (anchorY - 3))) + Utilities.mapSize;
-                        address4 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 0)) + (0x10 * (anchorY - 3))) + Utilities.mapSize;
-                        address5 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX + 1)) + (0x10 * (anchorY - 3))) + Utilities.mapSize;
-                        address6 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX + 2)) + (0x10 * (anchorY - 3))) + Utilities.mapSize;
-                        address7 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX + 3)) + (0x10 * (anchorY - 3))) + Utilities.mapSize;
+                        address1 = GetAddress(anchorX - 3, anchorY - 3) + Utilities.mapSize;
+                        address2 = GetAddress(anchorX - 2, anchorY - 3) + Utilities.mapSize;
+                        address3 = GetAddress(anchorX - 1, anchorY - 3) + Utilities.mapSize;
+                        address4 = GetAddress(anchorX, anchorY - 3)     + Utilities.mapSize;
+                        address5 = GetAddress(anchorX + 1, anchorY - 3) + Utilities.mapSize;
+                        address6 = GetAddress(anchorX + 2, anchorY - 3) + Utilities.mapSize;
+                        address7 = GetAddress(anchorX + 3, anchorY - 3) + Utilities.mapSize;
                     }
                     else
                         return;
 
+                    /*
                     int c = 0;
 
                     while (Utilities.IsAboutToSave(s, usb, 10, saveTime, ignore))
@@ -3737,6 +3787,7 @@ namespace ACNHPokerCore
                         c++;
                         Thread.Sleep(3000);
                     }
+                    */
 
                     Utilities.DropColumn(s, usb, address1, address1 + 0x600, b[0], b[1], ref counter);
                     Utilities.DropColumn(s, usb, address2, address2 + 0x600, b[2], b[3], ref counter);
@@ -3750,17 +3801,8 @@ namespace ACNHPokerCore
 
                 UpdateUI(() =>
                 {
-                    /*
-                    BtnSetup(b[0], b[1], anchorX - 3, anchorY - 3, floor1, floor2, floor3, floor4, floor5, floor6, floor7, false);
-                    BtnSetup(b[2], b[3], anchorX - 2, anchorY - 3, floor8, floor9, floor10, floor11, floor12, floor13, floor14, false);
-                    BtnSetup(b[4], b[5], anchorX - 1, anchorY - 3, floor15, floor16, floor17, floor18, floor19, floor20, floor21, false);
-                    BtnSetup(b[6], b[7], anchorX - 0, anchorY - 3, floor22, floor23, floor24, floor25, floor26, floor27, floor28, false);
-                    BtnSetup(b[8], b[9], anchorX + 1, anchorY - 3, floor29, floor30, floor31, floor32, floor33, floor34, floor35, false);
-                    BtnSetup(b[10], b[11], anchorX + 2, anchorY - 3, floor36, floor37, floor38, floor39, floor40, floor41, floor42, false);
-                    BtnSetup(b[12], b[13], anchorX + 3, anchorY - 3, floor43, floor44, floor45, floor46, floor47, floor48, floor49, false);
-                    */
                     UpdataData(anchorX, anchorY, b);
-                    _ = UpdateAllBtn();
+                    UpdateAllBtn();
                     ResetBtnColor();
                     EnableBtn();
                 });
@@ -3819,20 +3861,20 @@ namespace ACNHPokerCore
 
                     byte[] curFloor = new byte[1568];
 
-                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3)) + 0x0, curFloor, 0x0, 0x70);
-                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3)) + 0x600, curFloor, 0x70, 0x70);
-                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3)) + 0xC00, curFloor, 0xE0, 0x70);
-                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3)) + 0x1200, curFloor, 0x150, 0x70);
-                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3)) + 0x1800, curFloor, 0x1C0, 0x70);
-                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3)) + 0x1E00, curFloor, 0x230, 0x70);
-                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3)) + 0x2400, curFloor, 0x2A0, 0x70);
-                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3)) + 0x2A00, curFloor, 0x310, 0x70);
-                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3)) + 0x3000, curFloor, 0x380, 0x70);
-                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3)) + 0x3600, curFloor, 0x3F0, 0x70);
-                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3)) + 0x3C00, curFloor, 0x460, 0x70);
-                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3)) + 0x4200, curFloor, 0x4D0, 0x70);
-                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3)) + 0x4800, curFloor, 0x540, 0x70);
-                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3)) + 0x4E00, curFloor, 0x5B0, 0x70);
+                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3 + 16)) + (0x10 * (anchorY - 3)) + 0x0, curFloor, 0x0, 0x70);
+                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3 + 16)) + (0x10 * (anchorY - 3)) + 0x600, curFloor, 0x70, 0x70);
+                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3 + 16)) + (0x10 * (anchorY - 3)) + 0xC00, curFloor, 0xE0, 0x70);
+                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3 + 16)) + (0x10 * (anchorY - 3)) + 0x1200, curFloor, 0x150, 0x70);
+                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3 + 16)) + (0x10 * (anchorY - 3)) + 0x1800, curFloor, 0x1C0, 0x70);
+                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3 + 16)) + (0x10 * (anchorY - 3)) + 0x1E00, curFloor, 0x230, 0x70);
+                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3 + 16)) + (0x10 * (anchorY - 3)) + 0x2400, curFloor, 0x2A0, 0x70);
+                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3 + 16)) + (0x10 * (anchorY - 3)) + 0x2A00, curFloor, 0x310, 0x70);
+                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3 + 16)) + (0x10 * (anchorY - 3)) + 0x3000, curFloor, 0x380, 0x70);
+                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3 + 16)) + (0x10 * (anchorY - 3)) + 0x3600, curFloor, 0x3F0, 0x70);
+                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3 + 16)) + (0x10 * (anchorY - 3)) + 0x3C00, curFloor, 0x460, 0x70);
+                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3 + 16)) + (0x10 * (anchorY - 3)) + 0x4200, curFloor, 0x4D0, 0x70);
+                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3 + 16)) + (0x10 * (anchorY - 3)) + 0x4800, curFloor, 0x540, 0x70);
+                    Buffer.BlockCopy(CurrentLayer, (0xC00 * (anchorX - 3 + 16)) + (0x10 * (anchorY - 3)) + 0x4E00, curFloor, 0x5B0, 0x70);
 
                     bool[,] isEmpty = new bool[7, 7];
 
@@ -3883,27 +3925,28 @@ namespace ACNHPokerCore
 
                     if (layer1Btn.Checked)
                     {
-                        address1 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3)));
-                        address2 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 2)) + (0x10 * (anchorY - 3)));
-                        address3 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 1)) + (0x10 * (anchorY - 3)));
-                        address4 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 0)) + (0x10 * (anchorY - 3)));
-                        address5 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX + 1)) + (0x10 * (anchorY - 3)));
-                        address6 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX + 2)) + (0x10 * (anchorY - 3)));
-                        address7 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX + 3)) + (0x10 * (anchorY - 3)));
+                        address1 = GetAddress(anchorX - 3, anchorY - 3);
+                        address2 = GetAddress(anchorX - 2, anchorY - 3);
+                        address3 = GetAddress(anchorX - 1, anchorY - 3);
+                        address4 = GetAddress(anchorX, anchorY - 3);
+                        address5 = GetAddress(anchorX + 1, anchorY - 3);
+                        address6 = GetAddress(anchorX + 2, anchorY - 3);
+                        address7 = GetAddress(anchorX + 3, anchorY - 3);
                     }
                     else if (layer2Btn.Checked)
                     {
-                        address1 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3))) + Utilities.mapSize;
-                        address2 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 2)) + (0x10 * (anchorY - 3))) + Utilities.mapSize;
-                        address3 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 1)) + (0x10 * (anchorY - 3))) + Utilities.mapSize;
-                        address4 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 0)) + (0x10 * (anchorY - 3))) + Utilities.mapSize;
-                        address5 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX + 1)) + (0x10 * (anchorY - 3))) + Utilities.mapSize;
-                        address6 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX + 2)) + (0x10 * (anchorY - 3))) + Utilities.mapSize;
-                        address7 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX + 3)) + (0x10 * (anchorY - 3))) + Utilities.mapSize;
+                        address1 = GetAddress(anchorX - 3, anchorY - 3) + Utilities.mapSize;
+                        address2 = GetAddress(anchorX - 2, anchorY - 3) + Utilities.mapSize;
+                        address3 = GetAddress(anchorX - 1, anchorY - 3) + Utilities.mapSize;
+                        address4 = GetAddress(anchorX, anchorY - 3) + Utilities.mapSize;
+                        address5 = GetAddress(anchorX + 1, anchorY - 3) + Utilities.mapSize;
+                        address6 = GetAddress(anchorX + 2, anchorY - 3) + Utilities.mapSize;
+                        address7 = GetAddress(anchorX + 3, anchorY - 3) + Utilities.mapSize;
                     }
                     else
                         return;
 
+                    /*
                     int c = 0;
 
                     while (Utilities.IsAboutToSave(s, usb, 10, saveTime, ignore))
@@ -3931,6 +3974,7 @@ namespace ACNHPokerCore
                         c++;
                         Thread.Sleep(3000);
                     }
+                    */
 
                     Utilities.DropColumn(s, usb, address1, address1 + 0x600, b[0], b[1], ref counter);
                     Utilities.DropColumn(s, usb, address2, address2 + 0x600, b[2], b[3], ref counter);
@@ -3943,17 +3987,8 @@ namespace ACNHPokerCore
 
                 UpdateUI(() =>
                 {
-                    /*
-                    BtnSetup(b[0], b[1], anchorX - 3, anchorY - 3, floor1, floor2, floor3, floor4, floor5, floor6, floor7, false);
-                    BtnSetup(b[2], b[3], anchorX - 2, anchorY - 3, floor8, floor9, floor10, floor11, floor12, floor13, floor14, false);
-                    BtnSetup(b[4], b[5], anchorX - 1, anchorY - 3, floor15, floor16, floor17, floor18, floor19, floor20, floor21, false);
-                    BtnSetup(b[6], b[7], anchorX - 0, anchorY - 3, floor22, floor23, floor24, floor25, floor26, floor27, floor28, false);
-                    BtnSetup(b[8], b[9], anchorX + 1, anchorY - 3, floor29, floor30, floor31, floor32, floor33, floor34, floor35, false);
-                    BtnSetup(b[10], b[11], anchorX + 2, anchorY - 3, floor36, floor37, floor38, floor39, floor40, floor41, floor42, false);
-                    BtnSetup(b[12], b[13], anchorX + 3, anchorY - 3, floor43, floor44, floor45, floor46, floor47, floor48, floor49, false);
-                    */
                     UpdataData(anchorX, anchorY, b);
-                    _ = UpdateAllBtn();
+                    UpdateAllBtn();
                     ResetBtnColor();
                     EnableBtn();
                 });
@@ -4249,23 +4284,23 @@ namespace ACNHPokerCore
 
                     if (layer1Btn.Checked)
                     {
-                        address1 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3)));
-                        address2 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 2)) + (0x10 * (anchorY - 3)));
-                        address3 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 1)) + (0x10 * (anchorY - 3)));
-                        address4 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 0)) + (0x10 * (anchorY - 3)));
-                        address5 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX + 1)) + (0x10 * (anchorY - 3)));
-                        address6 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX + 2)) + (0x10 * (anchorY - 3)));
-                        address7 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX + 3)) + (0x10 * (anchorY - 3)));
+                        address1 = GetAddress(anchorX - 3, anchorY - 3);
+                        address2 = GetAddress(anchorX - 2, anchorY - 3);
+                        address3 = GetAddress(anchorX - 1, anchorY - 3);
+                        address4 = GetAddress(anchorX, anchorY - 3);
+                        address5 = GetAddress(anchorX + 1, anchorY - 3);
+                        address6 = GetAddress(anchorX + 2, anchorY - 3);
+                        address7 = GetAddress(anchorX + 3, anchorY - 3);
                     }
                     else if (layer2Btn.Checked)
                     {
-                        address1 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3))) + Utilities.mapSize;
-                        address2 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 2)) + (0x10 * (anchorY - 3))) + Utilities.mapSize;
-                        address3 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 1)) + (0x10 * (anchorY - 3))) + Utilities.mapSize;
-                        address4 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX - 0)) + (0x10 * (anchorY - 3))) + Utilities.mapSize;
-                        address5 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX + 1)) + (0x10 * (anchorY - 3))) + Utilities.mapSize;
-                        address6 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX + 2)) + (0x10 * (anchorY - 3))) + Utilities.mapSize;
-                        address7 = (UInt32)(Utilities.mapZero + (0xC00 * (anchorX + 3)) + (0x10 * (anchorY - 3))) + Utilities.mapSize;
+                        address1 = GetAddress(anchorX - 3, anchorY - 3) + Utilities.mapSize;
+                        address2 = GetAddress(anchorX - 2, anchorY - 3) + Utilities.mapSize;
+                        address3 = GetAddress(anchorX - 1, anchorY - 3) + Utilities.mapSize;
+                        address4 = GetAddress(anchorX, anchorY - 3)     + Utilities.mapSize;
+                        address5 = GetAddress(anchorX + 1, anchorY - 3) + Utilities.mapSize;
+                        address6 = GetAddress(anchorX + 2, anchorY - 3) + Utilities.mapSize;
+                        address7 = GetAddress(anchorX + 3, anchorY - 3) + Utilities.mapSize;
                     }
                     else
                         return;
@@ -4286,17 +4321,8 @@ namespace ACNHPokerCore
 
                 UpdateUI(() =>
                 {
-                    /*
-                    BtnSetup(b[0], b[1], anchorX - 3, anchorY - 3, floor1, floor2, floor3, floor4, floor5, floor6, floor7, false);
-                    BtnSetup(b[2], b[3], anchorX - 2, anchorY - 3, floor8, floor9, floor10, floor11, floor12, floor13, floor14, false);
-                    BtnSetup(b[4], b[5], anchorX - 1, anchorY - 3, floor15, floor16, floor17, floor18, floor19, floor20, floor21, false);
-                    BtnSetup(b[6], b[7], anchorX - 0, anchorY - 3, floor22, floor23, floor24, floor25, floor26, floor27, floor28, false);
-                    BtnSetup(b[8], b[9], anchorX + 1, anchorY - 3, floor29, floor30, floor31, floor32, floor33, floor34, floor35, false);
-                    BtnSetup(b[10], b[11], anchorX + 2, anchorY - 3, floor36, floor37, floor38, floor39, floor40, floor41, floor42, false);
-                    BtnSetup(b[12], b[13], anchorX + 3, anchorY - 3, floor43, floor44, floor45, floor46, floor47, floor48, floor49, false);
-                    */
                     UpdataData(anchorX, anchorY, b);
-                    _ = UpdateAllBtn();
+                    UpdateAllBtn();
                     ResetBtnColor();
                     EnableBtn();
                 });
@@ -4518,14 +4544,14 @@ namespace ACNHPokerCore
 
             if (layer1Btn.Checked)
             {
-                Buffer.BlockCopy(Left, 0, Layer1, x * 0xC00 + shiftRightValue + y * 0x10 + shiftDownValue, 16);
-                Buffer.BlockCopy(Right, 0, Layer1, x * 0xC00 + 0x600 + shiftRightValue + y * 0x10 + shiftDownValue, 16);
+                Buffer.BlockCopy(Left, 0, Layer1, (x + 16) * 0xC00 + shiftRightValue + y * 0x10 + shiftDownValue, 16);
+                Buffer.BlockCopy(Right, 0, Layer1, (x + 16) * 0xC00 + 0x600 + shiftRightValue + y * 0x10 + shiftDownValue, 16);
                 miniMapBox.BackgroundImage = miniMap.RefreshItemMap(Layer1);
             }
             else if (layer2Btn.Checked)
             {
-                Buffer.BlockCopy(Left, 0, Layer2, x * 0xC00 + shiftRightValue + y * 0x10 + shiftDownValue, 16);
-                Buffer.BlockCopy(Right, 0, Layer2, x * 0xC00 + 0x600 + shiftRightValue + y * 0x10 + shiftDownValue, 16);
+                Buffer.BlockCopy(Left, 0, Layer2, (x + 16) * 0xC00 + shiftRightValue + y * 0x10 + shiftDownValue, 16);
+                Buffer.BlockCopy(Right, 0, Layer2, (x + 16) * 0xC00 + 0x600 + shiftRightValue + y * 0x10 + shiftDownValue, 16);
                 miniMapBox.BackgroundImage = miniMap.RefreshItemMap(Layer2);
             }
         }
@@ -4544,12 +4570,12 @@ namespace ACNHPokerCore
 
             if (layer1Btn.Checked)
             {
-                Buffer.BlockCopy(Left, 0, Layer1, x * 0xC00 + shiftRightValue + y * 0x10 + shiftDownValue, 8);
+                Buffer.BlockCopy(Left, 0, Layer1, (x + 16) * 0xC00 + shiftRightValue + y * 0x10 + shiftDownValue, 8);
                 miniMapBox.BackgroundImage = miniMap.RefreshItemMap(Layer1);
             }
             else if (layer2Btn.Checked)
             {
-                Buffer.BlockCopy(Left, 0, Layer2, x * 0xC00 + shiftRightValue + y * 0x10 + shiftDownValue, 8);
+                Buffer.BlockCopy(Left, 0, Layer2, (x + 16) * 0xC00 + shiftRightValue + y * 0x10 + shiftDownValue, 8);
                 miniMapBox.BackgroundImage = miniMap.RefreshItemMap(Layer2);
             }
         }
@@ -4561,14 +4587,14 @@ namespace ACNHPokerCore
 
             if (layer1Btn.Checked)
             {
-                Buffer.BlockCopy(Left, 0, Layer1, x * 0xC00 + y * 0x10, 16);
-                Buffer.BlockCopy(Right, 0, Layer1, x * 0xC00 + 0x600 + y * 0x10, 16);
+                Buffer.BlockCopy(Left, 0, Layer1, (x + 16) * 0xC00 + y * 0x10, 16);
+                Buffer.BlockCopy(Right, 0, Layer1, (x + 16) * 0xC00 + 0x600 + y * 0x10, 16);
                 miniMapBox.BackgroundImage = miniMap.RefreshItemMap(Layer1);
             }
             else if (layer2Btn.Checked)
             {
-                Buffer.BlockCopy(Left, 0, Layer2, x * 0xC00 + y * 0x10, 16);
-                Buffer.BlockCopy(Right, 0, Layer2, x * 0xC00 + 0x600 + y * 0x10, 16);
+                Buffer.BlockCopy(Left, 0, Layer2, (x + 16) * 0xC00 + y * 0x10, 16);
+                Buffer.BlockCopy(Right, 0, Layer2, (x + 16) * 0xC00 + 0x600 + y * 0x10, 16);
                 miniMapBox.BackgroundImage = miniMap.RefreshItemMap(Layer2);
             }
         }
@@ -4581,13 +4607,13 @@ namespace ACNHPokerCore
                 {
                     if (layer1Btn.Checked)
                     {
-                        Buffer.BlockCopy(newData[i * 2], 0, Layer1, (x - 3 + i) * 0xC00 + (y - 3) * 0x10, newData[i * 2].Length);
-                        Buffer.BlockCopy(newData[i * 2 + 1], 0, Layer1, (x - 3 + i) * 0xC00 + 0x600 + (y - 3) * 0x10, newData[i * 2 + 1].Length);
+                        Buffer.BlockCopy(newData[i * 2], 0, Layer1, (x - 3 + i + 16) * 0xC00 + (y - 3) * 0x10, newData[i * 2].Length);
+                        Buffer.BlockCopy(newData[i * 2 + 1], 0, Layer1, (x - 3 + i + 16) * 0xC00 + 0x600 + (y - 3) * 0x10, newData[i * 2 + 1].Length);
                     }
                     else if (layer2Btn.Checked)
                     {
-                        Buffer.BlockCopy(newData[i * 2], 0, Layer2, (x - 3 + i) * 0xC00 + (y - 3) * 0x10, newData[i * 2].Length);
-                        Buffer.BlockCopy(newData[i * 2 + 1], 0, Layer2, (x - 3 + i) * 0xC00 + 0x600 + (y - 3) * 0x10, newData[i * 2 + 1].Length);
+                        Buffer.BlockCopy(newData[i * 2], 0, Layer2, (x - 3 + i + 16) * 0xC00 + (y - 3) * 0x10, newData[i * 2].Length);
+                        Buffer.BlockCopy(newData[i * 2 + 1], 0, Layer2, (x - 3 + i + 16) * 0xC00 + 0x600 + (y - 3) * 0x10, newData[i * 2 + 1].Length);
                     }
                 }
             }
@@ -4599,13 +4625,13 @@ namespace ACNHPokerCore
                     {
                         if (layer1Btn.Checked)
                         {
-                            Buffer.BlockCopy(newData[i * 2], 0, Layer1, (x + i) * 0xC00 + (y) * 0x10, newData[i * 2].Length);
-                            Buffer.BlockCopy(newData[i * 2 + 1], 0, Layer1, (x + i) * 0xC00 + 0x600 + (y) * 0x10, newData[i * 2 + 1].Length);
+                            Buffer.BlockCopy(newData[i * 2], 0, Layer1, (x + i + 16) * 0xC00 + (y) * 0x10, newData[i * 2].Length);
+                            Buffer.BlockCopy(newData[i * 2 + 1], 0, Layer1, (x + i + 16) * 0xC00 + 0x600 + (y) * 0x10, newData[i * 2 + 1].Length);
                         }
                         else if (layer2Btn.Checked)
                         {
-                            Buffer.BlockCopy(newData[i * 2], 0, Layer2, (x + i) * 0xC00 + (y) * 0x10, newData[i * 2].Length);
-                            Buffer.BlockCopy(newData[i * 2 + 1], 0, Layer2, (x + i) * 0xC00 + 0x600 + (y) * 0x10, newData[i * 2 + 1].Length);
+                            Buffer.BlockCopy(newData[i * 2], 0, Layer2, (x + i + 16) * 0xC00 + (y) * 0x10, newData[i * 2].Length);
+                            Buffer.BlockCopy(newData[i * 2 + 1], 0, Layer2, (x + i + 16) * 0xC00 + 0x600 + (y) * 0x10, newData[i * 2 + 1].Length);
                         }
                     }
                 }
@@ -4615,13 +4641,13 @@ namespace ACNHPokerCore
                     {
                         if (layer1Btn.Checked)
                         {
-                            Buffer.BlockCopy(newData[i * 2], 0, Layer1, (x - i) * 0xC00 + (y) * 0x10, newData[i * 2].Length);
-                            Buffer.BlockCopy(newData[i * 2 + 1], 0, Layer1, (x - i) * 0xC00 + 0x600 + (y) * 0x10, newData[i * 2 + 1].Length);
+                            Buffer.BlockCopy(newData[i * 2], 0, Layer1, (x - i + 16) * 0xC00 + (y) * 0x10, newData[i * 2].Length);
+                            Buffer.BlockCopy(newData[i * 2 + 1], 0, Layer1, (x - i + 16) * 0xC00 + 0x600 + (y) * 0x10, newData[i * 2 + 1].Length);
                         }
                         else if (layer2Btn.Checked)
                         {
-                            Buffer.BlockCopy(newData[i * 2], 0, Layer2, (x - i) * 0xC00 + (y) * 0x10, newData[i * 2].Length);
-                            Buffer.BlockCopy(newData[i * 2 + 1], 0, Layer2, (x - i) * 0xC00 + 0x600 + (y) * 0x10, newData[i * 2 + 1].Length);
+                            Buffer.BlockCopy(newData[i * 2], 0, Layer2, (x - i + 16) * 0xC00 + (y) * 0x10, newData[i * 2].Length);
+                            Buffer.BlockCopy(newData[i * 2 + 1], 0, Layer2, (x - i + 16) * 0xC00 + 0x600 + (y) * 0x10, newData[i * 2 + 1].Length);
                         }
                     }
                 }
@@ -4666,7 +4692,7 @@ namespace ACNHPokerCore
             miniMapBox.BackgroundImage = null;
             miniMapBox.BackgroundImage = miniMap.RefreshItemMap(Layer1);
             btnToolTip.RemoveAll();
-            _ = DisplayAnchorAsync();
+            DisplayAnchorAsync();
             //ResetBtnColor();
         }
 
@@ -4682,7 +4708,7 @@ namespace ACNHPokerCore
             miniMapBox.BackgroundImage = null;
             miniMapBox.BackgroundImage = miniMap.RefreshItemMap(Layer2);
             btnToolTip.RemoveAll();
-            _ = DisplayAnchorAsync();
+            DisplayAnchorAsync();
             //ResetBtnColor();
         }
         #endregion
@@ -4913,7 +4939,6 @@ namespace ACNHPokerCore
         #region MiniMap
         private void MiniMapBox_MouseDown(object sender, MouseEventArgs e)
         {
-
             if (drawing)
                 return;
 
@@ -4947,7 +4972,7 @@ namespace ACNHPokerCore
                 yCoordinate.Text = y.ToString();
                 selectedButton = floor25;
 
-                _ = DisplayAnchorAsync();
+                DisplayAnchorAsync();
             }
 
         }
@@ -4987,7 +5012,7 @@ namespace ACNHPokerCore
                 yCoordinate.Text = y.ToString();
                 selectedButton = floor25;
 
-                _ = DisplayAnchorAsync();
+                DisplayAnchorAsync();
             }
         }
 
@@ -5131,12 +5156,14 @@ namespace ACNHPokerCore
         {
             try
             {
+                /*
                 byte[] Coordinate = Utilities.GetCoordinate(s, usb);
                 int x = BitConverter.ToInt32(Coordinate, 0);
                 int y = BitConverter.ToInt32(Coordinate, 4);
 
                 anchorX = x - 0x24;
                 anchorY = y - 0x18;
+                */
 
                 if (anchorX < 3 || anchorY < 3 || anchorX > 108 || anchorY > 92)
                 {
@@ -5144,7 +5171,7 @@ namespace ACNHPokerCore
                     anchorY = 48;
                 }
 
-                _ = DisplayAnchorAsync();
+                DisplayAnchorAsync();
 
                 xCoordinate.Text = anchorX.ToString();
                 yCoordinate.Text = anchorY.ToString();
@@ -5157,7 +5184,7 @@ namespace ACNHPokerCore
                 anchorX = 56;
                 anchorY = 48;
 
-                _ = DisplayAnchorAsync();
+                DisplayAnchorAsync();
 
                 xCoordinate.Text = anchorX.ToString();
                 yCoordinate.Text = anchorY.ToString();
@@ -5185,6 +5212,13 @@ namespace ACNHPokerCore
             bulkSpawn.ShowDialog(this);
         }
 
+        static readonly byte[] EMPTY_TILE = { 0xFE, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFE, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+
+        ushort GetItemID(byte[] data, int offset)
+        {
+            return (ushort)((data[offset + 1] << 8) | data[offset]);
+        }
+
         private void WeedsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MyMessageBox.Show("Are you sure you want to remove all weeds on your island (Layer 1 only)?", "Oh No! Not the Weeds!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -5193,34 +5227,34 @@ namespace ACNHPokerCore
 
             DisableBtn();
 
-            byte[] emptyLeft = Utilities.StringToByte("FEFF000000000000FEFF000000000000");
-            byte[] emptyRight = Utilities.StringToByte("FEFF000000000000FEFF000000000000");
+            byte[] emptyLeft = EMPTY_TILE;
+            byte[] emptyRight = EMPTY_TILE;
 
-            byte[] processLayer = [];
-            processLayer = Utilities.Add(processLayer, Layer1);
+            byte[] processLayer = (byte[])Layer1.Clone();
 
-            Boolean[] change = new Boolean[56];
-            byte[] tempID = new byte[2];
-            ushort itemID;
-            for (int i = 0; i < 56; i++)
+            bool[] change = new bool[Utilities.ExtendedMapNumOfColumn / 2];
+
+            for (int i = 0; i < Utilities.ExtendedMapNumOfColumn / 2; i++)
             {
-                for (int j = 0; j < 96; j++)
+                for (int j = 0; j < Utilities.ExtendedMapNumOfRow; j++)
                 {
-                    Buffer.BlockCopy(Layer1, i * 0x1800 + j * 0x10, tempID, 0, 2);
-                    itemID = Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(tempID)), 16);
-                    if (ItemAttr.IsWeed(itemID))
+                    // Process first section
+                    int offset1 = i * 0x1800 + j * 0x10;
+                    ushort itemID1 = GetItemID(Layer1, offset1);
+                    if (ItemAttr.IsWeed(itemID1))
                     {
-                        Buffer.BlockCopy(emptyLeft, 0, processLayer, i * 0x1800 + j * 0x10, 16);
-                        Buffer.BlockCopy(emptyRight, 0, processLayer, i * 0x1800 + 0x600 + j * 0x10, 16);
+                        Buffer.BlockCopy(emptyLeft, 0, processLayer, offset1, 16);
+                        Buffer.BlockCopy(emptyRight, 0, processLayer, offset1 + 0x600, 16);
                         change[i] = true;
                     }
 
-                    Buffer.BlockCopy(Layer1, i * 0x1800 + 0xC00 + j * 0x10, tempID, 0, 2);
-                    itemID = Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(tempID)), 16);
-                    if (ItemAttr.IsWeed(itemID))
+                    // Process second section
+                    int offset2 = i * 0x1800 + 0xC00 + j * 0x10;
+                    ushort itemID2 = GetItemID(Layer1, offset2);
+                    if (ItemAttr.IsWeed(itemID2))
                     {
-                        Buffer.BlockCopy(emptyLeft, 0, processLayer, i * 0x1800 + 0xC00 + j * 0x10, 16);
-                        Buffer.BlockCopy(emptyRight, 0, processLayer, i * 0x1800 + 0xC00 + 0x600 + j * 0x10, 16);
+                        Buffer.BlockCopy(emptyLeft, 0, processLayer, offset2, 16);
+                        Buffer.BlockCopy(emptyRight, 0, processLayer, offset2 + 0x600, 16);
                         change[i] = true;
                     }
                 }
@@ -5238,34 +5272,34 @@ namespace ACNHPokerCore
 
             DisableBtn();
 
-            byte[] emptyLeft = Utilities.StringToByte("FEFF000000000000FEFF000000000000");
-            byte[] emptyRight = Utilities.StringToByte("FEFF000000000000FEFF000000000000");
+            byte[] emptyLeft = EMPTY_TILE;
+            byte[] emptyRight = EMPTY_TILE;
 
-            byte[] processLayer = [];
-            processLayer = Utilities.Add(processLayer, Layer1);
+            byte[] processLayer = (byte[])Layer1.Clone();
 
-            Boolean[] change = new Boolean[56];
-            byte[] tempID = new byte[2];
-            ushort itemID;
-            for (int i = 0; i < 56; i++)
+            bool[] change = new bool[Utilities.ExtendedMapNumOfColumn / 2];
+
+            for (int i = 0; i < Utilities.ExtendedMapNumOfColumn / 2; i++)
             {
-                for (int j = 0; j < 96; j++)
+                for (int j = 0; j < Utilities.ExtendedMapNumOfRow; j++)
                 {
-                    Buffer.BlockCopy(Layer1, i * 0x1800 + j * 0x10, tempID, 0, 2);
-                    itemID = Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(tempID)), 16);
-                    if (ItemAttr.HasGenetics(itemID))
+                    // Process first section
+                    int offset1 = i * 0x1800 + j * 0x10;
+                    ushort itemID1 = GetItemID(Layer1, offset1);
+                    if (ItemAttr.HasGenetics(itemID1))
                     {
-                        Buffer.BlockCopy(emptyLeft, 0, processLayer, i * 0x1800 + j * 0x10, 16);
-                        Buffer.BlockCopy(emptyRight, 0, processLayer, i * 0x1800 + 0x600 + j * 0x10, 16);
+                        Buffer.BlockCopy(emptyLeft, 0, processLayer, offset1, 16);
+                        Buffer.BlockCopy(emptyRight, 0, processLayer, offset1 + 0x600, 16);
                         change[i] = true;
                     }
 
-                    Buffer.BlockCopy(Layer1, i * 0x1800 + 0xC00 + j * 0x10, tempID, 0, 2);
-                    itemID = Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(tempID)), 16);
-                    if (ItemAttr.HasGenetics(itemID))
+                    // Process second section
+                    int offset2 = i * 0x1800 + 0xC00 + j * 0x10;
+                    ushort itemID2 = GetItemID(Layer1, offset2);
+                    if (ItemAttr.HasGenetics(itemID2))
                     {
-                        Buffer.BlockCopy(emptyLeft, 0, processLayer, i * 0x1800 + 0xC00 + j * 0x10, 16);
-                        Buffer.BlockCopy(emptyRight, 0, processLayer, i * 0x1800 + 0xC00 + 0x600 + j * 0x10, 16);
+                        Buffer.BlockCopy(emptyLeft, 0, processLayer, offset2, 16);
+                        Buffer.BlockCopy(emptyRight, 0, processLayer, offset2 + 0x600, 16);
                         change[i] = true;
                     }
                 }
@@ -5283,34 +5317,34 @@ namespace ACNHPokerCore
 
             DisableBtn();
 
-            byte[] emptyLeft = Utilities.StringToByte("FEFF000000000000FEFF000000000000");
-            byte[] emptyRight = Utilities.StringToByte("FEFF000000000000FEFF000000000000");
+            byte[] emptyLeft = EMPTY_TILE;
+            byte[] emptyRight = EMPTY_TILE;
 
-            byte[] processLayer = [];
-            processLayer = Utilities.Add(processLayer, Layer1);
+            byte[] processLayer = (byte[])Layer1.Clone();
 
-            Boolean[] change = new Boolean[56];
-            byte[] tempID = new byte[2];
-            ushort itemID;
-            for (int i = 0; i < 56; i++)
+            bool[] change = new bool[Utilities.ExtendedMapNumOfColumn / 2];
+
+            for (int i = 0; i < Utilities.ExtendedMapNumOfColumn / 2; i++)
             {
-                for (int j = 0; j < 96; j++)
+                for (int j = 0; j < Utilities.ExtendedMapNumOfRow; j++)
                 {
-                    Buffer.BlockCopy(Layer1, i * 0x1800 + j * 0x10, tempID, 0, 2);
-                    itemID = Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(tempID)), 16);
-                    if (ItemAttr.IsTree(itemID))
+                    // Process first section
+                    int offset1 = i * 0x1800 + j * 0x10;
+                    ushort itemID1 = GetItemID(Layer1, offset1);
+                    if (ItemAttr.IsTree(itemID1))
                     {
-                        Buffer.BlockCopy(emptyLeft, 0, processLayer, i * 0x1800 + j * 0x10, 16);
-                        Buffer.BlockCopy(emptyRight, 0, processLayer, i * 0x1800 + 0x600 + j * 0x10, 16);
+                        Buffer.BlockCopy(emptyLeft, 0, processLayer, offset1, 16);
+                        Buffer.BlockCopy(emptyRight, 0, processLayer, offset1 + 0x600, 16);
                         change[i] = true;
                     }
 
-                    Buffer.BlockCopy(Layer1, i * 0x1800 + 0xC00 + j * 0x10, tempID, 0, 2);
-                    itemID = Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(tempID)), 16);
-                    if (ItemAttr.IsTree(itemID))
+                    // Process second section
+                    int offset2 = i * 0x1800 + 0xC00 + j * 0x10;
+                    ushort itemID2 = GetItemID(Layer1, offset2);
+                    if (ItemAttr.IsTree(itemID2))
                     {
-                        Buffer.BlockCopy(emptyLeft, 0, processLayer, i * 0x1800 + 0xC00 + j * 0x10, 16);
-                        Buffer.BlockCopy(emptyRight, 0, processLayer, i * 0x1800 + 0xC00 + 0x600 + j * 0x10, 16);
+                        Buffer.BlockCopy(emptyLeft, 0, processLayer, offset2, 16);
+                        Buffer.BlockCopy(emptyRight, 0, processLayer, offset2 + 0x600, 16);
                         change[i] = true;
                     }
                 }
@@ -5328,34 +5362,34 @@ namespace ACNHPokerCore
 
             DisableBtn();
 
-            byte[] emptyLeft = Utilities.StringToByte("FEFF000000000000FEFF000000000000");
-            byte[] emptyRight = Utilities.StringToByte("FEFF000000000000FEFF000000000000");
+            byte[] emptyLeft = EMPTY_TILE;
+            byte[] emptyRight = EMPTY_TILE;
 
-            byte[] processLayer = [];
-            processLayer = Utilities.Add(processLayer, Layer1);
+            byte[] processLayer = (byte[])Layer1.Clone();
 
-            Boolean[] change = new Boolean[56];
-            byte[] tempID = new byte[2];
-            ushort itemID;
-            for (int i = 0; i < 56; i++)
+            bool[] change = new bool[Utilities.ExtendedMapNumOfColumn / 2];
+
+            for (int i = 0; i < Utilities.ExtendedMapNumOfColumn / 2; i++)
             {
-                for (int j = 0; j < 96; j++)
+                for (int j = 0; j < Utilities.ExtendedMapNumOfRow; j++)
                 {
-                    Buffer.BlockCopy(Layer1, i * 0x1800 + j * 0x10, tempID, 0, 2);
-                    itemID = Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(tempID)), 16);
-                    if (ItemAttr.IsBush(itemID))
+                    // Process first section
+                    int offset1 = i * 0x1800 + j * 0x10;
+                    ushort itemID1 = GetItemID(Layer1, offset1);
+                    if (ItemAttr.IsBush(itemID1))
                     {
-                        Buffer.BlockCopy(emptyLeft, 0, processLayer, i * 0x1800 + j * 0x10, 16);
-                        Buffer.BlockCopy(emptyRight, 0, processLayer, i * 0x1800 + 0x600 + j * 0x10, 16);
+                        Buffer.BlockCopy(emptyLeft, 0, processLayer, offset1, 16);
+                        Buffer.BlockCopy(emptyRight, 0, processLayer, offset1 + 0x600, 16);
                         change[i] = true;
                     }
 
-                    Buffer.BlockCopy(Layer1, i * 0x1800 + 0xC00 + j * 0x10, tempID, 0, 2);
-                    itemID = Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(tempID)), 16);
-                    if (ItemAttr.IsBush(itemID))
+                    // Process second section
+                    int offset2 = i * 0x1800 + 0xC00 + j * 0x10;
+                    ushort itemID2 = GetItemID(Layer1, offset2);
+                    if (ItemAttr.IsBush(itemID2))
                     {
-                        Buffer.BlockCopy(emptyLeft, 0, processLayer, i * 0x1800 + 0xC00 + j * 0x10, 16);
-                        Buffer.BlockCopy(emptyRight, 0, processLayer, i * 0x1800 + 0xC00 + 0x600 + j * 0x10, 16);
+                        Buffer.BlockCopy(emptyLeft, 0, processLayer, offset2, 16);
+                        Buffer.BlockCopy(emptyRight, 0, processLayer, offset2 + 0x600, 16);
                         change[i] = true;
                     }
                 }
@@ -5373,34 +5407,34 @@ namespace ACNHPokerCore
 
             DisableBtn();
 
-            byte[] emptyLeft = Utilities.StringToByte("FEFF000000000000FEFF000000000000");
-            byte[] emptyRight = Utilities.StringToByte("FEFF000000000000FEFF000000000000");
+            byte[] emptyLeft = EMPTY_TILE;
+            byte[] emptyRight = EMPTY_TILE;
 
-            byte[] processLayer = [];
-            processLayer = Utilities.Add(processLayer, Layer1);
+            byte[] processLayer = (byte[])Layer1.Clone();
 
-            Boolean[] change = new Boolean[56];
-            byte[] tempID = new byte[2];
-            ushort itemID;
-            for (int i = 0; i < 56; i++)
+            bool[] change = new bool[Utilities.ExtendedMapNumOfColumn / 2];
+
+            for (int i = 0; i < Utilities.ExtendedMapNumOfColumn / 2; i++)
             {
-                for (int j = 0; j < 96; j++)
+                for (int j = 0; j < Utilities.ExtendedMapNumOfRow; j++)
                 {
-                    Buffer.BlockCopy(Layer1, i * 0x1800 + j * 0x10, tempID, 0, 2);
-                    itemID = Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(tempID)), 16);
-                    if (ItemAttr.IsPlacedFence(itemID))
+                    // Process first section
+                    int offset1 = i * 0x1800 + j * 0x10;
+                    ushort itemID1 = GetItemID(Layer1, offset1);
+                    if (ItemAttr.IsPlacedFence(itemID1))
                     {
-                        Buffer.BlockCopy(emptyLeft, 0, processLayer, i * 0x1800 + j * 0x10, 16);
-                        Buffer.BlockCopy(emptyRight, 0, processLayer, i * 0x1800 + 0x600 + j * 0x10, 16);
+                        Buffer.BlockCopy(emptyLeft, 0, processLayer, offset1, 16);
+                        Buffer.BlockCopy(emptyRight, 0, processLayer, offset1 + 0x600, 16);
                         change[i] = true;
                     }
 
-                    Buffer.BlockCopy(Layer1, i * 0x1800 + 0xC00 + j * 0x10, tempID, 0, 2);
-                    itemID = Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(tempID)), 16);
-                    if (ItemAttr.IsPlacedFence(itemID))
+                    // Process second section
+                    int offset2 = i * 0x1800 + 0xC00 + j * 0x10;
+                    ushort itemID2 = GetItemID(Layer1, offset2);
+                    if (ItemAttr.IsPlacedFence(itemID2))
                     {
-                        Buffer.BlockCopy(emptyLeft, 0, processLayer, i * 0x1800 + 0xC00 + j * 0x10, 16);
-                        Buffer.BlockCopy(emptyRight, 0, processLayer, i * 0x1800 + 0xC00 + 0x600 + j * 0x10, 16);
+                        Buffer.BlockCopy(emptyLeft, 0, processLayer, offset2, 16);
+                        Buffer.BlockCopy(emptyRight, 0, processLayer, offset2 + 0x600, 16);
                         change[i] = true;
                     }
                 }
@@ -5418,34 +5452,34 @@ namespace ACNHPokerCore
 
             DisableBtn();
 
-            byte[] emptyLeft = Utilities.StringToByte("FEFF000000000000FEFF000000000000");
-            byte[] emptyRight = Utilities.StringToByte("FEFF000000000000FEFF000000000000");
+            byte[] emptyLeft = EMPTY_TILE;
+            byte[] emptyRight = EMPTY_TILE;
 
-            byte[] processLayer = [];
-            processLayer = Utilities.Add(processLayer, Layer1);
+            byte[] processLayer = (byte[])Layer1.Clone();
 
-            Boolean[] change = new Boolean[56];
-            byte[] tempID = new byte[2];
-            ushort itemID;
-            for (int i = 0; i < 56; i++)
+            bool[] change = new bool[Utilities.ExtendedMapNumOfColumn / 2];
+
+            for (int i = 0; i < Utilities.ExtendedMapNumOfColumn / 2; i++)
             {
-                for (int j = 0; j < 96; j++)
+                for (int j = 0; j < Utilities.ExtendedMapNumOfRow; j++)
                 {
-                    Buffer.BlockCopy(Layer1, i * 0x1800 + j * 0x10, tempID, 0, 2);
-                    itemID = Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(tempID)), 16);
-                    if (ItemAttr.IsShell(itemID))
+                    // Process first section
+                    int offset1 = i * 0x1800 + j * 0x10;
+                    ushort itemID1 = GetItemID(Layer1, offset1);
+                    if (ItemAttr.IsShell(itemID1))
                     {
-                        Buffer.BlockCopy(emptyLeft, 0, processLayer, i * 0x1800 + j * 0x10, 16);
-                        Buffer.BlockCopy(emptyRight, 0, processLayer, i * 0x1800 + 0x600 + j * 0x10, 16);
+                        Buffer.BlockCopy(emptyLeft, 0, processLayer, offset1, 16);
+                        Buffer.BlockCopy(emptyRight, 0, processLayer, offset1 + 0x600, 16);
                         change[i] = true;
                     }
 
-                    Buffer.BlockCopy(Layer1, i * 0x1800 + 0xC00 + j * 0x10, tempID, 0, 2);
-                    itemID = Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(tempID)), 16);
-                    if (ItemAttr.IsShell(itemID))
+                    // Process second section
+                    int offset2 = i * 0x1800 + 0xC00 + j * 0x10;
+                    ushort itemID2 = GetItemID(Layer1, offset2);
+                    if (ItemAttr.IsShell(itemID2))
                     {
-                        Buffer.BlockCopy(emptyLeft, 0, processLayer, i * 0x1800 + 0xC00 + j * 0x10, 16);
-                        Buffer.BlockCopy(emptyRight, 0, processLayer, i * 0x1800 + 0xC00 + 0x600 + j * 0x10, 16);
+                        Buffer.BlockCopy(emptyLeft, 0, processLayer, offset2, 16);
+                        Buffer.BlockCopy(emptyRight, 0, processLayer, offset2 + 0x600, 16);
                         change[i] = true;
                     }
                 }
@@ -5463,34 +5497,34 @@ namespace ACNHPokerCore
 
             DisableBtn();
 
-            byte[] emptyLeft = Utilities.StringToByte("FEFF000000000000FEFF000000000000");
-            byte[] emptyRight = Utilities.StringToByte("FEFF000000000000FEFF000000000000");
+            byte[] emptyLeft = EMPTY_TILE;
+            byte[] emptyRight = EMPTY_TILE;
 
-            byte[] processLayer = [];
-            processLayer = Utilities.Add(processLayer, Layer1);
+            byte[] processLayer = (byte[])Layer1.Clone();
 
-            Boolean[] change = new Boolean[56];
-            byte[] tempID = new byte[2];
-            ushort itemID;
-            for (int i = 0; i < 56; i++)
+            bool[] change = new bool[Utilities.ExtendedMapNumOfColumn / 2];
+
+            for (int i = 0; i < Utilities.ExtendedMapNumOfColumn / 2; i++)
             {
-                for (int j = 0; j < 96; j++)
+                for (int j = 0; j < Utilities.ExtendedMapNumOfRow; j++)
                 {
-                    Buffer.BlockCopy(Layer1, i * 0x1800 + j * 0x10, tempID, 0, 2);
-                    itemID = Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(tempID)), 16);
-                    if (itemID.Equals(0x16A2))
+                    // Process first section
+                    int offset1 = i * 0x1800 + j * 0x10;
+                    ushort itemID1 = GetItemID(Layer1, offset1);
+                    if (itemID1.Equals(0x16A2))
                     {
-                        Buffer.BlockCopy(emptyLeft, 0, processLayer, i * 0x1800 + j * 0x10, 16);
-                        Buffer.BlockCopy(emptyRight, 0, processLayer, i * 0x1800 + 0x600 + j * 0x10, 16);
+                        Buffer.BlockCopy(emptyLeft, 0, processLayer, offset1, 16);
+                        Buffer.BlockCopy(emptyRight, 0, processLayer, offset1 + 0x600, 16);
                         change[i] = true;
                     }
 
-                    Buffer.BlockCopy(Layer1, i * 0x1800 + 0xC00 + j * 0x10, tempID, 0, 2);
-                    itemID = Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(tempID)), 16);
-                    if (itemID.Equals(0x16A2))
+                    // Process second section
+                    int offset2 = i * 0x1800 + 0xC00 + j * 0x10;
+                    ushort itemID2 = GetItemID(Layer1, offset2);
+                    if (itemID2.Equals(0x16A2))
                     {
-                        Buffer.BlockCopy(emptyLeft, 0, processLayer, i * 0x1800 + 0xC00 + j * 0x10, 16);
-                        Buffer.BlockCopy(emptyRight, 0, processLayer, i * 0x1800 + 0xC00 + 0x600 + j * 0x10, 16);
+                        Buffer.BlockCopy(emptyLeft, 0, processLayer, offset2, 16);
+                        Buffer.BlockCopy(emptyRight, 0, processLayer, offset2 + 0x600, 16);
                         change[i] = true;
                     }
                 }
@@ -5508,34 +5542,34 @@ namespace ACNHPokerCore
 
             DisableBtn();
 
-            byte[] emptyLeft = Utilities.StringToByte("FEFF000000000000FEFF000000000000");
-            byte[] emptyRight = Utilities.StringToByte("FEFF000000000000FEFF000000000000");
+            byte[] emptyLeft = EMPTY_TILE;
+            byte[] emptyRight = EMPTY_TILE;
 
-            byte[] processLayer = [];
-            processLayer = Utilities.Add(processLayer, Layer1);
+            byte[] processLayer = (byte[])Layer1.Clone();
 
-            Boolean[] change = new Boolean[56];
-            byte[] tempID = new byte[2];
-            ushort itemID;
-            for (int i = 0; i < 56; i++)
+            bool[] change = new bool[Utilities.ExtendedMapNumOfColumn / 2];
+
+            for (int i = 0; i < Utilities.ExtendedMapNumOfColumn / 2; i++)
             {
-                for (int j = 0; j < 96; j++)
+                for (int j = 0; j < Utilities.ExtendedMapNumOfRow; j++)
                 {
-                    Buffer.BlockCopy(Layer1, i * 0x1800 + j * 0x10, tempID, 0, 2);
-                    itemID = Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(tempID)), 16);
-                    if (ItemAttr.IsStone(itemID))
+                    // Process first section
+                    int offset1 = i * 0x1800 + j * 0x10;
+                    ushort itemID1 = GetItemID(Layer1, offset1);
+                    if (ItemAttr.IsStone(itemID1))
                     {
-                        Buffer.BlockCopy(emptyLeft, 0, processLayer, i * 0x1800 + j * 0x10, 16);
-                        Buffer.BlockCopy(emptyRight, 0, processLayer, i * 0x1800 + 0x600 + j * 0x10, 16);
+                        Buffer.BlockCopy(emptyLeft, 0, processLayer, offset1, 16);
+                        Buffer.BlockCopy(emptyRight, 0, processLayer, offset1 + 0x600, 16);
                         change[i] = true;
                     }
 
-                    Buffer.BlockCopy(Layer1, i * 0x1800 + 0xC00 + j * 0x10, tempID, 0, 2);
-                    itemID = Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(tempID)), 16);
-                    if (ItemAttr.IsStone(itemID))
+                    // Process second section
+                    int offset2 = i * 0x1800 + 0xC00 + j * 0x10;
+                    ushort itemID2 = GetItemID(Layer1, offset2);
+                    if (ItemAttr.IsStone(itemID2))
                     {
-                        Buffer.BlockCopy(emptyLeft, 0, processLayer, i * 0x1800 + 0xC00 + j * 0x10, 16);
-                        Buffer.BlockCopy(emptyRight, 0, processLayer, i * 0x1800 + 0xC00 + 0x600 + j * 0x10, 16);
+                        Buffer.BlockCopy(emptyLeft, 0, processLayer, offset2, 16);
+                        Buffer.BlockCopy(emptyRight, 0, processLayer, offset2 + 0x600, 16);
                         change[i] = true;
                     }
                 }
@@ -5571,24 +5605,22 @@ namespace ACNHPokerCore
         }
         private void ProcessLayer(byte[] Layer, long Address)
         {
-            byte[] empty = Utilities.StringToByte("FEFF000000000000");
+            byte[] empty = { 0xFE, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
-            byte[] processLayer = [];
-            processLayer = Utilities.Add(processLayer, Layer);
+            byte[] processLayer = (byte[])Layer.Clone();
 
-            Boolean[] HasChange = new Boolean[56];
+            bool[] HasChange = new bool[Utilities.ExtendedMapNumOfColumn / 2];
 
-            byte[] tempID = new byte[2];
-            ushort itemID;
-            for (int i = 0; i < 56; i++)
+            for (int i = 0; i < Utilities.ExtendedMapNumOfColumn / 2; i++)
             {
-                for (int j = 0; j < 96 * 8; j++)
+                for (int j = 0; j < Utilities.ExtendedMapNumOfRow * 8; j++)
                 {
-                    Buffer.BlockCopy(Layer, i * 0x1800 + j * 0x8, tempID, 0, 2);
-                    itemID = Convert.ToUInt16(Utilities.Flip(Utilities.ByteToHexString(tempID)), 16);
-                    if (!itemID.Equals(0xFFFE))
+                    int offset = i * 0x1800 + j * 0x8;
+                    ushort itemID = GetItemID(Layer, offset);
+
+                    if (itemID != 0xFFFE)
                     {
-                        Buffer.BlockCopy(empty, 0, processLayer, i * 0x1800 + j * 0x8, 8);
+                        Buffer.BlockCopy(empty, 0, processLayer, offset, 8);
                         HasChange[i] = true;
                     }
                 }
@@ -5618,6 +5650,7 @@ namespace ACNHPokerCore
                 {
                     Debug.Print("Length :" + num + " Time : " + (num + 3));
 
+                    /*
                     int c = 0;
 
                     while (Utilities.IsAboutToSave(s, usb, num, saveTime, ignore))
@@ -5645,8 +5678,9 @@ namespace ACNHPokerCore
                         c++;
                         Thread.Sleep(3000);
                     }
+                    */
 
-                    for (int i = 0; i < 56; i++)
+                    for (int i = 0; i < Utilities.ExtendedMapNumOfColumn / 2; i++)
                     {
                         if (change[i])
                         {
@@ -5698,6 +5732,7 @@ namespace ACNHPokerCore
                 {
                     Debug.Print("Length :" + num + " Time : " + (num + 3));
 
+                    /*
                     int c = 0;
 
                     while (Utilities.IsAboutToSave(s, usb, num + 10, saveTime, ignore))
@@ -5725,9 +5760,10 @@ namespace ACNHPokerCore
                         c++;
                         Thread.Sleep(3000);
                     }
+                    */
                 }
 
-                for (int i = 0; i < 56; i++)
+                for (int i = 0; i < Utilities.ExtendedMapNumOfColumn / 2; i++)
                 {
                     if (change[i])
                     {
@@ -5772,6 +5808,7 @@ namespace ACNHPokerCore
 
         #region AutoSave
 
+        
         private int NextAutosave()
         {
             try
@@ -5795,6 +5832,7 @@ namespace ACNHPokerCore
                 return 69;
             }
         }
+        
 
         private void NextSaveTimer_Tick(object sender, EventArgs e)
         {
@@ -5971,7 +6009,7 @@ namespace ACNHPokerCore
                 {
                     byte[] curFloor = new byte[1568];
 
-                    int start = (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3));
+                    int start = (0xC00 * (anchorX - 3 + 16)) + (0x10 * (anchorY - 3));
 
                     Buffer.BlockCopy(Layer1, start, curFloor, 0x0, 0x70);
                     Buffer.BlockCopy(Layer1, start + 0x600, curFloor, 0x70, 0x70);
@@ -5993,7 +6031,7 @@ namespace ACNHPokerCore
                 else
                 {
 
-                    UInt32 currentColumn = (UInt32)(address + (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3)));
+                    UInt32 currentColumn = (UInt32)(address + (0xC00 * (anchorX - 3 + 16)) + (0x10 * (anchorY - 3)));
 
                     byte[] readFloor = Utilities.Read7x7Floor(s, usb, currentColumn);
                     byte[] curFloor = new byte[1568];
@@ -6015,14 +6053,38 @@ namespace ACNHPokerCore
 
                     ReplaceItem(ref b, curFloor, itemID, itemData, flag1, btn);
 
-                    UInt32 address1 = (UInt32)(address + (0xC00 * (anchorX - 3)) + (0x10 * (anchorY - 3)));
-                    UInt32 address2 = (UInt32)(address + (0xC00 * (anchorX - 2)) + (0x10 * (anchorY - 3)));
-                    UInt32 address3 = (UInt32)(address + (0xC00 * (anchorX - 1)) + (0x10 * (anchorY - 3)));
-                    UInt32 address4 = (UInt32)(address + (0xC00 * (anchorX - 0)) + (0x10 * (anchorY - 3)));
-                    UInt32 address5 = (UInt32)(address + (0xC00 * (anchorX + 1)) + (0x10 * (anchorY - 3)));
-                    UInt32 address6 = (UInt32)(address + (0xC00 * (anchorX + 2)) + (0x10 * (anchorY - 3)));
-                    UInt32 address7 = (UInt32)(address + (0xC00 * (anchorX + 3)) + (0x10 * (anchorY - 3)));
+                    UInt32 address1;
+                    UInt32 address2;
+                    UInt32 address3;
+                    UInt32 address4;
+                    UInt32 address5;
+                    UInt32 address6;
+                    UInt32 address7;
 
+                    if (layer1Btn.Checked)
+                    {
+                        address1 = GetAddress(anchorX - 3, anchorY - 3);
+                        address2 = GetAddress(anchorX - 2, anchorY - 3);
+                        address3 = GetAddress(anchorX - 1, anchorY - 3);
+                        address4 = GetAddress(anchorX, anchorY - 3);
+                        address5 = GetAddress(anchorX + 1, anchorY - 3);
+                        address6 = GetAddress(anchorX + 2, anchorY - 3);
+                        address7 = GetAddress(anchorX + 3, anchorY - 3);
+                    }
+                    else if (layer2Btn.Checked)
+                    {
+                        address1 = GetAddress(anchorX - 3, anchorY - 3) + Utilities.mapSize;
+                        address2 = GetAddress(anchorX - 2, anchorY - 3) + Utilities.mapSize;
+                        address3 = GetAddress(anchorX - 1, anchorY - 3) + Utilities.mapSize;
+                        address4 = GetAddress(anchorX, anchorY - 3) + Utilities.mapSize;
+                        address5 = GetAddress(anchorX + 1, anchorY - 3) + Utilities.mapSize;
+                        address6 = GetAddress(anchorX + 2, anchorY - 3) + Utilities.mapSize;
+                        address7 = GetAddress(anchorX + 3, anchorY - 3) + Utilities.mapSize;
+                    }
+                    else
+                        return;
+
+                    /*
                     int c = 0;
 
                     while (Utilities.IsAboutToSave(s, usb, 10, saveTime, ignore))
@@ -6050,6 +6112,7 @@ namespace ACNHPokerCore
                         c++;
                         Thread.Sleep(3000);
                     }
+                    */
 
                     List<Task> tasks =
                     [
@@ -6067,17 +6130,8 @@ namespace ACNHPokerCore
 
                 UpdateUI(() =>
                 {
-                    /*
-                    BtnSetup(b[0], b[1], anchorX - 3, anchorY - 3, floor1, floor2, floor3, floor4, floor5, floor6, floor7, false);
-                    BtnSetup(b[2], b[3], anchorX - 2, anchorY - 3, floor8, floor9, floor10, floor11, floor12, floor13, floor14, false);
-                    BtnSetup(b[4], b[5], anchorX - 1, anchorY - 3, floor15, floor16, floor17, floor18, floor19, floor20, floor21, false);
-                    BtnSetup(b[6], b[7], anchorX - 0, anchorY - 3, floor22, floor23, floor24, floor25, floor26, floor27, floor28, false);
-                    BtnSetup(b[8], b[9], anchorX + 1, anchorY - 3, floor29, floor30, floor31, floor32, floor33, floor34, floor35, false);
-                    BtnSetup(b[10], b[11], anchorX + 2, anchorY - 3, floor36, floor37, floor38, floor39, floor40, floor41, floor42, false);
-                    BtnSetup(b[12], b[13], anchorX + 3, anchorY - 3, floor43, floor44, floor45, floor46, floor47, floor48, floor49, false);
-                    */
                     UpdataData(anchorX, anchorY, b);
-                    _ = UpdateAllBtn();
+                    UpdateAllBtn();
                     ResetBtnColor();
                     EnableBtn();
                 });
@@ -6202,15 +6256,15 @@ namespace ACNHPokerCore
                     {
                         if (layer1Btn.Checked)
                         {
-                            Buffer.BlockCopy(Layer1, (0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY)), SavedArea[i * 2], 0x10 * j, 0x10);
-                            Buffer.BlockCopy(Layer1, (0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY)) + 0x600, SavedArea[i * 2 + 1], 0x10 * j, 0x10);
+                            Buffer.BlockCopy(Layer1, (0xC00 * (i + TopLeftX + 16)) + (0x10 * (j + TopLeftY)), SavedArea[i * 2], 0x10 * j, 0x10);
+                            Buffer.BlockCopy(Layer1, (0xC00 * (i + TopLeftX + 16)) + (0x10 * (j + TopLeftY)) + 0x600, SavedArea[i * 2 + 1], 0x10 * j, 0x10);
                             if (SavedArea[i * 2][0x10 * j] != 0xFE || SavedArea[i * 2][0x10 * j + 1] != 0xFF)
                                 SavedArea[i * 2][0x10 * j + 2] = 0x20;
                         }
                         else
                         {
-                            Buffer.BlockCopy(Layer2, (0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY)), SavedArea[i * 2], 0x10 * j, 0x10);
-                            Buffer.BlockCopy(Layer2, (0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY)) + 0x600, SavedArea[i * 2 + 1], 0x10 * j, 0x10);
+                            Buffer.BlockCopy(Layer2, (0xC00 * (i + TopLeftX + 16)) + (0x10 * (j + TopLeftY)), SavedArea[i * 2], 0x10 * j, 0x10);
+                            Buffer.BlockCopy(Layer2, (0xC00 * (i + TopLeftX + 16)) + (0x10 * (j + TopLeftY)) + 0x600, SavedArea[i * 2 + 1], 0x10 * j, 0x10);
                             if (SavedArea[i * 2][0x10 * j] != 0xFE || SavedArea[i * 2][0x10 * j + 1] != 0xFF)
                                 SavedArea[i * 2][0x10 * j + 2] = 0x20;
                         }
@@ -6356,14 +6410,14 @@ namespace ACNHPokerCore
                     {
                         if (layer1Btn.Checked)
                         {
-                            Buffer.BlockCopy(Layer1, (0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY)), SavedArea[i * 2], 0x10 * j, 0x10);
-                            Buffer.BlockCopy(Layer1, (0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY)) + 0x600, SavedArea[i * 2 + 1], 0x10 * j, 0x10);
+                            Buffer.BlockCopy(Layer1, (0xC00 * (i + TopLeftX + 16)) + (0x10 * (j + TopLeftY)), SavedArea[i * 2], 0x10 * j, 0x10);
+                            Buffer.BlockCopy(Layer1, (0xC00 * (i + TopLeftX + 16)) + (0x10 * (j + TopLeftY)) + 0x600, SavedArea[i * 2 + 1], 0x10 * j, 0x10);
                             SavedArea[i * 2][0x10 * j + 2] = 0x00;
                         }
                         else
                         {
-                            Buffer.BlockCopy(Layer2, (0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY)), SavedArea[i * 2], 0x10 * j, 0x10);
-                            Buffer.BlockCopy(Layer2, (0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY)) + 0x600, SavedArea[i * 2 + 1], 0x10 * j, 0x10);
+                            Buffer.BlockCopy(Layer2, (0xC00 * (i + TopLeftX + 16)) + (0x10 * (j + TopLeftY)), SavedArea[i * 2], 0x10 * j, 0x10);
+                            Buffer.BlockCopy(Layer2, (0xC00 * (i + TopLeftX + 16)) + (0x10 * (j + TopLeftY)) + 0x600, SavedArea[i * 2 + 1], 0x10 * j, 0x10);
                             SavedArea[i * 2][0x10 * j + 2] = 0x00;
                         }
                     }
@@ -6508,8 +6562,8 @@ namespace ACNHPokerCore
                     {
                         if (layer1Btn.Checked)
                         {
-                            Buffer.BlockCopy(Layer1, (0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY)), SavedArea[i * 2], 0x10 * j, 0x10);
-                            Buffer.BlockCopy(Layer1, (0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY)) + 0x600, SavedArea[i * 2 + 1], 0x10 * j, 0x10);
+                            Buffer.BlockCopy(Layer1, (0xC00 * (i + TopLeftX + 16)) + (0x10 * (j + TopLeftY)), SavedArea[i * 2], 0x10 * j, 0x10);
+                            Buffer.BlockCopy(Layer1, (0xC00 * (i + TopLeftX + 16)) + (0x10 * (j + TopLeftY)) + 0x600, SavedArea[i * 2 + 1], 0x10 * j, 0x10);
                             if (SavedArea[i * 2][0x10 * j] != 0xFE || SavedArea[i * 2][0x10 * j + 1] != 0xFF)
                             {
                                 if (SavedArea[i * 2][0x10 * j + 2] == 0x00)
@@ -6518,8 +6572,8 @@ namespace ACNHPokerCore
                         }
                         else
                         {
-                            Buffer.BlockCopy(Layer2, (0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY)), SavedArea[i * 2], 0x10 * j, 0x10);
-                            Buffer.BlockCopy(Layer2, (0xC00 * (i + TopLeftX)) + (0x10 * (j + TopLeftY)) + 0x600, SavedArea[i * 2 + 1], 0x10 * j, 0x10);
+                            Buffer.BlockCopy(Layer2, (0xC00 * (i + TopLeftX + 16)) + (0x10 * (j + TopLeftY)), SavedArea[i * 2], 0x10 * j, 0x10);
+                            Buffer.BlockCopy(Layer2, (0xC00 * (i + TopLeftX + 16)) + (0x10 * (j + TopLeftY)) + 0x600, SavedArea[i * 2 + 1], 0x10 * j, 0x10);
                             if (SavedArea[i * 2][0x10 * j] != 0xFE || SavedArea[i * 2][0x10 * j + 1] != 0xFF)
                             {
                                 if (SavedArea[i * 2][0x10 * j + 2] == 0x00)
@@ -7373,8 +7427,8 @@ namespace ACNHPokerCore
         #region Activate Item
         private static void BuildActivateTable(byte[] ActivateLayer, ref bool[,] ActivateTable)
         {
-            int width = 112;
-            int height = 96 * 2;
+            int width = Utilities.ExtendedMapNumOfColumn;
+            int height = Utilities.ExtendedMapNumOfRow * 2;
 
             ActivateTable = new bool[width, height];
 
@@ -7506,12 +7560,12 @@ namespace ACNHPokerCore
             if (layer1Btn.Checked)
             {
                 Address1 = Utilities.mapActivate + offset;
-                Address2 = Utilities.mapActivate + Utilities.mapOffset + offset;
+                Address2 = Utilities.mapActivate + Utilities.SaveFileBuffer + offset;
             }
             else
             {
                 Address1 = Utilities.mapActivate + Utilities.mapActivateSize + offset;
-                Address2 = Utilities.mapActivate + Utilities.mapActivateSize + Utilities.mapOffset + offset;
+                Address2 = Utilities.mapActivate + Utilities.mapActivateSize + Utilities.SaveFileBuffer + offset;
             }
 
             Thread toggleThread = new(delegate () { ToggleItem(Address1, Address2, newValue); });
@@ -7578,6 +7632,7 @@ namespace ACNHPokerCore
                 }
             }
 
+            /*
             int c = 0;
 
             while (Utilities.IsAboutToSave(s, usb, 2, saveTime, ignore))
@@ -7598,6 +7653,7 @@ namespace ACNHPokerCore
                 c++;
                 Thread.Sleep(3000);
             }
+            */
 
             DisableBtn();
 
@@ -7609,12 +7665,12 @@ namespace ACNHPokerCore
             if (layer1Btn.Checked)
             {
                 Address1 = Utilities.mapActivate + offset;
-                Address2 = Utilities.mapActivate + Utilities.mapOffset + offset;
+                Address2 = Utilities.mapActivate + Utilities.SaveFileBuffer + offset;
             }
             else
             {
                 Address1 = Utilities.mapActivate + Utilities.mapActivateSize + offset;
-                Address2 = Utilities.mapActivate + Utilities.mapActivateSize + Utilities.mapOffset + offset;
+                Address2 = Utilities.mapActivate + Utilities.mapActivateSize + Utilities.SaveFileBuffer + offset;
             }
 
             Thread toggleThread = new(delegate () { ToggleItem(Address1, Address2, newValue); });
@@ -7630,6 +7686,7 @@ namespace ACNHPokerCore
         {
             ShowMapWait(2, "Toggling Item...");
 
+            /*
             int c = 0;
 
             while (Utilities.IsAboutToSave(s, usb, 2, saveTime, ignore))
@@ -7657,6 +7714,7 @@ namespace ACNHPokerCore
                 c++;
                 Thread.Sleep(3000);
             }
+            */
 
             Utilities.PokeAddress(s, usb, Address1.ToString("X"), value.ToString("X"));
             Utilities.PokeAddress(s, usb, (Address1 + 0x1C).ToString("X"), value.ToString("X"));

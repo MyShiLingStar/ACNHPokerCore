@@ -47,52 +47,91 @@ id ; iName ; eng ; jpn ; tchi ; schi ; kor ; fre ; ger ; spa ; ita ; dut ; rus ;
 02E6 ; FtrFireplace ; fireplace ; だんろ ; 壁爐 ; 壁炉 ; 난로 ; cheminée ; Kamin ; chimenea ; caminetto ; open haard ; камин
 02E7 ; FtrIceSnowball ; frozen mini snowperson ; こおりのミニゆきだるま ; 迷你雪人冰雕 ; 冰冻迷你雪人 ; 얼음 미니 눈사람 ; bonhomme neige arctique ; Eis-Minischneemann ; muñeco de nieve iceberg ; minipupazzo iceberg ; mini-sneeuwpop ; ледяной мини-снеговик
 02E8 ; FtrKitchenCompact ; compact kitchen ; コンパクトキッチン ; 小巧廚房 ; 小巧厨房 ; 콤팩트 키친 ; kitchenette compacte ; Kompaktküche ; cocina compacta ; cucina compatta ; compacte keuken ; компактная кухня
+02FD ; FtrFlowerFountain ; flower planter ; はなちょうず ; 花手水 ; 花手水 ; 꽃이 든 물 항아리 ; pot de fleurs ; Blumenkübel ; maceta con flores ; vaso per piante con fiori ; bloempot ; горшок с цветами
+02FE ; FtrMarbleClockW ; marble wall clock ; だいりせきのかべかけどけい ; 大理石壁掛鐘 ; 大理石壁挂钟 ; 대리석 벽시계 ; horloge murale en marbre ; Marmorwanduhr ; reloj de pared de mármol ; orologio di marmo ; marmeren klok ; мраморн. настенные часы
+02FF ; FtrWireLamp ; tubular lamp ; ワイヤーなランプ ; 鋼絲燈 ; 钢丝灯 ; 와이어 램프 ; lampe tubulaire ; Alurohr-Lampe ; lámpara tubular ; lampada tubolare ; buizenlamp ; лампа из трубок
+0301 ; FtrBookshelfWall ; wall-mounted bookshelf ; かべかけほんだな ; 壁掛書架 ; 壁挂书架 ; 벽걸이 책장 ; étagère murale livres ; Wandbücherbrett ; estante librería para pared ; mensola per libri ; wandplank ; настенная книжная полка
+0302 ; FtrWireChairS ; tubular chair ; ワイヤーなチェア ; 鋼絲椅 ; 钢丝椅 ; 와이어 체어 ; chaise tubulaire ; Alurohr-Stuhl ; asiento tubular ; sedia tubolare ; buizenstoel ; стул из трубок
+0304 ; FtrMarbleFireplace ; marble fireplace ; だいりせきのだんろ ; 大理石壁爐 ; 大理石壁炉 ; 대리석 난로 ; cheminée en marbre ; Marmorkamin ; chimenea de mármol ; caminetto di marmo ; marmeren open haard ; мраморный камин
+030D ; FtrPampasgrass ; pampas grass ; パンパスグラス ; 蒲葦 ; 蒲苇 ; 팜파스 그래스 ; vase de pampalunes ; Pampasgras ; jarrón hierba otoñal ; vaso di piume della pampa ; pampasgras ; пампасная трава
 0313 ; FtrRadicase ; tape deck ; ラジカセ ; 卡帶收音機 ; 磁带录音机 ; 카세트라디오 ; cassettophone ; Radiorekorder ; radiocasete ; radio ; cassettespeler ; магнитофон
 031C ; FtrStereoRetro ; retro stereo ; レトロなステレオ ; 復古立體音響 ; 复古立体音响 ; 복고풍 스테레오 ; hi-fi rétro ; Retro-Anlage ; cadena retro ; stereo rétro ; retrostereo ; радиола
 0325 ; FtrMushroomLamp ; mush lamp ; キノコのランプ ; 蘑菇燈 ; 蘑菇灯 ; 버섯 램프 ; lampe champi ; Pilzlampe ; lámpara hongo ; lampada fungo ; paddenstoellamp ; гриб-лампа
+0327 ; FtrMarbleKitchen ; marble kitchen island ; だいりせきのキッチン ; 大理石廚房 ; 大理石厨房 ; 대리석 키친 ; îlot de cuisine en marbre ; Marmorkücheninsel ; isla de cocina de mármol ; isola da cucina di marmo ; marmeren keukeneiland ; мрам. кухонный островок
 0328 ; FtrMushroomTableL ; mush table ; キノコのテーブル ; 蘑菇桌 ; 蘑菇桌 ; 버섯 테이블 ; table champi ; Pilztisch ; mesa hongo ; tavolo fungo ; paddenstoeltafel ; гриб-стол
+0331 ; FtrJapanesemodernCabinet ; artful shelves ; わふうモダンなかざりだな ; 和風摩登裝飾架 ; 现代和风装饰架 ; 동양풍 모던 쉘프 ; commode intemporelle ; Zeitlosregal ; aparador de melamina ; credenza concettuale ; modieuze kast ; утонченный комод
+0336 ; FtrMarbleTableL ; marble table ; だいりせきのテーブル ; 大理石桌 ; 大理石桌 ; 대리석 테이블 ; table en marbre ; Marmortisch ; mesa de mármol ; tavolo di marmo ; marmeren tafel ; мраморный стол
 0340 ; FtrOfficeChair ; modern office chair ; オフィスのチェア ; 辦公室椅子 ; 办公室椅子 ; 사무용 의자 ; fauteuil pro ; Profi-Bürostuhl ; sillón de oficina ; sedia da ufficio ; moderne kantoorstoel ; соврем. офисное кресло
 0341 ; FtrLocker ; upright locker ; ロッカー ; 置物櫃 ; 置物柜 ; 캐비닛 ; casier individuel ; Spind ; taquilla de vestuario ; armadietto ; sportkluisje ; шкафчик
 0347 ; FtrSafebox ; safe ; きんこ ; 保險箱 ; 保险箱 ; 금고 ; coffre-fort ; Safe ; caja fuerte ; cassaforte ; kluis ; сейф
 0348 ; FtrOfficeTable ; office desk ; オフィスのデスク ; 辦公室桌子 ; 办公室桌子 ; 사무용 책상 ; bureau pro ; Bürotisch ; mesa de oficina ; scrivania da ufficio ; kantoorbureau ; офисный стол
+034B ; FtrMarbleWashstand ; marble vanity ; だいりせきのせんめんだい ; 大理石洗臉台 ; 大理石洗脸台 ; 대리석 세면대 ; lavabo en marbre ; Marmorwaschbecken ; lavabo de mármol ; toletta di marmo ; marmeren wasbak ; мраморная раковина
 0351 ; FtrAmp ; amp ; アンプ ; 擴音器 ; 扩音器 ; 앰프 ; ampli ; Verstärker ; amplificador ; amplificatore ; versterker ; усилитель
+0356 ; FtrWireShelf ; tubular shelves ; ワイヤーなシェルフ ; 鋼絲架子 ; 钢丝架子 ; 와이어 쉘프 ; présentoir tubulaire ; Alurohr-Regal ; estantería tubular ; libreria tubolare ; buizenkast ; полка из трубок
+0358 ; FtrCutlery ; cutlery ; カトラリー ; 西式餐具 ; 西式餐具 ; 커틀러리 ; set de couverts ; Besteck ; servicio de cubiertos ; piatto con posate ; bestek ; столовые приборы
+035A ; FtrGrasspitcher ; glass pitcher ; ガラスピッチャー ; 玻璃水壺 ; 玻璃水壶 ; 글래스 피처 ; cruche en verre ; Karaffe ; jarra de cristal ; caraffa di cristallo ; glazen kan ; стеклянный кувшин
+035B ; FtrAsianLanternArch ; colorful-lantern arch ; カラフルランタンのアーチ ; 彩色燈籠拱門 ; 彩色灯笼拱门 ; 컬러풀 랜턴 아치 ; arche à lampions colorés ; Buntlaternentor ; arco de farolillos de colores ; arco con lanterne ; kleurrijke lantaarnpoort ; арка с цветными лампами
+035E ; FtrKidsSeesaw ; kiddie seesaw ; キッズシーソー ; 兒童蹺蹺板 ; 儿童跷跷板 ; 어린이용 시소 ; balançoire à bascule ; Juniorwippe ; balancín infantil ; altalena bimbi ; kinderwip ; детская качалка
 035F ; FtrBilliard ; billiard table ; ビリヤードのだい ; 撞球桌 ; 撞球桌 ; 당구대 ; billard ; Billardtisch ; mesa de billar ; tavolo da biliardo ; biljarttafel ; бильярдный стол
 0361 ; FtrBirdcage ; birdcage ; とりかご ; 鳥籠 ; 鸟笼 ; 새장 ; cage à oiseau ; Vogelkäfig ; jaula de pájaros ; gabbia ; vogelkooi ; птичья клетка
 0366 ; FtrBookstand ; book stands ; ブックスタンド ; 書擋 ; 书挡 ; 북엔드 ; serre-livres ; Buchstütze ; sujetalibros ; coppia di fermalibri ; boekensteunen ; подставки для книг
 0379 ; FtrKocher ; camp stove ; コッフェル ; 露營爐具 ; 露营炉具 ; 코펠 ; réchaud de camping ; Campingkocher ; hornillo de acampada ; fornello da campeggio ; campinggasstel ; примус
 037B ; FtrCandleXmas ; holiday candle ; クリスマスキャンドル ; 聖誕蠟燭 ; 圣诞蜡烛 ; 크리스마스 양초 ; chandelle de fête ; Festtagsgesteck ; vela festiva ; candela centrotavola ; feestelijke kaars ; праздничная свеча
 0380 ; FtrCattower ; cat tower ; キャットタワー ; 貓跳台 ; 猫跳台 ; 캣타워 ; arbre à chat ; Kratzbaum ; torre para gatos ; torre per gatti ; kattenpaal ; башня для кошек
+0388 ; FtrWireTableL ; tubular table ; ワイヤーなテーブル ; 鋼絲桌 ; 钢丝桌 ; 와이어 테이블 ; table tubulaire ; Alurohr-Tisch ; mesa tubular ; tavolo tubolare ; buizentafel ; стол из трубок
 038B ; FtrCleaner ; vacuum cleaner ; そうじき ; 吸塵器 ; 吸尘器 ; 청소기 ; aspirateur ; Staubsauger ; aspiradora ; aspirapolvere ; stofzuiger ; пылесос
 038C ; FtrCleanerStick ; upright vacuum ; スティックそうじき ; 直立式吸塵器 ; 直立式吸尘器 ; 스틱 청소기 ; aspirateur balai ; Stabstaubsauger ; aspiradora vertical ; scopa elettrica ; steelstofzuiger ; вертикальный пылесос
+0390 ; FtrZeldaRupee ; rupee ; ルピー ; 盧比 ; 卢比 ; 루피 ; rubis ; Rubin ; rupia ; rupia ; rupee ; рупия
 0393 ; FtrCuckooclock ; cuckoo clock ; はとどけい ; 布穀鳥鐘 ; 布谷鸟钟 ; 뻐꾸기 시계 ; horloge coucou ; Kuckucksuhr ; reloj de cuco ; orologio a cucù ; koekoeksklok ; часы с кукушкой
+0394 ; FtrZeldaGoddessstatue ; Goddess Statue ; めがみぞう ; 女神像 ; 女神像 ; 여신상 ; statue de la Déesse ; Statue der Göttin ; efigie de la Diosa ; statua della dea ; godinnenbeeld ; статуя Богини
 0396 ; FtrCoffeecup ; coffee cup ; コーヒーカップ ; 咖啡杯 ; 咖啡杯 ; 커피 잔 ; tasse de café ; Kaffeetasse ; taza de café ; tazza di caffè ; kopje koffie ; чашка кофе
 039A ; FtrJuicecase ; stacked bottle crates ; つまれたボトルクレート ; 疊起來的飲料物流箱 ; 叠起来的饮料物流箱 ; 쌓인 병음료 박스 ; table casiers à bouteilles ; Getränkekistentisch ; pila de cajas de refresco ; pila di casse per bottiglie ; stapel frisdrankkratten ; стол из бутылочн. ящиков
 03A0 ; FtrPotrack ; pot rack ; キッチンつるし ; 廚房掛勾 ; 厨房挂钩 ; 주방 도구 걸이 ; porte-casseroles ; Küchenregal ; portacacerolas ; mensola da cucina ; keukenrek ; кухонная полка
 03A1 ; FtrAirconditioner ; air conditioner ; エアコン ; 空調 ; 空调 ; 에어컨 ; climatiseur ; Klimaanlage ; aire acondicionado ; condizionatore d'aria ; airconditioner ; кондиционер
 03AD ; FtrDJbooth ; DJ's turntable ; DJブース ; DJ台 ; DJ台 ; DJ 테이블 ; platine de DJ ; DJ-Set ; mesa de DJ ; console da DJ ; dj-set ; DJ-проигрыватель
+03B3 ; FtrSplatoonSplashooter ; Splattershot ; スプラシューター ; 斯普拉射擊槍 ; 斯普拉射击枪 ; 스플랫 슈터 ; Liquidateur ; Kleckser ; lanzatintas ; splasher ; Superspetter ; каплестрел
 03B6 ; FtrEffectorrack ; effects rack ; エフェクターラック ; 音效機櫃 ; 音效机柜 ; 이펙터 장비 ; sono ; Effekt-Rack ; cajón de efectos ; unità multieffetto ; mixer-versterker ; рэк для аппаратуры
+03B8 ; FtrSplatoonLocker ; Splatoon locker ; イカすロッカー ; 魷型置物櫃 ; 鱿型置物柜 ; 어메이징 캐비닛 ; casier Splatoon ; Splatoon-Spind ; taquilla de Splatoon ; armadietto Splatoon ; Splatoon-kluisje ; шкафчик Splatoon
 03BA ; FtrEspresso ; espresso maker ; エスプレッソマシン ; 義式咖啡機 ; 意式咖啡机 ; 에스프레소 머신 ; machine à café ; Espressomaschine ; máquina de café ; macchina del caffè ; espressoapparaat ; эспрессо-машина
 03BB ; FtrExit ; exit sign ; ひじょうぐち ; 緊急逃生出口 ; 紧急逃生出口 ; 비상구 ; panneau de sortie ; Notausgangsschild ; salida de emergencia ; segnale di uscita ; nooduitgangbord ; указатель выхода
 03BD ; FtrExtractorfan ; ventilation fan ; かんきせん ; 換氣扇 ; 换气扇 ; 환풍기 ; aérateur ; Lüftungsventilator ; extractor ; ventola ; inbouwventilator ; вытяжной вентилятор
+03BE ; FtrSplatoonChariot ; Crab Tank ; カニタンク ; 螃蟹坦克 ; 螃蟹坦克 ; 크랩 탱크 ; crabe d'assaut ; Krabbenpanzer ; cangrejobot ; granchio armato ; Krabbentank ; кработанк
+03BF ; FtrSplatoonFestivalsignboardRight ; Splatfest sign right panel ; フェスかんばん・みぎ ; 祭典招牌・右 ; 祭典招牌·右 ; 페스티벌 간판 오른쪽 ; panneau festival (droite) ; Splatfest-Schild (rechts) ; terminal de voto derecho ; terminal di voto destro ; Splatfest-bord (rechts) ; правый Сплатфест-экран
+03C0 ; FtrSplatoonFestivalsignboardMiddle ; Splatfest sign center panel ; フェスかんばん・まんなか ; 祭典招牌・中 ; 祭典招牌·中 ; 페스티벌 간판 가운데 ; panneau festival (centre) ; Splatfest-Schild (Mitte) ; terminal de voto central ; terminal di voto centrale ; Splatfest-bord (midden) ; центр. Сплатфест-экран
+03C1 ; FtrSplatoonFestivalsignboardLeft ; Splatfest sign left panel ; フェスかんばん・ひだり ; 祭典招牌・左 ; 祭典招牌·左 ; 페스티벌 간판 왼쪽 ; panneau festival (gauche) ; Splatfest-Schild (links) ; terminal de voto izquierdo ; terminal di voto sinistro ; Splatfest-bord (links) ; левый Сплатфест-экран
 03C3 ; FtrFireplug ; fire hydrant ; しょうかせん ; 消防栓 ; 消防栓 ; 소화전 ; borne d'incendie ; Hydrant ; boca de incendios ; idrante ; brandkraan ; пожарный гидрант
 03C7 ; FtrFlowerbed ; flower bed ; かだん ; 花圃 ; 花圃 ; 화단 ; parterre de fleurs ; Blumenbeet ; parterre ; aiuola ; bloembed ; цветочная грядка
 03CB ; FtrFoodmachine ; snack machine ; おかしのじはんき ; 甜點自動販賣機 ; 甜点自动贩卖机 ; 과자 자동판매기 ; distributeur en-cas ; Verkaufsautomat ; máquina expendedora ; distributore automatico ; snackautomaat ; торговый автомат
+03D9 ; FtrVideogameGameboy ; Game Boy ; ゲームボーイ ; Game Boy ; Game Boy ; Game Boy ; Game Boy ; Game Boy ; Game Boy ; Game Boy ; Game Boy ; Game Boy
 03DB ; FtrHarp ; harp ; ハープ ; 豎琴 ; 竖琴 ; 하프 ; harpe ; Harfe ; arpa ; arpa ; harp ; арфа
+03E2 ; FtrStuffedCat ; cat plushie ; ねこのぬいぐるみ ; 貓貓玩偶 ; 猫猫玩偶 ; 고양이 인형 ; peluche de chat ; Plüschkätzchen ; gatito de peluche ; gattino di peluche ; knuffelkat ; плюшевый котик
 03E5 ; FtrIncense ; incense burner ; おこう ; 線香盤 ; 线香盘 ; 향 ; porte-encens ; Räucherstäbchen-Set ; quemador de incienso ; brucia incensi ; wierookbrander ; курильница
 03E6 ; FtrKitchenIsland ; kitchen island ; アイランドキッチン ; 島式廚房 ; 岛式厨房 ; 아일랜드 키친 ; îlot de cuisine ; Kücheninsel ; isla de cocina ; isola da cucina ; keukeneiland ; кухонный островок
+03F7 ; FtrSplatoonSighterTarget ; squid bumper ; イカバンカー ; 魷魚造型氣球 ; 鱿鱼造型气球 ; 오징어 범퍼 ; obstacle gonflable ; Tintenfischdummy ; barricada calamar ; calabarriera ; inktvisbumper ; надувной осьморянин
+03FA ; FtrIceBox ; ice pail ; アイスペール ; 冰桶 ; 冰桶 ; 얼음 통 ; seau à glace ; Eiskübel ; cubitera ; secchiello del ghiaccio ; ijsemmer ; ведерко со льдом
 03FB ; FtrFirstaidbox ; first-aid kit ; きゅうきゅうばこ ; 急救箱 ; 急救箱 ; 구급상자 ; trousse de soins ; Erste-Hilfe-Kasten ; botiquín ; kit di pronto soccorso ; EHBO-trommel ; аптечка
 0405 ; FtrScreenJapanLow ; low screen ; ひくいついたて ; 矮屏風 ; 矮屏风 ; 낮은 파티션 ; panneau bas ; Sichtschutz ; cubrechimeneas ; separé basso ; laag scherm ; низкая ширма
 0408 ; FtrMagazinerack ; magazine rack ; マガジンラック ; 雜誌架 ; 杂志架 ; 잡지 꽂이 ; porte-revues pliable ; Zeitschriftenablage ; revistero ; portariviste ; tijdschriftenrekje ; стоечка для журналов
+040B ; FtrWireMagazinerack ; tubular magazine rack ; ワイヤーなマガジンラック ; 鋼絲雜誌架 ; 钢丝杂志架 ; 와이어 잡지 꽂이 ; porte-revues tubulaire ; Alurohr-Zeitschriftenablage ; revistero tubular ; portariviste tubolare ; buizentijdschriftenrek ; журнал. стойка из трубок
+040D ; FtrJapanesemodernChairS ; artful chair ; わふうモダンなざいす ; 和風摩登和室椅 ; 现代和风和室椅 ; 동양풍 모던 좌식 의자 ; chaise intemporelle ; Zeitlosstuhl ; sillón de melamina ; sedia concettuale ; modieuze stoel ; утонченный стул
 0412 ; FtrMetronome ; metronome ; メトロノーム ; 節拍器 ; 节拍器 ; 메트로놈 ; métronome ; Taktmesser ; metrónomo ; metronomo ; metronoom ; метроном
 0413 ; FtrMicrowave ; microwave ; でんしレンジ ; 微波爐 ; 微波炉 ; 전자레인지 ; micro-ondes ; Mikrowelle ; microondas ; forno a microonde ; magnetron ; печь СВЧ
 041A ; FtrMixer ; mixer ; ミキサー ; 果汁機 ; 果汁机 ; 믹서 ; mixeur ; Mixer ; batidora de vaso ; frullatore ; blender ; блендер
 041B ; FtrDrinkingbird ; water bird ; みずのみドリ ; 飲水鳥 ; 饮水鸟 ; 물 먹는 새 ; oiseau buveur ; Trinkvogel ; pájaro balancín ; uccellino bevitore ; drinkvogel ; водяная птица
 0422 ; FtrMusicstand ; music stand ; ふめんだい ; 樂譜架 ; 乐谱架 ; 보면대 ; pupitre à partition ; Notenständer ; atril para partituras ; leggìo per spartiti ; lessenaar ; пюпитр
 0430 ; FtrPartitionpole ; rope partition ; パーテーションポール ; 絨繩圍欄柱 ; 绒绳围栏柱 ; 파티션 폴 ; balisage à corde ; Absperrkordel ; cordón divisorio ; set di paline con cordone ; touwafscheiding ; заградительный канат
+0435 ; FtrStreetlampSimple ; simple streetlamp ; シンプルながいとう ; 簡約路燈 ; 简约路灯 ; 심플 가로등 ; réverbère simple ; Einfachstraßenlaterne ; farola simple ; lampione semplice ; simpele straatlantaarn ; прост. уличный фонарь
 0439 ; FtrPianoUpright ; upright piano ; アップライトピアノ ; 直立式鋼琴 ; 直立式钢琴 ; 업라이트 피아노 ; piano droit ; Klavier ; piano de pared ; piano verticale ; piano ; пианино
 043A ; FtrPicnicbasket ; picnic basket ; ピクニックバスケット ; 野餐籃 ; 野餐篮 ; 피크닉 가방 ; panier-repas ; Picknick-Korb ; cesta de pícnic ; cestino da picnic ; picknickmand ; корзинка для пикника
 043F ; FtrPinball ; pinball machine ; ピンボールだい ; 彈珠台 ; 弹珠台 ; 핀볼 게임기 ; flipper ; Flipper ; máquina de pinball ; flipper ; flipperkast ; пинбол
+0440 ; FtrJapanesemodernLamp ; artful lamp ; わふうモダンなフロアランプ ; 和風摩登落地燈 ; 现代和风落地灯 ; 동양풍 모던 플로어 스탠드 ; lampe intemporelle ; Zeitloslampe ; lámpara de melamina ; lampada concettuale ; modieuze lamp ; утонченная лампа
+0441 ; FtrKidsSlide ; kiddie slide ; キッズスライダー ; 兒童溜滑梯 ; 儿童滑梯 ; 어린이용 미끄럼틀 ; toboggan enfant ; Juniorrutsche ; tobogán infantil ; scivolo bimbi ; kinderglijbaan ; детская горка
+0442 ; FtrKidsCar ; kiddie car ; キッズカー ; 兒童車 ; 儿童车 ; 어린이용 자동차 ; voiture enfant ; Juniorauto ; coche infantil ; automobilina bimbi ; kinderauto ; детская машинка
+0443 ; FtrKidsHouse ; kiddie house ; キッズハウス ; 兒童遊戲屋 ; 儿童游戏屋 ; 어린이용 집 ; maison enfant ; Juniorhaus ; casita infantil ; casetta bimbi ; kinderhuis ; детский домик
 0444 ; FtrPopcornmachine ; popcorn machine ; ポップコーンマシン ; 爆米花機 ; 爆米花机 ; 팝콘 머신 ; machine à pop-corn ; Popcorn-Maschine ; máquina de palomitas ; macchina per pop-corn ; popcornmachine ; машина для попкорна
+044B ; FtrKidsScreen ; kiddie partition ; キッズパーテーション ; 兒童隔板 ; 儿童隔板 ; 어린이용 파티션 ; séparation enfant ; Juniortrennwand ; mampara infantil ; divisorio bimbi ; kinderwand ; детская перегородка
+044D ; FtrJapanesemodernBedW ; artful bed ; わふうモダンなベッド ; 和風摩登床鋪 ; 现代和风床铺 ; 동양풍 모던 침대 ; lit intemporel ; Zeitlosbett ; cama de melamina ; letto concettuale ; modieus bed ; утонченная кровать
+044E ; FtrJapanesemodernScreen ; artful screen ; わふうモダンなついたて ; 和風摩登屏風 ; 现代和风屏风 ; 동양풍 모던 파티션 ; paravent intemporel ; Zeitloswandschirm ; mampara de melamina ; separé concettuale ; modieus scherm ; утонченная ширма
 044F ; FtrRockingchair ; rocking chair ; ロッキングチェア ; 搖椅 ; 摇椅 ; 흔들의자 ; rocking-chair ; Schaukelstuhl ; mecedora ; sedia a dondolo ; schommelstoel ; кресло-качалка
 0454 ; FtrTVRetro ; retro TV ; レトロなテレビ ; 復古電視 ; 复古电视 ; 복고풍 TV ; télé rétro ; Retro-Fernseher ; tele retro ; TV rétro ; retro-tv ; ретро-телевизор
 0457 ; FtrOpenairbath ; outdoor bath ; ろてんぶろ ; 露天池 ; 露天池 ; 노천온천 ; bain extérieur ; Freiluftbad ; baño termal ; bagno termale ; warmwaterbron ; садовый пруд
@@ -109,6 +148,7 @@ id ; iName ; eng ; jpn ; tchi ; schi ; kor ; fre ; ger ; spa ; ita ; dut ; rus ;
 0492 ; FtrSwingWood ; swinging bench ; ベンチブランコ ; 鞦韆椅 ; 秋千椅 ; 벤치 그네 ; balancelle ; Schwingschaukel ; balancín de jardín ; dondolo ; schommelbank ; садовые качели
 0493 ; FtrSynthesizer ; synthesizer ; シンセサイザー ; 電子琴 ; 电子琴 ; 신시사이저 ; synthétiseur ; Synthesizer ; sintetizador ; sintetizzatore ; synthesizer ; синтезатор
 0499 ; FtrTablesoccer ; foosball table ; テーブルサッカー ; 桌型足球台 ; 桌型足球台 ; 테이블 축구 ; baby-foot ; Kickertisch ; futbolín ; biliardino ; tafelvoetbalspel ; настольный футбол
+049B ; FtrPlantStrelitzia ; bird-of-paradise ; オーガスタ ; 大鶴望蘭 ; 大鹤望兰 ; 극락조화 ; oiseau de paradis ; Strelitzie ; augusta ; strelitzia augusta ; paradijsvogelbloem ; стрелиция
 04A1 ; FtrTelephonebox ; phone box ; でんわボックス ; 電話亭 ; 电话亭 ; 공중전화 부스 ; cabine téléphonique ; Telefonzelle ; cabina telefónica ; cabina del telefono ; telefooncel ; телефонная будка
 04A5 ; FtrTyres ; tire stack ; つまれたタイヤ ; 輪胎堆 ; 轮胎堆 ; 쌓인 타이어 ; pile de pneus ; Reifenstapel ; pila de neumáticos ; pila di pneumatici ; stapel autobanden ; стопка покрышек
 04AF ; FtrTricycle ; tricycle ; さんりんしゃ ; 三輪車 ; 三轮车 ; 세발자전거 ; tricycle ; Dreirad ; triciclo ; triciclo ; driewieler ; велосипедик
@@ -123,7 +163,16 @@ id ; iName ; eng ; jpn ; tchi ; schi ; kor ; fre ; ger ; spa ; ita ; dut ; rus ;
 04D3 ; FtrWCRoom ; bathroom stall ; こしつトイレ ; 單間廁所 ; 单间厕所 ; 공용 화장실 ; cabine de WC fixe ; Toilettenkabine ; cabina de retrete ; cabina WC ; vaste toiletcabine ; общественный туалет
 04D9 ; FtrWorkbench ; DIY workbench ; DIYさぎょうだい ; ＤＩＹ作業台 ; DIY作业台 ; DIY 작업대 ; établi ; Werkbank ; banco de bricolaje ; banco da lavoro ; werkbank ; верстак для поделок
 04DB ; FtrWreath ; flashy-flower sign ; はなわ ; 花環 ; 花环 ; 화환 ; panneau fleuri ; Blumengesteck ; cartel florido ; decorazione inaugurale ; bloemenbord ; яркий знак-цветок
+04E3 ; FtrMugShelf ; mug shelves ; マグカップシェルフ ; 馬克杯收納架 ; 马克杯架 ; 머그컵 쉘프 ; présentoir à tasses ; Tassenregal ; estante con tazas ; credenza con tazze ; mokkenkast ; полка для кружек
+04E5 ; FtrLegoScreen ; LEGO partition ; LEGOパーテーション ; LEGO隔板 ; LEGO隔板 ; LEGO 파티션 ; séparation LEGO ; LEGO-Trennwand ; separador LEGO ; divisorio LEGO ; LEGO-scheidingswand ; перегородка LEGO
+04EE ; FtrCushionRound ; circle cushion ; まるいクッション ; 圓形抱枕 ; 圆形抱枕 ; 둥근 쿠션 ; coussin rond ; Kreiskissen ; cojín circular ; cuscino tondo ; cirkelkussen ; круглая подушка
 04EF ; FtrFruitsClosetLR ; pear wardrobe ; ナシのクロゼット ; 梨子衣櫃 ; 梨子衣柜 ; 배 옷장 ; armoire poire ; Birnenschrank ; armario pera ; armadio pera ; perenkast ; шкаф-груша
+04FA ; FtrLegoTableL ; LEGO table ; LEGOテーブル ; LEGO桌 ; LEGO桌 ; LEGO 테이블 ; table LEGO ; LEGO-Tisch ; mesa LEGO ; tavolo LEGO ; LEGO-tafel ; стол LEGO
+04FB ; FtrLegoWorkbench ; LEGO DIY workbench ; LEGODIYさぎょうだい ; LEGOＤＩＹ作業台 ; LEGODIY作业台 ; LEGO DIY 작업대 ; établi de bricolage LEGO ; LEGO-Werkbank ; banco de bricolaje LEGO ; banco da lavoro LEGO ; LEGO-werkbank ; верстак LEGO
+04FC ; FtrLegoFireplace ; LEGO fireplace ; LEGOだんろ ; LEGO壁爐 ; LEGO壁炉 ; LEGO 난로 ; cheminée LEGO ; LEGO-Kamin ; chimenea LEGO ; caminetto LEGO ; LEGO-haard ; камин LEGO
+04FE ; FtrLegoBedW ; LEGO bed ; LEGOベッド ; LEGO床鋪 ; LEGO床铺 ; LEGO 침대 ; lit LEGO ; LEGO-Bett ; cama LEGO ; letto LEGO ; LEGO-bed ; кровать LEGO
+04FF ; FtrLegoSofaL ; LEGO sofa ; LEGOソファ ; LEGO沙發 ; LEGO沙发 ; LEGO 소파 ; canapé LEGO ; LEGO-Sofa ; sofá LEGO ; sofà LEGO ; LEGO-bank ; диван LEGO
+0506 ; FtrLegoArcadegame ; LEGO arcade game ; LEGOアーケードゲーム ; LEGO街機遊戲 ; LEGO街机游戏 ; LEGO 아케이드 게임 ; jeu d'arcade LEGO ; LEGO-Arcade-Spiel ; máquina recreativa LEGO ; cabinato LEGO ; LEGO-arcadekast ; аркадная игра LEGO
 0508 ; FtrPlantYamadoriyashi ; fan palm ; ヤマドリヤシ ; 黃椰子 ; 黄椰子 ; 아레카야자 ; palmier d'Arec ; Fächerpalme ; palmera ; palma cinese ; dypsis ; веерная пальма
 051C ; FtrSchoolChairS ; school chair ; がっこうのイス ; 學校椅子 ; 课椅 ; 학교 의자 ; chaise d'écolier ; Schulstuhl ; silla escolar ; sedia da scuola ; basisschoolstoel ; ученический стул
 0522 ; FtrLavatory ; handwashing area ; てあらいば ; 洗手處 ; 洗手处 ; 손 전용 세면대 ; lavabo public ; Handwaschbecken ; pilón ; lavatoio pubblico ; grote wastafel ; общественная мойка
@@ -729,7 +778,7 @@ id ; iName ; eng ; jpn ; tchi ; schi ; kor ; fre ; ger ; spa ; ita ; dut ; rus ;
 3186 ; FtrReceptioncounterArch ; arched reception counter ; アーチのうけつけカウンター ; 拱形接待櫃台 ; 拱形接待柜台 ; 아치 접수 카운터 ; comptoir réception incurvé ; Bogenrezeption ; mostrador recepción curvo ; banco reception ad arco ; ronde wachtkamerbalie ; закругленная стойка
 3187 ; FtrReceptioncounter ; reception counter ; うけつけカウンター ; 接待櫃台 ; 接待柜台 ; 접수 카운터 ; comptoir de réception ; Rezeption ; mostrador de recepción ; banco reception ; wachtkamerbalie ; стойка регистратуры
 318B ; Ftr8fairFerriswheel ; plaza ferris wheel ; ひろばのかんらんしゃ ; 廣場摩天輪 ; 广场摩天轮 ; 광장 관람차 ; grande roue de la place ; Kirmes-Riesenrad ; noria de feria ; ruota panoramica da fiera ; kermisreuzenrad ; колесо обозрен. (площадь)
-318C ; Ftr8fairMerrygoround ; plaza merry-go-round ; ひろばのメリーゴーランド ; 廣場旋轉木馬 ; 广场旋转木马 ; 광장 회전목마 ; manège de la place ; Kirmes-Karussell ; tiovivo de feria ; giostra da fiera ; kermisdraaimolen ; карусель (площадь)
+318C ; Ftr8fairMerrygoround ; plaza merry-go-round ; ひろばのメリーゴーランド ; 廣場旋轉木馬 ; 广场旋转木马 ; 광장 회전목마 ; manège de la place ; Kirmes-Karussell ; tiovivo de feria ; giostra da fiera ; ermisdraaimolen ; карусель (площадь)
 318D ; Ftr8fairBalloon ; inflatable plaza toy ; ひろばのエアゆうぐ ; 廣場充氣遊樂器材 ; 广场充气游乐器材 ; 광장 에어 놀이 기구 ; baudruche de la place ; Kirmes-Aufblaselefant ; muñeco hinchable de feria ; pupazzo gonfiabile da fiera ; kermisopblaasdier ; надувн. фигура (площадь)
 3190 ; Ftr8fairBench ; plaza bench ; ひろばのベンチ ; 廣場長椅 ; 广场长椅 ; 광장 벤치 ; banc de la place ; Kirmes-Bank ; banco de feria ; panchina da fiera ; kermisbankje ; лавка на площадь
 3191 ; Ftr8fairArch ; plaza arch ; ひろばのアーチ ; 廣場拱門 ; 广场拱门 ; 광장 아치 ; arche de la place ; Kirmes-Tor ; arco de feria ; arco da fiera ; kermisboog ; арка на площадь
@@ -1027,6 +1076,7 @@ id ; iName ; eng ; jpn ; tchi ; schi ; kor ; fre ; ger ; spa ; ita ; dut ; rus ;
 354D ; FtrScrapbook ; scrapbook ; スクラップブック ; 剪貼簿 ; 剪贴簿 ; 스크랩북 ; scrapbook ; Sammelalbum ; álbum de recortes ; album di ritagli ; plakboek ; памятный альбом
 354F ; FtrFence ; fence ; フェンス ; 圍欄 ; 围栏 ; 펜스 ; clôture ; Zaun ; mampara de rejilla ; recinzione ; hek ; ограждение
 3551 ; FtrFrogTable ; lily-pad table ; ハスのテーブル ; 荷葉桌 ; 荷叶桌 ; 연꽃 테이블 ; table feuille de nénuphar ; Seerosentisch ; mesa nenúfar ; tavolo ninfea ; waterlelietafel ; стол «Лист кувшинки»
+3552 ; FtrSuitcase ; rolling suitcase ; スーツケース ; 行李箱 ; 行李箱 ; 캐리어 ; valise à roulettes ; Rollkoffer ; maleta con ruedas ; valigia con ruote ; rolkoffer ; чемодан на колесах
 3553 ; FtrAlcoveJapan ; tokonoma ; とこのま ; 和室壁龕 ; 和室壁龛 ; 족자 장식 벽 ; alcôve ; Bildnische ; tokonoma ; tokonoma ; tokonoma ; ниша токонома
 3554 ; FtrTreasuremap ; antique map ; アンティークなちず ; 古董地圖 ; 古董地图 ; 앤티크 지도 ; carte ancienne ; Uralt-Schatzkarte ; mapa antiguo ; mappa antica ; oude landkaart ; старинная карта
 3557 ; FtrPhotoframe ; framed photo ; しゃしんたて ; 照片框 ; 相框 ; 사진 액자 ; photo encadrée ; Foto im Rahmen ; foto enmarcada ; cornice per foto ; ingelijste foto ; фото в рамке
@@ -1161,6 +1211,9 @@ id ; iName ; eng ; jpn ; tchi ; schi ; kor ; fre ; ger ; spa ; ita ; dut ; rus ;
 39EF ; FtrStorageWood ; wooden storage shed ; もくせいのものおき ; 木製儲藏櫃 ; 木制储藏柜 ; 목제 간이 창고 ; débarras en bois ; Holz-Lagerschrank ; minicobertizo de madera ; ripostiglio di legno ; houten schuurtje ; дер. шкаф для инвентаря
 3A22 ; FtrRemainsChairS ; ruined seat ; いせきのこしかけ ; 遺跡小椅子 ; 遗迹小椅子 ; 유적 의자 ; siège en ruine ; Ruinenhocker ; asiento ruinas ; seduta in rovina ; ruïne-zitplaats ; сидение-руина
 3A27 ; FtrRemainsArchBroken ; ruined broken pillar ; いせきのおれたはしら ; 遺跡斷柱 ; 遗迹断柱 ; 부러진 유적 기둥 ; pilier brisé en ruine ; Ruinen-Bruchsäule ; pilar roto ruinas ; colonna spezzata in rovina ; ruïne-zuil ; обломок колонны-руины
+0305 ; ToolScoopDream ; dream shovel ; ゆめのスコップ ; 夢境鏟子 ; 梦境铲子 ; 꿈속의 삽 ; pelle onirique ; Schlummer-Schaufel ; pala onírica ; pala sognidoro ; droomschep ; лопата грез
+0308 ; ToolAnglingDream ; dream fishing rod ; ゆめのつりざお ; 夢境釣竿 ; 梦境钓竿 ; 꿈속의 낚싯대 ; canne à pêche onirique ; Schlummer-Angel ; caña onírica ; canna da pesca sognidoro ; droomhengel ; удочка грез
+030B ; ToolNetDream ; dream net ; ゆめのあみ ; 夢境捕蟲網 ; 梦境捕虫网 ; 꿈속의 잠자리채 ; filet onirique ; Schlummer-Kescher ; red onírica ; retino sognidoro ; droomnet ; сачок грез
 0833 ; ToolScoop ; shovel ; スコップ ; 鏟子 ; 铲子 ; 삽 ; pelle ; Schaufel ; pala ; pala ; schep ; лопата
 0949 ; ToolAngling ; fishing rod ; つりざお ; 釣竿 ; 钓竿 ; 낚싯대 ; canne à pêche ; Angel ; caña ; canna da pesca ; hengel ; удочка
 094B ; ToolWatering ; watering can ; ジョウロ ; 澆花壺 ; 浇花壶 ; 물뿌리개 ; arrosoir ; Gießkanne ; regadera ; annaffiatoio ; gieter ; лейка
@@ -1305,6 +1358,10 @@ id ; iName ; eng ; jpn ; tchi ; schi ; kor ; fre ; ger ; spa ; ita ; dut ; rus ;
 01A8 ; BromideNpcSpDoc ; Wilbur's photo ; ロドリーのしゃしん ; 陸德里的照片 ; 陆德里的照片 ; 로드리의 사진 ; photo de Rodrigue ; Foto von Udo ; foto de Rodri ; foto di Dodoardo ; foto van Wilbur ; фото Уилбура
 01A9 ; BromideNpcSpMan ; Wardell's photo ; ナッティーのしゃしん ; 納提的照片 ; 纳提的照片 ; 너티의 사진 ; photo de Mantin ; Foto von Sigmar ; foto de Matías ; foto di Gedeone ; foto van Wardell ; фото Ворделла
 01AA ; BromideNpcSpMnc ; Niko's photo ; ニコのしゃしん ; 尼可的照片 ; 尼可的照片 ; 방글의 사진 ; photo de Gratien ; Foto von Bono ; foto de Miko ; foto di Gilbertuccio ; foto van Niko ; фото Нико
+0406 ; BromideNpcNmlDer12 ; Mineru's photo ; ミネルのしゃしん ; 米涅魯的照片 ; 米涅鲁的照片 ; 미넬의 사진 ; photo de Mineru ; Foto von Mineru ; foto de Mineru ; foto di Mineru ; foto van Mineru ; фото Минеру
+0407 ; BromideNpcNmlSqu19 ; Cece's photo ; なぎさのしゃしん ; 霓莎的照片 ; 霓莎的照片 ; 나기사의 사진 ; photo de Kala ; Foto von A-Chan ; foto de Arduna ; foto di Cecilia ; foto van Cece ; фото Сесе
+0409 ; BromideNpcNmlSqu20 ; Viché's photo ; みさきのしゃしん ; 瀰莎的照片 ; 弥莎的照片 ; 미사키의 사진 ; photo de Mara ; Foto von L-Pyon ; foto de Ardelta ; foto di Vicky ; foto van Viché ; фото Виче
+0505 ; BromideNpcNmlBrd20 ; Tulin's photo ; チューリのしゃしん ; 丘栗的照片 ; 丘栗的照片 ; 튤리의 사진 ; photo de Babil ; Foto von Tulin ; foto de Tureli ; foto di Tulin ; foto van Tulin ; фото Тюлина
 191A ; BromideNpcNmlAnt00 ; Cyrano's photo ; さくらじまのしゃしん ; 陽明的照片 ; 阳明的照片 ; 사지마의 사진 ; photo de Cyrano ; Foto von Theo ; foto de Cirano ; foto di Cirano ; foto van Cyrano ; фото Сирано
 191B ; BromideNpcNmlBea02 ; Curt's photo ; ガンテツのしゃしん ; 鐵熊的照片 ; 铁熊的照片 ; 뚝심의 사진 ; photo de Curt ; Foto von Kurt ; foto de Gorbaché ; foto di Curt ; foto van Curt ; фото Керта
 191C ; BromideNpcNmlDer02 ; Zell's photo ; ネルソンのしゃしん ; 森森的照片 ; 森森的照片 ; 넬슨의 사진 ; photo de Régis ; Foto von Walter ; foto de Corvilo ; foto di Antilio ; foto van Zell ; фото Зелла
@@ -1326,7 +1383,7 @@ id ; iName ; eng ; jpn ; tchi ; schi ; kor ; fre ; ger ; spa ; ita ; dut ; rus ;
 192C ; BromideNpcNmlDog07 ; Daisy's photo ; バニラのしゃしん ; 香草的照片 ; 香草的照片 ; 바닐라의 사진 ; photo de Naomie ; Foto von Doris ; foto de Luisa ; foto di Fiorella ; foto van Daisy ; фото Дейзи
 192D ; BromideNpcNmlDog08 ; Cookie's photo ; ペリーヌのしゃしん ; 珮琳的照片 ; 珮琳的照片 ; 베리의 사진 ; photo de Cookie ; Foto von Rosi ; foto de Purita ; foto di Briciola ; foto van Cookie ; фото Куки
 192E ; BromideNpcNmlDog09 ; Maddie's photo ; マロンのしゃしん ; 麻蓉的照片 ; 麻蓉的照片 ; 마롱의 사진 ; photo d'Olympe ; Foto von Agnes ; foto de Martina ; foto di Cristina ; foto van Maddie ; фото Мэдди
-192F ; BromideNpcNmlDog10 ; Bea's photo ; ベーグルのしゃしん ; 貝果的照片 ; 贝果的照片 ; 베이글의 사진 ; photo de Béa ; Foto von Bea ; foto de Bea ; foto di Cucciola ; foto van Bea ; фото Беы
+192F ; BromideNpcNmlDog10 ; Bea's photo ; ベーグルのしゃしん ; 貝果的照片 ; 贝果的照片 ; 베이글의 사진 ; photo de Béa ; Foto von Bea ; foto de Bea ; foto di Cucciola ; foto van Bea ; фото Беи
 1930 ; BromideNpcNmlDog14 ; Mac's photo ; チャンプのしゃしん ; 金牌的照片 ; 金牌的照片 ; 챔프의 사진 ; photo de Brutus ; Foto von Wuffi ; foto de Pit ; foto di Teo ; foto van Mac ; фото Мака
 1931 ; BromideNpcNmlBea05 ; Nate's photo ; バッカスのしゃしん ; 巴克思的照片 ; 巴克思的照片 ; 박하스의 사진 ; photo de Nathan ; Foto von Nathan ; foto de Nachete ; foto di Gianni ; foto van Nate ; фото Нэйта
 1932 ; BromideNpcNmlDog15 ; Marcel's photo ; もんじゃのしゃしん ; 文字燒的照片 ; 文字烧的照片 ; 에드워드의 사진 ; photo d'Ismaël ; Foto von Ronaldo ; foto de Eto ; foto di Giosuè ; foto van Marcel ; фото Марселя
@@ -1362,7 +1419,7 @@ id ; iName ; eng ; jpn ; tchi ; schi ; kor ; fre ; ger ; spa ; ita ; dut ; rus ;
 1950 ; BromideNpcNmlElp07 ; Ellie's photo ; エクレアのしゃしん ; 泡芙的照片 ; 泡芙的照片 ; 에끌레르의 사진 ; photo d'Ella ; Foto von Elfi ; foto de Eli ; foto di Elly ; foto van Ellie ; фото Эллы
 1951 ; BromideNpcNmlElp09 ; Tucker's photo ; はじめのしゃしん ; 阿原的照片 ; 阿原的照片 ; 맘모의 사진 ; photo de Barry ; Foto von Thorsten ; foto de Pirolo ; foto di Sventolo ; foto van Tucker ; фото Такера
 1952 ; BromideNpcNmlBea08 ; Ursala's photo ; ネーヤのしゃしん ; 妮雅的照片 ; 妮雅的照片 ; 네이아의 사진 ; photo d'Oursula ; Foto von Ursula ; foto de Úrsula ; foto di Ursula ; foto van Ursala ; фото Урсалы
-1953 ; BromideNpcNmlElp10 ; Tia's photo ; ティーナのしゃしん ; 茉莉的照片 ; 茉莉的照片 ; 티나의 사진 ; photo de Fanny ; Foto von Eleonore ; foto de Meralda ; foto di Fanny ; foto van Tia ; фото Тиы
+1953 ; BromideNpcNmlElp10 ; Tia's photo ; ティーナのしゃしん ; 茉莉的照片 ; 茉莉的照片 ; 티나의 사진 ; photo de Fanny ; Foto von Eleonore ; foto de Meralda ; foto di Fanny ; foto van Tia ; фото Тии
 1954 ; BromideNpcNmlFlg00 ; Lily's photo ; レイニーのしゃしん ; 雷妮的照片 ; 雷妮的照片 ; 레이니의 사진 ; photo de Raina ; Foto von Liliane ; foto de Lili ; foto di Gigliola ; foto van Lily ; фото Лили
 1955 ; BromideNpcNmlFlg01 ; Ribbot's photo ; ガチャのしゃしん ; 鏘鏘的照片 ; 锵锵的照片 ; 철컥의 사진 ; photo de Crabot ; Foto von Robbi ; foto de Ranobot ; foto di Ranabot ; foto van Ribbot ; фото Риббота
 1956 ; BromideNpcNmlFlg02 ; Frobert's photo ; コージィのしゃしん ; 江適的照片 ; 江适的照片 ; 구리구리의 사진 ; photo de Verbert ; Foto von Fritz ; foto de Croaldo ; foto di Froberto ; foto van Frobert ; фото Фроберта

@@ -16,7 +16,7 @@ namespace ACNHPokerCore
         int fileCounter = 0;
         private readonly string directoryName = @"img";
         private readonly string fileName = @"img.zip";
-        private readonly string downloadFileUrl = "https://github.com/MyShiLingStar/ACNHPokerCore/releases/download/ImgPack8/img.zip";
+        private readonly string downloadFileUrl = "https://github.com/MyShiLingStar/ACNHPokerCore/releases/download/ImgPack9/img.zip";
         private readonly System.Windows.Forms.Timer progressTimer = new();
 
         public ImgRetriever()

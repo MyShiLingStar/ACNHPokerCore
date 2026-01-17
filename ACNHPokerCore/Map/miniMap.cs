@@ -51,6 +51,8 @@ namespace ACNHPokerCore
         private const int AcreHeight = 6 + (2 * 1);
         private const int AcreMax = AcreWidth * AcreHeight;
         private const int AllAcreSize = AcreMax * 2;
+
+        private const int ExtendedMapOffset = (16 * 6 * 16 * 1) * 2; // One extra column of Acre
         public MiniMap(byte[] ItemMapByte, byte[] acreMapByte, byte[] buildingByte, byte[] terrainByte, byte[] customDesignByte, int size = 2)
         {
             AcreMapByte = acreMapByte;
@@ -62,10 +64,10 @@ namespace ACNHPokerCore
 
             if (ItemMapByte != null)
             {
-                ItemMapData = new byte[numOfColumn][];
+                ItemMapData = new byte[Utilities.ExtendedMapNumOfColumn][];
 
                 mapSize = size;
-                for (int i = 0; i < numOfColumn; i++)
+                for (int i = 0; i < Utilities.ExtendedMapNumOfColumn; i++)
                 {
                     ItemMapData[i] = new byte[columnSize];
                     Buffer.BlockCopy(ItemMapByte, i * columnSize, ItemMapData[i], 0x0, columnSize);
@@ -483,9 +485,9 @@ namespace ACNHPokerCore
             ItemMapData = null;
             tilesType = null;
 
-            ItemMapData = new byte[numOfColumn][];
+            ItemMapData = new byte[Utilities.ExtendedMapNumOfColumn][];
 
-            for (int i = 0; i < numOfColumn; i++)
+            for (int i = 0; i < Utilities.ExtendedMapNumOfColumn; i++)
             {
                 ItemMapData[i] = new byte[columnSize];
                 Buffer.BlockCopy(itemData, i * columnSize, ItemMapData[i], 0x0, columnSize);
@@ -978,11 +980,11 @@ namespace ACNHPokerCore
                     byte[] tempPart4 = new byte[0x8];
                     byte[] IDByte = new byte[0x2];
 
-                    Buffer.BlockCopy(ItemMapData[i], j * 0x10, tempPart1, 0x0, 0x8);
-                    Buffer.BlockCopy(ItemMapData[i], j * 0x10 + 0x8, tempPart2, 0x0, 0x8);
-                    Buffer.BlockCopy(ItemMapData[i], j * 0x10 + 0x600, tempPart3, 0x0, 0x8);
-                    Buffer.BlockCopy(ItemMapData[i], j * 0x10 + 0x600 + 0x8, tempPart4, 0x0, 0x8);
-                    Buffer.BlockCopy(ItemMapData[i], j * 0x10, IDByte, 0x0, 0x2);
+                    Buffer.BlockCopy(ItemMapData[i + 16], j * 0x10, tempPart1, 0x0, 0x8);
+                    Buffer.BlockCopy(ItemMapData[i + 16], j * 0x10 + 0x8, tempPart2, 0x0, 0x8);
+                    Buffer.BlockCopy(ItemMapData[i + 16], j * 0x10 + 0x600, tempPart3, 0x0, 0x8);
+                    Buffer.BlockCopy(ItemMapData[i + 16], j * 0x10 + 0x600 + 0x8, tempPart4, 0x0, 0x8);
+                    Buffer.BlockCopy(ItemMapData[i + 16], j * 0x10, IDByte, 0x0, 0x2);
 
                     string strPart1 = Utilities.ByteToHexString(tempPart1);
                     string strPart2 = Utilities.ByteToHexString(tempPart2);
@@ -1063,7 +1065,7 @@ namespace ACNHPokerCore
                     if (CustomDesignByte != null)
                     {
                         byte[] currentDesign = new byte[2];
-                        Buffer.BlockCopy(CustomDesignByte, (i * numOfRow + j) * 2, currentDesign, 0, 2);
+                        Buffer.BlockCopy(CustomDesignByte, ExtendedMapOffset + (i * numOfRow + j) * 2, currentDesign, 0, 2);
                         terrainUnits[i][j].SetCustomDesign(currentDesign);
                     }
 
@@ -1383,6 +1385,13 @@ namespace ACNHPokerCore
                             buildingBottomX = BuildingX;
                             buildingBottomY = BuildingY;
                         }
+                        else if (CurrentBuilding == BuildingType.Hotel)
+                        {
+                            buildingTopX = BuildingX - 3;
+                            buildingTopY = BuildingY - 2;
+                            buildingBottomX = BuildingX + 3;
+                            buildingBottomY = BuildingY + 1;
+                        }
                         else
                         {
                             buildingTopX = BuildingX - 1;
@@ -1563,6 +1572,13 @@ namespace ACNHPokerCore
                             buildingTopY = BuildingY - 1;
                             buildingBottomX = BuildingX;
                             buildingBottomY = BuildingY;
+                        }
+                        else if (CurrentBuilding == BuildingType.Hotel)
+                        {
+                            buildingTopX = BuildingX - 3;
+                            buildingTopY = BuildingY - 2;
+                            buildingBottomX = BuildingX + 3;
+                            buildingBottomY = BuildingY + 1;
                         }
                         else
                         {
@@ -1765,10 +1781,17 @@ namespace ACNHPokerCore
                 }
                 else if (CurrentBuilding == BuildingType.Bridge || CurrentBuilding == BuildingType.Incline)
                 {
-                    buildingTopX = BuildingX - 1 * 2;
-                    buildingTopY = BuildingY - 1 * 2;
+                    buildingTopX = BuildingX - 2 * 2;
+                    buildingTopY = BuildingY - 2 * 2;
                     buildingBottomX = BuildingX;
                     buildingBottomY = BuildingY;
+                }
+                else if (CurrentBuilding == BuildingType.Hotel)
+                {
+                    buildingTopX = BuildingX - 3 * 2;
+                    buildingTopY = BuildingY - 2 * 2;
+                    buildingBottomX = BuildingX + 3 * 2;
+                    buildingBottomY = BuildingY + 1 * 2;
                 }
                 else if (BuildingByte == 0xFF)
                 {
@@ -1849,6 +1872,13 @@ namespace ACNHPokerCore
                     buildingTopY = BuildingY - 1;
                     buildingBottomX = BuildingX;
                     buildingBottomY = BuildingY;
+                }
+                else if (CurrentBuilding == BuildingType.Hotel)
+                {
+                    buildingTopX = BuildingX - 3;
+                    buildingTopY = BuildingY - 2;
+                    buildingBottomX = BuildingX + 3;
+                    buildingBottomY = BuildingY + 1;
                 }
                 else if (BuildingByte == 0xFF)
                 {
@@ -1944,6 +1974,7 @@ namespace ACNHPokerCore
             Incline = 0x1B,
             ReddsTreasureTrawler = 0x1C,
             Studio = 0x1D,
+            Hotel = 0x2A,
         }
 
         public static readonly Dictionary<byte, Color> ByteToBuildingColor = new()
@@ -1978,6 +2009,7 @@ namespace ACNHPokerCore
             {0x1B, Color.Red},
             {0x1C, Color.OrangeRed},
             {0x1D, Color.Black},
+            {0x2A, Color.Cyan},
         };
     }
 }

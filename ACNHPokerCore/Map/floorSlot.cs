@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ACNHPokerCore
@@ -89,6 +88,7 @@ namespace ACNHPokerCore
                 ItemData = (ItemData & 0xFFFFFF00) + value;
             }
         }
+
         public FloorSlot()
         {
             if (File.Exists(Utilities.RecipeOverlayPath))
@@ -103,7 +103,7 @@ namespace ACNHPokerCore
             MapY = -1;
         }
 
-        public void Setup(string Name, ushort ID, uint Data, uint P2, uint P2Data, uint P3, uint P3Data, uint P4, uint P4Data, string Path1, string Path2, string Path3, string Path4, string containPath = "", string flagA = "00", string flagB = "00")
+        public async Task Setup(string Name, ushort ID, uint Data, uint P2, uint P2Data, uint P3, uint P3Data, uint P4, uint P4Data, string Path1, string Path2, string Path3, string Path4, string containPath = "", string flagA = "00", string flagB = "00")
         {
             ItemName = Name;
             ItemID = ID;
@@ -125,84 +125,115 @@ namespace ACNHPokerCore
 
             containItemPath = containPath;
 
-            Refresh(false);
+            ForeColor = Color.White;
+            TextAlign = ContentAlignment.TopLeft;
+            Text = "";
+            Image = null;
+            locked = false;
         }
 
-        private readonly Mutex _mutex = new();
-        public void Refresh(bool large)
+        public async Task setImage(bool large)
         {
-            _mutex.WaitOne();
+            Image = LoadImageForSlot(large);
+        }
 
-            try
+        public Image LoadImageForSlot(bool large)
+        {
+            uint P1Id = ItemData & 0x0000FFFF;
+            uint P2Id = Part2Data & 0x0000FFFF;
+            uint P3Id = Part3Data & 0x0000FFFF;
+            uint P4Id = Part4Data & 0x0000FFFF;
+
+            if (ItemID != 0xFFFE && (ItemID == P2Id && P2Id == P3Id && P3Id == P4Id) && (Part2 == Part3 && Part3 == Part4)) // Filled Slot
+            {
+
+                if (Flag1 != "20" || Flag0 != "00")
+                {
+                    locked = true;
+                }
+                //this.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+
+                return DisplayItemImage(large, false);
+            }
+            else if (IsExtension())
+            {
+                return DisplayItemImage(large, true);
+            }
+            else if (ItemID != 0xFFFE && Flag0 != "00") // wrapped
+            {
+                return DisplayItemImage(large, false);
+            }
+            else // seperate
+            {
+                locked = true;
+
+                if (Flag0 != "00")
+                {
+                    locked = true;
+                }
+
+                return DisplayItemImage(large, true);
+            }
+        }
+
+        /*
+        public async Task Refresh(bool large)
+        {
+            //this.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+
+            uint P1Id = ItemData & 0x0000FFFF;
+            uint P2Id = Part2Data & 0x0000FFFF;
+            uint P3Id = Part3Data & 0x0000FFFF;
+            uint P4Id = Part4Data & 0x0000FFFF;
+
+            if (ItemID != 0xFFFE && (ItemID == P2Id && P2Id == P3Id && P3Id == P4Id) && (Part2 == Part3 && Part3 == Part4)) // Filled Slot
+            {
+
+                if (Flag1 != "20" || Flag0 != "00")
+                {
+                    locked = true;
+                }
+                //this.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+
+                UpdateUI(() =>
+                {
+                    Image = DisplayItemImage(large, false);
+                });
+            }
+            else if (IsExtension())
             {
                 UpdateUI(() =>
                 {
-                    ForeColor = Color.White;
-                    TextAlign = ContentAlignment.TopLeft;
-                    Text = "";
-                    Image = null;
-                    locked = false;
+                    Image = DisplayItemImage(large, true);
                 });
-
-                //this.BackColor = Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-
-                uint P1Id = ItemData & 0x0000FFFF;
-                uint P2Id = Part2Data & 0x0000FFFF;
-                uint P3Id = Part3Data & 0x0000FFFF;
-                uint P4Id = Part4Data & 0x0000FFFF;
-
-                if (ItemID != 0xFFFE && (ItemID == P2Id && P2Id == P3Id && P3Id == P4Id) && (Part2 == Part3 && Part3 == Part4)) // Filled Slot
+            }
+            else if (ItemID == 0xFFFE && Part2 == 0xFFFE && Part3 == 0xFFFE && Part4 == 0xFFFE) // Empty
+            {
+                //this.BackColor = Color.LightSalmon;
+            }
+            else if (ItemID != 0xFFFE && Flag0 != "00") // wrapped
+            {
+                UpdateUI(() =>
                 {
+                    Image = DisplayItemImage(large, false);
+                });
+            }
+            else // seperate
+            {
+                locked = true;
 
-                    if (Flag1 != "20" || Flag0 != "00")
-                    {
-                        locked = true;
-                    }
-                    //this.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-
-                    UpdateUI(() =>
-                    {
-                        Image = DisplayItemImage(large, false);
-                    });
-                }
-                else if (IsExtension())
-                {
-                    UpdateUI(() =>
-                    {
-                        Image = DisplayItemImage(large, true);
-                    });
-                }
-                else if (ItemID == 0xFFFE && Part2 == 0xFFFE && Part3 == 0xFFFE && Part4 == 0xFFFE) // Empty
-                {
-                    //this.BackColor = Color.LightSalmon;
-                }
-                else if (ItemID != 0xFFFE && Flag0 != "00") // wrapped
-                {
-                    UpdateUI(() =>
-                    {
-                        Image = DisplayItemImage(large, false);
-                    });
-                }
-                else // seperate
+                if (Flag0 != "00")
                 {
                     locked = true;
-
-                    if (Flag0 != "00")
-                    {
-                        locked = true;
-                    }
-
-                    UpdateUI(() =>
-                    {
-                        Image = DisplayItemImage(large, true);
-                    });
                 }
-            }
-            finally
-            {
-                _mutex.ReleaseMutex();
+
+                UpdateUI(() =>
+                {
+                    Image = DisplayItemImage(large, true);
+                });
             }
         }
+        */
 
         public void SetBackColor(bool Layer1 = true, int Corner1X = -1, int Corner1Y = -1, int Corner2X = -1, int Corner2Y = -1, bool AreaSelected = false)
         {
@@ -396,8 +427,7 @@ namespace ACNHPokerCore
             image4Path = "";
 
             containItemPath = "";
-
-            Refresh(false);
+            Image = null;
         }
 
         public Image DisplayItemImage(bool large, bool separate)
@@ -651,21 +681,6 @@ namespace ACNHPokerCore
             return output;
         }
 
-        private void UpdateUI(Action action)
-        {
-            this.BeginInvoke((Action)(() =>
-            {
-                try
-                {
-                    action();
-                }
-                catch (Exception ex)
-                {
-                    // Handle or log the exception
-                    MyMessageBox.Show("UI update error: " + ex.Message);
-                }
-            }));
-        }
         /*
         private async static Task<Image> PlaceImagesAsync(Image bottom, Image topleft, Image topright, Image bottomleft, Image bottomright, float alpha)
         {

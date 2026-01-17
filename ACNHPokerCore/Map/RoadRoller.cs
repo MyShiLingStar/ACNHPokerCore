@@ -11,6 +11,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ACNHPokerCore
 {
@@ -97,6 +98,9 @@ namespace ACNHPokerCore
         private readonly string debugAcres = @"YourAcre.nha";
         private readonly string debugBuilding = @"YourBuilding.nhb";
         private readonly string debugDesign = @"YourCustomDesignMap.nhdm";
+
+
+        private const int ExtendedMapOffset = (16 * 6 * 16 * 1) * 2; // One extra column of Acre
 
         public RoadRoller(Socket S, USBBot USB, bool Sound, bool Debugging)
         {
@@ -690,7 +694,7 @@ namespace ACNHPokerCore
                                 if (MapCustomDesgin != null)
                                 {
                                     byte[] currentDesign = new byte[2];
-                                    Buffer.BlockCopy(MapCustomDesgin, (i * numOfRow + j) * 2, currentDesign, 0, 2);
+                                    Buffer.BlockCopy(MapCustomDesgin, ExtendedMapOffset + (i * numOfRow + j) * 2, currentDesign, 0, 2);
                                     terrainUnits[i][j].SetCustomDesign(currentDesign);
                                 }
 
@@ -2682,6 +2686,7 @@ namespace ACNHPokerCore
             }
 
             byte[] newCustomMap = null;
+            byte[] ExtendedCustomMap = null;
 
             if (haveCustomEdit)
             {
@@ -2695,16 +2700,28 @@ namespace ACNHPokerCore
                         Buffer.BlockCopy(CustomDesignData, 0, newCustomMap, (i * numOfRow * 2) + (j * 2), 2);
                     }
                 }
+
+                int size = Utilities.ExtendedMapNumOfRow * Utilities.ExtendedMapNumOfColumn;
+                ExtendedCustomMap = new byte[size * 2];
+                byte[] pattern = [0x00, 0xF8];
+
+                for (int i = 0; i < ExtendedCustomMap.Length; i += pattern.Length)
+                {
+                    Buffer.BlockCopy(pattern, 0, ExtendedCustomMap, i, pattern.Length);
+                }
+
+                Buffer.BlockCopy(newCustomMap, 0, ExtendedCustomMap, ExtendedMapOffset, newCustomMap.Length);
             }
 
             ShowMapWait(40);
 
-            Thread SendTerrainThread = new(delegate () { SendTerrain(newTerrain, newCustomMap); });
+            Thread SendTerrainThread = new(delegate () { SendTerrain(newTerrain, ExtendedCustomMap); });
             SendTerrainThread.Start();
         }
 
-        private void SendTerrain(byte[] newTerrain, byte[] newCustomMap)
+        private void SendTerrain(byte[] newTerrain, byte[] ExtendedCustomMap)
         {
+            /*
             int wait = 0;
             while (Utilities.IsAboutToSave(socket, null, 20))
             {
@@ -2713,17 +2730,18 @@ namespace ACNHPokerCore
                 Thread.Sleep(2000);
                 wait++;
             }
+            */
 
             Utilities.SendTerrain(socket, null, newTerrain, ref counter);
 
-            if (newCustomMap != null)
+            if (ExtendedCustomMap != null)
             {
-                Utilities.SendCustomMap(socket, null, newCustomMap, ref counter);
+                Utilities.SendCustomMap(socket, null, ExtendedCustomMap, ref counter);
             }
 
             Invoke((MethodInvoker)delegate
             {
-                miniMap.UpdateTerrain(newTerrain, newCustomMap);
+                miniMap.UpdateTerrain(newTerrain, ExtendedCustomMap);
                 CurrentMiniMap = miniMap.DrawBackground();
                 miniMapBox.BackgroundImage = CurrentMiniMap;
                 terrainSaving = false;
