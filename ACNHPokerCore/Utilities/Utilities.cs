@@ -62,7 +62,7 @@ namespace ACNHPokerCore
 
         public static UInt32 mapZero = 0xB127A8C0;
 
-        public static UInt32 AirportColor = mapZero + 0x3143D8;                             //*
+        public static UInt32 AirportColor = mapZero + 0x3468C0;
 
         public static UInt32 OldMapSize = 0x54000;
         public static UInt32 NewMapSize = 0x6C000;
@@ -112,7 +112,7 @@ namespace ACNHPokerCore
         public static UInt32 VisitorList = VisitorNameAddress - 0x118;
         public static UInt32 VisitorListSize = 0x1C;
 
-        public static UInt32 TextSpeedAddress = 0x0BD9A9FC; //0x0BD43084;
+        public static UInt32 TextSpeedAddress = 0x0BD9A9FC;
 
         public static UInt32 ChineseLanguageOffset = 0x7000; //
 
@@ -214,24 +214,24 @@ namespace ACNHPokerCore
 
         public static UInt32 readTimeAddress = 0x0BD91B00;
         // ---- Main
-        public static UInt32 freezeTimeAddress = 0x00328BB0; //0x00328BD0; //0x00328BB0;
+        public static UInt32 freezeTimeAddress = 0x00981B28;
         public static readonly string freezeTimeValue = "D503201F";
         public static readonly string unfreezeTimeValue = "F9203260";
 
         //--------------------------------------------------------------------------------------------
         // Replaced by max walk speed
-        public static UInt32 wSpeedAddress = 0x01612780; //0x016127A0; //0x01612740; //0x01612720;
-        public static readonly string wSpeedX1 = "BD578661";
+        public static UInt32 wSpeedAddress = 0x02318428;
+        public static readonly string wSpeedX1 = "BD57BE60";
         public static readonly string wSpeedX2 = "1E201001";
         public static readonly string wSpeedX3 = "1E211001";
         public static readonly string wSpeedX4 = "1E221001";
         //--------------------------------------------------------------------------------------------
 
-        public static UInt32 CollisionAddress = 0x0155FE10; //0x0155FDA0; //0x0155FDC0; //0x0155FD60; //0x0155FD40;
-        public static readonly string CollisionDisable = "12800014";
-        public static readonly string CollisionEnable = "B95BA014";
+        public static UInt32 CollisionAddress = 0x02217B30;
+        public static readonly string CollisionDisable = "12800000";
+        public static readonly string CollisionEnable = "B95BF800";
 
-        public static UInt32 ActorCollisionAddress = 0x0123BC2C; //0x0123BBBC; //0x0123BBDC;
+        public static UInt32 ActorCollisionAddress = 0x221806C; 
         public static readonly string ActorCollisionDisable = "1E3E1000";
         public static readonly string ActorCollisionEnable = "1E2E1000";
 

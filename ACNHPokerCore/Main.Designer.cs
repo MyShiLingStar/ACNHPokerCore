@@ -3835,7 +3835,6 @@ namespace ACNHPokerCore
             // SetAirportColorBtn
             // 
             SetAirportColorBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
-            SetAirportColorBtn.Enabled = false;
             SetAirportColorBtn.FlatAppearance.BorderSize = 0;
             SetAirportColorBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             SetAirportColorBtn.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
@@ -3853,7 +3852,6 @@ namespace ACNHPokerCore
             // 
             AirportColor.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
             AirportColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            AirportColor.Enabled = false;
             AirportColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             AirportColor.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             AirportColor.ForeColor = System.Drawing.Color.White;
@@ -4002,7 +4000,6 @@ namespace ACNHPokerCore
             // UnFreezeTimeButton
             // 
             UnFreezeTimeButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
-            UnFreezeTimeButton.Enabled = false;
             UnFreezeTimeButton.FlatAppearance.BorderSize = 0;
             UnFreezeTimeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             UnFreezeTimeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
@@ -4030,7 +4027,6 @@ namespace ACNHPokerCore
             // FreezeTimeButton
             // 
             FreezeTimeButton.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
-            FreezeTimeButton.Enabled = false;
             FreezeTimeButton.FlatAppearance.BorderSize = 0;
             FreezeTimeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             FreezeTimeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
@@ -4110,7 +4106,6 @@ namespace ACNHPokerCore
             // 
             // DisableCollisionToggle
             // 
-            DisableCollisionToggle.Enabled = false;
             DisableCollisionToggle.Location = new System.Drawing.Point(190, 188);
             DisableCollisionToggle.Name = "DisableCollisionToggle";
             DisableCollisionToggle.OffFont = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
