@@ -857,8 +857,7 @@ namespace ACNHPokerCore
             else
                 Path4 = GetImagePathFromID(P4Id, source, IntP4Data);
 
-            await btn.Setup(Name, ID, Data, IntP2Id, IntP2Data, IntP3Id, IntP3Data, IntP4Id, IntP4Data, Path1, Path2, Path3, Path4, ContainPath, flag0, flag1);
-            await btn.setImage(false);
+            btn.Setup(Name, ID, Data, IntP2Id, IntP2Data, IntP3Id, IntP3Data, IntP4Id, IntP4Data, Path1, Path2, Path3, Path4, ContainPath, flag0, flag1);
         }
 
         private async Task UpdateNearBtn(int BtnNum)
@@ -942,17 +941,18 @@ namespace ACNHPokerCore
 
         #endregion
 
-        private void DisplayAnchorAsync()
+        private async Task DisplayAnchorAsync()
         {
+            miniMapBox.Image = MiniMap.DrawSelectSquare(anchorX, anchorY);
+
             if (drawing)
                 return;
 
             drawing = true;
-            miniMapBox.Image = MiniMap.DrawSelectSquare(anchorX, anchorY);
 
             SetupBtnCoordinate(anchorX, anchorY);
 
-            UpdateAllBtn();
+            await UpdateAllBtn();
 
             ResetBtnColor();
 

@@ -128,8 +128,9 @@ namespace ACNHPokerCore
             ForeColor = Color.White;
             TextAlign = ContentAlignment.TopLeft;
             Text = "";
-            Image = null;
+            //Image = null;
             locked = false;
+            setImage(false);
         }
 
         public async Task setImage(bool large)
