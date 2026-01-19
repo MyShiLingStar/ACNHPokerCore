@@ -508,7 +508,7 @@ namespace ACNHPokerCore
             //RegeneratorButton.Visible = true;
             FreezerButton.Visible = true;
             RoadRollerButton.Visible = true;
-            //DodoHelperButton.Visible = true;
+            DodoHelperButton.Visible = true;
             BulldozerButton.Visible = true;
             chatButton.Visible = true;
         }
@@ -1345,7 +1345,7 @@ namespace ACNHPokerCore
                                 MapDropperButton.Visible = true;
                                 //RegeneratorButton.Visible = true;
                                 FreezerButton.Visible = true;
-                                //DodoHelperButton.Visible = true;
+                                DodoHelperButton.Visible = true;
                                 BulldozerButton.Visible = true;
                                 RoadRollerButton.Visible = true;
                                 chatButton.Visible = true;
@@ -7990,10 +7990,10 @@ namespace ACNHPokerCore
                 OtherTabButton.Visible = true;
                 CritterTabButton.Visible = true;
                 MapDropperButton.Visible = true;
-                //RegeneratorButton.Visible = true;
+                RegeneratorButton.Visible = true;
                 FreezerButton.Visible = true;
                 RoadRollerButton.Visible = true;
-                //DodoHelperButton.Visible = true;
+                DodoHelperButton.Visible = true;
                 BulldozerButton.Visible = true;
                 chatButton.Visible = true;
             }

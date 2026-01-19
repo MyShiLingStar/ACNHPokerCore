@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Twitch;
+using static ACNHPokerCore.Teleport;
 
 namespace ACNHPokerCore
 {
@@ -546,6 +547,13 @@ namespace ACNHPokerCore
                 stopWatch = null;
             }
 
+            if (standaloneThread != null)
+            {
+                cts.Cancel();
+                standaloneRunning = false;
+                standaloneThread = null;
+            }
+
             CloseForm?.Invoke();
         }
 
@@ -558,38 +566,56 @@ namespace ACNHPokerCore
 
         public bool CheckOnlineStatus()
         {
+            if (FormIsClosing)
+                return true;
+
             if (Teleport.CheckOnlineStatus() == 0x1)
             {
-                onlineLabel.Invoke((MethodInvoker)delegate
+                if (onlineLabel == null)
+                    return false;
+
+                Invoke((MethodInvoker)delegate
                 {
                     onlineLabel.Text = @"ONLINE";
                     onlineLabel.ForeColor = Color.Green;
                 });
+
                 return true;
             }
             else if (Teleport.CheckOnlineStatus(true) == 0x1) //Check again for Chinese
             {
-                onlineLabel.Invoke((MethodInvoker)delegate
+                if (onlineLabel == null)
+                    return false;
+
+                Invoke((MethodInvoker)delegate
                 {
                     onlineLabel.Text = @"ONLINE";
                     onlineLabel.ForeColor = Color.Lime;
                 });
+
                 return true;
             }
             else
             {
-                onlineLabel.Invoke((MethodInvoker)delegate
+                if (onlineLabel == null)
+                    return false;
+
+                Invoke((MethodInvoker)delegate
                 {
                     onlineLabel.Text = @"OFFLINE";
                     onlineLabel.ForeColor = Color.Red;
                 });
+
                 return false;
             }
         }
 
         public void DisplayDodo(string dodo)
         {
-            dodoCode.Invoke((MethodInvoker)delegate
+            if (FormIsClosing)
+                return;
+
+            Invoke((MethodInvoker)delegate
             {
                 dodoCode.Text = dodo;
             });
@@ -599,7 +625,7 @@ namespace ACNHPokerCore
         {
             if (!FormIsClosing)
             {
-                dodoLog.Invoke((MethodInvoker)delegate
+                Invoke((MethodInvoker)delegate
                 {
                     if (time)
                     {
@@ -614,7 +640,10 @@ namespace ACNHPokerCore
 
         public void LockBtn()
         {
-            BackToSetupBtn.Invoke((MethodInvoker)delegate
+            if (FormIsClosing)
+                return;
+
+            Invoke((MethodInvoker)delegate
             {
                 BackToSetupBtn.Enabled = false;
             });
@@ -622,6 +651,9 @@ namespace ACNHPokerCore
 
         private void LockControl()
         {
+            if (FormIsClosing)
+                return;
+
             Invoke((MethodInvoker)delegate
             {
                 controllerPanel.Enabled = false;
@@ -632,6 +664,9 @@ namespace ACNHPokerCore
 
         private void UnLockControl()
         {
+            if (FormIsClosing)
+                return;
+
             Invoke((MethodInvoker)delegate
             {
                 controllerPanel.Enabled = true;
@@ -1538,15 +1573,17 @@ namespace ACNHPokerCore
                 }
 
                 Teleport.OverworldState state = Teleport.GetOverworldState();
-                WriteLog(state.ToString() + " " + idleNum, true);
+
+                //WriteLog(state.ToString() + " " + idleNum, true);
                 if (capturesetting)
                 {
-                    if ((state.ToString() != "OverworldOrInAirport") && (state.ToString() != "Null"))
+                    if ((state != OverworldState.OverworldOrInAirport) && (state != OverworldState.Null))
                     {
                         Controller.ClickCAPTURE();
                     }
                 }
-                WriteLog(state + " " + idleNum, true);
+
+                WriteLog(state + " [ " + "Idle Time : " + idleNum + " ] ", true);
 
                 if (CheckOnlineStatus())
                 {
