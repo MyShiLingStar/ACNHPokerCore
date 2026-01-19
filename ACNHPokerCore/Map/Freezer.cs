@@ -364,9 +364,11 @@ namespace ACNHPokerCore
 
         private void FreezeMapFloor(uint address, byte[] data)
         {
-            ShowMapWait(90, "Casting...");
+            ShowMapWait(110, "Casting...");
 
             LockControl();
+
+            counter = 0;
 
             int FreezeSize = 0x2000;
             int NumOfPart = (int)(Utilities.NewMapSize * 2 / FreezeSize);

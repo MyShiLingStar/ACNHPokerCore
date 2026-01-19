@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace ACNHPokerCore
 {
@@ -486,7 +487,7 @@ namespace ACNHPokerCore
                 BuildActivateTable(ActivateLayer1, ref ActivateTable1);
                 BuildActivateTable(ActivateLayer2, ref ActivateTable2);
 
-                /*
+                
                 byte[] Coordinate = Utilities.GetCoordinate(s, usb);
 
                 if (Coordinate != null)
@@ -496,7 +497,7 @@ namespace ACNHPokerCore
 
                     anchorX = x - 0x24;
                     anchorY = y - 0x18;
-                */
+                
                     if (anchorX < 3 || anchorY < 3 || anchorX > 108 || anchorY > 92)
                     {
                         anchorX = 56;
@@ -512,13 +513,12 @@ namespace ACNHPokerCore
                         EnableBtn();
                         fetchMapBtn.Visible = false;
                         reAnchorBtn.Visible = true;
-                        //NextSaveTimer.Start();
+                        NextSaveTimer.Start();
                     });
-                /*
+                
                 }
                 else
                     throw new NullReferenceException("Coordinate");
-                */
 
                 HideMapWait();
             }
@@ -559,10 +559,12 @@ namespace ACNHPokerCore
 
         public void MoveAnchor(int x, int y)
         {
+            /*
             UpdateUI(() =>
             {
                 btnToolTip.RemoveAll();
             });
+            */
 
             if (x < 3)
                 anchorX = 3;
@@ -578,6 +580,7 @@ namespace ACNHPokerCore
             else
                 anchorY = y;
 
+            /*
             UpdateUI(() =>
             {
                 xCoordinate.Text = anchorX.ToString();
@@ -585,6 +588,7 @@ namespace ACNHPokerCore
             });
 
             selectedButton = floor25;
+            */
 
             DisplayAnchorAsync();
         }
@@ -860,19 +864,19 @@ namespace ACNHPokerCore
             btn.Setup(Name, ID, Data, IntP2Id, IntP2Data, IntP3Id, IntP3Data, IntP4Id, IntP4Data, Path1, Path2, Path3, Path4, ContainPath, flag0, flag1);
         }
 
-        private async Task UpdateNearBtn(int BtnNum)
+        private void UpdateNearBtn(int BtnNum)
         {
             if (shiftRight && BtnNum < 42)
-                UpdateBtn(floorSlots[BtnNum + 7]);
+                _ = UpdateBtn(floorSlots[BtnNum + 7]);
             if (shiftDown && ((BtnNum + 1) % 7) != 0)
-                UpdateBtn(floorSlots[BtnNum + 1]);
+                _ = UpdateBtn(floorSlots[BtnNum + 1]);
             if (shiftRight && shiftDown && ((BtnNum + 1) % 7) != 0 && BtnNum < 42)
-                UpdateBtn(floorSlots[BtnNum + 8]);
+                _ = UpdateBtn(floorSlots[BtnNum + 8]);
         }
 
         private bool isUpdating = false;
 
-        private async Task UpdateAllBtn()
+        private void UpdateAllBtn()
         {
             /*
             for (int i = 0; i < floorSlots.Length; i++)
@@ -881,6 +885,12 @@ namespace ACNHPokerCore
             }
             */
 
+            for (int i = 0; i < floorSlots.Length; i++)
+            {
+                _ = UpdateBtn(floorSlots[i]);
+            }
+
+            /*
             var tasks = new List<Task>();
             for (int i = 0; i < floorSlots.Length; i++)
             {
@@ -888,6 +898,7 @@ namespace ACNHPokerCore
                 //UpdateBtn(floorSlots[i]);
             }
             await Task.WhenAll(tasks);
+            */
         }
 
         /*
@@ -945,18 +956,11 @@ namespace ACNHPokerCore
         {
             miniMapBox.Image = MiniMap.DrawSelectSquare(anchorX, anchorY);
 
-            if (drawing)
-                return;
-
-            drawing = true;
-
             SetupBtnCoordinate(anchorX, anchorY);
 
-            await UpdateAllBtn();
+            UpdateAllBtn();
 
             ResetBtnColor();
-
-            drawing = false;
         }
 
         private static UInt32 GetAddress(int x, int y, bool right = false, bool down = false)
@@ -2517,14 +2521,14 @@ namespace ACNHPokerCore
 
             if (!debugging)
             {
-
-                /*
                 int c = 0;
+                int timeNeeded = 3;
 
-                while (Utilities.IsAboutToSave(s, usb, 5, saveTime, ignore))
+                while (Utilities.IsAboutToSave(s, usb, timeNeeded, saveTime, ignore))
                 {
-                    if (c > 10)
+                    if (c > timeNeeded + 5)
                     {
+                        /*
                         if (IgnoreAutosave())
                         {
                             break;
@@ -2542,11 +2546,12 @@ namespace ACNHPokerCore
                             HideMapWait();
                             return;
                         }
+                        */
+                        break;
                     }
                     c++;
-                    Thread.Sleep(3000);
+                    Thread.Sleep(1000);
                 }
-                */
 
                 if (coreOnly)
                 {
@@ -2574,7 +2579,7 @@ namespace ACNHPokerCore
                     UpdataData(btn.MapX, btn.MapY, itemID, itemData, flag0, flag1, shiftRight, shiftDown);
                     UpdateBtn(btn);
                     if (shiftRight || shiftDown)
-                        _ = UpdateNearBtn(int.Parse(btn.Tag.ToString()));
+                        UpdateNearBtn(int.Parse(btn.Tag.ToString()));
                 }
                 ResetBtnColor();
                 EnableBtn();
@@ -2802,13 +2807,14 @@ namespace ACNHPokerCore
 
                     //Debug.Print("Length :" + SpawnArea.Length + " Time : " + time);
 
-                    /*
                     int c = 0;
+                    int timeNeeded = time + 5;
 
-                    while (Utilities.IsAboutToSave(s, usb, time + 10, saveTime, ignore))
+                    while (Utilities.IsAboutToSave(s, usb, timeNeeded, saveTime, ignore))
                     {
-                        if (c > 10)
+                        if (c > timeNeeded + 5)
                         {
+                            /*
                             if (IgnoreAutosave())
                             {
                                 break;
@@ -2826,11 +2832,14 @@ namespace ACNHPokerCore
                                 HideMapWait();
                                 return;
                             }
+                            */
+                            break;
                         }
                         c++;
-                        Thread.Sleep(3000);
+                        Thread.Sleep(1000);
                     }
-                    */
+
+                    counter = 0;
 
                     for (int i = 0; i < SpawnArea.Length / 2; i++)
                     {
@@ -3122,13 +3131,14 @@ namespace ACNHPokerCore
 
                 Debug.Print("Length :" + numberOfColumn + " Time : " + time);
 
-                /*
                 int c = 0;
+                int timeNeeded = time + 5;
 
-                while (Utilities.IsAboutToSave(s, usb, time + 10, saveTime, ignore))
+                while (Utilities.IsAboutToSave(s, usb, timeNeeded, saveTime, ignore))
                 {
-                    if (c > 10)
+                    if (c > timeNeeded + 5)
                     {
+                        /*
                         if (IgnoreAutosave())
                         {
                             break;
@@ -3146,11 +3156,14 @@ namespace ACNHPokerCore
                             HideMapWait();
                             return;
                         }
+                        */
+                        break;
                     }
                     c++;
-                    Thread.Sleep(3000);
+                    Thread.Sleep(1000);
                 }
-                */
+
+                counter = 0;
 
                 for (int i = 0; i < numberOfColumn; i++)
                 {
@@ -3421,13 +3434,14 @@ namespace ACNHPokerCore
         {
             ShowMapWait(2, "Deleting Item...");
 
-            /*
             int c = 0;
+            int timeNeeded = 3;
 
-            while (Utilities.IsAboutToSave(s, usb, 5, saveTime, ignore))
+            while (Utilities.IsAboutToSave(s, usb, timeNeeded, saveTime, ignore))
             {
-                if (c > 10)
+                if (c > timeNeeded + 5)
                 {
+                    /*
                     if (IgnoreAutosave())
                     {
                         break;
@@ -3445,11 +3459,12 @@ namespace ACNHPokerCore
                         HideMapWait();
                         return;
                     }
+                    */
+                    break;
                 }
                 c++;
-                Thread.Sleep(3000);
+                Thread.Sleep(1000);
             }
-            */
 
             Utilities.DeleteFloorItem(s, usb, address);
 
@@ -3759,13 +3774,13 @@ namespace ACNHPokerCore
                     else
                         return;
 
-                    /*
                     int c = 0;
-
-                    while (Utilities.IsAboutToSave(s, usb, 10, saveTime, ignore))
+                    int timeNeeded = 10;
+                    while (Utilities.IsAboutToSave(s, usb, timeNeeded, saveTime, ignore))
                     {
-                        if (c > 10)
+                        if (c > timeNeeded + 5)
                         {
+                            /*
                             if (IgnoreAutosave())
                             {
                                 break;
@@ -3783,11 +3798,14 @@ namespace ACNHPokerCore
                                 HideMapWait();
                                 return;
                             }
+                            */
+                            break;
                         }
                         c++;
-                        Thread.Sleep(3000);
+                        Thread.Sleep(1000);
                     }
-                    */
+
+                    counter = 0;
 
                     Utilities.DropColumn(s, usb, address1, address1 + 0x600, b[0], b[1], ref counter);
                     Utilities.DropColumn(s, usb, address2, address2 + 0x600, b[2], b[3], ref counter);
@@ -3946,13 +3964,13 @@ namespace ACNHPokerCore
                     else
                         return;
 
-                    /*
                     int c = 0;
-
-                    while (Utilities.IsAboutToSave(s, usb, 10, saveTime, ignore))
+                    int timeNeeded = 10;
+                    while (Utilities.IsAboutToSave(s, usb, timeNeeded, saveTime, ignore))
                     {
-                        if (c > 10)
+                        if (c > timeNeeded + 5)
                         {
+                            /*
                             if (IgnoreAutosave())
                             {
                                 break;
@@ -3970,11 +3988,14 @@ namespace ACNHPokerCore
                                 HideMapWait();
                                 return;
                             }
+                            */
+                            break;
                         }
                         c++;
-                        Thread.Sleep(3000);
+                        Thread.Sleep(1000);
                     }
-                    */
+
+                    counter = 0;
 
                     Utilities.DropColumn(s, usb, address1, address1 + 0x600, b[0], b[1], ref counter);
                     Utilities.DropColumn(s, usb, address2, address2 + 0x600, b[2], b[3], ref counter);
@@ -4939,9 +4960,6 @@ namespace ACNHPokerCore
         #region MiniMap
         private void MiniMapBox_MouseDown(object sender, MouseEventArgs e)
         {
-            if (drawing)
-                return;
-
             if (e.Button == MouseButtons.Left)
             {
                 int x;
@@ -4960,10 +4978,6 @@ namespace ACNHPokerCore
                     y = 92;
                 else
                     y = e.Y / 2;
-
-
-                if (drawing)
-                    return;
 
                 anchorX = x;
                 anchorY = y;
@@ -4980,8 +4994,6 @@ namespace ACNHPokerCore
 
         private void MiniMapBox_MouseMove(object sender, MouseEventArgs e)
         {
-            if (drawing)
-                return;
             if (e.Button == MouseButtons.Left)
             {
                 int x;
@@ -5000,10 +5012,6 @@ namespace ACNHPokerCore
                     y = 92;
                 else
                     y = e.Y / 2;
-
-
-                if (drawing)
-                    return;
 
                 anchorX = x;
                 anchorY = y;
@@ -5156,14 +5164,14 @@ namespace ACNHPokerCore
         {
             try
             {
-                /*
+                
                 byte[] Coordinate = Utilities.GetCoordinate(s, usb);
                 int x = BitConverter.ToInt32(Coordinate, 0);
                 int y = BitConverter.ToInt32(Coordinate, 4);
 
                 anchorX = x - 0x24;
                 anchorY = y - 0x18;
-                */
+                
 
                 if (anchorX < 3 || anchorY < 3 || anchorX > 108 || anchorY > 92)
                 {
@@ -5648,15 +5656,13 @@ namespace ACNHPokerCore
             {
                 if (!debugging)
                 {
-                    Debug.Print("Length :" + num + " Time : " + (num + 3));
-
-                    /*
                     int c = 0;
-
-                    while (Utilities.IsAboutToSave(s, usb, num, saveTime, ignore))
+                    int timeNeeded = num + 10;
+                    while (Utilities.IsAboutToSave(s, usb, timeNeeded, saveTime, ignore))
                     {
-                        if (c > 10)
+                        if (c > timeNeeded + 5)
                         {
+                            /*
                             if (IgnoreAutosave())
                             {
                                 break;
@@ -5674,11 +5680,14 @@ namespace ACNHPokerCore
                                 HideMapWait();
                                 return;
                             }
+                            */
+                            break;
                         }
                         c++;
-                        Thread.Sleep(3000);
+                        Thread.Sleep(1000);
                     }
-                    */
+
+                    counter = 0;
 
                     for (int i = 0; i < Utilities.ExtendedMapNumOfColumn / 2; i++)
                     {
@@ -5686,7 +5695,7 @@ namespace ACNHPokerCore
                         {
                             byte[] column = new byte[0x1800];
                             Buffer.BlockCopy(newLayer, i * 0x1800, column, 0, 0x1800);
-                            Utilities.DropRenewColumn(s, usb, (uint)(Utilities.mapZero + (i * 0x1800)), column);
+                            Utilities.DropRenewColumn(s, usb, (uint)(Utilities.mapZero + (i * 0x1800)), column, ref counter);
                         }
                     }
                 }
@@ -5730,15 +5739,13 @@ namespace ACNHPokerCore
             {
                 if (!debugging)
                 {
-                    Debug.Print("Length :" + num + " Time : " + (num + 3));
-
-                    /*
                     int c = 0;
-
-                    while (Utilities.IsAboutToSave(s, usb, num + 10, saveTime, ignore))
+                    int timeNeeded = num + 10;
+                    while (Utilities.IsAboutToSave(s, usb, timeNeeded, saveTime, ignore))
                     {
-                        if (c > 10)
+                        if (c > timeNeeded + 5)
                         {
+                            /*
                             if (IgnoreAutosave())
                             {
                                 break;
@@ -5756,11 +5763,14 @@ namespace ACNHPokerCore
                                 HideMapWait();
                                 return;
                             }
+                            */
+                            break;
                         }
                         c++;
-                        Thread.Sleep(3000);
+                        Thread.Sleep(1000);
                     }
-                    */
+
+                    counter = 0;
                 }
 
                 for (int i = 0; i < Utilities.ExtendedMapNumOfColumn / 2; i++)
@@ -5769,7 +5779,7 @@ namespace ACNHPokerCore
                     {
                         byte[] column = new byte[0x1800];
                         Buffer.BlockCopy(newLayer, i * 0x1800, column, 0, 0x1800);
-                        Utilities.DropRenewColumn(s, usb, (uint)(address + (i * 0x1800)), column);
+                        Utilities.DropRenewColumn(s, usb, (uint)(address + (i * 0x1800)), column, ref counter);
                     }
                 }
 
@@ -5819,10 +5829,10 @@ namespace ACNHPokerCore
                 Buffer.BlockCopy(b, 12, currentFrame, 0, 4);
                 Buffer.BlockCopy(b, 16, lastFrame, 0, 4);
 
-                int currentFrameStr = Convert.ToInt32("0x" + Utilities.Flip(Utilities.ByteToHexString(currentFrame)), 16);
-                int lastFrameStr = Convert.ToInt32("0x" + Utilities.Flip(Utilities.ByteToHexString(lastFrame)), 16);
+                int currentFrameInt = BitConverter.ToInt32(currentFrame, 0);
+                int lastFrameInt = BitConverter.ToInt32(lastFrame, 0);
 
-                return (((0x1518 - (currentFrameStr - lastFrameStr))) / 30);
+                return (((0x1518 - (currentFrameInt - lastFrameInt))) / 30);
             }
             catch (Exception ex)
             {
@@ -5838,6 +5848,7 @@ namespace ACNHPokerCore
         {
             if (saveTime <= -30)
             {
+                /*
                 if (!keepProtection)
                 {
                     NextSaveTimer.Stop();
@@ -5872,6 +5883,11 @@ namespace ACNHPokerCore
                     }
                     keepProtectionCounter++;
                 }
+                */
+
+                ignore = true;
+                nextAutoSaveSecond.ForeColor = Color.Red;
+
             }
             else if (saveTime <= 0)
             {
@@ -6084,13 +6100,13 @@ namespace ACNHPokerCore
                     else
                         return;
 
-                    /*
                     int c = 0;
-
-                    while (Utilities.IsAboutToSave(s, usb, 10, saveTime, ignore))
+                    int timeNeeded = 10;
+                    while (Utilities.IsAboutToSave(s, usb, timeNeeded, saveTime, ignore))
                     {
-                        if (c > 10)
+                        if (c > timeNeeded + 5)
                         {
+                            /*
                             if (IgnoreAutosave())
                             {
                                 break;
@@ -6108,11 +6124,14 @@ namespace ACNHPokerCore
                                 HideMapWait();
                                 return;
                             }
+                            */
+                            break;
                         }
                         c++;
-                        Thread.Sleep(3000);
+                        Thread.Sleep(1000);
                     }
-                    */
+
+                    counter = 0;
 
                     List<Task> tasks =
                     [
@@ -7632,28 +7651,36 @@ namespace ACNHPokerCore
                 }
             }
 
-            /*
             int c = 0;
-
-            while (Utilities.IsAboutToSave(s, usb, 2, saveTime, ignore))
+            int timeNeeded = 3;
+            while (Utilities.IsAboutToSave(s, usb, timeNeeded, saveTime, ignore))
             {
-                if (c > 10)
+                if (c > timeNeeded + 5)
                 {
+                    /*
                     if (IgnoreAutosave())
                     {
                         break;
                     }
                     else
                     {
+                        UpdateUI(() =>
+                        {
+                            EnableBtn();
+                        });
+
                         if (sound)
                             System.Media.SystemSounds.Asterisk.Play();
+
+                        HideMapWait();
                         return;
                     }
+                    */
+                    break;
                 }
                 c++;
-                Thread.Sleep(3000);
+                Thread.Sleep(1000);
             }
-            */
 
             DisableBtn();
 
@@ -7686,13 +7713,13 @@ namespace ACNHPokerCore
         {
             ShowMapWait(2, "Toggling Item...");
 
-            /*
             int c = 0;
-
-            while (Utilities.IsAboutToSave(s, usb, 2, saveTime, ignore))
+            int timeNeeded = 3;
+            while (Utilities.IsAboutToSave(s, usb, timeNeeded, saveTime, ignore))
             {
-                if (c > 10)
+                if (c > timeNeeded + 5)
                 {
+                    /*
                     if (IgnoreAutosave())
                     {
                         break;
@@ -7710,11 +7737,12 @@ namespace ACNHPokerCore
                         HideMapWait();
                         return;
                     }
+                    */
+                    break;
                 }
                 c++;
-                Thread.Sleep(3000);
+                Thread.Sleep(1000);
             }
-            */
 
             Utilities.PokeAddress(s, usb, Address1.ToString("X"), value.ToString("X"));
             Utilities.PokeAddress(s, usb, (Address1 + 0x1C).ToString("X"), value.ToString("X"));

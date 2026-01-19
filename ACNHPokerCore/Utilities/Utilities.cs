@@ -48,7 +48,7 @@ namespace ACNHPokerCore
         public static UInt32 VillagerHouseAddress = 0xB14CD0E0;
         public static UInt32 VillagerHouseSize = 0x12E8;
         public static UInt32 VillagerHouseOldSize = 0x1D4;
-        public static UInt32 VillagerHouseBufferDiff = 0x8F1BD0;
+        public static UInt32 VillagerHouseBufferDiff = 0x9B0EB0;
         public static UInt32 VillagerHouseOwnerOffset = 0x1C4;
 
         public static UInt32 MysIslandVillagerAddress = 0x38CEAEA4;
@@ -56,9 +56,9 @@ namespace ACNHPokerCore
 
         //=================================================================
 
-        public static UInt32 weatherSeed = 0xB122EAD8; 
+        public static UInt32 weatherSeed = 0xB122EAD8;
 
-        public static UInt32 coordinate = 0x3E35A288; //0x3E33A288;                         //*
+        public static UInt32 coordinate = 0x3E7B1288;
 
         public static UInt32 mapZero = 0xB127A8C0;
 
@@ -103,20 +103,20 @@ namespace ACNHPokerCore
 
         //=================================================================
 
-        public static UInt32 VisitorNameAddress = 0xB750ED78; //0xB710ED78;
+        public static UInt32 VisitorNameAddress = 0xBACD2ED8;
         public static UInt32 VisitorIslandNameAddress = VisitorNameAddress - 0x1C;
 
-        public static UInt32 dodoAddress = 0xABE015C; //0xABE015C;
-        public static UInt32 OnlineSessionAddress = 0x945F740; //
+        public static UInt32 dodoAddress = 0xAC1A164;
+        public static UInt32 OnlineSessionAddress = 0x9499748;
 
         public static UInt32 VisitorList = VisitorNameAddress - 0x118;
         public static UInt32 VisitorListSize = 0x1C;
 
         public static UInt32 TextSpeedAddress = 0x0BD9A9FC;
 
-        public static UInt32 ChineseLanguageOffset = 0x7000; //
+        public static UInt32 ChineseLanguageOffset = 0x7000;
 
-        public static UInt32 savingOffset = 0x457B05AC; //
+        public static UInt32 savingOffset = 0x45C465AC;
 
         //=================================================================
 
@@ -3324,7 +3324,7 @@ namespace ACNHPokerCore
             }
         }
 
-        /*
+        
         public static byte[] GetCoordinate(Socket socket, USBBot usb)
         {
             if (isEmulator)
@@ -3360,7 +3360,6 @@ namespace ACNHPokerCore
                 }
             }
         }
-        */
 
         public static byte[] GetSaving(Socket socket, USBBot usb = null)
         {
@@ -3451,7 +3450,7 @@ namespace ACNHPokerCore
             }
         }
 
-        public static void DropRenewColumn(Socket socket, USBBot usb, uint address, byte[] column)
+        public static void DropRenewColumn(Socket socket, USBBot usb, uint address, byte[] column, ref int counter)
         {
             if (isEmulator)
             {
@@ -3464,8 +3463,8 @@ namespace ACNHPokerCore
             {
                 if (usb == null)
                 {
-                    SendByteArray(socket, address, column, column.Length);
-                    SendByteArray(socket, address + SaveFileBuffer, column, column.Length);
+                    SendByteArray(socket, address, column, column.Length, ref counter);
+                    SendByteArray(socket, address + SaveFileBuffer, column, column.Length, ref counter);
                 }
                 else
                 {
@@ -4270,8 +4269,7 @@ namespace ACNHPokerCore
                 return "0000";
         }
 
-        /*
-        public static bool IsAboutToSave(Socket socket, USBBot usb, int second, int saveTime = 0, bool ignoreProtection = false)
+        public static bool IsAboutToSave(Socket socket, USBBot usb, int NeedSecond, int saveTime = 0, bool ignoreProtection = false)
         {
             if (ignoreProtection)
                 return false;
@@ -4293,11 +4291,11 @@ namespace ACNHPokerCore
                     Buffer.BlockCopy(b, 12, currentFrame, 0, 4);
                     Buffer.BlockCopy(b, 16, lastFrame, 0, 4);
 
-                    int currentFrameStr = Convert.ToInt32("0x" + Flip(ByteToHexString(currentFrame)), 16);
-                    int lastFrameStr = Convert.ToInt32("0x" + Flip(ByteToHexString(lastFrame)), 16);
-                    int FrameRemain = ((0x1518 - (currentFrameStr - lastFrameStr)));
+                    int currentFrameInt = BitConverter.ToInt32(currentFrame, 0);
+                    int lastFrameInt = BitConverter.ToInt32(lastFrame, 0);
+                    int FrameRemain = ((0x1518 - (currentFrameInt - lastFrameInt)));
 
-                    if (FrameRemain < 30 * second) // Not enough
+                    if (FrameRemain < 30 * NeedSecond) // Not enough
                         return true;
                     else if (FrameRemain >= 30 * 300) // Have too too many for some reason?
                         return false;
@@ -4305,7 +4303,7 @@ namespace ACNHPokerCore
                         return true;
                     else
                     {
-                        Debug.Print(((0x1518 - (currentFrameStr - lastFrameStr))).ToString());
+                        Debug.Print(((0x1518 - (currentFrameInt - lastFrameInt))).ToString());
                         return false;
                     }
                 }
@@ -4317,7 +4315,6 @@ namespace ACNHPokerCore
                 return false;
             }
         }
-        */
 
         #region Villager
         public enum VillagerPersonality : byte

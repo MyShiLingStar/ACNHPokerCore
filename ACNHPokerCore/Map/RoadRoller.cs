@@ -2721,16 +2721,18 @@ namespace ACNHPokerCore
 
         private void SendTerrain(byte[] newTerrain, byte[] ExtendedCustomMap)
         {
-            /*
-            int wait = 0;
-            while (Utilities.IsAboutToSave(socket, null, 20))
+            int c = 0;
+            int timeNeeded = 10;
+
+            while (Utilities.IsAboutToSave(socket, null, timeNeeded))
             {
-                if (wait > 15)
+                if (c > timeNeeded + 5)
                     break;
-                Thread.Sleep(2000);
-                wait++;
+                Thread.Sleep(1000);
+                counter++;
             }
-            */
+
+            counter = 0;
 
             Utilities.SendTerrain(socket, null, newTerrain, ref counter);
 

@@ -11,7 +11,7 @@ namespace ACNHPokerCore
     {
         private readonly Socket socket;
 
-        private static readonly string chat = "[main+4AA9CD8]+40";
+        private static readonly string chat = "[main+5254A40]+40";//"[main+4AA9CD8]+40";
 
         private static readonly int GameCap = 24;
         private static readonly int SoftCap = 32;

@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace ACNHPokerCore
 {
@@ -1864,19 +1865,18 @@ namespace ACNHPokerCore
         {
             byte[] CurrentTerrainData = Utilities.GetTerrain(s, usb);
 
-            int counter = 0;
+            int c = 0;
+            int timeNeeded = 10;
 
-            /*
-            while (Utilities.IsAboutToSave(s, usb, 10))
+            while (Utilities.IsAboutToSave(s, usb, timeNeeded))
             {
-                if (counter > 15)
+                if (c > timeNeeded + 5)
                     break;
-                Thread.Sleep(2000);
-                counter++;
+                Thread.Sleep(1000);
+                c++;
             }
 
             counter = 0;
-            */
 
             byte[] EmptyRoadData = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00];
 
@@ -1925,19 +1925,18 @@ namespace ACNHPokerCore
 
         private void RemoveDesign()
         {
-            int counter = 0;
+            int c = 0;
+            int timeNeeded = 10;
 
-            /*
-            while (Utilities.IsAboutToSave(s, usb, 10))
+            while (Utilities.IsAboutToSave(s, usb, timeNeeded))
             {
-                if (counter > 15)
+                if (c > timeNeeded + 5)
                     break;
-                Thread.Sleep(2000);
-                counter++;
+                Thread.Sleep(1000);
+                c++;
             }
 
             counter = 0;
-            */
 
             byte[] newCustomMap = new byte[Utilities.ExtendedMapNumOfRow * Utilities.ExtendedMapNumOfColumn * 2];
 
@@ -2114,19 +2113,18 @@ namespace ACNHPokerCore
         {
             try
             {
-                int counter = 0;
+                int c = 0;
+                int timeNeeded = 10;
 
-                /*
-                while (Utilities.IsAboutToSave(s, usb, 10))
+                while (Utilities.IsAboutToSave(s, usb, timeNeeded))
                 {
-                    if (counter > 15)
+                    if (c > timeNeeded + 5)
                         break;
-                    Thread.Sleep(2000);
-                    counter++;
+                    Thread.Sleep(1000);
+                    c++;
                 }
 
                 counter = 0;
-                */
 
                 Utilities.SendTerrain(s, usb, terrain, ref counter);
 

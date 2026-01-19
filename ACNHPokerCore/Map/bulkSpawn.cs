@@ -353,13 +353,15 @@ namespace ACNHPokerCore
 
                     Debug.Print("Length :" + SpawnArea.Length + " Time : " + time);
 
-                    /*
-                    int counter = 0;
+                    int c = 0;
+                    int timeNeeded = time + 10;
 
-                    while (Utilities.IsAboutToSave(s, bot, time + 10, 0, ignore))
+                    while (Utilities.IsAboutToSave(s, bot, timeNeeded, 0, ignore))
                     {
-                        if (counter > 5)
+                        if (c > timeNeeded + 5)
                         {
+                            break;
+                            /*
                             DialogResult result = MyMessageBox.Show("Something seems to be wrong with the autosave detection.\n" +
                                                             "Would you like to ignore the autosave protection and spawn the item(s) anyway?\n\n" +
                                                             "Please be noted that spawning item during autosave might crash the game."
@@ -384,11 +386,11 @@ namespace ACNHPokerCore
                                 });
                                 return;
                             }
+                            */
                         }
-                        counter++;
-                        Thread.Sleep(5000);
+                        c++;
+                        Thread.Sleep(1000);
                     }
-                    */
                 }
 
                 if (right)

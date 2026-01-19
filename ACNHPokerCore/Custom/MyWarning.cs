@@ -53,18 +53,17 @@ namespace ACNHPokerCore
             File.WriteAllBytes(file.FileName, CurrentTerrainData);
 
             int counter = 0;
+            int timeNeeded = 10;
 
-            /*
-            while (Utilities.IsAboutToSave(socket, usb, 10))
+            while (Utilities.IsAboutToSave(socket, usb, timeNeeded))
             {
-                if (counter > 15)
+                if (counter > timeNeeded + 5)
                     break;
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
                 counter++;
             }
 
             counter = 0;
-            */
 
             byte[] EmptyTerrainData = new byte[Utilities.AllTerrainSize];
 

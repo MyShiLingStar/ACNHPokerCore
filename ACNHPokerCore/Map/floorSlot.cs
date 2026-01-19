@@ -103,7 +103,7 @@ namespace ACNHPokerCore
             MapY = -1;
         }
 
-        public async Task Setup(string Name, ushort ID, uint Data, uint P2, uint P2Data, uint P3, uint P3Data, uint P4, uint P4Data, string Path1, string Path2, string Path3, string Path4, string containPath = "", string flagA = "00", string flagB = "00")
+        public void Setup(string Name, ushort ID, uint Data, uint P2, uint P2Data, uint P3, uint P3Data, uint P4, uint P4Data, string Path1, string Path2, string Path3, string Path4, string containPath = "", string flagA = "00", string flagB = "00")
         {
             ItemName = Name;
             ItemID = ID;
@@ -130,10 +130,11 @@ namespace ACNHPokerCore
             Text = "";
             //Image = null;
             locked = false;
+
             setImage(false);
         }
 
-        public async Task setImage(bool large)
+        public void setImage(bool large)
         {
             Image = LoadImageForSlot(large);
         }
