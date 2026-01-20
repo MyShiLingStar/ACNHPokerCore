@@ -300,6 +300,17 @@ namespace ACNHPokerCore
                     //System.Diagnostics.Debug.Print(secondByte + " " + firstByte + " " + HexToBinary(secondByte) + " " + HexToBinary(firstByte));
                 }
             }
+            /*
+            else
+            {
+                bool[] activate = Map.FloorSlotGetActivate(MapX, MapY, Map.ActivateTable1);
+                if (activate[0] || activate[1])
+                {
+                    TextAlign = ContentAlignment.TopRight;
+                    Text = activate[0].ToString() + " " + activate[1].ToString();
+                }
+            }
+            */
 
             if (Flag0 != "00") //Wrapped
             {

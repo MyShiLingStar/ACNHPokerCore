@@ -11118,6 +11118,7 @@ namespace ACNHPokerCore
                     }
                     else
                     {
+                        /*
                         do
                         {
                             i++;
@@ -11143,6 +11144,8 @@ namespace ACNHPokerCore
                             }
 
                         } while (i <= 4);
+                        */
+                        Utilities.EmulatorHeadAddress = firstHeadAddress;
                     }
 
 
@@ -11224,7 +11227,7 @@ namespace ACNHPokerCore
                         UpdateTurnipPrices();
                         ReadWeatherSeed();
                         ReadAirportColor();
-                        //readActivatedCheat();
+                        //ReadActivatedCheat();
 
                         currentGridView = InsectGridView;
 

@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.RegularExpressions.Generated;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -92,8 +93,8 @@ namespace ACNHPokerCore
         private byte[] ActivateLayer2;
         private byte[] MapCustomDesgin;
 
-        private bool[,] ActivateTable1;
-        private bool[,] ActivateTable2;
+        public static bool[,] ActivateTable1;
+        public static bool[,] ActivateTable2;
 
         private bool shiftRight;
         private bool shiftDown;
@@ -115,7 +116,6 @@ namespace ACNHPokerCore
         private int BaseMapY = -1;
 
         public event CloseHandler CloseForm;
-        private static readonly Lock lockObject = new();
         private readonly Color[] target =
         [
             Color.FromArgb(252, 3, 3),
@@ -7522,7 +7522,8 @@ namespace ACNHPokerCore
 
         private void SetActivate(int x, int y, ref byte[] ActivateLayer, ref bool[,] ActivateTable)
         {
-            int offset = (x / 4) + (y * 2 * (Utilities.ExtendedMapNumOfColumn / 4));
+            int bytesPerRow = Utilities.ExtendedMapNumOfColumn / 4;
+            int offset = (x / 4) + (y * 2 * bytesPerRow);
             var b = ActivateLayer[offset];
 
             byte upper = (byte)(b & 0xF0);
@@ -7599,12 +7600,13 @@ namespace ACNHPokerCore
             ActivateTable[x, y * 2] = true;
             ActivateTable[x, y * 2 + 1] = true;
             ActivateLayer[offset] = newValue;
-            ActivateLayer[offset + Utilities.ExtendedMapNumOfColumn / 4] = newValue;
+            ActivateLayer[offset + bytesPerRow] = newValue;
         }
 
         private void SetDeactivate(int x, int y, ref byte[] ActivateLayer, ref bool[,] ActivateTable)
         {
-            int offset = (x / 4) + (y * 2 * (Utilities.ExtendedMapNumOfColumn / 4));
+            int bytesPerRow = Utilities.ExtendedMapNumOfColumn / 4;
+            int offset = (x / 4) + (y * 2 * bytesPerRow);
             var b = ActivateLayer[offset];
 
             byte upper = (byte)(b & 0xF0);
@@ -7712,7 +7714,7 @@ namespace ACNHPokerCore
             ActivateTable[x, y * 2] = false;
             ActivateTable[x, y * 2 + 1] = false;
             ActivateLayer[offset] = newValue;
-            ActivateLayer[offset + (Utilities.ExtendedMapNumOfColumn / 4)] = newValue;
+            ActivateLayer[offset + bytesPerRow] = newValue;
         }
 
         private void ToggleItem(long Address1, long Address2, byte value)
@@ -7758,12 +7760,26 @@ namespace ACNHPokerCore
             UpdateUI(() =>
             {
                 EnableBtn();
+                //_ = UpdateBtn(selectedButton);
             });
 
             if (sound)
                 System.Media.SystemSounds.Asterisk.Play();
 
             HideMapWait();
+        }
+
+        public static bool[] FloorSlotGetActivate(int x, int y, bool[,] ActivateTable)
+        {
+            bool[] result = [false, false];
+
+            if (ActivateTable == null)
+                return result;
+
+            result[0] = ActivateTable[x + ExtendedMapBuffer, y * 2];
+            result[1] = ActivateTable[x + ExtendedMapBuffer, y * 2 + 1];
+
+            return result;
         }
 
         #endregion

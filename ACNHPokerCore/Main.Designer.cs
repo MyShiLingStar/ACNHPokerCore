@@ -485,6 +485,7 @@ namespace ACNHPokerCore
     "Caroline : squ06",
     "Carrie : kgr02",
     "Cashmere : shp04",
+    "Cece : squ19",
     "Celia : pbr09",
     "Cephalobot : ocp04",
     "Cesar : gor00",
@@ -657,6 +658,7 @@ namespace ACNHPokerCore
     "Merengue : rhn07",
     "Merry : cat16",
     "Midge : brd08",
+    "Mineru : der12",
     "Mint : squ09",
     "Mira : rbt19",
     "Miranda : duk12",
@@ -798,6 +800,7 @@ namespace ACNHPokerCore
     "Tom : cat15",
     "Truffles : pig01",
     "Tucker : elp09",
+    "Tulin : brd20",
     "Tutu : bea07",
     "Twiggy : brd03",
     "Tybalt : tig02",
@@ -805,6 +808,7 @@ namespace ACNHPokerCore
     "Velma : goa06",
     "Vesta : shp00",
     "Vic : bul08",
+    "Viché : squ20",
     "Victoria : hrs01",
     "Violet : gor07",
     "Vivian : wol08",
@@ -822,8 +826,7 @@ namespace ACNHPokerCore
     "Yuka : kal00",
     "Zell : der02",
     "Zoe : ant05",
-    "Zucker : ocp02",
-    "Empty : non00"
+    "Zucker : ocp02"
     };
             VillagerAutoCompleteMenu.LeftPadding = 0;
             VillagerAutoCompleteMenu.TargetControlWrapper = null;

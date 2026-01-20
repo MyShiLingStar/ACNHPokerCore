@@ -242,7 +242,7 @@ namespace ACNHPokerCore
                 richTextBoxMessage.BorderStyle = BorderStyle.None;
                 richTextBoxMessage.DataBindings.Add(new Binding("Text", FlexibleMessageBoxFormBindingSource, "MessageText", true, DataSourceUpdateMode.OnPropertyChanged));
                 richTextBoxMessage.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-                richTextBoxMessage.Location = new Point(50, 26);
+                richTextBoxMessage.Location = new Point(60, 26);
                 richTextBoxMessage.Margin = new Padding(0);
                 richTextBoxMessage.Name = "richTextBoxMessage";
                 richTextBoxMessage.ReadOnly = true;
@@ -271,7 +271,7 @@ namespace ACNHPokerCore
                 pictureBoxForIcon.BackColor = Color.Transparent;
                 pictureBoxForIcon.Location = new Point(15, 19);
                 pictureBoxForIcon.Name = "pictureBoxForIcon";
-                pictureBoxForIcon.Size = new Size(32, 32);
+                pictureBoxForIcon.Size = new Size(42, 42);
                 pictureBoxForIcon.TabIndex = 8;
                 pictureBoxForIcon.TabStop = false;
                 // 
