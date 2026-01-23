@@ -133,7 +133,6 @@ namespace ACNHPokerCore
         private readonly string debugBuilding = @"buildings.nhb";
         private readonly string debugItem = @"item.nhf";
 
-        private const int ExtendedMapOffset = (16 * 6 * 16 * 1) * 2; // One extra column of Acre
         private const int ExtendedMapBuffer = 16;
         #endregion
 

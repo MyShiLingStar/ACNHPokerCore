@@ -76,7 +76,7 @@ namespace ACNHPokerCore
             {
                 SaveFileDialog file = new()
                 {
-                    Filter = "New Horizons Fasil (*.nhf)|*.nhf",
+                    Filter = "New Horizons Fasil 2 (*.nhf2)|*.nhf2",
                 };
 
                 Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
@@ -124,7 +124,7 @@ namespace ACNHPokerCore
         {
             ShowMapWait(42, "Saving...");
 
-            byte[] save = Utilities.ReadByteArray(s, address, 0x54000, ref counter);
+            byte[] save = Utilities.ReadByteArray(s, address, (int)Utilities.NewMapSize, ref counter);
 
             File.WriteAllBytes(file.FileName, save);
 
@@ -151,7 +151,7 @@ namespace ACNHPokerCore
             {
                 OpenFileDialog file = new()
                 {
-                    Filter = "New Horizons Fasil (*.nhf)|*.nhf|All files (*.*)|*.*",
+                    Filter = "New Horizons Fasil 2 (*.nhf2)|*.nhf2|All files (*.*)|*.*",
                 };
 
                 Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
@@ -185,17 +185,27 @@ namespace ACNHPokerCore
 
                 byte[] data = File.ReadAllBytes(file.FileName);
 
-                uint address = Utilities.mapZero;
-
-                byte[][] b = new byte[42][];
-
-                for (int i = 0; i < 42; i++)
+                if (data.Length != Utilities.NewMapSize)
                 {
-                    b[i] = new byte[0x2000];
-                    Buffer.BlockCopy(data, i * 0x2000, b[i], 0x0, 0x2000);
+                    MyMessageBox.Show("Invalid File Size!", "Your map file size is invalid!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
-                Thread LoadThread = new(delegate () { LoadMapFloor(b, address); });
+                uint address = Utilities.mapZero;
+
+                int LoadSize = 0x2000;
+                int NumOfPart = (int)(Utilities.NewMapSize / LoadSize);
+
+
+                byte[][] b = new byte[NumOfPart][];
+
+                for (int i = 0; i < NumOfPart; i++)
+                {
+                    b[i] = new byte[LoadSize];
+                    Buffer.BlockCopy(data, i * LoadSize, b[i], 0x0, LoadSize);
+                }
+
+                Thread LoadThread = new(delegate () { LoadMapFloor(b, address , NumOfPart, LoadSize); });
                 LoadThread.Start();
             }
             catch (Exception ex)
@@ -204,14 +214,16 @@ namespace ACNHPokerCore
             }
         }
 
-        private void LoadMapFloor(byte[][] b, uint address)
+        private void LoadMapFloor(byte[][] b, uint address, int NumOfPart, int LoadSize)
         {
-            ShowMapWait(42 * 2, "Loading...");
+            ShowMapWait(NumOfPart, "Loading...");
 
-            for (int i = 0; i < 42; i++)
+            counter = 0;
+
+            for (int i = 0; i < NumOfPart; i++)
             {
-                Utilities.SendByteArray(s, address + (i * 0x2000), b[i], 0x2000, ref counter);
-                Utilities.SendByteArray(s, address + (i * 0x2000) + Utilities.SaveFileBuffer, b[i], 0x2000, ref counter);
+                Utilities.SendByteArray(s, address + (i * LoadSize), b[i], LoadSize, ref counter);
+                Utilities.SendByteArray(s, address + (i * LoadSize) + Utilities.SaveFileBuffer, b[i], LoadSize, ref counter);
             }
 
             Thread.Sleep(3000);

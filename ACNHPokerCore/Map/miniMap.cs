@@ -52,7 +52,6 @@ namespace ACNHPokerCore
         private const int AcreMax = AcreWidth * AcreHeight;
         private const int AllAcreSize = AcreMax * 2;
 
-        private const int ExtendedMapOffset = (16 * 6 * 16 * 1) * 2; // One extra column of Acre
         public MiniMap(byte[] ItemMapByte, byte[] acreMapByte, byte[] buildingByte, byte[] terrainByte, byte[] customDesignByte, int size = 2)
         {
             AcreMapByte = acreMapByte;
@@ -1065,7 +1064,7 @@ namespace ACNHPokerCore
                     if (CustomDesignByte != null)
                     {
                         byte[] currentDesign = new byte[2];
-                        Buffer.BlockCopy(CustomDesignByte, ExtendedMapOffset + (i * numOfRow + j) * 2, currentDesign, 0, 2);
+                        Buffer.BlockCopy(CustomDesignByte, Utilities.ExtendedMapOffset + (i * numOfRow + j) * 2, currentDesign, 0, 2);
                         terrainUnits[i][j].SetCustomDesign(currentDesign);
                     }
 

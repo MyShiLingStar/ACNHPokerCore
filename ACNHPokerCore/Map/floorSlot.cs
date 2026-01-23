@@ -441,6 +441,7 @@ namespace ACNHPokerCore
 
             containItemPath = "";
             Image = null;
+            Text = "";
         }
 
         public Image DisplayItemImage(bool large, bool separate)
