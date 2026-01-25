@@ -2682,16 +2682,18 @@ namespace ACNHPokerCore
                 }
             }
 
-
-            byte[] oldCustomMap = new byte[numOfRow * numOfColumn * 2];
-
-            int size = Utilities.ExtendedMapNumOfRow * Utilities.ExtendedMapNumOfColumn;
-            byte[] ExtendedCustomMap = new byte[size * 2];
-            byte[] pattern = [0x00, 0xF8];
-
+            byte[] oldCustomMap = null;
+            byte[] ExtendedCustomMap = null;
 
             if (haveCustomEdit)
             {
+                oldCustomMap = new byte[numOfRow * numOfColumn * 2];
+
+                int size = Utilities.ExtendedMapNumOfRow * Utilities.ExtendedMapNumOfColumn;
+                ExtendedCustomMap = new byte[size * 2];
+
+                byte[] pattern = [0x00, 0xF8];
+
                 for (int i = 0; i < numOfColumn; i++)
                 {
                     for (int j = 0; j < numOfRow; j++)
@@ -2727,15 +2729,20 @@ namespace ACNHPokerCore
                     break;
                 Thread.Sleep(1000);
                 counter++;
+                if (Utilities.isEmulator)
+                    break;
             }
 
             counter = 0;
 
             Utilities.SendTerrain(socket, null, newTerrain, ref counter);
 
-            if (oldCustomMap != null)
+            if (haveCustomEdit)
             {
-                Utilities.SendOldCustomMap(socket, null, oldCustomMap, ref counter);
+                if (oldCustomMap != null)
+                {
+                    Utilities.SendOldCustomMap(socket, null, oldCustomMap, ref counter);
+                }
             }
 
             Invoke((MethodInvoker)delegate
