@@ -118,6 +118,8 @@ namespace ACNHPokerCore
 
         private WaveOut waveOut;
 
+        private static readonly int MaxHouseStorage = 9000;
+
         [GeneratedRegex(" ")]
         private static partial Regex Space();
 
@@ -3973,6 +3975,7 @@ namespace ACNHPokerCore
         #endregion
 
         #region Player Selector
+
         private void PlayerInventorySelector_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (PlayerInventorySelector.SelectedIndex < 0)
@@ -4038,56 +4041,56 @@ namespace ACNHPokerCore
                     break;
                 case 8: // House
                     Utilities.SetAddress(11);
-                    maxPage = 125;
+                    maxPage = MaxHouseStorage / 40;
                     currentPage = 1;
                     ShowPagination();
                     UpdateInventory();
                     break;
                 case 9:
                     Utilities.SetAddress(12);
-                    maxPage = 125;
+                    maxPage = MaxHouseStorage / 40;
                     currentPage = 1;
                     ShowPagination();
                     UpdateInventory();
                     break;
                 case 10:
                     Utilities.SetAddress(13);
-                    maxPage = 125;
+                    maxPage = MaxHouseStorage / 40;
                     currentPage = 1;
                     ShowPagination();
                     UpdateInventory();
                     break;
                 case 11:
                     Utilities.SetAddress(14);
-                    maxPage = 125;
+                    maxPage = MaxHouseStorage / 40;
                     currentPage = 1;
                     ShowPagination();
                     UpdateInventory();
                     break;
                 case 12:
                     Utilities.SetAddress(15);
-                    maxPage = 125;
+                    maxPage = MaxHouseStorage / 40;
                     currentPage = 1;
                     ShowPagination();
                     UpdateInventory();
                     break;
                 case 13:
                     Utilities.SetAddress(16);
-                    maxPage = 125;
+                    maxPage = MaxHouseStorage / 40;
                     currentPage = 1;
                     ShowPagination();
                     UpdateInventory();
                     break;
                 case 14:
                     Utilities.SetAddress(17);
-                    maxPage = 125;
+                    maxPage = MaxHouseStorage / 40;
                     currentPage = 1;
                     ShowPagination();
                     UpdateInventory();
                     break;
                 case 15:
                     Utilities.SetAddress(18);
-                    maxPage = 125;
+                    maxPage = MaxHouseStorage / 40;
                     currentPage = 1;
                     ShowPagination();
                     UpdateInventory();
