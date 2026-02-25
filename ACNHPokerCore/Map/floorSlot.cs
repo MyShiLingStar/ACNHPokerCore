@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ACNHPokerCore
@@ -103,7 +102,7 @@ namespace ACNHPokerCore
             MapY = -1;
         }
 
-        public void Setup(string Name, ushort ID, uint Data, uint P2, uint P2Data, uint P3, uint P3Data, uint P4, uint P4Data, string Path1, string Path2, string Path3, string Path4, string containPath = "", string flagA = "00", string flagB = "00")
+        public void Setup(string Name, ushort ID, uint Data, uint P2, uint P2Data, uint P3, uint P3Data, uint P4, uint P4Data, string Path1, string Path2, string Path3, string Path4, string containPath = "", string flagA = "00", string flagB = "00", bool skipImage = false)
         {
             ItemName = Name;
             ItemID = ID;
@@ -127,16 +126,27 @@ namespace ACNHPokerCore
 
             ForeColor = Color.White;
             TextAlign = ContentAlignment.TopLeft;
-            Text = "";
+            Text = string.Empty;
             //Image = null;
             locked = false;
 
-            setImage(false);
+            if (!skipImage)
+                SetImage(false);
+            else
+                ClearImage();
         }
 
-        public void setImage(bool large)
+        public void SetImage(bool large)
         {
             Image = LoadImageForSlot(large);
+        }
+
+        public void ClearImage()
+        {
+            if (Image != null)
+            {
+                Image = null;
+            }
         }
 
         public Image LoadImageForSlot(bool large)
@@ -237,7 +247,7 @@ namespace ACNHPokerCore
         }
         */
 
-        public void SetBackColor(bool Layer1 = true, int Corner1X = -1, int Corner1Y = -1, int Corner2X = -1, int Corner2Y = -1, bool AreaSelected = false)
+        public void SetBackColor(bool Layer1 = true, int Corner1X = -1, int Corner1Y = -1, int Corner2X = -1, int Corner2Y = -1, bool AreaSelected = false, bool skipText = false)
         {
             if (Layer1)
             {
@@ -250,67 +260,70 @@ namespace ACNHPokerCore
                 BackColor = MiniMap.GetBackgroundColor(MapX, MapY, false);
             }
 
+            if (!skipText)
+            {
 
-            if (ItemAttr.HasDurability(ItemID)) //Tools
-            {
-                TextAlign = ContentAlignment.BottomLeft;
-                Text = "Dur: " + ItemDurability;
-            }
-            else if (ItemAttr.HasUse(ItemID)) // Food/Drink
-            {
-                TextAlign = ContentAlignment.BottomLeft;
-                Text = "Use: " + ItemDurability;
-            }
-            else if (ItemAttr.IsFlower(ItemID)) //Flowers
-            {
-                TextAlign = ContentAlignment.BottomRight;
-                ForeColor = Color.Yellow;
-                Text = (FlowerQuantity + 1).ToString();
-            }
-            else if (ItemAttr.HasQuantity(ItemID)) // Materials
-            {
-                TextAlign = ContentAlignment.BottomRight;
-                Text = (ItemQuantity + 1).ToString();
-            }
-            else if (ItemAttr.HasGenetics(ItemID))
-            {
-                if (ItemData.ToString("X").Contains("83E0") || (ItemData.ToString("X").Contains("8642"))) // Flower
+                if (ItemAttr.HasDurability(ItemID)) //Tools
                 {
-                    TextAlign = ContentAlignment.TopRight;
-                    Text = "★";
+                    TextAlign = ContentAlignment.BottomLeft;
+                    Text = "Dur: " + ItemDurability;
                 }
-                else
+                else if (ItemAttr.HasUse(ItemID)) // Food/Drink
                 {
-                    TextAlign = ContentAlignment.TopRight;
-                    string value = ItemData.ToString("X");
-                    int length = value.Length;
-                    string firstByte;
-                    string secondByte;
-                    if (length < 2)
+                    TextAlign = ContentAlignment.BottomLeft;
+                    Text = "Use: " + ItemDurability;
+                }
+                else if (ItemAttr.IsFlower(ItemID)) //Flowers
+                {
+                    TextAlign = ContentAlignment.BottomRight;
+                    ForeColor = Color.Yellow;
+                    Text = (FlowerQuantity + 1).ToString();
+                }
+                else if (ItemAttr.HasQuantity(ItemID)) // Materials
+                {
+                    TextAlign = ContentAlignment.BottomRight;
+                    Text = (ItemQuantity + 1).ToString();
+                }
+                else if (ItemAttr.HasGenetics(ItemID))
+                {
+                    if (ItemData.ToString("X").Contains("83E0") || (ItemData.ToString("X").Contains("8642"))) // Flower
                     {
-                        firstByte = "0";
-                        secondByte = value;
+                        TextAlign = ContentAlignment.TopRight;
+                        Text = "★";
                     }
                     else
                     {
-                        firstByte = value.Substring(length - 2, 1);
-                        secondByte = value.Substring(length - 1, 1);
+                        TextAlign = ContentAlignment.TopRight;
+                        string value = ItemData.ToString("X");
+                        int length = value.Length;
+                        string firstByte;
+                        string secondByte;
+                        if (length < 2)
+                        {
+                            firstByte = "0";
+                            secondByte = value;
+                        }
+                        else
+                        {
+                            firstByte = value.Substring(length - 2, 1);
+                            secondByte = value.Substring(length - 1, 1);
+                        }
+                        Text = HexToBinary(secondByte) + "-" + HexToBinary(firstByte);
+                        //System.Diagnostics.Debug.Print(secondByte + " " + firstByte + " " + HexToBinary(secondByte) + " " + HexToBinary(firstByte));
                     }
-                    Text = HexToBinary(secondByte) + "-" + HexToBinary(firstByte);
-                    //System.Diagnostics.Debug.Print(secondByte + " " + firstByte + " " + HexToBinary(secondByte) + " " + HexToBinary(firstByte));
                 }
-            }
-            /*
-            else
-            {
-                bool[] activate = Map.FloorSlotGetActivate(MapX, MapY, Map.ActivateTable1);
-                if (activate[0] || activate[1])
+                /*
+                else
                 {
-                    TextAlign = ContentAlignment.TopRight;
-                    Text = activate[0].ToString() + " " + activate[1].ToString();
+                    bool[] activate = Map.FloorSlotGetActivate(MapX, MapY, Map.ActivateTable1);
+                    if (activate[0] || activate[1])
+                    {
+                        TextAlign = ContentAlignment.TopRight;
+                        Text = activate[0].ToString() + " " + activate[1].ToString();
+                    }
                 }
+                */
             }
-            */
 
             if (Flag0 != "00") //Wrapped
             {

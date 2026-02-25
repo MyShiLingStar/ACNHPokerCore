@@ -2334,6 +2334,7 @@ namespace ACNHPokerCore
             miniMapBox.TabStop = false;
             miniMapBox.MouseDown += MiniMapBox_MouseDown;
             miniMapBox.MouseMove += MiniMapBox_MouseMove;
+            miniMapBox.MouseUp += MiniMapBox_MouseUp;
             // 
             // Language
             // 

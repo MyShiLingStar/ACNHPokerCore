@@ -691,7 +691,7 @@ namespace ACNHPokerCore
                                 if (MapCustomDesgin != null)
                                 {
                                     byte[] currentDesign = new byte[2];
-                                    Buffer.BlockCopy(MapCustomDesgin, Utilities.ExtendedMapOffset + (i * numOfRow + j) * 2, currentDesign, 0, 2);
+                                    Buffer.BlockCopy(MapCustomDesgin, (Utilities.ExtendedMapOffset * Utilities.CustomDesignByteSize) + (i * numOfRow + j) * Utilities.CustomDesignByteSize, currentDesign, 0, 2);
                                     terrainUnits[i][j].SetCustomDesign(currentDesign);
                                 }
 
@@ -2708,9 +2708,9 @@ namespace ACNHPokerCore
                     Buffer.BlockCopy(pattern, 0, ExtendedCustomMap, i, pattern.Length);
                 }
 
-                Buffer.BlockCopy(oldCustomMap, 0, ExtendedCustomMap, Utilities.ExtendedMapOffset, oldCustomMap.Length);
+                Buffer.BlockCopy(oldCustomMap, 0, ExtendedCustomMap, (Utilities.ExtendedMapOffset * Utilities.CustomDesignByteSize), oldCustomMap.Length);
             }
-                
+
 
             ShowMapWait(40);
 

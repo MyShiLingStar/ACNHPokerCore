@@ -29,664 +29,659 @@ namespace ACNHPokerCore
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MapRegenerator));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.PleaseWaitPanel = new System.Windows.Forms.Panel();
-            this.PauseTimeLabel = new System.Windows.Forms.Label();
-            this.WaitMessagebox = new System.Windows.Forms.RichTextBox();
-            this.MapProgressBar = new System.Windows.Forms.ProgressBar();
-            this.NowLoading = new System.Windows.Forms.PictureBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.loadMapBtn = new System.Windows.Forms.Button();
-            this.saveMapBtn = new System.Windows.Forms.Button();
-            this.ProgressTimer = new System.Windows.Forms.Timer(this.components);
-            this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.startRegen = new System.Windows.Forms.Button();
-            this.hideBtn = new System.Windows.Forms.Button();
-            this.backBtn = new System.Windows.Forms.Button();
-            this.timeLabel = new System.Windows.Forms.Label();
-            this.startRegen2 = new System.Windows.Forms.Button();
-            this.FinMsg = new System.Windows.Forms.RichTextBox();
-            this.delay = new System.Windows.Forms.RichTextBox();
-            this.ms = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.visitorNameBox = new System.Windows.Forms.RichTextBox();
-            this.formToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.logBtn = new System.Windows.Forms.Button();
-            this.newLogBtn = new System.Windows.Forms.Button();
-            this.selectLogBtn = new System.Windows.Forms.Button();
-            this.startBtn = new System.Windows.Forms.Button();
-            this.keepVillagerBox = new System.Windows.Forms.CheckBox();
-            this.dodoSetupBtn = new System.Windows.Forms.Button();
-            this.changeDodoBtn = new System.Windows.Forms.Button();
-            this.PauseTimer = new System.Windows.Forms.Timer(this.components);
-            this.logGridView = new System.Windows.Forms.DataGridView();
-            this.logName = new System.Windows.Forms.Label();
-            this.logPanel = new System.Windows.Forms.Panel();
-            this.mapPanel = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.yCoordinate = new System.Windows.Forms.RichTextBox();
-            this.miniMapBox = new System.Windows.Forms.PictureBox();
-            this.xCoordinate = new System.Windows.Forms.RichTextBox();
-            this.PleaseWaitPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NowLoading)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.logGridView)).BeginInit();
-            this.logPanel.SuspendLayout();
-            this.mapPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.miniMapBox)).BeginInit();
-            this.SuspendLayout();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            PleaseWaitPanel = new System.Windows.Forms.Panel();
+            PauseTimeLabel = new System.Windows.Forms.Label();
+            WaitMessagebox = new System.Windows.Forms.RichTextBox();
+            MapProgressBar = new System.Windows.Forms.ProgressBar();
+            NowLoading = new System.Windows.Forms.PictureBox();
+            label29 = new System.Windows.Forms.Label();
+            loadMapBtn = new System.Windows.Forms.Button();
+            saveMapBtn = new System.Windows.Forms.Button();
+            ProgressTimer = new System.Windows.Forms.Timer(components);
+            trayIcon = new System.Windows.Forms.NotifyIcon(components);
+            startRegen = new System.Windows.Forms.Button();
+            hideBtn = new System.Windows.Forms.Button();
+            backBtn = new System.Windows.Forms.Button();
+            timeLabel = new System.Windows.Forms.Label();
+            startRegen2 = new System.Windows.Forms.Button();
+            FinMsg = new System.Windows.Forms.RichTextBox();
+            delay = new System.Windows.Forms.RichTextBox();
+            ms = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            visitorNameBox = new System.Windows.Forms.RichTextBox();
+            formToolTip = new System.Windows.Forms.ToolTip(components);
+            logBtn = new System.Windows.Forms.Button();
+            newLogBtn = new System.Windows.Forms.Button();
+            selectLogBtn = new System.Windows.Forms.Button();
+            startBtn = new System.Windows.Forms.Button();
+            keepVillagerBox = new System.Windows.Forms.CheckBox();
+            dodoSetupBtn = new System.Windows.Forms.Button();
+            changeDodoBtn = new System.Windows.Forms.Button();
+            PauseTimer = new System.Windows.Forms.Timer(components);
+            logGridView = new System.Windows.Forms.DataGridView();
+            logName = new System.Windows.Forms.Label();
+            logPanel = new System.Windows.Forms.Panel();
+            mapPanel = new System.Windows.Forms.Panel();
+            label4 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            yCoordinate = new System.Windows.Forms.RichTextBox();
+            miniMapBox = new System.Windows.Forms.PictureBox();
+            xCoordinate = new System.Windows.Forms.RichTextBox();
+            PleaseWaitPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)NowLoading).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)logGridView).BeginInit();
+            logPanel.SuspendLayout();
+            mapPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)miniMapBox).BeginInit();
+            SuspendLayout();
             // 
             // PleaseWaitPanel
             // 
-            this.PleaseWaitPanel.Controls.Add(this.PauseTimeLabel);
-            this.PleaseWaitPanel.Controls.Add(this.WaitMessagebox);
-            this.PleaseWaitPanel.Controls.Add(this.MapProgressBar);
-            this.PleaseWaitPanel.Controls.Add(this.NowLoading);
-            this.PleaseWaitPanel.Controls.Add(this.label29);
-            this.PleaseWaitPanel.Location = new System.Drawing.Point(2, 256);
-            this.PleaseWaitPanel.Name = "PleaseWaitPanel";
-            this.PleaseWaitPanel.Size = new System.Drawing.Size(230, 60);
-            this.PleaseWaitPanel.TabIndex = 218;
-            this.PleaseWaitPanel.Visible = false;
+            PleaseWaitPanel.Controls.Add(PauseTimeLabel);
+            PleaseWaitPanel.Controls.Add(WaitMessagebox);
+            PleaseWaitPanel.Controls.Add(MapProgressBar);
+            PleaseWaitPanel.Controls.Add(NowLoading);
+            PleaseWaitPanel.Controls.Add(label29);
+            PleaseWaitPanel.Location = new System.Drawing.Point(2, 256);
+            PleaseWaitPanel.Name = "PleaseWaitPanel";
+            PleaseWaitPanel.Size = new System.Drawing.Size(230, 60);
+            PleaseWaitPanel.TabIndex = 218;
+            PleaseWaitPanel.Visible = false;
             // 
             // PauseTimeLabel
             // 
-            this.PauseTimeLabel.AutoSize = true;
-            this.PauseTimeLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.PauseTimeLabel.ForeColor = System.Drawing.Color.White;
-            this.PauseTimeLabel.Location = new System.Drawing.Point(206, 44);
-            this.PauseTimeLabel.Name = "PauseTimeLabel";
-            this.PauseTimeLabel.Size = new System.Drawing.Size(23, 16);
-            this.PauseTimeLabel.TabIndex = 229;
-            this.PauseTimeLabel.Text = "70";
-            this.PauseTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.PauseTimeLabel.Visible = false;
+            PauseTimeLabel.AutoSize = true;
+            PauseTimeLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            PauseTimeLabel.ForeColor = System.Drawing.Color.White;
+            PauseTimeLabel.Location = new System.Drawing.Point(206, 44);
+            PauseTimeLabel.Name = "PauseTimeLabel";
+            PauseTimeLabel.Size = new System.Drawing.Size(23, 16);
+            PauseTimeLabel.TabIndex = 229;
+            PauseTimeLabel.Text = "70";
+            PauseTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            PauseTimeLabel.Visible = false;
             // 
             // WaitMessagebox
             // 
-            this.WaitMessagebox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.WaitMessagebox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.WaitMessagebox.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.WaitMessagebox.ForeColor = System.Drawing.Color.White;
-            this.WaitMessagebox.Location = new System.Drawing.Point(4, 32);
-            this.WaitMessagebox.Multiline = false;
-            this.WaitMessagebox.Name = "WaitMessagebox";
-            this.WaitMessagebox.ReadOnly = true;
-            this.WaitMessagebox.Size = new System.Drawing.Size(220, 27);
-            this.WaitMessagebox.TabIndex = 215;
-            this.WaitMessagebox.Text = "";
+            WaitMessagebox.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            WaitMessagebox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            WaitMessagebox.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            WaitMessagebox.ForeColor = System.Drawing.Color.White;
+            WaitMessagebox.Location = new System.Drawing.Point(4, 32);
+            WaitMessagebox.Multiline = false;
+            WaitMessagebox.Name = "WaitMessagebox";
+            WaitMessagebox.ReadOnly = true;
+            WaitMessagebox.Size = new System.Drawing.Size(220, 27);
+            WaitMessagebox.TabIndex = 215;
+            WaitMessagebox.Text = "";
             // 
             // MapProgressBar
             // 
-            this.MapProgressBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.MapProgressBar.ForeColor = System.Drawing.Color.LawnGreen;
-            this.MapProgressBar.Location = new System.Drawing.Point(4, 28);
-            this.MapProgressBar.Maximum = 260;
-            this.MapProgressBar.Name = "MapProgressBar";
-            this.MapProgressBar.Size = new System.Drawing.Size(220, 3);
-            this.MapProgressBar.TabIndex = 215;
+            MapProgressBar.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            MapProgressBar.ForeColor = System.Drawing.Color.LawnGreen;
+            MapProgressBar.Location = new System.Drawing.Point(4, 28);
+            MapProgressBar.Maximum = 260;
+            MapProgressBar.Name = "MapProgressBar";
+            MapProgressBar.Size = new System.Drawing.Size(220, 3);
+            MapProgressBar.TabIndex = 215;
             // 
             // NowLoading
             // 
-            this.NowLoading.Image = global::ACNHPokerCore.Properties.Resources.loading;
-            this.NowLoading.Location = new System.Drawing.Point(44, 2);
-            this.NowLoading.Name = "NowLoading";
-            this.NowLoading.Size = new System.Drawing.Size(24, 24);
-            this.NowLoading.TabIndex = 216;
-            this.NowLoading.TabStop = false;
+            NowLoading.Image = Properties.Resources.loading;
+            NowLoading.Location = new System.Drawing.Point(44, 2);
+            NowLoading.Name = "NowLoading";
+            NowLoading.Size = new System.Drawing.Size(24, 24);
+            NowLoading.TabIndex = 216;
+            NowLoading.TabStop = false;
             // 
             // label29
             // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label29.ForeColor = System.Drawing.Color.White;
-            this.label29.Location = new System.Drawing.Point(70, 7);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(99, 16);
-            this.label29.TabIndex = 215;
-            this.label29.Text = "Please Wait...";
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            label29.AutoSize = true;
+            label29.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            label29.ForeColor = System.Drawing.Color.White;
+            label29.Location = new System.Drawing.Point(70, 7);
+            label29.Name = "label29";
+            label29.Size = new System.Drawing.Size(99, 16);
+            label29.TabIndex = 215;
+            label29.Text = "Please Wait...";
+            label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // loadMapBtn
             // 
-            this.loadMapBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.loadMapBtn.FlatAppearance.BorderSize = 0;
-            this.loadMapBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.loadMapBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.loadMapBtn.ForeColor = System.Drawing.Color.White;
-            this.loadMapBtn.Location = new System.Drawing.Point(13, 43);
-            this.loadMapBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.loadMapBtn.Name = "loadMapBtn";
-            this.loadMapBtn.Size = new System.Drawing.Size(208, 25);
-            this.loadMapBtn.TabIndex = 217;
-            this.loadMapBtn.Text = "Load Map Template";
-            this.formToolTip.SetToolTip(this.loadMapBtn, "Load a .nhf file and overwrite the whole map. (Layer 1 only)\r\n[WARNING] You will " +
-        "lost every item on your map.");
-            this.loadMapBtn.UseVisualStyleBackColor = false;
-            this.loadMapBtn.Click += new System.EventHandler(this.LoadMapBtn_Click);
+            loadMapBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            loadMapBtn.FlatAppearance.BorderSize = 0;
+            loadMapBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            loadMapBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            loadMapBtn.ForeColor = System.Drawing.Color.White;
+            loadMapBtn.Location = new System.Drawing.Point(13, 43);
+            loadMapBtn.Margin = new System.Windows.Forms.Padding(4);
+            loadMapBtn.Name = "loadMapBtn";
+            loadMapBtn.Size = new System.Drawing.Size(208, 25);
+            loadMapBtn.TabIndex = 217;
+            loadMapBtn.Text = "Load Map Template";
+            formToolTip.SetToolTip(loadMapBtn, "Load a map template file and overwrite the current map.\r\n[WARNING] You will lost every item on your map.");
+            loadMapBtn.UseVisualStyleBackColor = false;
+            loadMapBtn.Click += LoadMapBtn_Click;
             // 
             // saveMapBtn
             // 
-            this.saveMapBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.saveMapBtn.FlatAppearance.BorderSize = 0;
-            this.saveMapBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.saveMapBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.saveMapBtn.ForeColor = System.Drawing.Color.White;
-            this.saveMapBtn.Location = new System.Drawing.Point(13, 10);
-            this.saveMapBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.saveMapBtn.Name = "saveMapBtn";
-            this.saveMapBtn.Size = new System.Drawing.Size(208, 25);
-            this.saveMapBtn.TabIndex = 216;
-            this.saveMapBtn.Text = "Create Map Template";
-            this.formToolTip.SetToolTip(this.saveMapBtn, "Create a Map template and save it to a .nhf file. (Layer 1 only)");
-            this.saveMapBtn.UseVisualStyleBackColor = false;
-            this.saveMapBtn.Click += new System.EventHandler(this.SaveMapBtn_Click);
+            saveMapBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            saveMapBtn.FlatAppearance.BorderSize = 0;
+            saveMapBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            saveMapBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            saveMapBtn.ForeColor = System.Drawing.Color.White;
+            saveMapBtn.Location = new System.Drawing.Point(13, 10);
+            saveMapBtn.Margin = new System.Windows.Forms.Padding(4);
+            saveMapBtn.Name = "saveMapBtn";
+            saveMapBtn.Size = new System.Drawing.Size(208, 25);
+            saveMapBtn.TabIndex = 216;
+            saveMapBtn.Text = "Create Map Template";
+            formToolTip.SetToolTip(saveMapBtn, "Create a map template and save it as a file.");
+            saveMapBtn.UseVisualStyleBackColor = false;
+            saveMapBtn.Click += SaveMapBtn_Click;
             // 
             // ProgressTimer
             // 
-            this.ProgressTimer.Interval = 500;
-            this.ProgressTimer.Tick += new System.EventHandler(this.ProgressTimer_Tick);
+            ProgressTimer.Interval = 500;
+            ProgressTimer.Tick += ProgressTimer_Tick;
             // 
             // trayIcon
             // 
-            this.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("trayIcon.Icon")));
-            this.trayIcon.Text = "ACNHPoker : Map Regenerator";
-            this.trayIcon.Visible = true;
-            this.trayIcon.DoubleClick += new System.EventHandler(this.TrayIcon_DoubleClick);
+            trayIcon.Icon = (System.Drawing.Icon)resources.GetObject("trayIcon.Icon");
+            trayIcon.Text = "ACNHPoker : Map Regenerator";
+            trayIcon.Visible = true;
+            trayIcon.DoubleClick += TrayIcon_DoubleClick;
             // 
             // startRegen
             // 
-            this.startRegen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.startRegen.FlatAppearance.BorderSize = 0;
-            this.startRegen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.startRegen.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.startRegen.ForeColor = System.Drawing.Color.White;
-            this.startRegen.Location = new System.Drawing.Point(13, 76);
-            this.startRegen.Margin = new System.Windows.Forms.Padding(4);
-            this.startRegen.Name = "startRegen";
-            this.startRegen.Size = new System.Drawing.Size(208, 25);
-            this.startRegen.TabIndex = 219;
-            this.startRegen.Tag = "Start";
-            this.startRegen.Text = "Cast Regen";
-            this.formToolTip.SetToolTip(this.startRegen, "Keep refreshing the map with a saved map template (.nhf). (Layer 1 only)\r\n[WARNIN" +
-        "G] This option will delete every item dropped/placed on empty space.\r\n");
-            this.startRegen.UseVisualStyleBackColor = false;
-            this.startRegen.Click += new System.EventHandler(this.StartRegen_Click);
+            startRegen.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            startRegen.FlatAppearance.BorderSize = 0;
+            startRegen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            startRegen.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            startRegen.ForeColor = System.Drawing.Color.White;
+            startRegen.Location = new System.Drawing.Point(13, 76);
+            startRegen.Margin = new System.Windows.Forms.Padding(4);
+            startRegen.Name = "startRegen";
+            startRegen.Size = new System.Drawing.Size(208, 25);
+            startRegen.TabIndex = 219;
+            startRegen.Tag = "Start";
+            startRegen.Text = "Cast Regen";
+            formToolTip.SetToolTip(startRegen, "Keep refreshing the map with a saved map template file.\r\n[WARNING] This option will delete every item dropped/placed on empty space.\r\n");
+            startRegen.UseVisualStyleBackColor = false;
+            startRegen.Click += StartRegen_Click;
             // 
             // hideBtn
             // 
-            this.hideBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.hideBtn.FlatAppearance.BorderSize = 0;
-            this.hideBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.hideBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.hideBtn.ForeColor = System.Drawing.Color.White;
-            this.hideBtn.Location = new System.Drawing.Point(156, 324);
-            this.hideBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.hideBtn.Name = "hideBtn";
-            this.hideBtn.Size = new System.Drawing.Size(65, 25);
-            this.hideBtn.TabIndex = 220;
-            this.hideBtn.Text = "Hide";
-            this.formToolTip.SetToolTip(this.hideBtn, "Hide this window to tray.");
-            this.hideBtn.UseVisualStyleBackColor = false;
-            this.hideBtn.Click += new System.EventHandler(this.HideBtn_Click);
+            hideBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            hideBtn.FlatAppearance.BorderSize = 0;
+            hideBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            hideBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            hideBtn.ForeColor = System.Drawing.Color.White;
+            hideBtn.Location = new System.Drawing.Point(156, 324);
+            hideBtn.Margin = new System.Windows.Forms.Padding(4);
+            hideBtn.Name = "hideBtn";
+            hideBtn.Size = new System.Drawing.Size(65, 25);
+            hideBtn.TabIndex = 220;
+            hideBtn.Text = "Hide";
+            formToolTip.SetToolTip(hideBtn, "Hide this window to tray.");
+            hideBtn.UseVisualStyleBackColor = false;
+            hideBtn.Click += HideBtn_Click;
             // 
             // backBtn
             // 
-            this.backBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.backBtn.FlatAppearance.BorderSize = 0;
-            this.backBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.backBtn.ForeColor = System.Drawing.Color.White;
-            this.backBtn.Location = new System.Drawing.Point(13, 324);
-            this.backBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.backBtn.Name = "backBtn";
-            this.backBtn.Size = new System.Drawing.Size(65, 25);
-            this.backBtn.TabIndex = 221;
-            this.backBtn.Text = "Back";
-            this.backBtn.UseVisualStyleBackColor = false;
-            this.backBtn.Click += new System.EventHandler(this.BackBtn_Click);
+            backBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            backBtn.FlatAppearance.BorderSize = 0;
+            backBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            backBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            backBtn.ForeColor = System.Drawing.Color.White;
+            backBtn.Location = new System.Drawing.Point(13, 324);
+            backBtn.Margin = new System.Windows.Forms.Padding(4);
+            backBtn.Name = "backBtn";
+            backBtn.Size = new System.Drawing.Size(65, 25);
+            backBtn.TabIndex = 221;
+            backBtn.Text = "Back";
+            backBtn.UseVisualStyleBackColor = false;
+            backBtn.Click += BackBtn_Click;
             // 
             // timeLabel
             // 
-            this.timeLabel.AutoSize = true;
-            this.timeLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.timeLabel.ForeColor = System.Drawing.Color.White;
-            this.timeLabel.Location = new System.Drawing.Point(86, 308);
-            this.timeLabel.Name = "timeLabel";
-            this.timeLabel.Size = new System.Drawing.Size(0, 16);
-            this.timeLabel.TabIndex = 222;
-            this.timeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            timeLabel.AutoSize = true;
+            timeLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            timeLabel.ForeColor = System.Drawing.Color.White;
+            timeLabel.Location = new System.Drawing.Point(86, 308);
+            timeLabel.Name = "timeLabel";
+            timeLabel.Size = new System.Drawing.Size(0, 16);
+            timeLabel.TabIndex = 222;
+            timeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // startRegen2
             // 
-            this.startRegen2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.startRegen2.FlatAppearance.BorderSize = 0;
-            this.startRegen2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.startRegen2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.startRegen2.ForeColor = System.Drawing.Color.White;
-            this.startRegen2.Location = new System.Drawing.Point(13, 109);
-            this.startRegen2.Margin = new System.Windows.Forms.Padding(4);
-            this.startRegen2.Name = "startRegen2";
-            this.startRegen2.Size = new System.Drawing.Size(208, 25);
-            this.startRegen2.TabIndex = 223;
-            this.startRegen2.Tag = "Start";
-            this.startRegen2.Text = "Cast Moogle Regenja";
-            this.formToolTip.SetToolTip(this.startRegen2, "Keep refreshing the map with a saved map template (.nhf). (Layer 1 only)\r\n[WARNIN" +
-        "G] This option will ignore empty space to preserve dropped item.\r\n");
-            this.startRegen2.UseVisualStyleBackColor = false;
-            this.startRegen2.Click += new System.EventHandler(this.StartRegen2_Click);
+            startRegen2.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            startRegen2.FlatAppearance.BorderSize = 0;
+            startRegen2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            startRegen2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            startRegen2.ForeColor = System.Drawing.Color.White;
+            startRegen2.Location = new System.Drawing.Point(13, 109);
+            startRegen2.Margin = new System.Windows.Forms.Padding(4);
+            startRegen2.Name = "startRegen2";
+            startRegen2.Size = new System.Drawing.Size(208, 25);
+            startRegen2.TabIndex = 223;
+            startRegen2.Tag = "Start";
+            startRegen2.Text = "Cast Moogle Regenja";
+            formToolTip.SetToolTip(startRegen2, "Keep refreshing the map with a saved map template file.\r\n[WARNING] This option will ignore empty space to preserve dropped item.\r\n");
+            startRegen2.UseVisualStyleBackColor = false;
+            startRegen2.Click += StartRegen2_Click;
             // 
             // FinMsg
             // 
-            this.FinMsg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.FinMsg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.FinMsg.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FinMsg.ForeColor = System.Drawing.Color.White;
-            this.FinMsg.Location = new System.Drawing.Point(6, 281);
-            this.FinMsg.Multiline = false;
-            this.FinMsg.Name = "FinMsg";
-            this.FinMsg.ReadOnly = true;
-            this.FinMsg.Size = new System.Drawing.Size(220, 27);
-            this.FinMsg.TabIndex = 217;
-            this.FinMsg.Text = "";
-            this.FinMsg.Visible = false;
+            FinMsg.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            FinMsg.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            FinMsg.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            FinMsg.ForeColor = System.Drawing.Color.White;
+            FinMsg.Location = new System.Drawing.Point(6, 281);
+            FinMsg.Multiline = false;
+            FinMsg.Name = "FinMsg";
+            FinMsg.ReadOnly = true;
+            FinMsg.Size = new System.Drawing.Size(220, 27);
+            FinMsg.TabIndex = 217;
+            FinMsg.Text = "";
+            FinMsg.Visible = false;
             // 
             // delay
             // 
-            this.delay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.delay.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.delay.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.delay.ForeColor = System.Drawing.Color.White;
-            this.delay.Location = new System.Drawing.Point(127, 218);
-            this.delay.MaxLength = 8;
-            this.delay.Multiline = false;
-            this.delay.Name = "delay";
-            this.delay.Size = new System.Drawing.Size(72, 20);
-            this.delay.TabIndex = 224;
-            this.delay.Text = "50";
-            this.delay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Delay_KeyPress);
+            delay.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            delay.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            delay.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            delay.ForeColor = System.Drawing.Color.White;
+            delay.Location = new System.Drawing.Point(127, 218);
+            delay.MaxLength = 8;
+            delay.Multiline = false;
+            delay.Name = "delay";
+            delay.Size = new System.Drawing.Size(72, 20);
+            delay.TabIndex = 224;
+            delay.Text = "50";
+            delay.KeyPress += Delay_KeyPress;
             // 
             // ms
             // 
-            this.ms.AutoSize = true;
-            this.ms.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ms.ForeColor = System.Drawing.Color.White;
-            this.ms.Location = new System.Drawing.Point(198, 219);
-            this.ms.Name = "ms";
-            this.ms.Size = new System.Drawing.Size(27, 16);
-            this.ms.TabIndex = 217;
-            this.ms.Text = "ms";
-            this.ms.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            ms.AutoSize = true;
+            ms.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            ms.ForeColor = System.Drawing.Color.White;
+            ms.Location = new System.Drawing.Point(198, 219);
+            ms.Name = "ms";
+            ms.Size = new System.Drawing.Size(27, 16);
+            ms.TabIndex = 217;
+            ms.Text = "ms";
+            ms.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(10, 219);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 16);
-            this.label1.TabIndex = 225;
-            this.label1.Text = "Refresh Delay :";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            label1.ForeColor = System.Drawing.Color.White;
+            label1.Location = new System.Drawing.Point(10, 219);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(113, 16);
+            label1.TabIndex = 225;
+            label1.Text = "Refresh Delay :";
+            label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(30, 241);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 16);
-            this.label2.TabIndex = 227;
-            this.label2.Text = "Last Visitor :";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            label2.AutoSize = true;
+            label2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            label2.ForeColor = System.Drawing.Color.White;
+            label2.Location = new System.Drawing.Point(30, 241);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(93, 16);
+            label2.TabIndex = 227;
+            label2.Text = "Last Visitor :";
+            label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // visitorNameBox
             // 
-            this.visitorNameBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.visitorNameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.visitorNameBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.visitorNameBox.ForeColor = System.Drawing.Color.White;
-            this.visitorNameBox.Location = new System.Drawing.Point(127, 240);
-            this.visitorNameBox.MaxLength = 8;
-            this.visitorNameBox.Multiline = false;
-            this.visitorNameBox.Name = "visitorNameBox";
-            this.visitorNameBox.Size = new System.Drawing.Size(94, 20);
-            this.visitorNameBox.TabIndex = 228;
-            this.visitorNameBox.Text = "";
+            visitorNameBox.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            visitorNameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            visitorNameBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            visitorNameBox.ForeColor = System.Drawing.Color.White;
+            visitorNameBox.Location = new System.Drawing.Point(127, 240);
+            visitorNameBox.MaxLength = 8;
+            visitorNameBox.Multiline = false;
+            visitorNameBox.Name = "visitorNameBox";
+            visitorNameBox.Size = new System.Drawing.Size(94, 20);
+            visitorNameBox.TabIndex = 228;
+            visitorNameBox.Text = "";
             // 
             // formToolTip
             // 
-            this.formToolTip.AutomaticDelay = 100;
-            this.formToolTip.AutoPopDelay = 10000;
-            this.formToolTip.InitialDelay = 100;
-            this.formToolTip.IsBalloon = true;
-            this.formToolTip.ReshowDelay = 20;
-            this.formToolTip.ShowAlways = true;
-            this.formToolTip.UseAnimation = false;
-            this.formToolTip.UseFading = false;
+            formToolTip.AutomaticDelay = 100;
+            formToolTip.AutoPopDelay = 10000;
+            formToolTip.InitialDelay = 100;
+            formToolTip.IsBalloon = true;
+            formToolTip.ReshowDelay = 20;
+            formToolTip.ShowAlways = true;
+            formToolTip.UseAnimation = false;
+            formToolTip.UseFading = false;
             // 
             // logBtn
             // 
-            this.logBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.logBtn.FlatAppearance.BorderSize = 0;
-            this.logBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.logBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.logBtn.ForeColor = System.Drawing.Color.White;
-            this.logBtn.Location = new System.Drawing.Point(84, 324);
-            this.logBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.logBtn.Name = "logBtn";
-            this.logBtn.Size = new System.Drawing.Size(66, 25);
-            this.logBtn.TabIndex = 229;
-            this.logBtn.Text = "Log";
-            this.formToolTip.SetToolTip(this.logBtn, "Show/Hide the visitor log.");
-            this.logBtn.UseVisualStyleBackColor = false;
-            this.logBtn.Click += new System.EventHandler(this.LogBtn_Click);
+            logBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            logBtn.FlatAppearance.BorderSize = 0;
+            logBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            logBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            logBtn.ForeColor = System.Drawing.Color.White;
+            logBtn.Location = new System.Drawing.Point(84, 324);
+            logBtn.Margin = new System.Windows.Forms.Padding(4);
+            logBtn.Name = "logBtn";
+            logBtn.Size = new System.Drawing.Size(66, 25);
+            logBtn.TabIndex = 229;
+            logBtn.Text = "Log";
+            formToolTip.SetToolTip(logBtn, "Show/Hide the visitor log.");
+            logBtn.UseVisualStyleBackColor = false;
+            logBtn.Click += LogBtn_Click;
             // 
             // newLogBtn
             // 
-            this.newLogBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.newLogBtn.FlatAppearance.BorderSize = 0;
-            this.newLogBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.newLogBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.newLogBtn.ForeColor = System.Drawing.Color.White;
-            this.newLogBtn.Location = new System.Drawing.Point(4, 4);
-            this.newLogBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.newLogBtn.Name = "newLogBtn";
-            this.newLogBtn.Size = new System.Drawing.Size(68, 25);
-            this.newLogBtn.TabIndex = 231;
-            this.newLogBtn.Text = "New";
-            this.formToolTip.SetToolTip(this.newLogBtn, "Create a new visitor log file.");
-            this.newLogBtn.UseVisualStyleBackColor = false;
-            this.newLogBtn.Click += new System.EventHandler(this.NewLogBtn_Click);
+            newLogBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            newLogBtn.FlatAppearance.BorderSize = 0;
+            newLogBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            newLogBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            newLogBtn.ForeColor = System.Drawing.Color.White;
+            newLogBtn.Location = new System.Drawing.Point(4, 4);
+            newLogBtn.Margin = new System.Windows.Forms.Padding(4);
+            newLogBtn.Name = "newLogBtn";
+            newLogBtn.Size = new System.Drawing.Size(68, 25);
+            newLogBtn.TabIndex = 231;
+            newLogBtn.Text = "New";
+            formToolTip.SetToolTip(newLogBtn, "Create a new visitor log file.");
+            newLogBtn.UseVisualStyleBackColor = false;
+            newLogBtn.Click += NewLogBtn_Click;
             // 
             // selectLogBtn
             // 
-            this.selectLogBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.selectLogBtn.FlatAppearance.BorderSize = 0;
-            this.selectLogBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.selectLogBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.selectLogBtn.ForeColor = System.Drawing.Color.White;
-            this.selectLogBtn.Location = new System.Drawing.Point(80, 4);
-            this.selectLogBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.selectLogBtn.Name = "selectLogBtn";
-            this.selectLogBtn.Size = new System.Drawing.Size(68, 25);
-            this.selectLogBtn.TabIndex = 232;
-            this.selectLogBtn.Text = "Select...";
-            this.formToolTip.SetToolTip(this.selectLogBtn, "Select another visitor log file.");
-            this.selectLogBtn.UseVisualStyleBackColor = false;
-            this.selectLogBtn.Click += new System.EventHandler(this.SelectLogBtn_Click);
+            selectLogBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            selectLogBtn.FlatAppearance.BorderSize = 0;
+            selectLogBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            selectLogBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            selectLogBtn.ForeColor = System.Drawing.Color.White;
+            selectLogBtn.Location = new System.Drawing.Point(80, 4);
+            selectLogBtn.Margin = new System.Windows.Forms.Padding(4);
+            selectLogBtn.Name = "selectLogBtn";
+            selectLogBtn.Size = new System.Drawing.Size(68, 25);
+            selectLogBtn.TabIndex = 232;
+            selectLogBtn.Text = "Select...";
+            formToolTip.SetToolTip(selectLogBtn, "Select another visitor log file.");
+            selectLogBtn.UseVisualStyleBackColor = false;
+            selectLogBtn.Click += SelectLogBtn_Click;
             // 
             // startBtn
             // 
-            this.startBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.startBtn.FlatAppearance.BorderSize = 0;
-            this.startBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.startBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.startBtn.ForeColor = System.Drawing.Color.White;
-            this.startBtn.Location = new System.Drawing.Point(143, 4);
-            this.startBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.startBtn.Name = "startBtn";
-            this.startBtn.Size = new System.Drawing.Size(86, 25);
-            this.startBtn.TabIndex = 236;
-            this.startBtn.Tag = "Start";
-            this.startBtn.Text = "Start";
-            this.formToolTip.SetToolTip(this.startBtn, "Start the regen with only the area selected being ignored.\r\n[WARNING] Item droppe" +
-        "d/placed on the empty space outside the area will be deleted.");
-            this.startBtn.UseVisualStyleBackColor = false;
-            this.startBtn.Click += new System.EventHandler(this.StartBtn_Click);
+            startBtn.BackColor = System.Drawing.Color.FromArgb(255, 128, 128);
+            startBtn.FlatAppearance.BorderSize = 0;
+            startBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            startBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            startBtn.ForeColor = System.Drawing.Color.White;
+            startBtn.Location = new System.Drawing.Point(143, 4);
+            startBtn.Margin = new System.Windows.Forms.Padding(4);
+            startBtn.Name = "startBtn";
+            startBtn.Size = new System.Drawing.Size(86, 25);
+            startBtn.TabIndex = 236;
+            startBtn.Tag = "Start";
+            startBtn.Text = "Start";
+            formToolTip.SetToolTip(startBtn, "Start the regen with only the area selected being ignored.\r\n[WARNING] Item dropped/placed on the empty space outside the area will be deleted.");
+            startBtn.UseVisualStyleBackColor = false;
+            startBtn.Click += StartBtn_Click;
             // 
             // keepVillagerBox
             // 
-            this.keepVillagerBox.AutoSize = true;
-            this.keepVillagerBox.BackColor = System.Drawing.Color.Transparent;
-            this.keepVillagerBox.Checked = true;
-            this.keepVillagerBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.keepVillagerBox.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.keepVillagerBox.ForeColor = System.Drawing.Color.White;
-            this.keepVillagerBox.Location = new System.Drawing.Point(41, 137);
-            this.keepVillagerBox.Name = "keepVillagerBox";
-            this.keepVillagerBox.Size = new System.Drawing.Size(154, 20);
-            this.keepVillagerBox.TabIndex = 238;
-            this.keepVillagerBox.Text = "Keep Village State";
-            this.formToolTip.SetToolTip(this.keepVillagerBox, "For keeping villagers in the moving out state (In boxes & sweeping floor).\r\n\r\nPle" +
-        "ase set the villager(s) to moving out state BEFORE you start the regenerator.");
-            this.keepVillagerBox.UseVisualStyleBackColor = false;
+            keepVillagerBox.AutoSize = true;
+            keepVillagerBox.BackColor = System.Drawing.Color.Transparent;
+            keepVillagerBox.Checked = true;
+            keepVillagerBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            keepVillagerBox.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            keepVillagerBox.ForeColor = System.Drawing.Color.White;
+            keepVillagerBox.Location = new System.Drawing.Point(41, 137);
+            keepVillagerBox.Name = "keepVillagerBox";
+            keepVillagerBox.Size = new System.Drawing.Size(154, 20);
+            keepVillagerBox.TabIndex = 238;
+            keepVillagerBox.Text = "Keep Village State";
+            formToolTip.SetToolTip(keepVillagerBox, "For keeping villagers in the moving out state (In boxes & sweeping floor).\r\n\r\nPlease set the villager(s) to moving out state BEFORE you start the regenerator.");
+            keepVillagerBox.UseVisualStyleBackColor = false;
             // 
             // dodoSetupBtn
             // 
-            this.dodoSetupBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.dodoSetupBtn.FlatAppearance.BorderSize = 0;
-            this.dodoSetupBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dodoSetupBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.dodoSetupBtn.ForeColor = System.Drawing.Color.White;
-            this.dodoSetupBtn.Location = new System.Drawing.Point(13, 158);
-            this.dodoSetupBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.dodoSetupBtn.Name = "dodoSetupBtn";
-            this.dodoSetupBtn.Size = new System.Drawing.Size(208, 25);
-            this.dodoSetupBtn.TabIndex = 240;
-            this.dodoSetupBtn.Tag = "Enable";
-            this.dodoSetupBtn.Text = "Enable Dodo Helper";
-            this.formToolTip.SetToolTip(this.dodoSetupBtn, resources.GetString("dodoSetupBtn.ToolTip"));
-            this.dodoSetupBtn.UseVisualStyleBackColor = false;
-            this.dodoSetupBtn.Click += new System.EventHandler(this.DodoHelperBtn_Click);
+            dodoSetupBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            dodoSetupBtn.FlatAppearance.BorderSize = 0;
+            dodoSetupBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            dodoSetupBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            dodoSetupBtn.ForeColor = System.Drawing.Color.White;
+            dodoSetupBtn.Location = new System.Drawing.Point(13, 158);
+            dodoSetupBtn.Margin = new System.Windows.Forms.Padding(4);
+            dodoSetupBtn.Name = "dodoSetupBtn";
+            dodoSetupBtn.Size = new System.Drawing.Size(208, 25);
+            dodoSetupBtn.TabIndex = 240;
+            dodoSetupBtn.Tag = "Enable";
+            dodoSetupBtn.Text = "Enable Dodo Helper";
+            formToolTip.SetToolTip(dodoSetupBtn, resources.GetString("dodoSetupBtn.ToolTip"));
+            dodoSetupBtn.UseVisualStyleBackColor = false;
+            dodoSetupBtn.Click += DodoHelperBtn_Click;
             // 
             // changeDodoBtn
             // 
-            this.changeDodoBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
-            this.changeDodoBtn.FlatAppearance.BorderSize = 0;
-            this.changeDodoBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.changeDodoBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.changeDodoBtn.ForeColor = System.Drawing.Color.White;
-            this.changeDodoBtn.Location = new System.Drawing.Point(13, 191);
-            this.changeDodoBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.changeDodoBtn.Name = "changeDodoBtn";
-            this.changeDodoBtn.Size = new System.Drawing.Size(208, 25);
-            this.changeDodoBtn.TabIndex = 241;
-            this.changeDodoBtn.Tag = "";
-            this.changeDodoBtn.Text = "Change Dodo Path";
-            this.formToolTip.SetToolTip(this.changeDodoBtn, "Change the path where the dodo code is stored.");
-            this.changeDodoBtn.UseVisualStyleBackColor = false;
-            this.changeDodoBtn.Click += new System.EventHandler(this.ChangeDodoBtn_Click);
+            changeDodoBtn.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            changeDodoBtn.FlatAppearance.BorderSize = 0;
+            changeDodoBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            changeDodoBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            changeDodoBtn.ForeColor = System.Drawing.Color.White;
+            changeDodoBtn.Location = new System.Drawing.Point(13, 191);
+            changeDodoBtn.Margin = new System.Windows.Forms.Padding(4);
+            changeDodoBtn.Name = "changeDodoBtn";
+            changeDodoBtn.Size = new System.Drawing.Size(208, 25);
+            changeDodoBtn.TabIndex = 241;
+            changeDodoBtn.Tag = "";
+            changeDodoBtn.Text = "Change Dodo Path";
+            formToolTip.SetToolTip(changeDodoBtn, "Change the path where the dodo code is stored.");
+            changeDodoBtn.UseVisualStyleBackColor = false;
+            changeDodoBtn.Click += ChangeDodoBtn_Click;
             // 
             // PauseTimer
             // 
-            this.PauseTimer.Interval = 1000;
-            this.PauseTimer.Tick += new System.EventHandler(this.PauseTimer_Tick);
+            PauseTimer.Interval = 1000;
+            PauseTimer.Tick += PauseTimer_Tick;
             // 
             // logGridView
             // 
-            this.logGridView.AllowUserToAddRows = false;
-            this.logGridView.AllowUserToDeleteRows = false;
-            this.logGridView.AllowUserToResizeRows = false;
-            this.logGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(54)))));
-            this.logGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(60)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(60)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.logGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.logGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(105)))), ((int)(((byte)(110)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(60)))), ((int)(((byte)(67)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.logGridView.DefaultCellStyle = dataGridViewCellStyle2;
-            this.logGridView.EnableHeadersVisualStyles = false;
-            this.logGridView.Location = new System.Drawing.Point(4, 36);
-            this.logGridView.MultiSelect = false;
-            this.logGridView.Name = "logGridView";
-            this.logGridView.ReadOnly = true;
-            this.logGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.logGridView.RowHeadersVisible = false;
-            this.logGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.logGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.logGridView.Size = new System.Drawing.Size(345, 265);
-            this.logGridView.TabIndex = 230;
+            logGridView.AllowUserToAddRows = false;
+            logGridView.AllowUserToDeleteRows = false;
+            logGridView.AllowUserToResizeRows = false;
+            logGridView.BackgroundColor = System.Drawing.Color.FromArgb(47, 49, 54);
+            logGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(57, 60, 67);
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(57, 60, 67);
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            logGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            logGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(47, 49, 54);
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.FromArgb(114, 105, 110);
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(57, 60, 67);
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            logGridView.DefaultCellStyle = dataGridViewCellStyle18;
+            logGridView.EnableHeadersVisualStyles = false;
+            logGridView.Location = new System.Drawing.Point(4, 36);
+            logGridView.MultiSelect = false;
+            logGridView.Name = "logGridView";
+            logGridView.ReadOnly = true;
+            logGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            logGridView.RowHeadersVisible = false;
+            logGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            logGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            logGridView.Size = new System.Drawing.Size(345, 265);
+            logGridView.TabIndex = 230;
             // 
             // logName
             // 
-            this.logName.AutoSize = true;
-            this.logName.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.logName.ForeColor = System.Drawing.Color.White;
-            this.logName.Location = new System.Drawing.Point(150, 9);
-            this.logName.Name = "logName";
-            this.logName.Size = new System.Drawing.Size(205, 16);
-            this.logName.TabIndex = 233;
-            this.logName.Text = "FFFFFFFFFFFFFFFFFFFFFF";
-            this.logName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            logName.AutoSize = true;
+            logName.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            logName.ForeColor = System.Drawing.Color.White;
+            logName.Location = new System.Drawing.Point(150, 9);
+            logName.Name = "logName";
+            logName.Size = new System.Drawing.Size(205, 16);
+            logName.TabIndex = 233;
+            logName.Text = "FFFFFFFFFFFFFFFFFFFFFF";
+            logName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // logPanel
             // 
-            this.logPanel.Controls.Add(this.newLogBtn);
-            this.logPanel.Controls.Add(this.logName);
-            this.logPanel.Controls.Add(this.logGridView);
-            this.logPanel.Controls.Add(this.selectLogBtn);
-            this.logPanel.Location = new System.Drawing.Point(233, 9);
-            this.logPanel.Name = "logPanel";
-            this.logPanel.Size = new System.Drawing.Size(377, 304);
-            this.logPanel.TabIndex = 234;
-            this.logPanel.Visible = false;
+            logPanel.Controls.Add(newLogBtn);
+            logPanel.Controls.Add(logName);
+            logPanel.Controls.Add(logGridView);
+            logPanel.Controls.Add(selectLogBtn);
+            logPanel.Location = new System.Drawing.Point(233, 9);
+            logPanel.Name = "logPanel";
+            logPanel.Size = new System.Drawing.Size(377, 304);
+            logPanel.TabIndex = 234;
+            logPanel.Visible = false;
             // 
             // mapPanel
             // 
-            this.mapPanel.Controls.Add(this.startBtn);
-            this.mapPanel.Controls.Add(this.label4);
-            this.mapPanel.Controls.Add(this.label3);
-            this.mapPanel.Controls.Add(this.yCoordinate);
-            this.mapPanel.Controls.Add(this.miniMapBox);
-            this.mapPanel.Controls.Add(this.xCoordinate);
-            this.mapPanel.Location = new System.Drawing.Point(233, 9);
-            this.mapPanel.Name = "mapPanel";
-            this.mapPanel.Size = new System.Drawing.Size(377, 304);
-            this.mapPanel.TabIndex = 235;
-            this.mapPanel.Visible = false;
+            mapPanel.Controls.Add(startBtn);
+            mapPanel.Controls.Add(label4);
+            mapPanel.Controls.Add(label3);
+            mapPanel.Controls.Add(yCoordinate);
+            mapPanel.Controls.Add(miniMapBox);
+            mapPanel.Controls.Add(xCoordinate);
+            mapPanel.Location = new System.Drawing.Point(233, 9);
+            mapPanel.Name = "mapPanel";
+            mapPanel.Size = new System.Drawing.Size(377, 304);
+            mapPanel.TabIndex = 235;
+            mapPanel.Visible = false;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(140, 48);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(25, 16);
-            this.label4.TabIndex = 238;
-            this.label4.Text = "Y :";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            label4.AutoSize = true;
+            label4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            label4.ForeColor = System.Drawing.Color.White;
+            label4.Location = new System.Drawing.Point(140, 48);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(25, 16);
+            label4.TabIndex = 238;
+            label4.Text = "Y :";
+            label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(49, 48);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(24, 16);
-            this.label3.TabIndex = 236;
-            this.label3.Text = "X :";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            label3.AutoSize = true;
+            label3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            label3.ForeColor = System.Drawing.Color.White;
+            label3.Location = new System.Drawing.Point(49, 48);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(24, 16);
+            label3.TabIndex = 236;
+            label3.Text = "X :";
+            label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // yCoordinate
             // 
-            this.yCoordinate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.yCoordinate.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.yCoordinate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.yCoordinate.ForeColor = System.Drawing.Color.White;
-            this.yCoordinate.Location = new System.Drawing.Point(166, 46);
-            this.yCoordinate.MaxLength = 3;
-            this.yCoordinate.Multiline = false;
-            this.yCoordinate.Name = "yCoordinate";
-            this.yCoordinate.Size = new System.Drawing.Size(63, 20);
-            this.yCoordinate.TabIndex = 237;
-            this.yCoordinate.Text = "";
+            yCoordinate.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            yCoordinate.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            yCoordinate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            yCoordinate.ForeColor = System.Drawing.Color.White;
+            yCoordinate.Location = new System.Drawing.Point(166, 46);
+            yCoordinate.MaxLength = 3;
+            yCoordinate.Multiline = false;
+            yCoordinate.Name = "yCoordinate";
+            yCoordinate.Size = new System.Drawing.Size(63, 20);
+            yCoordinate.TabIndex = 237;
+            yCoordinate.Text = "";
             // 
             // miniMapBox
             // 
-            this.miniMapBox.BackColor = System.Drawing.Color.Transparent;
-            this.miniMapBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.miniMapBox.ErrorImage = null;
-            this.miniMapBox.InitialImage = null;
-            this.miniMapBox.Location = new System.Drawing.Point(5, 72);
-            this.miniMapBox.Name = "miniMapBox";
-            this.miniMapBox.Size = new System.Drawing.Size(224, 192);
-            this.miniMapBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.miniMapBox.TabIndex = 190;
-            this.miniMapBox.TabStop = false;
-            this.miniMapBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MiniMapBox_MouseDown);
-            this.miniMapBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MiniMapBox_MouseMove);
+            miniMapBox.BackColor = System.Drawing.Color.Transparent;
+            miniMapBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            miniMapBox.ErrorImage = null;
+            miniMapBox.InitialImage = null;
+            miniMapBox.Location = new System.Drawing.Point(5, 72);
+            miniMapBox.Name = "miniMapBox";
+            miniMapBox.Size = new System.Drawing.Size(224, 192);
+            miniMapBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            miniMapBox.TabIndex = 190;
+            miniMapBox.TabStop = false;
+            miniMapBox.MouseDown += MiniMapBox_MouseDown;
+            miniMapBox.MouseMove += MiniMapBox_MouseMove;
             // 
             // xCoordinate
             // 
-            this.xCoordinate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(68)))), ((int)(((byte)(75)))));
-            this.xCoordinate.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.xCoordinate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.xCoordinate.ForeColor = System.Drawing.Color.White;
-            this.xCoordinate.Location = new System.Drawing.Point(74, 46);
-            this.xCoordinate.MaxLength = 3;
-            this.xCoordinate.Multiline = false;
-            this.xCoordinate.Name = "xCoordinate";
-            this.xCoordinate.Size = new System.Drawing.Size(63, 20);
-            this.xCoordinate.TabIndex = 236;
-            this.xCoordinate.Text = "";
+            xCoordinate.BackColor = System.Drawing.Color.FromArgb(64, 68, 75);
+            xCoordinate.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            xCoordinate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            xCoordinate.ForeColor = System.Drawing.Color.White;
+            xCoordinate.Location = new System.Drawing.Point(74, 46);
+            xCoordinate.MaxLength = 3;
+            xCoordinate.Multiline = false;
+            xCoordinate.Name = "xCoordinate";
+            xCoordinate.Size = new System.Drawing.Size(63, 20);
+            xCoordinate.TabIndex = 236;
+            xCoordinate.Text = "";
             // 
             // MapRegenerator
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.ClientSize = new System.Drawing.Size(234, 356);
-            this.Controls.Add(this.changeDodoBtn);
-            this.Controls.Add(this.dodoSetupBtn);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.backBtn);
-            this.Controls.Add(this.logBtn);
-            this.Controls.Add(this.hideBtn);
-            this.Controls.Add(this.visitorNameBox);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.timeLabel);
-            this.Controls.Add(this.ms);
-            this.Controls.Add(this.delay);
-            this.Controls.Add(this.startRegen2);
-            this.Controls.Add(this.startRegen);
-            this.Controls.Add(this.PleaseWaitPanel);
-            this.Controls.Add(this.loadMapBtn);
-            this.Controls.Add(this.saveMapBtn);
-            this.Controls.Add(this.FinMsg);
-            this.Controls.Add(this.keepVillagerBox);
-            this.Controls.Add(this.mapPanel);
-            this.Controls.Add(this.logPanel);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(250, 395);
-            this.Name = "MapRegenerator";
-            this.Opacity = 0.95D;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Map Regenerator";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MapRegenerator_FormClosed);
-            this.Move += new System.EventHandler(this.MapRegenerator_Move);
-            this.PleaseWaitPanel.ResumeLayout(false);
-            this.PleaseWaitPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NowLoading)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.logGridView)).EndInit();
-            this.logPanel.ResumeLayout(false);
-            this.logPanel.PerformLayout();
-            this.mapPanel.ResumeLayout(false);
-            this.mapPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.miniMapBox)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
+            ClientSize = new System.Drawing.Size(234, 356);
+            Controls.Add(changeDodoBtn);
+            Controls.Add(dodoSetupBtn);
+            Controls.Add(label1);
+            Controls.Add(backBtn);
+            Controls.Add(logBtn);
+            Controls.Add(hideBtn);
+            Controls.Add(visitorNameBox);
+            Controls.Add(label2);
+            Controls.Add(timeLabel);
+            Controls.Add(ms);
+            Controls.Add(delay);
+            Controls.Add(startRegen2);
+            Controls.Add(startRegen);
+            Controls.Add(PleaseWaitPanel);
+            Controls.Add(loadMapBtn);
+            Controls.Add(saveMapBtn);
+            Controls.Add(FinMsg);
+            Controls.Add(keepVillagerBox);
+            Controls.Add(mapPanel);
+            Controls.Add(logPanel);
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            Margin = new System.Windows.Forms.Padding(4);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            MinimumSize = new System.Drawing.Size(250, 395);
+            Name = "MapRegenerator";
+            Opacity = 0.95D;
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "Map Regenerator";
+            FormClosed += MapRegenerator_FormClosed;
+            Move += MapRegenerator_Move;
+            PleaseWaitPanel.ResumeLayout(false);
+            PleaseWaitPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)NowLoading).EndInit();
+            ((System.ComponentModel.ISupportInitialize)logGridView).EndInit();
+            logPanel.ResumeLayout(false);
+            logPanel.PerformLayout();
+            mapPanel.ResumeLayout(false);
+            mapPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)miniMapBox).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 

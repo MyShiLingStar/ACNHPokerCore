@@ -4,7 +4,6 @@ using Microsoft.Extensions.Hosting;
 using NAudio.Wave;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Data;
 using System.Diagnostics;
@@ -38,7 +37,7 @@ namespace ACNHPokerCore
 
         private static Socket socket;
         private static USBBot usb;
-        private readonly string version = "ACNHPokerCore R25 for v3.0.0";
+        private readonly string version = "ACNHPokerCore R25 for v3.0.1";
         private string hardwareId;
 
         private Panel currentPanel;
@@ -503,12 +502,14 @@ namespace ACNHPokerCore
 
             KeyPreview = true;
 
+            DebugAddress.Text = Utilities.masterAddress.ToString().ToUpper();
+
             if (!DEBUGGING) return;
 
             OtherTabButton.Visible = true;
             CritterTabButton.Visible = true;
             MapDropperButton.Visible = true;
-            //RegeneratorButton.Visible = true;
+            RegeneratorButton.Visible = true;
             FreezerButton.Visible = true;
             RoadRollerButton.Visible = true;
             DodoHelperButton.Visible = true;
@@ -1346,7 +1347,7 @@ namespace ACNHPokerCore
                                 USBConnectionButton.Visible = false;
                                 SettingButton.Visible = false;
                                 MapDropperButton.Visible = true;
-                                //RegeneratorButton.Visible = true;
+                                RegeneratorButton.Visible = true;
                                 FreezerButton.Visible = true;
                                 DodoHelperButton.Visible = true;
                                 BulldozerButton.Visible = true;
@@ -10240,7 +10241,7 @@ namespace ACNHPokerCore
 
         #region Debug
 
-        int startID = 0x38c8;
+        int startID = 0x0000;
 
         private void FillButton_Click(object sender, EventArgs e)
         {
@@ -10302,6 +10303,47 @@ namespace ACNHPokerCore
                 return false;
             else
                 return true;
+        }
+
+        private void Fill2Button_Click(object sender, EventArgs e)
+        {
+            List<byte[]> ItemList = new List<byte[]>();
+
+            for (int i = 0; i < MaxHouseStorage; i++)
+            {
+                byte[] newItem = Utilities.CreateItemBytes(ItemGridView.Rows[i].Cells["id"].Value.ToString(), "0");
+                ItemList.Add(newItem);
+            }
+
+            byte[] combined = Utilities.CombineByteArrays(ItemList.ToArray());
+
+            Utilities.WriteEmulatorMemory(Utilities.ItemSlotBase, combined);
+
+
+            /*
+            int iterator = 0;
+
+            do
+            {
+                string id = Utilities.PrecedingZeros(startID.ToString("X"), 4);
+                if (ItemExist(id))
+                {
+
+                }
+                else
+                {
+                    byte[] newItem = Utilities.CreateItemBytes(id, "0");
+                    ItemList.Add(newItem);
+                    iterator++;
+                }
+                startID++;
+
+            } while (iterator < MaxHouseStorage);
+
+            byte[] combined = Utilities.CombineByteArrays(ItemList.ToArray());
+
+            Utilities.WriteEmulatorMemory(Utilities.ItemSlotBase, combined);
+            */
         }
 
         private void PeekButton_Click(object sender, EventArgs e)
@@ -11248,6 +11290,5 @@ namespace ACNHPokerCore
         }
 
         #endregion
-
     }
 }
