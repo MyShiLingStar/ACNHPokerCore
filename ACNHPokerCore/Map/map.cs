@@ -8,7 +8,6 @@ using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
-using System.Text.RegularExpressions.Generated;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -485,7 +484,7 @@ namespace ACNHPokerCore
                 BuildActivateTable(ActivateLayer1, ref ActivateTable1);
                 BuildActivateTable(ActivateLayer2, ref ActivateTable2);
 
-                
+
                 byte[] Coordinate = Utilities.GetCoordinate(s, usb);
 
                 if (Coordinate != null)
@@ -495,7 +494,7 @@ namespace ACNHPokerCore
 
                     anchorX = x - 0x24;
                     anchorY = y - 0x18;
-                
+
                     if (anchorX < 3 || anchorY < 3 || anchorX > 108 || anchorY > 92)
                     {
                         anchorX = 56;
@@ -513,7 +512,7 @@ namespace ACNHPokerCore
                         reAnchorBtn.Visible = true;
                         NextSaveTimer.Start();
                     });
-                
+
                 }
                 else
                     throw new NullReferenceException("Coordinate");
@@ -768,7 +767,7 @@ namespace ACNHPokerCore
             btn.Setup(Name, ID, Data, IntP2Id, IntP2Data, IntP3Id, IntP3Data, IntP4Id, IntP4Data, Path1, Path2, Path3, Path4, ContainPath, flag0, flag1);
         }
 
-        private async Task UpdateBtn(FloorSlot btn)
+        private async Task UpdateBtn(FloorSlot btn, bool skipImage = false)
         {
             byte[] Left = new byte[16];
             byte[] Right = new byte[16];
@@ -819,47 +818,51 @@ namespace ACNHPokerCore
             string front = P1Data.Substring(0, 4);
             string back = P1Data.Substring(4, 4);
 
-            if (P1Id == "FFFD")
-                Path1 = GetImagePathFromID(back, source);
-            else if (P1Id == "16A2")
-            {
-                Path1 = GetImagePathFromID(back, recipeSource, Data);
-                Name = GetNameFromID(back, recipeSource) + " (Recipe)";
-            }
-            else if (P1Id == "114A" || P1Id == "EC9C")
-            {
-                Path1 = GetImagePathFromID(P1Id, source, Data);
-                ContainPath = GetImagePathFromID(back, source);
-                Name = GetNameFromID(P1Id, source) + " (" + GetNameFromID(back, source) + ")";
-            }
-            else if (P1Id == "315A" || P1Id == "1618" || P1Id == "342F")
-            {
-                Path1 = GetImagePathFromID(P1Id, source, Data);
-                ContainPath = GetImagePathFromID(back, source, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(front), 16));
-            }
-            else if (ItemAttr.HasFenceWithVariation(ID))  // Fence Variation
-            {
-                Path1 = GetImagePathFromID(P1Id, source, Convert.ToUInt32("0x" + front, 16));
-            }
-            else
-                Path1 = GetImagePathFromID(P1Id, source, Data);
 
-            if (P2Id == "FFFD")
-                Path2 = GetImagePathFromID(P2Data.Substring(4, 4), source);
-            else
-                Path2 = GetImagePathFromID(P2Id, source, IntP2Data);
+            if (!skipImage)
+            {
+                if (P1Id == "FFFD")
+                    Path1 = GetImagePathFromID(back, source);
+                else if (P1Id == "16A2")
+                {
+                    Path1 = GetImagePathFromID(back, recipeSource, Data);
+                    Name = GetNameFromID(back, recipeSource) + " (Recipe)";
+                }
+                else if (P1Id == "114A" || P1Id == "EC9C")
+                {
+                    Path1 = GetImagePathFromID(P1Id, source, Data);
+                    ContainPath = GetImagePathFromID(back, source);
+                    Name = GetNameFromID(P1Id, source) + " (" + GetNameFromID(back, source) + ")";
+                }
+                else if (P1Id == "315A" || P1Id == "1618" || P1Id == "342F")
+                {
+                    Path1 = GetImagePathFromID(P1Id, source, Data);
+                    ContainPath = GetImagePathFromID(back, source, Convert.ToUInt32("0x" + Utilities.TranslateVariationValueBack(front), 16));
+                }
+                else if (ItemAttr.HasFenceWithVariation(ID))  // Fence Variation
+                {
+                    Path1 = GetImagePathFromID(P1Id, source, Convert.ToUInt32("0x" + front, 16));
+                }
+                else
+                    Path1 = GetImagePathFromID(P1Id, source, Data);
 
-            if (P3Id == "FFFD")
-                Path3 = GetImagePathFromID(P3Data.Substring(4, 4), source);
-            else
-                Path3 = GetImagePathFromID(P3Id, source, IntP3Data);
+                if (P2Id == "FFFD")
+                    Path2 = GetImagePathFromID(P2Data.Substring(4, 4), source);
+                else
+                    Path2 = GetImagePathFromID(P2Id, source, IntP2Data);
 
-            if (P4Id == "FFFD")
-                Path4 = GetImagePathFromID(P4Data.Substring(4, 4), source);
-            else
-                Path4 = GetImagePathFromID(P4Id, source, IntP4Data);
+                if (P3Id == "FFFD")
+                    Path3 = GetImagePathFromID(P3Data.Substring(4, 4), source);
+                else
+                    Path3 = GetImagePathFromID(P3Id, source, IntP3Data);
 
-            btn.Setup(Name, ID, Data, IntP2Id, IntP2Data, IntP3Id, IntP3Data, IntP4Id, IntP4Data, Path1, Path2, Path3, Path4, ContainPath, flag0, flag1);
+                if (P4Id == "FFFD")
+                    Path4 = GetImagePathFromID(P4Data.Substring(4, 4), source);
+                else
+                    Path4 = GetImagePathFromID(P4Id, source, IntP4Data);
+            }
+
+            btn.Setup(Name, ID, Data, IntP2Id, IntP2Data, IntP3Id, IntP3Data, IntP4Id, IntP4Data, Path1, Path2, Path3, Path4, ContainPath, flag0, flag1, skipImage);
         }
 
         private void UpdateNearBtn(int BtnNum)
@@ -874,7 +877,7 @@ namespace ACNHPokerCore
 
         private bool isUpdating = false;
 
-        private void UpdateAllBtn()
+        private async Task UpdateAllBtn(bool skipImage = false)
         {
             /*
             for (int i = 0; i < floorSlots.Length; i++)
@@ -883,20 +886,21 @@ namespace ACNHPokerCore
             }
             */
 
+            /*
             for (int i = 0; i < floorSlots.Length; i++)
             {
                 _ = UpdateBtn(floorSlots[i]);
             }
-
-            /*
+            */
+            
             var tasks = new List<Task>();
             for (int i = 0; i < floorSlots.Length; i++)
             {
-                tasks.Add(UpdateBtn(floorSlots[i]));
+                tasks.Add(UpdateBtn(floorSlots[i], skipImage));
                 //UpdateBtn(floorSlots[i]);
             }
             await Task.WhenAll(tasks);
-            */
+            
         }
 
         /*
@@ -950,15 +954,15 @@ namespace ACNHPokerCore
 
         #endregion
 
-        private async Task DisplayAnchorAsync()
+        private async Task DisplayAnchorAsync(bool skipImage = false)
         {
             miniMapBox.Image = MiniMap.DrawSelectSquare(anchorX, anchorY);
 
             SetupBtnCoordinate(anchorX, anchorY);
 
-            UpdateAllBtn();
+            UpdateAllBtn(skipImage);
 
-            ResetBtnColor();
+            ResetBtnColor(skipImage);
         }
 
         private static UInt32 GetAddress(int x, int y, bool right = false, bool down = false)
@@ -2412,7 +2416,7 @@ namespace ACNHPokerCore
         #endregion
 
         #region Color
-        private void ResetBtnColor()
+        private void ResetBtnColor(bool skipText = false)
         {
             foreach (FloorSlot btn in BtnPanel.Controls.OfType<FloorSlot>())
             {
@@ -2420,16 +2424,16 @@ namespace ACNHPokerCore
                 if (AreaCopied)
                 {
                     if (layer1Btn.Checked)
-                        btn.SetBackColor(true, Corner1X, Corner1Y, Corner2X, Corner2Y, true);
+                        btn.SetBackColor(true, Corner1X, Corner1Y, Corner2X, Corner2Y, true, skipText);
                     else
-                        btn.SetBackColor(false, Corner1X, Corner1Y, Corner2X, Corner2Y, true);
+                        btn.SetBackColor(false, Corner1X, Corner1Y, Corner2X, Corner2Y, true, skipText);
                 }
                 else
                 {
                     if (layer1Btn.Checked)
-                        btn.SetBackColor(true, Corner1X, Corner1Y, Corner2X, Corner2Y);
+                        btn.SetBackColor(true, Corner1X, Corner1Y, Corner2X, Corner2Y, false, skipText);
                     else
-                        btn.SetBackColor(false, Corner1X, Corner1Y, Corner2X, Corner2Y);
+                        btn.SetBackColor(false, Corner1X, Corner1Y, Corner2X, Corner2Y, false, skipText);
                 }
             }
 
@@ -3768,7 +3772,7 @@ namespace ACNHPokerCore
                         address1 = GetAddress(anchorX - 3, anchorY - 3) + Utilities.NewMapSize;
                         address2 = GetAddress(anchorX - 2, anchorY - 3) + Utilities.NewMapSize;
                         address3 = GetAddress(anchorX - 1, anchorY - 3) + Utilities.NewMapSize;
-                        address4 = GetAddress(anchorX, anchorY - 3)     + Utilities.NewMapSize;
+                        address4 = GetAddress(anchorX, anchorY - 3) + Utilities.NewMapSize;
                         address5 = GetAddress(anchorX + 1, anchorY - 3) + Utilities.NewMapSize;
                         address6 = GetAddress(anchorX + 2, anchorY - 3) + Utilities.NewMapSize;
                         address7 = GetAddress(anchorX + 3, anchorY - 3) + Utilities.NewMapSize;
@@ -4320,7 +4324,7 @@ namespace ACNHPokerCore
                         address1 = GetAddress(anchorX - 3, anchorY - 3) + Utilities.NewMapSize;
                         address2 = GetAddress(anchorX - 2, anchorY - 3) + Utilities.NewMapSize;
                         address3 = GetAddress(anchorX - 1, anchorY - 3) + Utilities.NewMapSize;
-                        address4 = GetAddress(anchorX, anchorY - 3)     + Utilities.NewMapSize;
+                        address4 = GetAddress(anchorX, anchorY - 3) + Utilities.NewMapSize;
                         address5 = GetAddress(anchorX + 1, anchorY - 3) + Utilities.NewMapSize;
                         address6 = GetAddress(anchorX + 2, anchorY - 3) + Utilities.NewMapSize;
                         address7 = GetAddress(anchorX + 3, anchorY - 3) + Utilities.NewMapSize;
@@ -4988,11 +4992,18 @@ namespace ACNHPokerCore
                 yCoordinate.Text = y.ToString();
                 selectedButton = floor25;
 
-                DisplayAnchorAsync();
+                DisplayAnchorAsync(true);
             }
 
         }
 
+        private void MiniMapBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                DisplayAnchorAsync(false);
+            }
+        }
 
         private void MiniMapBox_MouseMove(object sender, MouseEventArgs e)
         {
@@ -5022,7 +5033,7 @@ namespace ACNHPokerCore
                 yCoordinate.Text = y.ToString();
                 selectedButton = floor25;
 
-                DisplayAnchorAsync();
+                DisplayAnchorAsync(true);
             }
         }
 
@@ -5166,14 +5177,14 @@ namespace ACNHPokerCore
         {
             try
             {
-                
+
                 byte[] Coordinate = Utilities.GetCoordinate(s, usb);
                 int x = BitConverter.ToInt32(Coordinate, 0);
                 int y = BitConverter.ToInt32(Coordinate, 4);
 
                 anchorX = x - 0x24;
                 anchorY = y - 0x18;
-                
+
 
                 if (anchorX < 3 || anchorY < 3 || anchorX > 108 || anchorY > 92)
                 {
@@ -5820,7 +5831,7 @@ namespace ACNHPokerCore
 
         #region AutoSave
 
-        
+
         private int NextAutosave()
         {
             try
@@ -5844,7 +5855,7 @@ namespace ACNHPokerCore
                 return 69;
             }
         }
-        
+
 
         private void NextSaveTimer_Tick(object sender, EventArgs e)
         {
@@ -8032,6 +8043,5 @@ namespace ACNHPokerCore
             FieldGridView.ContextMenuStrip = null;
         }
         #endregion
-
     }
 }

@@ -24,7 +24,7 @@ namespace ACNHPokerCore
         public static UInt32 MasterRecyclingBase = 0xB19C40D0;
         public static UInt32 MasterRecycling21Base = MasterRecyclingBase + 0xA0;
 
-        public static UInt32 TurnipPurchasePriceAddr = 0xB14DBB30; 
+        public static UInt32 TurnipPurchasePriceAddr = 0xB14DBB30;
         public static UInt32 TurnipSellPriceAddr = TurnipPurchasePriceAddr + 0xC;
         public static UInt32 SaveFileBuffer = 0x9B0EB0;
 
@@ -101,7 +101,9 @@ namespace ACNHPokerCore
 
         public const int ExtendedMapTileCount16x16 = ExtendedMapNumOfRow * ExtendedMapNumOfColumn;
 
-        public const int ExtendedMapOffset = (16 * 6 * 16 * 1) * 2; // One extra column of Acre
+        public const int ExtendedMapOffset = (16 * 6) * (16 * 1); // One extra column of Acre
+        public const int CustomDesignByteSize = 2;
+        public const int FloorItemByteSize = 16;
 
         //=================================================================
 
@@ -229,11 +231,11 @@ namespace ACNHPokerCore
         public static readonly string wSpeedX4 = "1E221001";
         //--------------------------------------------------------------------------------------------
 
-        public static UInt32 CollisionAddress = 0x02217B30;
+        public static UInt32 CollisionAddress = 0x02218410; //0x02217B30;
         public static readonly string CollisionDisable = "12800000";
         public static readonly string CollisionEnable = "B95BF800";
 
-        public static UInt32 ActorCollisionAddress = 0x221806C; 
+        public static UInt32 ActorCollisionAddress = 0x0221894C; //0x0221806C;
         public static readonly string ActorCollisionDisable = "1E3E1000";
         public static readonly string ActorCollisionEnable = "1E2E1000";
 
@@ -3154,8 +3156,8 @@ namespace ACNHPokerCore
         {
             if (isEmulator)
             {
-                WriteEmulatorMemory(mapCustomDesign + ExtendedMapOffset, CustomMap);
-                WriteEmulatorMemory(mapCustomDesign + ExtendedMapOffset + SaveFileBuffer, CustomMap);
+                WriteEmulatorMemory(mapCustomDesign + (ExtendedMapOffset * CustomDesignByteSize), CustomMap);
+                WriteEmulatorMemory(mapCustomDesign + (ExtendedMapOffset * CustomDesignByteSize) + SaveFileBuffer, CustomMap);
                 return;
             }
 
@@ -3167,15 +3169,15 @@ namespace ACNHPokerCore
                     {
                         Debug.Print("[Sys] Poke : OldCustomMap " + TerrainOffset.ToString("X"));
 
-                        SendByteArray(socket, mapCustomDesign + ExtendedMapOffset, CustomMap, CustomMap.Length, ref counter);
-                        SendByteArray(socket, mapCustomDesign + ExtendedMapOffset + SaveFileBuffer, CustomMap, CustomMap.Length, ref counter);
+                        SendByteArray(socket, mapCustomDesign + (ExtendedMapOffset * CustomDesignByteSize), CustomMap, CustomMap.Length, ref counter);
+                        SendByteArray(socket, mapCustomDesign + (ExtendedMapOffset * CustomDesignByteSize) + SaveFileBuffer, CustomMap, CustomMap.Length, ref counter);
                     }
                     else
                     {
                         Debug.Print("[Usb] Poke : OldCustomMap " + TerrainOffset.ToString("X"));
 
-                        WriteLargeBytes(usb, mapCustomDesign + ExtendedMapOffset, CustomMap, CustomMap.Length, ref counter);
-                        WriteLargeBytes(usb, mapCustomDesign + ExtendedMapOffset + SaveFileBuffer, CustomMap, CustomMap.Length, ref counter);
+                        WriteLargeBytes(usb, mapCustomDesign + (ExtendedMapOffset * CustomDesignByteSize), CustomMap, CustomMap.Length, ref counter);
+                        WriteLargeBytes(usb, mapCustomDesign + (ExtendedMapOffset * CustomDesignByteSize) + SaveFileBuffer, CustomMap, CustomMap.Length, ref counter);
                     }
                 }
                 catch
@@ -3361,7 +3363,7 @@ namespace ACNHPokerCore
             }
         }
 
-        
+
         public static byte[] GetCoordinate(Socket socket, USBBot usb)
         {
             if (isEmulator)
@@ -4351,6 +4353,74 @@ namespace ACNHPokerCore
                 MyMessageBox.Show(ex.Message, "This is utterly fucking retarded.");
                 return false;
             }
+        }
+
+        public static byte[] CreateItemBytes(string value, string amount)
+        {
+            // Pad to 8 characters (4 bytes) with preceding zeros
+            value = value.PadLeft(8, '0');
+            amount = amount.PadLeft(8, '0');
+
+            // Convert hex strings to byte arrays
+            byte[] valueBytes = HexStringToByteArray(value);
+            byte[] amountBytes = HexStringToByteArray(amount);
+
+            // Reverse to convert to little-endian
+            Array.Reverse(valueBytes);
+            Array.Reverse(amountBytes);
+
+            // Combine the arrays
+            byte[] result = new byte[valueBytes.Length + amountBytes.Length];
+            Array.Copy(valueBytes, 0, result, 0, valueBytes.Length);
+            Array.Copy(amountBytes, 0, result, valueBytes.Length, amountBytes.Length);
+
+            return result;
+        }
+
+        private static byte[] HexStringToByteArray(string hex)
+        {
+            // Ensure even length
+            if (hex.Length % 2 != 0)
+            {
+                hex = "0" + hex;
+            }
+
+            byte[] bytes = new byte[hex.Length / 2];
+            for (int i = 0; i < hex.Length; i += 2)
+            {
+                bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+            }
+
+            return bytes;
+        }
+
+        public static byte[] CombineByteArrays(params byte[][] arrays)
+        {
+            // Calculate total length
+            int totalLength = 0;
+            foreach (byte[] array in arrays)
+            {
+                if (array != null)
+                {
+                    totalLength += array.Length;
+                }
+            }
+
+            // Create result array
+            byte[] result = new byte[totalLength];
+
+            // Copy all arrays into result
+            int offset = 0;
+            foreach (byte[] array in arrays)
+            {
+                if (array != null)
+                {
+                    Array.Copy(array, 0, result, offset, array.Length);
+                    offset += array.Length;
+                }
+            }
+
+            return result;
         }
 
         #region Villager

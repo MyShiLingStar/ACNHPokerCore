@@ -47,6 +47,9 @@ namespace ACNHPokerCore
         public event CloseHandler CloseForm;
         public event UpdateTurnipPriceHandler UpdateTurnipPriceHandler;
 
+        private readonly int LoadSize = 0x2000;
+        private readonly int LoadSize2 = 0x1800;
+
         #region Form Load
         public MapRegenerator(Socket S, bool Sound, bool Debugging)
         {
@@ -76,7 +79,7 @@ namespace ACNHPokerCore
             {
                 SaveFileDialog file = new()
                 {
-                    Filter = "New Horizons Fasil 2 (*.nhf2)|*.nhf2",
+                    Filter = "New Horizons Fasil 3 (*.nhf3)|*.nhf3",
                 };
 
                 Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
@@ -122,9 +125,9 @@ namespace ACNHPokerCore
 
         private void SaveMapFloor(uint address, SaveFileDialog file)
         {
-            ShowMapWait(42, "Saving...");
+            ShowMapWait(60, "Saving...");
 
-            byte[] save = Utilities.ReadByteArray(s, address, (int)Utilities.NewMapSize, ref counter);
+            byte[] save = Utilities.ReadByteArray(s, address, (int)Utilities.NewMapSize * 2, ref counter);
 
             File.WriteAllBytes(file.FileName, save);
 
@@ -151,7 +154,7 @@ namespace ACNHPokerCore
             {
                 OpenFileDialog file = new()
                 {
-                    Filter = "New Horizons Fasil 2 (*.nhf2)|*.nhf2|All files (*.*)|*.*",
+                    Filter = "New Horizons Fasil 3 (*.nhf3)|*.nhf3|New Horizons Fasil (*.nhf)|*.nhf|All files (*.*)|*.*",
                 };
 
                 Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
@@ -185,16 +188,29 @@ namespace ACNHPokerCore
 
                 byte[] data = File.ReadAllBytes(file.FileName);
 
-                if (data.Length != Utilities.NewMapSize)
+                uint address;
+                int NumOfPart;
+
+                if (data.Length == Utilities.OldMapSize) // nhf (Old Single Layer)
+                {
+                    address = Utilities.mapZero + (Utilities.ExtendedMapOffset * Utilities.FloorItemByteSize);
+                    NumOfPart = data.Length / LoadSize;
+                }
+                else if (data.Length == Utilities.NewMapSize) // nhf2 (New Single Layer)
+                {
+                    address = Utilities.mapZero;
+                    NumOfPart = data.Length / LoadSize;
+                }
+                else if (data.Length == Utilities.NewMapSize * 2) // nhf3 (New Double Layerr)
+                {
+                    address = Utilities.mapZero;
+                    NumOfPart = data.Length / LoadSize;
+                }
+                else
                 {
                     MyMessageBox.Show("Invalid File Size!", "Your map file size is invalid!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
-                uint address = Utilities.mapZero;
-
-                int LoadSize = 0x2000;
-                int NumOfPart = (int)(Utilities.NewMapSize / LoadSize);
 
 
                 byte[][] b = new byte[NumOfPart][];
@@ -205,8 +221,9 @@ namespace ACNHPokerCore
                     Buffer.BlockCopy(data, i * LoadSize, b[i], 0x0, LoadSize);
                 }
 
-                Thread LoadThread = new(delegate () { LoadMapFloor(b, address , NumOfPart, LoadSize); });
+                Thread LoadThread = new(delegate () { LoadMapFloor(b, address, NumOfPart); });
                 LoadThread.Start();
+
             }
             catch (Exception ex)
             {
@@ -214,7 +231,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void LoadMapFloor(byte[][] b, uint address, int NumOfPart, int LoadSize)
+        private void LoadMapFloor(byte[][] b, uint address, int NumOfPart)
         {
             ShowMapWait(NumOfPart, "Loading...");
 
@@ -256,7 +273,7 @@ namespace ACNHPokerCore
 
                 OpenFileDialog file = new()
                 {
-                    Filter = "New Horizons Fasil (*.nhf)|*.nhf|All files (*.*)|*.*",
+                    Filter = "New Horizons Fasil 3 (*.nhf3)|*.nhf3|New Horizons Fasil (*.nhf)|*.nhf|All files (*.*)|*.*",
                 };
 
                 Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
@@ -301,14 +318,36 @@ namespace ACNHPokerCore
 
                 byte[] data = File.ReadAllBytes(file.FileName);
 
-                uint address = Utilities.mapZero;
+                uint address;
+                int NumOfPart;
 
-                byte[][] b = new byte[42][];
-
-                for (int i = 0; i < 42; i++)
+                if (data.Length == Utilities.OldMapSize) // nhf (Old Single Layer)
                 {
-                    b[i] = new byte[0x2000];
-                    Buffer.BlockCopy(data, i * 0x2000, b[i], 0x0, 0x2000);
+                    address = Utilities.mapZero + (Utilities.ExtendedMapOffset * Utilities.FloorItemByteSize);
+                    NumOfPart = data.Length / LoadSize;
+                }
+                else if (data.Length == Utilities.NewMapSize) // nhf2 (New Single Layer)
+                {
+                    address = Utilities.mapZero;
+                    NumOfPart = data.Length / LoadSize;
+                }
+                else if (data.Length == Utilities.NewMapSize * 2) // nhf3 (New Double Layerr)
+                {
+                    address = Utilities.mapZero;
+                    NumOfPart = data.Length / LoadSize;
+                }
+                else
+                {
+                    MyMessageBox.Show("Invalid File Size!", "Your map file size is invalid!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                byte[][] b = new byte[NumOfPart][];
+
+                for (int i = 0; i < NumOfPart; i++)
+                {
+                    b[i] = new byte[LoadSize];
+                    Buffer.BlockCopy(data, i * LoadSize, b[i], 0x0, LoadSize);
                 }
 
                 string[] name = file.FileName.Split('\\');
@@ -321,7 +360,7 @@ namespace ACNHPokerCore
                 cts = new CancellationTokenSource();
                 CancellationToken token = cts.Token;
 
-                RegenThread = new Thread(delegate () { RegenMapFloor(b, address, name[name.Length - 1], token); });
+                RegenThread = new Thread(delegate () { RegenMapFloor(b, address, name[name.Length - 1], NumOfPart, token); });
                 RegenThread.Start();
             }
             else
@@ -353,7 +392,7 @@ namespace ACNHPokerCore
             {
                 OpenFileDialog file = new()
                 {
-                    Filter = "New Horizons Fasil (*.nhf)|*.nhf|All files (*.*)|*.*",
+                    Filter = "New Horizons Fasil 3 (*.nhf3)|*.nhf3|New Horizons Fasil (*.nhf)|*.nhf|All files (*.*)|*.*",
                 };
 
                 Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath.Replace(".exe", ".dll"));
@@ -390,7 +429,29 @@ namespace ACNHPokerCore
                 string[] name = file.FileName.Split('\\');
                 tempFilename = name[name.Length - 1];
 
-                uint address = Utilities.mapZero;
+                uint address;
+                int NumOfPart;
+
+                if (data.Length == Utilities.OldMapSize) // nhf (Old Single Layer)
+                {
+                    address = Utilities.mapZero + (Utilities.ExtendedMapOffset * Utilities.FloorItemByteSize);
+                    NumOfPart = data.Length / LoadSize2;
+                }
+                else if (data.Length == Utilities.NewMapSize) // nhf2 (New Single Layer)
+                {
+                    address = Utilities.mapZero;
+                    NumOfPart = data.Length / LoadSize2;
+                }
+                else if (data.Length == Utilities.NewMapSize * 2) // nhf3 (New Double Layerr)
+                {
+                    address = Utilities.mapZero;
+                    NumOfPart = data.Length / LoadSize2;
+                }
+                else
+                {
+                    MyMessageBox.Show("Invalid File Size!", "Your map file size is invalid!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 DialogResult dialogResult = MyMessageBox.Show("Would you like to limit the \"ignore empty tiles\" area?" + "\n\n" +
                                                             "This would allow you to pick a 7 x 7 area which the regenerator would only ignore."
@@ -458,16 +519,16 @@ namespace ACNHPokerCore
                     keepVillagerBox.Enabled = false;
                     dodoSetupBtn.Enabled = false;
 
-                    byte[][] b = new byte[56][];
-                    bool[][] isEmpty = new bool[56][];
+                    byte[][] b = new byte[NumOfPart][];
+                    bool[][] isEmpty = new bool[NumOfPart][];
 
 
-                    for (int i = 0; i < 56; i++)
+                    for (int i = 0; i < NumOfPart; i++)
                     {
-                        b[i] = new byte[0x1800];
-                        Buffer.BlockCopy(data, i * 0x1800, b[i], 0x0, 0x1800);
+                        b[i] = new byte[LoadSize2];
+                        Buffer.BlockCopy(data, i * LoadSize2, b[i], 0x0, LoadSize2);
 
-                        isEmpty[i] = new bool[0x1800];
+                        isEmpty[i] = new bool[LoadSize2];
                         BuildEmptyTable(b[i], ref isEmpty[i]);
                     }
 
@@ -479,7 +540,7 @@ namespace ACNHPokerCore
                     cts = new CancellationTokenSource();
                     CancellationToken token = cts.Token;
 
-                    RegenThread = new Thread(delegate () { RegenMapFloor2(b, address, isEmpty, tempFilename, token); });
+                    RegenThread = new Thread(delegate () { RegenMapFloor2(b, address, isEmpty, tempFilename, NumOfPart, token); });
                     RegenThread.Start();
                 }
             }
@@ -509,7 +570,30 @@ namespace ACNHPokerCore
             MiniMap = null;
             Width = 250;
 
-            uint address = Utilities.mapZero;
+            uint address;
+            int NumOfPart;
+            int ShiftedAnchorX = anchorX;
+
+            if (tempData.Length == Utilities.OldMapSize) // nhf (Old Single Layer)
+            {
+                address = Utilities.mapZero + (Utilities.ExtendedMapOffset * Utilities.FloorItemByteSize);
+                NumOfPart = tempData.Length / LoadSize2;
+                ShiftedAnchorX = anchorX + 16;
+            }
+            else if (tempData.Length == Utilities.NewMapSize) // nhf2 (New Single Layer)
+            {
+                address = Utilities.mapZero;
+                NumOfPart = tempData.Length / LoadSize2;
+            }
+            else if (tempData.Length == Utilities.NewMapSize * 2) // nhf3 (New Double Layerr)
+            {
+                address = Utilities.mapZero;
+                NumOfPart = tempData.Length / LoadSize2;
+            }
+            else
+            {
+                return;
+            }
 
             loop = true;
             startRegen2.Tag = "Stop";
@@ -522,17 +606,17 @@ namespace ACNHPokerCore
             dodoSetupBtn.Enabled = false;
 
 
-            byte[][] b = new byte[56][];
-            bool[][] isEmpty = new bool[56][];
+            byte[][] b = new byte[NumOfPart][];
+            bool[][] isEmpty = new bool[NumOfPart][];
 
 
-            for (int i = 0; i < 56; i++)
+            for (int i = 0; i < NumOfPart; i++)
             {
-                b[i] = new byte[0x1800];
-                Buffer.BlockCopy(tempData, i * 0x1800, b[i], 0x0, 0x1800);
+                b[i] = new byte[LoadSize2];
+                Buffer.BlockCopy(tempData, i * LoadSize2, b[i], 0x0, LoadSize2);
 
-                isEmpty[i] = new bool[0x1800];
-                BuildEmptyTable(b[i], ref isEmpty[i], i * 2, i * 2 + 1);
+                isEmpty[i] = new bool[LoadSize2];
+                BuildEmptyTable(b[i], ref isEmpty[i], i * 2, i * 2 + 1, ShiftedAnchorX);
             }
             MyLog.LogEvent("Regen", "Regen2Limit Started: " + tempFilename);
             MyLog.LogEvent("Regen", "Regen2Limit Area: " + anchorX + " " + anchorY);
@@ -543,7 +627,7 @@ namespace ACNHPokerCore
             cts = new CancellationTokenSource();
             CancellationToken token = cts.Token;
 
-            RegenThread = new Thread(delegate () { RegenMapFloor2(b, address, isEmpty, tempFilename, token); });
+            RegenThread = new Thread(delegate () { RegenMapFloor2(b, address, isEmpty, tempFilename, NumOfPart, token); });
             RegenThread.Start();
         }
 
@@ -609,11 +693,11 @@ namespace ACNHPokerCore
         }
         #endregion
 
-        private void RegenMapFloor(byte[][] b, uint address, string name, CancellationToken token)
+        private void RegenMapFloor(byte[][] b, uint address, string name, int NumOfPart, CancellationToken token)
         {
             string regenMsg = "Regenerating... " + name;
 
-            ShowMapWait(42, regenMsg);
+            ShowMapWait(NumOfPart, regenMsg);
 
             if (keepVillagerBox.Checked)
                 PrepareVillager(s);
@@ -726,11 +810,11 @@ namespace ACNHPokerCore
                             PauseCount = 0;
 
                             //--------------------------------------------------------------------------------------------------
-                            for (int i = 0; i < 42; i++)
+                            for (int i = 0; i < NumOfPart; i++)
                             {
                                 lock (mapLock)
                                 {
-                                    var c = Utilities.ReadByteArray(s, address + (i * 0x2000), 0x2000, ref counter);
+                                    var c = Utilities.ReadByteArray(s, address + (i * LoadSize), LoadSize, ref counter);
 
                                     if (c != null)
                                     {
@@ -742,7 +826,7 @@ namespace ACNHPokerCore
                                         else
                                         {
                                             Debug.Print("Replace " + i);
-                                            Utilities.SendByteArray(s, address + (i * 0x2000), b[i], 0x2000, ref writeCount);
+                                            Utilities.SendByteArray(s, address + (i * LoadSize), b[i], LoadSize, ref writeCount);
                                             Thread.Sleep(500);
                                         }
                                     }
@@ -840,18 +924,18 @@ namespace ACNHPokerCore
                 System.Media.SystemSounds.Asterisk.Play();
         }
 
-        private void RegenMapFloor2(byte[][] b, uint address, bool[][] isEmpty, string name, CancellationToken token)
+        private void RegenMapFloor2(byte[][] b, uint address, bool[][] isEmpty, string name, int NumOfPart, CancellationToken token)
         {
             string regenMsg = "Regenerating... " + name;
 
-            ShowMapWait(56, regenMsg);
+            ShowMapWait(NumOfPart, regenMsg);
 
-            byte[][] u = new byte[56][];
+            byte[][] u = new byte[NumOfPart][];
 
-            for (int i = 0; i < 56; i++)
+            for (int i = 0; i < NumOfPart; i++)
             {
-                u[i] = new byte[0x1800];
-                Buffer.BlockCopy(b[i], 0, u[i], 0x0, 0x1800);
+                u[i] = new byte[LoadSize2];
+                Buffer.BlockCopy(b[i], 0, u[i], 0x0, LoadSize2);
             }
 
             if (keepVillagerBox.Checked)
@@ -966,7 +1050,7 @@ namespace ACNHPokerCore
                             PauseCount = 0;
 
                             //--------------------------------------------------------------------------------------------------
-                            for (int i = 0; i < 56; i++)
+                            for (int i = 0; i < NumOfPart; i++)
                             {
                                 if (token.IsCancellationRequested)
                                 {
@@ -975,7 +1059,7 @@ namespace ACNHPokerCore
 
                                 lock (mapLock)
                                 {
-                                    var c = Utilities.ReadByteArray(s, address + (i * 0x1800), 0x1800, ref counter);
+                                    var c = Utilities.ReadByteArray(s, address + (i * LoadSize2), LoadSize2, ref counter);
 
                                     if (c != null)
                                     {
@@ -987,7 +1071,7 @@ namespace ACNHPokerCore
                                         else
                                         {
                                             Debug.Print("Replace " + i);
-                                            Utilities.SendByteArray(s, address + (i * 0x1800), u[i], 0x1800, ref writeCount);
+                                            Utilities.SendByteArray(s, address + (i * LoadSize2), u[i], LoadSize2, ref writeCount);
                                             Thread.Sleep(500);
                                         }
                                     }
@@ -1259,7 +1343,7 @@ namespace ACNHPokerCore
             }
         }
 
-        private void BuildEmptyTable(byte[] org, ref bool[] table, int Part1x, int Part2x)
+        private void BuildEmptyTable(byte[] org, ref bool[] table, int Part1x, int Part2x, int ShiftedAnchorX)
         {
             byte[] Part1 = new byte[0xC00];
             byte[] Part2 = new byte[0xC00];
@@ -1275,7 +1359,7 @@ namespace ACNHPokerCore
                 Buffer.BlockCopy(Part1, i * 16, blockLeft, 0, 16);
                 Buffer.BlockCopy(Part1, (i + 96) * 16, blockRight, 0, 16);
 
-                if ((Math.Abs(anchorX - Part1x) <= 3) && (Math.Abs(anchorY - i) <= 3) && (Utilities.ByteToHexString(blockLeft)).Equals("FEFF000000000000FEFF000000000000") && (Utilities.ByteToHexString(blockRight)).Equals("FEFF000000000000FEFF000000000000"))
+                if ((Math.Abs(ShiftedAnchorX - Part1x) <= 3) && (Math.Abs(anchorY - i) <= 3) && (Utilities.ByteToHexString(blockLeft)).Equals("FEFF000000000000FEFF000000000000") && (Utilities.ByteToHexString(blockRight)).Equals("FEFF000000000000FEFF000000000000"))
                 {
                     for (int j = 0; j < 16; j++)
                     {
@@ -1298,7 +1382,7 @@ namespace ACNHPokerCore
                 Buffer.BlockCopy(Part2, i * 16, blockLeft, 0, 16);
                 Buffer.BlockCopy(Part2, (i + 96) * 16, blockRight, 0, 16);
 
-                if ((Math.Abs(anchorX - Part2x) <= 3) && (Math.Abs(anchorY - i) <= 3) && (Utilities.ByteToHexString(blockLeft)).Equals("FEFF000000000000FEFF000000000000") && (Utilities.ByteToHexString(blockRight)).Equals("FEFF000000000000FEFF000000000000"))
+                if ((Math.Abs(ShiftedAnchorX - Part2x) <= 3) && (Math.Abs(anchorY - i) <= 3) && (Utilities.ByteToHexString(blockLeft)).Equals("FEFF000000000000FEFF000000000000") && (Utilities.ByteToHexString(blockRight)).Equals("FEFF000000000000FEFF000000000000"))
                 {
                     for (int j = 0; j < 16; j++)
                     {

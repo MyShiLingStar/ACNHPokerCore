@@ -74,6 +74,7 @@
 	* Update for Game version "Ver. 2.0.8"
 * R25
 	* Update for Game version "Ver. 3.0.0"
+	* Update for Game version "Ver. 3.0.1"
 	
 ## Ely's Changes:
 

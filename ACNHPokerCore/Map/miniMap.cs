@@ -1064,7 +1064,7 @@ namespace ACNHPokerCore
                     if (CustomDesignByte != null)
                     {
                         byte[] currentDesign = new byte[2];
-                        Buffer.BlockCopy(CustomDesignByte, Utilities.ExtendedMapOffset + (i * numOfRow + j) * 2, currentDesign, 0, 2);
+                        Buffer.BlockCopy(CustomDesignByte, (Utilities.ExtendedMapOffset * Utilities.CustomDesignByteSize) + (i * numOfRow + j) * Utilities.CustomDesignByteSize, currentDesign, 0, 2);
                         terrainUnits[i][j].SetCustomDesign(currentDesign);
                     }
 

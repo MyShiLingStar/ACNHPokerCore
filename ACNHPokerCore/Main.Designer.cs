@@ -361,6 +361,7 @@ namespace ACNHPokerCore
             PokeMButton = new System.Windows.Forms.Button();
             PeekMButton = new System.Windows.Forms.Button();
             Chase2Btn = new System.Windows.Forms.Button();
+            Fill2Button = new System.Windows.Forms.Button();
             VillagerAutoCompleteMenu = new AutocompleteMenuNS.AutocompleteMenu();
             AlwaysOnControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)IPAddressInputBackground).BeginInit();
@@ -1493,7 +1494,7 @@ namespace ACNHPokerCore
             DebugAddress.Name = "DebugAddress";
             DebugAddress.Size = new System.Drawing.Size(294, 55);
             DebugAddress.TabIndex = 35;
-            DebugAddress.Text = "AFB1E6E0";
+            DebugAddress.Text = "";
             // 
             // DebugValue
             // 
@@ -5806,20 +5807,37 @@ namespace ACNHPokerCore
             Chase2Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             Chase2Btn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             Chase2Btn.ForeColor = System.Drawing.Color.White;
-            Chase2Btn.Location = new System.Drawing.Point(1125, 617);
+            Chase2Btn.Location = new System.Drawing.Point(1142, 556);
             Chase2Btn.Name = "Chase2Btn";
-            Chase2Btn.Size = new System.Drawing.Size(79, 23);
+            Chase2Btn.Size = new System.Drawing.Size(59, 23);
             Chase2Btn.TabIndex = 58;
             Chase2Btn.Tag = "";
             Chase2Btn.Text = "Chase";
             Chase2Btn.UseVisualStyleBackColor = false;
             Chase2Btn.Click += Chase2Btn_Click;
             // 
+            // Fill2Button
+            // 
+            Fill2Button.BackColor = System.Drawing.Color.FromArgb(114, 137, 218);
+            Fill2Button.FlatAppearance.BorderSize = 0;
+            Fill2Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            Fill2Button.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            Fill2Button.ForeColor = System.Drawing.Color.White;
+            Fill2Button.Location = new System.Drawing.Point(1142, 588);
+            Fill2Button.Name = "Fill2Button";
+            Fill2Button.Size = new System.Drawing.Size(59, 23);
+            Fill2Button.TabIndex = 59;
+            Fill2Button.Tag = "";
+            Fill2Button.Text = "Fill";
+            Fill2Button.UseVisualStyleBackColor = false;
+            Fill2Button.Click += Fill2Button_Click;
+            // 
             // Main
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
             ClientSize = new System.Drawing.Size(1204, 516);
+            Controls.Add(Fill2Button);
             Controls.Add(Chase2Btn);
             Controls.Add(PokeMButton);
             Controls.Add(PeekMButton);
@@ -6246,5 +6264,6 @@ namespace ACNHPokerCore
         private global::System.Windows.Forms.Button LoadCheat;
         private global::System.Windows.Forms.Button LoadCheatfromClipBoard;
         private System.Windows.Forms.Button Chase2Btn;
+        private System.Windows.Forms.Button Fill2Button;
     }
 }
