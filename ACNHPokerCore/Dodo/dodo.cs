@@ -1609,24 +1609,14 @@ namespace ACNHPokerCore
                             //capture visitor's arrival lol
                             if (capturesetting)
                             {
-                                Thread.Sleep(300);
+                                Thread.Sleep(1000);
                                 Controller.ClickCAPTURE();
-                                Thread.Sleep(300);
-                                Controller.ClickCAPTURE();
-                                Thread.Sleep(300);
-                                Controller.ClickCAPTURE();
-                                Thread.Sleep(300);
-                                Controller.ClickCAPTURE();
-                                Thread.Sleep(300);
-                                Controller.ClickCAPTURE();
-                                Thread.Sleep(300);
-                                Controller.ClickCAPTURE();
-                                Thread.Sleep(300);
-                                Controller.ClickCAPTURE();
-                                Thread.Sleep(300);
-                                Controller.ClickCAPTURE();
-                                Thread.Sleep(300);
-                                Controller.ClickCAPTURE();
+                                for (int capturecount = 0; capturecount < 40; capturecount++)
+                                {
+                                    Thread.Sleep(1000);
+                                    Controller.ClickCAPTURE();
+                                    WriteLog("Took Capture #" + capturecount, true);
+                                }
                                 WriteLog("Took Captures", true);
                             }
                             Thread.Sleep(70000);
