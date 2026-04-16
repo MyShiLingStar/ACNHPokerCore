@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Net.Sockets;
 using System.Text;
@@ -11,7 +12,7 @@ namespace ACNHPokerCore
     {
         private readonly Socket socket;
 
-        private static readonly string chat = "[main+5254A40]+40";//"[main+4AA9CD8]+40";
+        private static readonly string chat = "[main+5255A60]+40"; //"[main+5254A40]+40";//"[main+4AA9CD8]+40";
 
         private static readonly int GameCap = 24;
         private static readonly int SoftCap = 32;
@@ -91,6 +92,8 @@ namespace ACNHPokerCore
         private void SendChat(string message)
         {
             ulong ChatAddress = Teleport.GetCoordinateAddress(chat);
+
+            Debug.Print(ChatAddress.ToString("X"));
 
             Controller.ClickR();
             Thread.Sleep(800);

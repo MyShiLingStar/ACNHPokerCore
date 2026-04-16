@@ -37,7 +37,7 @@ namespace ACNHPokerCore
 
         private static Socket socket;
         private static USBBot usb;
-        private readonly string version = "ACNHPokerCore R25 for v3.0.1";
+        private readonly string version = "ACNHPokerCore R25 for v3.0.2";
         private string hardwareId;
 
         private Panel currentPanel;

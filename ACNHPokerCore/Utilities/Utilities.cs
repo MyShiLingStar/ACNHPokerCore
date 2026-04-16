@@ -107,16 +107,16 @@ namespace ACNHPokerCore
 
         //=================================================================
 
-        public static UInt32 VisitorNameAddress = 0xBACD2ED8;
+        public static UInt32 VisitorNameAddress = 0xBA0229E0; //0xBACD2ED8;
         public static UInt32 VisitorIslandNameAddress = VisitorNameAddress - 0x1C;
 
-        public static UInt32 dodoAddress = 0xAC1A164;
-        public static UInt32 OnlineSessionAddress = 0x9499748;
+        public static UInt32 dodoAddress = 0xAC1B164; //0xAC1A164;
+        public static UInt32 OnlineSessionAddress = 0x949A748; //0x9499748;
 
         public static UInt32 VisitorList = VisitorNameAddress - 0x118;
         public static UInt32 VisitorListSize = 0x1C;
 
-        public static UInt32 TextSpeedAddress = 0x0BD9A9FC;
+        public static UInt32 TextSpeedAddress = 0x0BD9B9FC; //0x0BD9A9FC;
 
         public static UInt32 ChineseLanguageOffset = 0x7000;
 
@@ -175,26 +175,26 @@ namespace ACNHPokerCore
         public static UInt32 player8House21Base = player8HouseBase + 0xA0;
 
         // ---- Critter 1CD280
-        public static UInt32 InsectAppearPointer = 0x406A8998;
+        public static UInt32 InsectAppearPointer = 0x406A8F98; //0x406A8998;
         public static Int32 InsectDataSize = 2 * (1 + 6 * 12 + 5);
         public static Int32 InsectNumRecords = 166;
 
         public static Int32 FishDataSize = 88;
 
-        public static UInt32 FishRiverAppearPointer = 0x406E8128;
+        public static UInt32 FishRiverAppearPointer = 0x406E8728; //0x406E8128;
         public static Int32 FishRiverNumRecords = 100;
 
-        public static UInt32 FishSeaAppearPointer = 0x406FE308;
+        public static UInt32 FishSeaAppearPointer = 0x406FE908; //0x406FE308;
         public static Int32 FishSeaNumRecords = 76;
 
-        public static UInt32 CreatureSeaAppearPointer = 0x4066A62C;
+        public static UInt32 CreatureSeaAppearPointer = 0x4066AC2C; //0x4066A62C;
         public static Int32 SeaCreatureDataSize = 88;
         public static Int32 SeaCreatureNumRecords = 41 * 2;
         // ----
 
         public static UInt32 staminaAddress = 0xB9763A00;
 
-        public static readonly UInt32 MaxSpeedAddress = 0x0BFB3F34;
+        public static readonly UInt32 MaxSpeedAddress = 0x0BFB4F34; //0x0BFB3F34;
         public static readonly string MaxSpeedX1 = "0000A03F";
         public static readonly string MaxSpeedX2 = "00002040";
         public static readonly string MaxSpeedX3 = "00007040";
@@ -216,7 +216,7 @@ namespace ACNHPokerCore
         public static readonly string FastSwimSpeed = "00000040";
         public static readonly string FastDiveSpeed = "00000040";
 
-        public static UInt32 readTimeAddress = 0x0BD91B00;
+        public static UInt32 readTimeAddress = 0x0BD92B00; //0x0BD91B00;
         // ---- Main
         public static UInt32 freezeTimeAddress = 0x00981B28;
         public static readonly string freezeTimeValue = "D503201F";
@@ -231,11 +231,11 @@ namespace ACNHPokerCore
         public static readonly string wSpeedX4 = "1E221001";
         //--------------------------------------------------------------------------------------------
 
-        public static UInt32 CollisionAddress = 0x02218410; //0x02217B30;
+        public static UInt32 CollisionAddress = 0x02219120; //0x02218410; //0x02217B30;
         public static readonly string CollisionDisable = "12800000";
         public static readonly string CollisionEnable = "B95BF800";
 
-        public static UInt32 ActorCollisionAddress = 0x0221894C; //0x0221806C;
+        public static UInt32 ActorCollisionAddress = 0x0221965C; //0x0221894C; //0x0221806C;
         public static readonly string ActorCollisionDisable = "1E3E1000";
         public static readonly string ActorCollisionEnable = "1E2E1000";
 

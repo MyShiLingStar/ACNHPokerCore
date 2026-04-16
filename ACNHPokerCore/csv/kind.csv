@@ -979,6 +979,7 @@ id ; kind ;
 0523 ; Kind_Timer ; 
 0525 ; Ftr_1x1_Floor ; 
 0527 ; Ftr_1x1_Floor ; 
+052B ; Ftr_2x1_Floor ; 					   
 052E ; Ftr_1x1_Floor ; 
 0530 ; Ftr_1x1_Floor ; 
 0531 ; Ftr_1x1_Floor ; 

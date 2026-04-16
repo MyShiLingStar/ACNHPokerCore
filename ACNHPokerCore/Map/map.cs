@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers.Binary;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -133,6 +134,8 @@ namespace ACNHPokerCore
         private readonly string debugItem = @"item.nhf";
 
         private const int ExtendedMapBuffer = 16;
+
+        private System.Threading.CancellationTokenSource _debounceCts;
         #endregion
 
         #region Form Load
@@ -783,20 +786,18 @@ namespace ACNHPokerCore
                 Buffer.BlockCopy(Layer2, (btn.MapX + 16) * 0xC00 + 0x600 + btn.MapY * 0x10, Right, 0, 16);
             }
 
-            string LeftStr = Utilities.ByteToHexString(Left);
-            string RightStr = Utilities.ByteToHexString(Right);
+            // Read little-endian values directly from bytes — no string conversion needed
+            UInt16 ID = BinaryPrimitives.ReadUInt16LittleEndian(Left.AsSpan(0, 2));
+            byte Byteflag1 = Left[2];
+            byte Byteflag0 = Left[3];
+            UInt32 Data = BinaryPrimitives.ReadUInt32LittleEndian(Left.AsSpan(4, 4));
+            UInt32 IntP2Id = BinaryPrimitives.ReadUInt16LittleEndian(Left.AsSpan(8, 2));
+            UInt32 IntP2Data = BinaryPrimitives.ReadUInt32LittleEndian(Left.AsSpan(12, 4));
 
-            string P1Id = Utilities.Flip(LeftStr.Substring(0, 4));
-            string flag1 = LeftStr.Substring(4, 2);
-            string flag0 = LeftStr.Substring(6, 2);
-            string P1Data = Utilities.Flip(LeftStr.Substring(8, 8));
-            string P2Id = Utilities.Flip(LeftStr.Substring(16, 4));
-            string P2Data = Utilities.Flip(LeftStr.Substring(24, 8));
-
-            string P3Id = Utilities.Flip(RightStr.Substring(0, 4));
-            string P3Data = Utilities.Flip(RightStr.Substring(8, 8));
-            string P4Id = Utilities.Flip(RightStr.Substring(16, 4));
-            string P4Data = Utilities.Flip(RightStr.Substring(24, 8));
+            UInt32 IntP3Id = BinaryPrimitives.ReadUInt16LittleEndian(Right.AsSpan(0, 2));
+            UInt32 IntP3Data = BinaryPrimitives.ReadUInt32LittleEndian(Right.AsSpan(4, 4));
+            UInt32 IntP4Id = BinaryPrimitives.ReadUInt16LittleEndian(Right.AsSpan(8, 2));
+            UInt32 IntP4Data = BinaryPrimitives.ReadUInt32LittleEndian(Right.AsSpan(12, 4));
 
             string Path1 = "";
             string Path2 = "";
@@ -804,16 +805,19 @@ namespace ACNHPokerCore
             string Path4 = "";
             string ContainPath = "";
 
+            string P1Id = ID.ToString("X4");
+            string P1Data = Data.ToString("X8");
+            string P2Id = IntP2Id.ToString("X4");
+            string P2Data = IntP2Data.ToString("X8");
+            string P3Id = IntP3Id.ToString("X4");
+            string P3Data = IntP3Data.ToString("X8");
+            string P4Id = IntP4Id.ToString("X4");
+            string P4Data = IntP4Data.ToString("X8");
+            string flag1 = Byteflag1.ToString("X2");
+            string flag0 = Byteflag0.ToString("X2");
 
             string Name = GetNameFromID(P1Id, source);
-            UInt16 ID = Convert.ToUInt16("0x" + P1Id, 16);
-            UInt32 Data = Convert.ToUInt32("0x" + P1Data, 16);
-            UInt32 IntP2Id = Convert.ToUInt32("0x" + P2Id, 16);
-            UInt32 IntP2Data = Convert.ToUInt32("0x" + P2Data, 16);
-            UInt32 IntP3Id = Convert.ToUInt32("0x" + P3Id, 16);
-            UInt32 IntP3Data = Convert.ToUInt32("0x" + P3Data, 16);
-            UInt32 IntP4Id = Convert.ToUInt32("0x" + P4Id, 16);
-            UInt32 IntP4Data = Convert.ToUInt32("0x" + P4Data, 16);
+
 
             string front = P1Data.Substring(0, 4);
             string back = P1Data.Substring(4, 4);
@@ -875,8 +879,6 @@ namespace ACNHPokerCore
                 _ = UpdateBtn(floorSlots[BtnNum + 8]);
         }
 
-        private bool isUpdating = false;
-
         private async Task UpdateAllBtn(bool skipImage = false)
         {
             /*
@@ -899,7 +901,7 @@ namespace ACNHPokerCore
                 tasks.Add(UpdateBtn(floorSlots[i], skipImage));
                 //UpdateBtn(floorSlots[i]);
             }
-            await Task.WhenAll(tasks);
+            await Task.WhenAny(tasks);
             
         }
 
@@ -954,15 +956,51 @@ namespace ACNHPokerCore
 
         #endregion
 
+        private async Task DisplayAnchorDebounced(bool skipImage = false)
+        {
+            // Cancel the previous pending call
+            _debounceCts?.Cancel();
+            _debounceCts = new CancellationTokenSource();
+
+            try
+            {
+                // Wait a short delay — if another call comes in, this gets cancelled
+                await Task.Delay(50, _debounceCts.Token);
+
+                // Only reaches here if no new call came in during the delay
+                await DisplayAnchorAsync(skipImage);
+            }
+            catch (TaskCanceledException)
+            {
+                // Debounced — safely ignored
+            }
+        }
+
         private async Task DisplayAnchorAsync(bool skipImage = false)
         {
             miniMapBox.Image = MiniMap.DrawSelectSquare(anchorX, anchorY);
 
             SetupBtnCoordinate(anchorX, anchorY);
 
-            UpdateAllBtn(skipImage);
+            await UpdateButtonsDebounced(skipImage);
+        }
 
-            ResetBtnColor(skipImage);
+        private async Task UpdateButtonsDebounced(bool skipImage = false)
+        {
+            _debounceCts?.Cancel();
+            _debounceCts = new CancellationTokenSource();
+
+            try
+            {
+                await Task.Delay(50, _debounceCts.Token);
+
+                UpdateAllBtn(skipImage);
+                ResetBtnColor(skipImage);
+            }
+            catch (TaskCanceledException)
+            {
+                // Debounced — safely ignored
+            }
         }
 
         private static UInt32 GetAddress(int x, int y, bool right = false, bool down = false)
@@ -4992,9 +5030,8 @@ namespace ACNHPokerCore
                 yCoordinate.Text = y.ToString();
                 selectedButton = floor25;
 
-                DisplayAnchorAsync(true);
+                _ = DisplayAnchorDebounced(true); // Fire and forget safely
             }
-
         }
 
         private void MiniMapBox_MouseUp(object sender, MouseEventArgs e)
@@ -5033,7 +5070,7 @@ namespace ACNHPokerCore
                 yCoordinate.Text = y.ToString();
                 selectedButton = floor25;
 
-                DisplayAnchorAsync(true);
+                DisplayAnchorAsync(false);
             }
         }
 

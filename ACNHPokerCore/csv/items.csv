@@ -272,6 +272,7 @@ id ; iName ; eng ; jpn ; tchi ; schi ; kor ; fre ; ger ; spa ; ita ; dut ; rus ;
 0522 ; FtrLavatory ; handwashing area ; てあらいば ; 洗手處 ; 洗手处 ; 손 전용 세면대 ; lavabo public ; Handwaschbecken ; pilón ; lavatoio pubblico ; grote wastafel ; общественная мойка ; Beige ; 2_0x1_0
 0525 ; FtrAnatomicalmodel ; anatomical model ; じんたいもけい ; 人體模型 ; 人体模型 ; 인체 모형 ; modèle musculaire ; Anatomiemodell ; modelo anatómico ; modellino anatomico ; anatomiemodel ; анатомическая модель ; Colorful ; 1_0x1_0
 0527 ; FtrMicroscope ; microscope ; けんびきょう ; 顯微鏡 ; 显微镜 ; 현미경 ; microscope ; Mikroskop ; microscopio ; microscopio ; microscoop ; микроскоп ; White ; 1_0x1_0
+052B ; FtrLampLeaf ; leaf statue ; はっぱのオブジェ ; 葉子裝飾品 ; 叶子装饰品 ; 나뭇잎 장식 ; sculpture de feuille ; Blatt-Skulptur ; escultura de hoja ; statua di foglia ; bladbeeld ; статуя листа ; Green ; 2_0x1_0
 052E ; FtrSchoolSkeleton ; skeleton ; こっかくひょうほん ; 骨骼標本 ; 骨骼标本 ; 해골 모형 ; squelette ; Skelett ; modelo de esqueleto ; scheletro ; skelet ; скелет ; White ; 1_0x1_0
 0530 ; FtrSchoolTableS ; school desk ; がっこうのつくえ ; 學校桌子 ; 课桌 ; 학교 책상 ; pupitre ; Schultisch ; mesa escolar ; banco di scuola ; schoolbureau ; парта ; Yellow ; 1_0x1_0
 0531 ; FtrLectern ; podium ; こうえんだい ; 演講台 ; 演讲台 ; 교단 ; bureau de professeur ; Lehrerpult ; escritorio de profe ; cattedra antica ; spreekgestoelte ; стол докладчика ; Brown ; 1_0x1_0
